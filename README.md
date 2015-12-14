@@ -1,4 +1,4 @@
-## **Cure APP** ##
+## **Doctor Finder** ##
 
 ![application icon](https://www.mediafire.com/convkey/bec9/vxf514751f00jfn6g.jpg)
 
