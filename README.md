@@ -1,6 +1,6 @@
 ## **Doctor Finder** ##
 
-![application icon](https://drive.google.com/file/d/0B1SUy2ysIW0SWG8xMmVSNzZvS3c/view?usp=sharing)
+![application icon](http://www.mediafire.com/view/cpic16h7az6j48g/Logo_testo_e_icona_.png)
 
 **The simplest way to connect doctor with you**
 
