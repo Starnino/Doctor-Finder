@@ -1,6 +1,6 @@
 ## **Doctor Finder** ##
 
-![application icon](http://www.mediafire.com/view/cpic16h7az6j48g/Logo_testo_e_icona_.png)
+![application icon](http://www.mediafire.com/view/cpic16h7az6j48g)
 
 **The simplest way to connect doctor with you**
 
