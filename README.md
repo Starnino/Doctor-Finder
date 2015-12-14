@@ -1,6 +1,6 @@
 ## **Doctor Finder** ##
 
-![application icon](http://www.mediafire.com/view/cpic16h7az6j48g)
+![application icon](https://www.mediafire.com/convkey/ead0/cpic16h7az6j48g6g.jpg)
 
 **The simplest way to connect doctor with you**
 
