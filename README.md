@@ -7,6 +7,7 @@
 
 
 #Milestone 1 - Proof of Concept
+
 App beta
 
 Beta test
@@ -16,6 +17,7 @@ Report first survey
 Demo video
 
 #Milestone 2 - Release Candidate
+
 Release first app
 
 Web platform
@@ -23,4 +25,5 @@ Web platform
 Feedback survey
 
 #Milestone 3 - Final
-final submission
+
+Final submission
