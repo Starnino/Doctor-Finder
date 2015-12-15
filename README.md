@@ -7,7 +7,7 @@
 
 > [The project](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)
 
->[First_survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg)
+>[First survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg)
 
 #Milestone 1 - Proof of Concept
 
