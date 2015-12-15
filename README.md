@@ -8,8 +8,11 @@
 
 #Milestone 1 - Proof of Concept
 App beta
+
 Beta test
+
 Report first survey
+
 Demo video
 
 #Milestone 2 - Release Candidate
