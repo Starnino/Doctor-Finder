@@ -17,7 +17,9 @@ Demo video
 
 #Milestone 2 - Release Candidate
 Release first app
+
 Web platform
+
 Feedback survey
 
 #Milestone 3 - Final
