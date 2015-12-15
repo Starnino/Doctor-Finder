@@ -6,10 +6,16 @@
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
 
 
-#Milestone 1
+#Milestone 1 - Proof of Concept
+App beta
+Beta test
+Report first survey
+Demo video
 
+#Milestone 2 - Release Candidate
+Release first app
+Web platform
+Feedback survey
 
-#Milestone 2
-
-
-#Milestone 3
+#Milestone 3 - Final
+final submission
