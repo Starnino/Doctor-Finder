@@ -15,7 +15,9 @@
 
 >[Web Site](http://www.doctorfinderapp.com/)
 
->[Second Survey](http://goo.gl/forms/SM149jvxNC)
+>[Second survey](http://goo.gl/forms/SM149jvxNC)
+
+>[Documentation survey](https://docs.google.com/document/d/1zJCbJ3-HV9vkzz-f_J4HuJ0rYEn7X_PdUSC57PltPkc/edit?usp=sharing)
 
 >[Results Second survey](------) (Results continuously updated)
 
