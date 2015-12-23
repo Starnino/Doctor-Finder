@@ -15,9 +15,9 @@
 
 >[Web Site](http://www.doctorfinderapp.com/)
 
->[Second Survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
+>[Second Survey](http://goo.gl/forms/SM149jvxNC)
 
->[Results Second survey](------)
+>[Results Second survey](------) (Results continuously updated)
 
 App beta
 
