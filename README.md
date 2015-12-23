@@ -5,7 +5,7 @@
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
 
-> [The project](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)
+>[The project](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)
 
 >[First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
 
@@ -13,11 +13,15 @@
 
 #Milestone 1 - Proof of Concept
 
+>[Web Site](http://www.doctorfinderapp.com/)
+
+>[Second Survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
+
+>[Results Second survey](------)
+
 App beta
 
 Beta test
-
-Report first survey
 
 Demo video
 
