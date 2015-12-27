@@ -19,7 +19,7 @@
 
 >[Documentation survey](https://docs.google.com/document/d/1zJCbJ3-HV9vkzz-f_J4HuJ0rYEn7X_PdUSC57PltPkc/edit?usp=sharing)
 
->[Results Second survey](------) (Results continuously updated)
+>[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated)
 
 App beta
 
