@@ -14,10 +14,7 @@
     tools:context="com.doctorfinderapp.doctorfinder.MainActivity">
 
     <TextView
-        android:text="Giovanni puzza abbastanza tanto
-
-
-        tette"
+        android:text="Giovanni puzza abbastanza tanto"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
