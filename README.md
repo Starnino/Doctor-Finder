@@ -2,6 +2,7 @@
 
 **The simplest way to connect doctor with you**
 
+---------------------------------------------------------------------------------------------------------------
 
 > Contacts us by email on info@doctorfinderapp.com
 
@@ -28,7 +29,7 @@
 
 >[We're working on...](https://trello.com/b/0uSh0ofs)
 
->App pre alpha
+>Alpha ap
 
 >Android Apk file
 
