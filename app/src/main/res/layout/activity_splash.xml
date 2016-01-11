@@ -17,9 +17,25 @@
         android:layout_marginBottom="100dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+
+     <RelativeLayout
+         android:id="@+id/loadingPanel"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="center" >
+
+         <ProgressBar
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:indeterminate="true" />
+     </RelativeLayout>
+
+     findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
+
+     <!-- The primary full-screen view. This can be replaced with whatever view
+          is needed to present your content, e.g. VideoView, SurfaceView,
+          TextureView, etc. -->
 
 
 </FrameLayout>
