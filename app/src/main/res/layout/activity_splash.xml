@@ -6,8 +6,8 @@
 
     tools:context="com.doctorfinderapp.doctorfinder.SplashActivity">
     <ImageView
-        android:layout_height="522dp"
-        android:layout_width="392dp"
+        android:layout_height="339dp"
+        android:layout_width="376dp"
         android:src="@drawable/motto"
         android:id="@drawable/motto"
         android:layout_gravity="center"
