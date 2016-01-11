@@ -29,7 +29,7 @@
 
 >[We're working on...](https://trello.com/b/0uSh0ofs)
 
->Alpha ap
+>Alpha app
 
 >Android Apk file
 
