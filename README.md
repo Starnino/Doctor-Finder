@@ -28,9 +28,13 @@
 
 >[We're working on...](https://trello.com/b/0uSh0ofs)
 
-App pre alpha
+>App pre alpha
 
-Demo video
+>Android Apk file
+
+>Instructions for Apk installation
+
+>Demo video
 
 #Milestone 2 - Release Candidate
 
