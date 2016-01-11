@@ -30,8 +30,6 @@
 
 App pre alpha
 
-First test
-
 Demo video
 
 #Milestone 2 - Release Candidate
