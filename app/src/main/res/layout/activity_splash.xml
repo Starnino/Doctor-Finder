@@ -4,30 +4,35 @@
     android:layout_height="match_parent"
     android:background="#009688"
 
-    tools:context="com.doctorfinderapp.doctorfinder.SplashActivity">
-    <ImageView
-        android:layout_height="339dp"
-        android:layout_width="376dp"
-        android:src="@drawable/motto"
-        android:id="@drawable/motto"
-        android:layout_gravity="center"
-        android:cropToPadding="false"
-
-        android:adjustViewBounds="false"
-        android:layout_marginBottom="100dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp" />
+    tools:context="com.doctorfinderapp.doctorfinder.SplashActivity"
+     android:touchscreenBlocksFocus="false">
 
      <RelativeLayout
          android:id="@+id/loadingPanel"
          android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:gravity="center" >
+         android:layout_height="357dp"
+         android:gravity="center"
+         android:layout_gravity="center">
 
          <ProgressBar
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:indeterminate="true" />
+             android:indeterminate="true"
+             android:layout_alignBottom="@drawable/motto"
+             android:layout_centerHorizontal="true" />
+
+         <ImageView
+             android:layout_height="311dp"
+             android:layout_width="345dp"
+             android:src="@drawable/motto"
+             android:id="@drawable/motto"
+             android:layout_gravity="center"
+             android:cropToPadding="false"
+
+             android:adjustViewBounds="false"
+             android:layout_alignParentBottom="true"
+             android:layout_centerHorizontal="true"
+             android:layout_marginBottom="92dp" />
      </RelativeLayout>
 
      findViewById(R.id.loadingPanel).setVisibility(View.GONE);

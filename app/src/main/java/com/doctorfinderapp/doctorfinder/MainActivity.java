@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.app.AlertDialog;
 import android.app.AlertDialog;
 
-public class MainActivity extends AppCompatActivity { //commit
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
