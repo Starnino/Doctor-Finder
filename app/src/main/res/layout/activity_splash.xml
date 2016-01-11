@@ -1,11 +1,11 @@
- <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009688"
 
     tools:context="com.doctorfinderapp.doctorfinder.SplashActivity"
-     android:touchscreenBlocksFocus="false">
+    android:touchscreenBlocksFocus="false">
 
      <RelativeLayout
          android:id="@+id/loadingPanel"
@@ -19,7 +19,10 @@
              android:layout_height="wrap_content"
              android:indeterminate="true"
              android:layout_alignBottom="@drawable/motto"
-             android:layout_centerHorizontal="true" />
+             android:layout_centerHorizontal="true"
+             android:backgroundTint="#ffffff"
+             android:progressTintMode="screen"></ProgressBar>
+
 
          <ImageView
              android:layout_height="311dp"
