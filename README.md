@@ -17,7 +17,8 @@
 
 >[Results first survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg) (Results at 15/15/2015)
 
->[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)
+>[We're working on...Trello!](https://trello.com/b/0uSh0ofs)
+
 ---------------------------------------------------------------------------------------------------------------
 
 #Milestone 1 - Proof of Concept
