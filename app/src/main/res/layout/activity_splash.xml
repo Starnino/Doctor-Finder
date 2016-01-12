@@ -20,8 +20,7 @@
              android:indeterminate="true"
              android:layout_alignBottom="@drawable/motto"
              android:layout_centerHorizontal="true"
-             android:backgroundTint="#ffffff"
-             android:progressTintMode="screen"></ProgressBar>
+             ></ProgressBar>
 
 
          <ImageView
