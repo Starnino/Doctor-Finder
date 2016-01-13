@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
     android:background="@color/colorPrimary"
     tools:context="com.doctorfinderapp.doctorfinder.OpenActivity"
     >
@@ -20,33 +16,34 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
+    <!-- try to change the resource with firstscreen-->
     <ImageView
-        android:layout_width="330dp"
         android:layout_height="330dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/login_screen"
-        android:id="@drawable/login_screen"
-        android:adjustViewBounds="false"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginRight="10dp"/>
+        android:layout_width="355dp"
+        android:src="@drawable/motto"
+        android:id="@drawable/motto"
+        android:layout_gravity="center"
+        android:cropToPadding="false"
 
-    <ImageButton
+        android:adjustViewBounds="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentTop="true" />
+
+     <Button
         android:id="@+id/button"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:text="Search"
         android:background="@drawable/search71"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
         <Button
-            android:layout_width="195dp"
+            android:layout_width="190dp"
             android:layout_height="80dp"
             android:background="#446CB3"
             android:text="Login"
@@ -56,7 +53,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:layout_width="195dp"
+            android:layout_width="190dp"
             android:layout_height="80dp"
             android:background="#D24D57"
             android:text="Sign in"
