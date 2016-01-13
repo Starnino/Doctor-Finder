@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:background="@color/colorPrimary"
-    tools:context="com.doctorfinderapp.doctorfinder.LoginActivity">
+    tools:context="com.doctorfinderapp.doctorfinder.OpenActivity"
+    >
 
     <!-- Login progress -->
     <ProgressBar
@@ -21,19 +21,21 @@
         android:visibility="gone" />
 
     <ImageView
-        android:layout_width="246dp"
+        android:layout_width="330dp"
         android:layout_height="330dp"
         android:layout_marginTop="0dp"
         android:src="@drawable/login_screen"
         android:id="@drawable/login_screen"
-        android:adjustViewBounds="false" />
+        android:adjustViewBounds="false"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:text="Search"
-        android:background="@drawable/circle_button"
+        android:background="@drawable/search71"
         android:layout_gravity="center_horizontal" />
 
     <GridLayout
