@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@color/colorPrimary"
+    tools:context="com.doctorfinderapp.doctorfinder.LoginActivity">
+
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="246dp"
+        android:layout_height="329dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/login_screen"
+        android:id="@drawable/login_screen" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Search"
+        android:background="@drawable/circle_button"
+        android:layout_gravity="center_horizontal" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <Button
+            android:layout_width="195dp"
+            android:layout_height="80dp"
+            android:background="#446CB3"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="195dp"
+            android:layout_height="80dp"
+            android:background="#D24D57"
+            android:text="Sign in"
+            android:textColor="#ffffff"
+            android:layout_row="1"
+            android:layout_column="11"
+            android:textSize="20dp" />
+
+
+    </GridLayout>
+
+</LinearLayout>

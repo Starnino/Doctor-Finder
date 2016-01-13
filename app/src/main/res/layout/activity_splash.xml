@@ -14,14 +14,6 @@
          android:gravity="center"
          android:layout_gravity="center">
 
-         <ProgressBar
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:indeterminate="true"
-             android:layout_alignBottom="@drawable/motto"
-             android:layout_centerHorizontal="true"
-             ></ProgressBar>
-
 
          <ImageView
              android:layout_height="311dp"
@@ -34,10 +26,18 @@
              android:adjustViewBounds="false"
              android:layout_alignParentBottom="true"
              android:layout_centerHorizontal="true"
-             android:layout_marginBottom="92dp" />
+             android:layout_marginBottom="92dp"
+             android:layout_alignParentTop="true" />
+
+         <ProgressBar
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/progressBar"
+             android:layout_alignBottom="@drawable/motto"
+             android:layout_centerHorizontal="true" />
      </RelativeLayout>
 
-     findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
 
      <!-- The primary full-screen view. This can be replaced with whatever view
           is needed to present your content, e.g. VideoView, SurfaceView,
