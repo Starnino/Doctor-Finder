@@ -29,11 +29,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity
             android:name=".OpenActivity"
-            android:label="Login"
-            android:theme="@style/Theme.AppCompat">
-        </activity>
+            android:label="Login2"
+            android:theme="@style/Theme.AppCompat"></activity>
+        <activity
+            android:name=".LoginActivity"
 
+            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>

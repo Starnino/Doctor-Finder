@@ -45,7 +45,7 @@ public class SplashActivity extends Activity {
                 // Start the next activity
 
                 Intent mainIntent = new Intent().setClass(
-                        SplashActivity.this, OpenActivity.class);
+                        SplashActivity.this,LoginActivity.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(mainIntent);
