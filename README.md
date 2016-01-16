@@ -23,7 +23,7 @@
 
 #Milestone 1 - Proof of Concept
 
->[Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
+>[Presentation]()
 
 >[Web Site](http://www.doctorfinderapp.com/)
 
