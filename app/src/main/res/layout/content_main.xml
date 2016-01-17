@@ -15,7 +15,7 @@
     android:background="#009688">
 
     <TextView
-        android:text="Questo tutor, Macina! "
+        android:text="Main activity "
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ESCILE"
+        android:text="Hello World!"
         android:id="@+id/textView"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"

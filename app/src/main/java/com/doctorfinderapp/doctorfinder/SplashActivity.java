@@ -13,6 +13,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.ui.ParseLoginBuilder;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,6 +33,16 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        /*
+        roba di Parse
+
+         */
+        Parse.initialize(this, "K7yKGjO3Qeamgum9JnBez82h8oPvvyoByONPXi72", "GiJtbLXioJnPsN99PcxPacwWVhu7Bd7b84OmbP8V");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        //ParseLoginBuilder builder = new ParseLoginBuilder(SplashActivity.this);
+        //startActivityForResult(builder.build(), 0);
         // Set portrait orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // Hide title bar
@@ -44,6 +58,11 @@ public class SplashActivity extends Activity {
 
                 // Start the next activity
 
+
+                ParseLoginBuilder builder = new ParseLoginBuilder(SplashActivity.this);
+                startActivityForResult(builder.build(), 0);
+
+                //PARSE
                 Intent mainIntent = new Intent().setClass(
                         SplashActivity.this,LoginActivity.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
