@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
         special = new String[] { "Dermatologist", "Cardiologist", "Dentist",
                 "Dermatologist", "Medical Geneticist", "Dentist", "Dentist", "Cardiologist", "Dermatologist", "Dermatologist", "Cardiologist", "Allergist","Medical Geneticist","Allergist","Cardiologist","Medical Geneticist"  };
 
-        feedback = new String[] { "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***", "***" };
+        feedback = new String[] { "**", "****", "*", "***", "****", "**", "*", "***", "***", "****", "****", "**", "*", "*", "***", "****" };
 
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.listview);

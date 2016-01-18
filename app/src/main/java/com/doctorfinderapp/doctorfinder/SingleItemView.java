@@ -6,7 +6,12 @@ package com.doctorfinderapp.doctorfinder;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class SingleItemView extends Activity {
     // Declare Variables
@@ -16,6 +21,7 @@ public class SingleItemView extends Activity {
     String name;
     String special;
     String feedback;
+    Button buttonCall, buttonSend;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,5 +42,25 @@ public class SingleItemView extends Activity {
         txtname.setText(name);
         txtspecial.setText(special);
         txtfeedback.setText(feedback);
+
+        buttonCall = (Button) findViewById(R.id.button_call);
+        buttonSend = (Button) findViewById(R.id.button_send);
+
+        buttonCall.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Thanks for use Doctor Finder", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        buttonSend.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Thanks for use Doctor Finder", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
