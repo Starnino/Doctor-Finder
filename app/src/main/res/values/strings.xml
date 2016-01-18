@@ -19,4 +19,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="namelabel">"Name : "</string>
+    <string name="speciallabel">"Specialitation : "</string>
+    <string name="feedbacklabel">"Feedback : "</string>
 </resources>
