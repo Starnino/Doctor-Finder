@@ -23,19 +23,19 @@
 
 #Milestone 1 - Proof of Concept
 
->[Presentation]()
+>[Presentation](https://drive.google.com/drive/folders/0B_cyDM3ySwG4eDdNbEpCMnhiZE0)
 
 >[Web Site](http://www.doctorfinderapp.com/)
 
 >[Second survey](http://goo.gl/forms/SM149jvxNC)
 
->[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated)
+>[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results at 18/01/16)
 
 >Android Apk file
 
 >Instructions for Apk installation
 
->Demo video
+>[Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
 #Milestone 2 - Release Candidate
 
