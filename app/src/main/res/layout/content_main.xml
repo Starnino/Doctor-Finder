@@ -14,10 +14,18 @@
     tools:context="com.doctorfinderapp.doctorfinder.MainActivity"
     android:background="#009688">
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/icon2"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:id="@+id/search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView">
 
         <requestFocus />
     </EditText>
@@ -27,7 +35,5 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/search" />
-
-
 
 </RelativeLayout>
