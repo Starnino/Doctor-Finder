@@ -35,11 +35,19 @@
 
 #Milestone 2 - Release Candidate
 
-Release first Alpha app
+Social Integration
 
-Test first Alpha app
+Log in using social Networks(Facebook, Google+, Twitter)
 
-Feedback survey
+Improving Back- and & Front-end
+
+Beta app
+
+Instructions for install APK
+
+Download APK
+
+...
 
 #Milestone 3 - Final
 
