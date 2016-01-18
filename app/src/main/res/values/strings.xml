@@ -22,6 +22,6 @@
     </string>
 
     <string name="namelabel">"Name : "</string>
-    <string name="speciallabel">"Specialitation : "</string>
+    <string name="speciallabel">"Specialization : "</string>
     <string name="feedbacklabel">"Feedback : "</string>
 </resources>
