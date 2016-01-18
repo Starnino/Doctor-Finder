@@ -29,11 +29,7 @@
 
 >[Second survey](http://goo.gl/forms/SM149jvxNC)
 
->[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results at 18/01/16)
-
->Android Apk file
-
->Instructions for Apk installation
+>[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results at 18/01/16) 
 
 >[Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
