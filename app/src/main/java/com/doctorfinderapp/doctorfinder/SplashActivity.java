@@ -20,37 +20,18 @@ import com.parse.ui.ParseLoginBuilder;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
-    // Set the duration of the splash screen
-    private static final long SPLASH_SCREEN_DELAY = 4000;
-
+    public static final int SPLASH_ACTIVITY_TIME = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        /*
-        roba di Parse
-
-         */
-        Parse.initialize(this, "K7yKGjO3Qeamgum9JnBez82h8oPvvyoByONPXi72", "GiJtbLXioJnPsN99PcxPacwWVhu7Bd7b84OmbP8V");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-        //ParseLoginBuilder builder = new ParseLoginBuilder(SplashActivity.this);
-        //startActivityForResult(builder.build(), 0);
-        // Set portrait orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // Hide title bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_splash);
+
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "RIZRj6QdFVtP5r5JVnyWsmhVjW6PeRMc2X17UNFA", "97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         TimerTask task = new TimerTask() {
             @Override
@@ -58,13 +39,8 @@ public class SplashActivity extends Activity {
 
                 // Start the next activity
 
-
-                ParseLoginBuilder builder = new ParseLoginBuilder(SplashActivity.this);
-                startActivityForResult(builder.build(), 0);
-
-                //PARSE
                 Intent mainIntent = new Intent().setClass(
-                        SplashActivity.this,LoginActivity.class);
+                        SplashActivity.this,FirstActivity.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(mainIntent);
@@ -76,8 +52,10 @@ public class SplashActivity extends Activity {
             }
         };
 
-        // Simulate a long loading process on application startup.
         Timer timer = new Timer();
-        timer.schedule(task, SPLASH_SCREEN_DELAY);
+        timer.schedule(task, SPLASH_ACTIVITY_TIME);
+
     }
+
+
 }

@@ -1,46 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#009688"
-    tools:context="com.doctorfinderapp.doctorfinder.SplashActivity"
-    android:touchscreenBlocksFocus="false">
+    tools:context="com.example.francesco.docfinder.Splash_Activity"
+    android:background="@color/docfinder">
 
-     <RelativeLayout
-         android:id="@+id/loadingPanel"
-         android:layout_width="match_parent"
-         android:layout_height="357dp"
-         android:gravity="center"
-         android:layout_gravity="center">
-
-
-         <ImageView
-             android:layout_height="311dp"
-             android:layout_width="345dp"
-             android:src="@drawable/motto"
-             android:id="@drawable/motto"
-             android:layout_gravity="center"
-             android:cropToPadding="false"
-
-             android:adjustViewBounds="false"
-             android:layout_alignParentBottom="true"
-             android:layout_centerHorizontal="true"
-             android:layout_marginBottom="92dp"
-             android:layout_alignParentTop="true" />
-
-         <ProgressBar
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:id="@+id/progressBar"
-             android:layout_alignBottom="@drawable/motto"
-             android:layout_centerHorizontal="true" />
-     </RelativeLayout>
-
-
-
-     <!-- The primary full-screen view. This can be replaced with whatever view
-          is needed to present your content, e.g. VideoView, SurfaceView,
-          TextureView, etc. -->
-
-
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logodc" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

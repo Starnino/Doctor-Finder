@@ -12,9 +12,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <permission
+        android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
-    <permission android:protectionLevel="signature"
-        android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
 
     <application
@@ -42,39 +43,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity
-            android:name="com.parse.ui.ParseLoginActivity"
-        android:label="@string/app_name"
-        android:launchMode="singleTop">
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <meta-data
-            android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED"
-            android:value="true" />
+            android:name="com.parse.APPLICATION_ID"
+            android:value="RIZRj6QdFVtP5r5JVnyWsmhVjW6PeRMc2X17UNFA" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX" />
 
+        <activity
+            android:name=".FirstActivity">
         </activity>
-        <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.parse.push.intent.RECEIVE" />
-                <action android:name="com.parse.push.intent.DELETE" />
-                <action android:name="com.parse.push.intent.OPEN" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <!--
-                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
-                <category android:name="com.doctorfinderapp.doctorfinder" />
-            </intent-filter>
-        </receiver>
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
