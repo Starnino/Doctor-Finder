@@ -18,7 +18,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/imageView"
-        android:src="@drawable/icon2"
+        android:src="@drawable/logodc"
         android:layout_centerHorizontal="true" />
 
     <EditText
