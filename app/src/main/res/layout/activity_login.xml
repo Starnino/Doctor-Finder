@@ -15,8 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:id="@+id/login_fb_button"
-            android:onClick="loginFacebookClick"
-            android:text="Login with facebook"
+            android:text="@string/action_login_with_facebook"
             android:textColor="@color/white"
             android:background="@color/facebook_color"/>
     </LinearLayout>
@@ -32,7 +31,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="-----------------------------or use your account------------------------------" />
+            android:text="@string/text_useyourAccount" />
     </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -50,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/text_username"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/text_password"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -85,13 +84,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onRememberMeClick"
-            android:text="Remember Me" />
+            android:text="@string/text_rememberMe" />
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password" />
+            android:text="@string/text_forgotPassword" />
         <!-- Da Implementare
         android:onClick="onForgotPasswordClicked"
         android:clickable="true"-->
@@ -110,8 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:id="@+id/login_button2"
-            android:text="Login"
-            android:onClick="LoginClicked2"
+            android:text="@string/action_log_in"
             android:textColor="@color/white"
             android:background="@color/docfinder"/>
 
@@ -131,17 +128,16 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Not a member yet?"
+            android:text="@string/namy"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
             android:id="@+id/textViewSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="SignUpNow"
+            android:text="@string/text_signupNow"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
-            android:onClick="SignupNowClicked"
             android:clickable="true"/>
     </LinearLayout>
 </RelativeLayout>
