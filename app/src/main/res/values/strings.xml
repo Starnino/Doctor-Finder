@@ -24,8 +24,8 @@
     <string name="text_emailAdress">Email Address</string>
     <string name="text_password">Password</string>
     <string name="text_repeatPassword">repeat Password</string>
-    <string name="text_useyourEmail">---------------------------------------or use your email----------------------------------------</string>
-    <string name="text_useyourAccount">------------------------------------or use your account---------------------------------------</string>
+    <string name="text_useyourEmail">or use your email</string>
+    <string name="text_useyourAccount">or use your account</string>
     <string name="text_username">Username</string>
     <string name="text_forgotPassword">forgot password</string>
     <string name="text_rememberMe">Remember me</string>
