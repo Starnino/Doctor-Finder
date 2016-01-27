@@ -55,8 +55,9 @@
             android:value="97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX" />
 
         <activity
-            android:name=".FirstActivity">
-        </activity>
+            android:name=".FirstActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.NoActionBar">

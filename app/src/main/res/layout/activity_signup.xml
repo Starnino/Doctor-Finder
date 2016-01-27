@@ -6,19 +6,6 @@
     tools:context="com.example.francesco.docfinder.SignupActivity"
     android:background="@color/docfinder">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup_with_fb"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/useEmail"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/signup_with_fb"></LinearLayout>
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/first_name"
         android:layout_width="match_parent"
@@ -26,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/useEmail">
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/first_name_text"
@@ -81,8 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_usernameSign"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        >
+        android:layout_marginRight="20dp">
         <EditText
             android:id="@+id/password_text"
             android:layout_width="match_parent"
@@ -116,35 +102,35 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:id="@+id/buttonSignUp"
             android:text="@string/action_sign2_in"
             android:textColor="@color/white"
-            android:background="@color/docfinder"/>
+            android:background="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:id="@+id/signup_google_button"
-        android:text="@string/action_signup_with_google"
-        android:textColor="@color/white"
-        android:background="@color/flat_red"
-        android:layout_below="@+id/signup_fb_button"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:id="@+id/signup_fb_button"
-        android:text="@string/action_signup_with_facebook"
-        android:textColor="@color/white"
-        android:background="@color/facebook_color"
-        android:layout_below="@+id/button_container"
-        android:layout_alignLeft="@+id/signup_google_button"
-        android:layout_alignStart="@+id/signup_google_button" />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sign_fb_container">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/signup_fb_button"
+            android:text="@string/action_signup_with_facebook"
+            android:textColor="@color/white"
+            android:background="@color/facebook_color"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/signup_google_button"
+            android:text="@string/action_signup_with_google"
+            android:textColor="@color/white"
+            android:background="@color/flat_red" />
+    </LinearLayout>
 
 </RelativeLayout>

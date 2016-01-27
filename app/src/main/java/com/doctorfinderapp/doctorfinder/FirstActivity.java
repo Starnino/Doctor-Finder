@@ -25,10 +25,6 @@ public class FirstActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        //immersion mode
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 

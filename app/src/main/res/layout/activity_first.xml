@@ -26,31 +26,28 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:textStyle="bold"/>
+
     <LinearLayout
-        android:id="@+id/log_sign_container"
+        android:id="@+id/log_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/login_button"
-            android:layout_width="185dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/action_log_in"
             android:textColor="@color/white"
-            android:background="@color/facebook_color"
-            android:layout_weight="1" />
+            android:background="@color/facebook_color"/>
 
         <Button
             android:id="@+id/signin_button"
-            android:layout_width="185dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/action_sign2_in"
             android:textColor="@color/white"
-            android:background="@color/flat_red"
-            android:layout_weight="1" />
+            android:background="@color/flat_red" />
 
     </LinearLayout>
 

@@ -42,10 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //hide status bar
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-
         // Get the view from xml
         setContentView(R.layout.activity_login);
 
@@ -102,13 +98,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        //Signup TextView Click Listener
+        /*//Signup TextView Click Listener
         signupText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
     }
 }

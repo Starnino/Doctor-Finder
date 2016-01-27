@@ -6,20 +6,6 @@
     tools:context="com.doctorfinderapp.doctorfinder.LoginActivity"
     android:background="@color/docfinder">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_with_fb"
-        android:orientation="horizontal"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/useAccount"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/login_with_fb"></LinearLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_username"
@@ -27,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
-        android:layout_below="@id/useAccount"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/username"
@@ -92,43 +78,37 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:id="@+id/login_button2"
             android:text="@string/action_log_in"
             android:textColor="@color/white"
-            android:background="@color/docfinder"/>
+            android:background="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/button_container"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:orientation="horizontal"
-        android:id="@+id/notaMember">
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:id="@+id/log_container">
         <Button
-            android:layout_width="185dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:id="@+id/login_google_button"
-            android:text="@string/action_login_with_google"
-            android:textColor="@color/white"
-            android:background="#d34836"
-            android:layout_gravity="center_vertical" />
-
-        <Button
-            android:layout_width="185dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:id="@+id/login_fb_button"
             android:text="@string/action_login_with_facebook"
             android:textColor="@color/white"
             android:background="@color/facebook_color"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/login_google_button"
+            android:text="@string/action_login_with_google"
+            android:textColor="@color/white"
+            android:background="@color/flat_red"/>
+
+
 
     </LinearLayout>
 
