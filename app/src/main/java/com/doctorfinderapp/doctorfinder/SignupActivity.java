@@ -37,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         signUp = (Button) findViewById(R.id.buttonSignUp);
         signUpWithFacebook = (Button) findViewById(R.id.signup_fb_button);
 
+
         //locate EditText in xml
         firstName = (EditText) findViewById(R.id.first_name_text);
         lastName = (EditText) findViewById(R.id.last_name_text);

@@ -3,21 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.francesco.docfinder.SignupActivity">
+    tools:context="com.example.francesco.docfinder.SignupActivity"
+    android:background="@color/docfinder">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/signup_with_fb">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:id="@+id/signup_fb_button"
-            android:text="@string/action_signup_with_facebook"
-            android:textColor="@color/white"
-            android:background="@color/facebook_color"/>
-    </LinearLayout>
+        android:id="@+id/signup_with_fb"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +17,7 @@
         android:id="@+id/useEmail"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/signup_with_fb">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/text_useyourEmail" />
-    </LinearLayout>
+        android:layout_below="@id/signup_with_fb"></LinearLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/first_name"
@@ -129,7 +116,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:id="@+id/buttonSignUp"
             android:text="@string/action_sign2_in"
@@ -137,5 +124,17 @@
             android:background="@color/docfinder"/>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup_fb_button"
+        android:text="@string/action_signup_with_facebook"
+        android:textColor="@color/white"
+        android:background="@color/facebook_color"
+        android:layout_below="@+id/button_container"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
