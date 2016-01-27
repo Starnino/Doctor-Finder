@@ -31,24 +31,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <Button
             android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
+            android:layout_width="185dp"
+            android:layout_height="60dp"
             android:text="@string/action_log_in"
             android:textColor="@color/white"
-            android:background="@color/facebook_color"/>
+            android:background="@color/facebook_color"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/signin_button"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
+            android:layout_width="185dp"
+            android:layout_height="60dp"
             android:text="@string/action_sign2_in"
             android:textColor="@color/white"
-            android:background="@color/flat_red"/>
+            android:background="@color/flat_red"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 </RelativeLayout>

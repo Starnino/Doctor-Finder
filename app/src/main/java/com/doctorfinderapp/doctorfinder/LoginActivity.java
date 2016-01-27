@@ -20,9 +20,12 @@ import com.parse.ParseUser;
  */
 public class LoginActivity extends AppCompatActivity {
 
+
+
     // Declare Variables
     private Button loginButton;
     private Button loginWithFacebook;
+    private Button loginWithGoogle;
     private TextView signupText;
     private String usernametxt;
     private String passwordtxt;
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.login_button2);
         signupText = (TextView) findViewById(R.id.textViewSignUp);
         loginWithFacebook = (Button) findViewById(R.id.login_fb_button);
+        loginWithGoogle= (Button) findViewById(R.id.login_google_button);
 
         // Login Button Click Listener
         loginButton.setOnClickListener(new View.OnClickListener() {

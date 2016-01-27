@@ -17,6 +17,7 @@ import com.parse.SignUpCallback;
 public class SignupActivity extends AppCompatActivity {
 
     private Button signUpWithFacebook;
+    private Button signUpWithGoogle;
     private Button signUp;
     private EditText firstName;
     private EditText lastName;
@@ -38,6 +39,9 @@ public class SignupActivity extends AppCompatActivity {
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
         signUpWithFacebook = (Button) findViewById(R.id.signup_fb_button);
+        signUpWithGoogle = (Button) findViewById(R.id.signup_google_button);
+
+
 
         //locate EditText in xml
         firstName = (EditText) findViewById(R.id.first_name_text);
@@ -121,6 +125,17 @@ public class SignupActivity extends AppCompatActivity {
                 //fill with code
             }
         });
+
+        //SignUp with facebook Click Listener --> to implement
+        signUpWithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //fill with code
+            }
+        });
+
+
     }
 }
 

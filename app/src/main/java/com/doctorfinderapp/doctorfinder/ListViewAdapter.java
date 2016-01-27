@@ -38,6 +38,8 @@ public class ListViewAdapter extends BaseAdapter {
         TextView feedback;
     }
 
+
+
     @Override
     public int getCount() {
         return doctorslist.size();
@@ -52,6 +54,8 @@ public class ListViewAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+
 
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder holder;
