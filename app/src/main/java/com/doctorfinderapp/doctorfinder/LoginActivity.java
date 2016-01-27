@@ -20,6 +20,8 @@ import com.parse.ParseUser;
  */
 public class LoginActivity extends AppCompatActivity {
 
+
+
     // Declare Variables
     private Button loginButton;
     private Button loginWithFacebook;
