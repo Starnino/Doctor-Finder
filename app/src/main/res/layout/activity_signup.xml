@@ -126,15 +126,25 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:id="@+id/signup_google_button"
+        android:text="@string/action_signup_with_google"
+        android:textColor="@color/white"
+        android:background="@color/flat_red"
+        android:layout_below="@+id/signup_fb_button"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="190dp"
+        android:layout_height="60dp"
         android:id="@+id/signup_fb_button"
         android:text="@string/action_signup_with_facebook"
         android:textColor="@color/white"
         android:background="@color/facebook_color"
         android:layout_below="@+id/button_container"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/signup_google_button"
+        android:layout_alignStart="@+id/signup_google_button" />
 
 
 </RelativeLayout>

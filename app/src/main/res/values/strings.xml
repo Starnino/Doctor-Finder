@@ -18,7 +18,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="action_search">Search</string>
     <string name="action_signup_with_facebook">"Signup with facebook"</string>
+    <string name="action_signup_with_google">"Signup with Google+"</string>
     <string name="action_login_with_facebook">"Login with facebook"</string>
+    <string name="action_login_with_google">"Login with Google+"</string>
     <string name="text_firstName">First Name</string>
     <string name="text_lasttName">Last Name</string>
     <string name="text_emailAdress">Email Address</string>
@@ -27,7 +29,7 @@
     <string name="text_useyourEmail">or use your email</string>
     <string name="text_useyourAccount">or use your account</string>
     <string name="text_username">Username</string>
-    <string name="text_forgotPassword">forgot password</string>
+    <string name="text_forgotPassword">forgot password?</string>
     <string name="text_rememberMe">Remember me</string>
     <string name="text_signupNow">SignUpNow</string>
     <string name="namy">Not a Member Yet?</string>

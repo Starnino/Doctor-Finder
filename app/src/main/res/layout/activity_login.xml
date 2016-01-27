@@ -112,17 +112,17 @@
         android:id="@+id/notaMember">
 
         <Button
-            android:layout_width="191dp"
+            android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:id="@+id/login_google_button"
-            android:text="Login with Google+"
+            android:text="@string/action_login_with_google"
             android:textColor="@color/white"
             android:background="#d34836"
             android:layout_gravity="center_vertical" />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:id="@+id/login_fb_button"
