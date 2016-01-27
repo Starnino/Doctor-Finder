@@ -42,6 +42,7 @@
             android:textColor="@color/white"
             android:background="@color/facebook_color"
             android:layout_weight="1" />
+
         <Button
             android:id="@+id/signin_button"
             android:layout_width="185dp"
@@ -50,6 +51,7 @@
             android:textColor="@color/white"
             android:background="@color/flat_red"
             android:layout_weight="1" />
+
     </LinearLayout>
 
 </RelativeLayout>
