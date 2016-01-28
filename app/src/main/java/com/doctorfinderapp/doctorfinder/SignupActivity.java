@@ -125,10 +125,11 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         //divertimento pure qua
+        //non va per niente bene #chiappe sode per tutti
         Giovanni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SignupActivity.this, "Gay", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignupActivity.this, "Sbattimelo in faccia", Toast.LENGTH_LONG).show();
             }
         });
     }
