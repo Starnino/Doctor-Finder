@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,12 +27,12 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button loginWithFacebook;
     private Button loginWithGoogle;
-    private TextView signupText;
     private String usernametxt;
     private String passwordtxt;
     private EditText password;
     private EditText username;
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
+
 
     /**
      * Called when the activity is first created. Per prova d'accesso provare
@@ -55,9 +56,17 @@ public class LoginActivity extends AppCompatActivity {
 
         // Locate Buttons in xml
         loginButton = (Button) findViewById(R.id.login_button2);
-        signupText = (TextView) findViewById(R.id.textViewSignUp);
         loginWithFacebook = (Button) findViewById(R.id.login_fb_button);
         loginWithGoogle= (Button) findViewById(R.id.login_google_button);
+
+        //set font
+        Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
+        loginButton.setTypeface(font);
+        loginWithFacebook.setTypeface(font);
+        loginWithGoogle.setTypeface(font);
+        username.setTypeface(font);
+        password.setTypeface(font);
+
 
         // Login Button Click Listener
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -101,14 +110,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        /*//Signup TextView Click Listener
-        signupText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        }); */
     }
 }

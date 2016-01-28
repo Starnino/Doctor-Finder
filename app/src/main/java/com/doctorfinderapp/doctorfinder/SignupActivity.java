@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,6 +51,17 @@ public class SignupActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email_text);
         password = (EditText) findViewById(R.id.password_text);
         repeatPassword = (EditText) findViewById(R.id.repeat_password_text);
+
+        //set font
+        Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
+        firstName.setTypeface(font);
+        lastName.setTypeface(font);
+        email.setTypeface(font);
+        password.setTypeface(font);
+        repeatPassword.setTypeface(font);
+        signUp.setTypeface(font);
+        signUpWithFacebook.setTypeface(font);
+        signUpWithGoogle.setTypeface(font);
 
         //SignUp Click Listener
         signUp.setOnClickListener(new View.OnClickListener() {
