@@ -18,7 +18,6 @@ import com.parse.SignUpCallback;
 public class SignupActivity extends AppCompatActivity {
 
     private Button signUp;
-    private Button Qrami;
     private EditText firstName;
     private EditText lastName;
     private EditText email;
@@ -39,7 +38,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
-        Qrami = (Button) findViewById(R.id.QURAMI);
+
 
         //locate EditText in xml
         firstName = (EditText) findViewById(R.id.first_name_text);
@@ -124,14 +123,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        //divertimento pure qua
-        //non va per niente bene #chiappe sode per tutti
-        Qrami.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SignupActivity.this, "Sbattimelo in faccia", Toast.LENGTH_LONG).show();
-            }
-        });
+
     }
 }
 

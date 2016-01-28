@@ -111,22 +111,4 @@
 
     </LinearLayout>
 
-    <!--mi sono divertito un po--><!--Non va bene-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/sign_fb_container">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/QURAMI"
-            android:text="QURAMI"
-            android:textColor="@color/black"
-            android:background="#F1A9A0"/>
-    </LinearLayout>
-    <!--mi sono divertito un po-->
-
 </RelativeLayout>
