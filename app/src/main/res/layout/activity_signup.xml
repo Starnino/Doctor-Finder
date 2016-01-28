@@ -111,26 +111,25 @@
 
     </LinearLayout>
 
+    <!--mi sono divertito un po-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:id="@+id/sign_fb_container">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/signup_fb_button"
-            android:text="@string/action_signup_with_facebook"
-            android:textColor="@color/white"
-            android:background="@color/facebook_color"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/signup_google_button"
-            android:text="@string/action_signup_with_google"
-            android:textColor="@color/white"
-            android:background="@color/flat_red" />
-    </LinearLayout>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/giovannigay"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:id="@+id/signup_giovanni"
+            android:text="SIGN UP WITH GIOVANNI"
+            android:textColor="@color/black"
+            android:background="#F1A9A0"/>
+    </LinearLayout>
+    <!--mi sono divertito un po-->
 </RelativeLayout>
