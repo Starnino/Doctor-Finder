@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:text="@string/action_log_in"
             android:textColor="@color/white"
             android:background="@color/facebook_color"/>
@@ -44,7 +44,7 @@
         <Button
             android:id="@+id/signin_button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:text="@string/action_sign2_in"
             android:textColor="@color/white"
             android:background="@color/flat_red" />

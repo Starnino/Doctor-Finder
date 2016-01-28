@@ -41,11 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="com.parse.APPLICATION_ID"
@@ -54,14 +49,21 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX" />
 
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".FirstActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-    </application>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+</application>
 
 </manifest>

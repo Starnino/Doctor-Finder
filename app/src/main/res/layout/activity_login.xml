@@ -78,7 +78,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:layout_marginTop="10dp"
             android:id="@+id/login_button2"
             android:text="@string/action_log_in"
@@ -95,14 +95,14 @@
         android:id="@+id/log_container">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:id="@+id/login_fb_button"
             android:text="@string/action_login_with_facebook"
             android:textColor="@color/white"
             android:background="@color/facebook_color"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:id="@+id/login_google_button"
             android:text="@string/action_login_with_google"
             android:textColor="@color/white"

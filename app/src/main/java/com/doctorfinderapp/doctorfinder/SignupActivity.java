@@ -28,10 +28,11 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
+        //immersion mode
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/ //remove action bar
+        super.onCreate(savedInstanceState);
 
         //get the view from xml
         setContentView(R.layout.activity_signup);

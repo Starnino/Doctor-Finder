@@ -40,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
      * password = "qualsiasi cosa" (inteso come qualsiasi stringa anche vuota)
      */
     public void onCreate(Bundle savedInstanceState) {
+        //immersion mode
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
 
         // Get the view from xml

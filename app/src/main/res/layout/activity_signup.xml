@@ -102,7 +102,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:layout_marginTop="10dp"
             android:id="@+id/buttonSignUp"
             android:text="@string/action_sign2_in"
@@ -119,14 +119,14 @@
         android:id="@+id/sign_fb_container">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:id="@+id/signup_fb_button"
             android:text="@string/action_signup_with_facebook"
             android:textColor="@color/white"
             android:background="@color/facebook_color"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="52dp"
             android:id="@+id/signup_google_button"
             android:text="@string/action_signup_with_google"
             android:textColor="@color/white"
