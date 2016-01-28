@@ -55,7 +55,7 @@ public class FirstActivity extends Activity {
         alert = new AlertDialog.Builder(FirstActivity.this);
         alert.setTitle("Notice");
         alert.setMessage("Please do not use this application in case of medical emergency!");
-        alert.setPositiveButton("OK",null);
+        alert.setPositiveButton("OK", null);
         alert.show();
 
         //searchButton Click Listener
@@ -86,4 +86,13 @@ public class FirstActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
