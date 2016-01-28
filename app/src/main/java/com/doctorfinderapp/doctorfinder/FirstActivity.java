@@ -2,7 +2,6 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,12 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.app.AlertDialog;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 
 public class FirstActivity extends Activity {
 
@@ -31,6 +25,8 @@ public class FirstActivity extends Activity {
         //immersion mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
 
         //set activity layout
         super.onCreate(savedInstanceState);

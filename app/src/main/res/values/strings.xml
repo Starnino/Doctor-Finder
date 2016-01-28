@@ -22,7 +22,7 @@
     <string name="action_login_with_facebook">"Login with facebook"</string>
     <string name="action_login_with_google">"Login with Google+"</string>
     <string name="text_firstName">First Name</string>
-    <string name="text_lasttName">Last Name</string>
+    <string name="text_lastName">Last Name</string>
     <string name="text_emailAdress">Email Address</string>
     <string name="text_password">Password</string>
     <string name="text_repeatPassword">repeat Password</string>
@@ -34,7 +34,7 @@
     <string name="text_signupNow">SignUpNow</string>
     <string name="namy">Not a Member Yet?</string>
 
-
+    <string name="facebook_app_id">722994014468396</string>
     <string name="namelabel">"Name : "</string>
     <string name="speciallabel">"Specialization : "</string>
     <string name="feedbacklabel">"Feedback : "</string>

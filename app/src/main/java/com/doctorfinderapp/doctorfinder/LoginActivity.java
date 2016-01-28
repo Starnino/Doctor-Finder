@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import com.facebook.CallbackManager;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,8 +10,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -25,14 +31,14 @@ public class LoginActivity extends AppCompatActivity {
 
     // Declare Variables
     private Button loginButton;
-    private Button loginWithFacebook;
+    private LoginButton loginWithFacebook;
     private Button loginWithGoogle;
     private String usernametxt;
     private String passwordtxt;
     private EditText password;
     private EditText username;
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
-
+    private CallbackManager callbackManager;
 
     /**
      * Called when the activity is first created. Per prova d'accesso provare
@@ -47,22 +53,29 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        //initialize Facebook SDK
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         // Get the view from xml
         setContentView(R.layout.activity_login);
+
+        //initialize callback Manager
+        callbackManager = CallbackManager.Factory.create();
 
         // Locate EditTexts in xml
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
         // Locate Buttons in xml
+        //initialize LoginButton (Facebook sdk)
+        loginWithFacebook = (LoginButton) findViewById(R.id.login_fb_button);
         loginButton = (Button) findViewById(R.id.login_button2);
-        loginWithFacebook = (Button) findViewById(R.id.login_fb_button);
         loginWithGoogle= (Button) findViewById(R.id.login_google_button);
 
         //set font
         Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
         loginButton.setTypeface(font);
-        loginWithFacebook.setTypeface(font);
+        //loginWithFacebook.setTypeface(font);
         loginWithGoogle.setTypeface(font);
         username.setTypeface(font);
         password.setTypeface(font);
@@ -102,13 +115,34 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        //Login Facebook Button Click Listener --> da implementare
-        loginWithFacebook.setOnClickListener(new View.OnClickListener() {
+        //Facebook Login Callback
+        loginWithFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onClick(View v) {
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(LoginActivity.this, "Login Succesful", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.this,
+                        MainActivity.class);
+                startActivity(intent);
+            }
 
+            @Override
+            public void onCancel() {
+                Toast.makeText(LoginActivity.this, "Login Cancel", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ems="10"
-            android:hint="@string/text_lasttName"
+            android:hint="@string/text_lastName"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 

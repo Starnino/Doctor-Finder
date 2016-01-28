@@ -93,13 +93,14 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:id="@+id/log_container">
-        <Button
+
+        <com.facebook.login.widget.LoginButton
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:id="@+id/login_fb_button"
             android:text="@string/action_login_with_facebook"
             android:textColor="@color/white"
-            android:background="@color/facebook_color"/>
+            android:background="@color/facebook_color" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="52dp"

@@ -18,6 +18,9 @@ android {
         }
     }
 }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -29,4 +32,5 @@ dependencies {
     compile 'com.parse:parse-android:1.+'
     compile 'com.parse:parseui-login-android:0.0.1'
     compile 'com.parse:parseui-widget-android:0.0.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 }
