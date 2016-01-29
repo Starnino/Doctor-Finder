@@ -53,6 +53,10 @@ Web site improved
 
 Push Notification
 
+VideoCall a doctor
+
+Customer loyalty
+
 Improvements of the overall UI/UX
 
 Book appointment directly via app
