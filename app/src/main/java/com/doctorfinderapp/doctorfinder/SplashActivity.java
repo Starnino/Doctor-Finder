@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyPingCallback;
+//import com.kinvey.android.Client;
+//import com.kinvey.android.callback.KinveyPingCallback;
 
 import java.util.Timer;
 import java.util.TimerTask;
