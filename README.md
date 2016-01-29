@@ -39,7 +39,7 @@ Social Integration
 
 Log in using social Networks(Facebook, Google+, Twitter)
 
-Improving Back- and & Front-end
+Improving Back-end & Front-end
 
 Beta app
 
