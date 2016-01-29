@@ -4,9 +4,9 @@
 **The simplest way to connect doctor with you**
 
 
-> Contacts us by email on info@doctorfinderapp.com
+**Contacts us by email on info@doctorfinderapp.com**
 
-> [Follow us on Facebook] (https://www.facebook.com/dcfind/)
+**[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
