@@ -15,11 +15,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="26dp"
         android:background="@drawable/logodc" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/dcf_screen"/>
     <TextView
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
@@ -30,6 +25,12 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dcf_screen"/>
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
