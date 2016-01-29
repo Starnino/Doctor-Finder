@@ -12,12 +12,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//login facebook
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-
+//login google plus
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 /**
  * A login screen that offers login via email/password.
@@ -50,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //initialize Facebook SDK
+                //initialize Facebook SDK
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         // Get the view from xml

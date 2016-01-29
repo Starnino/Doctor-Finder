@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_id": "doctorfinder-ed96",
+    "project_number": "452666677909",
+    "name": "DoctorFinder"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452666677909:android:18e5739ebe892506",
+        "client_id": "android:com.doctor.finder",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.doctor.finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452666677909-bb9nc5t5u51ksvr2p6mkrn1eri77bca0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doctor.finder",
+            "certificate_hash": "ADCE30CEE249EA53A30DF854EF2F1190218C2BCB"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452666677909:android:5fe6e9c1ff4c2710",
+        "client_id": "android:com.doctorfinderapp.doctorfinder",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.doctorfinderapp.doctorfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452666677909-80usoque1r732621oisg0fqfupkoed3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doctorfinderapp.doctorfinder",
+            "certificate_hash": "ADCE30CEE249EA53A30DF854EF2F1190218C2BCB"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
