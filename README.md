@@ -6,7 +6,7 @@
 
 Contacts us by email on **info@doctorfinderapp.com**
 
-**[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
+![](https://www.mediafire.com/convkey/b2ea/ske4fi4njlw7wmo6g.jpg) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
