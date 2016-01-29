@@ -22,19 +22,19 @@ public class SplashActivity extends AppCompatActivity {
 
 
         //roba di kinvey
-        final Client mKinveyClient = new Client.Builder(this.getApplicationContext()).build();
+        //final Client mKinveyClient = new Client.Builder(this.getApplicationContext()).build();
         //inizializza l'oggetto della key
         //considero splash  activity come main
 
         // prova di ping
-        mKinveyClient.ping(new KinveyPingCallback() {
+        /*mKinveyClient.ping(new KinveyPingCallback() {
             public void onFailure(Throwable t) {
-                Log.e(TAG, "Kinvey Ping Failed", t);
+                Log.e("FragmentActivity", "Kinvey Ping Failed", t);
             }
             public void onSuccess(Boolean b) {
-                Log.d(TAG, "Kinvey Ping Success");
+                Log.d("TAG", "Kinvey Ping Success");
             }
-        });
+        });*/
 
 
         TimerTask task = new TimerTask() {
