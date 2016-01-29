@@ -37,18 +37,26 @@
 
 Social Integration
 
-Log in using social Networks(Facebook, Google+, Twitter)
+Log in using social Networks(Facebook and Google+)
 
 Improving Back-end & Front-end
-
-Beta app
 
 Instructions for install APK
 
 Download APK
 
+Web site improved
+
 ...
 
 #Milestone 3 - Final
 
-Final submission
+Push Notification
+
+Book appointment directly via app
+
+Front-end & Back-end finally improved
+
+Play store
+
+...
