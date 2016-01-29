@@ -53,6 +53,8 @@ Web site improved
 
 Push Notification
 
+Improvements of the overall UI/UX
+
 Book appointment directly via app
 
 Front-end & Back-end finally improved
