@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Doctor-Finder.iml" filepath="$PROJECT_DIR$/Doctor-Finder.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kinvey-android-lib-2.10.4/kinvey-android-lib-2.10.4.iml" filepath="$PROJECT_DIR$/kinvey-android-lib-2.10.4/kinvey-android-lib-2.10.4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kinvey-android-lib-2.10.4/kinvey-android-lib-2.10.4.iml" filepath="$PROJECT_DIR$/kinvey-android-lib-2.10.4/kinvey-android-lib-2.10.4.iml" />
     </modules>
   </component>
 </project>
