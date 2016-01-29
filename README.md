@@ -3,13 +3,12 @@
 
 **The simplest way to connect doctor with you**
 
----------------------------------------------------------------------------------------------------------------
 
 > Contacts us by email on info@doctorfinderapp.com
 
 > [Follow us on Facebook] (https://www.facebook.com/dcfind/)
 
----------------------------------------------------------------------------------------------------------------
+
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
 
 >[The project](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)
@@ -20,7 +19,6 @@
 
 >[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)
 
----------------------------------------------------------------------------------------------------------------
 
 #Milestone 1 - Proof of Concept
 
