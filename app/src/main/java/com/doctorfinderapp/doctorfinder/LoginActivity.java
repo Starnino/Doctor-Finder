@@ -17,9 +17,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
 
 
 /**
@@ -89,27 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
 
-                // Send data to Parse.com for verification
-                ParseUser.logInInBackground(usernametxt, passwordtxt,
-                        new LogInCallback() {
-                            public void done(ParseUser user, ParseException e) {
-                                if (user != null || usernametxt.equals("test")) {
-                                    // If user exist and authenticated, send user to Welcome.class
-                                    Intent intent = new Intent(
-                                            LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    Toast.makeText(getApplicationContext(),
-                                            "Successfully Logged in",
-                                            Toast.LENGTH_LONG).show();
-                                    finish();
-                                } else {
-                                    Toast.makeText(
-                                            getApplicationContext(),
-                                            "No such user exist, please signup",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
             }
 
 

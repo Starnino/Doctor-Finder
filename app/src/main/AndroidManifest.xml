@@ -44,13 +44,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        <meta-data
-            android:name="com.parse.APPLICATION_ID"
-            android:value="RIZRj6QdFVtP5r5JVnyWsmhVjW6PeRMc2X17UNFA" />
-        <meta-data
-            android:name="com.parse.CLIENT_KEY"
-            android:value="97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX" />
-
         </activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
