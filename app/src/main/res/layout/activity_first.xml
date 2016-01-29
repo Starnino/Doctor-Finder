@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dcf_screen"
+    android:background="@color/docfinder"
     tools:context="com.example.francesco.docfinder.FirstActivity">
 
     <ImageButton
@@ -15,7 +15,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="26dp"
         android:background="@drawable/logodc" />
-
     <TextView
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
@@ -26,6 +25,12 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dcf_screen"/>
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -40,20 +45,21 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="52dp"
             android:text="@string/action_log_in"
             android:id="@+id/login_button"
-            android:background="@color/facebook_color"
             android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/fab_margin"/>
+            android:backgroundTint="@color/facebook_color"
+            android:textAllCaps="false"/>
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="52dp"
             android:text="@string/action_sign2_in"
             android:id="@+id/signin_button"
             android:textColor="@color/white"
-            android:background="@color/flat_red" />
+            android:backgroundTint="@color/flat_red"
+            android:textAllCaps="false"/>
     </LinearLayout>
 
     </RelativeLayout>
