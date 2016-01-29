@@ -1,21 +1,11 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
-import com.parse.Parse;
-import com.parse.ParseInstallation;
-import com.parse.ui.ParseLoginBuilder;
+
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,11 +17,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        Parse.enableLocalDatastore(this);
-
-        Parse.initialize(this, "RIZRj6QdFVtP5r5JVnyWsmhVjW6PeRMc2X17UNFA", "97G4cRoADJF0bu3sTn7zAkGTBFoxGP5LJ55wONKX");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         TimerTask task = new TimerTask() {
             @Override

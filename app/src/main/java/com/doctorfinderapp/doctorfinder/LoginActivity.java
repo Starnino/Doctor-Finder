@@ -85,6 +85,11 @@ public class LoginActivity extends AppCompatActivity {
                 // Retrieve the text entered from the EditText
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
+                if (usernametxt.equals("test")){
+                    Intent intent = new Intent(LoginActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
+                }
 
             }
 

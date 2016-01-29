@@ -1,6 +1,5 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,9 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -97,26 +93,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
                 else {
-                    //save new user in Parse.com
-                    ParseUser user = new ParseUser();
-                    user.setUsername(fName + lName);
-                    user.setEmail(email_string);
-                    user.setPassword(password_string);
-                    user.signUpInBackground(new SignUpCallback() {
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                // Show a simple Toast message upon successful registration
-                                Toast.makeText(getApplicationContext(),
-                                        "Successfully Signed up, please log in.",
-                                        Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(),
-                                        "Sign up Error", Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        }
-                    });
-
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
