@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+
 import com.facebook.CallbackManager;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -18,9 +19,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-//login google plus
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 /**
  * A login screen that offers login via email/password.
@@ -39,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
+    public static final String AUTHTOKEN_TYPE = "com.kinvey.myapplogin";
+    public static final String ACCOUNT_TYPE = "com.kinvey.myapplogin";
+    public static final String LOGIN_TYPE_KEY = "loginType";
 
     /**
      * Called when the activity is first created. Per prova d'accesso provare
@@ -53,7 +54,10 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-                //initialize Facebook SDK
+        //Kinvey login ci fai bestemmiare
+        // Application Constants
+
+        //initialize Facebook SDK
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         // Get the view from xml
@@ -88,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Retrieve the text entered from the EditText
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
-                if (usernametxt.equals("test")){
+                if (usernametxt.equals("test")) {
                     Intent intent = new Intent(LoginActivity.this,
                             MainActivity.class);
                     startActivity(intent);
@@ -119,14 +123,5 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
     }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
 }
