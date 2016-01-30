@@ -87,7 +87,7 @@ public class SignupActivity extends AppCompatActivity {
                 //abort short Passwords
                 else if (password_string.length() < 6) {
                     Toast.makeText(getApplicationContext(),
-                            "Please digit 6 or more characters ",
+                            "Please digit 6 or more characters",
                             Toast.LENGTH_LONG).show();
                 }
 
