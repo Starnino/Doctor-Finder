@@ -8,7 +8,8 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](https://www.mediafire.com/convkey/b2ea/ske4fi4njlw7wmo6g.jpg) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
-[http://www.academiaobscura.com/wp-content/uploads/2015/09/trello-logo.png][We're working on...Trello! ](https://trello.com/b/0uSh0ofs)
+![](http://www.academiaobscura.com/wp-content/uploads/2015/09/trello-logo.png)
+**[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
 
