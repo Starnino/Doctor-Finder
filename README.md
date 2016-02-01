@@ -8,7 +8,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](https://www.mediafire.com/convkey/b2ea/ske4fi4njlw7wmo6g.jpg) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
-![](http://www.deletop.com/static//media/upload/13e03fbc-d735-46ba-901d-a75c0444d50d/48x48.png)
+![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
@@ -30,13 +30,13 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 >[Second survey](http://goo.gl/forms/SM149jvxNC)
 
->[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results at 18/01/16) 
+>[Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...) 
 
 >[Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
 #Milestone 2 - Release Candidate
 
-![](http://www.deletop.com/static//media/upload/13e03fbc-d735-46ba-901d-a75c0444d50d/48x48.png)
+![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 
