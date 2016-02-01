@@ -8,7 +8,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](https://www.mediafire.com/convkey/b2ea/ske4fi4njlw7wmo6g.jpg) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
-![](http://www.academiaobscura.com/wp-content/uploads/2015/09/trello-logo.png)
+![](http://www.deletop.com/static//media/upload/13e03fbc-d735-46ba-901d-a75c0444d50d/48x48.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 >[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
@@ -36,7 +36,9 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 #Milestone 2 - Release Candidate
 
-[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)
+![](http://www.deletop.com/static//media/upload/13e03fbc-d735-46ba-901d-a75c0444d50d/48x48.png)
+**[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
+
 
 Social Integration
 
