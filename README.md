@@ -11,9 +11,10 @@ Contacts us by email on **info@doctorfinderapp.com**
 ![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
->[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
+![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
+**[The project ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
->[The project](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)
+>[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)
 
 >[First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
 
