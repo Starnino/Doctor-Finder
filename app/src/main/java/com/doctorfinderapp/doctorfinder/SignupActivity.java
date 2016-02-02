@@ -93,7 +93,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                 else {
-                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
                     startActivity(intent);
                 }
             }

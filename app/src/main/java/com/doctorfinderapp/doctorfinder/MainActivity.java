@@ -6,17 +6,23 @@ import java.util.Locale;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     // Declare Variables
     ListView list;
-    ListViewAdapter adapter;
+    ListDoctorAdapter adapter;
     EditText editsearch;
     String[] name;
     String[] special;
@@ -27,6 +33,16 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Adding menu icon to Toolbar
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         // Generate sample data
         name = new String[] { "Lorenzo Gitto", "Marco dell'Aquila", "Francesco Maiese", "Elena Dezi", "Wassim Arleo", "Marco Frison", "Mirim Renati", "Alexandra Zanni", "Stefania Bianchin", "Michele Benevento", "Francesco Silla", "Milena D'Arco", "Enzo Gatta", "Sofia Mancini", "Marco La Casa", "Antonio Russo" };
@@ -48,7 +64,7 @@ public class MainActivity extends Activity {
         }
 
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, arraylist);
+        adapter = new ListDoctorAdapter(this, arraylist);
 
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
@@ -78,6 +94,18 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView =
+                (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        // Configure the search info and add any event listeners...
+        return super.onCreateOptionsMenu(menu);
     }
 }
 

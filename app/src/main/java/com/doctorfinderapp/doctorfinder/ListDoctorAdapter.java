@@ -16,7 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ListDoctorAdapter extends BaseAdapter {
 
     // Declare Variables
     Context mContext;
@@ -24,7 +24,7 @@ public class ListViewAdapter extends BaseAdapter {
     private List<Doctors> doctorslist = null;
     private ArrayList<Doctors> arraylist;
 
-    public ListViewAdapter(Context context, List<Doctors> doctorslist) {
+    public ListDoctorAdapter(Context context, List<Doctors> doctorslist) {
         mContext = context;
         this.doctorslist = doctorslist;
         inflater = LayoutInflater.from(mContext);
@@ -61,7 +61,7 @@ public class ListViewAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
+            view = inflater.inflate(R.layout.doctor_item, null);
             // Locate the TextViews in listview_item.xml
             holder.name = (TextView) view.findViewById(R.id.name);
             holder.special = (TextView) view.findViewById(R.id.special);

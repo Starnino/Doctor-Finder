@@ -12,7 +12,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main"
     tools:context="com.doctorfinderapp.doctorfinder.MainActivity"
-    android:background="@color/docfinder">
+    android:background="@color/docfinder"
+    android:layout_marginTop="?attr/actionBarSize">
 
     <ImageView
         android:layout_width="50dp"

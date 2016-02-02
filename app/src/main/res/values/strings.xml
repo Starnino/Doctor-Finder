@@ -48,4 +48,36 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Specializations">
+        <item>Dentista</item>
+        <item>Ginecologo</item>
+        <item>Odontoiatra</item>
+        <item>Nutrizionista</item>
+        <item>Giovanni</item>
+        <item>Vincenzo</item>
+        <item>Baccerico</item>
+        <item>Starnino</item>
+        <item>Doctor Finder</item>
+        <item>Pediatra</item>
+        <item>Fisioterapista</item>
+        <item>Medico Legale</item>
+        <item>Chirurgo Plastico</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>Roma</item>
+        <item>Viterbo</item>
+        <item>Milano</item>
+        <item>Napoli</item>
+        <item>Genova</item>
+        <item>Pisa</item>
+        <item>Terni</item>
+        <item>Perugia</item>
+        <item>Latina</item>
+        <item>Catania</item>
+    </string-array>
 </resources>
