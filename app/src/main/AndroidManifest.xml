@@ -18,6 +18,13 @@
 
     <uses-permission android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -31,7 +38,7 @@
             android:name=".SingleItemView"
             android:label="Details Doctor" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -55,15 +62,28 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name=".LoginActivity" />
-        <activity
-            android:name=".FirstActivity" />
-        <activity
-            android:name=".SignupActivity" />
+        <activity android:name=".access.LoginActivity" />
+        <activity android:name=".access.FirstActivity" />
+        <activity android:name=".access.SignupActivity" />
         <activity
             android:name=".SpecialSearchActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".Main2Activity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".fragment.DoctorMapsFragment"
+            android:label="@string/title_activity_doctor_maps_fragment"></activity>
     </application>
 
 </manifest>

@@ -1,15 +1,18 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.doctorfinderapp.doctorfinder.Main2Activity;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,7 +52,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
         Intent intent = new Intent(getActivity(),
-                MainActivity.class);
+                Main2Activity.class);
         startActivity(intent);
     }
 }

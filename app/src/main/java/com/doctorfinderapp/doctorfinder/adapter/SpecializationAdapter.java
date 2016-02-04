@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
 import android.graphics.ColorFilter;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.doctorfinderapp.doctorfinder.R;
 
 import java.util.ArrayList;
 

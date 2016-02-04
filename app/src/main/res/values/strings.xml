@@ -80,4 +80,5 @@
         <item>Latina</item>
         <item>Catania</item>
     </string-array>
+    <string name="title_activity_doctor_maps_fragment">Map</string>
 </resources>

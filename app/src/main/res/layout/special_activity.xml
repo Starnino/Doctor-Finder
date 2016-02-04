@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/list_fragment"
-        android:name="com.doctorfinderapp.doctorfinder.SpecialFragment">
+        android:name="com.doctorfinderapp.doctorfinder.fragment.SpecialFragment">
 
     </fragment>
 

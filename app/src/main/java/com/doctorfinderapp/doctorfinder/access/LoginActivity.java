@@ -1,5 +1,8 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.access;
 
+import com.doctorfinderapp.doctorfinder.MainActivity;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.facebook.CallbackManager;
 import android.content.Intent;
 import android.graphics.Typeface;

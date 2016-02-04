@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.access;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +10,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 
 public class FirstActivity extends Activity {
 

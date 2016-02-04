@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.adapter;
 
 /**
  * Created by vindel100 on 17/01/16.
@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+
+import com.doctorfinderapp.doctorfinder.Doctor.Doctors;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SingleItemView;
 
 public class ListDoctorAdapter extends BaseAdapter {
 

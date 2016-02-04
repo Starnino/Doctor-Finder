@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 
 
 public class SignupActivity extends AppCompatActivity {

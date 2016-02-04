@@ -1,25 +1,22 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ListFragment;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableWrapper;
-import android.graphics.drawable.Icon;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Created by francesco on 01/02/16.
@@ -39,7 +36,6 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //use custom adapter to listview
         // /*cast array in xml to arrayList*/
         ArrayList<String> myArray = new ArrayList<>();
         Collections.addAll(myArray, getResources().getStringArray(R.array.Specializations));
@@ -60,6 +56,12 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         Fragment fragment = new CityFragment();
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 }
 

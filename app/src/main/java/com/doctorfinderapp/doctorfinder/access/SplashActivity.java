@@ -1,13 +1,12 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.access;
 
 
-import android.app.Fragment;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.doctorfinderapp.doctorfinder.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

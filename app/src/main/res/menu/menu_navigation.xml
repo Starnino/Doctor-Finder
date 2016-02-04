@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <group android:checkableBehavior="single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <item
+            android:icon="@drawable/ic_cast_dark"
+            android:tint="@color/docfinder"
+            android:title="One"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <item
+            android:icon="@drawable/ic_cast_disabled_light"
+            android:tint="@color/docfinder"
+            android:title="Two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <item
+            android:icon="@drawable/com_facebook_send_button_icon"
+            android:tint="@color/docfinder"
+            android:title="Three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </group>
+</menu>
