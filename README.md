@@ -23,10 +23,10 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 #Milestone 1 - Proof of Concept
 
-[Presentation] (https://docs.google.com/presentation/d/1e2ooDbdLt6EfoGjudyGUOKhif2DCc-I7rrsz6rbCGII/edit?usp=sharing) 
-
 ![](http://www.vieuws.eu/wp-content/uploads/2012/11/Web-Site-icon.png)
 **[Web Site](http://www.doctorfinderapp.com/)**
+
+[Presentation] (https://docs.google.com/presentation/d/1e2ooDbdLt6EfoGjudyGUOKhif2DCc-I7rrsz6rbCGII/edit?usp=sharing) 
 
 [Second survey](http://goo.gl/forms/SM149jvxNC)
 
