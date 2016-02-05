@@ -55,7 +55,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:text="@string/action_sign2_in"
+            android:text="@string/action_sign2_up"
             android:id="@+id/signin_button"
             android:textColor="@color/white"
             android:backgroundTint="@color/colorPrimaryDark"

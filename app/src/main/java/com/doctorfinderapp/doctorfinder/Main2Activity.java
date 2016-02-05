@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,8 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
-
-import com.doctorfinderapp.doctorfinder.adapter.ListDoctorAdapter;
+import android.view.WindowManager;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +31,17 @@ public class Main2Activity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //set status bar color beacouse in xml don't work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+
         setContentView(R.layout.activity_main2);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -55,6 +58,9 @@ public class Main2Activity extends AppCompatActivity  {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        //menu icon
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
         // Set behavior of Navigation drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -62,13 +68,7 @@ public class Main2Activity extends AppCompatActivity  {
                     // This method will trigger on item Click of navigation menu
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // Set item in checked state
-                        menuItem.setChecked(true);
-
-                        // TODO: handle navigation
-
-                        // Closing drawer on item click
-                        mDrawerLayout.closeDrawers();
+                        selectDrawerItem(menuItem);
                         return true;
                     }
                 });
@@ -124,7 +124,7 @@ public class Main2Activity extends AppCompatActivity  {
         return super.onCreateOptionsMenu(menu);
     }
 
-    /**TODO
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -134,12 +134,20 @@ public class Main2Activity extends AppCompatActivity  {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+            /**TODO*/
         } else if (id == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
-*/
+
+    public void selectDrawerItem(MenuItem menuItem){
+        switch (menuItem.getItemId()) {
+            case R.id.logout:
+                super.finish();
+        }
+    }
+
 }
 
 

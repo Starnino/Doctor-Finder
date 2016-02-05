@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.access;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -16,6 +18,7 @@ import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private ImageButton close;
     private Button signUp;
     private EditText firstName;
     private EditText lastName;
@@ -37,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
+        close = (ImageButton) findViewById(R.id.close);
 
 
         //locate EditText in xml
@@ -102,7 +106,17 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+    }
+
+    public void finish(){
+        super.finish();
     }
 }
 

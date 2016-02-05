@@ -4,7 +4,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,19 +27,18 @@ import java.util.Collections;
  */
 public class SpecialFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
-
-    SpecializationAdapter adapter;
+    private SpecializationAdapter adapter;
 
         @Override
         public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.special_fragment, viewGroup, false);
             return view;
+
         }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // /*cast array in xml to arrayList*/
         ArrayList<String> myArray = new ArrayList<>();
         Collections.addAll(myArray, getResources().getStringArray(R.array.Specializations));
@@ -63,6 +66,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         super.onStart();
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
+
 }
 
 

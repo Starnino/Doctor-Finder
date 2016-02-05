@@ -6,6 +6,17 @@
     tools:context=".access.LoginActivity"
     android:background="@color/docfinder">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/close"
+            android:background="@drawable/ic_close_white_24dp" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/search_button"
         android:layout_width="wrap_content"

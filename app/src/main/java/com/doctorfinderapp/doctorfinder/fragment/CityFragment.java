@@ -3,7 +3,11 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,7 +26,7 @@ import java.util.Collections;
  */
 public class CityFragment extends ListFragment implements AdapterView.OnItemClickListener{
 
-    SpecializationAdapter adapter;
+    private SpecializationAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {

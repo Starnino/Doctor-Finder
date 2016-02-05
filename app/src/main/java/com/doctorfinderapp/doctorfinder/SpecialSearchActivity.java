@@ -1,16 +1,23 @@
 package com.doctorfinderapp.doctorfinder;
 
 
+import android.content.ClipData;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class SpecialSearchActivity extends AppCompatActivity {
+
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +33,38 @@ public class SpecialSearchActivity extends AppCompatActivity {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        //menu icon
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
+        // Set behavior of Navigation drawer
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    // This method will trigger on item Click of navigation menu
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
     }
 
     //respond to toolbar actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-
-                return true;
-
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+            /**TODO*/
+        } else if (id == android.R.id.home) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     //action view search
@@ -56,5 +78,13 @@ public class SpecialSearchActivity extends AppCompatActivity {
 
         // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    public void selectDrawerItem(MenuItem menuItem){
+        switch (menuItem.getItemId()) {
+            case R.id.logout:
+                super.finish();
+        }
     }
 }

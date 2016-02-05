@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 //login facebook
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     // Declare Variables
+    private ImageButton close;
     private Button loginButton;
     private LoginButton loginWithFacebook;
     private Button loginWithGoogle;
@@ -72,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         loginWithFacebook = (LoginButton) findViewById(R.id.login_fb_button);
         loginButton = (Button) findViewById(R.id.login_button2);
         loginWithGoogle= (Button) findViewById(R.id.login_google_button);
+        close = (ImageButton) findViewById(R.id.close);
 
         //set font
         Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
@@ -126,6 +129,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 
@@ -135,4 +145,10 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
 }
