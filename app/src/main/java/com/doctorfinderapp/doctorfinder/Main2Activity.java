@@ -111,7 +111,7 @@ public class Main2Activity extends AppCompatActivity  {
         }
     }
 
-
+    //search view
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -140,6 +140,7 @@ public class Main2Activity extends AppCompatActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {

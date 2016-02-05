@@ -32,6 +32,7 @@ public class SpecialSearchActivity extends AppCompatActivity {
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setTitle("Seleziona Categoria");
         }
 
         //menu icon

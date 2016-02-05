@@ -58,6 +58,7 @@
     <string name="about">About Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
+    <string name="like">Like us on Facebook</string>
 
     <string-array name="Specializations">
         <item>Dentista</item>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         ImageView icon  = (ImageView) view.findViewById(R.id.specialization_icon);
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
         icon.setColorFilter(R.color.colorPrimaryDark);
+        /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) +" selected", Toast.LENGTH_SHORT)
                 .show();
 

@@ -32,13 +32,12 @@
                 android:icon="@drawable/ic_menu_white_24dp"
                 android:title="@string/support"
                 android:id="@+id/support"/>
+            <item
+                android:id="@+id/like"
+                android:title="@string/like"/>
         </menu>
     </item>
 
-    <item tools:ignore="MenuTitle">
-        <menu>
-            <item android:title="@string/logout"
-                android:id="@+id/logout" />
-        </menu>
-    </item>
+    <item android:title="@string/logout"
+        android:id="@+id/logout" />
 </menu>
