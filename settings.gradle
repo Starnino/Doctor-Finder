@@ -1,1 +1,1 @@
-include ':app', ':kinvey-android-lib-2.10.4'
+include ':app', ':backend'

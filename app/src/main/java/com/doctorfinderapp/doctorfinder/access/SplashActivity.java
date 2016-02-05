@@ -1,16 +1,27 @@
 package com.doctorfinderapp.doctorfinder.access;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
+import android.widget.Toast;
 
 
+import com.doctorfinderapp.backend.myApi.MyApi;
 import com.doctorfinderapp.doctorfinder.R;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-//import com.kinvey.android.Client;
+
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,11 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        //roba di kinvey
-        //final String your_app_key="kid_-JXvrsSX6l";
-        //final String your_app_secret="b817a69644c44f468925349474f92b97";
-        /*final Client mKinveyClient = new Client.Builder(your_app_key, your_app_secret
-                , this.getApplicationContext()).build();*/
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -48,6 +55,51 @@ public class SplashActivity extends AppCompatActivity {
         Timer timer = new Timer();
         timer.schedule(task, SPLASH_ACTIVITY_TIME);
 
+    }
+
+
+
+    //prova per app engine
+
+
+    static class EndpointsAsyncTask extends AsyncTask<android.util.Pair<Context, String>, Void, String> {
+        private static MyApi myApiService = null;
+        private Context context;
+
+        @Override
+        protected String doInBackground(android.util.Pair<Context, String>... params) {
+            if(myApiService == null) {  // Only do this once
+                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null)
+                        // options for running against local devappserver
+                        // - 10.0.2.2 is localhost's IP address in Android emulator
+                        // - turn off compression when running against local devappserver
+                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                            @Override
+                            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                                abstractGoogleClientRequest.setDisableGZipContent(true);
+                            }
+                        });
+                // end options for devappserver
+
+                myApiService = builder.build();
+            }
+
+            context = params[0].first;
+            String name = params[0].second;
+
+            try {
+                return myApiService.sayHi(name).execute().getData();
+            } catch (IOException e) {
+                return e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
     }
 
 

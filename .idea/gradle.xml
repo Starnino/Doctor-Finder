@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/kinvey-android-lib-2.10.4" />
+            <option value="$PROJECT_DIR$/backend" />
           </set>
         </option>
       </GradleProjectSettings>
