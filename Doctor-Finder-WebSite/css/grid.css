@@ -1,0 +1,207 @@
+/* ===================================================== */
+/* Grid                                                 */
+/* ===================================================== */
+
+.container {
+  position: relative;
+  max-width: 1104px;
+  margin: 0 auto;
+  padding: 0 2%;
+  -webkit-backface-visibility: hidden;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.container.narrow {
+    width: 940px;
+}
+
+.one-half {
+    width: 48%;
+}
+.one-third {
+    width: 30.6%;
+}
+.one-fourth {
+    width: 22%;
+}
+.one-fifth {
+    width: 16.8%;
+}
+.one-sixth {
+    width: 13.33%;
+}
+.two-fifths {
+    width: 37.6%;
+}
+.two-fourths {
+    width: 48%;
+}
+.two-thirds {
+    width: 65.33%;
+}
+.three-fifths {
+    width: 58.4%;
+}
+.three-fourths {
+    width: 74%;
+}
+.four-fifths {
+    width: 79.2%;
+}
+.five-sixths {
+    width: 82.67%;
+}
+
+.one-half,
+.one-third,
+.two-thirds,
+.three-fourths,
+.one-fourth,
+.two-fourths,
+.one-fifth,
+.two-fifths,
+.three-fifths,
+.four-fifths,
+.one-sixth,
+.five_sixths {
+    float: left;
+    margin-right: 4%;
+    position: relative;
+}
+
+.one-half.last,
+.one-third.last,
+.two-thirds.last,
+.three-fourths.last,
+.one-fourth.last,
+.two-fourths.last,
+.one-fifth.last,
+.two-fifths.last,
+.three-fifths.last,
+.four-fifths.last,
+.one-sixth.last,
+.one-half.last,
+.one-third.last,
+.two-thirds.last,
+.three-fourths.last,
+.one-fourth.last,
+.two-fourths.last,
+.one-fifth.last,
+.two-fifths.last,
+.three-fifths.last,
+.four-fifths.last,
+.one-sixth.last,
+.five_sixth.last { margin-right: 0; }
+
+.the-grid div {
+    background: #f9f9f9;
+    color: #999;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1020px) and (min-width: 959px) {
+  .container { width: 942px }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .container.narrow,
+  .container { width: 750px; }
+}
+
+/* 100% tablet portrait and below*/
+@media only screen and (max-width: 959px) {
+  .one-half,
+  .one-third,
+  .two-thirds,
+  .three-fourths,
+  .one-fourth,
+  .two-fourths,
+  .one-fifth,
+  .two-fifths,
+  .three-fifths,
+  .four-fifths,
+  .one-sixth,
+  .five_sixths {
+    margin: 0 2%;
+    width: 46%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container { width: 300px; }
+    .one-half,
+  .one-third,
+  .two-thirds,
+  .three-fourths,
+  .one-fourth,
+  .two-fourths,
+  .one-fifth,
+  .two-fifths,
+  .three-fifths,
+  .four-fifths,
+  .one-sixth,
+  .five_sixths {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .container { width: 420px; }
+
+}
+
+
+/* #Clearing
+================================================== */
+
+ /* Self Clearing Goodness */
+    .filter-menu:after,
+    .port-item:after,
+    .one-half:after,
+    .one-third:after,
+    .two-thirds:after,
+    .three-fourths:after,
+    .one-fourth:after,
+    .two-fourths:after,
+    .one-fifth:after,
+    .two-fifths:after,
+    .three-fifths:after,
+    .four-fifths:after,
+    .one-sixth:after,
+    .five-sixths:after,
+    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+    /* Use clearfix class on parent to clear nested columns,
+or wrap each row of columns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after,
+    .row:before,
+    .row:after {
+      content: '\0020';
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0; }
+    .row:after,
+    .clearfix:after {
+      clear: both; }
+    .row,
+    .clearfix {
+      zoom: 1; }
+
+    /* You can also use a <br class="clear" /> to clear columns */
+    .clear {
+      clear: both;
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }

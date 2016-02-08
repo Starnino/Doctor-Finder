@@ -1,0 +1,201 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+/* #Media Queries
+================================================== */
+
+	/* 1 Anything below starting width */
+	@media only screen and (max-width: 1200px)  {}
+
+	/* 2 Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {
+
+		/* Features 3 columns */
+		.features li {
+			margin: 0 2% 20px;
+			width: 29.33%;
+		}
+
+		/* Portfolio items 2 columns*/
+		.port-item {
+			width: 47.9%;
+		}
+
+		/* Portfolio menu 2 columns */
+		.filter-menu {
+			margin-bottom: 40px;
+		}
+
+		.filter-menu li {
+			display: block;
+			margin: 0 auto 10px;
+			width: 48%;
+		}
+
+		/* When 1 col is better than 2 */
+		.blog-main,
+		.aside,
+		.project>.container>.one-third,
+		.project>.container>.two-thirds {
+			margin: 0;
+			width: 100%;
+		}
+		
+		.blog-main {
+			margin-bottom: 70px;
+		}
+
+		/* Feature hex images 1 column */
+		.feature-imgs {
+			text-align: center;
+			display: block;
+			position: relative;
+		}
+		.feature-imgs li {
+			display: inline-block;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
+			float: none;
+			width: 50%;
+		}
+		.feature-imgs .middle {
+			margin-top: 0;
+		}
+
+		/* Clients 3 columns */
+		.clients li {
+			margin: 0 1% 20px;
+			width: 30%;
+			overflow: hidden;
+		}
+
+		/* Slider smaller */
+		.welcome .caption-title {
+			font-size: 60px;
+		}
+
+		.welcome .caption-subtitle {
+			font-size: 26px;
+		}
+
+		/* SHORTEN SLIDER */
+		.slider-wrapper .bx-viewport,
+		.slider-wrapper .bx-wrapper,
+		.slider-wrapper,
+		.main-slider {
+			height: 500px !important;
+		}
+
+	}
+
+	/* 3 Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+	/* 4 All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+
+
+		/* Features 2 columns */
+		.features li {
+			margin: 0 1% 20px;
+			width: 48%;
+		}
+
+		/* Portfolio items full width*/
+		.port-item {
+			padding: 0;
+			width: 100%;
+		}
+
+		/* Clients 3 columns */
+		.clients li {
+			margin: 0 1% 20px;
+			width: 48%;
+		}
+
+		/* Slider smaller */
+		.welcome .caption-title {
+			font-size: 40px;
+		}
+
+		.welcome .caption-subtitle {
+			font-size: 20px;
+		}
+
+		.tweet_text {
+			width: 100%;
+		}
+
+		/* Hide Revolution arrows on small screen */
+		.tp-leftarrow,
+		.tp-rightarrow {
+			display: none;
+		}
+
+	}
+
+	/* 5 Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+	/* 6 Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+
+		.feature-imgs li {
+			width: 100%;
+		}
+
+		/* Portfolio menu 100% */
+		.filter-menu li {
+			width: 100%;
+		}
+
+	}
+
+	@media only screen and (max-width: 240px) {
+		/* Hides logo on exceptionally narrow devices */
+		.header .logo {
+			display: none;
+		}
+	}
+
+	/* 7 Narrow screens */
+	@media only screen and (max-width: 959px) {
+
+		.main_menu {
+			display: none;
+		}
+
+		.header .container {
+			width: 100%;
+		}
+
+		.selectnav {
+			display: block;
+			float: right;
+		}
+
+		.header {
+			background: #555;
+			padding: 20px;
+			height: 70px;
+		}
+
+		/* Extra space for bigger header */
+		.page {
+			padding-top: 120px; /* To match .header height */
+		}
+		.slider-wrapper {
+			margin-top: 70px; /* To match .header height */
+		}
+
+
+		.logo { width: 40px; margin-bottom: 10px;}
+		.logo  img { width: 100%; }
+
+	}

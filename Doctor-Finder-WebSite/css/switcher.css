@@ -1,0 +1,159 @@
+/* ===================================================== */
+/* Switcher
+/* ===================================================== */
+
+#header-color {
+    padding: 0 0 2px;
+    color: white;
+    text-align: center;
+}
+
+#switcher {
+    margin-top: 0;
+    position: fixed;
+    z-index: 9999;
+    display: none; /* Displayed in custom.js */
+    top: 90px;
+}
+
+#switcher h3 {
+    font-family: 'Open Sans';
+}
+
+#theme-colors {
+    margin-bottom: 0;
+}
+
+#switcher .content {
+    background: white;
+    display: inline-block;
+    padding: 3px 0 0;
+    width: 36px;
+}
+
+#switcher .btn {
+    background: #666;
+    background: rgba(0, 0, 0, 0.1);
+    color: black;
+    display: block;
+    font-size: 14px;
+    left: 60px;
+    position: absolute;
+    right: -30px;
+    text-align: center;
+    width: 40px; height: 40px;
+    border-color: #fff;
+    border-color: rgba(255,255,255, .7);
+}
+
+#switcher .btn i {
+    color: white;
+    display: block;
+    font-size: 20px;
+    margin: 11px 0 0 0;
+    text-align: center;
+}
+
+#layout-button {
+    background: #ddd;
+    border: 1px solid #bcbcbc;
+    display: block;
+    margin-top: 20px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* No ie7 Support */
+.ie7 #switcher {
+    visibility: hidden;
+}
+
+#switcher h2 {
+    /*padding: 10px;*/
+}
+
+#switcher h3 {
+    font-size: 14px;
+    line-height: 15px;
+    margin-bottom: 10px;
+}
+
+#switcher li {
+    margin: 0 0 2px 0;
+}
+
+#switcher li a {
+    display: block;
+    height: 30px; width: 30px;
+    margin: 0 auto;
+}
+
+/* COLORS */
+
+#switcher .green { background: #5C9D51; }
+#switcher .orange { background: #F15B2D; }
+#switcher .darkpurple { background: #591D55; }
+#switcher .burgundy { background: #AB2222; }
+#switcher .yellow { background: #F1BF74; }
+#switcher .lightblue { background: #3E8BA4; }
+#switcher .pink { background: #C990CF; }
+#switcher .mint { background: #92C1A4; }
+#switcher .red { background: #8F2D54; }
+#switcher .navy { background: #2A4C79; }
+#switcher .purple { background: #554294; }
+
+
+#switcher .bg-1 {
+    background-image: url('../img/bg/bg-1.png');
+}
+
+#switcher .bg-2 {
+    background-image: url('../img/bg/bg-2.png');
+}
+
+#switcher .bg-3 {
+    background-image: url('../img/bg/bg-3.png');
+}
+
+#switcher .bg-4 {
+    background-image: url('../img/bg/bg-4.png');
+}
+
+#switcher .bg-5 {
+    background-image: url('../img/bg/bg-5.png');
+}
+
+#switcher .bg-6 {
+    background-image: url('../img/bg/bg-6.png');
+}
+
+#switcher .bg-7 {
+    background-image: url('../img/bg/bg-7.png');
+}
+
+
+@media only screen and (max-width: 1030px) {
+    
+    /* Remove Layout options 
+    for smaller screens */
+    a#layout-button {
+        visibility: hidden;
+        display: none;
+        height: 0;
+    }
+    
+    #background-images,
+    #bg-images-title {
+        display: none;
+    }
+    
+}
+
+@media only screen and (max-width: 767px) {
+
+    /* Hide switcher on small screens */
+    #switcher {
+        visibility: hidden;
+    }
+
+}

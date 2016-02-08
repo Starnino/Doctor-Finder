@@ -1,0 +1,40 @@
+/* BACKGROUND AND BORDER COLOR */
+.down:hover i {
+    background: #591D55;
+    border-color: #591D55;
+}
+
+/* COLOR */
+.button.outline,
+button.outline,
+input[type="submit"].outline,
+input[type="reset"].outline,
+input[type="button"].outline,
+.port-name,
+.features i,
+.callout .title,
+.milestones i,
+.trigger span,
+.team-job,
+.post-date {
+	color: #591D55;
+}
+
+/* BACKGROUND */
+.button.color,
+button.color,
+input[type="submit"].color,
+input[type="reset"].color,
+input[type="button"].color,
+.highlight-color,
+.progress,
+.process-list li.current i,
+.price-label,
+.skill-semi {
+	background: #591D55;
+}
+
+/* BORDER COLOR */
+.description:after {
+	border-color: #591D55;
+}
