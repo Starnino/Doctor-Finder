@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -25,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText repeatPassword;
-
+    private static final String TAG = "SignupActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -67,6 +70,7 @@ public class SignupActivity extends AppCompatActivity {
                 //define String variables
                 String fName;
                 String lName;
+
                 String email_string;
                 String password_string;
                 String repeatPassword_string;
@@ -100,8 +104,33 @@ public class SignupActivity extends AppCompatActivity {
 
 
                 else {
-                    Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
-                    startActivity(intent);
+
+
+
+
+                    ParseUser user = new ParseUser();
+                    user.setUsername(email_string);
+                    user.setPassword(password_string);
+                    user.setEmail(email_string);
+                    user.put(fName, lName);
+                    user.signUpInBackground(new SignUpCallback() {
+                        public void done(com.parse.ParseException e) {
+                            if (e == null) {
+                                // Hooray! Let them use the app now.
+                                Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
+                                startActivity(intent);
+
+                            } else {
+
+                                Log.v(TAG, "errore");
+                                Log.v(TAG, e.toString());
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
+                            }
+                        }
+                    });
+
                 }
             }
         });

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.R;
 import com.parse.GetCallback;
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -32,40 +33,27 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        //inizialize parse
+        //it works
+        //TODO:Make secret these keys
+
         Parse.enableLocalDatastore(this);
+        try {
+            Parse.initialize(new Parse.Configuration.Builder(this.getApplicationContext())
+                            .applicationId("VfxaK2Tk5qApR5nvAulR")
+                            .clientKey("wIgqO6QfRM4vFuD3pWJi")
+                            .server("http://doctor-finder-server.herokuapp.com/parse/")
+                            .build()
+            );
+            ParseInstallation.getCurrentInstallation().saveInBackground();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.v(TAG, "error tipo"+e.toString());
+        }
 
-        Context myContext = null;
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                        .applicationId("YOUR_APP_ID")
-                        .clientKey("YOUR_APP_CLIENT_KEY")
-                        .server("http://doctor-finder-server.herokuapp.com:1337/parse")
 
 
-                        .build()
-        );
-
-
-        ParseUser user = new ParseUser();
-        user.setUsername("my name");
-        user.setPassword("my pass");
-        user.setEmail("email@example.com");
-
-// other fields can be set just like with ParseObject
-        user.put("phone", "650-253-0000");
-
-        user.signUpInBackground(new SignUpCallback() {
-            public void done(com.parse.ParseException e) {
-                if (e == null) {
-                    Log.v(TAG, "OK");
-                } else {
-                    Log.v(TAG, "errore");
-                    // Sign up didn't succeed. Look at the ParseException
-                    // to figure out what went wrong
-                }
-            }
-        });
-
-        /*
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -87,7 +75,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Timer timer = new Timer();
         timer.schedule(task, SPLASH_ACTIVITY_TIME);
-        */
+
 
     }
 
