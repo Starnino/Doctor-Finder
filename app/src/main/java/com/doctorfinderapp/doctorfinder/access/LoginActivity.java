@@ -22,6 +22,8 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.parse.LogInCallback;
+import com.parse.ParseUser;
 
 
 /**
@@ -98,10 +100,27 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),
-                            "Incorrect Username or Password",
-                            Toast.LENGTH_LONG).show();
+                    ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
+                        public void done(ParseUser user, com.parse.ParseException e) {
+                            if (user != null) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Logged in",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, SpecialSearchActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        "Incorrect Username or Password",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
+
+
+
+
+
 
             }
 
