@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <item
+            android:icon="@drawable/ic_search_white_24dp"
+            android:title="@string/profile"
+            android:id="@+id/profile" />
+        <item
+            android:icon="@drawable/ic_menu_white_24dp"
+            android:title="@string/gestisci"
+            android:id="@+id/gestisci" />
+        <item
+            android:icon="@drawable/ic_check_circle_white_24dp"
+            android:title="@string/suggerisci"
+            android:id="@+id/suggerisci" />
+    </group>
+
+
+
+    <item android:title="@string/docfinder">
+        <menu>
+            <item
+                android:icon="@drawable/ic_search_white_24dp"
+                android:title="@string/about"
+                android:id="@+id/about"/>
+            <item
+                android:icon="@drawable/ic_menu_white_24dp"
+                android:title="@string/support"
+                android:id="@+id/support"/>
+            <item
+                android:id="@+id/like"
+                android:title="@string/like"/>
+        </menu>
+    </item>
+
+    <item android:title="@string/logout"
+        android:id="@+id/logout" />
+</menu>
