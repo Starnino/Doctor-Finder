@@ -22,10 +22,10 @@
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/logodc"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/logodc" />
+        android:layout_marginTop="20dp" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_username"
@@ -93,9 +93,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_container"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@id/ll_forgot_container"
-        android:layout_margin="@dimen/fab_margin">
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_above="@+id/log_container"
+        android:layout_alignParentEnd="false">
 
         <Button
             android:layout_width="match_parent"
@@ -104,7 +108,19 @@
             android:id="@+id/login_button2"
             android:backgroundTint="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center_horizontal" />
+
+
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,7 +128,9 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:id="@+id/log_container"
-        android:layout_margin="@dimen/fab_margin">
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin">
 
         <com.facebook.login.widget.LoginButton
             android:layout_width="match_parent"

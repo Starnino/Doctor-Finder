@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -40,7 +41,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //get the view from xml
         setContentView(R.layout.activity_signup);
-
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
         close = (ImageButton) findViewById(R.id.close);
@@ -113,10 +114,13 @@ public class SignupActivity extends AppCompatActivity {
                     user.setPassword(password_string);
                     user.setEmail(email_string);
                     user.put(fName, lName);
+                    //make progress bar visible only when signup in background
+                    progressBar.setVisibility(View.VISIBLE);
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(com.parse.ParseException e) {
                             if (e == null) {
                                 // Hooray! Let them use the app now.
+                                //create a toast
                                 Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
                                 startActivity(intent);
