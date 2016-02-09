@@ -54,15 +54,6 @@ public class SignupActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_text);
         repeatPassword = (EditText) findViewById(R.id.repeat_password_text);
 
-        //set font
-        Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
-        firstName.setTypeface(font);
-        lastName.setTypeface(font);
-        email.setTypeface(font);
-        password.setTypeface(font);
-        repeatPassword.setTypeface(font);
-        signUp.setTypeface(font);
-
         //SignUp Click Listener
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override

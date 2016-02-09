@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.access;
 
+import com.doctorfinderapp.doctorfinder.Main2Activity;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
@@ -86,14 +87,6 @@ public class LoginActivity extends AppCompatActivity {
         Button loginWithGoogle = (Button) findViewById(R.id.login_google_button);
         ImageButton close = (ImageButton) findViewById(R.id.close);
 
-        //set font
-        Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
-        loginButton.setTypeface(font);
-        //loginWithFacebook.setTypeface(font);
-        loginWithGoogle.setTypeface(font);
-        username.setTypeface(font);
-        password.setTypeface(font);
-
 
         // Login Button Click Listener
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(LoginActivity.this, "Login Succesful", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this,
-                        MainActivity.class);
+                        Main2Activity.class);
                 startActivity(intent);
             }
 

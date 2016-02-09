@@ -43,17 +43,11 @@ public class FirstActivity extends Activity {
         //textview get xml
         searchText = (TextView) findViewById(R.id.search_text);
 
-        //set font
-        Typeface font = Typeface.createFromAsset(getAssets(), "font/Lato-Regular.ttf");
-        loginButton.setTypeface(font);
-        signupButton.setTypeface(font);
-        searchText.setTypeface(font);
-
 
         //alert
         alert = new AlertDialog.Builder(FirstActivity.this);
-        alert.setTitle("Notice");
-        alert.setMessage("Please do not use this application in case of medical emergency!");
+        alert.setTitle("Attenzione");
+        alert.setMessage("Non utilizzare questa applicazione in caso di emergenza, grazie!");
         alert.setPositiveButton("OK", null);
         alert.show();
 
