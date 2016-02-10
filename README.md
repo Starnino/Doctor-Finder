@@ -8,7 +8,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](http://cubpack707.org/wp-content/uploads/2010/09/icon-sm-facebook-36x36.png) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
-![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
+![](https://blog.agilebits.com/wp-content/uploads/2015/07/Trello-Organize-Anything_ipad-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 ![](http://marketinglights.com/wp-content/uploads/website.png)
@@ -83,19 +83,19 @@ Book appointment directly via app
 
 Front-end & Back-end finally improved
 
-![](http://www.trente.eu/wp-content/uploads/2014/09/google_play_icon_36x36_trente.png)     Play store
+Play store
 
 ...
 
 
 
-#See on linkedin who we are...![](https://teknikol.com/img/social-media/icon-sm-linkedin-36x36.png) ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
+#See on linkedin who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
-> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
-
 > [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
 
 > [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+
+> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
