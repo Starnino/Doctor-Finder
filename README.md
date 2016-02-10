@@ -30,7 +30,7 @@ At this right moment Mario have 30 different contacts and don’t know who is th
 Now Mario is confused and, most important things, **still need a doctor!**
 
 Doctor Finder works with you helping to find the health specialists that you need.
-You can search doctor using the map or doing and easily and efficiently research choosing the field that you prefer. **You are not satisfied? You want more? **We are the only one that have the Social Advice!
+You can search doctor using the map or doing and easily and efficiently research choosing the field that you prefer. **You are not satisfied? You want more? ** We are the only one that have the Social Advice!
 
 You don’t know whay is the **Social Advice?** You don't know personally a certain doctor?
 With Social Advice you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends you will finally trust in that doctor!
@@ -84,6 +84,8 @@ Book appointment directly via app
 Front-end & Back-end finally improved
 
 Play store
+
+...
 
 
 
