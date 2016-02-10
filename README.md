@@ -90,7 +90,7 @@ Play store
 #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
-> ![](http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
+> ![](http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg ) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
 > [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
 
