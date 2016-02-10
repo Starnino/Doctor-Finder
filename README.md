@@ -17,6 +17,8 @@ Contacts us by email on **info@doctorfinderapp.com**
 ![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
 **[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
+
+
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015. 
 
 Our main purpose is to connect people in a way quickly and simply to the health specialists that they need.
@@ -92,8 +94,8 @@ Play store
 
 > ![](http://www.mediafire.com/view/9h9annskawdf24x/photo_2016-01-16_14-50-04.jpg) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
-> ![]() [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+> !(http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg) [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
 
-> ![]() [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+> (http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg) [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
 
-> ![]() [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+> (http://www.mediafire.com/view/9h9annskawdf24x/photo_2016-01-16_14-50-04.jpg) [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
