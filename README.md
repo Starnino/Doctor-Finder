@@ -6,15 +6,15 @@
 
 Contacts us by email on **info@doctorfinderapp.com**
 
-![](https://www.mediafire.com/convkey/b2ea/ske4fi4njlw7wmo6g.jpg) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
+![](http://cubpack707.org/wp-content/uploads/2010/09/icon-sm-facebook-36x36.png) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
 ![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
-![](http://www.vieuws.eu/wp-content/uploads/2012/11/Web-Site-icon.png)
+![](http://marketinglights.com/wp-content/uploads/website.png)
 **[Web Site](http://www.doctorfinderapp.com/)**
 
-![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
+![](http://www.theorangepartnership.co.uk/wp-content/uploads/issuesandideasicon-36x36.png)
 **[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015. 
@@ -83,7 +83,7 @@ Book appointment directly via app
 
 Front-end & Back-end finally improved
 
-Play store
+![](http://www.trente.eu/wp-content/uploads/2014/09/google_play_icon_36x36_trente.png) Play store
 
 ...
 
@@ -92,10 +92,10 @@ Play store
 #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
-> [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
+> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
-> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
 
-> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
 
-> [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
