@@ -83,7 +83,7 @@ Book appointment directly via app
 
 Front-end & Back-end finally improved
 
-![](http://www.trente.eu/wp-content/uploads/2014/09/google_play_icon_36x36_trente.png) Play store
+![](http://www.trente.eu/wp-content/uploads/2014/09/google_play_icon_36x36_trente.png)     Play store
 
 ...
 
@@ -92,10 +92,10 @@ Front-end & Back-end finally improved
 #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
-> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
+![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
-> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
 
-> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
 
-> ![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+![](http://ar4download.com/wp-content/uploads/2015/04/Web-Linked-in-alt-Metro-icon-36x36.png) [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
