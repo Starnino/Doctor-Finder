@@ -61,19 +61,69 @@
     <string name="like">Like us on Facebook</string>
 
     <string-array name="Specializations">
-        <item>Dentista</item>
-        <item>Ginecologo</item>
-        <item>Odontoiatra</item>
-        <item>Nutrizionista</item>
-        <item>Giovanni</item>
-        <item>Vincenzo</item>
-        <item>Baccerico</item>
-        <item>Starnino</item>
-        <item>Doctor Finder</item>
-        <item>Pediatra</item>
-        <item>Fisioterapista</item>
-        <item>Medico Legale</item>
-        <item>Chirurgo Plastico</item>
+        <item>STARNOLOGIA</item>
+        <item>BACCIOLOGIA</item>
+        <item>VINCIOLOGIA</item>
+        <item>FORZA ROMA</item>
+        <item>Allergologia</item>
+        <item>Anatomia Patologica</item>
+        <item>Andrologia</item>
+        <item>Angiologia Medica</item>
+        <item>Cardiochirurgia</item>
+        <item>Cardiologia</item>
+        <item>Cardiologia Pediatrica</item>
+        <item>Chirurgia Generale</item>
+        <item>Chirurgia Maxillo-Facciale</item>
+        <item>Chirurgia Pediatrica</item>
+        <item>Chirurgia Plastica</item>
+        <item>Chirurgia Proctologica</item>
+        <item>Chirurgia Toracica</item>
+        <item>Chirurgia Vascolare</item>
+        <item>Dermatologia</item>
+        <item>Diabetologia</item>
+        <item>Dietologia</item>
+        <item>Ecografia e Doppler</item>
+        <item>Ematologia</item>
+        <item>Endocrinologia</item>
+        <item>Fisiatria</item>
+        <item>Fisioterapia</item>
+        <item>Gastroenterologia</item>
+        <item>Genetica Medica</item>
+        <item>Geriatria e Gereontologia</item>
+        <item>Ginecologia e Ostetricia</item>
+        <item>Immunologia</item>
+        <item>Infettivologia e Malattie Infettive</item>
+        <item>Medico di Base</item>
+        <item>Medicina del Dolore</item>
+        <item>Medicina dello Sport</item>
+        <item>Medicina Estetica</item>
+        <item>Medicina Interna</item>
+        <item>Medicina Legale</item>
+        <item>Medicina Nucleare</item>
+        <item>Medicina Veterinaria</item>
+        <item>Nefrologia</item>
+        <item>Neurochirurgia</item>
+        <item>Neurofisiopatologia</item>
+        <item>Neurologia</item>
+        <item>Neuropsichiatria Infantile</item>
+        <item>Oculistica</item>
+        <item>Odontoiatria</item>
+        <item>Omeopatia e Agopuntura</item>
+        <item>Oncologia</item>
+        <item>Ortopedia e Traumatologia</item>
+        <item>Otorinolaringoiatria</item>
+        <item>Pediatria</item>
+        <item>Pneumologia e Malattie Respiratorie</item>
+        <item>Proctologia</item>
+        <item>Psichiatria</item>
+        <item>Psicologia</item>
+        <item>Radiologia Interventistica</item>
+        <item>Radiologia TAC e Risonanza</item>
+        <item>Reumatologia</item>
+        <item>Senologia</item>
+        <item>Urologia</item>
+        <item>Venereologia</item>
+
     </string-array>
 
     <string-array name="cities">
@@ -88,5 +138,14 @@
         <item>Latina</item>
         <item>Catania</item>
     </string-array>
+
+
+    <string-array name="years">
+        <item>Meno di 5</item>
+        <item>Tra 5 e 10</item>
+        <item>Più di 10</item>
+        <item>MATURE</item>
+    </string-array>
+
     <string name="title_activity_doctor_maps_fragment">Map</string>
 </resources>
