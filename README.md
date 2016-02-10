@@ -21,7 +21,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 [First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
 
-[Results first survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg)(Results at 15/15/2015)
+[Results first survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg) (Results at 15/15/2015)
 
 [Presentation] (https://docs.google.com/presentation/d/1e2ooDbdLt6EfoGjudyGUOKhif2DCc-I7rrsz6rbCGII/edit?usp=sharing) 
 
@@ -37,16 +37,13 @@ Contacts us by email on **info@doctorfinderapp.com**
 ![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
-
 Social Integration
 
 Log in using social Networks(Facebook and Google+)
 
 Improving Back-end & Front-end
 
-Instructions for install APK
-
-Download APK
+[Instructions for download and install APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
 
 Web site improved
 
@@ -74,11 +71,8 @@ Play store
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
-
-> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
-
-> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
-
+> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)  
+> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it) 
 > [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
 
 
