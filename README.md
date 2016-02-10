@@ -68,7 +68,9 @@ Front-end & Back-end finally improved
 
 Play store
 
- #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
+
+
+#Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
