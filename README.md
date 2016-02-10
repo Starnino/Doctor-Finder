@@ -12,19 +12,16 @@ Contacts us by email on **info@doctorfinderapp.com**
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
 ![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
-**[The project ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
+**[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
-![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png)
-**[Team Presentation](https://drive.google.com/file/d/0BzzTdF5hw0YRSjVoeVpFQXZPdm8/view?usp=sharing)**
+![](http://www.vieuws.eu/wp-content/uploads/2012/11/Web-Site-icon.png)
+**[Web Site](http://www.doctorfinderapp.com/)**
+
+#Milestone 1 - Proof of Concept
 
 [First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
 
 [Results first survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg)(Results at 15/15/2015)
-
-#Milestone 1 - Proof of Concept
-
-![](http://www.vieuws.eu/wp-content/uploads/2012/11/Web-Site-icon.png)
-**[Web Site](http://www.doctorfinderapp.com/)**
 
 [Presentation] (https://docs.google.com/presentation/d/1e2ooDbdLt6EfoGjudyGUOKhif2DCc-I7rrsz6rbCGII/edit?usp=sharing) 
 
@@ -71,4 +68,15 @@ Front-end & Back-end finally improved
 
 Play store
 
-...
+ #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
+
+
+> [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
+
+> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+
+> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+
+> [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+
+
