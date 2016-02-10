@@ -11,11 +11,11 @@ Contacts us by email on **info@doctorfinderapp.com**
 ![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
 **[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
 
-![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
-**[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
-
 ![](http://www.vieuws.eu/wp-content/uploads/2012/11/Web-Site-icon.png)
 **[Web Site](http://www.doctorfinderapp.com/)**
+
+![](https://lh5.googleusercontent.com/-9HYJqkUyB7k/AAAAAAAAAAI/AAAAAAAAAAQ/ZeJckCdi9cU/s46-c-k/photo.jpg)
+**[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
 #Milestone 1 - Proof of Concept
 
@@ -34,18 +34,17 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 #Milestone 2 - Release Candidate
 
-![](http://d75zaaexlydfl.cloudfront.net/wp-content/uploads/2014/01/Trellogo-36x36.png)
-**[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
+[See our work on trello! ](https://trello.com/b/0uSh0ofs)
 
 Social Integration
 
-Log in using social Networks(Facebook and Google+)
+Log in using social Networks
 
 Improving Back-end & Front-end
 
-[Instructions for download and install APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
-
 Web site improved
+
+[Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
 
 ...
 
@@ -70,9 +69,11 @@ Play store
 #Who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
 
 
-> [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
-> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)  
-> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it) 
+> ![Giovanni Giampaolo (https://www.linkedin.com/in/giampaologiovanni)] (https://drive.google.com/file/d/0BzzTdF5hw0YRVno0dGJYdjJyWkk/view?usp=sharing) 
+
+
+> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+
+> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+
 > [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
-
-
