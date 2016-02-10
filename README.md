@@ -94,8 +94,8 @@ Play store
 
 > ![](http://www.mediafire.com/view/9h9annskawdf24x/photo_2016-01-16_14-50-04.jpg) [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
-> !(http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg) [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
 
-> (http://www.mediafire.com/convkey/1689/9h9annskawdf24x6g.jpg) [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
 
-> (http://www.mediafire.com/view/9h9annskawdf24x/photo_2016-01-16_14-50-04.jpg) [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+> [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
