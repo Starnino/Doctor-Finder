@@ -90,6 +90,7 @@ public class Main2Activity extends AppCompatActivity  {
         viewPager.setAdapter(adapter);
     }
 
+
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
