@@ -1,5 +1,5 @@
 
-![](https://www.mediafire.com/convkey/c289/vo3zzx8rn88zd8z6g.jpg)
+![](https://www.mediafire.com/convkey/7e72/ow8f04jz5zhhuu36g.jpg)
 
 **The simplest way to connect doctor with you**
 
@@ -8,14 +8,18 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](http://cubpack707.org/wp-content/uploads/2010/09/icon-sm-facebook-36x36.png) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
 
+
+
 ![](https://blog.agilebits.com/wp-content/uploads/2015/07/Trello-Organize-Anything_ipad-36x36.png)
-**[We're working on...Trello! ](https://trello.com/b/0uSh0ofs)**
+**[We're working live on Trello! ](https://trello.com/b/0uSh0ofs)**
 
 ![](http://marketinglights.com/wp-content/uploads/website.png)
-**[Web Site](http://www.doctorfinderapp.com/)**
+**[Website](http://www.doctorfinderapp.com/)**
 
-![](http://www.theorangepartnership.co.uk/wp-content/uploads/issuesandideasicon-36x36.png)
+![](http://www.mediafire.com/convkey/253f/7g6go15a7pklada6g.jpg)
 **[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
+
+
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015. 
 
@@ -37,7 +41,9 @@ With Social Advice you can search a doctor that have visited one of your friend,
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
-![] (http://fp.advertising.microsoft.com/en-uk/WWImages/search/global/policies-help-icon-36x36.png)
+
+
+![] (http://www.mediafire.com/convkey/0c47/yf4cu6u95pv5b486g.jpg)
 [Do you like our idea ?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
 
 #Milestone 1 - Proof of Concept
@@ -52,14 +58,16 @@ Social networks connects people all around the world and we thought to use those
 
 [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 
-![](http://uxrepo.com/static/icon-sets/elusive/png32/36/000000/play-circled2-36-000000.png)
+![](http://www.mediafire.com/convkey/5a5c/phq34aqfsv6rehc6g.jpg)
 **[First Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
 
 #Milestone 2 - Release Candidate
 
-[See our work on trello! ](https://trello.com/b/0uSh0ofs)
+[We're working live on Trello! ](https://trello.com/b/0uSh0ofs)
 
-[Registration for the doctors] (https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing)
+[Presentation] ()
+
+[Registration for health specialists] (https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing)
 
 Social Advice
 
@@ -67,11 +75,12 @@ Log in using social Networks
 
 Improving Back-end & Front-end
 
-Web site improved
+[Improved Website](http://www.doctorfinderapp.com/)
 
 [Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
 
-...
+![](http://www.mediafire.com/convkey/5a5c/phq34aqfsv6rehc6g.jpg)
+**[Second Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
 
 #Milestone 3 - Final
 
@@ -91,10 +100,9 @@ Play store
 
 ...
 
+#See on linkedin who we are...  
 
-
-#See on linkedin who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
-
+![](http://www.mediafire.com/convkey/3126/0y0fnhjco0ey9m76g.jpg)
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 
