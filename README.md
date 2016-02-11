@@ -1,7 +1,7 @@
 
 <p align="center">
 <img src="http://i.imgur.com/yA4qahd.png" href"http://doctorfinderapp.com" alt="logo" height="auto" width="auto">
-<p align="center"><b>The easiest way to find a doctor</b>.</p>
+ <b> <h2 align="center"> "The easiest way to find a doctor" </h2></b>
 </p>
 
 Contacts us by email on **info@doctorfinderapp.com**
