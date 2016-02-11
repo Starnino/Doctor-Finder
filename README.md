@@ -1,5 +1,5 @@
 
-![](https://www.mediafire.com/convkey/7e72/ow8f04jz5zhhuu36g.jpg)
+![](https://drive.google.com/drive/folders/0B1SUy2ysIW0SRnNCREdMOUVRYjg)
 
 **The simplest way to connect doctor with you**
 
@@ -38,7 +38,7 @@ With Social Advice you can search a doctor that have visited one of your friend,
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
 ![] (http://fp.advertising.microsoft.com/en-uk/WWImages/search/global/policies-help-icon-36x36.png)
-[Do you like our project?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
+[Do you like our idea ?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
 
 #Milestone 1 - Proof of Concept
 
@@ -52,8 +52,8 @@ Social networks connects people all around the world and we thought to use those
 
 [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 
-![](http://www.therapistaid.com/designimg/video_icon.png)
-**[Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
+![](http://uxrepo.com/static/icon-sets/elusive/png32/36/000000/play-circled2-36-000000.png)
+**[First Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
 
 #Milestone 2 - Release Candidate
 
