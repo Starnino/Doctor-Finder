@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Main2Activity;
+import com.doctorfinderapp.doctorfinder.MapsActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.facebook.CallbackManager;
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 passwordtxt = password.getText().toString();
                 if (usernametxt.equals("test")) {
                     Intent intent = new Intent(LoginActivity.this,
-                            SpecialSearchActivity.class);
+                            MapsActivity.class);
                     startActivity(intent);
 
 
