@@ -18,7 +18,9 @@ Contacts us by email on **info@doctorfinderapp.com**
 Our main purpose is to connect people in a way quickly and simply to the health specialists that they need.
 
 Doctor Finder is an app that helps you to find the health specialists that you need.
-You can search doctor using the map or doing and easily and efficiently research choosing the field that you prefer.**You are not satisfied? You want more?** We are the only one that have the Social Advice!
+You can search doctor using the map or doing and easily and efficiently research choosing the field that you prefer.
+<br> <br>
+**You are not satisfied? You want more?** We are the only one that have the Social Advice!
 
 With our feature **Social Advice** you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends trust in that doctor!
 
@@ -38,11 +40,11 @@ Social networks connects people all around the world and we thought to use those
 * [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 * [Presentation] ()
 * [Registration for health specialists](https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing) 
-*Social Advice
-*Log in using social Networks
-*Improving Back-end & Front-end
-*[Improved Website](http://www.doctorfinderapp.com/)
-*[Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
+* Social Advice
+* Log in using social Networks
+* Improving Back-end & Front-end
+* [Improved Website](http://www.doctorfinderapp.com/)
+* [Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
 * [#2 Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
 #Milestone 3 - Final
