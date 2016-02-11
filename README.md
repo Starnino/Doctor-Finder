@@ -93,7 +93,7 @@ Play store
 
 
 
-#See on linkedin who we are... ![](https://cdn3.iconfinder.com/data/icons/social-and-media/37/Social_and_communication-09-48.png) 
+#See on linkedin who we are... ![](http://www.mediafire.com/convkey/42fa/ra693k0o8u73g336g.jpg) 
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
