@@ -37,6 +37,7 @@ With Social Advice you can search a doctor that have visited one of your friend,
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
+[Do you like our project?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
 
 #Milestone 1 - Proof of Concept
 
