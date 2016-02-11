@@ -1,5 +1,5 @@
 
-![](http://www.mediafire.com/view/e6ro82e5ilmo9lt/Logo%2Bdottore_verde.png)
+![](https://www.mediafire.com/convkey/32b4/e6ro82e5ilmo9lt6g.jpg)
 
 **The simplest way to connect doctor with you**
 
