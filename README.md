@@ -93,7 +93,9 @@ Play store
 
 
 
-#See on linkedin who we are... ![](http://www.mediafire.com/convkey/42fa/ra693k0o8u73g336g.jpg) 
+![](http://www.mediafire.com/convkey/42fa/ra693k0o8u73g336g.jpg) #See on linkedin who we are...  
+
+#See on linkedin who we are...  ![](http://www.mediafire.com/convkey/3126/0y0fnhjco0ey9m76g.jpg)
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
