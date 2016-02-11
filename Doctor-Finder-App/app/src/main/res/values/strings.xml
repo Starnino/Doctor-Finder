@@ -140,4 +140,5 @@
     </string-array>
 
     <string name="title_activity_doctor_maps_fragment">Map</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

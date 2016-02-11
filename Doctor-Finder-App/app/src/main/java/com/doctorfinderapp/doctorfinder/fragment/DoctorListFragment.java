@@ -8,10 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.doctorfinderapp.doctorfinder.Doctor.Doctors;
+
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.adapter.ListDoctorAdapter;
-import java.util.ArrayList;
 
 /**
  * Created by francesco on 03/02/16.

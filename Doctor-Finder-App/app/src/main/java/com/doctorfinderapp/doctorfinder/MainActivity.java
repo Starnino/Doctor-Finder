@@ -1,9 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
 
-import java.util.ArrayList;
-import java.util.Locale;
-
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
@@ -17,8 +14,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.doctorfinderapp.doctorfinder.adapter.ListDoctorAdapter;
 import com.doctorfinderapp.doctorfinder.Doctor.Doctors;
+import com.doctorfinderapp.doctorfinder.adapter.ListDoctorAdapter;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
