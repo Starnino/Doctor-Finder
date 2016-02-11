@@ -4,42 +4,29 @@ package com.doctorfinderapp.doctorfinder.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.parse.Parse;
-import com.parse.ParseInstallation;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.doctorfinderapp.doctorfinder.functions.StartParse.startParse;
+
 public class SplashActivity extends AppCompatActivity {
-    private static final String TAG = "SplashActivity";
     public static final int SPLASH_ACTIVITY_TIME = 4000;
+    private static final String TAG = "SplashActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         //inizialize parse
-        //it works
-        //TODO:Make secret these keys
-
-        Parse.enableLocalDatastore(this);
-        try {
-            Parse.initialize(new Parse.Configuration.Builder(this.getApplicationContext())
-                            .applicationId("VfxaK2Tk5qApR5nvAulR")
-                            .clientKey("wIgqO6QfRM4vFuD3pWJi")
-                            .server("http://doctor-finder-server.herokuapp.com/parse/")
-                            .build()
-            );
-            ParseInstallation.getCurrentInstallation().saveInBackground();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.v(TAG, "error tipo"+e.toString());
-        }
 
 
+        startParse(this);
+
+        //TODO:make this method return something
 
         TimerTask task = new TimerTask() {
             @Override
