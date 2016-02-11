@@ -1,5 +1,5 @@
 
-+![](https://www.mediafire.com/convkey/7e72/ow8f04jz5zhhuu36g.jpg)
+![](https://www.mediafire.com/convkey/7e72/ow8f04jz5zhhuu36g.jpg)
 
 **The simplest way to connect doctor with you**
 
@@ -7,6 +7,8 @@
 Contacts us by email on **info@doctorfinderapp.com**
 
 ![](http://cubpack707.org/wp-content/uploads/2010/09/icon-sm-facebook-36x36.png) **[Follow us on Facebook] (https://www.facebook.com/dcfind/)**
+
+
 
 ![](https://blog.agilebits.com/wp-content/uploads/2015/07/Trello-Organize-Anything_ipad-36x36.png)
 **[We're working live on Trello! ](https://trello.com/b/0uSh0ofs)**
@@ -16,6 +18,8 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 ![](http://www.mediafire.com/convkey/253f/7g6go15a7pklada6g.jpg)
 **[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
+
+
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015. 
 
@@ -36,6 +40,8 @@ You don’t know whay is the **Social Advice?** You don't know personally a cert
 With Social Advice you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends you will finally trust in that doctor!
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
+
+
 
 ![] (http://www.mediafire.com/convkey/0c47/yf4cu6u95pv5b486g.jpg)
 [Do you like our idea ?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
@@ -59,7 +65,7 @@ Social networks connects people all around the world and we thought to use those
 
 [We're working live on Trello! ](https://trello.com/b/0uSh0ofs)
 
-[Presentation]
+[Presentation] ()
 
 [Registration for health specialists] (https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing)
 
