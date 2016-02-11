@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@color/white"/>
 </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

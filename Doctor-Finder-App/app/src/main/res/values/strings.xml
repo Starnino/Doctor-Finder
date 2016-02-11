@@ -141,4 +141,6 @@
 
     <string name="title_activity_doctor_maps_fragment">Map</string>
     <string name="title_activity_maps">Map</string>
+    <!--GOOGLE SERVICES-->
+    <string name="google_app_id">309143604100</string>
 </resources>
