@@ -1,7 +1,7 @@
 
 <p align="center">
 <img src="http://i.imgur.com/yA4qahd.png" href"http://doctorfinderapp.com" alt="logo" height="auto" width="auto">
-<p><b>The easiest way to find a doctor</b>.</p>
+<p align="center"><b>The easiest way to find a doctor</b>.</p>
 </p>
 
 Contacts us by email on **info@doctorfinderapp.com**
@@ -14,25 +14,15 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015 in Sapienza University of Rome. 
-<p><font size="10">
+
 Our main purpose is to connect people in a way quickly and simply to the health specialists that they need.
-We got this **idea** because all the world use the smartphone and all the technologies primarily for fun and entertainments, and only in a second moment for solve a **real problem.**
 
-Mario is one of our **best friends**, unfortunately for some reason now needs a doctor. 
-He asked a good doctor to us and to his friends and he gets 10 different names. 
-Mario is **never satisfied** and he want the best doctor for solve his problem.
-On Google, doing a research, he found other 20 doctors. 
-At this right moment Mario have 30 different contacts and don’t know who is the right specialist for him. 
-Now Mario is confused and, most important things, **still need a doctor!**
-
-Doctor Finder helps you to find the health specialists that you need.
+Doctor Finder is an app that helps you to find the health specialists that you need.
 You can search doctor using the map or doing and easily and efficiently research choosing the field that you prefer.**You are not satisfied? You want more?** We are the only one that have the Social Advice!
 
-You don’t know whay is the **Social Advice?** You don't know personally a certain doctor?
-With Social Advice you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends you will finally trust in that doctor!
+With our feature **Social Advice** you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends trust in that doctor!
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
-</font></p>
 
 
 #Milestone 1 - Proof of Concept
