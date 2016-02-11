@@ -30,8 +30,6 @@ public class DoctorListFragment extends Fragment {
 
     String[] feedback = new String[]{"**", "****", "*", "***", "****", "**", "*", "***", "***", "****", "****", "**", "*", "*", "***", "****"};
 
-    ArrayList<Doctors> arraydoctors;
-    ListDoctorAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

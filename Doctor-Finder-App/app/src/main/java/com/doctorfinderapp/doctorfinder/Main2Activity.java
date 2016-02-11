@@ -19,11 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main2Activity extends AppCompatActivity  {
+public class Main2Activity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -75,10 +78,11 @@ public class Main2Activity extends AppCompatActivity  {
 
     }
 
-    // Add Fragments to Tabs
+    // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new DoctorListFragment(), "List");
+        adapter.addFragment(new DoctorListFragment(), "Lista");
+        adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         viewPager.setAdapter(adapter);
     }
 
@@ -109,7 +113,7 @@ public class Main2Activity extends AppCompatActivity  {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }
+    }//---------------------------------------------------------------------------------------------
 
     //search view
     @Override
