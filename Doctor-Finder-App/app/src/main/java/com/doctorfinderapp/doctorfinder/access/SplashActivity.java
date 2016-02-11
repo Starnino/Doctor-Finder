@@ -1,28 +1,15 @@
 package com.doctorfinderapp.doctorfinder.access;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.Pair;
-import android.widget.Toast;
-
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Timer;
 import java.util.TimerTask;
 

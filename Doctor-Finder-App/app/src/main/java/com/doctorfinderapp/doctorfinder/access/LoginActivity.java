@@ -1,13 +1,6 @@
 package com.doctorfinderapp.doctorfinder.access;
 
-import com.doctorfinderapp.doctorfinder.Main2Activity;
-import com.doctorfinderapp.doctorfinder.MainActivity;
-import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
-import com.facebook.CallbackManager;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,18 +12,22 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-//login facebook
+import com.doctorfinderapp.doctorfinder.Main2Activity;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
+import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+//login facebook
 
 
 /**
