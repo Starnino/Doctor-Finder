@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://www.mediafire.com/convkey/7e72/ow8f04jz5zhhuu36g.jpg" alt="logo" height="auto" width="auto">
+<img src="http://i.imgur.com/yA4qahd.png" href"http://doctorfinderapp.com" alt="logo" height="auto" width="auto">
 <p><b>The easiest way to find a doctor</b>.</p>
 </p>
 
