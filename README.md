@@ -53,8 +53,7 @@ Social networks connects people all around the world and we thought to use those
 *Improving Back-end & Front-end
 *[Improved Website](http://www.doctorfinderapp.com/)
 *[Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
-
-**[Second Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
+* **[Second Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
 
 #Milestone 3 - Final
 
