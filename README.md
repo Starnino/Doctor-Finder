@@ -57,7 +57,9 @@ Social networks connects people all around the world and we thought to use those
 
 [See our work on trello! ](https://trello.com/b/0uSh0ofs)
 
-Social Integration
+[Registration for the doctors] (https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing)
+
+Social Advice
 
 Log in using social Networks
 
