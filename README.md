@@ -14,7 +14,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 ![](http://marketinglights.com/wp-content/uploads/website.png)
 **[Web Site](http://www.doctorfinderapp.com/)**
 
-![](http://www.theorangepartnership.co.uk/wp-content/uploads/issuesandideasicon-36x36.png)
+![](http://www.mediafire.com/convkey/253f/7g6go15a7pklada6g.jpg)
 **[Our Idea ](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015. 
@@ -37,7 +37,7 @@ With Social Advice you can search a doctor that have visited one of your friend,
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
-![] (http://fp.advertising.microsoft.com/en-uk/WWImages/search/global/policies-help-icon-36x36.png)
+![] (http://www.mediafire.com/convkey/0c47/yf4cu6u95pv5b486g.jpg)
 [Do you like our idea ?] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
 
 #Milestone 1 - Proof of Concept
@@ -52,7 +52,7 @@ Social networks connects people all around the world and we thought to use those
 
 [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 
-![](http://uxrepo.com/static/icon-sets/elusive/png32/36/000000/play-circled2-36-000000.png)
+![](http://www.mediafire.com/convkey/5a5c/phq34aqfsv6rehc6g.jpg)
 **[First Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
 
 #Milestone 2 - Release Candidate
@@ -91,11 +91,7 @@ Play store
 
 ...
 
-
-
-![](http://www.mediafire.com/convkey/42fa/ra693k0o8u73g336g.jpg) #See on linkedin who we are...  
-
-#See on linkedin who we are...  ![](http://www.mediafire.com/convkey/3126/0y0fnhjco0ey9m76g.jpg)
+![](http://www.mediafire.com/convkey/3126/0y0fnhjco0ey9m76g.jpg) #See on linkedin who we are...  
 
 
 > [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
