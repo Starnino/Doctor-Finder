@@ -20,13 +20,17 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
 
@@ -152,7 +156,6 @@ public class Main2Activity extends AppCompatActivity {
                 super.finish();
         }
     }
-
 }
 
 
