@@ -26,6 +26,8 @@ With our feature **Social Advice** you can search a doctor that have visited one
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
+* [Keep in contact!](https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing)
+
 
 #Milestone 1 - Proof of Concept
 
