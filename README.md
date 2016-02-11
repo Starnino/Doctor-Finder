@@ -1,5 +1,5 @@
 
-![](https://drive.google.com/drive/folders/0B1SUy2ysIW0SRnNCREdMOUVRYjg)
+![](http://www.mediafire.com/view/e6ro82e5ilmo9lt/Logo%2Bdottore_verde.png)
 
 **The simplest way to connect doctor with you**
 
