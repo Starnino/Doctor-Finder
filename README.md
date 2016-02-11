@@ -14,7 +14,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 
 
 **Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015 in Sapienza University of Rome. 
-
+<p><small>
 Our main purpose is to connect people in a way quickly and simply to the health specialists that they need.
 We got this **idea** because all the world use the smartphone and all the technologies primarily for fun and entertainments, and only in a second moment for solve a **real problem.**
 
@@ -32,7 +32,7 @@ You don’t know whay is the **Social Advice?** You don't know personally a cert
 With Social Advice you can search a doctor that have visited one of your friend, came from Facebook, Google+ and other social networks and see the feedback given by your friends and.. if you trust your friends you will finally trust in that doctor!
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
-
+</p></small>
 
 
 #Milestone 1 - Proof of Concept
@@ -40,7 +40,7 @@ Social networks connects people all around the world and we thought to use those
 * [First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
 * [Results first survey](https://www.mediafire.com/convkey/a2e8/04qe2mddku2sdul6g.jpg) (Results at 15/15/2015)
 * [Presentation] (https://docs.google.com/presentation/d/1e2ooDbdLt6EfoGjudyGUOKhif2DCc-I7rrsz6rbCGII/edit?usp=sharing) 
-* **[First Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
+* [#1 Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
 #Milestone 2 - Release Candidate
 
@@ -53,7 +53,7 @@ Social networks connects people all around the world and we thought to use those
 *Improving Back-end & Front-end
 *[Improved Website](http://www.doctorfinderapp.com/)
 *[Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
-* **[Second Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)**
+* [#2 Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
 
 #Milestone 3 - Final
 
@@ -68,12 +68,7 @@ Social networks connects people all around the world and we thought to use those
 
 #Doctor Finder Team
 
-
-
-> [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
-
-> [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
-
-> [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
-
-> [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
+* [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
+* [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
+* [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
+* [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
