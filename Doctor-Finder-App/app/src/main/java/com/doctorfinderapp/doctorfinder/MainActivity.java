@@ -99,6 +99,11 @@ public class MainActivity extends AppCompatActivity  {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
+
+
+
+
+
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         //adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
