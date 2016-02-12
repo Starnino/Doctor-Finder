@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.doctorfinderapp.doctorfinder.fragment.MapsFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -87,6 +88,7 @@ public class Main2Activity extends AppCompatActivity  {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
     }
 
@@ -116,6 +118,9 @@ public class Main2Activity extends AppCompatActivity  {
 
         @Override
         public CharSequence getPageTitle(int position) {
+
+
+
             return mFragmentTitleList.get(position);
         }
     }//---------------------------------------------------------------------------------------------

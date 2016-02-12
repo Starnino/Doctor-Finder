@@ -145,4 +145,9 @@
     <!--GOOGLE SERVICES-->
     <string name="google_app_id">309143604100</string>
     <string name="google_maps_key">AIzaSyAEC-frDCDWtR3FNAOVLiV-U45OR8_Y_nQ</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
