@@ -34,7 +34,8 @@
         <activity
             android:name=".access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme">
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
