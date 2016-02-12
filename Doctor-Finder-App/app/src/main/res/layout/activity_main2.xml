@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Main2Activity"
+    tools:context=".MainActivity"
     app:theme="@style/AppTheme">
 
 <android.support.design.widget.CoordinatorLayout
@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.doctorfinderapp.doctorfinder.Main2Activity"
+    tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     app:theme="@style/AppBarOverlay">
 

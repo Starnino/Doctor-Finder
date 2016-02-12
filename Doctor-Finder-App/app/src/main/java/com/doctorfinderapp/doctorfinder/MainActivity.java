@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main2Activity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
 
@@ -100,7 +100,7 @@ public class Main2Activity extends AppCompatActivity  {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
-        adapter.addFragment(new MapsFragment(), "Mappa2");
+        //adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
     }
 

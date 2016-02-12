@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Main2Activity;
+import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.MapsActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(LoginActivity.this, "Login Succesful", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this,
-                        Main2Activity.class);
+                        MainActivity.class);
                 startActivity(intent);
             }
 

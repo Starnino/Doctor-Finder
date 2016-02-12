@@ -11,7 +11,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class DoctorMapsFragment extends Fragment implements OnMapReadyCallback {
@@ -22,23 +25,27 @@ public class DoctorMapsFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.v(TAG, "on createview 1");
-        View view = inflater.inflate(R.layout.doctor_maps_fragment, container, false);
-        Log.v(TAG, "on createview 2");
-        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
-        getChildFragmentManager().beginTransaction().add(R.id.map,mapFragment);
-        mapFragment.getMapAsync(this);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_maps, container, false);
 
     }
 
     @Override
     public void onMapReady(GoogleMap gMap) {
-        googleMap = gMap;
 
-        LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Create a LatLngBounds that includes Australia.
+         LatLngBounds AUSTRALIA = new LatLngBounds(
+                new LatLng(-44, 113), new LatLng(-10, 154));
+
+    // Set the camera to the greatest possible zoom level that includes the
+    // bounds
+        final Marker marker = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(10, 10))
+                .title("Hello world")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+        Marker pinDoctor= gMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+
+        gMap.moveCamera(CameraUpdateFactory.newLatLngBounds(AUSTRALIA, 0));
     }
 
     @Override
@@ -64,5 +71,14 @@ public class DoctorMapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+
+    //Fedebyes Funct
+    private void setUpMap(GoogleMap gMap){
+
+
+
+
     }
 }

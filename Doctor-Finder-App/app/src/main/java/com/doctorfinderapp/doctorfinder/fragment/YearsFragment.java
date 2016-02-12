@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Main2Activity;
+import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
@@ -57,7 +57,7 @@ public class YearsFragment extends ListFragment implements AdapterView.OnItemCli
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
         Intent intent = new Intent(getActivity(),
-                Main2Activity.class);
+                MainActivity.class);
         startActivity(intent);
     }
 }
