@@ -28,13 +28,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d26ab1c1-9c39-40c4-a7b4-9dc48817615a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/AddDoctors.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MapsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MapsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -66,8 +59,8 @@
       <file leaf-file-name="DoctorMapsFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82514733">
-              <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.32416502">
+              <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2917#2918#0" expanded="true" />
@@ -162,7 +155,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$/.." source="master" target-remote="origin" target-branch="Testing" />
+      <push-target-info repo="$PROJECT_DIR$/.." source="master" target-remote="origin" target-branch="master" />
     </push-targets>
   </component>
   <component name="GradleLocalSettings">
@@ -2605,7 +2598,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455285509170</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Maps tab now it's ok!">
+      <created>1455295391622</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1455295391622</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2693,7 +2692,8 @@
     <MESSAGE value="Maps activity start &#10;try it @starnino" />
     <MESSAGE value="Changes to tabbed activity (main2)&#10;" />
     <MESSAGE value="Added markers (not visible)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added markers (not visible)" />
+    <MESSAGE value="Maps tab now it's ok!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Maps tab now it's ok!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2948,8 +2948,8 @@
         <state vertical-scroll-proportion="0.80972517">
           <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
-            <element signature="e#3557#3596#0" expanded="true" />
-            <element signature="e#3928#3957#0" expanded="true" />
+            <element signature="e#3566#3605#0" expanded="true" />
+            <element signature="e#3937#3966#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2979,8 +2979,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82514733">
-          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.32416502">
+          <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2917#2918#0" expanded="true" />
