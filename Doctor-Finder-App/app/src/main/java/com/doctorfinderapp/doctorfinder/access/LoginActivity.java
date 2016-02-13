@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
-                List<String> permissions = Arrays.asList("email", "public_profile", "user_birthday");
+                List<String> permissions = Arrays.asList("email", "public_profile");
                 progressBar.setVisibility(View.VISIBLE);
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
 
