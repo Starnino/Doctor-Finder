@@ -40,4 +40,8 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
+    compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
+
+
+
 }

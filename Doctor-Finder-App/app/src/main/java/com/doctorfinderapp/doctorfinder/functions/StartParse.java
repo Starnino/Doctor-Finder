@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseInstallation;
 
 /**
@@ -22,6 +23,7 @@ public class StartParse {
                             .server("http://doctor-finder-server.herokuapp.com/parse/")
                             .build()
             );
+            ParseFacebookUtils.initialize(c);
             ParseInstallation.getCurrentInstallation().saveInBackground();
         } catch (Exception e) {
             e.printStackTrace();

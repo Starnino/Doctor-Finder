@@ -2,7 +2,9 @@ package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
-import com.doctorfinderapp.doctorfinder.MapsActivity;
+
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.facebook.CallbackManager;
@@ -26,7 +28,13 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 //login facebook
 
@@ -43,19 +51,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     private GoogleApiClient client;
 
 
-    /**
-     * Called when the activity is first created. Per prova d'accesso provare
-     *
-     * username = "test"
-     * password = "qualsiasi cosa" (inteso come qualsiasi stringa anche vuota)
-     */
+
     public void onCreate(Bundle savedInstanceState) {
         //immersion mode
 
@@ -65,7 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //initialize Facebook SDK
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        //FacebookSdk.sdkInitialize(getApplicationContext());
+
 
         // Get the view from xml
         setContentView(R.layout.activity_login);
@@ -79,14 +79,17 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
 
         // Locate Buttons in xml
-        //initialize LoginButton (Facebook sdk)
-        LoginButton loginWithFacebook = (LoginButton) findViewById(R.id.login_fb_button);
+
         Button loginButton = (Button) findViewById(R.id.login_button2);
-        Button loginWithGoogle = (Button) findViewById(R.id.login_google_button);
+        //Button loginWithGoogle = (Button) findViewById(R.id.login_google_button);
         ImageButton close = (ImageButton) findViewById(R.id.close);
 
 
         // Login Button Click Listener
+
+
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
@@ -96,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 passwordtxt = password.getText().toString();
                 if (usernametxt.equals("test")) {
                     Intent intent = new Intent(LoginActivity.this,
-                            MapsActivity.class);
+                            MainActivity.class);
                     startActivity(intent);
 
 
@@ -127,44 +130,57 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        //Facebook Login Callback
-        loginWithFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(LoginActivity.this, "Login Succesful", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this,
-                        MainActivity.class);
-                startActivity(intent);
+
+
+
+        //loginWithFacebook.
+        Button FLogin = (Button) findViewById(R.id.flogin);
+        FLogin.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+                List<String> permissions = Arrays.asList("email", "public_profile", "user_birthday");
+                progressBar.setVisibility(View.VISIBLE);
+                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
+
+
+
+                    @Override
+                    public void done(ParseUser user, ParseException err) {
+                        if (user == null) {
+                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            Log.d("MyApp", "errore parse"+err.toString());
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        } else if (user.isNew()) {
+                            Log.d("MyApp", "User signed up and logged in through Facebook!");
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        } else {
+                            Log.d("MyApp", "User logged in through Facebook!");
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Logged in",
+                                    Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                            startActivity(intent);
+
+                        }
+                    }
+                });
             }
 
-            @Override
-            public void onCancel() {
-                Toast.makeText(LoginActivity.this, "Login Cancel", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
         });
 
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
 
 

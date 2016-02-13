@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="your.package.name.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
 
     <permission
         android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE"
@@ -25,8 +26,6 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-    <uses-permission android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -45,9 +44,7 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
@@ -70,7 +67,9 @@
             android:theme="@style/AppTheme">
 
         </activity>
-
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -83,10 +82,6 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="wIgqO6QfRM4vFuD3pWJi" />
-
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
 
     </application>
 

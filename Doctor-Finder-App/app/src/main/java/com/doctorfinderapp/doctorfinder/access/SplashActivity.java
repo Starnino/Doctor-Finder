@@ -28,9 +28,9 @@ public class SplashActivity extends AppCompatActivity {
         //inizialize parse
 
 
-        startParse(this);
+        startParse(this.getApplicationContext());
 
-        //TODO:make this method return something
+
 
 
 

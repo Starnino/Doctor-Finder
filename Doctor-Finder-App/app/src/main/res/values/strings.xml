@@ -33,7 +33,7 @@
     <string name="text_signupNow">SignUpNow</string>
     <string name="namy">Non ne fai ancora parte? </string>
 
-    <string name="facebook_app_id">722994014468396</string>
+
     <string name="namelabel">"Nome : "</string>
     <string name="speciallabel">"Specializzazione : "</string>
     <string name="feedbacklabel">"Feedback : "</string>
@@ -131,6 +131,7 @@
         <item>Latina</item>
         <item>Catania</item>
     </string-array>
+    <string name="facebook_app_id">235657870105831</string>
 
 
     <string-array name="years">
@@ -148,6 +149,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -25,12 +25,6 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
-import com.doctorfinderapp.doctorfinder.fragment.MapsFragment;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -54,7 +48,7 @@ public class MainActivity extends AppCompatActivity  {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -106,13 +100,6 @@ public class MainActivity extends AppCompatActivity  {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         adapter.addFragment(new DoctorListFragment(), "Lista");
-
-
-
-
-
-
-        //adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
     }
 

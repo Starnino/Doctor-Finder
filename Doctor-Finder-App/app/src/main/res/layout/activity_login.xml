@@ -94,12 +94,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_container"
         android:orientation="vertical"
-        android:layout_below="@id/ll_forgot_container"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
+
         android:layout_above="@+id/log_container"
-        android:layout_alignParentEnd="false">
+
+        android:layout_below="@+id/ll_forgot_container"
+        android:layout_marginTop="50dp">
 
         <Button
             android:layout_width="match_parent"
@@ -118,6 +119,7 @@
             android:layout_gravity="center_horizontal" />
 
 
+
     </LinearLayout>
 
 
@@ -132,21 +134,24 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin">
 
-        <com.facebook.login.widget.LoginButton
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/login_fb_button"
-            android:text="@string/action_login_with_facebook"
-            android:textColor="@color/white" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:id="@+id/flogin"
+            android:text="@string/action_login_with_facebook"
+            android:backgroundTint="@color/com_facebook_blue"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            />
+        <!--<Button
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="@string/action_login_with_google"
             android:id="@+id/login_google_button"
             android:backgroundTint="@color/flat_red"
             android:textAllCaps="false" />
-
+          -->
 
     </LinearLayout>
 
