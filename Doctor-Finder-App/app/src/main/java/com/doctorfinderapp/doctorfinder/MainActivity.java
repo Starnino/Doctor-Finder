@@ -107,11 +107,6 @@ public class MainActivity extends AppCompatActivity  {
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         adapter.addFragment(new DoctorListFragment(), "Lista");
 
-
-
-
-
-
         //adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
     }

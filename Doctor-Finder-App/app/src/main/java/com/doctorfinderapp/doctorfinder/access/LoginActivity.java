@@ -27,10 +27,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-
-//login facebook
-
-
 /**
  * A login screen that offers login via email/password.
  */

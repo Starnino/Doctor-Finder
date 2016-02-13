@@ -18,6 +18,9 @@
             android:icon="@drawable/ic_check_circle_white_24dp"
             android:title="@string/suggerisci"
             android:id="@+id/suggerisci" />
+        <item
+            android:icon="@drawable/ic_check_circle_white_24dp"
+            android:title="@string/pollo"/>
     </group>
 
 
