@@ -110,6 +110,17 @@
             android:backgroundTint="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
 
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:id="@+id/flogin"
+            android:text="@string/action_login_with_facebook"
+            android:backgroundTint="@color/com_facebook_blue"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            />
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleLarge"
@@ -117,8 +128,6 @@
             android:layout_height="wrap_content"
             android:visibility="invisible"
             android:layout_gravity="center_horizontal" />
-
-
 
     </LinearLayout>
 
@@ -135,15 +144,7 @@
         android:layout_marginBottom="@dimen/fab_margin">
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/flogin"
-            android:text="@string/action_login_with_facebook"
-            android:backgroundTint="@color/com_facebook_blue"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            />
+
         <!--<Button
             android:layout_width="match_parent"
             android:layout_height="52dp"

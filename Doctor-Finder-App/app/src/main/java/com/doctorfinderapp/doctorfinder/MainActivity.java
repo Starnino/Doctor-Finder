@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,12 +18,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.parse.ParseUser;
@@ -169,8 +172,21 @@ public class MainActivity extends AppCompatActivity  {
 
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.logout:
+            case R.id.exit:
                 super.finish();
+            case R.id.about:
+
+                //caricare sito
+            case R.id.logout:
+                ParseUser.logOut();
+                Log.d("MainActivity", "Logged out");
+                Toast.makeText(getApplicationContext(),
+                        "Logged out",
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                startActivity(intent);
+
+
         }
     }
 }

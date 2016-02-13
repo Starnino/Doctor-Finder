@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,14 +11,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.doctorfinderapp.doctorfinder.MainActivity;
+import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.facebook.FacebookSdk;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -143,6 +153,56 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+
+        //loginWithFacebook.
+        Button FLogin = (Button) findViewById(R.id.flogin2);
+        FLogin.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+                List<String> permissions = Arrays.asList("email", "public_profile");
+
+
+                progressBar.setVisibility(View.VISIBLE);
+                ParseFacebookUtils.logInWithReadPermissionsInBackground(SignupActivity.this, permissions, new LogInCallback() {
+
+
+                    @Override
+                    public void done(ParseUser user, ParseException err) {
+                        if (user == null) {
+                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            Log.d("MyApp", "errore parse" + err.toString());
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        } else if (user.isNew()) {
+                            Log.d("MyApp", "User signed up and logged in through Facebook!");
+
+                            //new LongOperation().execute(user);
+                            Toast.makeText(getApplicationContext(),
+                                    "Signed up",
+                                    Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        } else {
+                            Log.d("MyApp", "User logged in through Facebook!");
+                            progressBar.setVisibility(View.INVISIBLE);
+                            //new LongOperation().execute();
+                            Toast.makeText(getApplicationContext(),
+                                    "Logged in",
+                                    Toast.LENGTH_LONG).show();
+
+
+                            //new LongOperation().execute(user);
+                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+
+                            startActivity(intent);
+
+                        }
+                    }
+                });
+            }
+
+        });
+
     }
 
     public void finish(){
@@ -153,8 +213,45 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
+
+   /* //thread to put facebook
+    private class LongOperation extends AsyncTask<ParseUser, Void, com.parse.ParseException> {
+
+        @Override
+        protected ParseException doInBackground(ParseUser... params) {
+            ParseException exp=null;
+                try {
+                    //Thread.sleep(1000);
+
+
+                    exp=FacebookProfile.getFacebookThings(params[0]);
+
+                } catch (InterruptedException e) {
+                    Thread.interrupted();
+
+            }
+
+            return exp;
+        }
+
+        @Override
+        protected void onPostExecute(ParseException result) {
+            Log.d("Facebok Profile", "User updated on parse");
+            Toast.makeText(getApplicationContext(),
+                    "Facebook update user",
+                    Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
+*/
 }
 
 

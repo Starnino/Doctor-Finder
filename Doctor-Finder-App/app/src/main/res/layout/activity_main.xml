@@ -18,7 +18,9 @@
 
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
-    app:theme="@style/AppTheme">
+    app:theme="@style/AppTheme"
+    android:clickable="true"
+    android:focusable="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -62,7 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/ic_search_white_24dp"
+        android:focusable="true"
+        android:clickable="true"
+        app:backgroundTint="@color/docfinder"
+        app:backgroundTintMode="src_over" />
 </android.support.design.widget.CoordinatorLayout>
 
 
@@ -75,5 +81,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/docfinder"/>
+        android:background="@color/docfinder"
+        android:clickable="true" />
 </android.support.v4.widget.DrawerLayout>

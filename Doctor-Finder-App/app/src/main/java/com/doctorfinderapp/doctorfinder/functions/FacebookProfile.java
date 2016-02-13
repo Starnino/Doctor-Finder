@@ -1,8 +1,9 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.functions;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -13,7 +14,6 @@ import com.parse.ParseUser;
 
 import org.json.JSONException;
 
-import java.text.ParseException;
 
 /**
  * Created by fedebyes on 13/02/16.
@@ -28,18 +28,22 @@ public class FacebookProfile {
     private static com.parse.ParseException ret = null;
 
     // Function to get information from FBuser and put them in user
-    public static com.parse.ParseException getUserDetailsRegisterFB(ParseUser Puser, View v) throws InterruptedException {
-        final View vi = v;
+    public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {
+        //final View vi = v;
         final ParseUser user = Puser;
 
         // Prelevo informazioni da facebook
         Bundle parameters = new Bundle();
 
+
+        //prendo l'id dell'user
+        String userId = user.getObjectId();
+
         // parameters from facebook
         parameters.putString("fields", "email,first_name,last_name");
 
         new GraphRequest(
-                AccessToken.getCurrentAccessToken(), "/me", parameters, HttpMethod.GET, new GraphRequest.Callback() {
+                AccessToken.getCurrentAccessToken(), userId, parameters, HttpMethod.GET, new GraphRequest.Callback() {
             public void onCompleted(GraphResponse response) {
 
                 // Prelevo il risultato
@@ -54,14 +58,15 @@ public class FacebookProfile {
                     // Inserisco le info nel ParseUser
                     user.setEmail(email);
                     user.put("name", name.trim());
-                    //user.put("flagISA","Persona");
-                    try {
-                        //uso save e non savebackground perchè non deve essere asincrona
-                        user.save();
 
-                        ParseObject persona = new ParseObject("Persona");
-                        persona.put("username",user.getUsername());
-                        persona.put("lastname", lastname.trim());
+                    try {
+
+                        user.save();
+                        //Log.v("facebook profile", user.getEmail());
+
+                        //ParseObject persona = new ParseObject("Persona");
+                        //persona.put("username",user.getUsername());
+                        //persona.put("lastname", lastname.trim());
 
                         //persona.put("city",citta.trim());
                        // persona.save();
