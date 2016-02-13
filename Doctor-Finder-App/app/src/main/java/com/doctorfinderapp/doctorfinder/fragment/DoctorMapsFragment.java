@@ -1,6 +1,8 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.doctorfinderapp.doctorfinder.Doctor.Doctors;
 import com.doctorfinderapp.doctorfinder.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +27,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.MapsInitializer;
+
+import java.util.ArrayList;
 
 public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback {
 
@@ -65,16 +71,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         }
 
 
-        gMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(41.9000, 12.5000))
-        );
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(41.9000, 12.5000))      // Sets the center of the map to mi position
-                .zoom(5)                   // Sets the zoom
-                .bearing(0)                // Sets the orientation of the camera to east
-                .build();                   // Creates a CameraPosition from the builder
-        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        //setUpMap(gMap);
+
+        setUpMap(gMap);
 
     }
 
@@ -123,26 +121,72 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
         LatLng ROMA =new LatLng(41.9000, 12.5000);
+
+        //rimpicciolisco il marker
+        Bitmap markerSmall= resizeMarker(R.drawable.markermini,100);
+
+        //creo lista dottori
+        ArrayList<Doctors> arraydoctors = new ArrayList<Doctors>();
+
+        //Creo lista Marker per prova
+        ArrayList<Marker> markers= new ArrayList<>();
+
+
+
+        final Marker marker1 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.923, 12.2300))
+                .title("Hello world1")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+        final Marker marker2 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.83, 12.2500))
+                .title("Hello world2")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
+        final Marker marker3 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.8803922, 12.5398233))
+                .title("Hello world3")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
+        final Marker marker4 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.8771792, 12.469348))
+                .title("Hello world4")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+        final Marker marker5 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.8947128, 12.4848708))
+                .title("Hello world5")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+        final Marker marker6 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.9192198, 12.4671846))
+                .title("Hello world6")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+        final Marker marker7 = gMap.addMarker(new MarkerOptions()
+                .position(new LatLng(41.8803922, 12.5398233))
+                .title("Hello world7")
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
+        //fine creazione di marker
+
         //prova 1
         final Marker marker = gMap.addMarker(new MarkerOptions()
-                .position(new LatLng(10, 10))
-                .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
-
-        //prova2
-        final Marker marker2 = gMap.addMarker(new MarkerOptions()
                 .position(ROMA)
                 .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
 
-        Marker pinDoctor= gMap.addMarker(new MarkerOptions()
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
-                        .position(new LatLng(10, 10))
-        );
 
-        gMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(41.9000, 12.5000))
-        );
+
+
+        //animate camera
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(ROMA)      // Sets the center of the map to mi position
+                .zoom(10)                   // Sets the zoom
+                .bearing(0)                // Sets the orientation of the camera to east
+                .build();                   // Creates a CameraPosition from the builder
+        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+
+
 
 
 
@@ -150,4 +194,24 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
     }
+
+
+
+    public Bitmap resizeMarker(int id,int width){
+
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), id);
+        float aspectRatio = imageBitmap.getWidth() /
+                (float) imageBitmap.getHeight();
+
+        int height = Math.round(width / aspectRatio);
+
+        imageBitmap = Bitmap.createScaledBitmap(
+                imageBitmap, width, height, false);
+
+
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
+
+
 }

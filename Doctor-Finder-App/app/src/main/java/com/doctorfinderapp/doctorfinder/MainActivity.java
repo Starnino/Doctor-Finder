@@ -21,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.doctorfinderapp.doctorfinder.fragment.MapsFragment;
@@ -29,6 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if(currentUser!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
 
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -98,13 +104,14 @@ public class MainActivity extends AppCompatActivity  {
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         adapter.addFragment(new DoctorListFragment(), "Lista");
 
 
 
 
 
-        adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+
         //adapter.addFragment(new MapsFragment(), "Mappa2");
         viewPager.setAdapter(adapter);
     }
