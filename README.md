@@ -42,7 +42,7 @@ Social networks connects people all around the world and we thought to use those
 * [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 * [Presentation] ()
 * [Registration for health specialists](https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing) 
-* Social Advice
+* Friend's Tip
 * Log in using social Networks
 * Improving Back-end & Front-end
 * [Improved Website](http://www.doctorfinderapp.com/)
