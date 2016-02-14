@@ -26,8 +26,31 @@ public class AddDoctors {
                                   String cellphone, String description
     ){
 
-            Exist(email);
-            if(exist){
+            //Exist(email);
+
+        //codice per vedere se la mail del dottore esiste nel database
+        Log.d("add doctor","adding "+ email);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+        query.whereEqualTo("Email",email);
+        exist= false;
+        ParseObject fromQuery=null;
+
+        try {
+            fromQuery=query.getFirst();
+
+        } catch (ParseException e) {
+            if(e.equals(ParseException.OBJECT_NOT_FOUND)){
+                Log.d("Add doctor","Parse exception doctorn not exist");
+                exist=false;
+            }
+
+
+        }
+        Log.d("add doctor","query result "+ fromQuery);
+
+
+        Log.d("Add doctor","exist== "+exist);
+        if(exist==true){
                 Log.d("Add doctor","exist");
             }
         else {
@@ -49,53 +72,7 @@ public class AddDoctors {
 
     }
 
-    public static void Exist(String email){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        //codice per vedere se la mail del dottore esiste nel database
-        Log.d("add doctor","adding "+ email);
 
-        exist= true;
-        query.whereEqualTo("Email",email);
-        query.getFirstInBackground(new GetCallback<ParseObject>()
-        {
-            public void done(ParseObject object, ParseException e)
-            {
-                if(e == null)
-                {
-                    //object exists
-                    exist=true;
-                    Log.d("add doctor","doctor exist");
-                }
-                else
-                {
-                    if(e.getCode() == ParseException.OBJECT_NOT_FOUND)
-                    {
-                        //object doesn't exist
-                        exist=false;
-                        Log.d("Add Doctors","doctor NOT exist");
-                    }
-                    else
-                    {
-                        //unknown error, debug
-                        Log.d("Add Doctors","errore");
-                        Log.d("Add Doctors",e.toString());
-
-                    }
-                }
-            }
-        });
-
-
-
-    }
-
-    public static Doctor getDoctor(String id){
-        return null;
-    }
-
-    public boolean saveDoctorsLocal(){
-        return true;
-    }
 
 
 }

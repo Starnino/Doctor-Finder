@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
          */
 
 
-        Log.d("main","adding doctor");
-        AddDoctors.AddDoctors("Federico", "Solignani", "federico.solignani@gmai.com", "26/12/1981",
-                new String[]{"Oculistica"}, null, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661");
+        Log.d("main", "adding doctor");
+        AddDoctors.AddDoctors("Federico", "Solignani", "federico.solignani@gmail.com", "26/12/1981",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661");
 
         Log.d("main", "adding doctor post");
     }
