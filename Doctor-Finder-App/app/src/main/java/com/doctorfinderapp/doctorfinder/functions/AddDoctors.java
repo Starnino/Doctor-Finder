@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.functions;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.Doctor.Doctor;
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -23,7 +24,7 @@ public class AddDoctors {
 
     public static void AddDoctors(String FirstName,String LastName, String email, String data,
                                   String[] Specialization, String[] Work,
-                                  String cellphone, String description
+                                  String cellphone, String description,String latlng
     ){
 
             //Exist(email);
@@ -50,7 +51,7 @@ public class AddDoctors {
 
 
         Log.d("Add doctor","exist== "+exist);
-        if(exist==true){
+        if(!fromQuery.equals(null)){
                 Log.d("Add doctor","exist");
             }
         else {
@@ -58,6 +59,7 @@ public class AddDoctors {
                 Doctor.put("FirstName", FirstName);
                 Doctor.put("LastName", LastName);
                 Doctor.put("Email", email);
+                Doctor.put("Marker",latlng);
 
                 Doctor.put("Specialization", Arrays.asList(Specialization));
                 //todo photo

@@ -45,6 +45,9 @@
         <item android:title="@string/logout"
             android:id="@+id/logout"
             android:icon="@drawable/ic_exit_to_app_white_24dp"/>
+        <item android:title="@string/exit"
+            android:id="@+id/exit"
+            android:icon="@drawable/ic_exit_to_app_white_24dp"/>
 
 
     </group>

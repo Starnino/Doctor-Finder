@@ -27,11 +27,13 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
+import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
-import com.doctorfinderapp.doctorfinder.fragment.Search;
+
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.ParseUser;
 
 import java.text.ParseException;
@@ -118,8 +120,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
 
 
         Log.d("main", "adding doctor");
+        LatLng ROMA =new LatLng(41.9000, 12.5000);
         AddDoctors.AddDoctors("Federico", "Solignani", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661");
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661",ROMA.toString());
 
         Log.d("main", "adding doctor post");
     }
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                 startActivity(intent);
 
 
