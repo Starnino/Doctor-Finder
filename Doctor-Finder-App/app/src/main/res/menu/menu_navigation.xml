@@ -22,12 +22,11 @@
             android:icon="@drawable/ic_check_circle_white_24dp"
             android:title="@string/pollo"/>
     </group>
+    <group android:checkableBehavior="single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-
-
-    <item android:title="@string/docfinder">
-        <menu>
-            <item
+        <item
                 android:icon="@drawable/ic_search_white_24dp"
                 android:title="@string/about"
                 android:id="@+id/about"/>
@@ -38,12 +37,15 @@
             <item
                 android:id="@+id/like"
                 android:title="@string/like"/>
-        </menu>
-    </item>
+
+
 
     <item android:title="@string/logout"
         android:id="@+id/logout" />
     <item
         android:id="@+id/exit"
         android:title="@string/exit"/>
+
+    </group>
+
 </menu>

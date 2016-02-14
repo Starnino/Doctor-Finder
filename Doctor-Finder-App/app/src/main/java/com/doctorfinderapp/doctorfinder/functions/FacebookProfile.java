@@ -9,6 +9,7 @@ import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -69,10 +70,10 @@ public class FacebookProfile {
                         //persona.put("lastname", lastname.trim());
 
                         //persona.put("city",citta.trim());
-                       // persona.save();
+                        // persona.save();
                     } catch (com.parse.ParseException e) {
                         ret = e;
-                        System.out.println("debug: ret = "+ret.getMessage().toString());
+                        System.out.println("debug: ret = " + ret.getMessage().toString());
 
                     }
                 } catch (JSONException e) {
@@ -84,4 +85,58 @@ public class FacebookProfile {
         ).executeAndWait();
         return ret;
     }
+    //get facebook friends  of a user that use app
+    public static void getFriends(ParseUser user){
+
+    }
+
+    /*
+
+    For Android, your code to make your users query-able by Facebook ID would look like this:
+
+ParseFacebookUtils.logIn(this, new LogInCallback() {
+  @Override
+  public void done(ParseUser user, ParseException error) {
+    // When your user logs in, immediately get and store its Facebook ID
+    if (user != null) {
+      getFacebookIdInBackground();
+    }
+  }
+});
+
+private static void getFacebookIdInBackground() {
+  Request.executeMeRequestAsync(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
+    @Override
+    public void onCompleted(GraphUser user, Response response) {
+      if (user != null) {
+        ParseUser.getCurrentUser().put("fbId", user.getId());
+        ParseUser.getCurrentUser().saveInBackground();
+      }
+    }
+  });
+}
+Then, when you are ready to search for your user's friends, you would issue another request:
+
+Request.executeMyFriendsRequestAsync(ParseFacebookUtils.getSession(), new Request.GraphUserListCallback() {
+
+  @Override
+  public void onCompleted(List<GraphUser> users, Response response) {
+    if (users != null) {
+      List<String> friendsList = new ArrayList<String>();
+      for (GraphUser user : users) {
+        friendsList.add(user.getId());
+      }
+
+      // Construct a ParseUser query that will find friends whose
+      // facebook IDs are contained in the current user's friend list.
+      ParseQuery friendQuery = ParseQuery.getUserQuery();
+      friendQuery.whereContainedIn("fbId", friendsList);
+
+      // findObjects will return a list of ParseUsers that are friends with
+      // the current user
+      List<ParseObject> friendUsers = friendQuery.find();
+    }
+  }
+});
+     */
 }

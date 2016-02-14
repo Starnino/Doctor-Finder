@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.doctorfinderapp.doctorfinder.fragment.Search;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity  {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         adapter.addFragment(new DoctorListFragment(), "Lista");
+        adapter.addFragment(new Search(), "Ricerca");
         viewPager.setAdapter(adapter);
     }
 
