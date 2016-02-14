@@ -7,44 +7,44 @@
         android:layout_height="wrap_content">
 
         <item
-            android:icon="@drawable/ic_search_white_24dp"
+            android:icon="@drawable/ic_account_circle_white_24dp"
             android:title="@string/profile"
             android:id="@+id/profile" />
         <item
-            android:icon="@drawable/ic_menu_white_24dp"
+            android:icon="@drawable/ic_book_white_24dp"
             android:title="@string/gestisci"
             android:id="@+id/gestisci" />
         <item
-            android:icon="@drawable/ic_check_circle_white_24dp"
+            android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/suggerisci"
             android:id="@+id/suggerisci" />
-        <item
-            android:icon="@drawable/ic_check_circle_white_24dp"
-            android:title="@string/pollo"/>
     </group>
+
     <group android:checkableBehavior="single"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <item
-                android:icon="@drawable/ic_search_white_24dp"
+                android:icon="@drawable/ic_info_white_24dp"
                 android:title="@string/about"
                 android:id="@+id/about"/>
             <item
-                android:icon="@drawable/ic_menu_white_24dp"
+                android:icon="@drawable/ic_help_white_24dp"
                 android:title="@string/support"
                 android:id="@+id/support"/>
             <item
                 android:id="@+id/like"
-                android:title="@string/like"/>
+                android:title="@string/like"
+                android:icon="@drawable/com_facebook_favicon_white"/>
 
+        <item
+            android:id="@+id/exit"
+            android:title="@string/exit"
+            android:icon="@drawable/ic_exit_to_app_white_24dp"/>
 
+        <item android:title="@string/logout"
+            android:id="@+id/logout" />
 
-    <item android:title="@string/logout"
-        android:id="@+id/logout" />
-    <item
-        android:id="@+id/exit"
-        android:title="@string/exit"/>
 
     </group>
 

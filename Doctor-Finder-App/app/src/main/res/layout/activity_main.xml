@@ -81,6 +81,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/docfinder"
+        android:background="@color/white"
         android:clickable="true" />
 </android.support.v4.widget.DrawerLayout>
