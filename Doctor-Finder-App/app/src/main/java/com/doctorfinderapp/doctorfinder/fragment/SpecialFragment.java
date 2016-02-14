@@ -27,7 +27,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
 
         @Override
         public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.special_fragment, viewGroup, false);
+            View view = null; //inflater.inflate(R.layout.special_fragment, viewGroup, false);
             return view;
 
         }
@@ -53,9 +53,6 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         Toast.makeText(getActivity(), adapter.getItem(position) +" selected", Toast.LENGTH_SHORT)
                 .show();
 
-        Fragment fragment = new CityFragment();
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
     }
 
     @Override
