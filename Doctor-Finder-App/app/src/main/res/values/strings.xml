@@ -56,9 +56,9 @@
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
-    <string name="pollo">Richiedi Pollo</string>
 
     <string-array name="Specializations">
+        <item>Tutte</item>
         <item>Allergologia</item>
         <item>Anatomia Patologica</item>
         <item>Andrologia</item>
@@ -121,6 +121,7 @@
     </string-array>
 
     <string-array name="cities">
+        <item>Tutte</item>
         <item>Roma</item>
         <item>Viterbo</item>
         <item>Milano</item>
@@ -136,6 +137,7 @@
 
 
     <string-array name="years">
+        <item>Tutti</item>
         <item>Meno di 5</item>
         <item>Tra 5 e 10</item>
         <item>Più di 10</item>
