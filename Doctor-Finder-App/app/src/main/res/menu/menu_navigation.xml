@@ -35,7 +35,7 @@
             <item
                 android:id="@+id/like"
                 android:title="@string/like"
-                android:icon="@drawable/com_facebook_favicon_white"/>
+                android:icon="@drawable/com_facebook_favicon_white" />
 
         <item
             android:id="@+id/exit"
