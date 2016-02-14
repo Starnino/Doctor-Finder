@@ -1,39 +1,28 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.doctorfinderapp.doctorfinder.Doctor.Doctors;
+import com.doctorfinderapp.doctorfinder.Doctor.Doctor;
 import com.doctorfinderapp.doctorfinder.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.MapsInitializer;
 
 import java.util.ArrayList;
 
 public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback {
 
-    private GoogleMap googleMap;
     private static final String TAG = "Doctor Maps";
+    private GoogleMap googleMap;
 
 
     /*
@@ -59,8 +48,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
     }*/
-
-
 
     @Override
     public void onMapReady(GoogleMap gMap) {
@@ -126,7 +113,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         Bitmap markerSmall= resizeMarker(R.drawable.markermini,100);
 
         //creo lista dottori
-        ArrayList<Doctors> arraydoctors = new ArrayList<Doctors>();
+        ArrayList<Doctor> arraydoctors = new ArrayList<Doctor>();
 
         //Creo lista Marker per prova
         ArrayList<Marker> markers= new ArrayList<>();

@@ -3,12 +3,12 @@ package com.doctorfinderapp.doctorfinder.Doctor;
 /**
  * * Created by vindel100 on 17/01/16.
  */
-public class Doctors {
+public class Doctor {
 private String name;
 private String special;
 private String feedback;
 
-public Doctors(String name, String special, String feedback) {
+public Doctor(String name, String special, String feedback) {
 this.name = name;
 this.special = special;
 this.feedback = feedback;
@@ -26,3 +26,4 @@ return this.name;
     return this.feedback;
     }
 }
+

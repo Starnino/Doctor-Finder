@@ -33,9 +33,13 @@ import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.doctorfinderapp.doctorfinder.fragment.Search;
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.parse.ParseUser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        addDoctors();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
@@ -96,11 +103,27 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
             }
         });
 
+    }
+
+    private void addDoctors() {
+        /*
+        public static void AddDoctors(String FirstName,String LastName, String email, Date data,
+                                  String[] Specialization, String[] Work,
+                                  String cellphone, String description
+            ){
+         */
+
+
+        Log.d("main","adding doctor");
+        AddDoctors.AddDoctors("Federico", "Solignani", "federico.solignani@gmai.com", "26/12/1981",
+                new String[]{"Oculistica"}, null, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661");
+
+        Log.d("main", "adding doctor post");
     }
 
     // Add Fragments to Tabs------------------------------------------------------------------------
@@ -117,39 +140,6 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
     public void onFragmentInteraction(Uri uri) {
 
     }
-
-
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public Adapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-
-
-            return mFragmentTitleList.get(position);
-        }
-    }//---------------------------------------------------------------------------------------------
 
     //search view
     @Override
@@ -187,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
         return super.onOptionsItemSelected(item);
     }
 
-
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.exit:
@@ -207,6 +196,38 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
 
         }
     }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public Adapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+
+
+            return mFragmentTitleList.get(position);
+        }
+    }//---------------------------------------------------------------------------------------------
 }
 
 
