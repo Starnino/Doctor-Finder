@@ -4,10 +4,11 @@
 
     <group android:checkableBehavior="single"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visible="true">
 
         <item
-            android:icon="@drawable/ic_account_circle_white_24dp"
+            android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="@string/profile"
             android:id="@+id/profile" />
         <item

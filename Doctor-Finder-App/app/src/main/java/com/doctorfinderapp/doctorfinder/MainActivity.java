@@ -154,12 +154,6 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.profile);
-        //item.getIcon().setTint(getResources().getColor(R.color.docfinder));
-        return super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
