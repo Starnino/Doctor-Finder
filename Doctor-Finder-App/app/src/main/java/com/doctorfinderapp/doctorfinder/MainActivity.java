@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity  {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new Search(), "Ricerca");
-
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 
