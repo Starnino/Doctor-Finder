@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //adding doctors data
+        AddDoctors.addData();
 
-        addDoctors();
+
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
@@ -110,22 +112,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
 
     }
 
-    private void addDoctors() {
-        /*
-        public static void AddDoctors(String FirstName,String LastName, String email, Date data,
-                                  String[] Specialization, String[] Work,
-                                  String cellphone, String description
-            ){
-         */
 
-
-        Log.d("main", "adding doctor");
-        LatLng ROMA =new LatLng(41.9000, 12.5000);
-        AddDoctors.AddDoctors("Federico", "Solignani", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661",ROMA.toString());
-
-        Log.d("main", "adding doctor post");
-    }
 
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {

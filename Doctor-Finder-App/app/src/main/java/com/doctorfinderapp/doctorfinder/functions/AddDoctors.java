@@ -22,7 +22,7 @@ public class AddDoctors {
 
     private static boolean exist;
 
-    public static void AddDoctors(String FirstName,String LastName, String email, String data,
+    private static void AddDoctors(String FirstName,String LastName, String email, String data,
                                   String[] Specialization, String[] Work,
                                   String cellphone, String description,String latlng
     ){
@@ -72,6 +72,25 @@ public class AddDoctors {
             }
 
 
+    }
+    public  static void addData() {
+        /*
+        public static void AddDoctors(String FirstName,String LastName, String email, Date data,
+                                  String[] Specialization, String[] Work,
+                                  String cellphone, String description
+            ){
+         */
+
+
+        Log.d("main", "adding doctor");
+        LatLng ROMA =new LatLng(41.9000, 12.5000);
+        AddDoctors("Federico", "Solignani", "federico.solignani@gmail.com", "26/12/1981",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        LatLng ROMA2 =new LatLng(41.9000, 12.5000);
+        AddDoctors("Federico2", "Solignani", "federico.solignani@gmail.com22", "26/12/1981",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+
+        Log.d("main", "adding doctor post");
     }
 
 
