@@ -14,7 +14,7 @@ import com.doctorfinderapp.doctorfinder.R;
 /**
  * Created by francesco on 03/02/16.
  */
-public class DoctorListFragment extends MapsFragment {
+public class DoctorListFragment extends Fragment {
 
     // Generate sample data
 
