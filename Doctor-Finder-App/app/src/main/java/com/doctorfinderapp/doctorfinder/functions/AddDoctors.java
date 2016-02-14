@@ -51,23 +51,25 @@ public class AddDoctors {
 
 
         Log.d("Add doctor","exist== "+exist);
-        if(!fromQuery.equals(null)){
-                Log.d("Add doctor","exist");
+        //fromQuery.equals
+        if(true){
+            ParseObject Doctor = new ParseObject("Doctor");
+            Doctor.put("FirstName", FirstName);
+            Doctor.put("LastName", LastName);
+            Doctor.put("Email", email);
+            Doctor.put("Marker",latlng);
+
+            Doctor.put("Specialization", Arrays.asList(Specialization));
+            //todo photo
+            Doctor.put("Work", Arrays.asList(Work));
+            Doctor.put("Cellphone", cellphone);
+            Doctor.put("Description", description);
+            Doctor.saveInBackground();
+            Log.d("Add doctor", "Saving doctor that not exist");
             }
         else {
-                ParseObject Doctor = new ParseObject("Doctor");
-                Doctor.put("FirstName", FirstName);
-                Doctor.put("LastName", LastName);
-                Doctor.put("Email", email);
-                Doctor.put("Marker",latlng);
 
-                Doctor.put("Specialization", Arrays.asList(Specialization));
-                //todo photo
-                Doctor.put("Work", Arrays.asList(Work));
-                Doctor.put("Cellphone", cellphone);
-                Doctor.put("Description", description);
-                Doctor.saveInBackground();
-                Log.d("Add doctor", "Saving doctor that not exist");
+            Log.d("Add doctor","exist");
 
             }
 
