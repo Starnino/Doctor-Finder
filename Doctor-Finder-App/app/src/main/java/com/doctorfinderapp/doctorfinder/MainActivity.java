@@ -1,9 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
