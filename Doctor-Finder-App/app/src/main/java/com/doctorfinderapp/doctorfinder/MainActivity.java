@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements Search.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
 
@@ -108,6 +109,11 @@ public class MainActivity extends AppCompatActivity  {
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
 
