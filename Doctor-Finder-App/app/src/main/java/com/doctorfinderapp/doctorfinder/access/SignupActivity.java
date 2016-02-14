@@ -1,7 +1,6 @@
 package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,15 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
-import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
-import com.facebook.FacebookSdk;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -129,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
                                 // Hooray! Let them use the app now.
                                 //create a toast
                                 Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
+                                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 startActivity(intent);
 
                             } else {

@@ -60,9 +60,6 @@
         <activity android:name=".access.FirstActivity" />
         <activity android:name=".access.SignupActivity" />
         <activity
-            android:name=".SpecialSearchActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme">
 

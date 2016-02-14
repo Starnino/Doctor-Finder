@@ -2,7 +2,6 @@ package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,23 +16,14 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 //login facebook
@@ -111,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Logged in",
                                         Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, SpecialSearchActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
 
                             } else {

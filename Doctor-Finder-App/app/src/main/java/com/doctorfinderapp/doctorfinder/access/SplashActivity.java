@@ -4,11 +4,9 @@ package com.doctorfinderapp.doctorfinder.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.parse.ParseUser;
 
 import java.util.Timer;
