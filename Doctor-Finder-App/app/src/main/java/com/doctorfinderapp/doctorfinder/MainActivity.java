@@ -29,14 +29,14 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
-import com.doctorfinderapp.doctorfinder.fragment.Search;
+import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements Search.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements Search.OnFragment
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new Search(), "Ricerca");
+        adapter.addFragment(new SearchFragment(), "Ricerca");
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 

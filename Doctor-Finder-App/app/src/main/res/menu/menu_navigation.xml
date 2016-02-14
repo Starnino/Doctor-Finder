@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single"
         android:layout_width="wrap_content"
@@ -37,12 +38,13 @@
                 android:icon="@drawable/com_facebook_favicon_white" />
 
         <item
-            android:id="@+id/exit"
-            android:title="@string/exit"
-            android:icon="@drawable/ic_exit_to_app_white_24dp"/>
+            android:id="@+id/action_settings"
+            android:title="@string/action_settings"
+            app:showAsAction="never" />
 
         <item android:title="@string/logout"
-            android:id="@+id/logout" />
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_exit_to_app_white_24dp"/>
 
 
     </group>
