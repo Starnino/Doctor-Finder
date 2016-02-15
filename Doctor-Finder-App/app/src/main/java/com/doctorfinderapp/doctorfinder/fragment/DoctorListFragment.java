@@ -32,7 +32,7 @@ public class DoctorListFragment extends Fragment {
 
     /*// Generate sample data
 
-    String[] name = new String[]{"Loshoqrenzo Gitto", "Marco dell'Aquila", "Francesco Maiese", "Elena Dezi", "Wassim Arleo", "Marco Frison",
+    String[] name = new String[]{"Lorenzo Gitto", "Marco dell'Aquila", "Francesco Maiese", "Elena Dezi", "Wassim Arleo", "Marco Frison",
             "Mirim Renati", "Alexandra Zanni", "Stefania Bianchin", "Michele Benevento", "Francesco Silla", "Milena D'Arco", "Enzo Gatta",
             "Sofia Mancini", "Marco La Casa", "Antonio Russo"};
 

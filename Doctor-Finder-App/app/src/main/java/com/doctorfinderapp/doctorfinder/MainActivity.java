@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new SearchFragment(), "Ricerca");
+        //adapter.addFragment(new SearchFragment(), "Ricerca");
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 
