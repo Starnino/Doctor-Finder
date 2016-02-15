@@ -59,13 +59,7 @@ public class DoctorListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-
-
         return recyclerView;
-
-
-
 
     }
 
@@ -77,10 +71,19 @@ public class DoctorListFragment extends Fragment {
 
             super(inflater.inflate(R.layout.doctor_item, parent, false));
 
-            TextView textView = (TextView) itemView.findViewById(R.id.name);
-            String text= DOCTORS.get(index).getString("FirstName");
+            TextView name = (TextView) itemView.findViewById(R.id.name);
+            String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
+            //------
+            TextView special = (TextView) itemView.findViewById(R.id.special);
+            String specialString = DOCTORS.get(index).getString("Specialization");
+            //------
+            TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
+            String feedbackString = "*  *  *";
+            //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             index++;
-            textView.setText(text);
+            name.setText(nameString);
+            special.setText(specialString);
+            feedback.setText(feedbackString);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

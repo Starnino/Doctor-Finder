@@ -74,6 +74,15 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visualizza"
+        android:id="@+id/btn_current_doctor"
+        android:layout_alignTop="@+id/name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
 </android.support.v7.widget.CardView>
 

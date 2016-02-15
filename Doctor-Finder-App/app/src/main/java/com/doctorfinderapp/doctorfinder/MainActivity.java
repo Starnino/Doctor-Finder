@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         //adding doctors data
         AddDoctors.addData();
 
-
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
 
