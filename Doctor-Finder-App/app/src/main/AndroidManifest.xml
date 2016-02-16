@@ -77,8 +77,12 @@
             android:value="wIgqO6QfRM4vFuD3pWJi" />
 
         <activity
-            android:name=".Main2Activity"
+            android:name=".SearchActivity"
             android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".DoctorProfileActivity"
+            android:label="@string/title_activity_doctors_profile"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
