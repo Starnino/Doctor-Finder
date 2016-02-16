@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 
 public class FirstActivity extends Activity {
 
@@ -54,7 +55,7 @@ public class FirstActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                Intent intent = new Intent(FirstActivity.this, SpecialSearchActivity.class);
                 startActivity(intent);
             }
         });
