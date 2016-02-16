@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -115,10 +115,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         viewPager.setAdapter(adapter);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 
     //search view
     @Override
