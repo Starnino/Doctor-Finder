@@ -78,7 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Visualizza"
-        android:id="@+id/btn_current_doctor"
+        android:id="@+id/selected_doct"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textAllCaps="false"
         android:layout_alignTop="@+id/name"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
