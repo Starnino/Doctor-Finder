@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:isIndicator="true"
-        android:numStars="5"
+        android:numStars="4"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/profile_image" />
 
