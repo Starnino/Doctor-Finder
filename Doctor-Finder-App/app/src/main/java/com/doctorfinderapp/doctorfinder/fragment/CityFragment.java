@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.SearchActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
@@ -54,7 +55,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
         Intent intent = new Intent(getActivity(),
-                SearchActivity.class);
+                ResultsActivity.class);
         startActivity(intent);
     }
 }

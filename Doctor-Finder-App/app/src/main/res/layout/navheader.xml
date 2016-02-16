@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:background="@color/docfinder"
-    android:orientation="vertical">
+    android:layout_height="@dimen/nav_header_height"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="@dimen/fab_margin"
+    android:background="@color/docfinder">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:id="@drawable/icon"
+        android:layout_width="60dp"
+        android:layout_height="90dp"
+        android:paddingTop="@dimen/fab_margin"
+        android:src="@drawable/ic_account_circle_white_48dp" />
+
+    <TextView
+        android:id="@+id/name_user"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/ic_account_circle_white_48dp"/>
+        android:text="Nome Cognome"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/email_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nomecognome@email.com"
+        android:textColor="@color/grey"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

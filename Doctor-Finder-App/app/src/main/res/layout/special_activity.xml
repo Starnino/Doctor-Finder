@@ -4,7 +4,7 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:theme="@style/AppTheme">
+    android:theme="@style/AppTheme">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,8 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            android:theme="@style/AppTheme"/>
 
         <fragment
             android:layout_width="match_parent"
@@ -38,5 +37,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/docfinder"/>
+        android:fitsSystemWindows="true"
+        android:background="@color/grey"/>
 </android.support.v4.widget.DrawerLayout>

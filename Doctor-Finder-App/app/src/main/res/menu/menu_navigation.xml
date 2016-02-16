@@ -40,7 +40,8 @@
         <item
             android:id="@+id/action_settings"
             android:title="@string/action_settings"
-            app:showAsAction="never" />
+            app:showAsAction="never"
+            android:icon="@drawable/ic_menu_manage"/>
 
         <item android:title="@string/logout"
             android:id="@+id/logout"
