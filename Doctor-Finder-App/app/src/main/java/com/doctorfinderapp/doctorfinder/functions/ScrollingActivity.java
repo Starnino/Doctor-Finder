@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.functions;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,7 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class DoctorProfileActivity extends AppCompatActivity {
+import com.doctorfinderapp.doctorfinder.R;
+
+/**
+ * Created by giovanni on 2/16/16.
+ */
+public class ScrollingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +29,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

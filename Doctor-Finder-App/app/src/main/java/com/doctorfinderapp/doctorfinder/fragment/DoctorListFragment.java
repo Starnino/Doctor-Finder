@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -94,8 +96,8 @@ public class DoctorListFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    //Intent intent = new Intent(context, DetailActivty.class);
-                    //context.startActivity(intent);
+                    Intent intent = new Intent(context, DoctorProfileActivity.class);
+                    context.startActivity(intent);
                 }
             });
         }
