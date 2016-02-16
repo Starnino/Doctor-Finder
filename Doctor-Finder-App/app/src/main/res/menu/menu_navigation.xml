@@ -9,7 +9,7 @@
         <item
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="@string/profile"
-            android:id="@+id/profile" />
+            android:id="@+id/profile"/>
         <item
             android:icon="@drawable/ic_book_white_24dp"
             android:title="@string/gestisci"
