@@ -90,33 +90,32 @@ public class AddDoctors {
 
         /*
 
-        LatLng ROMA =new LatLng(41.9000, 12.5000);
-        AddDoctors("Martino", "Tritto", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
         LatLng ROMA1 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Antonio", "De Cillis", "federico.solignani@gmail.com22", "26/12/1981",
-                new String[]{"Ortopedia"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Martina", "Tritto", "federico.solignani@gmail.com", "26/12/1981",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA1.toString());
         LatLng ROMA2 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Francesco", "Maiese", "aniellomaiese@msn.com", "26/12/1981",
-                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Antonio", "De Cillis", "federico.solignani@gmail.com22", "26/12/1981",
+                new String[]{"Ortopedia"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA2.toString());
         LatLng ROMA3 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Elisa", "Canossa", "canossaelisa@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Francesco", "Maiese", "aniellomaiese@msn.com", "26/12/1981",
+                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA3.toString());
         LatLng ROMA4 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Lorenzo", "Gitto", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Lorenzo", "Gitto", "canossaelisa@gmail.com", "26/12/1981",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA4.toString());
         LatLng ROMA5 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Tommaso", "Dezi", "dezitommaso@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Elisa", "Canossa", "federico.solignani@gmail.com", "26/12/1981",
+                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA5.toString());
         LatLng ROMA6 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Wassim", "Abusini", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Ortopedia"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Marta", "Dezi", "dezitommaso@gmail.com", "26/12/1981",
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA6.toString());
         LatLng ROMA7 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Edoardo", "Poscia", "example@gmail.com", "26/12/1981",
-                new String[]{"Fisioterapista"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA.toString());
+        AddDoctors("Laura", "Salminto", "dezitommaso@gmail.com", "26/12/1981",
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA7.toString());
         LatLng ROMA8 =new LatLng(41.9000, 12.5000);
+        AddDoctors("Cristina", "Ferri", "dezitommaso@gmail.com", "26/12/1981",
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA8.toString());
 
-        */
+    */
 
         Log.d("main", "adding doctor post");
     }

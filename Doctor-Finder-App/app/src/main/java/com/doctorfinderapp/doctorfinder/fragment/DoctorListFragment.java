@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -75,15 +77,19 @@ public class DoctorListFragment extends Fragment {
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
             TextView special = (TextView) itemView.findViewById(R.id.special);
-            String specialString = DOCTORS.get(index).getString("Specialization");
+            String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
             //------
-            TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
-            String feedbackString = "*  *  *";
+            /*TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
+            String feedbackString = "*  *  *";*/
+            ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
+            int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
+            profile.setImageResource(fotoId[index]);
+
             //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             index++;
             name.setText(nameString);
-            special.setText(specialString);
-            feedback.setText(feedbackString);
+            special.setText(specialString.substring(1,specialString.length()-1));
+            //feedback.setText(feedbackString);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
