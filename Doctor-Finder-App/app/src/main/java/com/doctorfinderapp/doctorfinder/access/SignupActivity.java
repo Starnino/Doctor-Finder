@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -124,7 +125,7 @@ public class SignupActivity extends AppCompatActivity {
                                 // Hooray! Let them use the app now.
                                 //create a toast
                                 Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignupActivity.this, SpecialSearchActivity.class);
                                 startActivity(intent);
 
                             } else {
