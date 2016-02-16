@@ -30,13 +30,14 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+//import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ResultsActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
 
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     //search view
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,11 +157,11 @@ public class MainActivity extends AppCompatActivity {
                 //caricare sito
             case R.id.logout:
                 ParseUser.logOut();
-                Log.d("MainActivity", "Logged out");
+                Log.d("R", "Logged out");
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
                 startActivity(intent);
 
 

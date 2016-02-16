@@ -11,16 +11,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.MainActivity;
+
+import com.doctorfinderapp.doctorfinder.Main2Activity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by francesco on 02/02/16.
- */
+
 public class CityFragment extends ListFragment implements AdapterView.OnItemClickListener{
 
     private SpecializationAdapter adapter;
@@ -55,7 +54,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
         Intent intent = new Intent(getActivity(),
-                MainActivity.class);
+                Main2Activity.class);
         startActivity(intent);
     }
 }

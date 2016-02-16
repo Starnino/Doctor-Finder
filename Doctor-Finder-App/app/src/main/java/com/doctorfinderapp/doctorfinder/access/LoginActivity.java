@@ -13,10 +13,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.MainActivity;
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -90,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 passwordtxt = password.getText().toString();
                 if (usernametxt.equals("test")) {
                     Intent intent = new Intent(LoginActivity.this,
-                            MainActivity.class);
+                            ResultsActivity.class);
                     startActivity(intent);
 
 
@@ -102,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Logged in",
                                         Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, SpecialSearchActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, ResultsActivity.class);
                                 startActivity(intent);
 
                             } else {
@@ -153,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
                                     Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ResultsActivity.class);
 
                             startActivity(intent);
 
