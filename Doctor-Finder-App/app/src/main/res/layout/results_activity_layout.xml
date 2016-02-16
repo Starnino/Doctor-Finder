@@ -73,7 +73,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main2"
-        app:menu="@menu/activity_main2_drawer" />
+        app:menu="@menu/menu_navigation" />
 
     <!--<android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

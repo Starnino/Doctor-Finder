@@ -1,7 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -57,7 +56,7 @@ public class ResultsActivity extends AppCompatActivity  {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.results_activity_layout);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
