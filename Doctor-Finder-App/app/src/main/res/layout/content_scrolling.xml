@@ -257,7 +257,6 @@
             android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
-
             <ImageView
                 android:id="@+id/ivContactItem5"
                 android:layout_width="wrap_content"
