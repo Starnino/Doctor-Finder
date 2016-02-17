@@ -36,9 +36,6 @@ public class SpecializationAdapter extends ArrayAdapter<String>  {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.special_item, parent, false);
         }
 
-        ImageView icon = (ImageView) convertView.findViewById(R.id.specialization_icon);
-        //icon.setColorFilter(R.color.colorPrimaryDark);
-
         final TextView text = (TextView) convertView.findViewById(R.id.specialization_text);
         text.setText(specialization);
         return convertView;

@@ -58,7 +58,6 @@
     <string name="like"> Facebook</string>
 
     <string-array name="Specializations">
-        <item>Tutte</item>
         <item>Allergologia</item>
         <item>Anatomia Patologica</item>
         <item>Andrologia</item>
@@ -121,7 +120,6 @@
     </string-array>
 
     <string-array name="cities">
-        <item>Tutte</item>
         <item>Roma</item>
         <item>Viterbo</item>
         <item>Milano</item>
