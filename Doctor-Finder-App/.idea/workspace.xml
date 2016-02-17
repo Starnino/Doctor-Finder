@@ -29,9 +29,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="026b602d-c5a4-4f32-bf3e-410e4df51893" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SpecialSearchActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SpecialSearchActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_main.xml" />
+    <list default="true" id="026b602d-c5a4-4f32-bf3e-410e4df51893" name="Default" comment="created main fragment&#10;SpecialSearch activity is the new MainActivity, for now use the drawer to change activity">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -64,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/SpecialFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+              <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -85,7 +83,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.321428">
               <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
-              <folding />
+              <folding>
+                <element signature="e#1929#1969#0" expanded="false" />
+                <element signature="e#2268#2287#0" expanded="false" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -107,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/CityFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+              <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -141,8 +142,8 @@
       </file>
       <file leaf-file-name="fragment_search_main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5625">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
               <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
               <folding>
                 <element signature="e#1240#1275#0" expanded="true" />
@@ -158,7 +159,7 @@
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
+          <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
         </entry>
@@ -2717,6 +2718,128 @@
       <recent name="" />
     </key>
   </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/SpecializationAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/CityFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/SpecialFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/layout/doctor_item.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/layout/results_activity_layout.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/layout/special_item.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/values/colors.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/values/strings.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/drawable/list_icon_bg.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/drawable/list_item_bg.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/drawable/circle_button.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
@@ -2974,12 +3097,18 @@
       <option name="project" value="LOCAL" />
       <updated>1455673318294</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="created main fragment&#10;SpecialSearch activity is the new MainActivity, for now use the drawer to change activity">
+      <created>1455674482814</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1455674482814</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1360" height="743" extended-state="4" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32387313" sideWeight="0.4878049" order="10" side_tool="false" content_ui="tabs" />
@@ -2992,7 +3121,7 @@
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.721202" sideWeight="0.48473284" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32554257" sideWeight="0.49697885" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.49086758" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32888147" sideWeight="0.49086758" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3036,7 +3165,8 @@
     <MESSAGE value="added Doctor Profile Activity" />
     <MESSAGE value="changed some things&#10;" />
     <MESSAGE value="committed searchspecial activity&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="committed searchspecial activity&#10;" />
+    <MESSAGE value="created main fragment&#10;SpecialSearch activity is the new MainActivity, for now use the drawer to change activity" />
+    <option name="LAST_COMMIT_MESSAGE" value="created main fragment&#10;SpecialSearch activity is the new MainActivity, for now use the drawer to change activity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3391,7 +3521,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/CityFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -3419,7 +3549,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.321428">
           <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="e#1929#1969#0" expanded="false" />
+            <element signature="e#2268#2287#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -3445,7 +3578,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/SpecialFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+          <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -3459,8 +3592,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5625">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
           <folding>
             <element signature="e#1240#1275#0" expanded="true" />
@@ -3476,7 +3609,7 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
+      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
