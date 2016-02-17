@@ -19,6 +19,16 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.parse.ParseUser;
 
+
+//###Important
+
+/*
+Code to change between a fragment and another
+Fragment fragment = new CityFragment();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
+ */
+
 public class SearchActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,7 +57,7 @@ public class SearchActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
+    //if back is pressed drawer is closed
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -80,6 +90,7 @@ public class SearchActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //this funct is for drawer menu items
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

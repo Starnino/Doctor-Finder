@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (currentUser != null) {
 
 
-                    Intent intent = new Intent(SplashActivity.this, FirstActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, SearchActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
