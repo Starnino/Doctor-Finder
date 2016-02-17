@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.doctorfinderapp.doctorfinder.fragment.SearchMainFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,10 +39,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="74dp"
-        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:padding="@dimen/activity_horizontal_margin"
-        android:layout_weight="0.14">
+        android:layout_weight="0.14"
+        android:focusable="true"
+        android:contextClickable="true"
+        android:id="@+id/citta_select"
+        android:onClick="@android:string/unknownName">
 
         <ImageView
             android:id="@+id/ivContactItem1"
@@ -57,12 +61,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_toEndOf="@id/ivContactItem1"
-            android:layout_toRightOf="@id/ivContactItem1"
             android:text="Seleziona Citta"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#212121" />
+            android:textColor="#212121"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_alignBottom="@+id/ivContactItem1"
+            android:layout_toEndOf="@+id/ivContactItem1" />
 
 
 
@@ -90,11 +94,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
 
             android:text="Seleziona specializzazione"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#212121" />
+            android:textColor="#212121"
+            android:layout_alignBottom="@+id/imm1"
+            android:layout_toEndOf="@+id/imm1" />
 
 
 

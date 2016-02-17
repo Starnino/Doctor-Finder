@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,12 +13,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
 import com.doctorfinderapp.doctorfinder.fragment.SearchMainFragment;
+import com.parse.ParseUser;
 
 
 public class SpecialSearchActivity extends AppCompatActivity implements SearchMainFragment.OnFragmentInteractionListener {
@@ -111,7 +116,23 @@ Fragment fragment = new CityFragment();
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.logout:
-                super.finish();
+
+                ParseUser.logOut();
+                Log.d("R", "Logged out");
+                Toast.makeText(getApplicationContext(),
+                        "Logged out",
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SpecialSearchActivity.this, SplashActivity.class);
+                startActivity(intent);
+            case R.id.exit:
+               super.finish();
+            case R.id.action_settings:
+                Intent intent2 = new Intent(SpecialSearchActivity.this, ResultsActivity.class);
+                startActivity(intent2);
+            case R.id.like:
+                Intent intent3 = new Intent(SpecialSearchActivity.this, DoctorProfileActivity.class);
+                startActivity(intent3);
+
         }
     }
 
