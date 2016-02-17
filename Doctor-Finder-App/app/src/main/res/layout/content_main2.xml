@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
-            android:src="@drawable/Logo_testo_e_icona"
+            android:src="@drawable/logo_testo_e_icona"
             android:layout_gravity="bottom|center_horizontal"
             android:paddingTop="40dp"
             android:paddingLeft="40dp"
