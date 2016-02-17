@@ -4,12 +4,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -24,10 +27,14 @@ import java.util.Collections;
 public class SpecialFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
     private SpecializationAdapter adapter;
+    private CheckBox checkBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.special_fragment, viewGroup, false);
+
+        //set checkbox
+        checkBox = (CheckBox) view.findViewById(R.id.checkBox);
         return view;
 
     }
@@ -48,7 +55,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ImageView icon  = (ImageView) view.findViewById(R.id.specialization_icon);
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
-        icon.setColorFilter(R.color.colorPrimaryDark);
+
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) +" selected", Toast.LENGTH_SHORT)
                 .show();

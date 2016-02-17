@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 
@@ -50,7 +52,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ImageView icon  = (ImageView) view.findViewById(R.id.specialization_icon);
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
-        icon.setColorFilter(R.color.colorPrimaryDark);
+
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();

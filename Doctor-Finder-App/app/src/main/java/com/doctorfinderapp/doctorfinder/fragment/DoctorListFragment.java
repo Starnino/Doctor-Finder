@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
@@ -27,9 +28,10 @@ import java.util.List;
 /**
  * Created by francesco on 03/02/16.
  */
+
 public class DoctorListFragment extends Fragment {
 
-
+    private static RatingBar ratingBar;
     private static List<ParseObject> DOCTORS=null;
     private static int SIZE=0;
     private static int index=0;
@@ -92,6 +94,11 @@ public class DoctorListFragment extends Fragment {
             name.setText(nameString);
             special.setText(specialString.substring(1,specialString.length()-1));
             //feedback.setText(feedbackString);
+
+            //find and set rating view
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            ratingBar.setRating(5.0f);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -100,6 +107,8 @@ public class DoctorListFragment extends Fragment {
                     context.startActivity(intent);
                 }
             });
+
+
         }
     }
 
