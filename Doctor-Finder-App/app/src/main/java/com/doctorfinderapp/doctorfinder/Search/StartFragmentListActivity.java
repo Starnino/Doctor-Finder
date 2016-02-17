@@ -176,8 +176,17 @@ Fragment fragment = new CityFragment();
         }
     }
 
+    //code added to save activity state
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
 
+    }
 
     //android.app.Fragment fragment = getActivity().getFragmentManager().findFragmentByTag("YOUR_FRAGMENT_TAG");
     //getActivity().getFragmentManager().beginTransaction().hide(fragment);

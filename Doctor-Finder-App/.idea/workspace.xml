@@ -29,10 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="026b602d-c5a4-4f32-bf3e-410e4df51893" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/MainFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/MainFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_start_fragment_list_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_start_fragment_list_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -78,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultsActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ResultsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.6293706">
+              <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -138,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+              <caret line="179" column="13" selection-start-line="179" selection-start-column="13" selection-end-line="179" selection-end-column="13" />
               <folding>
                 <element signature="e#2102#2786#0" expanded="true" />
                 <element signature="e#2785#2786#0" expanded="true" />
@@ -163,13 +162,13 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="special_fragment.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="special_fragment.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -2309,7 +2308,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/special_activity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SpecialSearchActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/StartFragmentListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_search_activity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/searchactivitylayout.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -2318,11 +2316,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SplashActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/MainFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_start_fragment_list_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
       </list>
     </option>
   </component>
@@ -3161,7 +3160,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455724659886</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Commit changes to stacazzo di MainActivity 2 parte&#10;">
+      <created>1455726576084</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1455726576084</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3259,7 +3264,8 @@
     <MESSAGE value="Da ragazzino una volta ho fatto una scorreggia così rumorosa che mia nonna, che era in un'altra stanza, è andata a rispondere al citofono.&#10;http://insegreto.com/popolari/2" />
     <MESSAGE value="Commit new main activity&#10;@starnino non usare piu in fragment ti prego" />
     <MESSAGE value="Commit changes to stacazzo di MainActivity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit changes to stacazzo di MainActivity" />
+    <MESSAGE value="Commit changes to stacazzo di MainActivity 2 parte&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit changes to stacazzo di MainActivity 2 parte&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3627,14 +3633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3698,10 +3696,21 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/StartFragmentListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+          <caret line="179" column="13" selection-start-line="179" selection-start-column="13" selection-end-line="179" selection-end-column="13" />
           <folding>
             <element signature="e#2102#2786#0" expanded="true" />
             <element signature="e#2785#2786#0" expanded="true" />
@@ -3714,20 +3723,17 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Search/CityFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/special_fragment.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6293706">
+          <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
   </component>

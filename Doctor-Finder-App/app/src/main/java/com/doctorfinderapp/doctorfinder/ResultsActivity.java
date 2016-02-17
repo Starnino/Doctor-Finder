@@ -108,8 +108,9 @@ public class ResultsActivity extends AppCompatActivity  {
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        //maps before list because cannot scroll map easly on left
+        adapter.addFragment(new DoctorListFragment(), "Lista");
 
         viewPager.setAdapter(adapter);
     }

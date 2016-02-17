@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.Search;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
 import java.util.ArrayList;
@@ -51,8 +53,8 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
-        //Intent intent = new Intent(getActivity(),ResultsActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(getActivity(),ResultsActivity.class);
+        startActivity(intent);
 
         //item selected now must return to main activity
         //finish();
