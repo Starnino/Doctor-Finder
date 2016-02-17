@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/BlankFragment"
-        android:name="com.doctorfinderapp.doctorfinder.Search.MainFragment"
+        android:name="com.doctorfinderapp.doctorfinder.fragment.MainFragment"
         tools:layout="@layout/fragment_main"
         >
     </fragment></FrameLayout>

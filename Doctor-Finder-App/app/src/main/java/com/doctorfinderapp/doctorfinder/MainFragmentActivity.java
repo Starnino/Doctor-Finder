@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Search;
+package com.doctorfinderapp.doctorfinder;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -21,18 +21,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
-import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
+import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
+import com.doctorfinderapp.doctorfinder.fragment.SpecialFragment;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.parse.ParseUser;
 
 
-public class StartFragmentListActivity extends AppCompatActivity  {
+public class MainFragmentActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
-    public String CITTA;
-    public String SPECIALIZZAZIONE;
+    public String CITTA="All";
+    public String SPECIALIZZAZIONE="All";
     //###Important
 
 /*
@@ -162,15 +161,15 @@ Fragment fragment = new CityFragment();
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(StartFragmentListActivity.this, SplashActivity.class);
+                Intent intent = new Intent(MainFragmentActivity.this, SplashActivity.class);
                 startActivity(intent);
             case R.id.exit:
                super.finish();
             case R.id.action_settings:
-                Intent intent2 = new Intent(StartFragmentListActivity.this, ResultsActivity.class);
+                Intent intent2 = new Intent(MainFragmentActivity.this, ResultsActivity.class);
                 startActivity(intent2);
             case R.id.like:
-                Intent intent3 = new Intent(StartFragmentListActivity.this, DoctorProfileActivity.class);
+                Intent intent3 = new Intent(MainFragmentActivity.this, DoctorProfileActivity.class);
                 startActivity(intent3);
 
         }

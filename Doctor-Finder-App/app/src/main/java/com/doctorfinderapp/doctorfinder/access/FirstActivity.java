@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.Search.StartFragmentListActivity;
+import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
 
 public class FirstActivity extends Activity {
 
@@ -54,7 +54,7 @@ public class FirstActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, StartFragmentListActivity.class);
+                Intent intent = new Intent(FirstActivity.this, MainFragmentActivity.class);
                 startActivity(intent);
             }
         });
