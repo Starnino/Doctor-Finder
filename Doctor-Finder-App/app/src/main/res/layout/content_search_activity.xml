@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".SearchActivity"
+    tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_search_activity"
     android:background="#106e88"
     android:orientation="vertical"
@@ -17,51 +17,145 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />-->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
-        android:background="@color/docfinder"
-        android:focusable="true"
-        android:layout_weight="1"
-        android:minHeight="70dp">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:background="@color/docfinder"
+    android:focusable="true"
+    android:layout_alignParentLeft="false"
+    android:layout_marginLeft="0dp"
+    android:layout_alignParentTop="false"
+    android:layout_marginTop="0dp"
+    android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/logo_testo_e_icona"
-            android:layout_gravity="bottom|center_horizontal"
-            android:paddingTop="40dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp" />
-    </FrameLayout>
-
-    <FrameLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:elevation="@dimen/abc_action_bar_content_inset_material">
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/searchView"
-            android:background="#d66666"
-            android:theme="@style/AppTheme.AppBarOverlay" />
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="New Text"
-        android:id="@+id/textView"
-        android:background="#040000" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="251dp"
-        android:id="@+id/listView"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/imageView"
+        android:src="@drawable/logo_testo_e_icona"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" />
 
 </LinearLayout>
 
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:weightSum="1">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="74dp"
+    android:clickable="true"
+    android:padding="@dimen/activity_horizontal_margin"
+
+    android:focusable="true"
+    android:contextClickable="true"
+    android:id="@+id/spec_select"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/tvNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Cerca il dottore"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="74dp"
+    android:clickable="true"
+    android:padding="@dimen/activity_horizontal_margin"
+
+    android:focusable="true"
+    android:contextClickable="true"
+    android:id="@+id/citta_select"
+    android:background="#ffffff"
+    android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/tvNumber1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Città:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true" />
+
+
+    <TextView
+        android:id="@+id/citta_selectioned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Tutte"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tvNumber1" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleziona"
+        android:id="@+id/select_city_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="74dp"
+    android:clickable="true"
+    android:padding="@dimen/activity_horizontal_margin"
+
+    android:focusable="true"
+    android:contextClickable="true"
+    android:id="@+id/spec_select"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/tvNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Specializzazione"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true" />
+    <TextView
+        android:id="@+id/spec_selectioned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Tutte"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tvNumber2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleziona"
+        android:id="@+id/select_spec_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
+</LinearLayout>
+
+</LinearLayout>

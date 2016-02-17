@@ -1,8 +1,6 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.Search;
 
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,13 +17,13 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
+import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
-import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
-import com.doctorfinderapp.doctorfinder.fragment.SearchMainFragment;
 import com.parse.ParseUser;
 
 
-public class SpecialSearchActivity extends AppCompatActivity implements SearchMainFragment.OnFragmentInteractionListener {
+public class StartFragmentListActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
     public String CITTA;
@@ -122,32 +120,23 @@ Fragment fragment = new CityFragment();
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(SpecialSearchActivity.this, SplashActivity.class);
+                Intent intent = new Intent(StartFragmentListActivity.this, SplashActivity.class);
                 startActivity(intent);
             case R.id.exit:
                super.finish();
             case R.id.action_settings:
-                Intent intent2 = new Intent(SpecialSearchActivity.this, ResultsActivity.class);
+                Intent intent2 = new Intent(StartFragmentListActivity.this, ResultsActivity.class);
                 startActivity(intent2);
             case R.id.like:
-                Intent intent3 = new Intent(SpecialSearchActivity.this, DoctorProfileActivity.class);
+                Intent intent3 = new Intent(StartFragmentListActivity.this, DoctorProfileActivity.class);
                 startActivity(intent3);
 
         }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
 
 
-    }
-
-    private void StartFragment(){
-        CityFragment fragment = new CityFragment();
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.search_main_fragment, fragment).commit();
-    }
     //android.app.Fragment fragment = getActivity().getFragmentManager().findFragmentByTag("YOUR_FRAGMENT_TAG");
     //getActivity().getFragmentManager().beginTransaction().hide(fragment);
 }

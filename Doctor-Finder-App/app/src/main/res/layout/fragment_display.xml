@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragmentSearch"
-        android:name="com.doctorfinderapp.doctorfinder.fragment.SpecialFragment">
+        android:name="com.doctorfinderapp.doctorfinder.Search.SpecialFragment">
     </fragment>
 
 </LinearLayout>

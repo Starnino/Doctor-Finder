@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.dummy;
+package com.doctorfinderapp.doctorfinder.inutile.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
