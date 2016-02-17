@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.parse.ParseUser;
 
@@ -47,7 +48,7 @@ Fragment fragment = new CityFragment();
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        setContentView(R.layout.special_activity);
+        setContentView(R.layout.activity_start_fragment_list_layout);
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);

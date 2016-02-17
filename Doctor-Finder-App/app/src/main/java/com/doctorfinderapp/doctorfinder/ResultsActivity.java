@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Search;
+package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
 import android.os.Build;
@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;

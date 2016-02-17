@@ -1,7 +1,6 @@
 package com.doctorfinderapp.doctorfinder.Search;
 
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-import com.doctorfinderapp.doctorfinder.Search.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
@@ -27,7 +25,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.special_fragment, viewGroup, false);
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Seleziona Città");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Seleziona Città");
         return view;
     }
 
@@ -53,8 +51,10 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
                 .show();
-        Intent intent = new Intent(getActivity(),
-                ResultsActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(getActivity(),ResultsActivity.class);
+        //startActivity(intent);
+
+        //item selected now must return to main activity
+        //finish();
     }
 }

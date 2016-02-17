@@ -58,7 +58,7 @@
         <activity android:name=".access.SignupActivity" />
         <activity android:name=".Search.StartFragmentListActivity"/>
         <activity
-            android:name=".Search.ResultsActivity"
+            android:name=".ResultsActivity"
             android:theme="@style/AppTheme" />
 
         <meta-data

@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Search.ResultsActivity;
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.facebook.CallbackManager;
