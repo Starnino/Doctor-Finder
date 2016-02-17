@@ -12,10 +12,10 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <include
+    <!--<include
         layout="@layout/fragment_"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
 
     <FrameLayout
         android:layout_width="match_parent"

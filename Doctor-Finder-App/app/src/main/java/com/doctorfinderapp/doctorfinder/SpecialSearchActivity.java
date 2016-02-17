@@ -1,5 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.app.FragmentManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,10 +16,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
+import com.doctorfinderapp.doctorfinder.fragment.SearchMainFragment;
 
-public class SpecialSearchActivity extends AppCompatActivity {
+
+public class SpecialSearchActivity extends AppCompatActivity implements SearchMainFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
+    public String CITTA;
+    public String SPECIALIZZAZIONE;
+    //###Important
+
+/*
+Code to change between a fragment and another
+Fragment fragment = new CityFragment();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
+ */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +54,7 @@ public class SpecialSearchActivity extends AppCompatActivity {
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setTitle("Seleziona Categoria");
+            supportActionBar.setTitle("Doctor Finder");
         }
 
         //menu icon
@@ -56,6 +71,10 @@ public class SpecialSearchActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+
+        //funct to show city fragment
+
     }
 
     //respond to toolbar actions
@@ -95,4 +114,19 @@ public class SpecialSearchActivity extends AppCompatActivity {
                 super.finish();
         }
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+
+
+    }
+
+    private void StartFragment(){
+        CityFragment fragment = new CityFragment();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.search_main_fragment, fragment).commit();
+    }
+    //android.app.Fragment fragment = getActivity().getFragmentManager().findFragmentByTag("YOUR_FRAGMENT_TAG");
+    //getActivity().getFragmentManager().beginTransaction().hide(fragment);
 }

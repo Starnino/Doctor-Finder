@@ -55,7 +55,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
 
         Fragment fragment = new CityFragment();
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
+        //fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
     }
 
     @Override

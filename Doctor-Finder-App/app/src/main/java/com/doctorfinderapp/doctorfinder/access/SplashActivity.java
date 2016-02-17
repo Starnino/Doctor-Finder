@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.doctorfinderapp.doctorfinder.SearchActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
 import com.parse.ParseUser;
 
 import java.util.Timer;
@@ -42,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (currentUser != null) {
 
 
-                    Intent intent = new Intent(SplashActivity.this, SearchActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, SpecialSearchActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
