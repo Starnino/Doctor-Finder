@@ -36,7 +36,7 @@
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/CityFragment"
+                android:id="@+id/MainFragment"
                 android:name="com.doctorfinderapp.doctorfinder.Search.MainFragment"
                 tools:layout="@layout/fragment_main">
 

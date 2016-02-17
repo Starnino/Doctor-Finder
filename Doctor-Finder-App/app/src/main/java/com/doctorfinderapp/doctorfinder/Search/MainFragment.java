@@ -61,14 +61,7 @@ public class MainFragment extends Fragment  {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        Button specalization_button = (Button) getActivity().findViewById(R.id.select_spec_button);
-        specalization_button
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //code to show fragment
-                        Log.v("MainActivity", "Spec button pressed fragment incoming");
-                    }});
+
     }
 
     @Override

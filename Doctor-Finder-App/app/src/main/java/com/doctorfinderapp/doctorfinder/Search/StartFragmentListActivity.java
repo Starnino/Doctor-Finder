@@ -1,5 +1,7 @@
 package com.doctorfinderapp.doctorfinder.Search;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
@@ -49,6 +53,43 @@ Fragment fragment = new CityFragment();
         }
 
         setContentView(R.layout.activity_start_fragment_list_layout);
+        Button specalization_button = (Button) findViewById(R.id.select_city_button);
+        specalization_button
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //code to show fragment
+                        Log.v("Activity", "Spec button pressed fragment incoming");
+                        Fragment fragment = new SpecialFragment();
+                        FragmentManager fm = getFragmentManager();
+                        fm.beginTransaction()
+                                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                                .replace(R.id.MainFragment, fragment)
+                                .commit();
+
+                    }
+                });
+        Button city_button = (Button) findViewById(R.id.select_spec_button);
+        specalization_button
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //code to show fragment
+                        Log.v("Activity", "City button pressed fragment incoming");
+                        Fragment fragment = new CityFragment();
+                        FragmentManager fm = getFragmentManager();
+                        fm.beginTransaction()
+                                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                                .replace(R.id.MainFragment, fragment)
+                                .commit();
+                        // Fragment fragment = new CityFragment();
+                        //FragmentManager fm = getFragmentManager();
+                        //fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
+
+                    }
+                });
+
+
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);

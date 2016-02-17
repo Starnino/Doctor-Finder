@@ -4,38 +4,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:orientation="horizontal"
-        android:id="@+id/all_box"
-        android:background="#E6E6E6">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:id="@+id/specialization_icon"
-            android:buttonTint="@color/docfinder"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="@color/docfinder"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Tutte"
-            android:textSize="20dp"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:textColor="@color/grey"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/all_box">
+        android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,9 +14,8 @@
     </LinearLayout>
 
     <ListView
-        android:layout_below="@id/all_box"
         android:layout_width="wrap_content"
-        android:layout_height="545dp"
+        android:layout_height="match_parent"
         android:id="@android:id/list"
         android:background="@color/white">
     </ListView>
