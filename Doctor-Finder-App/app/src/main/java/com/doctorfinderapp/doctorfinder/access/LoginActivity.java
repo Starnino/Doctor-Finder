@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 passwordtxt = password.getText().toString();
                 if (usernametxt.equals("test")) {
                     Intent intent = new Intent(LoginActivity.this,
-                            ResultsActivity.class);
+                            MainFragmentActivity.class);
                     startActivity(intent);
 
 
