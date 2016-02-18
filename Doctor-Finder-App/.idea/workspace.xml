@@ -29,7 +29,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="026b602d-c5a4-4f32-bf3e-410e4df51893" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -2998,7 +2997,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455819667498</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="@vindel100 adesso puoi usare test, basta cambiare il codice in loginactivity&#10;">
+      <created>1455820273040</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1455820273040</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3101,7 +3106,8 @@
     <MESSAGE value="Branchk&#10;" />
     <MESSAGE value="Added MainFragmentActivity in AndroidMainifest" />
     <MESSAGE value="Changed Results activity theme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Results activity theme" />
+    <MESSAGE value="@vindel100 adesso puoi usare test, basta cambiare il codice in loginactivity&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="@vindel100 adesso puoi usare test, basta cambiare il codice in loginactivity&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
