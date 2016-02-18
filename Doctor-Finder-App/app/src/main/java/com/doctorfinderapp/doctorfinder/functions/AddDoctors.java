@@ -2,17 +2,12 @@ package com.doctorfinderapp.doctorfinder.functions;
 
 import android.util.Log;
 
-import com.doctorfinderapp.doctorfinder.Doctor.Doctor;
-import com.google.android.gms.maps.model.LatLng;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 //import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Created by fedebyes on 12/02/16.

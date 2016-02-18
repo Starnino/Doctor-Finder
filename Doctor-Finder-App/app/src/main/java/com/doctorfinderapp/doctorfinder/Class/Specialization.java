@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Doctor;
+package com.doctorfinderapp.doctorfinder.Class;
 
 import java.util.ArrayList;
 import java.util.List;

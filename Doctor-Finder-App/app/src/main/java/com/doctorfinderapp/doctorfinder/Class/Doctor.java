@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Doctor;
+package com.doctorfinderapp.doctorfinder.Class;
 
 /**
  * * Created by vindel100 on 17/01/16.

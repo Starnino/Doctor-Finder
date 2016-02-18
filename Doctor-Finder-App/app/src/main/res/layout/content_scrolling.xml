@@ -250,6 +250,14 @@
 
         <include layout="@layout/item_divider" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_friends"
+                android:scrollbars="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+
+        <include layout="@layout/item_divider" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -386,6 +394,7 @@
                 android:text="Videochiama"
                 />
         </LinearLayout>
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
