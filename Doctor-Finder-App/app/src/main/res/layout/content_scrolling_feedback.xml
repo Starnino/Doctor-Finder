@@ -8,9 +8,10 @@
     android:padding="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    tools:showIn="@layout/activity_scrolling_feedback">
 
     <LinearLayout
+        android:id="@+id/feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,11 +19,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_weight="0.61">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
                 android:id="@+id/ivContactItem1"
@@ -31,7 +31,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/p1"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tvNumber1"
@@ -41,9 +42,22 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Lorenzo Gitto"
+                android:text="Feedback rilasciato:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNumber1"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/ivContactItem1"
+                android:layout_toRightOf="@id/ivContactItem1"
+                android:text="Educatissimo e discreto! Davvero una persona competente"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#727272" />
 
 
             <ToggleButton
@@ -55,13 +69,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_account_circle_white_24dp"
-                android:checked="true"
+                android:background="@drawable/ic_info_white_24dp"
                 android:padding="6dp"
                 android:textOff=""
                 android:textOn="" />
 
         </RelativeLayout>
+
+
+        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,7 +93,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_info_black_24dp"
+                android:src="@drawable/p2"
                 android:visibility="visible" />
 
             <TextView
@@ -88,7 +104,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Chirurgia Toracica"
+                android:text="Feedback rilasciato:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -101,7 +117,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Chirurgia Vascolare"
+                android:text="La persona adatta per il mio problemino, cortese e bravo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -122,6 +138,7 @@
 
         </RelativeLayout>
 
+
         <include layout="@layout/item_divider" />
 
         <RelativeLayout
@@ -138,7 +155,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_book_black_24dp" />
+                android:src="@drawable/p3"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tvNumber3"
@@ -147,12 +165,8 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem3"
-                android:layout_toLeftOf="@+id/chkState3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:layout_toStartOf="@+id/chkState3"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Anni di esperienza: "
+                android:text="Feedback rilasciato"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -165,7 +179,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:text="11"
+                android:text="Lo consiglio vivamente! Grazie a Doctor Finder ho trovto il dottore che cercavo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -179,12 +193,15 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:background="@drawable/ic_info_white_24dp"
-                android:checked="true"
+                android:checked="false"
                 android:padding="6dp"
                 android:textOff=""
                 android:textOn="" />
 
         </RelativeLayout>
+
+
+        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -200,7 +217,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_explore_black_24dp"
+                android:src="@drawable/p4"
                 android:visibility="visible" />
 
             <TextView
@@ -210,12 +227,8 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem4"
-                android:layout_toLeftOf="@+id/chkState4"
                 android:layout_toRightOf="@id/ivContactItem4"
-                android:layout_toStartOf="@+id/chkState4"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Luogo di lavoro"
+                android:text="Feedback Rilasciato"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -228,7 +241,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem4"
                 android:layout_toRightOf="@id/ivContactItem4"
-                android:text="Via del Porto, 21"
+                android:text="In caso di problemi corro subito da lui, uno dei migliori nel settore!"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -242,168 +255,17 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:background="@drawable/ic_info_white_24dp"
+                android:checked="false"
                 android:padding="6dp"
                 android:textOff=""
                 android:textOn="" />
 
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="20dp"
-            android:text="GLI AMICI CHE LO CONSIGLIANO"
-            android:textColor="@color/docfinder"
-            android:textAlignment="center"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/my_recycler_friends"
-                android:scrollbars="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"/>
 
         <include layout="@layout/item_divider" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
 
-            <ImageView
-                android:id="@+id/ivContactItem5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_info_black_24dp"
-                />
-
-            <TextView
-                android:id="@+id/tvNumber5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem5"
-                android:layout_toLeftOf="@+id/chkState5"
-                android:layout_toRightOf="@id/ivContactItem5"
-                android:layout_toStartOf="@+id/chkState5"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Punteggio Feedback"
-                android:clickable="true"
-                android:onClick="feedbackfunction"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                />
-
-            <ToggleButton
-                android:id="@+id/chkState5"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_book_white_24dp"
-                android:checked="true"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
-
-            <ImageView
-                android:id="@+id/ivContactItem6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_book_black_24dp"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tvNumber6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem6"
-                android:layout_toLeftOf="@+id/chkState6"
-                android:layout_toRightOf="@id/ivContactItem6"
-                android:layout_toStartOf="@+id/chkState6"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Ulteriori info"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber6"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/ivContactItem6"
-                android:layout_toRightOf="@id/ivContactItem6"
-                android:maxLines="10"
-                android:text="Vai Su linkedin per vedere le mie info e competenze...http://www.linkedin.com/NomeDottore  "
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272" />
-
-            <ToggleButton
-                android:id="@+id/chkState6"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_exit_to_app_white_24dp"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
-
-        </RelativeLayout>
-
-        <include layout="@layout/item_divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_horizontal_margin">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prenota appuntamento"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:text="Videochiama"
-                />
-        </LinearLayout>
 
     </LinearLayout>
 
