@@ -48,20 +48,20 @@ Social networks connects people all around the world and we thought to use those
 * [Presentation] ()
 * [Registration for health specialists](https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing) 
 * Friend's Tip
-* Log in using social Networks
-* Improving Back-end & Front-end
 * [Improved Website](http://www.doctorfinderapp.com/)
-* [Instructions for download and install our APK](https://docs.google.com/presentation/d/1IYQd5R8LU1HLk6JstSCZYIPVpwiE0DmbU1XWa9mVbwE/edit?usp=sharing)
-* [#2 Demo video] (https://www.youtube.com/watch?v=2BP3yFm4s44)
+* [Instructions for download and install our APK] (https://drive.google.com/file/d/0B_cyDM3ySwG4WVdCZ2hmVGE1NWM/view?usp=sharing)
+* [#2 Demo video] ()
 
 #Milestone 3 - Final
 
-* Push Notification
-* VideoCall a doctor
-* Customer loyalty
 * Improvements of the overall UI/UX
 * Book appointment directly via app
 * Front-end & Back-end finally improved
+* Push Notification
+* VideoCall a doctor
+* Customer loyalty
+* Qurami
+* Advertise
 * Play store
 
 
