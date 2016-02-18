@@ -43,14 +43,14 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         //initialize more Persons
         persons = new ArrayList<>();
-        persons.add(new Person("Francesco Starna", R.drawable.starnino));
-        persons.add(new Person("Federico Bacci", R.drawable.fedebyes));
-        persons.add(new Person("Giovanni Giampaolo", R.drawable.giampa));
-        persons.add(new Person("Vincenzo D'Elia", R.drawable.vindel));
-        persons.add(new Person("Chiara Carboni", R.drawable.chiara));
-        persons.add(new Person("Angelo Maione", R.drawable.angelo));
-        persons.add(new Person("Jessica Brandi", R.drawable.jessica));
-        persons.add(new Person("Giampo Vindel", R.drawable.p1));
+        persons.add(new Person("Francesco", R.drawable.starnino));
+        persons.add(new Person("Federico", R.drawable.fedebyes));
+        persons.add(new Person("Giovanni", R.drawable.giampa));
+        persons.add(new Person("Vincenzo", R.drawable.vindel));
+        persons.add(new Person("Chiara", R.drawable.chiara));
+        persons.add(new Person("Angelo", R.drawable.angelo));
+        persons.add(new Person("Jessica", R.drawable.jessica));
+        persons.add(new Person("Giampo", R.drawable.p1));
 
         // specify an adapter
         mAdapter = new PersonAdapter(persons);
