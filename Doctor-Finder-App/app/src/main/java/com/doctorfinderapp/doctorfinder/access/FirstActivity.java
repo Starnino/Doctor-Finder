@@ -11,12 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.R;
-//import com.doctorfinderapp.doctorfinder.SearchActivity;
-//import com.doctorfinderapp.doctorfinder.SpecialSearchActivity;
-//import com.doctorfinderapp.doctorfinder.fragment.SearchMainFragment;
-import com.doctorfinderapp.doctorfinder.inutile.dummy.MainActivity;
 
 public class FirstActivity extends Activity {
 

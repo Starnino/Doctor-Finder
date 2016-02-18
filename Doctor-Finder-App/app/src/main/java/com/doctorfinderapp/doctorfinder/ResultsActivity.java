@@ -56,7 +56,7 @@ public class ResultsActivity extends AppCompatActivity  {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        setContentView(R.layout.results_activity_layout);
+        setContentView(R.layout.activity_results);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -49,7 +49,7 @@
                 android:background="#ffffff">
 
                 <TextView
-                    android:id="@+id/tvNumber2"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -114,7 +114,6 @@
 
                 android:focusable="true"
                 android:contextClickable="true"
-                android:id="@+id/spec_select"
                 android:background="#ffffff">
 
                 <TextView
