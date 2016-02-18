@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
 import com.doctorfinderapp.doctorfinder.ResultsActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Logged in",
                                         Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, ResultsActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainFragmentActivity.class);
                                 startActivity(intent);
 
                             } else {

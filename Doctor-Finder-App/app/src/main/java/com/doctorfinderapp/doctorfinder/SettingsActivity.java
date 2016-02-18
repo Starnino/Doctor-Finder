@@ -20,6 +20,8 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import com.doctorfinderapp.doctorfinder.inutile.dummy.AppCompatPreferenceActivity;
+
 import java.util.List;
 
 /**

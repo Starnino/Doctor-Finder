@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
 import com.doctorfinderapp.doctorfinder.ResultsActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -124,7 +125,7 @@ public class SignupActivity extends AppCompatActivity {
                                 // Hooray! Let them use the app now.
                                 //create a toast
                                 Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignupActivity.this, ResultsActivity.class);
+                                Intent intent = new Intent(SignupActivity.this, MainFragmentActivity.class);
                                 startActivity(intent);
 
                             } else {

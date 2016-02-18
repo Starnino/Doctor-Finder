@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.inutile.dummy;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

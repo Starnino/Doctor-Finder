@@ -56,7 +56,8 @@
         <activity android:name=".access.LoginActivity" />
         <activity android:name=".access.FirstActivity" />
         <activity android:name=".access.SignupActivity" />
-        <activity android:name=".SpecialSearchActivity" />
+        <activity android:name=".MainFragmentActivity" />
+
         <activity
             android:name=".ResultsActivity"
             android:theme="@style/AppTheme" />
@@ -77,10 +78,7 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="wIgqO6QfRM4vFuD3pWJi" />
 
-        <activity
-            android:name=".SearchActivity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".DoctorProfileActivity"
             android:label="@string/title_activity_doctors_profile"
