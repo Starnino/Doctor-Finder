@@ -50,6 +50,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         persons.add(new Person("Chiara Carboni", R.drawable.chiara));
         persons.add(new Person("Angelo Maione", R.drawable.angelo));
         persons.add(new Person("Jessica Brandi", R.drawable.jessica));
+        persons.add(new Person("Giampo Vindel", R.drawable.p1));
 
         // specify an adapter
         mAdapter = new PersonAdapter(persons);
