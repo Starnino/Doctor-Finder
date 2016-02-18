@@ -60,7 +60,7 @@
 
         <activity
             android:name=".ResultsActivity"
-            android:theme="@style/AppTheme" />
+            />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
