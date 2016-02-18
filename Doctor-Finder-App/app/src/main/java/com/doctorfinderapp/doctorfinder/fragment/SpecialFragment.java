@@ -59,7 +59,7 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
 
         /**TODOview.startAnimation(animation);*/
-        Toast.makeText(getActivity(), adapter.getItem(position) +" selected", Toast.LENGTH_SHORT)
+        Toast.makeText(getActivity(), adapter.getItem(position) +" selezionata", Toast.LENGTH_SHORT)
                 .show();
 
        // Fragment fragment = new CityFragment();

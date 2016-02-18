@@ -52,7 +52,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@color/white"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +62,8 @@
         android:focusable="true"
         android:clickable="true"
         app:backgroundTint="@color/docfinder"
-        app:backgroundTintMode="src_over" />
+        app:backgroundTintMode="src_over" />-->
+
 </android.support.design.widget.CoordinatorLayout>
 
 
@@ -82,7 +83,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/white"
+        android:background="@color/grey"
         android:clickable="true" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -51,7 +51,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
 
         /**TODOview.startAnimation(animation);*/
-        Toast.makeText(getActivity(), adapter.getItem(position) + " selected", Toast.LENGTH_SHORT)
+        Toast.makeText(getActivity(), adapter.getItem(position) + " selezionata", Toast.LENGTH_SHORT)
                 .show();
         Intent intent = new Intent(getActivity(),ResultsActivity.class);
         startActivity(intent);
