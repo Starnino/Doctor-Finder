@@ -254,8 +254,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:textSize="20dp"
-            android:text="Gli amici che lo consigliano"
-            android:textColor="@color/black"/>
+            android:text="GLI AMICI CHE LO CONSIGLIANO"
+            android:textColor="@color/docfinder"
+            android:textAlignment="center"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_friends"
