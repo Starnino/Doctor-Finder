@@ -24,7 +24,12 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
 import com.doctorfinderapp.doctorfinder.fragment.SpecialFragment;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 
 public class MainFragmentActivity extends AppCompatActivity  {
@@ -32,6 +37,11 @@ public class MainFragmentActivity extends AppCompatActivity  {
     private DrawerLayout mDrawerLayout;
     public String CITTA="All";
     public String SPECIALIZZAZIONE="All";
+    private static List<ParseObject> DOCTORSMAIN=null;
+    //Parameters shared by fragment goes in activity
+    private static int SIZEM=0;
+
+
     //###Important
 
 /*
@@ -87,6 +97,10 @@ Fragment fragment = new CityFragment();
 
                     }
                 });
+
+
+        //Download parse data
+        showDataM();
 
 
 
@@ -186,7 +200,20 @@ Fragment fragment = new CityFragment();
         super.onRestoreInstanceState(savedInstanceState);
 
     }
+    //downloading doctors from parse
+    public static void showDataM() {
+        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
+        try {
+            DOCTORSMAIN = query.find();
+            SIZEM=DOCTORSMAIN.size();
 
+            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORSMAIN.get(0).toString());
+            Log.d("DoctorListFragment", DOCTORSMAIN.size()+"" );
+        } catch (ParseException e) {
+            Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
+        }
+
+    }
     //android.app.Fragment fragment = getActivity().getFragmentManager().findFragmentByTag("YOUR_FRAGMENT_TAG");
     //getActivity().getFragmentManager().beginTransaction().hide(fragment);
 }

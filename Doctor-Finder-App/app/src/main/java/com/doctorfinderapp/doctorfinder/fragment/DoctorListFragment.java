@@ -16,6 +16,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
+import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -58,6 +59,7 @@ public class DoctorListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //adding data from Parse
+        //MainFragmentActivity.showData();
         showData();
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter();
@@ -77,6 +79,9 @@ public class DoctorListFragment extends Fragment {
 
             super(inflater.inflate(R.layout.doctor_item, parent, false));
 
+            //creation of doctor item
+            String id=(DOCTORS.get(index)).getString("FirstName");
+            Log.d("Main","creating"+id);
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
@@ -102,9 +107,32 @@ public class DoctorListFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
+
+                    Bundle Bundle_selected_doctor = new Bundle();
+
+                    //give parameters to start activity
+                    String id=(DOCTORS.get(index)).getString("_id");
+
+                    Log.d("Main","Showing "+id);
+
+                    Bundle_selected_doctor.putString("key", id); //Your id
+
+                    intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
                     context.startActivity(intent);
+
+                    /*
+
+                    //this code is for passing data to an activity
+
+                    Bundle b = new Bundle();
+                    b.putInt("key", 1); //Your id
+                        intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                     */
+
                 }
             });
 
@@ -133,11 +161,8 @@ public class DoctorListFragment extends Fragment {
         }
     }
 
-
-
-
     //downloading doctors from parse
-    private static void showData() {
+    public static void showData() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
         try {
             DOCTORS = query.find();
@@ -150,4 +175,7 @@ public class DoctorListFragment extends Fragment {
         }
 
     }
+
+
+
 }
