@@ -26,9 +26,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f8275ed-6ac9-4e17-be9e-c1b4f2393f3a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/FirstActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/FirstActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -2502,7 +2499,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455664423291</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated First activity">
+      <created>1455814466703</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1455814466703</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2599,7 +2602,8 @@
     <MESSAGE value="Prova Activity dottore...ditemi che ve ne pare" />
     <MESSAGE value="Last version, created also userprofile with a different xml (usable) in my opinion, this active on doctor profile, is better and also usable for the users with little chenge. #qurato" />
     <MESSAGE value="Last version, created also userprofile with a different xml (usable) in my opinion, this active on doctor profile, is better and also usable for the users with little changes. #qurato" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last version, created also userprofile with a different xml (usable) in my opinion, this active on doctor profile, is better and also usable for the users with little changes. #qurato" />
+    <MESSAGE value="Updated First activity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated First activity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
