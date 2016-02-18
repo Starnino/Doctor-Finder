@@ -250,6 +250,13 @@
 
         <include layout="@layout/item_divider" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20dp"
+            android:text="Gli amici che lo consigliano"
+            android:textColor="@color/black"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_friends"
                 android:scrollbars="horizontal"
