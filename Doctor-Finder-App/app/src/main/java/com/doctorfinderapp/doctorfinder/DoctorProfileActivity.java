@@ -29,6 +29,8 @@ public class DoctorProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Invia una mail a Dottore", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+
             }
         });
     }
