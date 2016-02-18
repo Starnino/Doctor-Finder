@@ -41,7 +41,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Cognome e Nome Dottore"
+                android:text="Lorenzo Gitto"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -88,7 +88,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Specializzazione pollo"
+                android:text="Chirurgia Toracica"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -101,7 +101,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Ulteriore specializzazione"
+                android:text="Chirurgia Vascolare"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -165,7 +165,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:text="15"
+                android:text="11"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -228,7 +228,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem4"
                 android:layout_toRightOf="@id/ivContactItem4"
-                android:text="Via pollame, 21"
+                android:text="Via del Porto, 21"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -344,7 +344,7 @@
                 android:layout_toEndOf="@id/ivContactItem6"
                 android:layout_toRightOf="@id/ivContactItem6"
                 android:maxLines="10"
-                android:text="Linkedin oppure Descrizione Descrizione Descrizione Descrizione  "
+                android:text="Vai Su linkedin per vedere le mie info e competenze...http://www.linkedin.com/NomeDottore  "
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
@@ -385,15 +385,6 @@
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="Videochiama"
                 />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:text="Segnala Dottore"
-                />
-
         </LinearLayout>
     </LinearLayout>
 
