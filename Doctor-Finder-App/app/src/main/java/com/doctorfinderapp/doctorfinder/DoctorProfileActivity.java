@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
@@ -40,6 +41,20 @@ public class DoctorProfileActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+
+        TextView name = (TextView) findViewById(R.id.tvNumber1);
+        TextView special = (TextView) findViewById(R.id.tvNumber2);
+        TextView years = (TextView) findViewById(R.id.years);
+        TextView workPlace = (TextView) findViewById(R.id.workPlace);
+        //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
+        TextView info = (TextView) findViewById(R.id.doctor_info);
+
+        name.setText("Martina Tritto");
+        special.setText("Oculista");
+        years.setText("7");
+        workPlace.setText("Via M. Prestinari, 17");
+        //name.setText("Martina Tritto");
+        info.setText("https://it.linkedin.com/in/martTritto1");
 
         //initialize more Persons
         persons = new ArrayList<>();

@@ -101,6 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Seleziona"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:id="@+id/select_city_button"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true" />
@@ -143,6 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Seleziona"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:id="@+id/select_spec_button"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true" />

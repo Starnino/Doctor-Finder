@@ -171,15 +171,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 .build();                   // Creates a CameraPosition from the builder
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-
-
-
-
-
-
-
-
-
     }
 
 
