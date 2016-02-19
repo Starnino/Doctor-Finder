@@ -46,10 +46,9 @@ Social networks connects people all around the world and we thought to use those
 * [Second survey](http://goo.gl/forms/SM149jvxNC)
 * [Results Second survey](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm) (Results continuously updated...)
 * [Presentation] ()
-* [Registration for health specialists](https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing) 
-* Friend's Tip
+* [Registration for health specialists](https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing)
 * [Improved Website](http://www.doctorfinderapp.com/)
-* [Instructions for download and install our APK] (https://drive.google.com/file/d/0B_cyDM3ySwG4WVdCZ2hmVGE1NWM/view?usp=sharing)
+* [Instructions for download and install our APK] (https://drive.google.com/file/d/0B_cyDM3ySwG4THZBVG9vMmJoUW8/view?usp=sharing)
 * [#2 Demo video] ()
 
 #Milestone 3 - Final
