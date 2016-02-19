@@ -75,6 +75,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
+
         TextView name = (TextView) findViewById(R.id.tvNumber1);
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);

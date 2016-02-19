@@ -1,11 +1,14 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,30 +28,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     private GoogleMap googleMap;
 
 
-    /*
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_maps, container, false);
-
-
-
-        SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map));
-        mapFragment.getMapAsync(this);
-
-        /*S
-        MAPFragment=mapFragment;
-        if (mapFragment==null) {
-            Log.v("gmap","Google map is null");
-        }*/
-        /*return view;
-
-
-
-
-    }*/
-
     @Override
     public void onMapReady(GoogleMap gMap) {
         googleMap=gMap;
@@ -57,13 +36,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             Log.v("gmap","Google map is null");
         }
 
-
-
         setUpMap(gMap);
 
     }
-
-
 
     @Override
     public void onResume() {
@@ -71,6 +46,15 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
         super.onResume();
         setUpMapIfNeeded();
+
+        /*googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(getActivity(), DoctorProfileActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
     }
     private void setUpMapIfNeeded() {
 
@@ -79,7 +63,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             getMapAsync(this);
         }
     }
-
 
     @Override
     public void onPause() {
@@ -119,50 +102,42 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         ArrayList<Marker> markers= new ArrayList<>();
 
 
-
         final Marker marker1 = gMap.addMarker(new MarkerOptions()
-                .position(new LatLng(41.923, 12.2300))
-                .title("Hello world1")
+                .position(new LatLng(41.922278, 12.488333))
+                .title("Dott. De Cillis")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
         final Marker marker2 = gMap.addMarker(new MarkerOptions()
-                .position(new LatLng(41.83, 12.2500))
-                .title("Hello world2")
+                .position(new LatLng(41.908255, 12.517306))
+                .title("Dott.ssa Tritto")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
 
         final Marker marker3 = gMap.addMarker(new MarkerOptions()
-                .position(new LatLng(41.8803922, 12.5398233))
-                .title("Hello world3")
+                .position(new LatLng(41.860814, 12.483226))
+                .title("Dott.ssa Salminto")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
 
         final Marker marker4 = gMap.addMarker(new MarkerOptions()
                 .position(new LatLng(41.8771792, 12.469348))
-                .title("Hello world4")
+                .title("Dott. Gitto")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
         final Marker marker5 = gMap.addMarker(new MarkerOptions()
                 .position(new LatLng(41.8947128, 12.4848708))
-                .title("Hello world5")
+                .title("Dott.ssa Canossa")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
         final Marker marker6 = gMap.addMarker(new MarkerOptions()
                 .position(new LatLng(41.9192198, 12.4671846))
-                .title("Hello world6")
+                .title("Dott.ssa Dezi")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+
         final Marker marker7 = gMap.addMarker(new MarkerOptions()
                 .position(new LatLng(41.8803922, 12.5398233))
-                .title("Hello world7")
+                .title("Dott. Maiese")
                 .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
 
         //fine creazione di marker
-
-        //prova 1
-        final Marker marker = gMap.addMarker(new MarkerOptions()
-                .position(ROMA)
-                .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
-
-
-
-
-        //animate camera
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(ROMA)      // Sets the center of the map to mi position
@@ -172,8 +147,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
     }
-
-
 
     public Bitmap resizeMarker(int id,int width){
 

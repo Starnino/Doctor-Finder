@@ -104,7 +104,7 @@ public class DoctorListFragment extends Fragment {
 
             //find and set rating view
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            ratingBar.setRating(5.0f);
+            ratingBar.setRating((5.0f+index)/(2*(index+1))+1.5f);
 
             //Log.d("List", "INDEX" + index);
             //Log.d("List","INDEXLocale"+IndexLocale);
