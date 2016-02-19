@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:id="@+id/flogin2"
-            android:text="@string/action_login_with_facebook"
+            android:text="Signup con Facebook"
             android:backgroundTint="@color/com_facebook_blue"
             android:textColor="@color/white"
             android:textAllCaps="false"

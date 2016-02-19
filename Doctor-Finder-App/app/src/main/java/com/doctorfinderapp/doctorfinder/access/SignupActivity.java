@@ -129,7 +129,7 @@ public class SignupActivity extends AppCompatActivity {
                                 startActivity(intent);
 
                             } else {
-
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                                 Log.v(TAG, "errore");
                                 Log.v(TAG, e.toString());
                                 // Sign up didn't succeed. Look at the ParseException
@@ -188,7 +188,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                             //new LongOperation().execute(user);
-                            Intent intent = new Intent(SignupActivity.this, ResultsActivity.class);
+                            Intent intent = new Intent(SignupActivity.this, MainFragmentActivity.class);
 
                             startActivity(intent);
 
