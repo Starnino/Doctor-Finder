@@ -57,6 +57,7 @@
         <activity android:name=".access.FirstActivity" />
         <activity android:name=".access.SignupActivity" />
         <activity android:name=".MainFragmentActivity" />
+        <activity android:name=".FeedbackItemActivity"/>
 
         <activity
             android:name=".ResultsActivity"
@@ -83,9 +84,7 @@
             android:name=".DoctorProfileActivity"
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.app.AlertDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 
 public class FeedbackItemActivity extends AppCompatActivity {
 
@@ -16,15 +18,11 @@ public class FeedbackItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //alert
-        alert = new AlertDialog.Builder(FeedbackItemActivity.this);
-        alert.setTitle("Vuoi lasciare un feedback?");
-        alert.setMessage("Clicca la stella sulla a destra e scrivi il tuo feedback!");
-        alert.setPositiveButton("Ok", null);
-        alert.setNegativeButton("No",null);
-        alert.show();
-
+        //set status bar color because in xml don't work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
         setContentView(R.layout.activity_scrolling_feedback);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -34,8 +32,13 @@ public class FeedbackItemActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Scrivi il tuo feedback", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                alert = new AlertDialog.Builder(FeedbackItemActivity.this);
+                alert.setTitle("Vuoi lasciare un feedback?");
+                alert.setMessage("Puoi lasciare un feedback soltanto se precedentemente sei stato paziente di questo dottore!");
+                alert.setPositiveButton("Ok", null);
+                alert.setNegativeButton("No", null);
+                alert.setIcon(R.drawable.ic_star_rate_white_18dp);
+                alert.show();
             }
         });
     }

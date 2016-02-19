@@ -41,7 +41,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Cognome e Nome Dottore"
+                android:text="Martina Tritto"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -88,7 +88,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Specializzazione:"
+                android:text="Specializzazione: Odontoiatria"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -101,7 +101,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem2"
                 android:layout_toRightOf="@id/ivContactItem2"
-                android:text="Ulteriore specializzazione"
+                android:text="Interdentistica"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272"
                 android:id="@+id/tvNumber2" />
@@ -134,8 +134,8 @@
 
             <ImageView
                 android:id="@+id/ivContactItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -197,8 +197,8 @@
 
             <ImageView
                 android:id="@+id/ivContactItem4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -278,8 +278,8 @@
 
             <ImageView
                 android:id="@+id/ivContactItem5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -293,20 +293,19 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem5"
-                android:layout_toLeftOf="@+id/chkState5"
+
                 android:layout_toRightOf="@id/ivContactItem5"
-                android:layout_toStartOf="@+id/chkState5"
+
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Punteggio Feedback"
                 android:clickable="true"
-                android:onClick="feedbackfunction"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"
                 />
 
-            <ToggleButton
-                android:id="@+id/chkState5"
+            <ImageButton
+                android:id="@+id/feedback_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
@@ -314,11 +313,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_book_white_24dp"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:checked="true"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
+                android:padding="6dp" />
 
         </RelativeLayout>
 
@@ -331,8 +328,8 @@
 
             <ImageView
                 android:id="@+id/ivContactItem6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"

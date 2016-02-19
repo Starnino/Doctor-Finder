@@ -8,7 +8,8 @@
     android:padding="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling_feedback">
+    tools:showIn="@layout/activity_scrolling_feedback"
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:id="@+id/feedback"
@@ -26,12 +27,12 @@
 
             <ImageView
                 android:id="@+id/ivContactItem1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/p1"
+                android:src="@drawable/starnino"
                 android:visibility="visible" />
 
             <TextView
@@ -55,24 +56,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Educatissimo e discreto! Davvero una persona competente"
+                android:text="Educatissima e discreta! Davvero una persona competente"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
-
-            <ToggleButton
-                android:id="@+id/chkState1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
 
         </RelativeLayout>
 
@@ -88,12 +75,12 @@
 
             <ImageView
                 android:id="@+id/ivContactItem2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/p2"
+                android:src="@drawable/giampa"
                 android:visibility="visible" />
 
             <TextView
@@ -121,20 +108,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
-            <ToggleButton
-                android:id="@+id/chkState2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:checked="false"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
 
         </RelativeLayout>
 
@@ -150,12 +123,12 @@
 
             <ImageView
                 android:id="@+id/ivContactItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/p3"
+                android:src="@drawable/vindel"
                 android:visibility="visible" />
 
             <TextView
@@ -183,20 +156,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
-            <ToggleButton
-                android:id="@+id/chkState3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:checked="false"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
 
         </RelativeLayout>
 
@@ -212,12 +171,12 @@
 
             <ImageView
                 android:id="@+id/ivContactItem4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/p4"
+                android:src="@drawable/jessica"
                 android:visibility="visible" />
 
             <TextView
@@ -245,26 +204,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
-            <ToggleButton
-                android:id="@+id/chkState4"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:checked="false"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
 
         </RelativeLayout>
 
 
         <include layout="@layout/item_divider" />
-
 
 
     </LinearLayout>

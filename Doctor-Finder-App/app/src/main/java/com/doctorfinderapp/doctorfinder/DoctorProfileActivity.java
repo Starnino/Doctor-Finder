@@ -1,5 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,8 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 
@@ -23,9 +27,18 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private PersonAdapter mAdapter;
     private List<Person> persons;
 
+    private ImageButton feedButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //set status bar color because in xml don't work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+
         setContentView(R.layout.activity_scrolling);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,20 +54,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
-        TextView name = (TextView) findViewById(R.id.tvNumber1);
-        TextView special = (TextView) findViewById(R.id.tvNumber2);
-        TextView years = (TextView) findViewById(R.id.years);
-        TextView workPlace = (TextView) findViewById(R.id.workPlace);
-        //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
-        TextView info = (TextView) findViewById(R.id.doctor_info);
-
-        name.setText("Martina Tritto");
-        special.setText("Oculista");
-        years.setText("7");
-        workPlace.setText("Via M. Prestinari, 17");
-        //name.setText("Martina Tritto");
-        info.setText("https://it.linkedin.com/in/martTritto1");
 
         //initialize more Persons
         persons = new ArrayList<>();
@@ -73,7 +72,15 @@ public class DoctorProfileActivity extends AppCompatActivity {
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
 
-
+        feedButton = (ImageButton) findViewById(R.id.feedback_button);
+        feedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DoctorProfileActivity.this,
+                                            FeedbackItemActivity.class);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
