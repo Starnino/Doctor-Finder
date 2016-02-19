@@ -1,7 +1,6 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -9,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ import java.util.Collections;
 public class CityFragment extends ListFragment implements AdapterView.OnItemClickListener{
 
     private SpecializationAdapter adapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
@@ -50,13 +48,24 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         ImageView icon  = (ImageView) view.findViewById(R.id.specialization_icon);
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
 
+        /**provvisorio*/
+        TextView city = (TextView) getActivity().findViewById(R.id.city_text);
+        city.setText("Roma");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Doctor Finder");
+        /***/
+
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) + " selezionata", Toast.LENGTH_SHORT)
                 .show();
-        Intent intent = new Intent(getActivity(),ResultsActivity.class);
-        startActivity(intent);
 
+        //Intent intent = new Intent(getActivity(),ResultsActivity.class);
+        //startActivity(intent);
+        closeFragment();
         //item selected now must return to main activity
         //finish();
+    }
+
+    public void closeFragment(){
+        getActivity().getFragmentManager().beginTransaction().remove(this).commit();
     }
 }

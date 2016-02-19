@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -62,6 +63,18 @@ Fragment fragment = new CityFragment();
         }
 
         setContentView(R.layout.activity_start_fragment_list_layout);
+
+        FloatingActionButton ButtonMain = (FloatingActionButton) findViewById(R.id.fabmain);
+
+        ButtonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainFragmentActivity.this,
+                                            ResultsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button specalization_button = (Button) findViewById(R.id.select_city_button);
         specalization_button
                 .setOnClickListener(new View.OnClickListener() {
@@ -103,9 +116,9 @@ Fragment fragment = new CityFragment();
         showDataM();
 
 
-
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+
 
         // Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();

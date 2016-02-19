@@ -1,11 +1,7 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +9,9 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.adapter.SpecializationAdapter;
 
 import java.util.ArrayList;
@@ -61,12 +55,12 @@ public class SpecialFragment extends ListFragment implements AdapterView.OnItemC
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) +" selezionata", Toast.LENGTH_SHORT)
                 .show();
-
+        onDestroy();
        // Fragment fragment = new CityFragment();
         //FragmentManager fm = getFragmentManager();
         //fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
-        Intent intent = new Intent(getActivity(),ResultsActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(getActivity(),ResultsActivity.class);
+        //startActivity(intent);
     }
 
     @Override
