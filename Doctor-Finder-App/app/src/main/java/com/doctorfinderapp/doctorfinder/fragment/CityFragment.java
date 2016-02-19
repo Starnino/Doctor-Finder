@@ -27,6 +27,7 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         View view = inflater.inflate(R.layout.special_fragment, viewGroup, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Seleziona Città");
         return view;
+        //dio porco
     }
 
     @Override
