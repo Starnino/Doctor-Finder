@@ -28,11 +28,12 @@ Social networks connects people all around the world and we thought to use those
 
 * [Keep in contact!](https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing)
 
-<img src="http://i.imgur.com/xiWW6Hv.png" height="480" width="285"/>
-<img src="http://i.imgur.com/6VHumjJ.png" height="480" width="285"/> 
-<img src="http://i.imgur.com/vaZ1QQr.png" height="480" width="285"/>
-
-
+<img src="http://imgur.com/KjQ9XQs" height="480" width="285"/>
+<img src="http://imgur.com/RwcFcc5" height="480" width="285"/> 
+<img src="http://imgur.com/6vWQjr7" height="480" width="285"/>
+<img src="http://imgur.com/BxZUFMi" height="480" width="285"/>
+<img src="http://imgur.com/JC5T6wq" height="480" width="285"/> 
+<img src="http://imgur.com/7GShgmT" height="480" width="285"/>
 
 #Milestone 1 - Proof of Concept
 
