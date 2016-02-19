@@ -37,7 +37,7 @@ public class MainFragmentActivity extends AppCompatActivity  {
     private DrawerLayout mDrawerLayout;
     public String CITTA="All";
     public String SPECIALIZZAZIONE="All";
-    private static List<ParseObject> DOCTORSMAIN=null;
+    static List<ParseObject> DOCTORSMAIN=null;
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
 
@@ -180,11 +180,11 @@ Fragment fragment = new CityFragment();
             case R.id.exit:
                super.finish();
             case R.id.action_settings:
-                Intent intent2 = new Intent(MainFragmentActivity.this, ResultsActivity.class);
-                startActivity(intent2);
+                //Intent intent2 = new Intent(MainFragmentActivity.this, ResultsActivity.class);
+                //startActivity(intent2);
             case R.id.like:
-                Intent intent3 = new Intent(MainFragmentActivity.this, DoctorProfileActivity.class);
-                startActivity(intent3);
+                //Intent intent3 = new Intent(MainFragmentActivity.this, DoctorProfileActivity.class);
+                //startActivity(intent3);
 
         }
     }

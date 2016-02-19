@@ -79,6 +79,8 @@ public class DoctorListFragment extends Fragment {
 
             super(inflater.inflate(R.layout.doctor_item, parent, false));
 
+            final int IndexLocale=index;
+
             //creation of doctor item
             String id=(DOCTORS.get(index)).getString("FirstName");
             Log.d("Main","creating"+id);
@@ -95,7 +97,7 @@ public class DoctorListFragment extends Fragment {
             profile.setImageResource(fotoId[index]);
 
             //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
-            index++;
+
             name.setText(nameString);
             special.setText(specialString.substring(1,specialString.length()-1));
             //feedback.setText(feedbackString);
@@ -104,21 +106,24 @@ public class DoctorListFragment extends Fragment {
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             ratingBar.setRating(5.0f);
 
+            Log.d("List", "INDEX" + index);
+            Log.d("List","INDEXLocale"+IndexLocale);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Log.d("Listonclick", "INDEX" + index);
+                    Log.d("Listonclick","INDEXLocale"+IndexLocale);
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
 
                     Bundle Bundle_selected_doctor = new Bundle();
 
                     //give parameters to start activity
-                    String id=(DOCTORS.get(index)).getString("_id");
+                    String id=(DOCTORS.get(IndexLocale)).getObjectId();
 
                     Log.d("Main","Showing "+id);
 
-                    Bundle_selected_doctor.putString("key", id); //Your id
+                    Bundle_selected_doctor.putString("id", id); //Your id
 
                     intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
                     context.startActivity(intent);
@@ -136,7 +141,7 @@ public class DoctorListFragment extends Fragment {
                 }
             });
 
-
+            index++;
         }
     }
 
@@ -168,7 +173,7 @@ public class DoctorListFragment extends Fragment {
             DOCTORS = query.find();
             SIZE=DOCTORS.size();
 
-            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.get(0).toString());
+            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.size());
             Log.d("DoctorListFragment", DOCTORS.size()+"" );
         } catch (ParseException e) {
             Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);

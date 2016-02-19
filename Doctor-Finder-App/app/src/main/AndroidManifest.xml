@@ -57,11 +57,8 @@
         <activity android:name=".access.FirstActivity" />
         <activity android:name=".access.SignupActivity" />
         <activity android:name=".MainFragmentActivity" />
+        <activity android:name=".ResultsActivity" />
         <activity android:name=".FeedbackItemActivity"/>
-
-        <activity
-            android:name=".ResultsActivity"
-            />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -78,7 +75,6 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="wIgqO6QfRM4vFuD3pWJi" />
-
 
         <activity
             android:name=".DoctorProfileActivity"

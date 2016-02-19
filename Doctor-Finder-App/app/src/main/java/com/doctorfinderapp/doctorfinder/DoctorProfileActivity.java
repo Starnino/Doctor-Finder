@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,24 @@ public class DoctorProfileActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_scrolling);
+        //get parameters from activity
+        Bundle b = getIntent().getExtras();
+        String id = b.getString("id");
+
+
+        ParseObject doctor=new ParseObject("Doctor");
+        //tvNumber1"
+        TextView name = (TextView) findViewById(R.id.tvNumber1);
+        for(int i=0;i<MainFragmentActivity.DOCTORSMAIN.size();i++){
+            if(MainFragmentActivity.DOCTORSMAIN.get(i).getObjectId()==id){
+                Log.d("Doctor","object id "+MainFragmentActivity.DOCTORSMAIN.get(i).getObjectId());
+                Log.d("Doctor","id "+id);
+                doctor=MainFragmentActivity.DOCTORSMAIN.get(i);
+            }
+        }
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +74,27 @@ public class DoctorProfileActivity extends AppCompatActivity {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        //TextView name = (TextView) findViewById(R.id.tvNumber1);
+        TextView special = (TextView) findViewById(R.id.tvNumber2);
+        TextView years = (TextView) findViewById(R.id.years);
+        TextView workPlace = (TextView) findViewById(R.id.workPlace);
+        //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
+        TextView info = (TextView) findViewById(R.id.doctor_info);
+
+        //name.setText("Martina Tritto");
+        //special.setText("Oculista");
+        years.setText("7");
+        workPlace.setText("Via M. Prestinari, 17");
+        //name.setText("Martina Tritto");
+        info.setText("https://it.linkedin.com/in/martTritto1");
+
+        String nameString = doctor.getString("FirstName");
+        Log.d("Doctor", "showing profile of " + nameString + id);
+        name.setText(nameString);
+        String specialString = doctor.getList("Specialization").subList(0,1).toString();
+        special.setText(specialString.substring(1, specialString.length() - 1));
 
 
         //initialize more Persons
@@ -77,7 +119,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DoctorProfileActivity.this,
-                                            FeedbackItemActivity.class);
+                        FeedbackItemActivity.class);
                 startActivity(intent);
             }
         });

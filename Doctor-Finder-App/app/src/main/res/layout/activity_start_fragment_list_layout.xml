@@ -44,8 +44,8 @@
 
 
         </FrameLayout>
-
     </RelativeLayout>
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -56,4 +56,5 @@
         app:menu="@menu/menu_navigation"
         android:fitsSystemWindows="true"
         android:background="@color/grey"/>
+
 </android.support.v4.widget.DrawerLayout>
