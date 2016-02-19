@@ -83,7 +83,7 @@ public class DoctorListFragment extends Fragment {
 
             //creation of doctor item
             String id=(DOCTORS.get(index)).getString("FirstName");
-            Log.d("Main","creating"+id);
+            //Log.d("Main","creating"+id);
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
@@ -106,13 +106,13 @@ public class DoctorListFragment extends Fragment {
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             ratingBar.setRating(5.0f);
 
-            Log.d("List", "INDEX" + index);
-            Log.d("List","INDEXLocale"+IndexLocale);
+            //Log.d("List", "INDEX" + index);
+            //Log.d("List","INDEXLocale"+IndexLocale);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Listonclick", "INDEX" + index);
-                    Log.d("Listonclick","INDEXLocale"+IndexLocale);
+                    //Log.d("Listonclick", "INDEX" + index);
+                    //Log.d("Listonclick","INDEXLocale"+IndexLocale);
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
 
