@@ -76,14 +76,14 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
 
 
-        TextView name = (TextView) findViewById(R.id.tvNumber1);
+        TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);
         TextView workPlace = (TextView) findViewById(R.id.workPlace);
         //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
         TextView info = (TextView) findViewById(R.id.doctor_info);
 
-        name.setText("Martina Tritto");
+        nameProfile.setText("Martina Tritto");
         special.setText("Oculista");
         years.setText("7");
         workPlace.setText("Via M. Prestinari, 17");
@@ -92,7 +92,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         String nameString = doctor.getString("FirstName");
         Log.d("Doctor", "showing profile of " + nameString + id);
-        name.setText(nameString);
+        //name.setText(nameString);
 //        String specialString = doctor.getList("Specialization").subList(0,1).toString();
         //special.setText(specialString.substring(1, specialString.length() - 1));
 
