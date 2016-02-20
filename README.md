@@ -28,6 +28,14 @@ Social networks connects people all around the world and we thought to use those
 
 * [Keep in contact!](https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing)
 
+<img src="http://i.imgur.com/u0FMmUV.png" height="480" width="285"/>
+<img src="http://i.imgur.com/mRupjv4.png" height="480" width="285"/> 
+<img src="http://i.imgur.com/Za4hicd.png" height="480" width="285"/> <br>
+
+<img src="http://i.imgur.com/88DQnPB.jpg" height="480" width="285"/>
+<img src="http://i.imgur.com/o3p6wUz.png" height="480" width="285"/> 
+<img src="http://i.imgur.com/YQ5Chnm.png" height="480" width="285"/>
+
 #Milestone 1 - Proof of Concept
 
 * [First survey](http://www.survio.com/survey/d/F7N6K8Y2D5X5W9Q9N)
