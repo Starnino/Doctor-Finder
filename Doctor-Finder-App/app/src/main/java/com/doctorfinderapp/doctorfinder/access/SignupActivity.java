@@ -214,6 +214,8 @@ public class SignupActivity extends AppCompatActivity {
                                     "Signed up",
                                     Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
+                            //todo control if mail of user exists
+                            //todo if exists link
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");

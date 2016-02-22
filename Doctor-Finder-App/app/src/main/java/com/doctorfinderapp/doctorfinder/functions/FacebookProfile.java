@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +13,13 @@ import com.facebook.HttpMethod;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.json.JSONException;
+
+import java.text.ParseException;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -89,6 +95,24 @@ public class FacebookProfile {
     public static void getFriends(ParseUser user){
 
     }
+
+    //link current user to facebook account
+    public static void Link(ParseUser  user,Activity a){
+        List<String> permissions = Arrays.asList("email", "public_profile");
+        if (!ParseFacebookUtils.isLinked(user)) {
+            ParseFacebookUtils.linkWithReadPermissionsInBackground(user, a, permissions, new SaveCallback() {
+                @Override
+                public void done(com.parse.ParseException ex) {
+                    ParseUser user1=ParseUser.getCurrentUser();
+                    if (ParseFacebookUtils.isLinked(user1)) {
+                        Log.d("MyApp", "Woohoo, user logged in with Facebook!");
+                    }
+                }
+            });
+        }
+    }
+
+
 
     /*
 
