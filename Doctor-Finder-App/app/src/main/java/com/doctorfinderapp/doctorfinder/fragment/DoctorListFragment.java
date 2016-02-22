@@ -37,19 +37,6 @@ public class DoctorListFragment extends Fragment {
     private static int SIZE=0;
     private static int index=0;
 
-    /*// Generate sample data
-
-    String[] name = new String[]{"Lorenzo Gitto", "Marco dell'Aquila", "Francesco Maiese", "Elena Dezi", "Wassim Arleo", "Marco Frison",
-            "Mirim Renati", "Alexandra Zanni", "Stefania Bianchin", "Michele Benevento", "Francesco Silla", "Milena D'Arco", "Enzo Gatta",
-            "Sofia Mancini", "Marco La Casa", "Antonio Russo"};
-
-    String[] special = new String[]{"Dermatologist", "Cardiologist", "Dentist", "Dermatologist", "Medical Geneticist", "Dentist", "Dentist",
-            "Cardiologist", "Dermatologist", "Dermatologist", "Cardiologist", "Allergist", "Medical Geneticist", "Allergist", "Cardiologist",
-            "Medical Geneticist"};
-
-    String[] feedback = new String[]{"**", "****", "*", "***", "****", "**", "*", "***", "***", "****", "****", "**", "*", "*", "***", "****"};
-    */
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,15 +70,15 @@ public class DoctorListFragment extends Fragment {
 
             //creation of doctor item
             String id=(DOCTORS.get(index)).getString("FirstName");
-            //Log.d("Main","creating"+id);
+            Log.d("Main","creating"+id);
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
             TextView special = (TextView) itemView.findViewById(R.id.special);
             String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
             //------
-            /*TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
-            String feedbackString = "*  *  *";*/
+            //TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
+
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
             int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
             profile.setImageResource(fotoId[index]);
@@ -106,8 +93,7 @@ public class DoctorListFragment extends Fragment {
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             ratingBar.setRating((5.0f+index)/(2*(index+1))+1.5f);
 
-            //Log.d("List", "INDEX" + index);
-            //Log.d("List","INDEXLocale"+IndexLocale);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -171,6 +157,8 @@ public class DoctorListFragment extends Fragment {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
         try {
             DOCTORS = query.find();
+
+            //todo find in background
             SIZE=DOCTORS.size();
 
             Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.size());

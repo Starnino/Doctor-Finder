@@ -249,6 +249,24 @@ public class SignupActivity extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {}
     }
 */
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
+
+
+
 }
 
 
