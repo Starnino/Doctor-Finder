@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -152,7 +153,11 @@ public class ResultsActivity extends AppCompatActivity  {
                 super.finish();
             case R.id.about:
 
-                //caricare sito
+            case R.id.profile:
+               // Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
+                //startActivity(intent_user);
+
+            //caricare sito
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
