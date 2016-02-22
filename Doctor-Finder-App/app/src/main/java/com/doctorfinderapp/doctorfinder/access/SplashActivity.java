@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
 import java.util.Timer;
@@ -76,7 +77,30 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+    }
+
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
 
 
 

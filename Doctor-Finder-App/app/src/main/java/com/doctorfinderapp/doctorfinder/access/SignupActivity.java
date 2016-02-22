@@ -116,7 +116,8 @@ public class SignupActivity extends AppCompatActivity {
                     user.setUsername(email_string);
                     user.setPassword(password_string);
                     user.setEmail(email_string);
-                    user.put(fName, lName);
+                    user.put("fName", lName);
+                    user.put("lName", lName);
                     //make progress bar visible only when signup in background
                     progressBar.setVisibility(View.VISIBLE);
                     user.signUpInBackground(new SignUpCallback() {
