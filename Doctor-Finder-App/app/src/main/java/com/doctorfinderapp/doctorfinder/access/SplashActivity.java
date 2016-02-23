@@ -97,11 +97,7 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-    }
 
 
 

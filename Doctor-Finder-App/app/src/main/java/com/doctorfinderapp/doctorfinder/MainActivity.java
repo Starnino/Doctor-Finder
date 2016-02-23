@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity  {
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
                 startActivity(intent);
             case R.id.exit:
                super.finish();

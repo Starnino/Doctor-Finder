@@ -34,8 +34,12 @@ public class FacebookProfile {
 
     private static com.parse.ParseException ret = null;
 
+
+
+
+
     // Function to get information from FBuser and put them in user
-    public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {
+    /*public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {
         //final View vi = v;
         final ParseUser user = Puser;
 
@@ -111,7 +115,7 @@ public class FacebookProfile {
     }
 
 
-
+*/
     /*
 
     For Android, your code to make your users query-able by Facebook ID would look like this:
@@ -160,5 +164,29 @@ Request.executeMyFriendsRequestAsync(ParseFacebookUtils.getSession(), new Reques
     }
   }
 });
+     */
+
+    /*example asynctask
+    private class DownloadFilesTask extends AsyncTask<URL, Integer, Long> {
+     protected Long doInBackground(URL... urls) {
+         int count = urls.length;
+         long totalSize = 0;
+         for (int i = 0; i < count; i++) {
+             totalSize += Downloader.downloadFile(urls[i]);
+             publishProgress((int) ((i / (float) count) * 100));
+             // Escape early if cancel() is called
+             if (isCancelled()) break;
+         }
+         return totalSize;
+     }
+
+     protected void onProgressUpdate(Integer... progress) {
+         setProgressPercent(progress[0]);
+     }
+
+     protected void onPostExecute(Long result) {
+         showDialog("Downloaded " + result + " bytes");
+     }
+ }
      */
 }

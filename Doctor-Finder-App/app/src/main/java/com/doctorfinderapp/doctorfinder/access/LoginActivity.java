@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,12 +17,17 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
+
+import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +58,15 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
+
+        //code to permit facebook request
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+
         // Get the view from xml
         setContentView(R.layout.activity_login);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -139,11 +154,25 @@ public class LoginActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.INVISIBLE);
 
                             //facebook things
-                            try {
-                                FacebookProfile.getFacebookThings(user);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+
+                            GraphRequest request = GraphRequest.newMeRequest(
+                                    AccessToken.getCurrentAccessToken(),
+                                    new GraphRequest.GraphJSONObjectCallback() {
+                                        @Override
+                                        public void onCompleted(
+                                                JSONObject object,
+                                                GraphResponse response) {
+                                            Log.d("Graph Response", "user = " + object.toString());
+                                            // Application code
+                                        }
+                                    });
+                            Bundle parameters = new Bundle();
+                            parameters.putString("fields", "id,name,link");
+                            request.setParameters(parameters);
+                            request.executeAsync();
+
+
+
                             //*///todo facebook things
 
                             Toast.makeText(getApplicationContext(),
