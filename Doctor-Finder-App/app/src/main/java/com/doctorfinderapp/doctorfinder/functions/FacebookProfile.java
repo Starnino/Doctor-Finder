@@ -39,11 +39,9 @@ public class FacebookProfile {
         //final View vi = v;
         final ParseUser user = Puser;
 
-        // Prelevo informazioni da facebook
+
         Bundle parameters = new Bundle();
 
-
-        //prendo l'id dell'user
         String userId = user.getObjectId();
 
         // parameters from facebook
@@ -64,7 +62,7 @@ public class FacebookProfile {
 
                     // Inserisco le info nel ParseUser
                     user.setEmail(email);
-                    user.put("name", name.trim());
+                    user.put("facebookName", name.trim());
 
                     try {
 

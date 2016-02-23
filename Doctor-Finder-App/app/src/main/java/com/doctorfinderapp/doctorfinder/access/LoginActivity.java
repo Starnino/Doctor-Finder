@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -132,12 +133,11 @@ public class LoginActivity extends AppCompatActivity {
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
 
 
-
                     @Override
                     public void done(ParseUser user, ParseException err) {
                         if (user == null) {
                             Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                            Log.d("MyApp", "errore parse"+err.toString());
+                            Log.d("MyApp", "errore parse" + err.toString());
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else if (user.isNew()) {
@@ -147,6 +147,11 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
                             progressBar.setVisibility(View.INVISIBLE);
+                            /*try {
+                                FacebookProfile.getFacebookThings(user);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }*///todo facebook things
 
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
