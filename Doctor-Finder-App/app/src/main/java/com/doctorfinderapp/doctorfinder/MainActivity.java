@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onRestoreInstanceState(savedInstanceState);
 
     }
+
     //downloading doctors from parse
     public static void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
