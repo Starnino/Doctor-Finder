@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,8 +44,8 @@ public class SplashActivity extends AppCompatActivity {
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 if (currentUser != null) {
 
-
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                                                                    //TODO PROVVISORIO
+                    Intent intent = new Intent(SplashActivity.this, ResultsActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
