@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity  {
     public String CITTA="All";
     public String SPECIALIZZAZIONE="All";
     static List<ParseObject> DOCTORSMAIN=null;
+
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
     private FloatingActionButton fab;
