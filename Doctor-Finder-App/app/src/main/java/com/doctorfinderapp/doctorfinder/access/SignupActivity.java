@@ -35,6 +35,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText password;
     private EditText repeatPassword;
     private static final String TAG = "SignupActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

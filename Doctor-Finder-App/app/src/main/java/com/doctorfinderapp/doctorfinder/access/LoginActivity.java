@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
     private GoogleApiClient client;
+    private ImageButton close;
 
 
 
@@ -149,6 +150,14 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
 
+        });
+
+        //close activity
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
         });
 
     }
