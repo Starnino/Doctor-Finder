@@ -71,7 +71,9 @@
             android:isIndicator="true"
             android:numStars="5"
             android:layout_below="@+id/special"
-            android:rating="2" />
+            android:rating="4"
+            android:scaleX="0.5"
+            android:scaleY="0.5"/>
     </LinearLayout>
 
 

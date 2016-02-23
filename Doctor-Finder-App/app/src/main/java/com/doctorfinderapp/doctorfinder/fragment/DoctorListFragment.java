@@ -2,7 +2,6 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,10 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
-import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -46,7 +42,7 @@ public class DoctorListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //adding data from Parse
-        //MainFragmentActivity.showData();
+        //MainActivity.showData();
         showData();
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter();

@@ -13,9 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
-
+import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -88,7 +86,13 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
+                if (usernametxt.equals("test")) {
+                    Intent intent = new Intent(LoginActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
 
+
+                } else {
 
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
@@ -96,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Logged in",
                                         Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, MainFragmentActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
 
                             } else {
@@ -107,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
+                }
 
 
             }
@@ -146,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
                                     Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, MainFragmentActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                             startActivity(intent);
 

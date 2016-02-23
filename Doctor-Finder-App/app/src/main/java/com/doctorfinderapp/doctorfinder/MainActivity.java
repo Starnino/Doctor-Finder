@@ -1,16 +1,11 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -18,12 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.fragment.CityFragment;
-import com.doctorfinderapp.doctorfinder.fragment.SpecialFragment;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -33,7 +26,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 
-public class MainFragmentActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     private DrawerLayout mDrawerLayout;
     public String CITTA="All";
@@ -41,86 +34,40 @@ public class MainFragmentActivity extends AppCompatActivity  {
     static List<ParseObject> DOCTORSMAIN=null;
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
+    private Boolean isFabOpen = false;
+    private FloatingActionButton fab,fab1,fab2;
+    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
-
-    //###Important
-
-/*
-Code to change between a fragment and another
-Fragment fragment = new CityFragment();
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
- */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //set status bar color because in xml don't work
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
-
-        setContentView(R.layout.activity_start_fragment_list_layout);
-
-        FloatingActionButton ButtonMain = (FloatingActionButton) findViewById(R.id.fabmain);
-
-        ButtonMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainFragmentActivity.this,
-                                            ResultsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button specalization_button = (Button) findViewById(R.id.select_city_button);
-        specalization_button
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //code to show fragment
-                        Log.v("Activity", "Spec button pressed fragment incoming");
-                        Fragment fragment = new SpecialFragment();
-                        FragmentManager fm = getFragmentManager();
-                        fm.beginTransaction()
-                                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                                .replace(R.id.MainFragment, fragment)
-                                .commit();
-
-                    }
-                });
-        Button city_button = (Button) findViewById(R.id.select_spec_button);
-        specalization_button
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //code to show fragment
-                        Log.v("Activity", "City button pressed fragment incoming");
-                        Fragment fragment = new CityFragment();
-                        FragmentManager fm = getFragmentManager();
-                        fm.beginTransaction()
-                                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                                .replace(R.id.MainFragment, fragment)
-                                .commit();
-                        // Fragment fragment = new CityFragment();
-                        //FragmentManager fm = getFragmentManager();
-                        //fm.beginTransaction().replace(R.id.list_fragment, fragment).commit();
-
-                    }
-                });
-
-
-        //Download parse data
-        showDataM();
-
+        setContentView(R.layout.activity_main);
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+        //find fab buttons
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
 
-        // Adding menu icon to Toolbar
+        //load animation
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+
+        //onClick button
+        fab.setOnClickListener(this);
+        fab1.setOnClickListener(this);
+        fab2.setOnClickListener(this);
+
+        //Download parse data
+        showDataM();
+
+        /*Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
@@ -143,9 +90,7 @@ Fragment fragment = new CityFragment();
                     }
                 });
 
-
-        //funct to show city fragment
-
+*/
     }
 
     //respond to toolbar actions
@@ -158,7 +103,7 @@ Fragment fragment = new CityFragment();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-            /**TODO*/
+
         } else if (id == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
@@ -188,16 +133,13 @@ Fragment fragment = new CityFragment();
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainFragmentActivity.this, SplashActivity.class);
+                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                 startActivity(intent);
             case R.id.exit:
                super.finish();
             case R.id.action_settings:
-                //Intent intent2 = new Intent(MainFragmentActivity.this, ResultsActivity.class);
-                //startActivity(intent2);
             case R.id.like:
-                //Intent intent3 = new Intent(MainFragmentActivity.this, DoctorProfileActivity.class);
-                //startActivity(intent3);
+
 
         }
     }
@@ -227,6 +169,50 @@ Fragment fragment = new CityFragment();
         }
 
     }
-    //android.app.Fragment fragment = getActivity().getFragmentManager().findFragmentByTag("YOUR_FRAGMENT_TAG");
-    //getActivity().getFragmentManager().beginTransaction().hide(fragment);
+
+
+    @Override //onClick button
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch(id){
+            case R.id.fab:
+                animateFAB();
+                break;
+
+            case R.id.fab1:
+                //TODO
+                break;
+
+            case R.id.fab2:
+                //TODO
+                break;
+        }
+    }
+
+    public void animateFAB(){
+
+        if(isFabOpen){
+
+            fab.startAnimation(rotate_backward);
+            fab1.startAnimation(fab_close);
+            fab2.startAnimation(fab_close);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            isFabOpen = false;
+            Log.d("button", "close");
+
+        } else {
+
+            fab.startAnimation(rotate_forward);
+            fab1.startAnimation(fab_open);
+            fab2.startAnimation(fab_open);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            isFabOpen = true;
+            Log.d("button","open");
+
+        }
+    }
+
 }

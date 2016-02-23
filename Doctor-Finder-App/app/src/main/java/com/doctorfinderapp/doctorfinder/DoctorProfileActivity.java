@@ -15,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.parse.ParseObject;
@@ -50,11 +49,11 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         ParseObject doctor=new ParseObject("Doctor");
 
-        for(int i=0;i<MainFragmentActivity.DOCTORSMAIN.size();i++){
-            if(MainFragmentActivity.DOCTORSMAIN.get(i).getObjectId()==id){
-                Log.d("Doctor","object id "+MainFragmentActivity.DOCTORSMAIN.get(i).getObjectId());
+        for(int i=0;i< MainActivity.DOCTORSMAIN.size();i++){
+            if(MainActivity.DOCTORSMAIN.get(i).getObjectId()==id){
+                Log.d("Doctor","object id "+ MainActivity.DOCTORSMAIN.get(i).getObjectId());
                 Log.d("Doctor","id "+id);
-                doctor=MainFragmentActivity.DOCTORSMAIN.get(i);
+                doctor= MainActivity.DOCTORSMAIN.get(i);
             }
         }
 

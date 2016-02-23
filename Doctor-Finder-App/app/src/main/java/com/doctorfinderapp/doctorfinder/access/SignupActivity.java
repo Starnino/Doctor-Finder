@@ -12,16 +12,12 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
+import com.doctorfinderapp.doctorfinder.MainActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -78,7 +74,7 @@ public class SignupActivity extends AppCompatActivity {
                 String fName;
                 String lName;
 
-                final String email_string;
+                String email_string;
                 String password_string;
                 String repeatPassword_string;
 
@@ -115,70 +111,37 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-                    final ParseUser user = new ParseUser();
+                    ParseUser user = new ParseUser();
                     user.setUsername(email_string);
                     user.setPassword(password_string);
                     user.setEmail(email_string);
                     user.put("fName", lName);
                     user.put("lName", lName);
-
-                    //todo don't sign up if user email exist
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    query.whereEqualTo("email", email_string);
                     //make progress bar visible only when signup in background
                     progressBar.setVisibility(View.VISIBLE);
-                    query.findInBackground(new FindCallback<ParseUser>() {
-                        public void done(List<ParseUser> objects, ParseException e) {
+                    user.signUpInBackground(new SignUpCallback() {
+                        public void done(com.parse.ParseException e) {
                             if (e == null) {
-                                // The query was successful.
-                                if (objects.size() == 0) {
-                                    //the user not exists
-                                    Log.d("Signup", "user not exists");
-
-                                    user.signUpInBackground(new SignUpCallback() {
-                                        public void done(com.parse.ParseException e) {
-                                            if (e == null) {
-                                                // Hooray! Let them use the app now.
-                                                //create a toast
-                                                Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.INVISIBLE);
-                                                Intent intent = new Intent(SignupActivity.this, MainFragmentActivity.class);
-                                                startActivity(intent);
-
-                                            } else {
-                                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                                Log.v(TAG, "errore");
-                                                Log.v(TAG, e.toString());
-                                                // Sign up didn't succeed. Look at the ParseException
-                                                // to figure out what went wrong
-                                            }
-                                        }
-                                    });
-
-                                } else {
-                                    //user exists
-                                    Toast
-                                            .makeText(getApplicationContext(),
-                                                    "This user alredy exists on database",
-                                                    Toast.LENGTH_LONG).show();
-                                    Log.d("Signup", "user exists " + email_string);
-                                }
-
+                                // Hooray! Let them use the app now.
+                                //create a toast
+                                Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                startActivity(intent);
 
                             } else {
-                                // Something went wrong.
-                                Log.d("Signup", "Something went wrong");
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                Log.v(TAG, "errore");
+                                Log.v(TAG, e.toString());
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
                             }
                         }
                     });
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-
 
                 }
             }
         });
-        //close button  x
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,8 +177,6 @@ public class SignupActivity extends AppCompatActivity {
                                     "Signed up",
                                     Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
-                            //todo control if mail of user exists
-                            //todo if exists link
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
@@ -227,7 +188,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                             //new LongOperation().execute(user);
-                            Intent intent = new Intent(SignupActivity.this, MainFragmentActivity.class);
+                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
 
                             startActivity(intent);
 

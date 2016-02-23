@@ -12,4 +12,5 @@
     <color name="Trasparent">#00000000</color>
     <color name="grey">#727272</color>
     <color name="google_grey">#e6e6e6</color>
+    <color name="green_pressed">#4DB6AC</color>
 </resources>
