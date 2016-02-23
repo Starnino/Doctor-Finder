@@ -165,6 +165,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.exit:
                 super.finish();
             case R.id.about:
+                String url = "https://github.com/Starnino/Doctor-Finder>";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
 
             case R.id.profile:
                 Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);

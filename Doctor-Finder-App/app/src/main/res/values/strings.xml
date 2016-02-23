@@ -121,114 +121,114 @@
     </string-array>
 
     <string-array name="cities">
-    <item>Tutte</item>
-    <item>Roma</item>
-    <item>Milano</item>
-    <item>Torino</item>
-    <item>Agrigento</item>
-    <item>Alessandria</item>
-    <item>Ancona</item>
-    <item>Aosta</item>
-    <item>Arezzo</item>
-    <item>Ascoli Piceno</item>
-    <item>Asti</item>
-    <item>Avellino</item>
-    <item>Bari</item>
-    <item>Belluno</item>
-    <item>Benevento</item>
-    <item>Bergamo</item>
-    <item>Biella</item>
-    <item>Bologna</item>
-    <item>Bolzano</item>
-    <item>Brescia</item>
-    <item>Brindisi</item>
-    <item>Cagliari</item>
-    <item>Caltanissetta</item>
-    <item>Campobasso</item>
-    <item>Carbonia-Iglesias</item>
-    <item>Caserta</item>
-    <item>Catania</item>
-    <item>Catanzaro</item>
-    <item>Chieti</item>
-    <item>Como</item>
-    <item>Cosenza</item>
-    <item>Cremona</item>
-    <item>Crotone</item>
-    <item>Cuneo</item>
-    <item>Enna</item>
-    <item>Ferrara</item>
-    <item>Firenze</item>
-    <item>Foggia</item>
-    <item>Forlì-Cesena</item>
-    <item>Frosinone</item>
-    <item>Genova</item>
-    <item>Gorizia</item>
-    <item>Grosseto</item>
-    <item>Imperia</item>
-    <item>Iserina</item>
-    <item>La spezia</item>
-    <item>L Aquila</item>
-    <item>Latina</item>
-    <item>Lecce</item>
-    <item>Lecco</item>
-    <item>Livorno</item>
-    <item>Lodi</item>
-    <item>Lucca</item>
-    <item>Macerata</item>
-    <item>Mantova</item>
-    <item>Massa-Carrara</item>
-    <item>Matera</item>
-    <item>Medio Campidano</item>
-    <item>Messina</item>
-    <item>Modena</item>
-    <item>Napoli</item>
-    <item>Novara</item>
-    <item>Nuoro</item>
-    <item>Ogliastra</item>
-    <item>Olbia-Tempio</item>
-    <item>Oristano</item>
-    <item>Padova</item>
-    <item>Palermo</item>
-    <item>Parma</item>
-    <item>Pavia</item>
-    <item>Perugia</item>
-    <item>Pesaro e Urbino</item>
-    <item>Pescara</item>
-    <item>Piacenza</item>
-    <item>Pisa</item>
-    <item>Pistoia</item>
-    <item>Pordenone</item>
-    <item>Potenza</item>
-    <item>Prato</item>
-    <item>Ragusa</item>
-    <item>Ravenna</item>
-    <item>Reggio Calabria</item>
-    <item>Reggio Emilia</item>
-    <item>Rieti</item>
-    <item>Rimini</item>
-    <item>Rovigo</item>
-    <item>Salerno</item>
-    <item>Sassari</item>
-    <item>Savona</item>
-    <item>Siena</item>
-    <item>Siracusa</item>
-    <item>Sondrio</item>
-    <item>Taranto</item>
-    <item>Teramo</item>
-    <item>Terni</item>
-    <item>Trapani</item>
-    <item>Trento</item>
-    <item>Treviso</item>
-    <item>Trieste</item>
-    <item>Udine</item>
-    <item>Varese</item>
-    <item>Venezia</item>
-    <item>Verbano-Cusio-Ossola</item>
-    <item>Vercelli</item>
-    <item>Verona</item>
-    <item>Vibo Valentia</item>
-    <item>Vicenza</item>
-    <item>Viterbo</item>
+        <item>Tutte</item>
+        <item>Roma</item>
+        <item>Milano</item>
+        <item>Torino</item>
+        <item>Agrigento</item>
+        <item>Alessandria</item>
+        <item>Ancona</item>
+        <item>Aosta</item>
+        <item>Arezzo</item>
+        <item>Ascoli Piceno</item>
+        <item>Asti</item>
+        <item>Avellino</item>
+        <item>Bari</item>
+        <item>Belluno</item>
+        <item>Benevento</item>
+        <item>Bergamo</item>
+        <item>Biella</item>
+        <item>Bologna</item>
+        <item>Bolzano</item>
+        <item>Brescia</item>
+        <item>Brindisi</item>
+        <item>Cagliari</item>
+        <item>Caltanissetta</item>
+        <item>Campobasso</item>
+        <item>Carbonia-Iglesias</item>
+        <item>Caserta</item>
+        <item>Catania</item>
+        <item>Catanzaro</item>
+        <item>Chieti</item>
+        <item>Como</item>
+        <item>Cosenza</item>
+        <item>Cremona</item>
+        <item>Crotone</item>
+        <item>Cuneo</item>
+        <item>Enna</item>
+        <item>Ferrara</item>
+        <item>Firenze</item>
+        <item>Foggia</item>
+        <item>Forlì-Cesena</item>
+        <item>Frosinone</item>
+        <item>Genova</item>
+        <item>Gorizia</item>
+        <item>Grosseto</item>
+        <item>Imperia</item>
+        <item>Iserina</item>
+        <item>La spezia</item>
+        <item>L Aquila</item>
+        <item>Latina</item>
+        <item>Lecce</item>
+        <item>Lecco</item>
+        <item>Livorno</item>
+        <item>Lodi</item>
+        <item>Lucca</item>
+        <item>Macerata</item>
+        <item>Mantova</item>
+        <item>Massa-Carrara</item>
+        <item>Matera</item>
+        <item>Medio Campidano</item>
+        <item>Messina</item>
+        <item>Modena</item>
+        <item>Napoli</item>
+        <item>Novara</item>
+        <item>Nuoro</item>
+        <item>Ogliastra</item>
+        <item>Olbia-Tempio</item>
+        <item>Oristano</item>
+        <item>Padova</item>
+        <item>Palermo</item>
+        <item>Parma</item>
+        <item>Pavia</item>
+        <item>Perugia</item>
+        <item>Pesaro e Urbino</item>
+        <item>Pescara</item>
+        <item>Piacenza</item>
+        <item>Pisa</item>
+        <item>Pistoia</item>
+        <item>Pordenone</item>
+        <item>Potenza</item>
+        <item>Prato</item>
+        <item>Ragusa</item>
+        <item>Ravenna</item>
+        <item>Reggio Calabria</item>
+        <item>Reggio Emilia</item>
+        <item>Rieti</item>
+        <item>Rimini</item>
+        <item>Rovigo</item>
+        <item>Salerno</item>
+        <item>Sassari</item>
+        <item>Savona</item>
+        <item>Siena</item>
+        <item>Siracusa</item>
+        <item>Sondrio</item>
+        <item>Taranto</item>
+        <item>Teramo</item>
+        <item>Terni</item>
+        <item>Trapani</item>
+        <item>Trento</item>
+        <item>Treviso</item>
+        <item>Trieste</item>
+        <item>Udine</item>
+        <item>Varese</item>
+        <item>Venezia</item>
+        <item>Verbano-Cusio-Ossola</item>
+        <item>Vercelli</item>
+        <item>Verona</item>
+        <item>Vibo Valentia</item>
+        <item>Vicenza</item>
+        <item>Viterbo</item>
 
     </string-array>
 
@@ -277,5 +277,64 @@
     <string name="title_activity_doctors_profile">Dott.ssa Tritto</string>
 
     <string name="title_activity_buttare">ButtareActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
 
 </resources>

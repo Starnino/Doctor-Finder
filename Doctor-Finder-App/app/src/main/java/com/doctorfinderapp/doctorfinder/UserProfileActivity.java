@@ -5,13 +5,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     private  AlertDialog.Builder alert;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PersonAdapter mAdapter;
 
 
     @Override
@@ -23,6 +30,16 @@ public class UserProfileActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
