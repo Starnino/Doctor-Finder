@@ -52,11 +52,6 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
-
-        //initialize Facebook SDK
-        //FacebookSdk.sdkInitialize(getApplicationContext());
-
-
         // Get the view from xml
         setContentView(R.layout.activity_login);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -163,7 +158,6 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 

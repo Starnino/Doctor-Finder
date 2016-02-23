@@ -91,7 +91,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/button_container"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/fab_margin"
@@ -121,39 +121,28 @@
             android:textColor="@color/white"
             android:textAllCaps="false"
             />
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_gravity="center_horizontal" />
 
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:id="@+id/log_container"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin">
-
-
-
-        <!--<Button
+        <RelativeLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="@string/action_login_with_google"
-            android:id="@+id/login_google_button"
-            android:backgroundTint="@color/flat_red"
-            android:textAllCaps="false" />
-          -->
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center_horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_gravity="left|bottom"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
     </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

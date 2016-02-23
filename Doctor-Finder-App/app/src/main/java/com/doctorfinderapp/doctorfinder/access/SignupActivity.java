@@ -212,42 +212,7 @@ public class SignupActivity extends AppCompatActivity {
         ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
 
-   /* //thread to put facebook
-    private class LongOperation extends AsyncTask<ParseUser, Void, com.parse.ParseException> {
 
-        @Override
-        protected ParseException doInBackground(ParseUser... params) {
-            ParseException exp=null;
-                try {
-                    //Thread.sleep(1000);
-
-
-                    exp=FacebookProfile.getFacebookThings(params[0]);
-
-                } catch (InterruptedException e) {
-                    Thread.interrupted();
-
-            }
-
-            return exp;
-        }
-
-        @Override
-        protected void onPostExecute(ParseException result) {
-            Log.d("Facebok Profile", "User updated on parse");
-            Toast.makeText(getApplicationContext(),
-                    "Facebook update user",
-                    Toast.LENGTH_LONG).show();
-
-        }
-
-        @Override
-        protected void onPreExecute() {}
-
-        @Override
-        protected void onProgressUpdate(Void... values) {}
-    }
-*/
 
 
 
