@@ -24,7 +24,7 @@ public class UserProfileActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        setContentView(R.layout.activity_scrolling_feedback);
+        setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -37,9 +37,8 @@ public class UserProfileActivity extends AppCompatActivity {
                 alert.setMessage("Stai riscontrando problemi con il tuo profilo? " +
                         "Hai problemi con un dottore? manda un email a info@doctorfinderapp.com" +
                         " e saremo a tua disposizione per risolvere il tuo problema!");
-                alert.setPositiveButton("Ok", null);
-                alert.setNegativeButton("Ho capito", null);
-                alert.setIcon(R.drawable.ic_star_rate_white_18dp);
+                alert.setPositiveButton("Ho capito", null);
+                alert.setIcon(R.drawable.ic_info_white_24dp);
                 alert.show();
             }
         });

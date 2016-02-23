@@ -36,6 +36,8 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.doctorfinderapp.doctorfinder.UserProfileActivity;
+
 
 public class ResultsActivity extends AppCompatActivity  {
 
@@ -49,8 +51,8 @@ public class ResultsActivity extends AppCompatActivity  {
         AddDoctors.addData();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
-        else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
+//         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
+  //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -154,8 +156,8 @@ public class ResultsActivity extends AppCompatActivity  {
             case R.id.about:
 
             case R.id.profile:
-               // Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
-                //startActivity(intent_user);
+                Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
+                startActivity(intent_user);
 
             //caricare sito
             case R.id.logout:

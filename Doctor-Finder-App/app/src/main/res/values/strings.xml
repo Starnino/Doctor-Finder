@@ -8,7 +8,7 @@
     <string name="title_activity_login">Sign in</string>
 
     <string name="action_log_in">Login </string>
-    <string name="action_sign2_up">Sign up</string>
+    <string name="action_sign2_up">Iscriviti</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
     <string name="error_invalid_password">Password troppo corta!</string>
@@ -52,7 +52,7 @@
     <string name="gestisci">Gestisci Prenotazioni</string>
     <string name="suggerisci">Suggerisci Dottore</string>
     <string name="logout">Logout</string>
-    <string name="about">About Doctor Finder</string>
+    <string name="about">Riguardo Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
@@ -271,7 +271,7 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="exit">Exit</string>
+    <string name="exit">Esci</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_doctors_profile">Dott.ssa Tritto</string>

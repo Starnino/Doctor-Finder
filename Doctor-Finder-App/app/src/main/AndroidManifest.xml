@@ -59,6 +59,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ResultsActivity" />
         <activity android:name=".FeedbackItemActivity"/>
+        <activity android:name=".UserProfileActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

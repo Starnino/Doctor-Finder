@@ -4,10 +4,10 @@ package com.doctorfinderapp.doctorfinder.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.MainActivity;
+import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
 import java.util.Timer;
@@ -24,16 +24,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //add immersive mode
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        //finish immersive mode
-
-
         //inizialize parse
+
+
         startParse(this.getApplicationContext());
+
+
+
 
 
         TimerTask task = new TimerTask() {
@@ -46,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (currentUser != null) {
 
 
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, MainFragmentActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
