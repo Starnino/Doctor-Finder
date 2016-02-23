@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.MainFragmentActivity;
+import com.doctorfinderapp.doctorfinder.UserProfileActivity;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
@@ -43,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (currentUser != null) {
 
 
-                    Intent intent = new Intent(SplashActivity.this, MainFragmentActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, FirstActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
