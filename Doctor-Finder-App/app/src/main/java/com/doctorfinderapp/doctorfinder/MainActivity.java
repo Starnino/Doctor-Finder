@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.action_settings:
             case R.id.like:
 
-
         }
     }
 
