@@ -67,6 +67,12 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.login_button2);
         ImageButton close = (ImageButton) findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
 
         // Login Button Click Listener
@@ -131,11 +137,14 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
                             progressBar.setVisibility(View.INVISIBLE);
-                            /*try {
+
+                            //facebook things
+                            try {
                                 FacebookProfile.getFacebookThings(user);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
-                            }*///todo facebook things
+                            }
+                            //*///todo facebook things
 
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",

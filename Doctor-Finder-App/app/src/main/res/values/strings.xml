@@ -3,12 +3,11 @@
     <string name="action_settings">Impostazioni</string>
 
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
     <string name="title_activity_login">Sign in</string>
 
     <string name="action_log_in">Login </string>
-    <string name="action_sign2_up">Iscriviti</string>
+    <string name="action_sign2_up">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
     <string name="error_invalid_password">Password troppo corta!</string>
@@ -16,8 +15,7 @@
     <string name="error_field_required">Questo campo è obbligatorio</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="action_search">"Ricerca rapida"</string>
-    <!-- <string name="action_signup_with_facebook">"Signup with facebook"</string> -->
-    <!-- <string name="action_signup_with_google">"Signup with Google+"</string> -->
+
     <string name="action_login_with_facebook">"Login con facebook"</string>
     <string name="action_login_with_google">"Login con Google+"</string>
     <string name="text_firstName">Nome</string>
