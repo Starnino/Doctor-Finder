@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-    //code added to save activity state
+    //code added to save activity states
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
