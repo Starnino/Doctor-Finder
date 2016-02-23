@@ -76,10 +76,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // Login Button Click Listener
-
-
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {

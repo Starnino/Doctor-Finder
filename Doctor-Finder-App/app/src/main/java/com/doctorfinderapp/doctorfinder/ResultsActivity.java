@@ -23,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
@@ -39,9 +41,12 @@ import java.util.List;
 import com.doctorfinderapp.doctorfinder.UserProfileActivity;
 
 
-public class ResultsActivity extends AppCompatActivity  {
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
+    private Boolean isFabOpen = false;
+    private FloatingActionButton fab,fab1,fab2;
+    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +59,32 @@ public class ResultsActivity extends AppCompatActivity  {
 //         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
   //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
         //set status bar color because in xml don't work
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
+        }*/
 
         setContentView(R.layout.activity_results);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //find fab buttons
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+
+        //load animation
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+
+        //onClick button
+        fab.setOnClickListener(this);
+        fab1.setOnClickListener(this);
+        fab2.setOnClickListener(this);
 
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -95,15 +116,6 @@ public class ResultsActivity extends AppCompatActivity  {
                     }
                 });
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
-            }
-        });*/
-
     }
 
 
@@ -116,7 +128,6 @@ public class ResultsActivity extends AppCompatActivity  {
 
         viewPager.setAdapter(adapter);
     }
-
 
 
     //search view
@@ -173,6 +184,25 @@ public class ResultsActivity extends AppCompatActivity  {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch(id){
+            case R.id.fab:
+                animateFAB();
+                break;
+
+            case R.id.fab1:
+                //TODO
+                break;
+
+            case R.id.fab2:
+                //TODO
+                break;
+        }
+    }
+
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -204,6 +234,32 @@ public class ResultsActivity extends AppCompatActivity  {
             return mFragmentTitleList.get(position);
         }
     }//---------------------------------------------------------------------------------------------
+
+    //animation fab buttons
+    public void animateFAB(){
+
+        if(isFabOpen){
+
+            fab.startAnimation(rotate_backward);
+            fab1.startAnimation(fab_close);
+            fab2.startAnimation(fab_close);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            isFabOpen = false;
+            Log.d("button", "close");
+
+        } else {
+
+            fab.startAnimation(rotate_forward);
+            fab1.startAnimation(fab_open);
+            fab2.startAnimation(fab_open);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            isFabOpen = true;
+            Log.d("button","open");
+
+        }
+    }
 }
 
 

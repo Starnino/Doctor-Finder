@@ -27,7 +27,7 @@ public class AddDoctors {
         //codice per vedere se la mail del dottore esiste nel database
         Log.d("add doctor","adding "+ email);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        query.whereEqualTo("Email",email);
+        query.whereEqualTo("email",email);
         exist= false;
         ParseObject fromQuery=null;
 

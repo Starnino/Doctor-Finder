@@ -24,31 +24,8 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|enterAlways"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:visibility="invisible"
-            android:layout_marginBottom="160dp"
-            app:elevation="6dp"
-            app:backgroundTint="@color/docfinder"
-            android:src="@drawable/ic_location_city_white_24dp"
-            app:pressedTranslationZ="12dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:layout_marginBottom="90dp"
-            android:visibility="invisible"
-            app:elevation="6dp"
-            app:backgroundTint="@color/docfinder"
-            android:src="@drawable/ic_healing_white_24dp"
-            app:pressedTranslationZ="12dp" />
+        <include layout="@layout/fragment_main">
+        </include>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

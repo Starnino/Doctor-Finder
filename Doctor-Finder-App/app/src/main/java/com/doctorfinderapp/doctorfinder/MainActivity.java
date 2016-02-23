@@ -3,9 +3,11 @@ package com.doctorfinderapp.doctorfinder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +28,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
+public class MainActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
     public String CITTA="All";
@@ -34,10 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static List<ParseObject> DOCTORSMAIN=null;
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
-    private Boolean isFabOpen = false;
-    private FloatingActionButton fab,fab1,fab2;
-    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,26 +46,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        //find fab buttons
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
-
-        //load animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
-
-        //onClick button
-        fab.setOnClickListener(this);
-        fab1.setOnClickListener(this);
-        fab2.setOnClickListener(this);
 
         //Download parse data
         showDataM();
 
-        /*Adding menu icon to Toolbar
+        //Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
@@ -89,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         return true;
                     }
                 });
-
-*/
     }
 
     //respond to toolbar actions
@@ -168,51 +149,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
         }
 
-    }
-
-
-    @Override //onClick button
-    public void onClick(View v) {
-        int id = v.getId();
-
-        switch(id){
-            case R.id.fab:
-                animateFAB();
-                break;
-
-            case R.id.fab1:
-                //TODO
-                break;
-
-            case R.id.fab2:
-                //TODO
-                break;
-        }
-    }
-
-    public void animateFAB(){
-
-        if(isFabOpen){
-
-            fab.startAnimation(rotate_backward);
-            fab1.startAnimation(fab_close);
-            fab2.startAnimation(fab_close);
-            fab1.setClickable(false);
-            fab2.setClickable(false);
-            isFabOpen = false;
-            Log.d("button", "close");
-
-        } else {
-
-            fab.startAnimation(rotate_forward);
-            fab1.startAnimation(fab_open);
-            fab2.startAnimation(fab_open);
-            fab1.setClickable(true);
-            fab2.setClickable(true);
-            isFabOpen = true;
-            Log.d("button","open");
-
-        }
     }
 
 }
