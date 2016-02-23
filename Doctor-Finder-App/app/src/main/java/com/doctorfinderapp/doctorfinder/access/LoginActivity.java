@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         // Locate Buttons in xml
 
         Button loginButton = (Button) findViewById(R.id.login_button2);
-        //Button loginWithGoogle = (Button) findViewById(R.id.login_google_button);
         ImageButton close = (ImageButton) findViewById(R.id.close);
 
 
