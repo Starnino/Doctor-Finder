@@ -77,13 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
-                if (usernametxt.equals("test")) {
-                    Intent intent = new Intent(LoginActivity.this,
-                            MainActivity.class);
-                    startActivity(intent);
 
-
-                } else {
 
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
@@ -105,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
 
-            }
+
 
 
         });
