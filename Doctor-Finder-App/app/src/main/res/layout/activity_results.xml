@@ -85,7 +85,6 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
         app:elevation="6dp"
-        app:backgroundTint="@color/docfinder"
         android:src="@drawable/ic_add_white_24dp"
         app:pressedTranslationZ="12dp" />
 

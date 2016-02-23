@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity  {
     static List<ParseObject> DOCTORSMAIN=null;
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,17 @@ public class MainActivity extends AppCompatActivity  {
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+
+        fab = (FloatingActionButton) findViewById(R.id.fabmain);
+        //fab action results activity
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,
+                        ResultsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Download parse data
         showDataM();
@@ -94,13 +106,9 @@ public class MainActivity extends AppCompatActivity  {
     //action view search
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main2, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        // Configure the search info and add any event listeners...
+        // Configure settings
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -49,11 +49,6 @@ public class CityFragment extends ListFragment implements AdapterView.OnItemClic
         ImageView icon  = (ImageView) view.findViewById(R.id.specialization_icon);
         icon.setImageResource(R.drawable.ic_check_circle_white_24dp);
 
-        /**provvisorio*/
-        TextView city = (TextView) getActivity().findViewById(R.id.city_text);
-        city.setText("Roma");
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Doctor Finder");
-        /***/
 
         /**TODOview.startAnimation(animation);*/
         Toast.makeText(getActivity(), adapter.getItem(position) + " selezionata", Toast.LENGTH_SHORT)

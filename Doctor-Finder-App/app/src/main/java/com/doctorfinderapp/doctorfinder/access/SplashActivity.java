@@ -44,8 +44,8 @@ public class SplashActivity extends AppCompatActivity {
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 if (currentUser != null) {
 
-                                                                    //TODO PROVVISORIO
-                    Intent intent = new Intent(SplashActivity.this, ResultsActivity.class);
+
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
