@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/docfinder</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="colorAccent">@color/darkdf</item>
+        <item name="android:windowBackground">@color/white</item>
 
     </style>
 

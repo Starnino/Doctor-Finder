@@ -52,6 +52,7 @@
         android:src="@android:drawable/ic_dialog_email"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        android:theme="@style/AppTheme"/>
+        android:theme="@style/AppTheme"
+        app:backgroundTint="@color/colorPrimaryDark"/>
 
 </android.support.design.widget.CoordinatorLayout>

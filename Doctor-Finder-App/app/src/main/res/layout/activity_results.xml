@@ -61,7 +61,7 @@
         android:visibility="invisible"
         android:layout_marginBottom="160dp"
         app:elevation="6dp"
-        app:backgroundTint="@color/docfinder"
+        app:backgroundTint="@color/colorPrimaryDark"
         android:src="@drawable/ic_location_city_white_24dp"
         app:pressedTranslationZ="12dp" />
 
@@ -74,7 +74,7 @@
         android:layout_marginBottom="90dp"
         android:visibility="invisible"
         app:elevation="6dp"
-        app:backgroundTint="@color/docfinder"
+        app:backgroundTint="@color/colorPrimaryDark"
         android:src="@drawable/ic_healing_white_24dp"
         app:pressedTranslationZ="12dp" />
 
@@ -86,19 +86,10 @@
         android:layout_margin="@dimen/fab_margin"
         app:elevation="6dp"
         android:src="@drawable/ic_add_white_24dp"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/docfinder"/>
 
 </android.support.design.widget.CoordinatorLayout>
-
-
-    <!--<android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main2"
-        app:menu="@menu/menu_navigation" />-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
