@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity  {
             DOCTORSMAIN = query.find();
             SIZEM=DOCTORSMAIN.size();
 
-            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORSMAIN.get(0).toString());
+            //Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORSMAIN.get(0).toString());
             Log.d("DoctorListFragment", DOCTORSMAIN.size()+"" );
         } catch (ParseException e) {
             Log.d("MainActivity Class", e.getMessage());

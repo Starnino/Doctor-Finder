@@ -15,6 +15,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,34 +50,46 @@ public class FacebookProfile {
                            Log.d("Graph Response", "user = " + response.toString());
                            Log.d("Graph Response", "Informazioni prelevate da Facebook");
                            if(object!=null) {
-                               Log.d("Graph Response", "user = " + response.toString());
-                               Log.d("Graph Response", "Informazioni prelevate da Facebook");
 
                                String email = response.getJSONObject().getString("email");
                                String lastname = response.getJSONObject().getString("last_name");
                                String firstname = response.getJSONObject().getString("first_name");
                                String friends = response.getJSONObject().getString("friends");
 
+                               JSONObject friendsJSON = (JSONObject) response.getJSONObject().get("friends");
+
+                               //Log.d("friendsJSON",friendsJSON.toString());
+                               JSONArray friendsData = friendsJSON.getJSONArray("data");
+                               //Log.d("friendsData",friendsData.toString());
+                               List<String> friendsParse=new ArrayList<String>();
+                               for(int i=0;i<friendsData.length();i++){
+                                   String it= friendsData.getJSONObject(i).getString("id");
+                                   friendsParse.add(it);
+
+                               }
+
+                               String facebookId = response.getJSONObject().getString("id");
+
+                               //Log.d("friendsParse",friendsParse.toString());
 
 
 
+                               //Log.d("Graph Response", "FriendS" + friends);
 
-
-                               Log.d("Graph Response", "FriendS" + friends);
-
-                               Log.d("Graph Response", "email" +email);
-                               Log.d("Graph Response", "lastname" +lastname);
+                               //Log.d("Graph Response", "email" + email);
+                               //Log.d("Graph Response", "lastname" +lastname);
 
                                userP.setUsername(email);
                                userP.setEmail(email);
                                userP.put("Facebook", "true");
                                userP.put("fName",firstname);
                                userP.put("lName",lastname);
+                               userP.put("facebookId",facebookId);
                                //friends tha uses app
 
-                               userP.put("friends",friends);
+                               userP.put("friends",friendsParse.toString());
                                userP.saveInBackground();
-                               Log.d("Graph Response",userP.getString("lName"));
+                               //Log.d("Graph Response",userP.getString("lName"));
                            }
 
 
