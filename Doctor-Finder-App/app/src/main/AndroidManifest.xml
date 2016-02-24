@@ -86,9 +86,6 @@
         <activity
             android:name=".FeedbackItemActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".UserProfileActivity"
-            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

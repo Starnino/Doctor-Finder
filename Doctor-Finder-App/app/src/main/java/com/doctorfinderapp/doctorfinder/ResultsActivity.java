@@ -1,8 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -22,7 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -31,14 +28,11 @@ import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.doctorfinderapp.doctorfinder.UserProfileActivity;
 
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {

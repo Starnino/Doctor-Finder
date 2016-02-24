@@ -5,13 +5,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.parse.ParseObject;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     private  AlertDialog.Builder alert;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PersonAdapter mAdapter;
 
 
     @Override
@@ -24,19 +32,22 @@ public class UserProfileActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
+        //scrolling
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alert = new AlertDialog.Builder(UserProfileActivity.this);
-                alert.setTitle("Problemi?");
-                alert.setMessage("Stai riscontrando problemi con il tuo profilo? " +
-                        "Hai problemi con un dottore? manda un email a info@doctorfinderapp.com" +
-                        " e saremo a tua disposizione per risolvere il tuo problema!");
+                alert.setTitle("Hai bisogno di aiuto?");
+                alert.setMessage("Se stai riscontrando problemi con il tuo profilo, o " +
+                        "hai problemi con un dottore, manda un email a info@doctorfinderapp.com" +
+                        " spiegando il tuo problema. Saremo a tua disposizione per aiutarti!");
                 alert.setPositiveButton("Ho capito", null);
                 alert.setIcon(R.drawable.ic_info_white_24dp);
                 alert.show();
@@ -46,3 +57,4 @@ public class UserProfileActivity extends AppCompatActivity {
 
         }
     }
+

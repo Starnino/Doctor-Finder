@@ -18,11 +18,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_weight="0.61">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
                 android:id="@+id/ivContactItem1"
@@ -31,99 +30,87 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:visibility="visible" />
 
             <TextView
-                android:id="@+id/tvNumber1"
+                android:id="@+id/nome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Nome Cognome Utente"
+                android:text="Nome utente:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
-
-            <ToggleButton
-                android:id="@+id/chkState1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nome"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_account_circle_white_24dp"
-                android:checked="true"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/ivContactItem1"
+                android:layout_toRightOf="@id/ivContactItem1"
+                android:text="Nome preso da parse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#727272"
+                android:id="@+id/tvNumber1" />
+
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/ivContactItem2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:visibility="visible" />
 
-            <ImageView
-                android:id="@+id/ivContactItem2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_info_black_24dp"
-                android:visibility="visible" />
+        <TextView
+            android:id="@+id/cognome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_toEndOf="@id/ivContactItem2"
+            android:layout_toRightOf="@id/ivContactItem2"
+            android:text="Cognome Utente:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#212121" />
 
-            <TextView
-                android:id="@+id/txtSpec"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem2"
-                android:layout_toRightOf="@id/ivContactItem2"
-                android:text="email utente:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cognome"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/ivContactItem2"
+            android:layout_toRightOf="@id/ivContactItem2"
+            android:text="Cognome preso da parse"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#727272"
+            android:id="@+id/tvNumber2" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtSpec"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/ivContactItem2"
-                android:layout_toRightOf="@id/ivContactItem2"
-                android:text="scrivi email"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"
-                android:id="@+id/tvNumber2" />
 
-            <ToggleButton
-                android:id="@+id/chkState2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:checked="false"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
         <include layout="@layout/item_divider" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -134,59 +121,45 @@
 
             <ImageView
                 android:id="@+id/ivContactItem3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_book_black_24dp" />
+                android:src="@drawable/ic_mail_outline_black_24dp"
+                android:visibility="visible" />
 
             <TextView
-                android:id="@+id/tvNumber3"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem3"
-                android:layout_toLeftOf="@+id/chkState3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:layout_toStartOf="@+id/chkState3"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="data di nascita: "
+                android:text="email utente:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvNumber3"
+                android:layout_below="@id/email"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:text="05/12/1980"
-                android:id="@+id/years"
+                android:text="email presa da parse"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272" />
+                android:textColor="#727272"
+                android:id="@+id/tvNumber3" />
 
-            <ToggleButton
-                android:id="@+id/chkState3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:checked="true"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
+
 
         </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -202,8 +175,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_explore_black_24dp"
-                android:visibility="visible" />
+                android:src="@drawable/ic_book_black_24dp" />
 
             <TextView
                 android:id="@+id/tvNumber4"
@@ -212,12 +184,12 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem4"
-                android:layout_toLeftOf="@+id/chkState4"
+                android:layout_toLeftOf="@+id/chkState3"
                 android:layout_toRightOf="@id/ivContactItem4"
-                android:layout_toStartOf="@+id/chkState4"
+                android:layout_toStartOf="@+id/chkState3"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Numero di telefono:"
+                android:text="Data di nascita: "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -230,42 +202,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem4"
                 android:layout_toRightOf="@id/ivContactItem4"
-                android:text="Anche facoltativo"
-                android:id="@+id/workPlace"
+                android:text="05/12/1980, qualcosa per definirla traimite app"
+                android:id="@+id/years"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
-            <ToggleButton
-                android:id="@+id/chkState4"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_info_white_24dp"
-                android:padding="6dp"
-                android:textOff=""
-                android:textOn="" />
-
         </RelativeLayout>
-
-        <include layout="@layout/item_divider" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="20dp"
-            android:text="Dottori con cui sono in contatto"
-            android:textColor="@color/docfinder"
-            android:textAlignment="center"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_friends"
-            android:scrollbars="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
 
         <include layout="@layout/item_divider" />
 
@@ -283,8 +225,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_info_black_24dp"
-                />
+                android:src="@drawable/ic_phone_black_24dp"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tvNumber5"
@@ -293,32 +235,69 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem5"
-
+                android:layout_toLeftOf="@+id/chkState4"
                 android:layout_toRightOf="@id/ivContactItem5"
+                android:layout_toStartOf="@+id/chkState4"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Numero di telefono:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNumber5"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/ivContactItem5"
+                android:layout_toRightOf="@id/ivContactItem5"
+                android:text="Vedere come inserirlo tramite app"
+                android:id="@+id/workPlace"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#727272" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/ivContactItem6"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/com_facebook_button_icon_blue"
+                />
+
+            <TextView
+                android:id="@+id/tvNumber6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/ivContactItem6"
+
+                android:layout_toRightOf="@id/ivContactItem6"
 
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Profilo facebook"
+                android:text="Connetti con il profilo Facebook"
                 android:clickable="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"
                 />
 
-            <ImageButton
-                android:id="@+id/feedback_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/com_facebook_button_icon_blue"
-                android:checked="true"
-                android:padding="6dp" />
-
         </RelativeLayout>
-
 
         <include layout="@layout/item_divider" />
 
