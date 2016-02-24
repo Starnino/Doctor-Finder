@@ -53,7 +53,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
 
         //adding doctors data
-        AddDoctors.addData();
+        //AddDoctors.addData();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 //         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
