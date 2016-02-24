@@ -225,7 +225,7 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             //facebook request
                             FacebookProfile.getGraphRequest(user);
-                            FacebookProfile.getGraphRequestFriends(user);
+
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else {
@@ -237,7 +237,7 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             //facebook request
                             FacebookProfile.getGraphRequest(user);
-                            FacebookProfile.getGraphRequestFriends(user);
+
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
 
                             startActivity(intent);

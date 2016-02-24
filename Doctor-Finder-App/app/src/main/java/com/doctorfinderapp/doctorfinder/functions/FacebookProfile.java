@@ -1,6 +1,10 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +15,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -19,11 +24,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by fedebyes on 13/02/16.
@@ -31,9 +44,9 @@ import java.util.List;
 
 public class FacebookProfile {
 
-
+    private  static String URL="";
     private static com.parse.ParseException ret = null;
-
+    private static Bitmap propic;
 
 
    public static void getGraphRequest(final ParseUser   userP) {
@@ -77,19 +90,54 @@ public class FacebookProfile {
                                //Log.d("Graph Response", "FriendS" + friends);
 
                                //Log.d("Graph Response", "email" + email);
-                               //Log.d("Graph Response", "lastname" +lastname);
+
 
                                userP.setUsername(email);
                                userP.setEmail(email);
                                userP.put("Facebook", "true");
-                               userP.put("fName",firstname);
+                               userP.put("fName", firstname);
                                userP.put("lName",lastname);
                                userP.put("facebookId",facebookId);
                                //friends tha uses app
 
-                               userP.put("friends",friendsParse.toString());
+                               userP.put("friends", friendsParse.toString());
+                               // URL=response.getJSONObject().getString("profile");
+
+                               //dowload facebook image
+                               //new DownloadImage().execute(URL);
+
+                               JSONObject picture = response.getJSONObject().getJSONObject("picture");
+                               JSONObject data = picture.getJSONObject("data");
+                               String pictureUrl = data.getString("url");
+
+
                                userP.saveInBackground();
                                //Log.d("Graph Response",userP.getString("lName"));
+
+
+                               //scarico l'immagine presa da facebook
+                               URL aURL = new URL(pictureUrl);
+                               URLConnection conn = aURL.openConnection();
+                               conn.connect();
+                               InputStream is = conn.getInputStream();
+                               BufferedInputStream bis = new BufferedInputStream(is);
+
+                               //comprilo l'immagine in byte[] e la invio come parseFile
+                               ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                               (BitmapFactory.decodeStream(bis)).compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                               byte[] pp = stream.toByteArray();
+
+                               ParseFile file = new ParseFile("propic.jpg", pp);
+                               file.save();
+                               // Creazione di un ParseObject da inviare
+                               ParseObject userPhoto = new ParseObject("UserPhoto");
+                               userPhoto.put("username", userP.getUsername());
+                               userPhoto.put("profilePhoto", file);
+                               userPhoto.save();
+
+
+
+
                            }
 
 
@@ -98,6 +146,12 @@ public class FacebookProfile {
                        } catch (JSONException e) {
                            e.printStackTrace();
                            Log.d("Graph Response","error JSON");
+                       } catch (MalformedURLException e) {
+                           e.printStackTrace();
+                       } catch (com.parse.ParseException e) {
+                           e.printStackTrace();
+                       } catch (IOException e) {
+                           e.printStackTrace();
                        }
 
 
@@ -105,28 +159,44 @@ public class FacebookProfile {
                    }
                });
        Bundle parameters = new Bundle();
-       parameters.putString("fields", "id,name,email,link,first_name,last_name,friends");
+       parameters.putString("fields", "id,name,email,link,first_name,last_name,friends,picture.type(large)");
        request.setParameters(parameters);
        request.executeAsync();
 
    }
-    public static void getGraphRequestFriends(final ParseUser   userP) {
-    /* make the API call */
-    new GraphRequest(
-            AccessToken.getCurrentAccessToken(),
-        "/{friend-list-id}",
-            null,
-    HttpMethod.GET,
-            new GraphRequest.Callback() {
-        public void onCompleted(GraphResponse response) {
-            if(response!=null) {
-                Log.d("FriendsList", response.toString());
-            }else{
-                Log.d("FriendsList","Isnull");
+
+
+
+    // DownloadImage AsyncTask
+    //// Execute DownloadImage AsyncTask
+    //new DownloadImage().execute(URL);
+    /*private static class DownloadImage extends AsyncTask<String, Void, Bitmap> {
+
+
+
+        @Override
+        protected Bitmap doInBackground(String... URL) {
+
+            String imageURL = URL[0];
+
+            Bitmap bitmap = null;
+            try {
+                // Download Image from URL
+                InputStream input = new java.net.URL(imageURL).openStream();
+                // Decode Bitmap
+                bitmap = BitmapFactory.decodeStream(input);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return bitmap;
         }
-    }
-    ).executeAsync();}
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            //
+            propic=result;
+        }
+    }*/
 
     // Function to get information from FBuser and put them in user
     /*public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {
