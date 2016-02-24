@@ -19,8 +19,7 @@ public class AddDoctors {
 
     private static void AddDoctors(String FirstName,String LastName, String email, String data,
                                   String[] Specialization, String[] Work,
-                                  String cellphone, String description,String latlng
-    ){
+                                  String cellphone, String description,String latlng){
 
             //Exist(email);
 

@@ -54,19 +54,18 @@ public class DoctorListFragment extends Fragment {
 
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-
 
             super(inflater.inflate(R.layout.doctor_item, parent, false));
 
             final int IndexLocale=index;
 
             //creation of doctor item
-            String id=(DOCTORS.get(index)).getString("FirstName");
-            Log.d("Main","creating"+id);
+            //String id=(DOCTORS.get(index)).getString("FirstName");
+            //Log.d("Main","creating"+id);
+
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
