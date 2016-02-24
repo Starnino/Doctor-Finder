@@ -29,6 +29,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
     private List<Person> persons;
+    private String idProfile="";
 
     private ImageButton feedButton;
 

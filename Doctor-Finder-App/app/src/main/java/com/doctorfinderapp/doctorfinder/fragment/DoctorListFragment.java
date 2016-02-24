@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -36,7 +37,6 @@ public class DoctorListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -64,9 +64,7 @@ public class DoctorListFragment extends Fragment {
 
             final int IndexLocale=index;
 
-            //creation of doctor item
-            String id=(DOCTORS.get(index)).getString("FirstName");
-            Log.d("Main","creating"+id);
+            //------
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
@@ -97,18 +95,18 @@ public class DoctorListFragment extends Fragment {
                     //Log.d("Listonclick","INDEXLocale"+IndexLocale);
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
-
-                    Bundle Bundle_selected_doctor = new Bundle();
-
-                    //give parameters to start activity
-                    String id=(DOCTORS.get(IndexLocale)).getObjectId();
-
-                    Log.d("Main","Showing "+id);
-
-                    Bundle_selected_doctor.putString("id", id); //Your id
-
-                    intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
+                    int z = itemView.getId();
+                    GlobalVariable.idDocotrs=DOCTORS.get(IndexLocale).getObjectId();
                     context.startActivity(intent);
+                    //give parameters to start activity
+
+                    //String id=(DOCTORS.get(IndexLocale)).getObjectId();
+
+                    //Log.d("Main","Showing "+id);
+
+                    //Bundle_selected_doctor.putString("id", id); //Your id
+
+                    //intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
 
                     /*
 
