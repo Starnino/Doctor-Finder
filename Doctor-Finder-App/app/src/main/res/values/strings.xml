@@ -9,7 +9,7 @@
 
     <string name="action_log_in">Login </string>
     <string name="action_sign2_up">Iscriviti</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in_short">Accedi</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
     <string name="error_invalid_password">Password troppo corta!</string>
     <string name="error_incorrect_password">Password sbagliata!</string>
@@ -251,7 +251,7 @@
     </string-array>
 
     <string-array name="feedback">
-        <item>Tutti</item>
+        <item>Ogni punteggio</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

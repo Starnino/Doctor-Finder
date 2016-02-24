@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.parse.ParseObject;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -31,29 +33,35 @@ public class UserProfileActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
+        //scrolling
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //get parameters from activity
+        Bundle b = getIntent().getExtras();
+        String id = b.getString("id");
+
+        //creazione parseobject user
+        ParseObject user=new ParseObject("User");
+
+        int i=0;
+            if(MainActivity.USERSMAIN.get(i).getObjectId()==id){
+                Log.d("User", "object id " + MainActivity.USERSMAIN.get(i).getObjectId());
+                Log.d("User","id "+id);
+                user= MainActivity.USERSMAIN.get(i);
+            }
+
+        //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alert = new AlertDialog.Builder(UserProfileActivity.this);
-                alert.setTitle("Problemi?");
-                alert.setMessage("Stai riscontrando problemi con il tuo profilo? " +
-                        "Hai problemi con un dottore? manda un email a info@doctorfinderapp.com" +
-                        " e saremo a tua disposizione per risolvere il tuo problema!");
+                alert.setTitle("Hai bisogno di aiuto?");
+                alert.setMessage("Se stai riscontrando problemi con il tuo profilo, o " +
+                        "hai problemi con un dottore, manda un email a info@doctorfinderapp.com" +
+                        " spiegando il tuo problema. Saremo a tua disposizione per aiutarti!");
                 alert.setPositiveButton("Ho capito", null);
                 alert.setIcon(R.drawable.ic_info_white_24dp);
                 alert.show();
