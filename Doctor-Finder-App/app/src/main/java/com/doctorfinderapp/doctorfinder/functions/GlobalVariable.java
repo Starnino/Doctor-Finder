@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GlobalVariable {
 
-    public static String idDocotrs;
+    public static String idDoctors;
 
     public static int numdocotrs;
 

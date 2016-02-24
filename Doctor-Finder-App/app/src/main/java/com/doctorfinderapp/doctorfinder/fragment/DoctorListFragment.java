@@ -91,33 +91,25 @@ public class DoctorListFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Log.d("Listonclick", "INDEX" + index);
-                    //Log.d("Listonclick","INDEXLocale"+IndexLocale);
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
-                    int z = itemView.getId();
-                    GlobalVariable.idDocotrs=DOCTORS.get(IndexLocale).getObjectId();
+                    //------
+                    GlobalVariable.idDoctors = DOCTORS.get(IndexLocale).getObjectId();
+                    //------
                     context.startActivity(intent);
+
                     //give parameters to start activity
-
                     //String id=(DOCTORS.get(IndexLocale)).getObjectId();
-
                     //Log.d("Main","Showing "+id);
-
                     //Bundle_selected_doctor.putString("id", id); //Your id
-
                     //intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
-
                     /*
-
                     //this code is for passing data to an activity
-
                     Bundle b = new Bundle();
                     b.putInt("key", 1); //Your id
                         intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                      */
-
                 }
             });
 
