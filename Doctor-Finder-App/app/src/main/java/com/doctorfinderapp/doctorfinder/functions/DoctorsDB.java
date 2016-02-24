@@ -27,7 +27,7 @@ public class DoctorsDB {
         }
 
         ParseObject Doctor = new ParseObject("Doctor");
-        Doctor.put("_id", GlobalVariable.idDocotrs);
+        Doctor.put("_id", GlobalVariable.idDoctors);
     }
 
     public static ParseObject getQuery(){

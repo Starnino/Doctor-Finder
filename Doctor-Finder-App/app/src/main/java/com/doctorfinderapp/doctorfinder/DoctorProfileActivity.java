@@ -42,14 +42,11 @@ public class DoctorProfileActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-
         setContentView(R.layout.activity_scrolling);
         //get parameters from activity
-        Bundle b = getIntent().getExtras();
+        //Bundle b = getIntent().getExtras();
 
-
-        String id = GlobalVariable.idDocotrs;
-
+        String id = GlobalVariable.idDoctors;
 
         ParseObject doctor = new ParseObject("Doctor");
 
@@ -60,9 +57,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
                 doctor= MainActivity.DOCTORSMAIN.get(i);
             }
         }
-
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,7 +80,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
         TextView info = (TextView) findViewById(R.id.doctor_info);
 
-        nameProfile.setText("Martina Tritto");
+        nameProfile.setText(GlobalVariable.idDoctors);
         special.setText("Oculista");
         years.setText("7");
         workPlace.setText("Via M. Prestinari, 17");

@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.functions;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -17,10 +18,9 @@ public class AddDoctors {
 
     private static boolean exist;
 
-    private static void AddDoctors(String FirstName,String LastName, String email, String data,
-                                  String[] Specialization, String[] Work,
-                                  String cellphone, String description,String latlng
-    ){
+    private static void AddDoctors(String FirstName, String LastName, String email, String data,
+                                  String[] Specialization, String[] Work, String anni,
+                                  String cellphone, String description,String latlng){
 
             //Exist(email);
 
@@ -59,6 +59,7 @@ public class AddDoctors {
             Doctor.put("Work", Arrays.asList(Work));
             Doctor.put("Cellphone", cellphone);
             Doctor.put("Description", description);
+            Doctor.put("Years", anni);
             Doctor.saveInBackground();
             Log.d("Add doctor", "Saving doctor that not exist");
             }
@@ -71,46 +72,35 @@ public class AddDoctors {
 
     }
     public  static void addData() {
-        /*
-        public static void AddDoctors(String FirstName,String LastName, String email, Date data,
-                                  String[] Specialization, String[] Work,
-                                  String cellphone, String description
-            ){
-         */
-
-
-        Log.d("main", "adding doctor");
 
         //CREATE DOCTORS
 
-        /*
-
-        LatLng ROMA1 =new LatLng(41.9000, 12.5000);
-        AddDoctors("Martina", "Tritto", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA1.toString());
-        LatLng ROMA2 =new LatLng(41.9000, 12.5000);
+        LatLng Doc1 =new LatLng(38.121932, 13.357361);
+        AddDoctors("Calogero Roaul", "Aiello", "roaulaiello@gmail.com", "25/05/1983",
+                new String[]{"Oculistica"}, new String[]{"Via"}, "Tra 5 e 10", "+39.3408312029", "https://www.linkedin.com/in/federico-solignani-596a1661", Doc1.toString());
+        LatLng Doc2 =new LatLng(41.9000, 12.5000);
         AddDoctors("Antonio", "De Cillis", "federico.solignani@gmail.com22", "26/12/1981",
-                new String[]{"Ortopedia"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA2.toString());
+                new String[]{"Ortopedia"}, new String[]{"Via"}, "Tra 5 e 10","0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", Doc2.toString());
         LatLng ROMA3 =new LatLng(41.9000, 12.5000);
         AddDoctors("Francesco", "Maiese", "aniellomaiese@msn.com", "26/12/1981",
-                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA3.toString());
+                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "Tra 5 e 10", "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA3.toString());
         LatLng ROMA4 =new LatLng(41.9000, 12.5000);
         AddDoctors("Lorenzo", "Gitto", "canossaelisa@gmail.com", "26/12/1981",
-                new String[]{"Oculistica"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA4.toString());
+                new String[]{"Oculistica"}, new String[]{"Via"},"Tra 5 e 10", "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA4.toString());
         LatLng ROMA5 =new LatLng(41.9000, 12.5000);
         AddDoctors("Elisa", "Canossa", "federico.solignani@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA5.toString());
+                new String[]{"Chirurgia Generale"}, new String[]{"Via"}, "Tra 5 e 10", "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA5.toString());
         LatLng ROMA6 =new LatLng(41.9000, 12.5000);
         AddDoctors("Marta", "Dezi", "dezitommaso@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA6.toString());
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "Tra 5 e 10","0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA6.toString());
         LatLng ROMA7 =new LatLng(41.9000, 12.5000);
         AddDoctors("Laura", "Salminto", "dezitommaso@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA7.toString());
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "Tra 5 e 10", "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA7.toString());
         LatLng ROMA8 =new LatLng(41.9000, 12.5000);
         AddDoctors("Cristina", "Ferri", "dezitommaso@gmail.com", "26/12/1981",
-                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA8.toString());
+                new String[]{"Chirurgia Cardiovascolare"}, new String[]{"Via"}, "Tra 5 e 10", "0187738056", "https://www.linkedin.com/in/federico-solignani-596a1661", ROMA8.toString());
 
-    */
+    /**/
 
         Log.d("main", "adding doctor post");
     }
