@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class FacebookProfile {
                            GraphResponse response) {
 
                        try {
+                           Log.d("Graph Response", "user = " + response.toString());
+                           Log.d("Graph Response", "Informazioni prelevate da Facebook");
                            if(object!=null) {
                                Log.d("Graph Response", "user = " + response.toString());
                                Log.d("Graph Response", "Informazioni prelevate da Facebook");
@@ -52,14 +55,26 @@ public class FacebookProfile {
                                String email = response.getJSONObject().getString("email");
                                String lastname = response.getJSONObject().getString("last_name");
                                String firstname = response.getJSONObject().getString("first_name");
+                               String friends = response.getJSONObject().getString("friends");
+
+
+
+
+
+
+                               Log.d("Graph Response", "FriendS" + friends);
+
                                Log.d("Graph Response", "email" +email);
                                Log.d("Graph Response", "lastname" +lastname);
 
                                userP.setUsername(email);
                                userP.setEmail(email);
-                               userP.put("Facebook","true");
+                               userP.put("Facebook", "true");
                                userP.put("fName",firstname);
                                userP.put("lName",lastname);
+                               //friends tha uses app
+
+                               userP.put("friends",friends);
                                userP.saveInBackground();
                                Log.d("Graph Response",userP.getString("lName"));
                            }
@@ -77,11 +92,28 @@ public class FacebookProfile {
                    }
                });
        Bundle parameters = new Bundle();
-       parameters.putString("fields", "id,name,email,link,first_name,last_name,/{friend-list-id}");
+       parameters.putString("fields", "id,name,email,link,first_name,last_name,friends");
        request.setParameters(parameters);
        request.executeAsync();
 
    }
+    public static void getGraphRequestFriends(final ParseUser   userP) {
+    /* make the API call */
+    new GraphRequest(
+            AccessToken.getCurrentAccessToken(),
+        "/{friend-list-id}",
+            null,
+    HttpMethod.GET,
+            new GraphRequest.Callback() {
+        public void onCompleted(GraphResponse response) {
+            if(response!=null) {
+                Log.d("FriendsList", response.toString());
+            }else{
+                Log.d("FriendsList","Isnull");
+            }
+        }
+    }
+    ).executeAsync();}
 
     // Function to get information from FBuser and put them in user
     /*public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {

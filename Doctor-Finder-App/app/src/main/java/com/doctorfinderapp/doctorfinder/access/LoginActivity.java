@@ -146,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
                             Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
+                            //FacebookProfile.getGraphRequestFriends(user);
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else {
@@ -155,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                             //facebook things
                             Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
+                            //FacebookProfile.getGraphRequestFriends(user);
 
 
 
