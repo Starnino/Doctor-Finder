@@ -37,19 +37,6 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //get parameters from activity
-        Bundle b = getIntent().getExtras();
-        String id = b.getString("id");
-
-        //creazione parseobject user
-        ParseObject user=new ParseObject("User");
-
-        int i=0;
-            if(MainActivity.USERSMAIN.get(i).getObjectId()==id){
-                Log.d("User", "object id " + MainActivity.USERSMAIN.get(i).getObjectId());
-                Log.d("User","id "+id);
-                user= MainActivity.USERSMAIN.get(i);
-            }
 
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -70,3 +57,4 @@ public class UserProfileActivity extends AppCompatActivity {
 
         }
     }
+
