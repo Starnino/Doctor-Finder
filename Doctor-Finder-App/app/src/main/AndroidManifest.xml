@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.doctorfinderapp.doctorfinder">
+    package="com.doctorfinderapp.doctorfinder" >
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -30,11 +30,11 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,26 +46,48 @@
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider722994014468396"
             android:exported="true" />
-        <!--facebook activity is required-->
-       <activity
+        <!-- facebook activity is required -->
+        <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".access.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".access.FirstActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".access.SignupActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ResultsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".FeedbackItemActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".UserProfileActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".access.LoginActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".access.FirstActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+        </activity>
+        <activity
+            android:name=".access.FirstActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".access.SignupActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".access.FirstActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultsActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.MainActivity" />
+        </activity>
+        <activity
+            android:name=".FeedbackItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

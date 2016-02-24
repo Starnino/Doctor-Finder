@@ -32,12 +32,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 
-//login facebook
 
-
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends AppCompatActivity {
 
 

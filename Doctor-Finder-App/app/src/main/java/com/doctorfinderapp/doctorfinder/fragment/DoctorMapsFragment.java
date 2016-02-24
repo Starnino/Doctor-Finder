@@ -1,14 +1,10 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -95,8 +91,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         //rimpicciolisco il marker
         Bitmap markerSmall= resizeMarker(R.drawable.markermini,100);
 
-        //creo lista dottori
-        ArrayList<Doctor> arraydoctors = new ArrayList<Doctor>();
+
 
         //Creo lista Marker per prova
         ArrayList<Marker> markers= new ArrayList<>();
