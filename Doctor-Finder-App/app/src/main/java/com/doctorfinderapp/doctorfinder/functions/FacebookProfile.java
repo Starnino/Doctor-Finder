@@ -45,22 +45,25 @@ public class FacebookProfile {
                            GraphResponse response) {
 
                        try {
-                           Log.d("Graph Response", "user = " + object.toString());
-                           Log.d("Graph Response", "Informazioni prelevate da Facebook");
+                           if(object!=null) {
+                               Log.d("Graph Response", "user = " + response.toString());
+                               Log.d("Graph Response", "Informazioni prelevate da Facebook");
 
-                            String email = response.getJSONObject().getString("email");
-                           String lastname = response.getJSONObject().getString("last_name");
-                           String firstname = response.getJSONObject().getString("first_name");
-                           Log.d("Graph Response", "email" +email);
-                           Log.d("Graph Response", "lastname" +lastname);
+                               String email = response.getJSONObject().getString("email");
+                               String lastname = response.getJSONObject().getString("last_name");
+                               String firstname = response.getJSONObject().getString("first_name");
+                               Log.d("Graph Response", "email" +email);
+                               Log.d("Graph Response", "lastname" +lastname);
 
-                           userP.setUsername(email);
-                           userP.setEmail(email);
-                           userP.put("Facebook","true");
-                           userP.put("fName",firstname);
-                           userP.put("lName",lastname);
-                           userP.saveInBackground();
-                           Log.d("Graph Response",userP.getString("lName"));
+                               userP.setUsername(email);
+                               userP.setEmail(email);
+                               userP.put("Facebook","true");
+                               userP.put("fName",firstname);
+                               userP.put("lName",lastname);
+                               userP.saveInBackground();
+                               Log.d("Graph Response",userP.getString("lName"));
+                           }
+
 
 
 

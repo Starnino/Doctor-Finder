@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.GraphRequest;
@@ -129,9 +130,9 @@ public class LoginActivity extends AppCompatActivity {
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
-                List<String> permissions = Arrays.asList("email", "public_profile");
+                List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
                 progressBar.setVisibility(View.VISIBLE);
-                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
+                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
                     @Override

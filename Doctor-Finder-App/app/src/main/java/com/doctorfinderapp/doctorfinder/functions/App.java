@@ -21,7 +21,7 @@ public class App extends Application{
        startParse(getApplicationContext());
     }
 
-    public static void startParse(Context c){
+    private static void startParse(Context c){
         Parse.enableLocalDatastore(c);
         try {
             Parse.initialize(new Parse.Configuration.Builder(c)

@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.doctorfinderapp.doctorfinder.functions.App.startParse;
+
 
 public class SplashActivity extends AppCompatActivity {
     public static final int SPLASH_ACTIVITY_TIME = 4000;

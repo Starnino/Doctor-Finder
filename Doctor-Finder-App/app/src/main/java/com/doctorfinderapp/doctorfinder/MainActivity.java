@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity  {
                         Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, FirstActivity.class);
                 startActivity(intent);
-
+            case R.id.exit:
+               super.finish();
             case R.id.action_settings:
             case R.id.like:
 
