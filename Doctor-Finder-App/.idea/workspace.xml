@@ -25,29 +25,15 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="362e4774-5273-4f82-8323-bcc45e7e0f62" name="Default" comment="User Profile 80%">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_mail_outline_black_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_phone_black_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/AppCompatPreferenceActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SettingsActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/UserProfileFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/UsersDB.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/debug/res/xml/pref_data_sync.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/debug/res/xml/pref_general.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/debug/res/xml/pref_headers.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/debug/res/xml/pref_notification.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/GlobalVariable.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/GlobalVariable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+    <list default="true" id="362e4774-5273-4f82-8323-bcc45e7e0f62" name="Default" comment="Solve layout bug on User Profile 80%, left only parse connection">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <list id="a4edc725-4f0b-4d1f-aa97-2aad3894b69f" name="Rejected commit: Default" comment="Solve layout bug on User Profile 80%, left only parse connection">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,61 +61,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DoctorListFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java">
+      <file leaf-file-name="content_scrolling_user.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="20" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
+            <state vertical-scroll-proportion="-67.354836">
+              <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignupActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-              <folding />
-            </state>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/UsersDB.java">
+      <file leaf-file-name="activity_scrolling_user.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_scrolling_user.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+            <state vertical-scroll-proportion="-16.838709">
+              <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserProfileActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserProfileActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SettingsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pref_general.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/debug/res/xml/pref_general.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33161953">
+              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -2126,7 +2088,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_start_fragment_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainFragmentActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/doctor_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/FirstActivity.java" />
@@ -2136,14 +2097,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Utils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/FacebookProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/AppCompatPreferenceActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/UserProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java" />
@@ -2152,6 +2111,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_scrolling_user.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" />
       </list>
     </option>
   </component>
@@ -2242,6 +2206,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Doctor-Finder-App" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2992,7 +2974,19 @@
       <option name="project" value="LOCAL" />
       <updated>1456273833641</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="User Profile 80%">
+      <created>1456342511515</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1456342511515</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Solve crash on User Profile 80%">
+      <created>1456346169923</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1456346169923</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3001,32 +2995,32 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.07575758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.352657" sideWeight="0.4939577" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65217394" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67788464" sideWeight="0.5060423" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3252818" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3252818" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3068182" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.07575758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -3059,7 +3053,9 @@
     <MESSAGE value="Working on facebook utils pt3 (è solo l' 01:09)&#10;" />
     <MESSAGE value="Working on facebook utils it's working !&#10;" />
     <MESSAGE value="User Profile 80%" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Profile 80%" />
+    <MESSAGE value="Solve crash on User Profile 80%" />
+    <MESSAGE value="Solve layout bug on User Profile 80%, left only parse connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solve layout bug on User Profile 80%, left only parse connection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3068,14 +3064,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="16" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3253,13 +3241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse/parse-android/1.13.1-SNAPSHOT/aa1c546ad106fc1fe280597a44ea55391346f199/parse-android-1.13.1-SNAPSHOT-sources.jar!/com/parse/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3336,14 +3317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41984734">
-          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3385,6 +3358,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3393,11 +3367,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
           <folding>
-            <element signature="e#975#3873#0" expanded="true" />
-            <element signature="e#2255#2263#0" expanded="true" />
-            <element signature="e#3872#3873#0" expanded="true" />
-            <element signature="e#4337#4612#0" expanded="true" />
-            <element signature="e#4611#4612#0" expanded="true" />
+            <element signature="e#975#3873#0" expanded="false" />
+            <element signature="e#2255#2263#0" expanded="false" />
+            <element signature="e#3872#3873#0" expanded="false" />
+            <element signature="e#4337#4612#0" expanded="false" />
+            <element signature="e#4611#4612#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3408,17 +3382,6 @@
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java">
@@ -3450,7 +3413,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3463,14 +3426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/debug/res/xml/pref_general.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3479,9 +3434,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30456853">
+          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-0.060913704">
           <caret line="96" column="20" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
           <folding />
         </state>
@@ -3489,24 +3452,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/UsersDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.2741117">
           <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+          <caret line="167" column="33" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding>
+            <element signature="e#2619#2637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.09137056">
+          <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_scrolling_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.838709">
+          <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-67.354836">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/UserProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33161953">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
           <folding />
         </state>
       </provider>
