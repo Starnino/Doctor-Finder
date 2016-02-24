@@ -30,7 +30,8 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name ="com.doctorfinderapp.doctorfinder.functions.App">
         <activity
             android:name=".access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

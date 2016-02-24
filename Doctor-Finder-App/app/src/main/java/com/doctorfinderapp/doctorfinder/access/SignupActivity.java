@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -61,7 +62,7 @@ public class SignupActivity extends AppCompatActivity {
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
-        close = (ImageButton) findViewById(R.id.close);
+
 
 
         //locate EditText in xml
@@ -184,6 +185,9 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        close = (ImageButton) findViewById(R.id.close2);
         //close button  x
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,10 +219,11 @@ public class SignupActivity extends AppCompatActivity {
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
 
-                            //new LongOperation().execute(user);
                             Toast.makeText(getApplicationContext(),
                                     "Signed up",
                                     Toast.LENGTH_LONG).show();
+                            //facebook request
+                            FacebookProfile.getGraphRequest(user);
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else {
@@ -228,9 +233,8 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
                                     Toast.LENGTH_LONG).show();
-
-
-                            //new LongOperation().execute(user);
+                            //facebook request
+                            FacebookProfile.getGraphRequest(user);
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
 
                             startActivity(intent);

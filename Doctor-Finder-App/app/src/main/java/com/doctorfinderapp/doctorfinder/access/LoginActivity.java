@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
 
-                            //*///todo facebook things
+
 
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",

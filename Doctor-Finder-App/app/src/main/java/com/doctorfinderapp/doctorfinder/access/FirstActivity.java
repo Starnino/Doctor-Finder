@@ -29,6 +29,7 @@ public class FirstActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //parse inizialized?
 
 
         //set activity layout

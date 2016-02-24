@@ -8,12 +8,11 @@ import android.view.View;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.doctorfinderapp.doctorfinder.functions.StartParse.startParse;
+import static com.doctorfinderapp.doctorfinder.functions.App.startParse;
 
 public class SplashActivity extends AppCompatActivity {
     public static final int SPLASH_ACTIVITY_TIME = 4000;
@@ -25,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         //inizialize parse
-        startParse(this.getApplicationContext());
+        //startParse(this.getApplicationContext());
 
         //add immersive mode
         getWindow().getDecorView().setSystemUiVisibility(

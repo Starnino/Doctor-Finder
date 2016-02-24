@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -10,9 +11,15 @@ import com.parse.ParseInstallation;
 /**
  * Created by fedebyes on 11/02/16.
  */
-public class StartParse {
+public class App extends Application{
 
     private static final String TAG = "StartParse" ;
+
+    @Override public void onCreate() {
+        super.onCreate();
+
+       startParse(getApplicationContext());
+    }
 
     public static void startParse(Context c){
         Parse.enableLocalDatastore(c);

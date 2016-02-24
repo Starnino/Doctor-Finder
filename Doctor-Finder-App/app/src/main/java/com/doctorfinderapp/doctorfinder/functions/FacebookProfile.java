@@ -43,9 +43,11 @@ public class FacebookProfile {
                    public void onCompleted(
                            JSONObject object,
                            GraphResponse response) {
-                       Log.d("Graph Response", "user = " + object.toString());
-                       Log.d("Graph Response", "Informazioni prelevate da Facebook");
+
                        try {
+                           Log.d("Graph Response", "user = " + object.toString());
+                           Log.d("Graph Response", "Informazioni prelevate da Facebook");
+
                             String email = response.getJSONObject().getString("email");
                            String lastname = response.getJSONObject().getString("last_name");
                            String firstname = response.getJSONObject().getString("first_name");
@@ -72,7 +74,7 @@ public class FacebookProfile {
                    }
                });
        Bundle parameters = new Bundle();
-       parameters.putString("fields", "id,name,email,link,first_name,last_name");
+       parameters.putString("fields", "id,name,email,link,first_name,last_name,/{friend-list-id}");
        request.setParameters(parameters);
        request.executeAsync();
 
