@@ -147,6 +147,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
+                            Log.d("login with facebook", user.toString());
+                            FacebookProfile.getGraphRequest(user);
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else {
@@ -154,24 +156,8 @@ public class LoginActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.INVISIBLE);
 
                             //facebook things
-
-                            GraphRequest request = GraphRequest.newMeRequest(
-                                    AccessToken.getCurrentAccessToken(),
-                                    new GraphRequest.GraphJSONObjectCallback() {
-                                        @Override
-                                        public void onCompleted(
-                                                JSONObject object,
-                                                GraphResponse response) {
-                                            Log.d("Graph Response", "user = " + object.toString());
-                                            // Application code
-                                        }
-                                    });
-                            Bundle parameters = new Bundle();
-                            parameters.putString("fields", "id,name,link");
-                            request.setParameters(parameters);
-                            request.executeAsync();
-
-
+                            Log.d("login with facebook", user.toString());
+                            FacebookProfile.getGraphRequest(user);
 
                             //*///todo facebook things
 

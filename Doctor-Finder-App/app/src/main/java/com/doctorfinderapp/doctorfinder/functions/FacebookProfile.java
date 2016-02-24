@@ -16,6 +16,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.Arrays;
@@ -36,7 +37,38 @@ public class FacebookProfile {
 
 
 
+   public static void getGraphRequest(ParseUser user) {
 
+       GraphRequest request = GraphRequest.newMeRequest(
+               AccessToken.getCurrentAccessToken(),
+               new GraphRequest.GraphJSONObjectCallback() {
+                   @Override
+                   public void onCompleted(
+                           JSONObject object,
+                           GraphResponse response) {
+                       Log.d("Graph Response", "user = " + object.toString());
+                       Log.d("Graph Response", "Informazioni prelevate da Facebook");
+                       try {
+                           email = response.getJSONObject().getString("email");
+                           lastname = response.getJSONObject().getString("last_name");
+                           name = response.getJSONObject().getString("first_name");
+                           Log.d("Graph Response", "email" +email);
+                           Log.d("Graph Response", "lastname" +lastname);
+                       } catch (JSONException e) {
+                           e.printStackTrace();
+                           Log.d("Graph Response","error JSON");
+                       }
+
+
+                       // Application code
+                   }
+               });
+       Bundle parameters = new Bundle();
+       parameters.putString("fields", "id,name,link,first_name,last_name");
+       request.setParameters(parameters);
+       request.executeAsync();
+
+   }
 
     // Function to get information from FBuser and put them in user
     /*public static com.parse.ParseException getFacebookThings(ParseUser Puser) throws InterruptedException {
