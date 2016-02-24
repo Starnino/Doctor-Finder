@@ -79,7 +79,8 @@
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
         android:fitsSystemWindows="true"
-        android:background="@color/grey"
-        android:backgroundTint="@color/docfinder"/>
+
+        app:theme="@style/NavigationDrawerStyle"
+        />
 
 </android.support.v4.widget.DrawerLayout>

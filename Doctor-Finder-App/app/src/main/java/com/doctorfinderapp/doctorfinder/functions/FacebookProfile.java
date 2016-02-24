@@ -29,15 +29,12 @@ import java.util.List;
 
 public class FacebookProfile {
 
-    private static String name;
-    private static String email;
-    private static String lastname;
 
     private static com.parse.ParseException ret = null;
 
 
 
-   public static void getGraphRequest(ParseUser user) {
+   public static void getGraphRequest(final ParseUser   userP) {
 
        GraphRequest request = GraphRequest.newMeRequest(
                AccessToken.getCurrentAccessToken(),
@@ -49,11 +46,22 @@ public class FacebookProfile {
                        Log.d("Graph Response", "user = " + object.toString());
                        Log.d("Graph Response", "Informazioni prelevate da Facebook");
                        try {
-                           email = response.getJSONObject().getString("email");
-                           lastname = response.getJSONObject().getString("last_name");
-                           name = response.getJSONObject().getString("first_name");
+                            String email = response.getJSONObject().getString("email");
+                           String lastname = response.getJSONObject().getString("last_name");
+                           String firstname = response.getJSONObject().getString("first_name");
                            Log.d("Graph Response", "email" +email);
                            Log.d("Graph Response", "lastname" +lastname);
+
+                           userP.setUsername(email);
+                           userP.setEmail(email);
+                           userP.put("Facebook","true");
+                           userP.put("fName",firstname);
+                           userP.put("lName",lastname);
+                           userP.saveInBackground();
+                           Log.d("Graph Response",userP.getString("lName"));
+
+
+
                        } catch (JSONException e) {
                            e.printStackTrace();
                            Log.d("Graph Response","error JSON");
@@ -64,7 +72,7 @@ public class FacebookProfile {
                    }
                });
        Bundle parameters = new Bundle();
-       parameters.putString("fields", "id,name,link,first_name,last_name");
+       parameters.putString("fields", "id,name,email,link,first_name,last_name");
        request.setParameters(parameters);
        request.executeAsync();
 
