@@ -31,7 +31,7 @@ public class DoctorsDB {
     }
 
     public static ParseObject getQuery(){
-        return this.docQuery;
+        return docQuery;
     }
 
 }
