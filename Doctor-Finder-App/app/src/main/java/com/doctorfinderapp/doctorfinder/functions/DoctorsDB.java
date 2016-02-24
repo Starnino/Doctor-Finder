@@ -12,14 +12,14 @@ import java.util.Arrays;
 
 public class DoctorsDB {
 
-    private static ParseObject fQuery=null;
+    public static ParseObject docQuery;
 
-    private static void DoctorsDB(){
+    public static void DoctorsDB(){
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
 
         try {
-            fQuery=query.getFirst();
+            docQuery=query.getFirst();
         }
 
         catch (ParseException e) {
@@ -29,4 +29,9 @@ public class DoctorsDB {
         ParseObject Doctor = new ParseObject("Doctor");
         Doctor.put("_id", GlobalVariable.idDocotrs);
     }
+
+    public static ParseObject getQuery(){
+        return this.docQuery;
+    }
+
 }

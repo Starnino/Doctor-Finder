@@ -2,5 +2,7 @@ package com.doctorfinderapp.doctorfinder.functions;
 
 public class GlobalVariable {
 
-    public static int idDocotrs;
+    public static String idDocotrs;
+
+    public static int numdocotrs;
 }

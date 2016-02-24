@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -44,10 +45,12 @@ public class DoctorProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         //get parameters from activity
         Bundle b = getIntent().getExtras();
-        String id = b.getString("id");
 
 
-        ParseObject doctor=new ParseObject("Doctor");
+        String id = GlobalVariable.idDocotrs;
+
+
+        ParseObject doctor = new ParseObject("Doctor");
 
         for(int i=0;i< MainActivity.DOCTORSMAIN.size();i++){
             if(MainActivity.DOCTORSMAIN.get(i).getObjectId()==id){

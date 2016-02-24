@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.functions.DoctorsDB;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -147,7 +148,8 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-    //downloading doctors from parse
+    //download doctors from DB
+
     public static void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
         try {
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity  {
             Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORSMAIN.get(0).toString());
             Log.d("DoctorListFragment", DOCTORSMAIN.size()+"" );
         } catch (ParseException e) {
-            Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
+            Log.d("MainActivity Class", e.getMessage());
         }
 
     }
