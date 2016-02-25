@@ -36,8 +36,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/docfinder"
         android:id="@+id/tabs"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:elevation="4dp">
+        app:layout_scrollFlags="scroll|enterAlways">
 
     </android.support.design.widget.TabLayout>
 
