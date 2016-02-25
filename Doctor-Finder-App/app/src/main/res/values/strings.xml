@@ -56,7 +56,6 @@
     <string name="like"> Facebook</string>
 
     <string-array name="Specializations">
-        <item>Tutti</item>
         <item>Allergologia</item>
         <item>Anatomia Patologica</item>
         <item>Andrologia</item>
@@ -119,10 +118,6 @@
     </string-array>
 
     <string-array name="cities">
-    <item>Tutte</item>
-    <item>Roma</item>
-    <item>Milano</item>
-    <item>Torino</item>
     <item>Agrigento</item>
     <item>Alessandria</item>
     <item>Ancona</item>
@@ -178,6 +173,7 @@
     <item>Matera</item>
     <item>Medio Campidano</item>
     <item>Messina</item>
+    <item>Milano</item>
     <item>Modena</item>
     <item>Napoli</item>
     <item>Novara</item>
@@ -204,6 +200,7 @@
     <item>Reggio Emilia</item>
     <item>Rieti</item>
     <item>Rimini</item>
+    <item>Roma</item>
     <item>Rovigo</item>
     <item>Salerno</item>
     <item>Sassari</item>
@@ -214,6 +211,7 @@
     <item>Taranto</item>
     <item>Teramo</item>
     <item>Terni</item>
+    <item>Torino</item>
     <item>Trapani</item>
     <item>Trento</item>
     <item>Treviso</item>

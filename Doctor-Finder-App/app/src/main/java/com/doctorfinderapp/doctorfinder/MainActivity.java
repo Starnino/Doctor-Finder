@@ -1,33 +1,30 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
-import com.doctorfinderapp.doctorfinder.access.SplashActivity;
-import com.doctorfinderapp.doctorfinder.functions.DoctorsDB;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +39,10 @@ public class MainActivity extends AppCompatActivity  {
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
     private FloatingActionButton fab;
+    private Button selcitta;
+    private Button selcateg;
+    ArrayList<String> selected_city;
+    ArrayList<String> selected_special;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,29 @@ public class MainActivity extends AppCompatActivity  {
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+        //Dialog for cities
+        selcitta = (Button) findViewById(R.id.select_city_button);
+        String[] citta = getResources().getStringArray(R.array.cities);
+        selected_city = new ArrayList<>();
+        final AlertDialog dialogCity = OnCreateDialog("SELEZIONA PROVINCIA", selected_city, citta);
+        selcitta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCity.show();
+            }
+        });
+
+        //Dialog for specialization
+        selcateg = (Button) findViewById(R.id.select_special_button);
+        String[] special = getResources().getStringArray(R.array.Specializations);
+        selected_special = new ArrayList<>();
+        final AlertDialog dialogSpecial = OnCreateDialog("SELEZIONA CATEGORIA", selected_special, special);
+        selcateg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogSpecial.show();
+            }
+        });
 
         fab = (FloatingActionButton) findViewById(R.id.fabmain);
         //fab action results activity
@@ -65,7 +89,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         //Download parse data
-        showDataM();
+        /**showDataM(); dio porchettum cause exception*/
 
         //Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
@@ -89,6 +113,34 @@ public class MainActivity extends AppCompatActivity  {
                         return true;
                     }
                 });
+    }
+
+    public AlertDialog OnCreateDialog(String title, final ArrayList<String> checked, final String[] items){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setTitle(title)
+                .setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked) checked.add(items[which]);
+                        else checked.remove(items[which]);
+
+                    }
+                }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        for (int i = 0; i < checked.size(); i++) {
+                            Log.d("List " + i + " ----> ", checked.get(i));
+                        }
+                    }
+                }).setNegativeButton("Cancella", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        return alertDialog;
     }
 
     //respond to toolbar actions

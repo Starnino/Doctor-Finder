@@ -87,6 +87,8 @@
             android:name=".FeedbackItemActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".UserProfileActivity"/>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

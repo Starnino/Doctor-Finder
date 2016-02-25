@@ -5,8 +5,7 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultsActivity"
-    android:theme="@style/AppTheme">
+    tools:context=".ResultsActivity">
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,10 +13,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ResultsActivity"
     android:fitsSystemWindows="true"
-
     android:clickable="true"
     android:focusable="true">
 
@@ -98,7 +95,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/grey"
+        android:background="@color/white"
         android:clickable="true" />
 
 </android.support.v4.widget.DrawerLayout>

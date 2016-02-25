@@ -54,8 +54,6 @@
                 android:background="@color/white"
                 android:textColor="@color/docfinder" />
 
-
-
         </LinearLayout>
 
 

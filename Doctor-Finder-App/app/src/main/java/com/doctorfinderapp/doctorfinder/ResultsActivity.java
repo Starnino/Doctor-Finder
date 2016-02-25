@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -53,10 +55,11 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 //         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
   //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
         //set status bar color because in xml don't work
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }*/
+        }
 
         setContentView(R.layout.activity_results);
 

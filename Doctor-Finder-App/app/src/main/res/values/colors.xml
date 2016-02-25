@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#009688</color>
 
-    <color name="colorPrimaryDark">#00695C</color>
+    <color name="colorPrimaryDark">#00695c</color>
     <color name="docfinder">#009688</color>
     <color name="darkdf">#004D40</color>
     <color name="lightdf">#B2DFDB</color>
