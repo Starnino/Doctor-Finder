@@ -24,19 +24,20 @@
         android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/results_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/docfinder"
-        android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|enterAlways" />
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/docfinder"
         android:id="@+id/tabs"
-        app:layout_scrollFlags="scroll|enterAlways">
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:elevation="4dp">
 
     </android.support.design.widget.TabLayout>
 
@@ -96,6 +97,7 @@
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
         android:background="@color/white"
-        android:clickable="true" />
+        android:clickable="true"
+        app:itemTextColor="@color/grey"/>
 
 </android.support.v4.widget.DrawerLayout>

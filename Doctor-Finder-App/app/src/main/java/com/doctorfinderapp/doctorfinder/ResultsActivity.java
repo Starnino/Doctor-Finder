@@ -64,7 +64,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_results);
 
         // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
         setSupportActionBar(toolbar);
 
         //find fab buttons
@@ -159,8 +159,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.exit:
-                super.finish();
             case R.id.about:
 
             case R.id.profile:
