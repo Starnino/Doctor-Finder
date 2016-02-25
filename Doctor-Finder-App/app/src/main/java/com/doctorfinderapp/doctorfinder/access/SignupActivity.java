@@ -1,6 +1,8 @@
 package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +24,13 @@ import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 
@@ -146,8 +151,29 @@ public class SignupActivity extends AppCompatActivity {
                                             if (e == null) {
                                                 // Hooray! Let them use the app now.
                                                 //create a toast
-                                                Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.INVISIBLE);
+                                                //put on parse base user avatar
+                                                Bitmap avatar = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                                                        R.drawable.avatar);
+                                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                                avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                                byte[] byteArray = stream.toByteArray();
+
+
+                                                ParseFile file = new ParseFile("propic.jpg", byteArray);
+                                                file.saveInBackground();
+                                                // Creazione di un ParseObject da inviare
+                                                ParseObject userPhoto = new ParseObject("UserPhoto");
+                                                userPhoto.put("username", user.getUsername());
+                                                userPhoto.put("profilePhoto", file);
+                                                userPhoto.saveInBackground();
+
+
+
+
+
+
                                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                 startActivity(intent);
 
