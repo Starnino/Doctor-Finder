@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
@@ -66,7 +65,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:clickable="true"
         android:padding="@dimen/activity_horizontal_margin">
 
         <ImageView
@@ -116,7 +114,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
@@ -165,7 +162,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
@@ -215,7 +211,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
@@ -266,7 +261,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
@@ -291,8 +285,7 @@
 
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Connetti con il profilo Facebook"
-                android:clickable="true"
+                android:text="Connetti con Facebook"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"
                 />
@@ -313,7 +306,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cambia i dati del mio profilo"
+                android:clickable="true"
                 android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimaryDark"
+                />
+
+            <Button
+                android:id="@+id/segnala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Segnala Problema"
+                android:clickable="true"
+                android:textColor="@color/flat_red"
                 android:backgroundTint="@color/colorPrimaryDark"
                 />
 

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.parse.ParseObject;
@@ -20,6 +21,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
+    private Button segnala;
 
 
     @Override
@@ -46,10 +48,21 @@ public class UserProfileActivity extends AppCompatActivity {
                 alert = new AlertDialog.Builder(UserProfileActivity.this);
                 alert.setTitle("Hai bisogno di aiuto?");
                 alert.setMessage("Se stai riscontrando problemi con il tuo profilo, o " +
-                        "hai problemi con un dottore, manda un email a info@doctorfinderapp.com" +
-                        " spiegando il tuo problema. Saremo a tua disposizione per aiutarti!");
+                        "hai problemi con un dottore, clicca sul pulsante posto in basso, segnala problema, " +
+                        " e spiegaci il tuo problema. Saremo a tua disposizione per aiutarti!");
                 alert.setPositiveButton("Ho capito", null);
-                alert.setIcon(R.drawable.ic_info_white_24dp);
+                alert.show();
+            }
+        });
+
+        segnala = (Button) findViewById(R.id.button) ;
+        segnala.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.setTitle("Spiegaci in modo chiaro e dettagliato il tuo problema?");
+                alert.setMessage("Ci deve andare una casella ti testo tipo report bug");
+                alert.setPositiveButton("Invia", null);
+                alert.setNegativeButton("Cancella",null);
                 alert.show();
             }
         });

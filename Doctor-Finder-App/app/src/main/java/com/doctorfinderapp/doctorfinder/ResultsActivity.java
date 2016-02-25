@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -160,6 +161,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.about:
+                String url_github = "https://github.com/Starnino/Doctor-Finder";
+
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);
+
+            case R.id.like:
+                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+
+                Intent i_face = new Intent(Intent.ACTION_VIEW);
+                i_face.setData(Uri.parse(url_face));
+                startActivity(i_face);
 
             case R.id.profile:
                 Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
