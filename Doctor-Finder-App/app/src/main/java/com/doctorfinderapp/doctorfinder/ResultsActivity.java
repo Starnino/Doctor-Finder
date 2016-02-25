@@ -123,7 +123,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
-
         viewPager.setAdapter(adapter);
     }
 
@@ -236,9 +235,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         public CharSequence getPageTitle(int position) {
-
-
-
             return mFragmentTitleList.get(position);
         }
     }//---------------------------------------------------------------------------------------------
