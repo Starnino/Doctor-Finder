@@ -51,11 +51,12 @@ public class AddDoctors {
                     //if exception is null add
 
 
-
+                Log.d("add doctor","e null");
                 if (object == null) {
                     //if object is null
                     //doctor not exist
                     //adding
+                    Log.d("add doctor","object null");
 
 
                     ParseObject Doctor = new ParseObject("Doctor");

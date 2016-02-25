@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //adding doctors
         AddDoctors.addData(getApplicationContext());
-        Log.d("Main","adding doctors"+getApplicationContext());
+        Log.d("Main", "adding doctors" + getApplicationContext());
 
         //Dialog for cities
         selcitta = (Button) findViewById(R.id.select_city_button);
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         //Download parse data
-        /**showDataM(); dio porchettum cause exception*/
+        showDataM();
+
 
         //Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
@@ -209,15 +211,21 @@ public class MainActivity extends AppCompatActivity  {
 
     public static void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
-        try {
-            DOCTORSMAIN = query.find();
-            SIZEM=DOCTORSMAIN.size();
+        //query.whereEqualTo("Citta",NOMECITTA);//per starna
+        //query.whereEqualTo("Specializzazione",NOMESPECIALIZZAZIONE)
+       query.findInBackground(new FindCallback<ParseObject>() {
+           @Override
+           public void done(List<ParseObject> objects, ParseException e) {
 
-            //Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORSMAIN.get(0).toString());
-            Log.d("DoctorListFragment", DOCTORSMAIN.size()+"" );
-        } catch (ParseException e) {
-            Log.d("MainActivity Class", e.getMessage());
-        }
+               if(e==null) {
+                   DOCTORSMAIN = objects;
+                   Log.d("Main",DOCTORSMAIN.toString());
+                   SIZEM=objects.size();
+               }else{
+                   Log.d("Main","exception "+e.toString());
+               }
+           }
+       });
 
     }
 
