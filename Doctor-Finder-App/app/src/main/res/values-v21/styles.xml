@@ -9,7 +9,6 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@color/docfinder</item>
         <item name="android:navigationBarColor">@color/docfinder</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:colorForeground">@color/colorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
