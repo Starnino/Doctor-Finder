@@ -123,14 +123,7 @@ public class FacebookProfile {
 
                                        try{
                                        if (e == null) {
-
-
-
-
-
-
-
-                                          if(results.size()>0){
+                                           if(results.size()>0){
                                               //UserPhoto exists
 
 

@@ -1,14 +1,25 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import com.doctorfinderapp.doctorfinder.R;
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 //import java.lang.reflect.Array;
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by fedebyes on 12/02/16.
@@ -17,64 +28,107 @@ public class AddDoctors {
 
 
     private static boolean exist;
+    private static Context context;
 
-    private static void AddDoctors(String FirstName, String LastName, String email, String data,
-                                  String[] Specialization, String[] Work, String anni,
-                                  String cellphone, String description,String latlng){
+
+    private static void AddDoctors(final String FirstName, final String LastName, final String email, String data,
+                                  final String[] Specialization, final String[] Work, final String anni,
+                                  final String cellphone, final String description, final String latlng){
 
             //Exist(email);
 
         //codice per vedere se la mail del dottore esiste nel database
-        Log.d("add doctor","adding "+ email);
+        Log.d("add doctor", "adding " + email);
+
+
+
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        query.whereEqualTo("email",email);
-        exist= false;
-        ParseObject fromQuery=null;
-
-        try {
-            fromQuery=query.getFirst();
-
-        } catch (ParseException e) {
-            if(e.equals(ParseException.OBJECT_NOT_FOUND)){
-                Log.d("Add doctor","Parse exception doctorn not exist");
-                exist=false;
-            }
+        query.whereEqualTo("email", email);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if(e==null){
+                    //if exception is null add
 
 
-        }
-        Log.d("add doctor","query result "+ fromQuery);
+
+                if (object == null) {
+                    //if object is null
+                    //doctor not exist
+                    //adding
 
 
-        Log.d("Add doctor","exist== "+exist);
-        //fromQuery.equals
-        if(true){
-            ParseObject Doctor = new ParseObject("Doctor");
-            Doctor.put("FirstName", FirstName);
-            Doctor.put("LastName", LastName);
-            Doctor.put("Email", email);
-            Doctor.put("Marker",latlng);
+                    ParseObject Doctor = new ParseObject("Doctor");
+                    Doctor.put("FirstName", FirstName);
+                    Doctor.put("LastName", LastName);
+                    Doctor.put("Email", email);
+                    Doctor.put("Marker",latlng);
 
-            Doctor.put("Specialization", Arrays.asList(Specialization));
-            //todo photo
-            Doctor.put("Work", Arrays.asList(Work));
-            Doctor.put("Cellphone", cellphone);
-            Doctor.put("Description", description);
-            Doctor.put("Years", anni);
-            Doctor.saveInBackground();
-            Log.d("Add doctor", "Saving doctor that not exist");
-            }
-        else {
+                    Doctor.put("Specialization", Arrays.asList(Specialization));
 
-            Log.d("Add doctor","exist");
 
-            }
+
+                    Doctor.put("Work", Arrays.asList(Work));
+                    Doctor.put("Cellphone", cellphone);
+                    Doctor.put("Description", description);
+
+                    Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+
+
+                    ParseFile file = new ParseFile("Doctorpropic.jpg", byteArray);
+                    file.saveInBackground();
+                    // Creazione di un ParseObject da inviare
+                    ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
+                    doctorPhoto.put("username", email);
+                    doctorPhoto.put("profilePhoto", file);
+                    doctorPhoto.saveInBackground();
+
+
+                    Doctor.put("Years", anni);
+                    Doctor.saveInBackground();
+                    Log.d("Add doctor", "Saving doctor that not exist");
+                    Log.d("Doctor", "adding"+email);
+
+                } else {
+                    //Doctor exists updating
+
+                    ParseObject Doctor =object;
+                    Doctor.put("FirstName", FirstName);
+                    Doctor.put("LastName", LastName);
+                    Doctor.put("Email", email);
+                    Doctor.put("Marker",latlng);
+
+                    Doctor.put("Specialization", Arrays.asList(Specialization));
+
+
+                    Doctor.put("Work", Arrays.asList(Work));
+                    Doctor.put("Cellphone", cellphone);
+                    Doctor.put("Description", description);
+                    Doctor.put("Years", anni);
+                    Doctor.saveInBackground();
+
+
+
+                    Log.d("Doctor","exists on DB "+email);
+                    Log.d("Doctor", "updating");
+                }
+            }}
+        });
+
+
+
+
+
 
 
     }
-    public  static void addData() {
+    public  static void addData(Context c) {
 
         //CREATE DOCTORS
-
+        context=c;
         LatLng Doc1 =new LatLng(38.121932, 13.357361);
         AddDoctors("Calogero Roaul", "Aiello", "roaulaiello@gmail.com", "25/05/1983",
                 new String[]{"Oculistica"}, new String[]{"Via"}, "Tra 5 e 10", "+39.3408312029", "https://www.linkedin.com/in/federico-solignani-596a1661", Doc1.toString());

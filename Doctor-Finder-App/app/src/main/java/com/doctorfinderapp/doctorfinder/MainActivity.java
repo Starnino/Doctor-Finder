@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -52,6 +53,11 @@ public class MainActivity extends AppCompatActivity  {
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+
+
+        //adding doctors
+        AddDoctors.addData(getApplicationContext());
+        Log.d("Main","adding doctors"+getApplicationContext());
 
         //Dialog for cities
         selcitta = (Button) findViewById(R.id.select_city_button);
