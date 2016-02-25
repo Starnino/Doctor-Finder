@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity  {
                    Log.d("Main",DOCTORSMAIN.toString());
                    SIZEM=objects.size();
                }else{
-                   Log.d("Main","exception "+e.toString());
+                  // Log.d("Main","exception "+e.toString());
                }
            }
        });

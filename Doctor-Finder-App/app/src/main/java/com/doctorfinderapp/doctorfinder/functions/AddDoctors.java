@@ -33,9 +33,7 @@ public class AddDoctors {
 
     private static void AddDoctors(final String FirstName, final String LastName, final String email, String data,
                                   final String[] Specialization, final String[] Work, final String anni,
-                                  final String cellphone, final String description, final String latlng){
-
-            //Exist(email);
+                                  final String cellphone, final String description, final String latlng)  {
 
         //codice per vedere se la mail del dottore esiste nel database
         Log.d("add doctor", "adding " + email);
@@ -45,79 +43,55 @@ public class AddDoctors {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
         query.whereEqualTo("email", email);
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            public void done(ParseObject object, ParseException e) {
-                if(e==null){
-                    //if exception is null add
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+               /* ParseObject Doctor;
+               if(objects.size()>0){  Doctor= objects.get(0);
+                   Log.d("adddoctor","retri")
+               } else {
+                  Doctor=new ParseObject("Doctor");
+               }
+
+                Doctor.put("FirstName", FirstName);
+                Doctor.put("LastName", LastName);
+                Doctor.put("Email", email);
+                Doctor.put("Marker", latlng);
+                Doctor.put("Specialization", Arrays.asList(Specialization));
+                Doctor.put("Work", Arrays.asList(Work));
+                Doctor.put("Cellphone", cellphone);
+                Doctor.put("Description", description);
+
+                Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
 
 
-                Log.d("add doctor","e null");
-                if (object == null) {
-                    //if object is null
-                    //doctor not exist
-                    //adding
-                    Log.d("add doctor","object null");
+                ParseFile file = new ParseFile("Doctorpropic.jpg", byteArray);
+                file.saveInBackground();
+                // Creazione di un ParseObject da inviare
+                ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
+                doctorPhoto.put("username", email);
+                doctorPhoto.put("profilePhoto", file);
+                doctorPhoto.saveInBackground();
 
 
-                    ParseObject Doctor = new ParseObject("Doctor");
-                    Doctor.put("FirstName", FirstName);
-                    Doctor.put("LastName", LastName);
-                    Doctor.put("Email", email);
-                    Doctor.put("Marker",latlng);
+                Doctor.put("Years", anni);
+                Doctor.saveInBackground();
+                Log.d("Add doctor", "Saving doctor that not exist");
+                Log.d("Doctor", "adding" + email);
 
-                    Doctor.put("Specialization", Arrays.asList(Specialization));
+*/
 
-
-
-                    Doctor.put("Work", Arrays.asList(Work));
-                    Doctor.put("Cellphone", cellphone);
-                    Doctor.put("Description", description);
-
-                    Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
-
-
-                    ParseFile file = new ParseFile("Doctorpropic.jpg", byteArray);
-                    file.saveInBackground();
-                    // Creazione di un ParseObject da inviare
-                    ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
-                    doctorPhoto.put("username", email);
-                    doctorPhoto.put("profilePhoto", file);
-                    doctorPhoto.saveInBackground();
-
-
-                    Doctor.put("Years", anni);
-                    Doctor.saveInBackground();
-                    Log.d("Add doctor", "Saving doctor that not exist");
-                    Log.d("Doctor", "adding"+email);
-
-                } else {
-                    //Doctor exists updating
-
-                    ParseObject Doctor =object;
-                    Doctor.put("FirstName", FirstName);
-                    Doctor.put("LastName", LastName);
-                    Doctor.put("Email", email);
-                    Doctor.put("Marker",latlng);
-
-                    Doctor.put("Specialization", Arrays.asList(Specialization));
-
-
-                    Doctor.put("Work", Arrays.asList(Work));
-                    Doctor.put("Cellphone", cellphone);
-                    Doctor.put("Description", description);
-                    Doctor.put("Years", anni);
-                    Doctor.saveInBackground();
-
-
-
-                    Log.d("Doctor","exists on DB "+email);
-                    Log.d("Doctor", "updating");
-                }
-            }}
+            }
         });
+
+
+
+
+
 
 
 
