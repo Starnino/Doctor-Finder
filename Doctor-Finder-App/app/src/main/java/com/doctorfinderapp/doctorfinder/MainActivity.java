@@ -2,6 +2,8 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
@@ -41,8 +45,8 @@ public class MainActivity extends AppCompatActivity  {
     //Parameters shared by fragment goes in activity
     private static int SIZEM=0;
     private FloatingActionButton fab;
-    private Button selcitta;
-    private Button selcateg;
+    private LinearLayout selcitta;
+    private LinearLayout selcateg;
     ArrayList<String> selected_city;
     ArrayList<String> selected_special;
 
@@ -61,10 +65,10 @@ public class MainActivity extends AppCompatActivity  {
         Log.d("Main", "adding doctors" + getApplicationContext());
 
         //Dialog for cities
-        selcitta = (Button) findViewById(R.id.select_city_button);
+        selcitta = (LinearLayout) findViewById(R.id.select_city_button);
         String[] citta = getResources().getStringArray(R.array.cities);
         selected_city = new ArrayList<>();
-        final AlertDialog dialogCity = OnCreateDialog("SELEZIONA PROVINCIA", selected_city, citta);
+        final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", selected_city, citta);
         selcitta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,10 +77,10 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         //Dialog for specialization
-        selcateg = (Button) findViewById(R.id.select_special_button);
+        selcateg = (LinearLayout) findViewById(R.id.select_special_button);
         String[] special = getResources().getStringArray(R.array.Specializations);
         selected_special = new ArrayList<>();
-        final AlertDialog dialogSpecial = OnCreateDialog("SELEZIONA CATEGORIA", selected_special, special);
+        final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", selected_special, special);
         selcateg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +108,6 @@ public class MainActivity extends AppCompatActivity  {
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setTitle("Doctor Finder");
         }
 
         //menu icon
@@ -147,8 +150,7 @@ public class MainActivity extends AppCompatActivity  {
 
                     }
                 });
-        AlertDialog alertDialog = builder.create();
-        return alertDialog;
+        return builder.create();
     }
 
     //respond to toolbar actions
