@@ -30,8 +30,8 @@ import java.util.List;
 public class DoctorListFragment extends Fragment {
 
     private static RatingBar ratingBar;
-    private static List<ParseObject> DOCTORS=null;
-    private static int SIZE=0;
+    private static List<ParseObject> DOCTORS=GlobalVariable.DOCTORS;
+    private static int SIZE=DOCTORS.size();
     private static int index=0;
 
     @Override
@@ -43,7 +43,7 @@ public class DoctorListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //adding data from Parse
         //MainActivity.showData();
-        showData();
+        //showData();
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter();
         recyclerView.setAdapter(adapter);
@@ -140,12 +140,12 @@ public class DoctorListFragment extends Fragment {
     }
 
     //downloading doctors from parse
-    public static void showData() {
+    /*public static void showData() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
         try {
             DOCTORS = query.find();
 
-            //todo find in background
+
             SIZE=DOCTORS.size();
 
             Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.size());
@@ -154,7 +154,7 @@ public class DoctorListFragment extends Fragment {
             Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
         }
 
-    }
+    }*/
 
 
 

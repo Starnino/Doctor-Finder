@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -39,14 +41,18 @@ public class MainActivity extends AppCompatActivity  {
     private DrawerLayout mDrawerLayout;
     public String CITTA="All";
     public String SPECIALIZZAZIONE="All";
-    static List<ParseObject> DOCTORSMAIN=null;
+    //static List<ParseObject> DOCTORSMAIN=null;
     static List<ParseObject> USERSMAIN = null;
 
     //Parameters shared by fragment goes in activity
-    private static int SIZEM=0;
+    //private static int SIZEM=0;
     private FloatingActionButton fab;
+
+
     private LinearLayout selcitta;
     private LinearLayout selcateg;
+
+
     ArrayList<String> selected_city;
     ArrayList<String> selected_special;
 
@@ -60,9 +66,7 @@ public class MainActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
 
 
-        //adding doctors
-        //AddDoctors.addData(getApplicationContext());
-        Log.d("Main", "adding doctors" + getApplicationContext());
+
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -93,14 +97,13 @@ public class MainActivity extends AppCompatActivity  {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,
-                        ResultsActivity.class);
-                startActivity(intent);
+                //Download parse data
+                showDataM();
+
+
             }
         });
 
-        //Download parse data
-        showDataM();
 
 
         //Adding menu icon to Toolbar
@@ -210,9 +213,14 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     //download doctors from DB
+    //This must be done only here
 
-    public static void showDataM() {
+    public  void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
+        //progress dialog
+        ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
+                "Loading. Please wait...", true);
+
         //query.
         //query.whereEqualTo("Citta",NOMECITTA);//per starna
         //query.whereEqualTo("Specializzazione",NOMESPECIALIZZAZIONE)
@@ -221,11 +229,19 @@ public class MainActivity extends AppCompatActivity  {
            public void done(List<ParseObject> objects, ParseException e) {
 
                if(e==null) {
-                   DOCTORSMAIN = objects;
-                   Log.d("Main",DOCTORSMAIN.toString());
-                   SIZEM=objects.size();
+
+                   GlobalVariable.DOCTORS = objects;
+                   Log.d("Main",GlobalVariable.DOCTORS.toString());
+
+
+                   Intent intent = new Intent(MainActivity.this,
+                           ResultsActivity.class);
+                   startActivity(intent);
+                   //SIZEM=objects.size();
                }else{
-                  // Log.d("Main","exception "+e.toString());
+
+
+                   Log.d("Main","Error downloading parse data ");
                }
            }
        });

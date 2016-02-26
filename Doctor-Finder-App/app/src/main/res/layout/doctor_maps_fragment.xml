@@ -10,7 +10,8 @@ tools:context="com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment">
     android:name="com.google.android.gms.maps.MapFragment"
     android:id="@+id/map"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:layout_margin="20dp" />
 
 
 

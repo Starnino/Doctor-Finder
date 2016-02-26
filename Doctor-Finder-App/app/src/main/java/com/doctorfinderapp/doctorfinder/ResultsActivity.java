@@ -57,6 +57,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
   //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
         //set status bar color because in xml don't work
 
+
+
+
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -100,7 +106,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         //menu icon
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
 
         // Set behavior of Navigation drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

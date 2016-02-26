@@ -50,11 +50,11 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         ParseObject doctor = new ParseObject("Doctor");
 
-        for(int i=0;i< MainActivity.DOCTORSMAIN.size();i++){
-            if(MainActivity.DOCTORSMAIN.get(i).getObjectId()==id){
-                Log.d("Doctor","object id "+ MainActivity.DOCTORSMAIN.get(i).getObjectId());
+        for(int i=0;i< GlobalVariable.DOCTORS.size();i++){
+            if(GlobalVariable.DOCTORS.get(i).getObjectId()==id){
+                Log.d("Doctor", "object id " + GlobalVariable.DOCTORS.get(i).getObjectId());
                 Log.d("Doctor","id "+id);
-                doctor= MainActivity.DOCTORSMAIN.get(i);
+                doctor= GlobalVariable.DOCTORS.get(i);
             }
         }
 
