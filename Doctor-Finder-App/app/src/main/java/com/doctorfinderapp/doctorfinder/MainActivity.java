@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity  {
 
     public static void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
+        //query.
         //query.whereEqualTo("Citta",NOMECITTA);//per starna
         //query.whereEqualTo("Specializzazione",NOMESPECIALIZZAZIONE)
        query.findInBackground(new FindCallback<ParseObject>() {
