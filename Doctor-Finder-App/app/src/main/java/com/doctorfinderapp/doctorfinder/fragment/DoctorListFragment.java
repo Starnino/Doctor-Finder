@@ -69,7 +69,7 @@ public class DoctorListFragment extends Fragment {
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
             //------
             TextView special = (TextView) itemView.findViewById(R.id.special);
-            String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
+            //String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
             //------
             //TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
 
@@ -80,7 +80,8 @@ public class DoctorListFragment extends Fragment {
             //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
 
             name.setText(nameString);
-            special.setText(specialString.substring(1,specialString.length()-1));
+            //special.setText(specialString.substring(1,specialString.length()-1));
+            special.setText("Da definire");
             //feedback.setText(feedbackString);
 
             //find and set rating view

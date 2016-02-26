@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         //adding doctors
-        AddDoctors.addData(getApplicationContext());
+        //AddDoctors.addData(getApplicationContext());
         Log.d("Main", "adding doctors" + getApplicationContext());
 
         //Dialog for cities

@@ -63,7 +63,7 @@ public class AddDoctors {
                    Doctor.put("Years", anni);
 
 
-                   Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
+                  /* Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
                    byte[] byteArray = stream.toByteArray();
@@ -80,7 +80,7 @@ public class AddDoctors {
                    doctorPhoto.put("profilePhoto", file);
                    doctorPhoto.saveInBackground();
 
-
+                    */
 
                    Doctor.saveInBackground();
 
