@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switchForActionBar"
+        android:id="@+id/switch1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text=""
+        android:theme="@style/SwitchStyle"/>
 
 </RelativeLayout>

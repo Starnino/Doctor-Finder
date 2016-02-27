@@ -25,4 +25,13 @@
         <item name="android:colorForeground">@color/colorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="SwitchStyle">
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/flat_red</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/google_grey</item>
+        <!-- Inactive track color(30% transparency) -->
+        <item name="android:colorForeground">@color/grey</item>
+    </style>
 </resources>
