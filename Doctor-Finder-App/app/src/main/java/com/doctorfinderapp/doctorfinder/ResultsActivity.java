@@ -109,7 +109,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
 
         // Set behavior of Navigation drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     // This method will trigger on item Click of navigation menu

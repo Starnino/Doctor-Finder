@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultsActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimaryDark">
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +16,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultsActivity"
-    android:fitsSystemWindows="true"
     android:clickable="true"
     android:focusable="true">
 
@@ -29,18 +29,15 @@
         android:id="@+id/results_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/docfinder"
         app:layout_scrollFlags="scroll|enterAlways"
-        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/docfinder"
-        android:id="@+id/tabs"
         android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|enterAlways"
+        android:id="@+id/tabs"
         app:tabSelectedTextColor="@color/white">
 
     </android.support.design.widget.TabLayout>
@@ -59,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:visibility="invisible"
         android:layout_marginBottom="160dp"
         app:elevation="6dp"
@@ -72,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="90dp"
         android:visibility="invisible"
         app:elevation="6dp"
@@ -94,14 +91,13 @@
 </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="250dp"
+        android:id="@+id/nav_view_results"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navheader"
         app:menu="@menu/menu_navigation"
-        android:background="@color/white"
-        android:clickable="true"
+        android:fitsSystemWindows="true"
         app:itemTextColor="@color/grey"/>
 
 </android.support.v4.widget.DrawerLayout>
