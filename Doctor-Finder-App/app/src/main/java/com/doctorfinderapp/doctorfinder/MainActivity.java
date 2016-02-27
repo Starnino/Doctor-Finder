@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity  {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //Query Localizations (TODO AROUND ME)
                 Toast.makeText(getApplicationContext() ,"Localizzazione " + (isChecked ? "on":"off") ,Toast.LENGTH_SHORT).show();
             }
         });
