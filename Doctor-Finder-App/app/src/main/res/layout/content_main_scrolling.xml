@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/google_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/google_grey">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:id="@+id/select_special_button"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/grey"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:textColor="@color/grey"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/select_city_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="48dp">
+
+                <ImageView
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/grey"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Provincia"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:textColor="@color/grey"/>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <TextView
+            android:id="@+id/recent_doctors"
+            android:layout_below="@id/card1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dottori Cercati di Recente"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:textColor="@color/grey"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/recent_doctors"
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/white">
+
+            <!--<android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:scrollbars="horizontal">
+            </android.support.v7.widget.RecyclerView>-->
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/recent_search"
+            android:layout_below="@id/card2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ricerche Recenti"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:textColor="@color/grey"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/recent_search"
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/white"
+            android:layout_marginBottom="@dimen/fab_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria\ne altre 2"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Citta, Citta\ne altre 3"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="48dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria\ne altre 2"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Citta, Citta\ne altre 3"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="96dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria\ne altre 2"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Citta, Citta\nealtre 3"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="144dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria\ne altre 2"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Citta, Citta\ne altre 3"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="192dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_healing_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria\ne altre 2"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_city_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Citta, Citta\ne altre 3"
+                    android:textColor="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabmain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:elevation="6dp"
+            android:src="@drawable/ic_search_white_24dp"
+            app:pressedTranslationZ="12dp"
+            app:backgroundTint="@color/docfinder"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginEnd="5dp"
+            android:layout_above="@+id/recent_doctors"
+            android:layout_alignEnd="@+id/card1" />
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

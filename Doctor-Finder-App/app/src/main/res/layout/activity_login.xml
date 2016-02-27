@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".access.LoginActivity"
     android:background="@color/docfinder"
-    >
+    android:theme="@style/AppThemeDark">
 
     <LinearLayout
         android:layout_width="wrap_content"
