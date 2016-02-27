@@ -38,7 +38,7 @@
                 android:icon="@drawable/com_facebook_favicon_white" />
 
         <item
-            android:id="@+id/action_settings"
+            android:id="@+id/settings"
             android:title="@string/action_settings"
             android:textColor="@color/docfinder"
             app:showAsAction="never"

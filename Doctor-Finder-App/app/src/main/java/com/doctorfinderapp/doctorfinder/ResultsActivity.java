@@ -58,11 +58,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //set status bar color because in xml don't work
 
 
-
-
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -105,7 +100,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        //menu icon
+        // R.id.drawer should be in every activity with exactly the same id.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
 
         // Set behavior of Navigation drawer
@@ -147,43 +142,44 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
+    //respond to toolbar actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //no inspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-            /**TODO*/
-        } else if (id == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
+
+        switch (id) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
 
+
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
+
+            case R.id.profile:
+                break;
+            case R.id.gestisci:
+                break;
+            case R.id.suggerisci:
+                break;
             case R.id.about:
                 String url_github = "https://github.com/Starnino/Doctor-Finder";
-
                 Intent i_github = new Intent(Intent.ACTION_VIEW);
                 i_github.setData(Uri.parse(url_github));
                 startActivity(i_github);
-
+                break;
+            case R.id.support:
+                break;
             case R.id.like:
                 String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
-
                 Intent i_face = new Intent(Intent.ACTION_VIEW);
                 i_face.setData(Uri.parse(url_face));
                 startActivity(i_face);
-
-            case R.id.profile:
-                Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);
-
-            //caricare sito
+                break;
+            case R.id.settings:
+                break;
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
@@ -192,7 +188,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                         Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
                 startActivity(intent);
-
+                break;
 
         }
     }

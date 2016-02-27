@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
+import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
@@ -106,8 +108,6 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-
-
         //Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity  {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        //menu icon
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 
         // Set behavior of Navigation drawer
@@ -126,6 +125,7 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         selectDrawerItem(menuItem);
+                        mDrawerLayout.closeDrawers();
                         return true;
                     }
                 });
@@ -161,16 +161,11 @@ public class MainActivity extends AppCompatActivity  {
     //respond to toolbar actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
 
-        } else if (id == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
+        switch (id) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -183,7 +178,7 @@ public class MainActivity extends AppCompatActivity  {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //Query Localizations (TODO AROUND ME)
+                //Query Localizations TODO AROUND ME
                 Toast.makeText(getApplicationContext() ,"Localizzazione " + (isChecked ? "on":"off") ,Toast.LENGTH_SHORT).show();
             }
         });
@@ -193,17 +188,38 @@ public class MainActivity extends AppCompatActivity  {
 
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.logout:
 
+            case R.id.profile:
+                break;
+            case R.id.gestisci:
+                break;
+            case R.id.suggerisci:
+                break;
+            case R.id.about:
+                String url_github = "https://github.com/Starnino/Doctor-Finder";
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);
+                break;
+            case R.id.support:
+                break;
+            case R.id.like:
+                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+                Intent i_face = new Intent(Intent.ACTION_VIEW);
+                i_face.setData(Uri.parse(url_face));
+                startActivity(i_face);
+                break;
+            case R.id.settings:
+                break;
+            case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                 startActivity(intent);
-            case R.id.action_settings:
-            case R.id.like:
+                break;
 
         }
     }
