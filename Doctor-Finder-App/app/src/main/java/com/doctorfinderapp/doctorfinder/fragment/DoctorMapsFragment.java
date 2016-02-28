@@ -134,6 +134,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
         //fine creazione di marker
 
+
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(ROMA)      // Sets the center of the map to mi position
                 .zoom(10)                   // Sets the zoom

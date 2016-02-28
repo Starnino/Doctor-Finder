@@ -2,7 +2,9 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +23,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +36,7 @@ public class DoctorListFragment extends Fragment {
     private static List<ParseObject> DOCTORS=GlobalVariable.DOCTORS;
     private static int SIZE=DOCTORS.size();
     private static int index=0;
+    private static String TAG="DoctorListFragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,13 +68,38 @@ public class DoctorListFragment extends Fragment {
 
             final int IndexLocale=index;
 
-            //------
+            //Dottore cpy local
+            ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(index);
+            //Log.d(TAG,"specialization"+DoctorLocal.getString("Specialization"));
+
+
+
+            //Get and set Name and LastName
             TextView name = (TextView) itemView.findViewById(R.id.name);
             String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
-            //------
+            name.setText(nameString);
+
+            //Setting specialization
             TextView special = (TextView) itemView.findViewById(R.id.special);
-            //String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
-            //------
+            ArrayList<String> spec= (ArrayList<String>) DoctorLocal.get("Specialization");
+            Log.d(TAG, "specialization as arraylist" + spec);
+            String specializationString="";
+            //divido le spec
+            for(int i =0;i< spec.size();i++){
+                specializationString+=spec.get(i)+", ";
+
+            }
+            special.setText(specializationString);
+
+            //setting rating aka feedback
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            Log.d(TAG,"rating of "+nameString+" "+DoctorLocal.get("Feedback").toString());
+            //ratingBar.setRating( DoctorLocal.get("Feedback"));
+            //ratingBar.setRating(GlobalVariable.DOCTORS.getString())
+
+
+
+
             //TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
@@ -79,14 +108,16 @@ public class DoctorListFragment extends Fragment {
 
             //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
 
-            name.setText(nameString);
+
             //special.setText(specialString.substring(1,specialString.length()-1));
-            special.setText("Da definire");
+
             //feedback.setText(feedbackString);
 
             //find and set rating view
-            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            ratingBar.setRating((5.0f+index)/(2*(index+1))+1.5f);
+
+            //todo download photo
+            //todo download Spec
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -138,23 +169,6 @@ public class DoctorListFragment extends Fragment {
             return LENGTH;
         }
     }
-
-    //downloading doctors from parse
-    /*public static void showData() {
-        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
-        try {
-            DOCTORS = query.find();
-
-
-            SIZE=DOCTORS.size();
-
-            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.size());
-            Log.d("DoctorListFragment", DOCTORS.size()+"" );
-        } catch (ParseException e) {
-            Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
-        }
-
-    }*/
 
 
 

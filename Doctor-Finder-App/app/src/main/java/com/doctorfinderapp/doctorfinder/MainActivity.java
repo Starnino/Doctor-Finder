@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity  {
     //This must be done only here
 
     public  void showDataM() {
-        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor2");
         //progress dialog
         ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento. Attendere...", true);
