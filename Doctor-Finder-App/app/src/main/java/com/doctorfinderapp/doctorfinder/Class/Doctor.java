@@ -6,7 +6,7 @@ package com.doctorfinderapp.doctorfinder.Class;
 
 public class Doctor extends Person {
 
-    String profession, surname;
+    private String profession, surname;
     boolean sesso; //true --> M, false --> F
 
     public Doctor(String name, String surname, int photoId, String profession, boolean sesso) {

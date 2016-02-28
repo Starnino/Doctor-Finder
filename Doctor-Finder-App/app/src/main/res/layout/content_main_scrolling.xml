@@ -91,14 +91,14 @@
             android:layout_below="@id/recent_doctors"
             android:id="@+id/card2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="135dp"
             android:layout_margin="@dimen/fab_margin"
             android:background="@color/white">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_doctors"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/fab_margin">
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria, Categoria\ne altre 2"
+                    android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
@@ -152,12 +152,12 @@
                     android:src="@drawable/ic_location_city_white_24dp"
                     android:tint="@color/docfinder"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/fab_margin"/>
+                    android:layout_marginStart="@dimen/fab_margin" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Citta, Citta\ne altre 3"
+                    android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
@@ -192,7 +192,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria, Categoria\ne altre 2"
+                    android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
@@ -209,7 +209,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Citta, Citta\ne altre 3"
+                    android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
@@ -245,7 +245,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria, Categoria\ne altre 2"
+                    android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
@@ -262,7 +262,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Citta, Citta\nealtre 3"
+                    android:text="Citta\nealtre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
@@ -298,7 +298,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria, Categoria\ne altre 2"
+                    android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
@@ -315,7 +315,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Citta, Citta\ne altre 3"
+                    android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
@@ -351,7 +351,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria, Categoria\ne altre 2"
+                    android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
@@ -367,7 +367,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Citta, Citta\ne altre 3"
+                    android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
