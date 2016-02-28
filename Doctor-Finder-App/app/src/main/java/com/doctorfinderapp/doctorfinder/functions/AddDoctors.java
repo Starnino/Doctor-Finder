@@ -21,12 +21,13 @@ import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
+
 /**
  * Created by fedebyes on 12/02/16.
  */
+
+
 public class AddDoctors {
-
-
     private static boolean exist;
     private static Context context;
 
@@ -63,7 +64,8 @@ public class AddDoctors {
                    Doctor.put("Years", anni);
 
 
-                  /* Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
+                  /*
+                   Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
                    byte[] byteArray = stream.toByteArray();
@@ -123,7 +125,7 @@ public class AddDoctors {
     public  static void addData(Context c) {
 
         //CREATE DOCTORS
-        context=c;
+        /*context=c;
         LatLng Doc1 =new LatLng(38.121932, 13.357361);
         AddDoctors("Calogero Roaul", "Aiello", "roaulaiello@gmail.com", "25/05/1983",
                 new String[]{"Oculistica"}, new String[]{"Via"}, "Tra 5 e 10", "+39.3408312029", "https://www.linkedin.com/in/federico-solignani-596a1661", Doc1.toString());
