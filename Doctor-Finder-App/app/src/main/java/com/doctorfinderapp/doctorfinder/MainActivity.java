@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity  {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor2");
         //progress dialog
         ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                "Caricamento. Attendere...", true);
+                "Caricamento... Attendere...", true);
 
         //query.
         //query.whereEqualTo("Citta",NOMECITTA);//per starna
