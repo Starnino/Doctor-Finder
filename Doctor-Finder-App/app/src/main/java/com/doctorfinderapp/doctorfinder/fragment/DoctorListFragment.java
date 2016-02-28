@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +85,7 @@ public class DoctorListFragment extends Fragment {
             //divido le spec
             for(int i =0;i< spec.size();i++){
                 specializationString+=spec.get(i)+", ";
-
+                if (i == spec.size()-1) specializationString += spec.get(i);
             }
             special.setText(specializationString);
 

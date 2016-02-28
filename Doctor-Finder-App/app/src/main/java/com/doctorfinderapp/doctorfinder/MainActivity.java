@@ -54,11 +54,8 @@ public class MainActivity extends AppCompatActivity  {
     //Parameters shared by fragment goes in activity
     //private static int SIZEM=0;
     private FloatingActionButton fab;
-
-
     private LinearLayout selcitta;
     private LinearLayout selcateg;
-
 
     ArrayList<String> selected_city;
     ArrayList<String> selected_special;
@@ -269,7 +266,7 @@ public class MainActivity extends AppCompatActivity  {
     public  void showDataM() {
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor2");
         //progress dialog
-        ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
+        final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento... Attendere...", true);
 
         //query.
@@ -288,6 +285,7 @@ public class MainActivity extends AppCompatActivity  {
                    Intent intent = new Intent(MainActivity.this,
                            ResultsActivity.class);
                    startActivity(intent);
+                   dialog.dismiss();
                    //SIZEM=objects.size();
                }else{
 

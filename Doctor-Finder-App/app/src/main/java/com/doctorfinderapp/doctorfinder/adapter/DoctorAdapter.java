@@ -44,8 +44,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
     @Override
     public void onBindViewHolder(DoctorViewHolder holder, int position) {
-        holder.personName.setText((visits.get(position).havePisello()) ?
-                "Dott. ":"Dott.ssa " + visits.get(position).getSurname());
+        holder.personName.setText((visits.get(position).havePisello() ? "Dott. ":"Dott.ssa ")
+                + visits.get(position).getName());
 
         holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
         holder.profession.setText(visits.get(position).getProfession());
