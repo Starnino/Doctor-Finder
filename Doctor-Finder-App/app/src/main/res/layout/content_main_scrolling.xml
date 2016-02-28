@@ -91,7 +91,7 @@
             android:layout_below="@id/recent_doctors"
             android:id="@+id/card2"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="140dp"
             android:layout_margin="@dimen/fab_margin"
             android:background="@color/white">
 
