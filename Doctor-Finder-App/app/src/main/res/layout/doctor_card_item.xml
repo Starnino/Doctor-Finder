@@ -40,18 +40,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_marginLeft="16dp">
+        android:layout_marginStart="@dimen/fab_margin">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="22sp"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_alignTop="@+id/profile_image"
-            android:text="Nome"
-            android:layout_alignStart="@+id/ratingBar"
-            android:layout_toEndOf="@id/profile_image"/>
+            android:text="Nome" />
 
         <TextView
             android:text="Specializzazione"
@@ -59,10 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/name"
-            android:layout_alignStart="@+id/name"
-            android:layout_toEndOf="@id/profile_image" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <RatingBar
             android:layout_width="wrap_content"
@@ -70,10 +64,10 @@
             android:id="@+id/ratingBar"
             android:isIndicator="true"
             android:numStars="5"
-            android:layout_below="@+id/special"
             android:rating="4"
             android:scaleX="0.5"
-            android:scaleY="0.5"/>
+            android:scaleY="0.5"
+            android:layout_gravity="bottom|start"/>
     </LinearLayout>
 
 

@@ -3,8 +3,6 @@ package com.doctorfinderapp.doctorfinder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,24 +20,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +44,8 @@ public class MainActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private DrawerLayout mDrawerLayout;
-    private PersonAdapter mAdapter;
-    private ArrayList<Person> persons;
+    private DoctorAdapter mAdapter;
+    private ArrayList<Doctor> doctors;
     public String CITTA="All";
     public String SPECIALIZZAZIONE="All";
     //static List<ParseObject> DOCTORSMAIN=null;
@@ -89,16 +84,16 @@ public class MainActivity extends AppCompatActivity  {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //initialize more Persons
-        persons = new ArrayList<>();
-        persons.add(new Person("Dott. Francesco", R.drawable.p1));
-        persons.add(new Person("Dott. Federico", R.drawable.p2));
-        persons.add(new Person("Dott.ssa Giampa", R.drawable.p3));
-        persons.add(new Person("Dott.Vincenzo", R.drawable.p4));
-        persons.add(new Person("Dott.ssa Chiara", R.drawable.p5));
-        persons.add(new Person("Dott. Giampo", R.drawable.giampa));
+        doctors = new ArrayList<>();
+        doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Frociologo", true));
+        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Tettologa", false));
+        doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
+        doctors.add(new Doctor("Francesco", "Starna",R.drawable.starnino, "Oculista", true));
+        doctors.add(new Doctor("Ginevra", "Lado",R.drawable.p1, "Pediatra", false));
+        doctors.add(new Doctor("Giampa", "Giampa",R.drawable.giampa, "Chirurgo", false));
 
         // specify an adapter
-        mAdapter = new PersonAdapter(persons);
+        mAdapter = new DoctorAdapter(doctors);
 
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
@@ -149,7 +144,7 @@ public class MainActivity extends AppCompatActivity  {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 
-        // Set behavior of Navigation drawer
+        // Set behavior of Navigation drawer  
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {

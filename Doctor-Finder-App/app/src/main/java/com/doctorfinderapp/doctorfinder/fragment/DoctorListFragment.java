@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,7 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.List;
 
@@ -60,7 +57,7 @@ public class DoctorListFragment extends Fragment {
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
 
 
-            super(inflater.inflate(R.layout.doctor_item, parent, false));
+            super(inflater.inflate(R.layout.doctor_card_item, parent, false));
 
             final int IndexLocale=index;
 
