@@ -398,13 +398,19 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
+                Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
+                startActivity(intent_user);
                 break;
             case R.id.gestisci:
                 break;
-            case R.id.suggerisci:
+            case R.id.inserisci_dottore:
+                String url_adddoctors = "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing";
+                Intent i_adddoctors = new Intent(Intent.ACTION_VIEW);
+                i_adddoctors.setData(Uri.parse(url_adddoctors));
+                startActivity(i_adddoctors);
                 break;
             case R.id.about:
-                String url_github = "https://github.com/Starnino/Doctor-Finder";
+                String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
                 Intent i_github = new Intent(Intent.ACTION_VIEW);
                 i_github.setData(Uri.parse(url_github));
                 startActivity(i_github);
@@ -418,6 +424,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 startActivity(i_face);
                 break;
             case R.id.settings:
+                Intent intent_settings = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent_settings);
                 break;
             case R.id.logout:
                 ParseUser.logOut();
