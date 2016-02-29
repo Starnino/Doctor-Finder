@@ -16,6 +16,8 @@ public class UserProfileFragment extends Fragment {
     private TextView nome;
     private TextView cognome;
     private TextView email;
+    private TextView ddn;
+    private TextView facebookid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

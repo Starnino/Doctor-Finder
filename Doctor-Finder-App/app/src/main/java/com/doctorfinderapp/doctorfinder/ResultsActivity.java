@@ -31,6 +31,9 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.doctorfinderapp.doctorfinder.UserProfileActivity;
+import com.doctorfinderapp.doctorfinder.SettingsActivity;
+
 
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.parse.ParseUser;
@@ -170,13 +173,19 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         switch (item.getItemId()) {
 
             case R.id.profile:
+                Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
+                startActivity(intent_user);
                 break;
             case R.id.gestisci:
                 break;
-            case R.id.suggerisci:
+            case R.id.inserisci_dottore:
+                String url_adddoctors = "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing";
+                Intent i_adddoctors = new Intent(Intent.ACTION_VIEW);
+                i_adddoctors.setData(Uri.parse(url_adddoctors));
+                startActivity(i_adddoctors);
                 break;
             case R.id.about:
-                String url_github = "https://github.com/Starnino/Doctor-Finder";
+                String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
                 Intent i_github = new Intent(Intent.ACTION_VIEW);
                 i_github.setData(Uri.parse(url_github));
                 startActivity(i_github);
@@ -190,6 +199,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(i_face);
                 break;
             case R.id.settings:
+                Intent intent_settings = new Intent(ResultsActivity.this, SettingsActivity.class);
+                startActivity(intent_settings);
                 break;
             case R.id.logout:
                 ParseUser.logOut();
@@ -197,8 +208,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
-                startActivity(intent);
+                Intent intent_logOut = new Intent(ResultsActivity.this, SplashActivity.class);
+                startActivity(intent_logOut);
                 break;
 
         }

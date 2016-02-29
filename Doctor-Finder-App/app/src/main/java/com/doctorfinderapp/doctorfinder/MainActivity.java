@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //initialize more Persons
         doctors = new ArrayList<>();
-        doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Frociologo", true));
+        doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Sessuologo", true));
         doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Tettologa", false));
         doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
         doctors.add(new Doctor("Francesco", "Starna", R.drawable.starnino, "Oculista", true));

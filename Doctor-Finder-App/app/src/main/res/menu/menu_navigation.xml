@@ -16,8 +16,8 @@
             android:id="@+id/gestisci" />
         <item
             android:icon="@drawable/ic_person_add_white_24dp"
-            android:title="@string/suggerisci"
-            android:id="@+id/suggerisci" />
+            android:title="@string/inserisci_dottore"
+            android:id="@+id/inserisci_dottore" />
     </group>
 
     <group android:checkableBehavior="single"
