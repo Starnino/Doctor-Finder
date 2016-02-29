@@ -72,10 +72,18 @@ public class DoctorListFragment extends Fragment {
             Log.d(TAG, "specialization as arraylist" + spec);
             String specializationString="";
             //divido le spec
-            for(int i=0; i<spec.size(); i++){
-                if (i == spec.size()-1) specializationString += spec.get(i);
-                else specializationString += spec.get(i)+", ";
+
+            specializationString += spec.get(0);
+
+            if (spec.size() > 1) {
+                if (spec.get(0).length() > 12)
+                specializationString += ", " + spec.get(1).subSequence(0,6) + "...";
+                else
+                    if (spec.get(1).length() < 12)
+                        specializationString += ", " + spec.get(1);
+                    else specializationString += ", " + spec.get(1).subSequence(0,6);
             }
+
             special.setText(specializationString);
 
             //setting rating aka feedback
@@ -86,7 +94,6 @@ public class DoctorListFragment extends Fragment {
             profile.setImageResource(R.drawable.doctor_rounded_avatar);
 
             //todo query if photo exists on doctorphoto
-
 
             //todo download photo
 

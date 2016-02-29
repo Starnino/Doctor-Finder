@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
-        cityText.setText("Nessuna selezione");
-        specialText.setText("Nessuna selezione");
+        cityText.setText("Nessuna");
+        specialText.setText("Nessuna");
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -267,9 +267,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
 
                         if (title.equals("Seleziona Categoria"))
-                            specialText.setText("Nessuna selezione");
+                            specialText.setText("Nessuna");
                         else if (title.equals("Seleziona Provincia"))
-                            cityText.setText("Nessuna selezione");
+                            cityText.setText("Nessuna");
 
                         checked.clear();
                         Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
