@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,10 +44,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ArrayList<Doctor> doctors;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
-    public static final int FAB_OPEN_TIME = 2000;
+    public static final int FAB_OPEN_TIME = 1500;
 
     //Parameters shared by fragment goes in activity
     //private static int SIZEM=0;
@@ -92,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
 
-        Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
+
 
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
@@ -178,17 +179,28 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             }
         }, FAB_OPEN_TIME);
+        //Drawer settings
+        Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
 
-        //Adding menu icon to Toolbar
+        /*//Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        }*/
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 
-        // Set behavior of Navigation drawer  
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout .setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        /*// Set behavior of Navigation drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -199,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         mDrawerLayout.closeDrawers();
                         return true;
                     }
-                });
+                });*/
     }
 
     public AlertDialog OnCreateDialog(final String title, final ArrayList<String> checked, final String[] items){
@@ -292,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
 
-    public void selectDrawerItem(MenuItem menuItem){
+    /*public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
 
             case R.id.profile:
@@ -328,7 +340,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
         }
-    }
+    }*/
 
     //code added to save activity states
     @Override
@@ -407,6 +419,59 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     }
 
-    
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        switch (item.getItemId()) {
+
+            case R.id.profile:
+                break;
+            case R.id.gestisci:
+                break;
+            case R.id.suggerisci:
+                break;
+            case R.id.about:
+                String url_github = "https://github.com/Starnino/Doctor-Finder";
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);
+                break;
+            case R.id.support:
+                break;
+            case R.id.like:
+                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+                Intent i_face = new Intent(Intent.ACTION_VIEW);
+                i_face.setData(Uri.parse(url_face));
+                startActivity(i_face);
+                break;
+            case R.id.settings:
+                break;
+            case R.id.logout:
+                ParseUser.logOut();
+                Log.d("R", "Logged out");
+                Toast.makeText(getApplicationContext(),
+                        "Logged out",
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                startActivity(intent);
+                break;
+
+
+
+    }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_main);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_main);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

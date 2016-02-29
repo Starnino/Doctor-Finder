@@ -37,9 +37,7 @@
     <string name="feedbacklabel">"Feedback : "</string>
     <string name="title_activity_main2">Main2Activity</string>
 
-    <string name="title_section1">Sezione 1</string>
-    <string name="title_section2">Sezione 2</string>
-    <string name="title_section3">Sezione 3</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

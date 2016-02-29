@@ -14,6 +14,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
     private boolean isFabOpen = false;
@@ -53,21 +54,16 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //AddDoctors.addData();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-//         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
-  //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
-        //set status bar color because in xml don't work
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        //todo remove this @starnino
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
         setContentView(R.layout.activity_results);
 
-        // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
-        setSupportActionBar(toolbar);
+
 
         //find fab buttons
         fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -96,27 +92,26 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        // Adding menu icon to Toolbar
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
         // R.id.drawer should be in every activity with exactly the same id.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
+        // Adding Toolbar to Main screen
+        Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
+        setSupportActionBar(toolbar);
 
-        // Set behavior of Navigation drawer
+
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    // This method will trigger on item Click of navigation menu
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
 
     }
 
@@ -171,15 +166,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    //respond to toolbar actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (id) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -220,6 +218,47 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
         }
+    }
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.profile:
+                break;
+            case R.id.gestisci:
+                break;
+            case R.id.suggerisci:
+                break;
+            case R.id.about:
+                String url_github = "https://github.com/Starnino/Doctor-Finder";
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);
+                break;
+            case R.id.support:
+                break;
+            case R.id.like:
+                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+                Intent i_face = new Intent(Intent.ACTION_VIEW);
+                i_face.setData(Uri.parse(url_face));
+                startActivity(i_face);
+                break;
+            case R.id.settings:
+                break;
+            case R.id.logout:
+                ParseUser.logOut();
+                Log.d("R", "Logged out");
+                Toast.makeText(getApplicationContext(),
+                        "Logged out",
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
+                startActivity(intent);
+                break;
+
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -316,6 +355,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 fab_location.startAnimation(fab_open_normal);
                 fab_location.setClickable(true);
                 break;
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 

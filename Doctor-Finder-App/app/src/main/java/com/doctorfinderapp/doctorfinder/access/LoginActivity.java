@@ -143,6 +143,9 @@ public class LoginActivity extends AppCompatActivity {
                             FacebookProfile.getGraphRequest(user);
                             //FacebookProfile.getGraphRequestFriends(user);
                             progressBar.setVisibility(View.INVISIBLE);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                            startActivity(intent);
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
