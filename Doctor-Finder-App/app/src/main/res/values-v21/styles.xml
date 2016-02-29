@@ -24,6 +24,7 @@
         <item name="android:navigationBarColor">@color/docfinder</item>
         <item name="android:colorForeground">@color/colorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/trasparent</item>
     </style>
 
     <style name="SwitchStyle">
@@ -33,5 +34,9 @@
         <item name="colorSwitchThumbNormal">@color/google_grey</item>
         <!-- Inactive track color(30% transparency) -->
         <item name="android:colorForeground">@color/grey</item>
+    </style>
+
+    <style name="CollapsingTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 </resources>

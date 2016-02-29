@@ -11,7 +11,7 @@
     <color name="flat_red">#D64541</color>
     <color name="black">#000000</color>
     <color name="colorBackground">#ffffff</color>
-    <color name="Trasparent">#00000000</color>
+    <color name="trasparent">#00000000</color>
     <color name="grey">#727272</color>
     <color name="google_grey">#e6e6e6</color>
     <color name="green_pressed">#4DB6AC</color>

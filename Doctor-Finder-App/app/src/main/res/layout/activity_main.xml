@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat">
+            android:theme="@style/CollapsingTheme">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -33,8 +33,9 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
-                    android:src="@drawable/mainbackground"
+                    android:src="@drawable/logo_testo_e_icona"
                     android:layout_gravity="center"
+                    android:adjustViewBounds="true"
                     app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -46,8 +47,7 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+            app:layout_collapseMode="pin" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
