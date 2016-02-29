@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         ParseQuery<ParseObject> mainQuery;
 
         //get query: All doctors
-        ParseQuery<ParseObject> allDoctors=ParseQuery.getQuery("Doctor2");
+        ParseQuery<ParseObject> allDoctors=ParseQuery.getQuery("Doctor");
 
         //add list of query per special
         for (int i = 0; i < SPECIAL.size() ; i++) {
