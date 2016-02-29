@@ -31,13 +31,14 @@ import java.util.List;
 public class DoctorListFragment extends Fragment {
 
     private static RatingBar ratingBar;
-    private static List<ParseObject> DOCTORS=GlobalVariable.DOCTORS;
+    private static List<ParseObject> DOCTORS = GlobalVariable.DOCTORS;
     private static int SIZE=DOCTORS.size();
     private static int index=0;
     private static String TAG="DoctorListFragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        index=0;
         super.onCreate(savedInstanceState);
     }
 
@@ -67,9 +68,9 @@ public class DoctorListFragment extends Fragment {
             name.setText(nameString);
 
             //Setting specialization
-            TextView special = (TextView) itemView.findViewById(R.id.special);
+            //Log.d(TAG, "specialization as arraylist" + spec);
+            /*TextView special = (TextView) itemView.findViewById(R.id.special);
             ArrayList<String> spec= (ArrayList<String>) DoctorLocal.get("Specialization");
-            Log.d(TAG, "specialization as arraylist" + spec);
             String specializationString="";
             //divido le spec
 
@@ -85,13 +86,14 @@ public class DoctorListFragment extends Fragment {
             }
 
             special.setText(specializationString);
+            */
 
             //setting rating aka feedback
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
-            profile.setImageResource(R.drawable.doctor_rounded_avatar);
+            profile.setImageResource(R.drawable.p_default);
 
             //todo query if photo exists on doctorphoto
 
