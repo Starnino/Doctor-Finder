@@ -88,10 +88,10 @@ public class DoctorListFragment extends Fragment {
             special.setText(specializationString);
 
             //setting rating aka feedback
-            //ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            Log.d(TAG,"rating of "+nameString+" "+DoctorLocal.get("Feedback").toString());
-            //ratingBar.setRating( DoctorLocal.get("Feedback"));
-            //ratingBar.setRating(GlobalVariable.DOCTORS.getString())
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            Log.d(TAG, "rating of " + nameString + " " + DoctorLocal.get("Feedback").toString());
+            ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
+            //ratingBar.setRating();
 
 
 
@@ -107,12 +107,8 @@ public class DoctorListFragment extends Fragment {
 
             //special.setText(specialString.substring(1,specialString.length()-1));
 
-            //feedback.setText(feedbackString);
-
-            //find and set rating view
 
             //todo download photo
-            //todo download Spec
 
 
 
