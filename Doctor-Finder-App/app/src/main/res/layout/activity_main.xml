@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:fitsSystemWindows="true"
-            android:theme="@style/CollapsingTheme">
+            android:theme="@style/ThemeOverlay.AppCompat">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -38,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            android:popupTheme="@style/CollapsingTheme"/>
+            android:popupTheme="@style/CollapsingTheme"
+            />
 
             <ImageView
                 android:src="@drawable/logo_testo_e_icona"

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Person;
@@ -29,7 +30,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
     private List<Person> persons;
-    private String idProfile="";
+
 
     private ImageButton feedButton;
 
@@ -69,29 +70,41 @@ public class DoctorProfileActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
+        //getting data from xml
         TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);
         TextView workPlace = (TextView) findViewById(R.id.workPlace);
-        //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
+
         TextView info = (TextView) findViewById(R.id.doctor_info);
 
+
+        //setting data from objects
         if(doctor.getString("Sesso").equals("M"))
             nameProfile.setText("Dott. "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
         else
             nameProfile.setText("Dott.ssa "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
         //special.setText(doctor.getString("Work"));
         years.setText(doctor.getString("Exp"));
-        workPlace.setText("Via M. Prestinari, 17");
+        workPlace.setText(doctor.getString("Work"));
 
         info.setText(doctor.getString("Description"));
 
         String nameString = doctor.getString("FirstName");
-        //Log.d("Doctor", "showing profile of " + nameString + id);
-        //name.setText(nameString);
-        //String specialString = doctor.getList("Specialization").subList(0,1).toString();
-        //special.setText(specialString.substring(1, specialString.length() - 1));
+        ArrayList<String> spec= (ArrayList<String>) doctor.get("Specialization");
+        String specializationString="";
+        //divido le spec
+        for(int i=0; i<spec.size(); i++){
+            if (i == spec.size()-1) specializationString += spec.get(i);
+            else specializationString += spec.get(i)+", ";
+        }
+        special.setText(specializationString);
+
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
+        ratingBar.setRating(Float.parseFloat(doctor.get("Feedback").toString()));
+
+
+
 
 
         //initialize more Persons
@@ -115,6 +128,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         feedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //todo show fragment not activity
                 Intent intent = new Intent(DoctorProfileActivity.this,
                         FeedbackItemActivity.class);
                 startActivity(intent);
