@@ -51,17 +51,17 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        segnala = (Button) findViewById(R.id.button) ;
-        segnala.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alert.setTitle("Spiegaci in modo chiaro e dettagliato il tuo problema?");
-                alert.setMessage("Ci deve andare una casella ti testo tipo report bug");
-                alert.setPositiveButton("Invia", null);
-                alert.setNegativeButton("Cancella",null);
-                alert.show();
-            }
-        });
+        //segnala = (Button) findViewById(R.id.button) ;
+       // segnala.setOnClickListener(new View.OnClickListener() {
+           // @Override
+           // public void onClick(View v) {
+            //    alert.setTitle("Spiegaci in modo chiaro e dettagliato il tuo problema?");
+            //    alert.setMessage("Ci deve andare una casella ti testo tipo report bug");
+            //    alert.setPositiveButton("Invia", null);
+            //    alert.setNegativeButton("Cancella",null);
+            //    alert.show();
+          //  }
+       // });
 
 
         }
