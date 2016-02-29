@@ -31,7 +31,6 @@
         android:textColor="@color/grey"
         android:textSize="12sp"
         android:gravity="bottom"
-        android:text="Ginecologia e Ostetricia"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

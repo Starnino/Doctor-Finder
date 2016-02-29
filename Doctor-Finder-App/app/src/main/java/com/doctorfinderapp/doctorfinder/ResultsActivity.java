@@ -41,9 +41,9 @@ import java.util.List;
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
-    private Boolean isFabOpen = false;
-    private FloatingActionButton fab,fab1,fab2;
-    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+    private boolean isFabOpen = false;
+    private FloatingActionButton fab,fab1,fab2, fab_location;
+    private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +73,20 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab1 = (FloatingActionButton)findViewById(R.id.fab1);
         fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab_location = (FloatingActionButton)findViewById(R.id.fab_location);
 
         //load animation
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open_normal);
 
         //onClick button
         fab.setOnClickListener(this);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
+        fab_location.setOnClickListener(this);
 
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -124,7 +127,24 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switchFAB(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewPager.setAdapter(adapter);
+        fab.startAnimation(fab_open_normal);
     }
 
 
@@ -209,6 +229,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.fab2:
                 //TODO
                 break;
+
+            case R.id.fab_location:
+                //TODO
+                break;
         }
     }
 
@@ -242,9 +266,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     }//---------------------------------------------------------------------------------------------
 
     //animation fab buttons
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             fab.startAnimation(rotate_backward);
             fab1.startAnimation(fab_close);
@@ -262,10 +286,30 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             fab1.setClickable(true);
             fab2.setClickable(true);
             isFabOpen = true;
-            Log.d("button","open");
-
+            Log.d("button", "open");
         }
     }
+
+    //switch fab
+    public void switchFAB(int position){
+        switch(position){
+            case 0:
+                Log.d("fab", "open");
+                fab_location.startAnimation(fab_close);
+                fab_location.setClickable(false);
+                fab.startAnimation(fab_open_normal);
+                fab.setClickable(true);
+                break;
+            case 1:
+                Log.d("fab_location", "open");
+                fab.startAnimation(fab_close);
+                fab.setClickable(false);
+                fab_location.startAnimation(fab_open_normal);
+                fab_location.setClickable(true);
+                break;
+        }
+    }
+
 }
 
 

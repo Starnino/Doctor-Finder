@@ -1,6 +1,5 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.*;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -19,30 +17,29 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
-import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -52,14 +49,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ArrayList<Doctor> doctors;
-    public String CITTA="All";
-    public String SPECIALIZZAZIONE="All";
-    //static List<ParseObject> DOCTORSMAIN=null;
     static List<ParseObject> USERSMAIN = null;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
+    public static final int FAB_OPEN_TIME = 2000;
 
     //Parameters shared by fragment goes in activity
     //private static int SIZEM=0;
@@ -69,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     ArrayList<String> CITY;
     ArrayList<String> SPECIAL;
+
+    private Animation fab_open_normal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +157,24 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             }
         });
 
+        //set animation
+        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
+
+        //start animation
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        fab.startAnimation(fab_open_normal);
+                    }
+                });
+
+            }
+        }, FAB_OPEN_TIME);
+
         //Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
@@ -226,14 +241,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main2, menu);
-        SwitchCompat sw = (SwitchCompat) menu.findItem(R.id.switchForActionBar).getActionView().findViewById(R.id.switch1);
+        /*SwitchCompat sw = (SwitchCompat) menu.findItem(R.id.switchForActionBar).getActionView().findViewById(R.id.switch1);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //Query Localizations TODO AROUND ME
                 Toast.makeText(getApplicationContext() ,"Localizzazione " + (isChecked ? "on":"off") ,Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -321,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //put in OR all city queries (if necessary)
         if (!queryList.isEmpty()) {
-            mainQuery = ParseQuery.or(queryList);
+            mainQuery = ParseQuery.or(queryList).orderByAscending("LastName");
         } else mainQuery = allDoctors;
 
         //progress dialog
