@@ -83,10 +83,10 @@ public class DoctorListFragment extends Fragment {
             ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
-            profile.setImageResource(R.drawable.p_default);
-            //int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
+            profile.setImageResource(R.drawable.doctor_rounded_avatar);
 
-            //Log.d(TAG, "rating of " + nameString + " " + DoctorLocal.get("Feedback").toString());
+            //todo query if photo exists on doctorphoto
+
 
             //todo download photo
 
