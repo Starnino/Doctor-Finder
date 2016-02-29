@@ -179,7 +179,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 startActivity(intent);
 
                                             } else {
-                                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                                //
                                                 Log.v(TAG, "errore");
                                                 Log.v(TAG, e.toString());
                                                 // Sign up didn't succeed. Look at the ParseException
@@ -190,6 +190,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                 } else {
                                     //user exists
+                                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                                     Toast
                                             .makeText(getApplicationContext(),
                                                     "This user alredy exists on database",

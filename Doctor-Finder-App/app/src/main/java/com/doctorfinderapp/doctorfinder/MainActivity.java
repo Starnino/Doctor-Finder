@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                "Caricamento... Attendere...", true);
+                "Caricamento...", true);
 
        mainQuery.findInBackground(new FindCallback<ParseObject>() {
            @Override
