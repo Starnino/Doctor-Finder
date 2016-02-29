@@ -46,7 +46,7 @@
 
     <string name="profile">Profilo</string>
     <string name="gestisci">Gestisci Prenotazioni</string>
-    <string name="suggerisci">Suggerisci Dottore</string>
+    <string name="inserisci_dottore">Registra Dottore</string>
     <string name="logout">Logout</string>
     <string name="about">Riguardo Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>

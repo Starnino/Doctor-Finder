@@ -176,9 +176,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     //Fedebyes Funct
     private void setUpMap(GoogleMap gMap) {
 
-
-
-
         // Create a LatLngBounds that includes Australia.
 
 

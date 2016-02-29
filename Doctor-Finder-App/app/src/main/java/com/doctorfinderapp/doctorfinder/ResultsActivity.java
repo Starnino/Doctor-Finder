@@ -178,7 +178,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.gestisci:
                 break;
-            case R.id.suggerisci:
+            case R.id.inserisci_dottore:
                 String url_adddoctors = "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing";
                 Intent i_adddoctors = new Intent(Intent.ACTION_VIEW);
                 i_adddoctors.setData(Uri.parse(url_adddoctors));
