@@ -39,14 +39,10 @@ public class DoctorListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        index=0;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //adding data from Parse
-        //MainActivity.showData();
-        //showData();
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter();
         recyclerView.setAdapter(adapter);
@@ -54,20 +50,15 @@ public class DoctorListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return recyclerView;
-
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
 
-
             super(inflater.inflate(R.layout.doctor_card_item, parent, false));
 
             final int IndexLocale=index;
-
-            //Dottore cpy local
             ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(IndexLocale);
 
             //Get and set Name and LastName
@@ -89,28 +80,15 @@ public class DoctorListFragment extends Fragment {
 
             //setting rating aka feedback
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            Log.d(TAG, "rating of " + nameString + " " + DoctorLocal.get("Feedback").toString());
             ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
-            //ratingBar.setRating();
-
-
-
-
-            //TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
-            int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
-            profile.setImageResource(fotoId[IndexLocale]);
+            profile.setImageResource(R.drawable.p_default);
+            //int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
 
-            //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
-
-
-            //special.setText(specialString.substring(1,specialString.length()-1));
-
+            //Log.d(TAG, "rating of " + nameString + " " + DoctorLocal.get("Feedback").toString());
 
             //todo download photo
-
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,19 +99,6 @@ public class DoctorListFragment extends Fragment {
                     GlobalVariable.idDoctors = DOCTORS.get(IndexLocale).getObjectId();
                     //------
                     context.startActivity(intent);
-
-                    //give parameters to start activity
-                    //String id=(DOCTORS.get(IndexLocale)).getObjectId();
-                    //Log.d("Main","Showing "+id);
-                    //Bundle_selected_doctor.putString("id", id); //Your id
-                    //intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
-                    /*
-                    //this code is for passing data to an activity
-                    Bundle b = new Bundle();
-                    b.putInt("key", 1); //Your id
-                        intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-                     */
                 }
             });
 
