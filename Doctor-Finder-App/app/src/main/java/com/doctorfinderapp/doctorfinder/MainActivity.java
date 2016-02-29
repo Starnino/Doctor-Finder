@@ -31,6 +31,7 @@ import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity  {
     private LinearLayout selcitta;
     private LinearLayout selcateg;
 
-    ArrayList<String> selected_city;
-    ArrayList<String> selected_special;
+    ArrayList<String> CITY;
+    ArrayList<String> SPECIAL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity  {
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
         String[] citta = getResources().getStringArray(R.array.cities);
-        selected_city = new ArrayList<>();
-        final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", selected_city, citta);
+        CITY = new ArrayList<>();
+        final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", CITY, citta);
         selcitta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,8 +112,8 @@ public class MainActivity extends AppCompatActivity  {
         //Dialog for specialization
         selcateg = (LinearLayout) findViewById(R.id.select_special_button);
         String[] special = getResources().getStringArray(R.array.Specializations);
-        selected_special = new ArrayList<>();
-        final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", selected_special, special);
+        SPECIAL = new ArrayList<>();
+        final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", SPECIAL, special);
         selcateg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity  {
                 }).setNegativeButton("Cancella", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+        
                     }
                 });
         return builder.create();
@@ -264,15 +265,43 @@ public class MainActivity extends AppCompatActivity  {
     //This must be done only here
 
     public  void showDataM() {
-        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor2");
+        //list of query
+        List<ParseQuery<ParseObject>> queryList = new ArrayList<>();
+
+        //main query to find
+        ParseQuery<ParseObject> mainQuery;
+
+        //get query: All doctors
+        ParseQuery<ParseObject> allDoctors=ParseQuery.getQuery("Doctor2");
+
+        //add list of query per special
+        for (int i = 0; i < SPECIAL.size() ; i++) {
+            queryList.add(new ParseQuery<>(allDoctors.whereEqualTo("Specialization", SPECIAL.get(i))));
+        }
+
+        //put in Or all specialization queries (if necessary)
+        if (!queryList.isEmpty()) {
+            mainQuery = ParseQuery.or(queryList);
+        } else mainQuery = allDoctors;
+
+        //list empty
+        queryList.clear();
+
+        //add list of query per city
+        for (int i = 0; i < CITY.size() ; i++) {
+            queryList.add(new ParseQuery<>(mainQuery.whereEqualTo("Provence", CITY.get(i))));
+        }
+
+        //put in OR all city queries (if necessary)
+        if (!queryList.isEmpty()) {
+            mainQuery = ParseQuery.or(queryList);
+        } else mainQuery = allDoctors;
+
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento... Attendere...", true);
 
-        //query.
-        //query.whereEqualTo("Citta",NOMECITTA);//per starna
-        //query.whereEqualTo("Specializzazione",NOMESPECIALIZZAZIONE)
-       query.findInBackground(new FindCallback<ParseObject>() {
+       mainQuery.findInBackground(new FindCallback<ParseObject>() {
            @Override
            public void done(List<ParseObject> objects, ParseException e) {
 

@@ -83,9 +83,9 @@ public class DoctorListFragment extends Fragment {
             Log.d(TAG, "specialization as arraylist" + spec);
             String specializationString="";
             //divido le spec
-            for(int i =0;i< spec.size();i++){
-                specializationString+=spec.get(i)+", ";
+            for(int i=0; i<spec.size(); i++){
                 if (i == spec.size()-1) specializationString += spec.get(i);
+                else specializationString += spec.get(i)+", ";
             }
             special.setText(specializationString);
 

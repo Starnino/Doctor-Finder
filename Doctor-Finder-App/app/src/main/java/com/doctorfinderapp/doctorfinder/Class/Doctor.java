@@ -13,6 +13,7 @@ public class Doctor extends Person {
         super(name, photoId);
         this.profession = profession;
         this.sesso = sesso;
+        this.surname = surname;
     }
 
     @Override
