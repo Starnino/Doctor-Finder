@@ -86,8 +86,8 @@ public class DoctorListFragment extends Fragment {
             }
 
             special.setText(specializationString);
-            */
 
+            */
             //setting rating aka feedback
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
