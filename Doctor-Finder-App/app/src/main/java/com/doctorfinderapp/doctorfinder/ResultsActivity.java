@@ -54,16 +54,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //AddDoctors.addData();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-        //todo remove this @starnino
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
 
         setContentView(R.layout.activity_results);
-
-
 
         //find fab buttons
         fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -92,30 +84,21 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        // R.id.drawer should be in every activity with exactly the same id.
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
         setSupportActionBar(toolbar);
 
 
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-
     }
-
-
 
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
@@ -130,6 +113,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onPageSelected(int position) {
+
                 switchFAB(position);
             }
 
@@ -181,44 +165,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void selectDrawerItem(MenuItem menuItem){
-        switch (menuItem.getItemId()) {
-
-            case R.id.profile:
-                break;
-            case R.id.gestisci:
-                break;
-            case R.id.suggerisci:
-                break;
-            case R.id.about:
-                String url_github = "https://github.com/Starnino/Doctor-Finder";
-                Intent i_github = new Intent(Intent.ACTION_VIEW);
-                i_github.setData(Uri.parse(url_github));
-                startActivity(i_github);
-                break;
-            case R.id.support:
-                break;
-            case R.id.like:
-                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
-                Intent i_face = new Intent(Intent.ACTION_VIEW);
-                i_face.setData(Uri.parse(url_face));
-                startActivity(i_face);
-                break;
-            case R.id.settings:
-                break;
-            case R.id.logout:
-                ParseUser.logOut();
-                Log.d("R", "Logged out");
-                Toast.makeText(getApplicationContext(),
-                        "Logged out",
-                        Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
-                startActivity(intent);
-                break;
-
-        }
-    }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {

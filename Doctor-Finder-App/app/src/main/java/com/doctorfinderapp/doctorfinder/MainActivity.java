@@ -63,11 +63,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //private static int SIZEM=0;
     private FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
-
+    private String[] citta, special;
     private ArrayList<String> CITY, SPECIAL;
-
     private TextView cityText, specialText;
-
     private Animation fab_open;
 
     @Override
@@ -125,12 +123,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
-        cityText.setText("nessuna\nselezione");
-        specialText.setText("nessuna\nselezione");
+        cityText.setText("Nessuna selezione");
+        specialText.setText("Nessuna selezione");
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
-        String[] citta = getResources().getStringArray(R.array.cities);
+        citta = getResources().getStringArray(R.array.cities);
         CITY = new ArrayList<>();
         final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", CITY, citta);
         selcitta.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //Dialog for specialization
         selcateg = (LinearLayout) findViewById(R.id.select_special_button);
-        String[] special = getResources().getStringArray(R.array.Specializations);
+        special = getResources().getStringArray(R.array.Specializations);
         SPECIAL = new ArrayList<>();
         final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", SPECIAL, special);
         selcateg.setOnClickListener(new View.OnClickListener() {
@@ -179,17 +177,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             }
         }, FAB_OPEN_TIME);
+
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-
-        /*//Adding menu icon to Toolbar
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }*/
-
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -200,18 +191,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*// Set behavior of Navigation drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    // This method will trigger on item Click of navigation menu
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });*/
     }
 
     public AlertDialog OnCreateDialog(final String title, final ArrayList<String> checked, final String[] items){
@@ -224,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         if (isChecked) checked.add(items[which]);
                         else checked.remove(items[which]);
 
-                        switch(title){
+                        switch (title) {
                             case "Seleziona Categoria":
                                 //set text near Categoria when cities are checked
                                 if (checked.size() == 1) specialText.setText(checked.get(0));
@@ -234,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() == 2)
                                     specialText.setText(checked.get(0) + "\ne " + checked.get(1));
 
-                                else if(checked.size() > 0 && checked.size() != 2)
-                                    specialText.setText(checked.get(0) + "\ne altre " + (checked.size()-1));
+                                else if (checked.size() > 0 && checked.size() != 2)
+                                    specialText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
                                 break;
 
@@ -248,8 +227,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() == 2)
                                     cityText.setText(checked.get(0) + "\ne " + checked.get(1));
 
-                                else if(checked.size() > 0 && checked.size() != 2)
-                                    cityText.setText(checked.get(0) + "\ne altre " + (checked.size()-1));
+                                else if (checked.size() > 0 && checked.size() != 2)
+                                    cityText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
                                 break;
                         }
@@ -262,6 +241,23 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             Log.d("List " + i + " ----> ", checked.get(i));
                         }
                     }
+                }).setNeutralButton("tutte", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (int i = 0; i < items.length; i++) {
+                            ((AlertDialog) dialog).getListView().setItemChecked(i, true);
+                            checked.add(items[i]);
+                        }
+
+                        if (title.equals("Seleziona Categoria"))
+                            specialText.setText("Tutte");
+                        else if (title.equals("Seleziona Provincia"))
+                            cityText.setText("Tutte");
+
+                        for (int i = 0; i < checked.size(); i++) {
+                            Log.d("List " + i + " ----> ", checked.get(i));
+                        }
+                    }
                 }).setNegativeButton("Reset", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -269,6 +265,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         for (int i = 0; i < items.length; i++) {
                             ((AlertDialog) dialog).getListView().setItemChecked(i, false);
                         }
+
+                        if (title.equals("Seleziona Categoria"))
+                            specialText.setText("Nessuna selezione");
+                        else if (title.equals("Seleziona Provincia"))
+                            cityText.setText("Nessuna selezione");
+
                         checked.clear();
                         Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
@@ -304,44 +306,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
 
-    /*public void selectDrawerItem(MenuItem menuItem){
-        switch (menuItem.getItemId()) {
-
-            case R.id.profile:
-                break;
-            case R.id.gestisci:
-                break;
-            case R.id.suggerisci:
-                break;
-            case R.id.about:
-                String url_github = "https://github.com/Starnino/Doctor-Finder";
-                Intent i_github = new Intent(Intent.ACTION_VIEW);
-                i_github.setData(Uri.parse(url_github));
-                startActivity(i_github);
-                break;
-            case R.id.support:
-                break;
-            case R.id.like:
-                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
-                Intent i_face = new Intent(Intent.ACTION_VIEW);
-                i_face.setData(Uri.parse(url_face));
-                startActivity(i_face);
-                break;
-            case R.id.settings:
-                break;
-            case R.id.logout:
-                ParseUser.logOut();
-                Log.d("R", "Logged out");
-                Toast.makeText(getApplicationContext(),
-                        "Logged out",
-                        Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-                startActivity(intent);
-                break;
-
-        }
-    }*/
-
     //code added to save activity states
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -369,12 +333,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //add list of query per special
         for (int i = 0; i < SPECIAL.size() ; i++) {
+            if (SPECIAL.size() == special.length){
+                Log.d("QUERY", "hai selezionato tutte le categorie");
+                break;
+            }
             queryList.add(new ParseQuery<>(allDoctors.whereEqualTo("Specialization", SPECIAL.get(i))));
         }
 
         //put in Or all specialization queries (if necessary)
         if (!queryList.isEmpty()) {
-            mainQuery = ParseQuery.or(queryList);
+            mainQuery = ParseQuery.or(queryList).orderByAscending("LastName");
         } else mainQuery = allDoctors;
 
         //list empty
@@ -382,6 +350,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //add list of query per city
         for (int i = 0; i < CITY.size() ; i++) {
+            if (CITY.size() == citta.length){
+                Log.d("QUERY", "hai selezionato tutte le citta");
+                break;
+            }
             queryList.add(new ParseQuery<>(mainQuery.whereEqualTo("Provence", CITY.get(i))));
         }
 

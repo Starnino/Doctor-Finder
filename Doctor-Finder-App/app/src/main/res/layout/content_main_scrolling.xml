@@ -63,6 +63,7 @@
                     android:layout_marginStart="@dimen/fab_margin"
                     android:id="@+id/special_text_selected"
                     android:text="Allergologia\n e altre 3"
+                    android:textSize="12sp"
                     android:textColor="@color/grey"/>
 
             </LinearLayout>
@@ -99,6 +100,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     android:text="Ascol Piceno\ne altre 2"
+                    android:textSize="12sp"
                     android:textColor="@color/grey"/>
 
 
