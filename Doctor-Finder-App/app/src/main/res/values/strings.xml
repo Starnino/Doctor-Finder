@@ -270,7 +270,7 @@
     <string name="exit">Esci</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
-    <string name="title_activity_doctors_profile">Dott.ssa Tritto</string>
+    <string name="title_activity_doctors_profile"></string>
 
     <string name="title_activity_buttare">ButtareActivity</string>
     <string name="title_activity_settings">Settings</string>

@@ -43,17 +43,15 @@ public class DoctorProfileActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
         setContentView(R.layout.activity_scrolling);
-        //get parameters from activity
-        //Bundle b = getIntent().getExtras();
 
-        String id = GlobalVariable.idDoctors;
+        //SET Id
 
         ParseObject doctor = new ParseObject("Doctor");
 
         for(int i=0;i< GlobalVariable.DOCTORS.size();i++){
-            if(GlobalVariable.DOCTORS.get(i).getObjectId()==id){
+            if(GlobalVariable.DOCTORS.get(i).getObjectId().toString().equals(GlobalVariable.idDoctors)){
                 Log.d("Doctor", "object id " + GlobalVariable.DOCTORS.get(i).getObjectId());
-                Log.d("Doctor","id "+id);
+                //Log.d("Doctor","id "+id);
                 doctor= GlobalVariable.DOCTORS.get(i);
             }
         }
@@ -72,7 +70,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-
         TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);
@@ -80,15 +77,18 @@ public class DoctorProfileActivity extends AppCompatActivity {
         //TextView feedback = (TextView) findViewById(R.id.tvNumber5);
         TextView info = (TextView) findViewById(R.id.doctor_info);
 
-        nameProfile.setText(GlobalVariable.idDoctors);
-        special.setText("Oculista");
-        years.setText("7");
+        if(doctor.getString("Sesso").equals("M"))
+            nameProfile.setText("Dott. "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
+        else
+            nameProfile.setText("Dott.ssa "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
+        //special.setText(doctor.getString("Work"));
+        years.setText(doctor.getString("Exp"));
         workPlace.setText("Via M. Prestinari, 17");
-        //name.setText("Martina Tritto");
-        info.setText("https://it.linkedin.com/in/martTritto1");
+
+        info.setText(doctor.getString("Description"));
 
         String nameString = doctor.getString("FirstName");
-        Log.d("Doctor", "showing profile of " + nameString + id);
+        //Log.d("Doctor", "showing profile of " + nameString + id);
         //name.setText(nameString);
         //String specialString = doctor.getList("Specialization").subList(0,1).toString();
         //special.setText(specialString.substring(1, specialString.length() - 1));
