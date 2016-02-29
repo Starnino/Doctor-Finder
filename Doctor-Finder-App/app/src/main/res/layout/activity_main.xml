@@ -24,20 +24,25 @@
             android:fitsSystemWindows="true"
             android:theme="@style/CollapsingTheme">
 
-
-
-
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:contentScrim="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin" />
+            app:layout_collapseMode="pin"
+            android:popupTheme="@style/CollapsingTheme"/>
 
             <ImageView
                 android:src="@drawable/logo_testo_e_icona"
                 android:layout_gravity="center"
-                android:adjustViewBounds="false"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +50,9 @@
                 app:layout_collapseMode="parallax"
                 android:fitsSystemWindows="true"
                 android:padding="30dp" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
         </android.support.design.widget.AppBarLayout>
 
         <include layout="@layout/content_main_scrolling"/>

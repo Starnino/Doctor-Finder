@@ -51,8 +51,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categoria"
+                    android:textSize="17sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
+                    android:textColor="@color/grey"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:id="@+id/cities_text_selected"
+                    android:text="Allergologia\n e altre 3"
                     android:textColor="@color/grey"/>
 
             </LinearLayout>
@@ -76,10 +86,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Provincia"
+                    android:text="Provincia "
+                    android:textSize="17sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     android:textColor="@color/grey"/>
+
+                <TextView
+                    android:id="@+id/provinces_text_selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/fab_margin"
+                    android:text="Ascol Piceno\ne altre 2"
+                    android:textColor="@color/grey"/>
+
 
             </LinearLayout>
 

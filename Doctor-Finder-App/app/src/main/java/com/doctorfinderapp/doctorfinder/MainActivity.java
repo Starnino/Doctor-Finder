@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
@@ -59,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //Parameters shared by fragment goes in activity
     //private static int SIZEM=0;
     private FloatingActionButton fab;
-    private LinearLayout selcitta;
-    private LinearLayout selcateg;
+    private LinearLayout selcitta, selcateg;
 
-    ArrayList<String> CITY;
-    ArrayList<String> SPECIAL;
+    private ArrayList<String> CITY, SPECIAL;
+
+    private TextView cityText, specialText;
 
     private Animation fab_open_normal;
 
@@ -120,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
 
+        //find Text selected
+        cityText = (TextView) findViewById(R.id.cities_text_selected);
+        specialText = (TextView) findViewById(R.id.provinces_text_selected);
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -152,8 +156,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             public void onClick(View v) {
                 //Download parse data
                 showDataM();
-
-
             }
         });
 
@@ -198,12 +200,23 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 });
     }
 
-    public AlertDialog OnCreateDialog(String title, final ArrayList<String> checked, final String[] items){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+    public AlertDialog OnCreateDialog(final String title, final ArrayList<String> checked, final String[] items){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+                        switch(title){
+                            case "Seleziona Categoria":
+                                //TODO
+                                break;
+
+                            case "Seleziona Provincia":
+                                //TODO
+                                break;
+                        }
+
                         if (isChecked) checked.add(items[which]);
                         else checked.remove(items[which]);
 
@@ -216,10 +229,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             Log.d("List " + i + " ----> ", checked.get(i));
                         }
                     }
-                }).setNegativeButton("Cancella", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-        
+                }).setNegativeButton("Reset", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                for (int i = 0; i < items.length ; i++) {
+                                    ((AlertDialog)dialog).getListView().setItemChecked(i, false);
+                                }
+                                checked.clear();
+                                Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
                 });
         return builder.create();

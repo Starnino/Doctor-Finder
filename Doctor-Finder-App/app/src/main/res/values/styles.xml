@@ -30,6 +30,6 @@
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CollapsingTheme" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/trasparent</item>
     </style>
 </resources>
