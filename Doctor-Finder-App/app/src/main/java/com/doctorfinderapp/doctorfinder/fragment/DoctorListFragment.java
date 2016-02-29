@@ -34,7 +34,7 @@ public class DoctorListFragment extends Fragment {
     private static List<ParseObject> DOCTORS = GlobalVariable.DOCTORS;
     private static int SIZE=DOCTORS.size();
     private static int index=0;
-    private static String TAG="DoctorListFragment";
+    private static String TAG = "DoctorListFragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

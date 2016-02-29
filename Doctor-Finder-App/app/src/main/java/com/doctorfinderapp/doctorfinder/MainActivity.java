@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ArrayList<Doctor> doctors;
@@ -91,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 MY_PERMISSIONS_REQUEST_LOCATION);
         Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
-
 
 
         //set view for doctors visited
@@ -373,8 +371,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                if(e==null) {
 
                    GlobalVariable.DOCTORS = objects;
-                   Log.d("Main",GlobalVariable.DOCTORS.toString());
-
+                   for (int i = 0; i < objects.size(); i++) {
+                       Log.d("DOCTOR " + i, " --> " + objects.get(i).get("FirstName") +" "+ objects.get(i).get("LastName"));
+                   }
 
                    Intent intent = new Intent(MainActivity.this,
                            ResultsActivity.class);
@@ -382,7 +381,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                    dialog.dismiss();
                    //SIZEM=objects.size();
                }else{
-
 
                    Log.d("Main","Error downloading parse data ");
                }
@@ -436,10 +434,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                 startActivity(intent);
                 break;
+        }
 
-
-
-    }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;

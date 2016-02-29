@@ -33,23 +33,22 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+            <ImageView
+                android:src="@drawable/logo_testo_e_icona"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:fitsSystemWindows="true" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             android:popupTheme="@style/CollapsingTheme" />
-
-            <ImageView
-                android:src="@drawable/logo_testo_e_icona"
-                android:layout_gravity="center"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                android:fitsSystemWindows="true"
-                android:padding="30dp" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
