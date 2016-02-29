@@ -39,6 +39,7 @@ public class DoctorListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        index=0;
     }
 
     @Override
@@ -67,14 +68,11 @@ public class DoctorListFragment extends Fragment {
             final int IndexLocale=index;
 
             //Dottore cpy local
-            ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(index);
-            //Log.d(TAG,"specialization"+DoctorLocal.getString("Specialization"));
-
-
+            ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(IndexLocale);
 
             //Get and set Name and LastName
             TextView name = (TextView) itemView.findViewById(R.id.name);
-            String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
+            String nameString = DoctorLocal.getString("FirstName") + " " + DoctorLocal.getString("LastName");
             name.setText(nameString);
 
             //Setting specialization
@@ -102,7 +100,7 @@ public class DoctorListFragment extends Fragment {
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
             int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
-            profile.setImageResource(fotoId[index]);
+            profile.setImageResource(fotoId[IndexLocale]);
 
             //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
 

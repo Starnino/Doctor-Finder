@@ -12,6 +12,7 @@ public class GlobalVariable {
     public static List<String> permissions = Arrays.asList("email", "public_profile", "user_friends");
     public static int numdoctors;
     public static List<ParseObject> DOCTORS;
+    public static boolean locationActive=false;
 
 
 

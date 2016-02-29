@@ -1,12 +1,17 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.*;
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -40,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -51,6 +56,10 @@ public class MainActivity extends AppCompatActivity  {
     public String SPECIALIZZAZIONE="All";
     //static List<ParseObject> DOCTORSMAIN=null;
     static List<ParseObject> USERSMAIN = null;
+    private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
+    private String TAG= "Main Activity";
 
     //Parameters shared by fragment goes in activity
     //private static int SIZEM=0;
@@ -66,6 +75,24 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        //request permission
+        //todo put this in button switch
+        if(
+            ActivityCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+
+                &&
+                    ActivityCompat.checkSelfPermission(getApplicationContext(),
+                            Manifest.permission.ACCESS_COARSE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED
+                ){
+            ActivityCompat.requestPermissions(this,
+                PERMISSIONS,
+                MY_PERMISSIONS_REQUEST_LOCATION);
+        Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
+        }
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
@@ -325,5 +352,7 @@ public class MainActivity extends AppCompatActivity  {
        });
 
     }
+
+    
 
 }

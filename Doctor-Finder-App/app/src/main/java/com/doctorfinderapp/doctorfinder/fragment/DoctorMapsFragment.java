@@ -1,11 +1,18 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.test.mock.MockPackageManager;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,20 +27,104 @@ import java.util.ArrayList;
 
 public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback {
 
-    private static final String TAG = "Doctor Maps";
-    private GoogleMap googleMap;
+    private final String TAG = "Doctor Maps";
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
+
+    private String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static GoogleMap googleMap;
 
 
     @Override
     public void onMapReady(GoogleMap gMap) {
-        googleMap=gMap;
+        googleMap = gMap;
 
-        if (gMap==null) {
-            Log.v("gmap","Google map is null");
+       // gMap.setMyLocationEnabled(true);
+        Boolean u=ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+        Log.d(TAG,u.toString());
+        Log.d(TAG,Manifest.permission.ACCESS_COARSE_LOCATION.toString());
+        if (u
+                &&
+                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+            gMap.setMyLocationEnabled(true);
         }
+
+
+
+        //permissionRequest();
 
         setUpMap(gMap);
 
+    }
+
+    private  void permissionRequest(){
+        //gMap.setMyLocationEnabled(true);
+        if (Build.VERSION.SDK_INT < 23) {
+            googleMap.setMyLocationEnabled(true);
+            Log.d(TAG,"sdk<23");
+
+        } else {
+            int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION);
+            if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG,"permission granted on check");
+                googleMap.setMyLocationEnabled(true);
+
+            } else {
+                // request permission.
+                ActivityCompat.requestPermissions(getActivity(),
+                        PERMISSIONS,
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+                Log.d(TAG,"Requesting permission "+MY_PERMISSIONS_REQUEST_LOCATION);
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+
+
+
+            }
+
+
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        Log.d(TAG, "request code "+requestCode);
+        Log.d(TAG," permissions" +PERMISSIONS.toString());
+        Log.d(TAG,"grant results" +grantResults.toString());
+        switch (requestCode) {
+
+
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+                    int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.ACCESS_FINE_LOCATION);
+                    if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                        googleMap.setMyLocationEnabled(true);
+
+                }
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     @Override
@@ -52,6 +143,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         });*/
 
     }
+
     private void setUpMapIfNeeded() {
 
         if (googleMap == null) {
@@ -82,7 +174,11 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
     //Fedebyes Funct
-    private void setUpMap(GoogleMap gMap){
+    private void setUpMap(GoogleMap gMap) {
+
+
+
+
         // Create a LatLngBounds that includes Australia.
 
 
@@ -160,6 +256,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
         return resizedBitmap;
     }
+
 
 
 }
