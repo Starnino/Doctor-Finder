@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:id="@+id/cities_text_selected"
+                    android:id="@+id/special_text_selected"
                     android:text="Allergologia\n e altre 3"
                     android:textColor="@color/grey"/>
 
@@ -93,7 +93,7 @@
                     android:textColor="@color/grey"/>
 
                 <TextView
-                    android:id="@+id/provinces_text_selected"
+                    android:id="@+id/cities_text_selected"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -427,11 +427,10 @@
             app:pressedTranslationZ="12dp"
             app:backgroundTint="@color/docfinder"
             app:layout_anchorGravity="bottom|right|end"
-            android:layout_marginStart="@dimen/fab_margin"
             android:visibility="invisible"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="@dimen/fab_margin"
             android:layout_above="@+id/recent_doctors"
-            android:layout_alignEnd="@+id/card1" />
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

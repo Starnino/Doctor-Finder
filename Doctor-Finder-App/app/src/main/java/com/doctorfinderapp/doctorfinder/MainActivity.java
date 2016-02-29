@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     private TextView cityText, specialText;
 
-    private Animation fab_open_normal;
+    private Animation fab_open;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Frociologo", true));
         doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Tettologa", false));
         doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
-        doctors.add(new Doctor("Francesco", "Starna",R.drawable.starnino, "Oculista", true));
+        doctors.add(new Doctor("Francesco", "Starna", R.drawable.starnino, "Oculista", true));
         doctors.add(new Doctor("Ginevra", "Lado",R.drawable.p1, "Pediatra", false));
         doctors.add(new Doctor("Giampa", "Giampa",R.drawable.giampa, "Chirurgo", false));
 
@@ -123,7 +123,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
-        specialText = (TextView) findViewById(R.id.provinces_text_selected);
+        specialText = (TextView) findViewById(R.id.special_text_selected);
+        cityText.setText("nessuna\nselezione");
+        specialText.setText("nessuna\nselezione");
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -160,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         });
 
         //set animation
-        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
 
         //start animation
         Timer timer = new Timer();
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        fab.startAnimation(fab_open_normal);
+                        fab.startAnimation(fab_open);
                     }
                 });
 
@@ -207,19 +209,38 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
-                        switch(title){
-                            case "Seleziona Categoria":
-                                //TODO
-                                break;
-
-                            case "Seleziona Provincia":
-                                //TODO
-                                break;
-                        }
-
                         if (isChecked) checked.add(items[which]);
                         else checked.remove(items[which]);
 
+                        switch(title){
+                            case "Seleziona Categoria":
+                                //set text near Categoria when cities are checked
+                                if (checked.size() == 1) specialText.setText(checked.get(0));
+
+                                else if (checked.size() == 0) specialText.setText("");
+
+                                else if (checked.size() == 2)
+                                    specialText.setText(checked.get(0) + "\ne " + checked.get(1));
+
+                                else if(checked.size() > 0 && checked.size() != 2)
+                                    specialText.setText(checked.get(0) + "\ne altre " + (checked.size()-1));
+
+                                break;
+
+                            case "Seleziona Provincia":
+                                //set text near Provincia when cities are checked
+                                if (checked.size() == 1) cityText.setText(checked.get(0));
+
+                                else if (checked.size() == 0) cityText.setText("");
+
+                                else if (checked.size() == 2)
+                                    cityText.setText(checked.get(0) + "\ne " + checked.get(1));
+
+                                else if(checked.size() > 0 && checked.size() != 2)
+                                    cityText.setText(checked.get(0) + "\ne altre " + (checked.size()-1));
+
+                                break;
+                        }
                     }
                 }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -230,14 +251,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
                     }
                 }).setNegativeButton("Reset", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                                for (int i = 0; i < items.length ; i++) {
-                                    ((AlertDialog)dialog).getListView().setItemChecked(i, false);
-                                }
-                                checked.clear();
-                                Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
+                        for (int i = 0; i < items.length; i++) {
+                            ((AlertDialog) dialog).getListView().setItemChecked(i, false);
+                        }
+                        checked.clear();
+                        Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
                 });
         return builder.create();
