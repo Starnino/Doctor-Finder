@@ -90,7 +90,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         String nameString = doctor.getString("FirstName");
         Log.d("Doctor", "showing profile of " + nameString + id);
         //name.setText(nameString);
-//        //String specialString = doctor.getList("Specialization").subList(0,1).toString();
+        //String specialString = doctor.getList("Specialization").subList(0,1).toString();
         //special.setText(specialString.substring(1, specialString.length() - 1));
 
 

@@ -154,7 +154,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "Signup completed", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 //put on parse base user avatar
-                                                Bitmap avatar = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                                                /*Bitmap avatar = BitmapFactory.decodeResource(getApplicationContext().getResources(),
                                                         R.drawable.avatar);
                                                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                                 avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -168,6 +168,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 userPhoto.put("username", user.getUsername());
                                                 userPhoto.put("profilePhoto", file);
                                                 userPhoto.saveInBackground();
+                                                */
 
 
 
@@ -251,6 +252,9 @@ public class SignupActivity extends AppCompatActivity {
                             FacebookProfile.getGraphRequest(user);
 
                             progressBar.setVisibility(View.INVISIBLE);
+                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+
+                            startActivity(intent);
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
