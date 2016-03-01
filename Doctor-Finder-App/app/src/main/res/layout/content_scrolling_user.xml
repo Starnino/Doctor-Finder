@@ -316,7 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Segnala Problema"
+                android:text="Segnala problema"
                 android:clickable="true"
                 android:textColor="@color/flat_red"
                 android:backgroundTint="@color/colorPrimaryDark"
