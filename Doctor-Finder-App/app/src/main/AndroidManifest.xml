@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.doctorfinderapp.doctorfinder" >
+    package="com.doctorfinderapp.doctorfinder">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -26,16 +26,16 @@
         android:required="true" />
 
     <application
+        android:name=".functions.App"
         android:allowBackup="true"
         android:icon="@drawable/iconaapp"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name ="com.doctorfinderapp.doctorfinder.functions.App">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,8 +55,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".access.LoginActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".access.FirstActivity" >
+            android:parentActivityName=".access.FirstActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
@@ -66,19 +66,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".access.SignupActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".access.FirstActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+            android:parentActivityName=".access.FirstActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ResultsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.doctorfinderapp.doctorfinder.MainActivity" />
@@ -86,8 +86,7 @@
         <activity
             android:name=".FeedbackItemActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".UserProfileActivity"/>
+        <activity android:name=".UserProfileActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -109,7 +108,7 @@
             android:name=".DoctorProfileActivity"
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <activity android:name=".WebViewActivity"></activity>
     </application>
 
 </manifest>

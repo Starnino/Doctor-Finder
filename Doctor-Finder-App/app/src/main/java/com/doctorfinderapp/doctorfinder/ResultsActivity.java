@@ -177,26 +177,46 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent_user);
                 break;
             case R.id.gestisci:
+
+
+
                 break;
             case R.id.inserisci_dottore:
-                String url_adddoctors = "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing";
-                Intent i_adddoctors = new Intent(Intent.ACTION_VIEW);
-                i_adddoctors.setData(Uri.parse(url_adddoctors));
-                startActivity(i_adddoctors);
+                Intent intent2 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b = new Bundle();
+                b.putString("URL",
+                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing" ); //Your id
+                intent2.putExtras(b);
+                startActivity(intent2);
                 break;
             case R.id.about:
-                String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
+                Intent intent3 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b3 = new Bundle();
+                b3.putString("URL",
+                        "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
+                intent3.putExtras(b3);
+                startActivity(intent3);
+                /*String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
                 Intent i_github = new Intent(Intent.ACTION_VIEW);
                 i_github.setData(Uri.parse(url_github));
-                startActivity(i_github);
+                startActivity(i_github);*/
                 break;
             case R.id.support:
                 break;
             case R.id.like:
-                String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+                Intent intent4 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b4 = new Bundle();
+                b4.putString("URL",
+                        "https://www.facebook.com/dcfind" ); //Your id
+                intent4.putExtras(b4);
+                startActivity(intent4);
+                /*String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
                 Intent i_face = new Intent(Intent.ACTION_VIEW);
                 i_face.setData(Uri.parse(url_face));
-                startActivity(i_face);
+                startActivity(i_face);*/
                 break;
             case R.id.settings:
                 Intent intent_settings = new Intent(ResultsActivity.this, SettingsActivity.class);
@@ -208,10 +228,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplicationContext(),
                         "Logged out",
                         Toast.LENGTH_LONG).show();
-                Intent intent_logOut = new Intent(ResultsActivity.this, SplashActivity.class);
-                startActivity(intent_logOut);
+                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
+                startActivity(intent);
                 break;
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
         drawer.closeDrawer(GravityCompat.START);
