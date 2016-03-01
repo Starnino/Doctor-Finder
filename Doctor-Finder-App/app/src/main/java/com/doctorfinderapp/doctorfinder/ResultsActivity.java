@@ -337,6 +337,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
@@ -345,8 +346,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             super.onBackPressed();
         }
+
+        //getSupportFragmentManager().
+        finish();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+    }
 }
 
 

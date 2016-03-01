@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public static final int FAB_OPEN_TIME = 1500;
 
     //Parameters shared by fragment goes in activity
-    //private static int SIZEM=0;
+
     private FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     private String[] citta, special;
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
 
-
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
 
@@ -104,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //initialize more Persons
         doctors = new ArrayList<>();
-        doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Sessuologo", true));
-        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Tettologa", false));
+        doctors.add(new Doctor("Giampaolo", "Giampaolo",R.drawable.giampa, "Oculista", true));
+        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Pediatra", false));
         doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
         doctors.add(new Doctor("Francesco", "Starna", R.drawable.starnino, "Oculista", true));
         doctors.add(new Doctor("Ginevra", "Lado",R.drawable.p1, "Pediatra", false));
@@ -319,8 +318,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //This must be done only here
 
     public  void showDataM() {
-        //list of query
-        List<ParseQuery<ParseObject>> queryList = new ArrayList<>();
 
         //get query: All doctor
         ParseQuery<ParseObject> allDoctors = ParseQuery.getQuery("Doctor");
