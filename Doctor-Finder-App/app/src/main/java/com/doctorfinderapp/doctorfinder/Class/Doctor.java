@@ -1,29 +1,36 @@
 package com.doctorfinderapp.doctorfinder.Class;
 
 /**
- * * Created by vindel100 on 17/01/16.
+ * Created by francesco on 27/02/16.
  */
-public class Doctor {
-private String name;
-private String special;
-private String feedback;
 
-public Doctor(String name, String special, String feedback) {
-this.name = name;
-this.special = special;
-this.feedback = feedback;
-            }
+public class Doctor extends Person {
 
-public String getName() {
-return this.name;
-     }
+    private String profession, surname;
+    boolean sesso; //true --> M, false --> F
 
-     public String getSpecial() {
-     return this.special;
-      }
-
-    public String getFeedback() {
-    return this.feedback;
+    public Doctor(String name, String surname, int photoId, String profession, boolean sesso) {
+        super(name, photoId);
+        this.profession = profession;
+        this.sesso = sesso;
+        this.surname = surname;
     }
-}
 
+    @Override
+    public int getPhotoId() {
+        return super.getPhotoId();
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public boolean havePisello() {return sesso;}
+
+    public String getSurname() {return surname;}
+}

@@ -1,37 +1,23 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
-import com.doctorfinderapp.doctorfinder.R;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.util.List;
 
 /**
  * Created by giovanni on 2/24/16.
  */
-public class UserProfileFragment  extends Fragment {
+public class UserProfileFragment extends Fragment {
 
     private static ParseObject user;
     private TextView nome;
     private TextView cognome;
     private TextView email;
+    private TextView ddn;
+    private TextView facebookid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

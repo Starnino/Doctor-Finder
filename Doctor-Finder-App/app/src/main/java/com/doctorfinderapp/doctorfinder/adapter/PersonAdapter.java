@@ -4,11 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.Class.Person;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         TextView personName;
-        ImageView personPhoto;
+        RoundedImageView personPhoto;
 
         PersonViewHolder(View itemView) {
             super(itemView);
             personName = (TextView)itemView.findViewById(R.id.person_name);
-            personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            personPhoto = (RoundedImageView)itemView.findViewById(R.id.person_photo);
         }
     }
 
@@ -36,7 +35,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_item, parent, false);
         PersonViewHolder pvh = new PersonViewHolder(v);
         return pvh;
     }

@@ -14,6 +14,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -30,23 +31,23 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.doctorfinderapp.doctorfinder.UserProfileActivity;
+import com.doctorfinderapp.doctorfinder.SettingsActivity;
 
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doctorfinderapp.doctorfinder.UserProfileActivity;
 
-
-public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
-    private Boolean isFabOpen = false;
-    private FloatingActionButton fab,fab1,fab2;
-    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+    private boolean isFabOpen = false;
+    private FloatingActionButton fab,fab1,fab2, fab_location;
+    private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,35 +57,27 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //AddDoctors.addData();
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-//         if(currentUser.getEmail()!=null)Toast.makeText(getApplicationContext(), "Logged in as "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
-  //      else Toast.makeText(getApplicationContext(), "Logged in with Facebook", Toast.LENGTH_LONG).show();
-        //set status bar color because in xml don't work
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }*/
 
         setContentView(R.layout.activity_results);
-
-        // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //find fab buttons
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab1 = (FloatingActionButton)findViewById(R.id.fab1);
         fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab_location = (FloatingActionButton)findViewById(R.id.fab_location);
 
         //load animation
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open_normal);
 
         //onClick button
         fab.setOnClickListener(this);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
+        fab_location.setOnClickListener(this);
 
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -94,39 +87,46 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        // Adding menu icon to Toolbar
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        // Adding Toolbar to Main screen
+        Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
+        setSupportActionBar(toolbar);
 
-        //menu icon
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 
-        // Set behavior of Navigation drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    // This method will trigger on item Click of navigation menu
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_results);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
-
-
 
     // Add Fragments to Tabs------------------------------------------------------------------------
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                switchFAB(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewPager.setAdapter(adapter);
+        fab.startAnimation(fab_open_normal);
     }
 
 
@@ -136,9 +136,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
     }
@@ -150,31 +159,73 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //no inspection SimplifiableIfStatement
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-            /**TODO*/
-        } else if (id == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    public void selectDrawerItem(MenuItem menuItem){
-        switch (menuItem.getItemId()) {
-            case R.id.exit:
-                super.finish();
-            case R.id.about:
-                String url = "https://github.com/Starnino/Doctor-Finder>";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
 
             case R.id.profile:
                 Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
                 startActivity(intent_user);
+                break;
+            case R.id.gestisci:
 
-            //caricare sito
+
+
+                break;
+            case R.id.inserisci_dottore:
+                Intent intent2 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b = new Bundle();
+                b.putString("URL",
+                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing" ); //Your id
+                intent2.putExtras(b);
+                startActivity(intent2);
+                break;
+            case R.id.about:
+                Intent intent3 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b3 = new Bundle();
+                b3.putString("URL",
+                        "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
+                intent3.putExtras(b3);
+                startActivity(intent3);
+                /*String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);*/
+                break;
+            case R.id.support:
+                String url_support = "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing";
+                Intent i_support = new Intent(Intent.ACTION_VIEW);
+                i_support.setData(Uri.parse(url_support));
+                startActivity(i_support);
+                break;
+            case R.id.like:
+                Intent intent4 = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle b4 = new Bundle();
+                b4.putString("URL",
+                        "https://www.facebook.com/dcfind" ); //Your id
+                intent4.putExtras(b4);
+                startActivity(intent4);
+                /*String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
+                Intent i_face = new Intent(Intent.ACTION_VIEW);
+                i_face.setData(Uri.parse(url_face));
+                startActivity(i_face);*/
+                break;
+            case R.id.settings:
+                Intent intent_settings = new Intent(ResultsActivity.this, SettingsActivity.class);
+                startActivity(intent_settings);
+                break;
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
@@ -183,9 +234,11 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                         Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
                 startActivity(intent);
-
-
+                break;
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -202,6 +255,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.fab2:
+                //TODO
+                break;
+
+            case R.id.fab_location:
                 //TODO
                 break;
         }
@@ -232,17 +289,14 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         public CharSequence getPageTitle(int position) {
-
-
-
             return mFragmentTitleList.get(position);
         }
     }//---------------------------------------------------------------------------------------------
 
     //animation fab buttons
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             fab.startAnimation(rotate_backward);
             fab1.startAnimation(fab_close);
@@ -260,10 +314,39 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             fab1.setClickable(true);
             fab2.setClickable(true);
             isFabOpen = true;
-            Log.d("button","open");
-
+            Log.d("button", "open");
         }
     }
+
+    //switch fab
+    public void switchFAB(int position){
+        switch(position){
+            case 0:
+                Log.d("fab", "open");
+                fab_location.startAnimation(fab_close);
+                fab_location.setClickable(false);
+                fab.startAnimation(fab_open_normal);
+                fab.setClickable(true);
+                break;
+            case 1:
+                Log.d("fab_location", "open");
+                fab.startAnimation(fab_close);
+                fab.setClickable(false);
+                fab_location.startAnimation(fab_open_normal);
+                fab_location.setClickable(true);
+                break;
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }
 
 

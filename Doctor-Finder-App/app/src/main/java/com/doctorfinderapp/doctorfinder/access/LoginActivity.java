@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.access;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -26,12 +28,7 @@ import com.parse.ParseUser;
 import java.util.Arrays;
 import java.util.List;
 
-//login facebook
 
-
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -42,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
     private GoogleApiClient client;
+    private ImageButton close;
 
 
 
@@ -53,8 +51,12 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //initialize Facebook SDK
-        //FacebookSdk.sdkInitialize(getApplicationContext());
+        //code to permit facebook request
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
 
         // Get the view from xml
@@ -71,8 +73,13 @@ public class LoginActivity extends AppCompatActivity {
         // Locate Buttons in xml
 
         Button loginButton = (Button) findViewById(R.id.login_button2);
-        //Button loginWithGoogle = (Button) findViewById(R.id.login_google_button);
         ImageButton close = (ImageButton) findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
 
         // Login Button Click Listener
@@ -83,13 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
-                if (usernametxt.equals("test")) {
-                    Intent intent = new Intent(LoginActivity.this,
-                            MainActivity.class);
-                    startActivity(intent);
 
-
-                } else {
 
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
 
-            }
+
 
 
         });
@@ -124,9 +125,9 @@ public class LoginActivity extends AppCompatActivity {
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
-                List<String> permissions = Arrays.asList("email", "public_profile");
+                List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
                 progressBar.setVisibility(View.VISIBLE);
-                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
+                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
                     @Override
@@ -138,16 +139,28 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
+                            Log.d("login with facebook", user.toString());
+                            FacebookProfile.getGraphRequest(user);
+
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Logged in",
+                                    Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                            startActivity(intent);
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
                             progressBar.setVisibility(View.INVISIBLE);
-                            /*try {
-                                FacebookProfile.getFacebookThings(user);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }*///todo facebook things
+
+                            //facebook things
+                            Log.d("login with facebook", user.toString());
+                            FacebookProfile.getGraphRequest(user);
+                            //FacebookProfile.getGraphRequestFriends(user);
+
+
 
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
@@ -163,7 +176,14 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //close activity
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 

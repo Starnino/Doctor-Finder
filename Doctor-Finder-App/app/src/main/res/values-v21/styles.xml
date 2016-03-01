@@ -1,13 +1,42 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/docfinder</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/darkdf</item>
+        <item name="colorPrimaryDark">@color/darkdf</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/docfinder</item>
+        <item name="android:navigationBarColor">@color/docfinder</item>
+        <item name="android:colorForeground">@color/colorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/docfinder</item>
+        <item name="colorPrimaryDark">@color/darkdf</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@color/docfinder</item>
+        <item name="android:navigationBarColor">@color/docfinder</item>
+        <item name="android:colorForeground">@color/colorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/trasparent</item>
+    </style>
+
+    <style name="SwitchStyle">
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/flat_red</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/google_grey</item>
+        <!-- Inactive track color(30% transparency) -->
+        <item name="android:colorForeground">@color/grey</item>
+    </style>
+
+    <style name="CollapsingTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">@color/trasparent</item>
     </style>
 </resources>

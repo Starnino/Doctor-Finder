@@ -3,21 +3,19 @@
     <string name="action_settings">Impostazioni</string>
 
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
     <string name="title_activity_login">Sign in</string>
 
     <string name="action_log_in">Login </string>
-    <string name="action_sign2_up">Iscriviti</string>
-    <string name="action_sign_in_short">Accedi</string>
+    <string name="action_sign2_up">Sign up</string>
+    <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
     <string name="error_invalid_password">Password troppo corta!</string>
     <string name="error_incorrect_password">Password sbagliata!</string>
     <string name="error_field_required">Questo campo è obbligatorio</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="action_search">"Ricerca rapida"</string>
-    <!-- <string name="action_signup_with_facebook">"Signup with facebook"</string> -->
-    <!-- <string name="action_signup_with_google">"Signup with Google+"</string> -->
+
     <string name="action_login_with_facebook">"Login con facebook"</string>
     <string name="action_login_with_google">"Login con Google+"</string>
     <string name="text_firstName">Nome</string>
@@ -39,9 +37,6 @@
     <string name="feedbacklabel">"Feedback : "</string>
     <string name="title_activity_main2">Main2Activity</string>
 
-    <string name="title_section1">Sezione 1</string>
-    <string name="title_section2">Sezione 2</string>
-    <string name="title_section3">Sezione 3</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -50,7 +45,7 @@
 
     <string name="profile">Profilo</string>
     <string name="gestisci">Gestisci Prenotazioni</string>
-    <string name="suggerisci">Suggerisci Dottore</string>
+    <string name="inserisci_dottore">Registra Dottore</string>
     <string name="logout">Logout</string>
     <string name="about">Riguardo Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>
@@ -58,7 +53,6 @@
     <string name="like"> Facebook</string>
 
     <string-array name="Specializations">
-        <item>Tutti</item>
         <item>Allergologia</item>
         <item>Anatomia Patologica</item>
         <item>Andrologia</item>
@@ -121,10 +115,6 @@
     </string-array>
 
     <string-array name="cities">
-        <item>Tutte</item>
-        <item>Roma</item>
-        <item>Milano</item>
-        <item>Torino</item>
         <item>Agrigento</item>
         <item>Alessandria</item>
         <item>Ancona</item>
@@ -134,6 +124,7 @@
         <item>Asti</item>
         <item>Avellino</item>
         <item>Bari</item>
+        <item>Barletta-Andria-Trani</item>
         <item>Belluno</item>
         <item>Benevento</item>
         <item>Bergamo</item>
@@ -180,11 +171,11 @@
         <item>Matera</item>
         <item>Medio Campidano</item>
         <item>Messina</item>
+        <item>Milano</item>
         <item>Modena</item>
         <item>Napoli</item>
         <item>Novara</item>
         <item>Nuoro</item>
-        <item>Ogliastra</item>
         <item>Olbia-Tempio</item>
         <item>Oristano</item>
         <item>Padova</item>
@@ -206,6 +197,7 @@
         <item>Reggio Emilia</item>
         <item>Rieti</item>
         <item>Rimini</item>
+        <item>Roma</item>
         <item>Rovigo</item>
         <item>Salerno</item>
         <item>Sassari</item>
@@ -216,6 +208,7 @@
         <item>Taranto</item>
         <item>Teramo</item>
         <item>Terni</item>
+        <item>Torino</item>
         <item>Trapani</item>
         <item>Trento</item>
         <item>Treviso</item>
@@ -251,7 +244,7 @@
     </string-array>
 
     <string-array name="feedback">
-        <item>Ogni punteggio</item>
+        <item>Tutti</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -274,7 +267,7 @@
     <string name="exit">Esci</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
-    <string name="title_activity_doctors_profile">Dott.ssa Tritto</string>
+    <string name="title_activity_doctors_profile"></string>
 
     <string name="title_activity_buttare">ButtareActivity</string>
     <string name="title_activity_settings">Settings</string>

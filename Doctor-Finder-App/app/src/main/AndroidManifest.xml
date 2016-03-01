@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.doctorfinderapp.doctorfinder">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -27,8 +26,9 @@
         android:required="true" />
 
     <application
+        android:name=".functions.App"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/iconaapp"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -47,18 +47,45 @@
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider722994014468396"
             android:exported="true" />
-
+        <!-- facebook activity is required -->
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".access.LoginActivity" />
-        <activity android:name=".access.FirstActivity" />
-        <activity android:name=".access.SignupActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".FeedbackItemActivity" />
+        <activity
+            android:name=".access.LoginActivity"
+            android:parentActivityName=".access.FirstActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+        </activity>
+        <activity
+            android:name=".access.FirstActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".access.SignupActivity"
+            android:parentActivityName=".access.FirstActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultsActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.doctorfinderapp.doctorfinder.MainActivity" />
+        </activity>
+        <activity
+            android:name=".FeedbackItemActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".UserProfileActivity" />
 
         <meta-data
@@ -81,9 +108,7 @@
             android:name=".DoctorProfileActivity"
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".WebViewActivity"></activity>
     </application>
 
 </manifest>

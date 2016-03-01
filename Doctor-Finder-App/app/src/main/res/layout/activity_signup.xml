@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.francesco.docfinder.SignupActivity"
-    android:background="@color/docfinder">
+    android:background="@color/docfinder"
+    android:theme="@style/AppThemeDark">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,7 +14,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/close"
+        android:id="@+id/close2"
         android:background="@drawable/ic_close_white_24dp" />
     </LinearLayout>
 
@@ -21,10 +22,10 @@
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/logodc"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/logodc" />
+        android:layout_marginTop="30dp" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/first_name"
@@ -116,7 +117,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/button_container"
         android:layout_below="@id/password_repeat"
         android:layout_margin="@dimen/fab_margin"
@@ -142,13 +143,22 @@
 
             />
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_gravity="center_horizontal" />
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center_horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_gravity="left|bottom"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
     </LinearLayout>
 

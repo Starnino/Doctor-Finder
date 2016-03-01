@@ -2,7 +2,9 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,10 +18,10 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.parse.ParseException;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,21 +31,19 @@ import java.util.List;
 public class DoctorListFragment extends Fragment {
 
     private static RatingBar ratingBar;
-    private static List<ParseObject> DOCTORS=null;
-    private static int SIZE=0;
+    private static List<ParseObject> DOCTORS = GlobalVariable.DOCTORS;
+    private static int SIZE=DOCTORS.size();
     private static int index=0;
+    private static String TAG = "DoctorListFragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        index=0;
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //adding data from Parse
-        //MainActivity.showData();
-        showData();
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter();
         recyclerView.setAdapter(adapter);
@@ -51,74 +51,61 @@ public class DoctorListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return recyclerView;
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
 
-            super(inflater.inflate(R.layout.doctor_item, parent, false));
+            super(inflater.inflate(R.layout.doctor_card_item, parent, false));
 
             final int IndexLocale=index;
+            ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(IndexLocale);
 
-            //creation of doctor item
-            //String id=(DOCTORS.get(index)).getString("FirstName");
-            //Log.d("Main","creating"+id);
-
+            //Get and set Name and LastName
             TextView name = (TextView) itemView.findViewById(R.id.name);
-            String nameString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
-            //------
+            String nameString = DoctorLocal.getString("FirstName") + " " + DoctorLocal.getString("LastName");
+            name.setText(nameString);
+
+            /**Setting specialization*/
             TextView special = (TextView) itemView.findViewById(R.id.special);
-            String specialString = DOCTORS.get(index).getList("Specialization").subList(0,1).toString();
-            //------
-            //TextView feedback = (TextView) itemView.findViewById(R.id.feedback);
+            ArrayList<String> spec= (ArrayList<String>) DoctorLocal.get("Specialization");
+            String specializationString="";
+
+            //divido le spec
+            specializationString += spec.get(0);
+
+            if (spec.size() > 1) {
+                if (spec.get(0).length() > 12)
+                specializationString += ", " + spec.get(1).subSequence(0,6) + "...";
+                else
+                    if (spec.get(1).length() < 12)
+                        specializationString += ", " + spec.get(1);
+                    else specializationString += ", " + spec.get(1).subSequence(0,6);
+            }
+            special.setText(specializationString);
+            /**finish setting specialization*/
+
+            //setting rating aka feedback
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
 
             ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
-            int [] fotoId = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p2, R.drawable.p1};
-            profile.setImageResource(fotoId[index]);
+            profile.setImageResource(R.drawable.p_default);
 
-            //String feedbackString = DOCTORS.get(index).getString("FirstName") + " " + DOCTORS.get(index).getString("LastName");
+            //todo query if photo exists on doctorphoto
 
-            name.setText(nameString);
-            special.setText(specialString.substring(1,specialString.length()-1));
-            //feedback.setText(feedbackString);
-
-            //find and set rating view
-            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            ratingBar.setRating((5.0f+index)/(2*(index+1))+1.5f);
-
+            //todo download photo
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Log.d("Listonclick", "INDEX" + index);
-                    //Log.d("Listonclick","INDEXLocale"+IndexLocale);
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DoctorProfileActivity.class);
-
-                    Bundle Bundle_selected_doctor = new Bundle();
-
-                    //give parameters to start activity
-                    String id=(DOCTORS.get(IndexLocale)).getObjectId();
-
-                    Log.d("Main","Showing "+id);
-
-                    Bundle_selected_doctor.putString("id", id); //Your id
-
-                    intent.putExtras(Bundle_selected_doctor); //Put your id to your next Intent
+                    //------
+                    GlobalVariable.idDoctors = DOCTORS.get(IndexLocale).getObjectId();
+                    //------
                     context.startActivity(intent);
-
-                    /*
-
-                    //this code is for passing data to an activity
-
-                    Bundle b = new Bundle();
-                    b.putInt("key", 1); //Your id
-                        intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-                     */
-
                 }
             });
 
@@ -145,23 +132,6 @@ public class DoctorListFragment extends Fragment {
         public int getItemCount() {
             return LENGTH;
         }
-    }
-
-    //downloading doctors from parse
-    public static void showData() {
-        ParseQuery<ParseObject> query=ParseQuery.getQuery("Doctor");
-        try {
-            DOCTORS = query.find();
-
-            //todo find in background
-            SIZE=DOCTORS.size();
-
-            Log.d("DoctorListFragment", "DOCTORS FOUND:" + DOCTORS.size());
-            Log.d("DoctorListFragment", DOCTORS.size()+"" );
-        } catch (ParseException e) {
-            Log.d("DoctorListFragment", "Cannot find doctors on parse"+e);
-        }
-
     }
 
 
