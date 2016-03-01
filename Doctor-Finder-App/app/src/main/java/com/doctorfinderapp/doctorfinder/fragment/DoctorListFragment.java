@@ -67,13 +67,12 @@ public class DoctorListFragment extends Fragment {
             String nameString = DoctorLocal.getString("FirstName") + " " + DoctorLocal.getString("LastName");
             name.setText(nameString);
 
-            //Setting specialization
-            //Log.d(TAG, "specialization as arraylist" + spec);
+            /**Setting specialization*/
             TextView special = (TextView) itemView.findViewById(R.id.special);
             ArrayList<String> spec= (ArrayList<String>) DoctorLocal.get("Specialization");
             String specializationString="";
-            //divido le spec
 
+            //divido le spec
             specializationString += spec.get(0);
 
             if (spec.size() > 1) {
@@ -84,9 +83,8 @@ public class DoctorListFragment extends Fragment {
                         specializationString += ", " + spec.get(1);
                     else specializationString += ", " + spec.get(1).subSequence(0,6);
             }
-
             special.setText(specializationString);
-
+            /**finish setting specialization*/
 
             //setting rating aka feedback
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);

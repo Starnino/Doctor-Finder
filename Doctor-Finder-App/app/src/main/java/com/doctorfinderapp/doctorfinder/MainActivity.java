@@ -12,7 +12,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -320,48 +319,27 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //This must be done only here
 
     public  void showDataM() {
-
-
-
-       //list of query
+        //list of query
         List<ParseQuery<ParseObject>> queryList = new ArrayList<>();
 
-        //main query to find
-        ParseQuery<ParseObject> mainQuery;
-
         //get query: All doctor
-        ParseQuery<ParseObject> allDoctors=ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> allDoctors = ParseQuery.getQuery("Doctor");
 
-        //add list of query per special
-        for (int i = 0; i < SPECIAL.size() ; i++) {
-            if (SPECIAL.size() == special.length){
-                Log.d("QUERY", "hai selezionato tutte le categorie");
-                break;
-            }
-            queryList.add(new ParseQuery<>(allDoctors.whereEqualTo("Specialization", SPECIAL.get(i))));
+        //main query
+        ParseQuery mainQuery = ParseQuery.getQuery("DoctorNull"); /** E VUOTA*/
+
+        //retrieve object with multiple city
+        if (CITY.size() != 0)
+            allDoctors.whereContainedIn("Provence", CITY);
+
+        //retrieve object with multiple city
+        if (SPECIAL.size() != 0)
+            allDoctors.whereContainedIn("Specialization", SPECIAL);
+
+        //order by LastName
+        if (CITY.size() != 0 || SPECIAL.size() != 0) {
+            mainQuery = allDoctors.orderByAscending("LastName");
         }
-
-        //put in Or all specialization queries (if necessary)
-        if (!queryList.isEmpty()) {
-            mainQuery = ParseQuery.or(queryList).orderByAscending("LastName");
-        } else mainQuery = allDoctors;
-
-        //list empty
-        queryList.clear();
-
-        //add list of query per city
-        for (int i = 0; i < CITY.size() ; i++) {
-            if (CITY.size() == citta.length){
-                Log.d("QUERY", "hai selezionato tutte le citta");
-                break;
-            }
-            queryList.add(new ParseQuery<>(mainQuery.whereEqualTo("Provence", CITY.get(i))));
-        }
-
-        //put in OR all city queries (if necessary)
-        if (!queryList.isEmpty()) {
-            mainQuery = ParseQuery.or(queryList).orderByAscending("LastName");
-        } else mainQuery = allDoctors;
 
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
@@ -375,9 +353,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                    GlobalVariable.DOCTORS = objects;
                    for (int i = 0; i < objects.size(); i++) {
-                       Log.d("DOCTOR " + i, " --> " + objects.get(i).get("FirstName") +" "+ objects.get(i).get("LastName"));
+                       int j = i+1;
+                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") +" "+ objects.get(i).get("LastName"));
                    }
-
 
                    Intent intent = new Intent(MainActivity.this,
                            ResultsActivity.class);
@@ -385,7 +363,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                    dialog.dismiss();
                    //SIZEM=objects.size();
                }else{
-
 
                    Log.d("Main","Error downloading parse data ");
                }
@@ -404,11 +381,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                 startActivity(intent_user);
                 break;
+
             case R.id.gestisci:
-
-
-
                 break;
+
             case R.id.inserisci_dottore:
                 Intent intent2 = new Intent(MainActivity.this, WebViewActivity.class);
 
@@ -418,6 +394,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 intent2.putExtras(b);
                 startActivity(intent2);
                 break;
+
             case R.id.about:
                 Intent intent3 = new Intent(MainActivity.this, WebViewActivity.class);
 
@@ -431,12 +408,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 i_github.setData(Uri.parse(url_github));
                 startActivity(i_github);*/
                 break;
+
             case R.id.support:
                 String url_support = "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing";
                 Intent i_support = new Intent(Intent.ACTION_VIEW);
                 i_support.setData(Uri.parse(url_support));
                 startActivity(i_support);
                 break;
+
             case R.id.like:
                 Intent intent4 = new Intent(MainActivity.this, WebViewActivity.class);
 
@@ -450,10 +429,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 i_face.setData(Uri.parse(url_face));
                 startActivity(i_face);*/
                 break;
+
             case R.id.settings:
                 Intent intent_settings = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
+
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
