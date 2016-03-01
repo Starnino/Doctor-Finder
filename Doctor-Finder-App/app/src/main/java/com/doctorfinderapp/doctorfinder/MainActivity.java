@@ -414,6 +414,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 startActivity(i_github);
                 break;
             case R.id.support:
+                String url_support = "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing";
+                Intent i_support = new Intent(Intent.ACTION_VIEW);
+                i_support.setData(Uri.parse(url_support));
+                startActivity(i_support);
                 break;
             case R.id.like:
                 String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
