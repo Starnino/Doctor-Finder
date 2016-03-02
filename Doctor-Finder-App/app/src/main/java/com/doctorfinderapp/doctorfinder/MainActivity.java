@@ -50,7 +50,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//import static com.doctorfinderapp.doctorfinder.functions.Util.getUserImage;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -84,10 +83,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         setContentView(R.layout.activity_main);
 
-        getUserImage(ParseUser.getCurrentUser());
 
         //request permission
-        //todo put this in button switch
+
         if(
             ActivityCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -194,8 +192,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //to set logo doc
         //toolbar.setLogo(R.drawable.logotext);
 
-
+        //set drawer things
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
+
+
+
+
+
+
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
@@ -205,6 +211,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setting header
+        //download user image
+        getUserImage(ParseUser.getCurrentUser());
+        View header = navigationView.getHeaderView(0);
+        TextView nome= (TextView) header.findViewById(R.id.name_user);
+        ParseUser user=ParseUser.getCurrentUser();
+        Log.d("",user.getString("fName"));
+        String name =user.getString("fName") + user.getString("lName")+" ";
+           nome.setText(name);
+        TextView email= (TextView) header.findViewById(R.id.email_user);
+
+        email.setText(user.getEmail());
+
 
     }
 

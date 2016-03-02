@@ -190,7 +190,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                 } else {
                                     //user exists
-                                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
                                     Toast
                                             .makeText(getApplicationContext(),
                                                     "This user alredy exists on database",
