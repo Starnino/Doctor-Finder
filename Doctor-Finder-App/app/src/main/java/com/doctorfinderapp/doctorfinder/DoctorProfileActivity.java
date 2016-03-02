@@ -177,4 +177,10 @@ public class DoctorProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.finish();
+        super.onBackPressed();
+    }
 }

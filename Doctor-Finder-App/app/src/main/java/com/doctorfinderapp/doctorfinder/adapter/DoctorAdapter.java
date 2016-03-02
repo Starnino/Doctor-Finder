@@ -1,11 +1,14 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -45,13 +48,24 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     }
 
     @Override
-    public void onBindViewHolder(DoctorViewHolder holder, int position) {
+    public void onBindViewHolder(DoctorViewHolder holder, final int position) {
         holder.personName.setText((visits.get(position).havePisello() ? "Dott. " : "Dott.ssa ")
                 + Util.reduceString(visits.get(position).getSurname()));
 
         holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
         holder.profession.setText(Util.reduceString(visits.get(position).getProfession()));
         holder.province.setText(visits.get(position).getCity());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, DoctorProfileActivity.class);
+                //------
+                intent.putExtra("index", position);
+                //------
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
