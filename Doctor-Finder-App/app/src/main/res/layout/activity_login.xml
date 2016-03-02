@@ -44,7 +44,7 @@
             android:layout_gravity="center_horizontal"
             android:ems="10"
             android:hint="@string/text_username"
-
+            android:textColor="@color/white"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/text_password"
+            android:textColor="@color/white"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 

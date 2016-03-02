@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -73,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private LinearLayout selcitta, selcateg;
     private String[] citta, special;
     private ArrayList<String> CITY, SPECIAL;
-    private TextView cityText, specialText;
+    private TextView cityText, specialText, recentDoctorsText;
     private Animation fab_open;
+    private CardView card2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,21 +115,21 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //initialize more Persons
-        doctors = GlobalVariable.recentDoctors;
-
-        // specify an adapter
-        mAdapter = new DoctorAdapter(doctors);
-
-        //set adapter to recycler view
-        mRecyclerView.setAdapter(mAdapter);
+        //set and update recycler view
+        updateRecycler();
 
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
+        recentDoctorsText = (TextView) findViewById(R.id.recent_doctors);
         //set empty text
         cityText.setText("");
         specialText.setText("");
+        recentDoctorsText.setText("");
+
+        //cards
+        card2 = (CardView) findViewById(R.id.card2);
+
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -483,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
 
-    private  void getUserImage(ParseUser user){
+    private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
         query.whereEqualTo("username", user.getEmail());
         query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -522,8 +524,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     }
 
+    @Override
+    protected void onResume() {
+        updateRecycler();
+        super.onResume();
+    }
 
     public void updateRecycler(){
+
         //initialize more Persons
         doctors = GlobalVariable.recentDoctors;
 

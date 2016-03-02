@@ -39,6 +39,10 @@ public class Util {
         /**finish setting specialization*/
     }
 
+    public static String reduceString(String string){
+        if (string.length() > 12) return string.substring(0, 12) + "...";
+        else return string;
+    }
     public static String setCity(ArrayList<String> city){
         String res = "";
         for (int i = 0; i < city.size(); i++) {

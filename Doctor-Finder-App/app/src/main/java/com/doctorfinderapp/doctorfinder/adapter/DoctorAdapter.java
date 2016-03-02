@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 
 import java.util.List;
 
@@ -45,11 +46,11 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
     @Override
     public void onBindViewHolder(DoctorViewHolder holder, int position) {
-        holder.personName.setText((visits.get(position).havePisello() ? "Dott. ":"Dott.ssa ")
-                + visits.get(position).getName());
+        holder.personName.setText((visits.get(position).havePisello() ? "Dott. " : "Dott.ssa ")
+                + Util.reduceString(visits.get(position).getSurname()));
 
         holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
-        holder.profession.setText(visits.get(position).getProfession());
+        holder.profession.setText(Util.reduceString(visits.get(position).getProfession()));
         holder.province.setText(visits.get(position).getCity());
     }
 

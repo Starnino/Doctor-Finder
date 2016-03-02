@@ -36,6 +36,7 @@ import com.doctorfinderapp.doctorfinder.SettingsActivity;
 
 
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -52,6 +53,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Toast.makeText(this.getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
         //adding doctors data
         //AddDoctors.addData();

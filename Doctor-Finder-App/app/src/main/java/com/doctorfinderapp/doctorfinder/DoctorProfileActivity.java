@@ -83,14 +83,17 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         //DOCTOR_PHOTO == ..
 
-        /**refresh recentDoctors*/
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.p1,
+        /**refresh recentDoctors*/                                                //doctor_rounded_avatar
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.giampa,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-        if (GlobalVariable.recentDoctors.size() < 10)
+        if (GlobalVariable.recentDoctors.size() < 10 && !GlobalVariable.recentDoctors.contains(currentDoctor))
             GlobalVariable.recentDoctors.add(currentDoctor);
+
         else {
-            GlobalVariable.recentDoctors.add(0, currentDoctor);
-            GlobalVariable.recentDoctors.remove(10);
+            if (!GlobalVariable.recentDoctors.contains(currentDoctor)) {
+                GlobalVariable.recentDoctors.add(0, currentDoctor);
+                GlobalVariable.recentDoctors.remove(10);
+            }
         }
         /**updated recent_doctor*/
 
