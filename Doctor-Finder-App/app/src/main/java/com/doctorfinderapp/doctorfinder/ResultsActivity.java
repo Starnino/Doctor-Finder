@@ -354,7 +354,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         Log.d("finish", "activity");
-        finish();
+        this.finish();
     }
 
     @Override

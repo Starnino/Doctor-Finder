@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     public void onClick(DialogInterface dialog, int which) {
                         for (int i = 0; i < items.length; i++) {
                             ((AlertDialog) dialog).getListView().setItemChecked(i, true);
+                            if (checked.contains(items[i])) continue;
                             checked.add(items[i]);
                         }
 

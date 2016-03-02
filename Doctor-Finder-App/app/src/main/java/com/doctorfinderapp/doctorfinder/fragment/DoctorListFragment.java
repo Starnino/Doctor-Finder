@@ -31,7 +31,6 @@ import java.util.List;
 
 public class DoctorListFragment extends Fragment {
 
-    private static List<ParseObject> DOCTORS = GlobalVariable.DOCTORS;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ParseAdapter parseAdapter;
@@ -51,7 +50,7 @@ public class DoctorListFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        parseAdapter = new ParseAdapter(DOCTORS);
+        parseAdapter = new ParseAdapter(GlobalVariable.DOCTORS);
 
         mRecyclerView.setAdapter(parseAdapter);
 
