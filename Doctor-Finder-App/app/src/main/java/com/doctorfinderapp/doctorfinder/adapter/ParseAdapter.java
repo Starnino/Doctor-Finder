@@ -30,7 +30,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public static final String SURNAME = "LastName";
     public static final String SPECIALIZATION = "Specialization";
     public static final String FEEDBACK = "Feedback";
-    public static final String CITY = "Provence";
+    public static final String CITY = "Province";
 
     public static class ParseViewHolder extends RecyclerView.ViewHolder {
 

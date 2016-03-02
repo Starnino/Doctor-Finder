@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -33,7 +34,20 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private List<Person> persons;
     private ImageButton feedButton;
     private List<ParseObject> doctors;
+    private Doctor currentDoctor;
+
+    //Doctor information
     private int index;
+    private String DOCTOR_FIRST_NAME;
+    private String DOCTOR_LAST_NAME;
+    private String DOCTOR_EXPERIENCE;
+    private ArrayList<String> DOCTOR_WORK;
+    private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
+    private ArrayList<String> DOCTOR_CITY_ARRAY;
+    private String DOCTOR_FEEDBACK;
+    private boolean DOCTOR_SEX;
+    private String DOCTOR_DESCRIPTION;
+    private int DOCTOR_PHOTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,31 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         doctors = GlobalVariable.DOCTORS;
 
+        //set ParseDoctor this
+        ParseObject DOCTORTHIS = doctors.get(index);
+        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");              Log.d("DOCTORTHIS", DOCTOR_FIRST_NAME);
+        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");                Log.d("DOCTORTHIS", DOCTOR_LAST_NAME);
+        DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");                    Log.d("DOCTORTHIS", DOCTOR_EXPERIENCE);
+        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");                 Log.d("DOCTORTHIS", DOCTOR_FEEDBACK);
+        DOCTOR_SEX = (DOCTORTHIS.getString("Sesso") == "M");                Log.d("DOCTORTHIS", DOCTOR_SEX + "");
+        DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");           Log.d("DOCTORTHIS", DOCTOR_DESCRIPTION);
+        DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");                               Log.d("DOCTORTHIS",DOCTOR_WORK.get(0));
+        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");                     Log.d("DOCTORTHIS", DOCTOR_CITY_ARRAY.get(0));
+        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");     Log.d("DOCTORTHIS", DOCTOR_SPECIALIZATION_ARRAY.get(0));
+
+        //DOCTOR_PHOTO == ..
+
+        /**refresh recentDoctors*/
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.p1,
+                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
+        if (GlobalVariable.recentDoctors.size() < 10)
+            GlobalVariable.recentDoctors.add(currentDoctor);
+        else {
+            GlobalVariable.recentDoctors.add(0, currentDoctor);
+            GlobalVariable.recentDoctors.remove(10);
+        }
+        /**updated recent_doctor*/
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,28 +113,27 @@ public class DoctorProfileActivity extends AppCompatActivity {
         TextView years = (TextView) findViewById(R.id.years);
         TextView workPlace = (TextView) findViewById(R.id.workPlace);
         TextView info = (TextView) findViewById(R.id.doctor_info);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
+        //TextView province = (TextView) findViewById(R.id.province);
 
         //setting data from objects
-        if(doctors.get(index).getString("Sesso").equals("M"))
-            nameProfile.setText("Dott. "+ doctors.get(index).getString("FirstName")+" "+ doctors.get(index).getString("LastName"));
+        if(DOCTOR_SEX)
+            nameProfile.setText("Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME);
         else
-            nameProfile.setText("Dott.ssa "+doctors.get(index).getString("FirstName")+" "+ doctors.get(index).getString("LastName"));
+            nameProfile.setText("Dott.ssa "+ DOCTOR_FIRST_NAME+ " " + DOCTOR_LAST_NAME);
 
 
-        years.setText(doctors.get(index).getString("Exp"));
+        years.setText(DOCTOR_EXPERIENCE);
 
-        workPlace.setText(doctors.get(index).getString("Work"));
+        workPlace.setText(Util.setCity(DOCTOR_WORK));
 
-        info.setText(doctors.get(index).getString("Description"));
+        info.setText(DOCTOR_DESCRIPTION);
 
-        String nameString = doctors.get(index).getString("FirstName");
-        ArrayList<String> spec= (ArrayList<String>) doctors.get(index).get("Specialization");
-        special.setText(Util.setSpecialization(spec));
+        special.setText(Util.setSpecialization(DOCTOR_SPECIALIZATION_ARRAY));
 
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
+        ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
 
-        ratingBar.setRating(Float.parseFloat(doctors.get(index).get("Feedback").toString()));
-
+        //province.setText(Util.setCity(DOCTOR_CITY_ARRAY));
 
         //initialize more Persons
         persons = new ArrayList<>();

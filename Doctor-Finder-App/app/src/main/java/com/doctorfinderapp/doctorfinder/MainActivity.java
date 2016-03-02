@@ -114,13 +114,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //initialize more Persons
-        doctors = new ArrayList<>();
-        doctors.add(new Doctor("Giampaolo", "Giampaolo",R.drawable.giampa, "Oculista", true));
-        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Pediatra", false));
-        doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
-        doctors.add(new Doctor("Francesco", "Starna", R.drawable.starnino, "Oculista", true));
-        doctors.add(new Doctor("Ginevra", "Lado",R.drawable.p1, "Pediatra", false));
-        doctors.add(new Doctor("Giampa", "Giampa",R.drawable.giampa, "Chirurgo", false));
+        doctors = GlobalVariable.recentDoctors;
 
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
@@ -334,13 +328,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         return super.onCreateOptionsMenu(menu);
     }
 
-
     //code added to save activity states
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -526,5 +520,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             }
         });
 
+    }
+
+
+    public void updateRecycler(){
+        //initialize more Persons
+        doctors = GlobalVariable.recentDoctors;
+
+        // specify an adapter
+        mAdapter = new DoctorAdapter(doctors);
+
+        //set adapter to recycler view
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

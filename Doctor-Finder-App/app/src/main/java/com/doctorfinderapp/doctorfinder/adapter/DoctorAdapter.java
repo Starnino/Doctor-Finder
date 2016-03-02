@@ -20,12 +20,14 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         TextView personName;
         TextView profession;
         RoundedImageView personPhoto;
+        TextView province;
 
         DoctorViewHolder(View itemView) {
             super(itemView);
             personPhoto = (RoundedImageView) itemView.findViewById(R.id.person_photo);
             profession = (TextView) itemView.findViewById(R.id.profession);
             personName = (TextView) itemView.findViewById(R.id.person_name);
+            province = (TextView) itemView.findViewById(R.id.province);
         }
     }
 
@@ -48,6 +50,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
         holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
         holder.profession.setText(visits.get(position).getProfession());
+        holder.province.setText(visits.get(position).getCity());
     }
 
     @Override

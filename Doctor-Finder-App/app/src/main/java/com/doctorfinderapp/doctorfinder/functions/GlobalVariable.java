@@ -1,17 +1,9 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +16,8 @@ public class GlobalVariable {
     public static List<ParseObject> DOCTORS;
     public static boolean locationActive=false;
     public static Bitmap UserPropic=null;
+    public static ArrayList<Doctor> recentDoctors = new ArrayList();
+
    // public static byte[]
 
     /**non sapevo dove metterla scusate :D by Starnino*/
