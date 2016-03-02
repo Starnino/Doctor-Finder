@@ -10,7 +10,7 @@
     <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
         android:id="@+id/user_propic"
         android:layout_width="60dp"
-        android:layout_height="90dp"
+        android:layout_height="60dp"
         android:paddingTop="@dimen/fab_margin"
         android:src="@drawable/ic_account_circle_white_48dp" />
 
@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nome Cognome"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/google_grey"/>
 
     <TextView
         android:id="@+id/email_user"

@@ -497,31 +497,32 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             public void done(ParseObject userPhoto, ParseException e) {
                 //userphoto exists
 
-                if (userPhoto==null){
-                    Log.d("userphoto","isnull");
-                }
-                //todo
-                ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
-                file.getDataInBackground(new GetDataCallback() {
-                    public void done(byte[] data, ParseException e) {
-                        if (e == null) {
-                            // data has the bytes for the resume
-                            //data is the image in array byte
-                            //must change image on profile
-                            GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            Log.d("Userphoto", "downloaded");
+                if (userPhoto == null) {
+                    Log.d("userphoto", "isnull");
 
-                            RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
-                            mImg.setImageBitmap(GlobalVariable.UserPropic);
-                            //iv.setImageBitmap(bitmap );
+                } else {
+                    ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
+                    file.getDataInBackground(new GetDataCallback() {
+                        public void done(byte[] data, ParseException e) {
+                            if (e == null) {
+                                // data has the bytes for the resume
+                                //data is the image in array byte
+                                //must change image on profile
+                                GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                Log.d("Userphoto", "downloaded");
 
-                        } else {
-                            // something went wrong
-                            Log.d("UserPhoto ", "problem download image");
+                                RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                                mImg.setImageBitmap(GlobalVariable.UserPropic);
+                                //iv.setImageBitmap(bitmap );
+
+                            } else {
+                                // something went wrong
+                                Log.d("UserPhoto ", "problem download image");
+                            }
                         }
-                    }
-                });
+                    });
 
+                }
             }
         });
 
