@@ -270,6 +270,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     static class Adapter extends FragmentPagerAdapter {
+
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
