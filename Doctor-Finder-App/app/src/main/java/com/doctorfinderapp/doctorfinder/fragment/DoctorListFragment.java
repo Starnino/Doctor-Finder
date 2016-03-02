@@ -58,6 +58,7 @@ public class DoctorListFragment extends Fragment {
         return mRecyclerView;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -55,8 +55,13 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         //adding doctors data
         //AddDoctors.addData();
+        //set status bar color because in xml don't work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
+        //ParseUser currentUser = ParseUser.getCurrentUser();
 
         setContentView(R.layout.activity_results);
 
@@ -347,7 +352,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             super.onBackPressed();
         }
 
-        //getSupportFragmentManager().
+        Log.d("finish", "activity");
         finish();
     }
 

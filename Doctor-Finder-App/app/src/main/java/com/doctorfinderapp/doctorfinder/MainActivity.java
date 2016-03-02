@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
     public static final int FAB_OPEN_TIME = 1500;
+    boolean FLAGCITY = false, FLAGSPEC = false;
 
     //Parameters shared by fragment goes in activity
 
@@ -119,8 +121,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
-        cityText.setText("Nessuna");
-        specialText.setText("Nessuna");
+        //set empty text
+        cityText.setText("");
+        specialText.setText("");
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -152,12 +155,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onClick(View v) {
                 //Download parse data
-                showDataM();
+                if (!FLAGSPEC)  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+
+                else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+
+                else showDataM();
             }
         });
 
         //set animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
 
         //start animation
         Timer timer = new Timer();
@@ -181,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout .setDrawerListener(toggle);
+        mDrawerLayout .addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
@@ -212,6 +221,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     specialText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
+                                if (checked.size() != 0) FLAGSPEC = true;
+                                else FLAGSPEC = false;
+
                                 break;
 
                             case "Seleziona Provincia":
@@ -225,6 +237,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     cityText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
+
+                                if (checked.size() != 0) FLAGCITY = true;
+                                else FLAGCITY = false;
 
                                 break;
                         }
@@ -245,14 +260,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             checked.add(items[i]);
                         }
 
-                        if (title.equals("Seleziona Categoria"))
+                        if (title.equals("Seleziona Categoria")) {
                             specialText.setText("Tutte");
-                        else if (title.equals("Seleziona Provincia"))
+                            FLAGSPEC = true;
+                        }
+
+                        else if (title.equals("Seleziona Provincia")) {
                             cityText.setText("Tutte");
+                            FLAGCITY = true;
+                        }
 
                         for (int i = 0; i < checked.size(); i++) {
                             Log.d("List " + i + " ----> ", checked.get(i));
                         }
+
                     }
                 }).setNegativeButton("Reset", new DialogInterface.OnClickListener() {
                     @Override
@@ -262,11 +283,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             ((AlertDialog) dialog).getListView().setItemChecked(i, false);
                         }
 
-                        if (title.equals("Seleziona Categoria"))
+                        if (title.equals("Seleziona Categoria")){
                             specialText.setText("Nessuna");
-                        else if (title.equals("Seleziona Provincia"))
-                            cityText.setText("Nessuna");
+                            FLAGSPEC = false;
+                        }
 
+                        else if (title.equals("Seleziona Provincia")) {
+                            cityText.setText("Nessuna");
+                            FLAGCITY = false;
+                        }
                         checked.clear();
                         Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
@@ -290,14 +315,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main2, menu);
-        /*SwitchCompat sw = (SwitchCompat) menu.findItem(R.id.switchForActionBar).getActionView().findViewById(R.id.switch1);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //Query Localizations TODO AROUND ME
-                Toast.makeText(getApplicationContext() ,"Localizzazione " + (isChecked ? "on":"off") ,Toast.LENGTH_SHORT).show();
-            }
-        });*/
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -320,48 +337,45 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public  void showDataM() {
 
         //get query: All doctor
-        ParseQuery<ParseObject> allDoctors = ParseQuery.getQuery("Doctor");
-
-        //main query
-        ParseQuery mainQuery = ParseQuery.getQuery("DoctorNull"); /** E VUOTA*/
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
         //retrieve object with multiple city
-        if (CITY.size() != 0)
-            allDoctors.whereContainedIn("Provence", CITY);
+        if (CITY.size() != 0 && CITY.size() != citta.length)
+            doctorsQuery.whereContainedIn("Provence", CITY);
 
         //retrieve object with multiple city
-        if (SPECIAL.size() != 0)
-            allDoctors.whereContainedIn("Specialization", SPECIAL);
+        if (SPECIAL.size() != 0 && SPECIAL.size() != special.length)
+            doctorsQuery.whereContainedIn("Specialization", SPECIAL);
 
         //order by LastName
         if (CITY.size() != 0 || SPECIAL.size() != 0) {
-            mainQuery = allDoctors.orderByAscending("LastName");
+            doctorsQuery.orderByAscending("LastName");
         }
 
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento...", true);
 
-       mainQuery.findInBackground(new FindCallback<ParseObject>() {
+       doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
            @Override
            public void done(List<ParseObject> objects, ParseException e) {
 
-               if(e==null) {
+               if (e == null) {
 
                    GlobalVariable.DOCTORS = objects;
-                   for (int i = 0; i < objects.size(); i++) {
-                       int j = i+1;
-                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") +" "+ objects.get(i).get("LastName"));
+                   for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                       int j = i + 1;
+                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
                    }
 
                    Intent intent = new Intent(MainActivity.this,
                            ResultsActivity.class);
                    startActivity(intent);
                    dialog.dismiss();
-                   //SIZEM=objects.size();
-               }else{
 
-                   Log.d("Main","Error downloading parse data ");
+               } else {
+
+                   Log.d("Main", "Error downloading parse data ");
                }
            }
        });

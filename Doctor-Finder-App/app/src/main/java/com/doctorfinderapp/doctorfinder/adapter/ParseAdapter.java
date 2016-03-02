@@ -1,5 +1,7 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,9 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public static final String FEEDBACK = "Feedback";
     public static final String CITY = "Provence";
 
-    public static class ParseViewHolder extends RecyclerView.ViewHolder{
+    public static class ParseViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
         TextView special;
@@ -36,7 +40,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         RoundedImageView profile;
         TextView city;
 
-        public ParseViewHolder(View itemView) {
+        public ParseViewHolder(final View itemView) {
 
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
@@ -48,6 +52,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             //todo query if photo exists on doctorphoto
 
             //todo download photo
+
         }
     }
 
@@ -63,21 +68,31 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     }
 
     @Override
-    public void onBindViewHolder(ParseViewHolder holder, int position) {
+    public void onBindViewHolder(ParseViewHolder holder, final int position) {
 
         holder.name.setText(DOCTORS.get(position).getString(NAME) + " " + DOCTORS.get(position).getString(SURNAME));
 
         ArrayList<String> spec = (ArrayList<String>) DOCTORS.get(position).get(SPECIALIZATION);
-        holder.special.setText(setSpecialization(spec));
+        holder.special.setText(Util.setSpecialization(spec));
 
         holder.ratingBar.setRating(Float.parseFloat(DOCTORS.get(position).get(FEEDBACK).toString()));
 
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
-        holder.city.setText(setCity(city));
+        holder.city.setText(Util.setCity(city));
 
         holder.profile.setImageResource(p_default);
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, DoctorProfileActivity.class);
+                //------
+                intent.putExtra("index", position);
+                //------
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -88,31 +103,5 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-    }
-
-    public String setSpecialization(ArrayList<String> specialization){
-
-        String specializationString="";
-        //divido le spec
-        specializationString += specialization.get(0);
-
-        if (specialization.size() > 1) {
-            if (specialization.get(0).length() > 12)
-                specializationString += ", " + specialization.get(1).subSequence(0, 6) + "...";
-            else
-            if (specialization.get(1).length() < 12)
-                specializationString += ", " + specialization.get(1);
-            else specializationString += ", " + specialization.get(1).subSequence(0,6);
-        }
-        return specializationString;
-        /**finish setting specialization*/
-    }
-
-    public String setCity(ArrayList<String> city){
-        String res = "";
-        for (int i = 0; i < city.size(); i++) {
-            if (i == city.size()-1) res += city.get(i);
-            else res += city.get(i) + ", ";
-        } return res;
     }
 }
