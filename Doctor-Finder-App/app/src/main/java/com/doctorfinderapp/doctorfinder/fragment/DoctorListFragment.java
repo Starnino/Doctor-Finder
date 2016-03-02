@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
 
@@ -30,110 +31,36 @@ import java.util.List;
 
 public class DoctorListFragment extends Fragment {
 
-    private static RatingBar ratingBar;
-    private static List<ParseObject> DOCTORS = GlobalVariable.DOCTORS;
-    private static int SIZE=DOCTORS.size();
-    private static int index=0;
-    private static String TAG = "DoctorListFragment";
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ParseAdapter parseAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        index=0;
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
-        ContentAdapter adapter = new ContentAdapter();
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
-        return recyclerView;
-    }
+        mRecyclerView.setHasFixedSize(true);
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+        mLayoutManager = new LinearLayoutManager(getActivity());
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-            super(inflater.inflate(R.layout.doctor_card_item, parent, false));
+        parseAdapter = new ParseAdapter(GlobalVariable.DOCTORS);
 
-            final int IndexLocale=index;
-            ParseObject DoctorLocal= GlobalVariable.DOCTORS.get(IndexLocale);
+        mRecyclerView.setAdapter(parseAdapter);
 
-            //Get and set Name and LastName
-            TextView name = (TextView) itemView.findViewById(R.id.name);
-            String nameString = DoctorLocal.getString("FirstName") + " " + DoctorLocal.getString("LastName");
-            name.setText(nameString);
-
-            /**Setting specialization*/
-            TextView special = (TextView) itemView.findViewById(R.id.special);
-            ArrayList<String> spec= (ArrayList<String>) DoctorLocal.get("Specialization");
-            String specializationString="";
-
-            //divido le spec
-            specializationString += spec.get(0);
-
-            if (spec.size() > 1) {
-                if (spec.get(0).length() > 12)
-                specializationString += ", " + spec.get(1).subSequence(0,6) + "...";
-                else
-                    if (spec.get(1).length() < 12)
-                        specializationString += ", " + spec.get(1);
-                    else specializationString += ", " + spec.get(1).subSequence(0,6);
-            }
-            special.setText(specializationString);
-            /**finish setting specialization*/
-
-            //setting rating aka feedback
-            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-            ratingBar.setRating(Float.parseFloat(DoctorLocal.get("Feedback").toString()));
-
-            ImageView profile = (ImageView) itemView.findViewById(R.id.profile_image);
-            profile.setImageResource(R.drawable.p_default);
-
-            //todo query if photo exists on doctorphoto
-
-            //todo download photo
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, DoctorProfileActivity.class);
-                    //------
-                    GlobalVariable.idDoctors = DOCTORS.get(IndexLocale).getObjectId();
-                    //------
-                    context.startActivity(intent);
-                }
-            });
-
-            index++;
-        }
-    }
-
-    /**Adapter to display recycler view */
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
-        // Set numbers of Card in RecyclerView.
-        private static final int LENGTH = SIZE;
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            // no-op
-        }
-
-        @Override
-        public int getItemCount() {
-            return LENGTH;
-        }
+        return mRecyclerView;
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
 }

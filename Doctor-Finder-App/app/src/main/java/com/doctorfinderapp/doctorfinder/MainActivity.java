@@ -5,10 +5,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +35,12 @@ import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -41,6 +48,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+//import static com.doctorfinderapp.doctorfinder.functions.Util.getUserImage;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -56,9 +65,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
     public static final int FAB_OPEN_TIME = 1500;
+    boolean FLAGCITY = false, FLAGSPEC = false;
 
     //Parameters shared by fragment goes in activity
-    //private static int SIZEM=0;
+
     private FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     private String[] citta, special;
@@ -71,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        getUserImage(ParseUser.getCurrentUser());
 
         //request permission
         //todo put this in button switch
@@ -90,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
 
-
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
 
@@ -104,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //initialize more Persons
         doctors = new ArrayList<>();
-        doctors.add(new Doctor("Giampo", "Giampo",R.drawable.giampa, "Sessuologo", true));
-        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Tettologa", false));
+        doctors.add(new Doctor("Giampaolo", "Giampaolo",R.drawable.giampa, "Oculista", true));
+        doctors.add(new Doctor("Chiara", "Carboni",R.drawable.chiara, "Pediatra", false));
         doctors.add(new Doctor("Federico", "Bacci",R.drawable.fedebyes, "Ormonologo", true));
         doctors.add(new Doctor("Francesco", "Starna", R.drawable.starnino, "Oculista", true));
         doctors.add(new Doctor("Ginevra", "Lado",R.drawable.p1, "Pediatra", false));
@@ -120,8 +131,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
-        cityText.setText("Nessuna");
-        specialText.setText("Nessuna");
+        //set empty text
+        cityText.setText("");
+        specialText.setText("");
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -153,12 +165,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onClick(View v) {
                 //Download parse data
-                showDataM();
+                if (!FLAGSPEC)  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+
+                else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+
+                else showDataM();
             }
         });
 
         //set animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
 
         //start animation
         Timer timer = new Timer();
@@ -178,11 +196,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        //to set logo doc
+        //toolbar.setLogo(R.drawable.logotext);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout .setDrawerListener(toggle);
+
+        //add drawer listner not exists
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
@@ -213,6 +236,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     specialText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
+                                if (checked.size() != 0) FLAGSPEC = true;
+                                else FLAGSPEC = false;
+
                                 break;
 
                             case "Seleziona Provincia":
@@ -226,6 +252,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     cityText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
+
+                                if (checked.size() != 0) FLAGCITY = true;
+                                else FLAGCITY = false;
 
                                 break;
                         }
@@ -243,17 +272,24 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     public void onClick(DialogInterface dialog, int which) {
                         for (int i = 0; i < items.length; i++) {
                             ((AlertDialog) dialog).getListView().setItemChecked(i, true);
+                            if (checked.contains(items[i])) continue;
                             checked.add(items[i]);
                         }
 
-                        if (title.equals("Seleziona Categoria"))
+                        if (title.equals("Seleziona Categoria")) {
                             specialText.setText("Tutte");
-                        else if (title.equals("Seleziona Provincia"))
+                            FLAGSPEC = true;
+                        }
+
+                        else if (title.equals("Seleziona Provincia")) {
                             cityText.setText("Tutte");
+                            FLAGCITY = true;
+                        }
 
                         for (int i = 0; i < checked.size(); i++) {
                             Log.d("List " + i + " ----> ", checked.get(i));
                         }
+
                     }
                 }).setNegativeButton("Reset", new DialogInterface.OnClickListener() {
                     @Override
@@ -263,11 +299,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             ((AlertDialog) dialog).getListView().setItemChecked(i, false);
                         }
 
-                        if (title.equals("Seleziona Categoria"))
+                        if (title.equals("Seleziona Categoria")){
                             specialText.setText("Nessuna");
-                        else if (title.equals("Seleziona Provincia"))
-                            cityText.setText("Nessuna");
+                            FLAGSPEC = false;
+                        }
 
+                        else if (title.equals("Seleziona Provincia")) {
+                            cityText.setText("Nessuna");
+                            FLAGCITY = false;
+                        }
                         checked.clear();
                         Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
@@ -291,14 +331,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main2, menu);
-        /*SwitchCompat sw = (SwitchCompat) menu.findItem(R.id.switchForActionBar).getActionView().findViewById(R.id.switch1);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //Query Localizations TODO AROUND ME
-                Toast.makeText(getApplicationContext() ,"Localizzazione " + (isChecked ? "on":"off") ,Toast.LENGTH_SHORT).show();
-            }
-        });*/
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -319,52 +351,47 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //This must be done only here
 
     public  void showDataM() {
-        //list of query
-        List<ParseQuery<ParseObject>> queryList = new ArrayList<>();
 
         //get query: All doctor
-        ParseQuery<ParseObject> allDoctors = ParseQuery.getQuery("Doctor");
-
-        //main query
-        ParseQuery mainQuery = ParseQuery.getQuery("DoctorNull"); /** E VUOTA*/
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
         //retrieve object with multiple city
-        if (CITY.size() != 0)
-            allDoctors.whereContainedIn("Provence", CITY);
+        if (CITY.size() != 0 && CITY.size() != citta.length)
+            doctorsQuery.whereContainedIn("Provence", CITY);
 
         //retrieve object with multiple city
-        if (SPECIAL.size() != 0)
-            allDoctors.whereContainedIn("Specialization", SPECIAL);
+        if (SPECIAL.size() != 0 && SPECIAL.size() != special.length)
+            doctorsQuery.whereContainedIn("Specialization", SPECIAL);
 
         //order by LastName
         if (CITY.size() != 0 || SPECIAL.size() != 0) {
-            mainQuery = allDoctors.orderByAscending("LastName");
+            doctorsQuery.orderByAscending("LastName");
         }
 
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento...", true);
 
-       mainQuery.findInBackground(new FindCallback<ParseObject>() {
+       doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
            @Override
            public void done(List<ParseObject> objects, ParseException e) {
 
-               if(e==null) {
+               if (e == null) {
 
                    GlobalVariable.DOCTORS = objects;
-                   for (int i = 0; i < objects.size(); i++) {
-                       int j = i+1;
-                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") +" "+ objects.get(i).get("LastName"));
+                   for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                       int j = i + 1;
+                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
                    }
 
                    Intent intent = new Intent(MainActivity.this,
                            ResultsActivity.class);
                    startActivity(intent);
                    dialog.dismiss();
-                   //SIZEM=objects.size();
-               }else{
 
-                   Log.d("Main","Error downloading parse data ");
+               } else {
+
+                   Log.d("Main", "Error downloading parse data ");
                }
            }
        });
@@ -459,5 +486,44 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         } else {
             super.onBackPressed();
         }
+    }
+
+
+    private  void getUserImage(ParseUser user){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
+        query.whereEqualTo("username", user.getEmail());
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject userPhoto, ParseException e) {
+                //userphoto exists
+
+                if (userPhoto==null){
+                    Log.d("userphoto","isnull");
+                }
+                //todo
+                ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
+                file.getDataInBackground(new GetDataCallback() {
+                    public void done(byte[] data, ParseException e) {
+                        if (e == null) {
+                            // data has the bytes for the resume
+                            //data is the image in array byte
+                            //must change image on profile
+                            GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            Log.d("Userphoto", "downloaded");
+
+                            RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                            mImg.setImageBitmap(GlobalVariable.UserPropic);
+                            //iv.setImageBitmap(bitmap );
+
+                        } else {
+                            // something went wrong
+                            Log.d("UserPhoto ", "problem download image");
+                        }
+                    }
+                });
+
+            }
+        });
+
     }
 }

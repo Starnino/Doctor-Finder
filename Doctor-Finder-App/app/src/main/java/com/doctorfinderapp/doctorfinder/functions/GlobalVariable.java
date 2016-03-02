@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +23,8 @@ public class GlobalVariable {
     public static int numdoctors;
     public static List<ParseObject> DOCTORS;
     public static boolean locationActive=false;
+    public static Bitmap UserPropic=null;
+   // public static byte[]
 
     /**non sapevo dove metterla scusate :D by Starnino*/
     /*public void selectDrawerItem(MenuItem menuItem){

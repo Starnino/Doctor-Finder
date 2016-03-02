@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -30,32 +31,29 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
     private List<Person> persons;
-
-
     private ImageButton feedButton;
+    private List<ParseObject> doctors;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //retrieve index from Activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            index = extras.getInt("index");
+        }
 
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
+
         setContentView(R.layout.activity_scrolling);
 
-        //SET Id
-
-        ParseObject doctor = new ParseObject("Doctor");
-
-        for(int i=0;i< GlobalVariable.DOCTORS.size();i++){
-            if(GlobalVariable.DOCTORS.get(i).getObjectId().toString().equals(GlobalVariable.idDoctors)){
-                Log.d("Doctor", "object id " + GlobalVariable.DOCTORS.get(i).getObjectId());
-                //Log.d("Doctor","id "+id);
-                doctor= GlobalVariable.DOCTORS.get(i);
-            }
-        }
+        doctors = GlobalVariable.DOCTORS;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,36 +73,28 @@ public class DoctorProfileActivity extends AppCompatActivity {
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);
         TextView workPlace = (TextView) findViewById(R.id.workPlace);
-
         TextView info = (TextView) findViewById(R.id.doctor_info);
 
-
         //setting data from objects
-        if(doctor.getString("Sesso").equals("M"))
-            nameProfile.setText("Dott. "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
+        if(doctors.get(index).getString("Sesso").equals("M"))
+            nameProfile.setText("Dott. "+ doctors.get(index).getString("FirstName")+" "+ doctors.get(index).getString("LastName"));
         else
-            nameProfile.setText("Dott.ssa "+doctor.getString("FirstName")+" "+doctor.getString("LastName"));
-        //special.setText(doctor.getString("Work"));
-        years.setText(doctor.getString("Exp"));
-        workPlace.setText(doctor.getString("Work"));
+            nameProfile.setText("Dott.ssa "+doctors.get(index).getString("FirstName")+" "+ doctors.get(index).getString("LastName"));
 
-        info.setText(doctor.getString("Description"));
 
-        String nameString = doctor.getString("FirstName");
-        ArrayList<String> spec= (ArrayList<String>) doctor.get("Specialization");
-        String specializationString="";
-        //divido le spec
-        for(int i=0; i<spec.size(); i++){
-            if (i == spec.size()-1) specializationString += spec.get(i);
-            else specializationString += spec.get(i)+", ";
-        }
-        special.setText(specializationString);
+        years.setText(doctors.get(index).getString("Exp"));
+
+        workPlace.setText(doctors.get(index).getString("Work"));
+
+        info.setText(doctors.get(index).getString("Description"));
+
+        String nameString = doctors.get(index).getString("FirstName");
+        ArrayList<String> spec= (ArrayList<String>) doctors.get(index).get("Specialization");
+        special.setText(Util.setSpecialization(spec));
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
-        ratingBar.setRating(Float.parseFloat(doctor.get("Feedback").toString()));
 
-
-
+        ratingBar.setRating(Float.parseFloat(doctors.get(index).get("Feedback").toString()));
 
 
         //initialize more Persons

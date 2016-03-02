@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="134dp"
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
@@ -31,7 +31,7 @@
     android:clickable="false"
     android:gravity="start|center_horizontal">
 
-    <ImageView
+    <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/profile_image"
@@ -62,17 +62,26 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark" />
 
+        <TextView
+            android:layout_marginTop="2dp"
+            android:text="Citta"
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey" />
+
         <RatingBar
+            android:layout_marginTop="-5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="4"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
+            android:scaleX="0.55"
+            android:scaleY="0.55"
             android:layout_gravity="start|bottom"
-            android:layout_marginStart="-62dp" />
+            android:layout_marginStart="-58dp" />
 
     </LinearLayout>
 

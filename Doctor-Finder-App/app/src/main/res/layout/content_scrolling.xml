@@ -8,7 +8,8 @@
     android:padding="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    tools:showIn="@layout/activity_scrolling"
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -337,7 +338,9 @@
                     android:id="@+id/ratingBarDoctorProfile"
                     android:numStars="5"
                     android:layout_below="@+id/ivContactItem5"
-                    android:layout_toEndOf="@+id/ivContactItem5" />
+                    android:layout_toEndOf="@+id/ivContactItem5"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"/>
 
             </RelativeLayout>
 

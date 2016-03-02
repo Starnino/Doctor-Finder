@@ -55,8 +55,13 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         //adding doctors data
         //AddDoctors.addData();
+        //set status bar color because in xml don't work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
+        //ParseUser currentUser = ParseUser.getCurrentUser();
 
         setContentView(R.layout.activity_results);
 
@@ -265,6 +270,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     static class Adapter extends FragmentPagerAdapter {
+
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -337,6 +343,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
@@ -345,8 +352,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             super.onBackPressed();
         }
+
+        Log.d("finish", "activity");
+        this.finish();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+    }
 }
 
 
