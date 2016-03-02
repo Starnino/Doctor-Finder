@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private LinearLayout selcitta, selcateg;
     private String[] citta, special;
     private ArrayList<String> CITY, SPECIAL;
-    private TextView cityText, specialText, recentDoctorsText;
+    private TextView cityText, specialText;
     private Animation fab_open;
     private CardView card2;
 
@@ -121,11 +121,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
         specialText = (TextView) findViewById(R.id.special_text_selected);
-        recentDoctorsText = (TextView) findViewById(R.id.recent_doctors);
+
         //set empty text
         cityText.setText("");
         specialText.setText("");
-        recentDoctorsText.setText("");
 
         //cards
         card2 = (CardView) findViewById(R.id.card2);
