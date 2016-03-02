@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //retrieve object with multiple city
         if (CITY.size() != 0 && CITY.size() != citta.length)
-            doctorsQuery.whereContainedIn("Provence", CITY);
+            doctorsQuery.whereContainedIn("Province", CITY);
 
         //retrieve object with multiple city
         if (SPECIAL.size() != 0 && SPECIAL.size() != special.length)
