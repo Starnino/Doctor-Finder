@@ -7,8 +7,8 @@
     android:padding="@dimen/fab_margin"
     android:background="@drawable/header_background">
 
-    <ImageView
-        android:id="@drawable/icon"
+    <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+        android:id="@+id/user_propic"
         android:layout_width="60dp"
         android:layout_height="90dp"
         android:paddingTop="@dimen/fab_margin"

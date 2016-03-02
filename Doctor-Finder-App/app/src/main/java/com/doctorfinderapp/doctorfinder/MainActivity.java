@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +35,12 @@ import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -42,6 +48,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+//import static com.doctorfinderapp.doctorfinder.functions.Util.getUserImage;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -73,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        getUserImage(ParseUser.getCurrentUser());
 
         //request permission
         //todo put this in button switch
@@ -186,11 +196,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        //to set logo doc
+        //toolbar.setLogo(R.drawable.logotext);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout .addDrawerListener(toggle);
+
+        //add drawer listner not exists
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
@@ -471,5 +486,44 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         } else {
             super.onBackPressed();
         }
+    }
+
+
+    private  void getUserImage(ParseUser user){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
+        query.whereEqualTo("username", user.getEmail());
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject userPhoto, ParseException e) {
+                //userphoto exists
+
+                if (userPhoto==null){
+                    Log.d("userphoto","isnull");
+                }
+                //todo
+                ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
+                file.getDataInBackground(new GetDataCallback() {
+                    public void done(byte[] data, ParseException e) {
+                        if (e == null) {
+                            // data has the bytes for the resume
+                            //data is the image in array byte
+                            //must change image on profile
+                            GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            Log.d("Userphoto", "downloaded");
+
+                            RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                            mImg.setImageBitmap(GlobalVariable.UserPropic);
+                            //iv.setImageBitmap(bitmap );
+
+                        } else {
+                            // something went wrong
+                            Log.d("UserPhoto ", "problem download image");
+                        }
+                    }
+                });
+
+            }
+        });
+
     }
 }
