@@ -234,9 +234,15 @@ public class DoctorProfileActivity extends AppCompatActivity {
     public void refreshDoctorList(Doctor currentDoctor){
         //set visible flag
         if (!GlobalVariable.FLAGCARDVISIBLE) GlobalVariable.FLAGCARDVISIBLE = true;
-
+        boolean flag = true;
         //if doctor not exist in list
-        if (!GlobalVariable.recentDoctors.contains(currentDoctor)){
+        for (int i = 0; i < GlobalVariable.recentDoctors.size(); i++) {
+            if ((GlobalVariable.recentDoctors.get(i).getName()+GlobalVariable.recentDoctors.get(i).getSurname())
+                    .equals(currentDoctor.getName()+currentDoctor.getSurname()))
+                flag = false;
+        }
+
+        if (flag){
 
         //if size of list is minor of 10
         if (GlobalVariable.recentDoctors.size() < 10)
@@ -247,6 +253,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
             GlobalVariable.recentDoctors.add(0, currentDoctor);
             GlobalVariable.recentDoctors.remove(10);
             }
-        }
+        } flag = true;
     }
 }
