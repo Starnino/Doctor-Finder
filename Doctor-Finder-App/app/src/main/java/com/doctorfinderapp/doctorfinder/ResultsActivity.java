@@ -182,7 +182,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
                 startActivity(intent_user);
                 break;
-            case R.id.gestisci:
+            case R.id.Qurami:
                 Intent intent_qurami = new Intent(ResultsActivity.this, MainActivityQurami.class);
                 startActivity(intent_qurami);
                 break;
@@ -203,17 +203,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                         "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
                 intent3.putExtras(b3);
                 startActivity(intent3);
-                /*String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
-                Intent i_github = new Intent(Intent.ACTION_VIEW);
-                i_github.setData(Uri.parse(url_github));
-                startActivity(i_github);*/
                 break;
+
             case R.id.support:
                 String url_support = "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing";
                 Intent i_support = new Intent(Intent.ACTION_VIEW);
                 i_support.setData(Uri.parse(url_support));
                 startActivity(i_support);
                 break;
+
             case R.id.like:
                 Intent intent4 = new Intent(ResultsActivity.this, WebViewActivity.class);
 
@@ -222,14 +220,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                         "https://www.facebook.com/dcfind" ); //Your id
                 intent4.putExtras(b4);
                 startActivity(intent4);
-                /*String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
-                Intent i_face = new Intent(Intent.ACTION_VIEW);
-                i_face.setData(Uri.parse(url_face));
-                startActivity(i_face);*/
                 break;
             case R.id.settings:
-                Intent intent_settings = new Intent(ResultsActivity.this, SettingsActivity.class);
-                startActivity(intent_settings);
                 break;
             case R.id.logout:
                 ParseUser.logOut();

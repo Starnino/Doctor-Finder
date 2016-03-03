@@ -11,9 +11,9 @@
             android:title="@string/profile"
             android:id="@+id/profile"/>
         <item
-            android:icon="@drawable/ic_book_white_24dp"
+            android:icon="@drawable/iconaqurami"
             android:title="@string/gestisci"
-            android:id="@+id/gestisci" />
+            android:id="@+id/Qurami" />
         <item
             android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/inserisci_dottore"

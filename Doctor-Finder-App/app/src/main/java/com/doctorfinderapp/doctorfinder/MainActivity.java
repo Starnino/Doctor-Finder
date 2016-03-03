@@ -424,7 +424,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 startActivity(intent_user);
                 break;
 
-            case R.id.gestisci:
+            case R.id.Qurami:
                 Intent intent_qurami = new Intent(MainActivity.this, MainActivityQurami.class);
                 startActivity(intent_qurami);
                 break;
@@ -447,10 +447,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
                 intent3.putExtras(b3);
                 startActivity(intent3);
-                /*String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
-                Intent i_github = new Intent(Intent.ACTION_VIEW);
-                i_github.setData(Uri.parse(url_github));
-                startActivity(i_github);*/
                 break;
 
             case R.id.support:
@@ -468,15 +464,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         "https://www.facebook.com/dcfind" ); //Your id
                 intent4.putExtras(b4);
                 startActivity(intent4);
-                /*String url_face = "https://www.facebook.com/dcfind/?ref=bookmarks";
-                Intent i_face = new Intent(Intent.ACTION_VIEW);
-                i_face.setData(Uri.parse(url_face));
-                startActivity(i_face);*/
                 break;
 
             case R.id.settings:
-                Intent intent_settings = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent_settings);
                 break;
 
             case R.id.logout:
