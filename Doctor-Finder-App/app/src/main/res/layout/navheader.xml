@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:orientation="horizontal"
-    android:background="@drawable/mainbackground">
+    android:orientation="horizontal">
+    <!--android:background="@drawable/header_background"-->
 
     <LinearLayout
         android:orientation="horizontal"
@@ -13,14 +13,14 @@
         android:layout_marginTop="@dimen/status_bar">
 
         <LinearLayout
-            android:layout_width="135dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center">
 
             <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
                 android:id="@+id/user_propic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/person"
                 android:gravity="center"
                 android:layout_margin="20dp" />
@@ -30,8 +30,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:layout_margin="20dp">
+            android:gravity="left|center_vertical">
 
             <TextView
                 android:id="@+id/name_user"
