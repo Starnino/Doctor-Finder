@@ -10,10 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -21,6 +23,12 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import android.util.Log;
+
+
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -29,13 +37,21 @@ public class UserProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
     private Button segnala;
+    private String USER_EMAIL;
+    private int index;
+    private List<ParseObject> user;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        //retrieve index from Activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            index = extras.getInt("index");
+        }
 
         //scrolling
         setContentView(R.layout.activity_scrolling_user);
@@ -58,6 +74,8 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        /*
+
         segnala = (Button) findViewById(R.id.segnala) ;
         segnala.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -71,7 +89,15 @@ public class UserProfileActivity extends AppCompatActivity {
            }
         });
 
+        //bugga parse
+        user = GlobalVariable.USER;
 
+        ParseObject USERTHIS = user.get(index);
+        Log.d("USERTHIS", USER_EMAIL);
+        USER_EMAIL = USERTHIS.getString("email");
+
+        TextView email = (TextView) findViewById(R.id.emaillino);
+*/
         }
 
 
@@ -99,7 +125,7 @@ public class UserProfileActivity extends AppCompatActivity {
                                 GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
                                 Log.d("Userphoto", "downloaded");
 
-                                RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                                RoundedImageView mImg = (RoundedImageView) findViewById(R.id.userino);
                                 mImg.setImageBitmap(GlobalVariable.UserPropic);
                                 //iv.setImageBitmap(bitmap );
 
@@ -115,5 +141,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
-    }
+
+}
 
