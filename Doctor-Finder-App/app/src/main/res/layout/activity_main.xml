@@ -33,7 +33,7 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
+            <!--<ImageView
                 android:src="@drawable/logo_testo_e_icona"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                android:fitsSystemWindows="true" />
+                android:fitsSystemWindows="true" />-->
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"

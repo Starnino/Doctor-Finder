@@ -81,21 +81,22 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         //set ParseDoctor this
         ParseObject DOCTORTHIS = doctors.get(index);
-        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");              Log.d("DOCTORTHIS", DOCTOR_FIRST_NAME);
-        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");                Log.d("DOCTORTHIS", DOCTOR_LAST_NAME);
-        DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");                    Log.d("DOCTORTHIS", DOCTOR_EXPERIENCE);
-        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");                 Log.d("DOCTORTHIS", DOCTOR_FEEDBACK);
-        DOCTOR_SEX = (DOCTORTHIS.getString("Sesso") == "M");                Log.d("DOCTORTHIS", DOCTOR_SEX + "");
-        DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");           Log.d("DOCTORTHIS", DOCTOR_DESCRIPTION);
+        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");                                  Log.d("DOCTORTHIS", DOCTOR_FIRST_NAME);
+        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");                                    Log.d("DOCTORTHIS", DOCTOR_LAST_NAME);
+        DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");                                        Log.d("DOCTORTHIS", DOCTOR_EXPERIENCE);
+        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");                                     Log.d("DOCTORTHIS", DOCTOR_FEEDBACK);
+        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");                                 Log.d("DOCTORTHIS", String.valueOf(DOCTOR_SEX));
+        DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");                               Log.d("DOCTORTHIS", DOCTOR_DESCRIPTION);
         DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");                               Log.d("DOCTORTHIS",DOCTOR_WORK.get(0));
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");                     Log.d("DOCTORTHIS", DOCTOR_CITY_ARRAY.get(0));
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");     Log.d("DOCTORTHIS", DOCTOR_SPECIALIZATION_ARRAY.get(0));
 
         //DOCTOR_PHOTO == ..
 
-        /**refresh recentDoctors*/                                                //doctor_rounded_avatar
+        /**refresh recentDoctors*/                                   //doctor_rounded_avatar
         currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.giampa,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
+        if (!GlobalVariable.FLAGCARDVISIBLE) GlobalVariable.FLAGCARDVISIBLE = true;
         if (GlobalVariable.recentDoctors.size() < 10 && !GlobalVariable.recentDoctors.contains(currentDoctor))
             GlobalVariable.recentDoctors.add(currentDoctor);
 

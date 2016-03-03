@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private ArrayList<String> CITY, SPECIAL;
     private TextView cityText, specialText;
     private Animation fab_open;
-    private CardView card2;
+    private CardView card_recent;
+    private CardView card_recent_null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //set and update recycler view
+        //cards
+        card_recent = (CardView) findViewById(R.id.card2);
+        card_recent_null = (CardView) findViewById(R.id.recent_doctors_null);
+
+        //set recycler doctors continuously
         updateRecycler();
 
         //find Text selected
@@ -131,8 +136,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         cityText.setText("");
         specialText.setText("");
 
-        //cards
-        card2 = (CardView) findViewById(R.id.card2);
+
 
 
         //Dialog for cities
@@ -171,7 +175,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
-                else showDataM();
+                else {
+                    showDataM();
+                }
             }
         });
 
@@ -447,6 +453,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
                 intent3.putExtras(b3);
                 startActivity(intent3);
+                /*String url_github = "https://github.com/Starnino/Doctor-Finder/blob/master/README.md";
+                Intent i_github = new Intent(Intent.ACTION_VIEW);
+                i_github.setData(Uri.parse(url_github));
+                startActivity(i_github);*/
                 break;
 
             case R.id.support:
@@ -467,6 +477,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.settings:
+
                 break;
 
             case R.id.logout:
@@ -542,7 +553,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public void updateRecycler(){
-
+        if (GlobalVariable.FLAGCARDVISIBLE) {
+            card_recent_null.setVisibility(View.INVISIBLE);
+            card_recent.setVisibility(View.VISIBLE);
+            GlobalVariable.FLAGCARDVISIBLE = true;
+        }
         //initialize more Persons
         doctors = GlobalVariable.recentDoctors;
 

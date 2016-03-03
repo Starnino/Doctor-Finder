@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:orientation="horizontal">
-    <!--android:background="@drawable/header_background"-->
+    android:orientation="horizontal"
+    android:background="@drawable/header_background">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nome Cognome"
+                android:textSize="12sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#000000" />
 
@@ -45,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="nomecognome@email.com"
+                android:textSize="12sp"
                 android:textColor="#000000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
         </LinearLayout>
