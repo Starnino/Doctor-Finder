@@ -12,12 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
+import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -35,6 +37,8 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private ImageButton feedButton;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
+    private Button prenota;
+    private Button videochiama;
 
     //Doctor information
     private int index;
@@ -176,7 +180,33 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        prenota = (Button) findViewById(R.id.prenota) ;
+        prenota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_qurami = new Intent(DoctorProfileActivity.this, MainActivityQurami.class);
+                startActivity(intent_qurami);
+            }
+        });
+
+        videochiama = (Button) findViewById(R.id.videochiama);
+        videochiama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DoctorProfileActivity.this, WebViewActivity.class);
+
+
+                Bundle hang = new Bundle();
+                hang.putString("URL", "https://hangouts.google.com/");
+                //andrebbe fatto come  ---> hang.putString("URL", "https://hangouts.google.com/"
+                //                                                 + user.getEmail() );
+                intent.putExtras(hang);
+                startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {

@@ -195,13 +195,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //set drawer things
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
 
-
-
-
-
-
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 

@@ -52,20 +52,7 @@
                     android:textColor="#212121" />
 
 
-                <ToggleButton
-                    android:id="@+id/chkState1"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_account_circle_white_24dp"
-                    android:checked="true"
-                    android:padding="6dp"
-                    android:textOff=""
-                    android:textOn="" />
+
 
             </RelativeLayout>
 
@@ -113,20 +100,6 @@
                     android:textColor="#727272"
                     android:id="@+id/tvNumber2" />
 
-                <ToggleButton
-                    android:id="@+id/chkState2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_info_white_24dp"
-                    android:checked="false"
-                    android:padding="6dp"
-                    android:textOff=""
-                    android:textOn="" />
 
             </RelativeLayout>
 
@@ -179,20 +152,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#727272" />
 
-                <ToggleButton
-                    android:id="@+id/chkState3"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_info_white_24dp"
-                    android:checked="true"
-                    android:padding="6dp"
-                    android:textOff=""
-                    android:textOn="" />
+
 
             </RelativeLayout>
 
@@ -245,19 +205,6 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#727272" />
 
-                <ToggleButton
-                    android:id="@+id/chkState4"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_info_white_24dp"
-                    android:padding="6dp"
-                    android:textOff=""
-                    android:textOn="" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -395,20 +342,6 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#727272" />
 
-                <ToggleButton
-                    android:id="@+id/chkState6"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_exit_to_app_white_24dp"
-                    android:padding="6dp"
-                    android:textOff=""
-                    android:textOn="" />
-
             </RelativeLayout>
 
         </LinearLayout>
@@ -424,6 +357,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Prenota Visita"
+                android:id="@+id/prenota"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/colorPrimaryDark"
                 />
@@ -433,6 +367,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Videochiama"
+                android:id="@+id/videochiama"
                 android:backgroundTint="@color/flat_red"
                 android:textColor="@color/white"
                 />
