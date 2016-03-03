@@ -178,8 +178,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         for (int i = 0; i < numMarker; i++) {
             ParseObject DOCTORTHIS = doctors.get(i);
             String curPosition = DOCTORTHIS.get("Marker").toString();
-            String latString=curPosition.substring(6, 15);
-            String lonString=curPosition.substring(22, 31);
+            //String latString=curPosition.substring(6, 15);
+            //String lonString=curPosition.substring(22, 31);
             double lat = Double.parseDouble(curPosition.substring(6, 15));
             double lon = Double.parseDouble(curPosition.substring(22, 31));
             String sex="";
@@ -197,7 +197,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         }
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(ROMA)      // Sets the center of the map to mi position
-                .zoom(5)                   // Sets the zoom
+                .zoom(2)                   // Sets the zoom
                 .bearing(0)                // Sets the orientation of the camera to east
                 .build();                   // Creates a CameraPosition from the builder
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
