@@ -1,10 +1,15 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.util.Base64;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -15,10 +20,16 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.ProgressCallback;
+import com.parse.SaveCallback;
 
 //import java.lang.reflect.Array;
 import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -38,10 +49,6 @@ public class AddDoctors {
 
         //codice per vedere se la mail del dottore esiste nel database
 
-
-
-
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
         query.whereEqualTo("email", email);
 
@@ -49,19 +56,19 @@ public class AddDoctors {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
 
-               if(objects.isEmpty()){
-                   Log.d("add doctor", "adding " + email);
-                  //IS EMPTY MUST CREATE DOCTOR
-                   ParseObject Doctor=new ParseObject("Doctor");
-                   Doctor.put("FirstName", FirstName);
-                   Doctor.put("LastName", LastName);
-                   Doctor.put("Email", email);
-                   Doctor.put("Marker", latlng);
-                   Doctor.put("Specialization", Arrays.asList(Specialization));
-                   Doctor.put("Work", Arrays.asList(Work));
-                   Doctor.put("Cellphone", cellphone);
-                   Doctor.put("Description", description);
-                   Doctor.put("Years", anni);
+                if (objects.isEmpty()) {
+                    Log.d("add doctor", "adding " + email);
+                    //IS EMPTY MUST CREATE DOCTOR
+                    ParseObject Doctor = new ParseObject("Doctor");
+                    Doctor.put("FirstName", FirstName);
+                    Doctor.put("LastName", LastName);
+                    Doctor.put("Email", email);
+                    Doctor.put("Marker", latlng);
+                    Doctor.put("Specialization", Arrays.asList(Specialization));
+                    Doctor.put("Work", Arrays.asList(Work));
+                    Doctor.put("Cellphone", cellphone);
+                    Doctor.put("Description", description);
+                    Doctor.put("Years", anni);
 
 
                   /*
@@ -84,28 +91,25 @@ public class AddDoctors {
 
                     */
 
-                   Doctor.saveInBackground();
+                    Doctor.saveInBackground();
 
 
+                } else {
 
+                    //IS NOT EMPTY
+                    objects.get(0).put("FirstName", FirstName);
+                    objects.get(0).put("LastName", LastName);
+                    objects.get(0).put("Email", email);
+                    objects.get(0).put("Marker", latlng);
+                    objects.get(0).put("Specialization", Arrays.asList(Specialization));
+                    objects.get(0).put("Work", Arrays.asList(Work));
+                    objects.get(0).put("Cellphone", cellphone);
+                    objects.get(0).put("Description", description);
+                    Log.d("add doctor", "Updating doctor " + email);
+                    objects.get(0).saveInBackground();
 
-
-               } else {
-
-                   //IS NOT EMPTY
-                   objects.get(0).put("FirstName", FirstName);
-                   objects.get(0).put("LastName", LastName);
-                   objects.get(0).put("Email", email);
-                   objects.get(0).put("Marker", latlng);
-                   objects.get(0).put("Specialization", Arrays.asList(Specialization));
-                   objects.get(0).put("Work", Arrays.asList(Work));
-                   objects.get(0).put("Cellphone", cellphone);
-                   objects.get(0).put("Description", description);
-                   Log.d("add doctor","Updating doctor "+ email);
-                   objects.get(0).saveInBackground();
-
-               }
-               // e.printStackTrace();
+                }
+                // e.printStackTrace();
 
                 Log.d("Add doctor", "Saving doctor that not exist");
                 Log.d("Doctor", "adding" + email);
@@ -116,21 +120,28 @@ public class AddDoctors {
 
 
     }
-    public  static void addData() {
-        /*
-        public static void AddDoctors(String FirstName,String LastName, String email, Date data,
-                                  String[] Specialization, String[] Work,
-                                  String cellphone, String description
-            ){
-         */
+
+    public  static void addPhoto(Resources res) {
+
+        //int photId[] = {R.drawable.p1-OK,R.drawable.p2-OK,R.drawable.p3-OK,R.drawable.p4,R.drawable.p5,R.drawable.p6,R.drawable.p7,R.drawable.p8};
+        //String docid[] = {"56d76fb18f32d118c2ddab24-OK","56d76fb18f32d118c2ddab26-OK","56d76fb18f32d118c2ddab27-OK","56d76fb18f32d118c2ddab34-OK","56d76fb18f32d118c2ddab31-OK","56d76fb18f32d118c2ddab33-OK","56d76fb18f32d118c2ddab37"};
 
 
-        Log.d("main", "adding doctor");
+        Bitmap bm = BitmapFactory.decodeResource(res, R.drawable.p7);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 20, baos); //bm is the bitmap object
+        byte[] byteArrayImage = baos.toByteArray();
 
+        ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
+        file.saveInBackground();
 
+        ParseObject drPhoto = new ParseObject("DoctorPh");
+        drPhoto.put("idDoctor", "56d76fb18f32d118c2ddab37");
+        drPhoto.put("photoByte", file.getName());
 
-
+        drPhoto.saveInBackground();
     }
+
     public  static void addData(Context c) {
 
         //CREATE DOCTORS
