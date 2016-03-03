@@ -57,7 +57,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         }
         permissionRequest();
 
-        setUpMap(gMap);
+        //setUpMap(gMap);
 
     }
 
