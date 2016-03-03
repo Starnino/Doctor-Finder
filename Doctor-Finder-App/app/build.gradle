@@ -14,7 +14,7 @@ android {
         }
         prod {
             // The actual minSdkVersion for the application.
-            minSdkVersion 14
+            minSdkVersion 15
         }
     }
 
@@ -26,12 +26,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
 
         }
     }
+
 }
 repositories {
     mavenCentral()
@@ -52,6 +55,9 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
+
+    //qurami
+    compile 'com.qurami.android.link:quramilink:0.1.0'
 
 }
 

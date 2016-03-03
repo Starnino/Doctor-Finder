@@ -27,12 +27,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -428,6 +428,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.gestisci:
+                Intent intent_qurami = new Intent(MainActivity.this, MainActivityQurami.class);
+                startActivity(intent_qurami);
                 break;
 
             case R.id.inserisci_dottore:
@@ -562,5 +564,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
+
+
     }
 }

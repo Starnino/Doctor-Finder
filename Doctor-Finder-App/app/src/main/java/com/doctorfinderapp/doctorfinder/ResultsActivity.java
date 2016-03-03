@@ -13,7 +13,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,11 +27,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
-import com.doctorfinderapp.doctorfinder.UserProfileActivity;
-import com.doctorfinderapp.doctorfinder.SettingsActivity;
 
 
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
@@ -185,9 +183,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent_user);
                 break;
             case R.id.gestisci:
-
-
-
+                Intent intent_qurami = new Intent(ResultsActivity.this, MainActivityQurami.class);
+                startActivity(intent_qurami);
                 break;
             case R.id.inserisci_dottore:
                 Intent intent2 = new Intent(ResultsActivity.this, WebViewActivity.class);
