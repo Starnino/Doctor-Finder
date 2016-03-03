@@ -55,14 +55,14 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                         == PackageManager.PERMISSION_GRANTED) {
             gMap.setMyLocationEnabled(true);
         }
-        //permissionRequest();
+        permissionRequest();
 
-//        setUpMap(gMap);
+        setUpMap(gMap);
 
     }
 
     private void permissionRequest(){
-        //gMap.setMyLocationEnabled(true);
+        googleMap.setMyLocationEnabled(true);
         if (Build.VERSION.SDK_INT < 23) {
             googleMap.setMyLocationEnabled(true);
             Log.d(TAG,"sdk<23");
@@ -79,7 +79,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 ActivityCompat.requestPermissions(getActivity(),
                         PERMISSIONS,
                         MY_PERMISSIONS_REQUEST_LOCATION);
-                Log.d(TAG,"Requesting permission "+MY_PERMISSIONS_REQUEST_LOCATION);
+                Log.d(TAG,"Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.

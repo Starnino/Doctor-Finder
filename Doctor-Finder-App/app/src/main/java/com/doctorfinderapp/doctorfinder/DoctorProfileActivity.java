@@ -96,16 +96,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         /**refresh recentDoctors*/                                   //doctor_rounded_avatar
         currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.giampa,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-        if (!GlobalVariable.FLAGCARDVISIBLE) GlobalVariable.FLAGCARDVISIBLE = true;
-        if (GlobalVariable.recentDoctors.size() < 10 && !GlobalVariable.recentDoctors.contains(currentDoctor))
-            GlobalVariable.recentDoctors.add(currentDoctor);
-
-        else {
-            if (!GlobalVariable.recentDoctors.contains(currentDoctor)) {
-                GlobalVariable.recentDoctors.add(0, currentDoctor);
-                GlobalVariable.recentDoctors.remove(10);
-            }
-        }
+        refreshDoctorList(currentDoctor);
         /**updated recent_doctor*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -238,5 +229,24 @@ public class DoctorProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.finish();
         super.onBackPressed();
+    }
+
+    public void refreshDoctorList(Doctor currentDoctor){
+        //set visible flag
+        if (!GlobalVariable.FLAGCARDVISIBLE) GlobalVariable.FLAGCARDVISIBLE = true;
+
+        //if doctor not exist in list
+        if (!GlobalVariable.recentDoctors.contains(currentDoctor)){
+
+        //if size of list is minor of 10
+        if (GlobalVariable.recentDoctors.size() < 10)
+            GlobalVariable.recentDoctors.add(currentDoctor);
+
+        //if size is 10 or plus
+        else {
+            GlobalVariable.recentDoctors.add(0, currentDoctor);
+            GlobalVariable.recentDoctors.remove(10);
+            }
+        }
     }
 }
