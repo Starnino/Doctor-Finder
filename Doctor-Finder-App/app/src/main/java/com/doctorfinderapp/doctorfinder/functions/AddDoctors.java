@@ -127,7 +127,7 @@ public class AddDoctors {
         //String docid[] = {"56d76fb18f32d118c2ddab24-OK","56d76fb18f32d118c2ddab26-OK","56d76fb18f32d118c2ddab27-OK","56d76fb18f32d118c2ddab34-OK","56d76fb18f32d118c2ddab31-OK","56d76fb18f32d118c2ddab33-OK","56d76fb18f32d118c2ddab37"};
 
 
-        Bitmap bm = BitmapFactory.decodeResource(res, R.drawable.p7);
+        Bitmap bm = BitmapFactory.decodeResource(res, R.drawable.p1);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 20, baos); //bm is the bitmap object
         byte[] byteArrayImage = baos.toByteArray();

@@ -1,8 +1,10 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.Calendar.CalendarAdapter;
+import com.doctorfinderapp.doctorfinder.Calendar.CalendarView;
+import com.doctorfinderapp.doctorfinder.Calendar.Utility;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
@@ -52,6 +57,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private boolean DOCTOR_SEX;
     private String DOCTOR_DESCRIPTION;
     private int DOCTOR_PHOTO;
+    private ComponentName cn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,8 +191,27 @@ public class DoctorProfileActivity extends AppCompatActivity {
         prenota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_qurami = new Intent(DoctorProfileActivity.this, MainActivityQurami.class);
-                startActivity(intent_qurami);
+
+                Intent i = new Intent();
+
+                //Froyo or greater (mind you I just tested this on CM7 and the less than froyo one worked so it depends on the phone...)
+                cn = new ComponentName("com.google.android.calendar", "com.android.calendar.LaunchActivity");
+
+                //less than Froyo
+                cn = new ComponentName("com.android.calendar", "com.android.calendar.LaunchActivity");
+
+                i.setComponent(cn);
+                startActivity(i);
+
+                //non è servito ad un cazzo perchè mi apre quello di sistema, DIO!
+
+                //in questo modo crasha
+               // Intent intent_calendario = new Intent(DoctorProfileActivity.this, CalendarContract.Calendars.class);
+               // startActivity(intent_calendario);
+
+                //stesso collegamento di qurami sul drawer
+               // Intent intent_qurami = new Intent(DoctorProfileActivity.this, MainActivityQurami.class);
+                //startActivity(intent_qurami);
             }
         });
 
