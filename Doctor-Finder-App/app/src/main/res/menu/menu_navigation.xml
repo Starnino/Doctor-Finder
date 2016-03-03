@@ -11,7 +11,7 @@
             android:title="@string/profile"
             android:id="@+id/profile"/>
         <item
-            android:icon="@drawable/iconaqurami"
+            android:icon="@drawable/iconqurami"
             android:title="@string/gestisci"
             android:id="@+id/Qurami" />
         <item
