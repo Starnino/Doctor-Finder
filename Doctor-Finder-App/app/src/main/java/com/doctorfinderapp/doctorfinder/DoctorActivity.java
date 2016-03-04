@@ -1,6 +1,8 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.ComponentName;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -18,6 +20,15 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -56,6 +67,8 @@ public class DoctorActivity extends AppCompatActivity {
         ParseObject DOCTORTHIS = doctors.get(index);
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+
+
 
 
         // Begin the transaction
@@ -162,5 +175,7 @@ public class DoctorActivity extends AppCompatActivity {
         // or call onBackPressed()
         return true;
     }
+
+
 
 }

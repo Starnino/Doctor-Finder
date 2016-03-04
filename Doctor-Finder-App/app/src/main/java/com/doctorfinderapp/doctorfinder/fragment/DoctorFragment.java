@@ -1,7 +1,12 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
@@ -28,19 +34,29 @@ import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fedebyes
  */
-public class DoctorFragment extends Fragment {
+public class DoctorFragment extends Fragment  {
+    private String TAG="DoctorFragment";
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
     private String DOCTOR_EXPERIENCE;
-    private ArrayList<String> DOCTOR_WORK;
+    private ArrayList<String> DOCTOR_WORK_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
     private String DOCTOR_FEEDBACK;
@@ -50,8 +66,10 @@ public class DoctorFragment extends Fragment {
     private ComponentName cn;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
-
+    private double LAT;
+    private double LONG;
     private static int index;
+    private GoogleMap googleMap;
 
     public DoctorFragment() {
     }
@@ -72,11 +90,12 @@ public class DoctorFragment extends Fragment {
 
 
 
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
 
@@ -91,15 +110,22 @@ public class DoctorFragment extends Fragment {
         DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
-        DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");
+        DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+
+
+
+        String curPosition = DOCTORTHIS.get("Marker").toString();
+        LAT = Double.parseDouble(curPosition.substring(6, 15));
+        LONG= Double.parseDouble(curPosition.substring(22, 31));
 
         //getting data from xml
         TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);
         TextView special = (TextView) rootView.findViewById(R.id.tvNumber2);
         TextView years = (TextView) rootView.findViewById(R.id.years);
         TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
+        TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
         TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
         RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
 
@@ -112,7 +138,10 @@ public class DoctorFragment extends Fragment {
 
         years.setText(DOCTOR_EXPERIENCE);
 
-        workPlace.setText(Util.setCity(DOCTOR_WORK));
+        cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
+        workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
+
+
 
         info.setText(DOCTOR_DESCRIPTION);
 
@@ -120,6 +149,15 @@ public class DoctorFragment extends Fragment {
 
         ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
 
+
+
+        RelativeLayout workMaps= (RelativeLayout) rootView.findViewById(R.id.Work);
+        workMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMaps(LAT,LONG);
+            }
+        });
 
 
 
@@ -167,4 +205,15 @@ public class DoctorFragment extends Fragment {
             }
         } flag = true;
     }
+
+    private void openMaps(double lat,double lng){
+        // Creates an Intent that will load a map of San Francisco
+        String uristring="geo:"+lat+","+lng;
+        Log.d(TAG,uristring);
+        Uri gmmIntentUri = Uri.parse(uristring);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+    }
+
 }

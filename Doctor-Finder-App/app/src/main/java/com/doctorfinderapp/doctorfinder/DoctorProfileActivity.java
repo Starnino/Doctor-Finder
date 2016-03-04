@@ -52,7 +52,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
     private String DOCTOR_EXPERIENCE;
-    private ArrayList<String> DOCTOR_WORK;
+    private ArrayList<String> DOCTOR_WORK_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
     private String DOCTOR_FEEDBACK;
@@ -91,7 +91,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");                                     Log.d("DOCTORTHIS", DOCTOR_FEEDBACK);
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");                                 Log.d("DOCTORTHIS", String.valueOf(DOCTOR_SEX));
         DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");                               Log.d("DOCTORTHIS", DOCTOR_DESCRIPTION);
-        DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");                               Log.d("DOCTORTHIS",DOCTOR_WORK.get(0));
+        DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");                               Log.d("DOCTORTHIS",DOCTOR_WORK_ARRAY.get(0));
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");                     Log.d("DOCTORTHIS", DOCTOR_CITY_ARRAY.get(0));
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");     Log.d("DOCTORTHIS", DOCTOR_SPECIALIZATION_ARRAY.get(0));
 
@@ -121,6 +121,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         TextView special = (TextView) findViewById(R.id.tvNumber2);
         TextView years = (TextView) findViewById(R.id.years);
         TextView workPlace = (TextView) findViewById(R.id.workPlace);
+        TextView cityPlace = (TextView) findViewById(R.id.cityPlace);
         TextView info = (TextView) findViewById(R.id.doctor_info);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
         //TextView province = (TextView) findViewById(R.id.province);
@@ -133,8 +134,8 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
 
         years.setText(DOCTOR_EXPERIENCE);
-
-        workPlace.setText(Util.setCity(DOCTOR_WORK));
+        cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
+        workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
 
         info.setText(DOCTOR_DESCRIPTION);
 
