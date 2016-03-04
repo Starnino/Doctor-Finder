@@ -37,6 +37,7 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -240,12 +241,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.like:
-                Intent intent_like = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_like = Util.getOpenFacebookIntent(this);
 
-                Bundle like = new Bundle();
-                like.putString("URL",
-                        "https://www.facebook.com/dcfind"); //Your id
-                intent_like.putExtras(like);
+
+
                 startActivity(intent_like);
                 break;
 

@@ -42,6 +42,7 @@ import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -483,12 +484,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.like:
-                Intent intent_like = new Intent(MainActivity.this, WebViewActivity.class);
+                Intent intent_like = Util.getOpenFacebookIntent(this);
 
-                Bundle like = new Bundle();
-                like.putString("URL",
-                        "https://www.facebook.com/dcfind" ); //Your id
-                intent_like.putExtras(like);
+
+
                 startActivity(intent_like);
                 break;
 

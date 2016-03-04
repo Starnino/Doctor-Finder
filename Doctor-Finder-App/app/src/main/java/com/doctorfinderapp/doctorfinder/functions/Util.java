@@ -1,8 +1,11 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -51,42 +54,15 @@ public class Util {
         } return res;
     }
 
-    /*public static void getUserImage(ParseUser user){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
-        query.whereEqualTo("username", user.getEmail());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject userPhoto, ParseException e) {
-                //userphoto exists
 
-                if (userPhoto==null){
-                    Log.d("userphoto","isnull");
-                }
-                //todo
-               ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
-                file.getDataInBackground(new GetDataCallback() {
-                    public void done(byte[] data, ParseException e) {
-                        if (e == null) {
-                            // data has the bytes for the resume
-                            //data is the image in array byte
-                            //must change image on profile
-                            GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            Log.d("Userphoto","downloaded");
 
-                            ImageView mImg =  findViewById(R.id.user_propic);
-                            mImg.setImageBitmap(img);
-                            //iv.setImageBitmap(bitmap );
+    public static Intent getOpenFacebookIntent(Context context) {
 
-                        } else {
-                            // something went wrong
-                            Log.d("UserPhoto ", "problem download image");
-                        }
-                    }
-                });
-
-            }
-        });
-
-    }*/
-
+        try {
+            context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1523582397968672"));
+        } catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/dcfind"));
+        }
+    }
 }

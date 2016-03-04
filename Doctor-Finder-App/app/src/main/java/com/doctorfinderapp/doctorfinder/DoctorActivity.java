@@ -95,6 +95,7 @@ public class DoctorActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
         setSupportActionBar(toolbar);
 
+
         if(DOCTOR_SEX)
             Title="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
@@ -103,6 +104,10 @@ public class DoctorActivity extends AppCompatActivity {
         //nameProfile.setText(Title);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setTitle(Title);
+            
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         }
         final CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
@@ -152,6 +157,12 @@ public class DoctorActivity extends AppCompatActivity {
                 GlobalVariable.recentDoctors.remove(10);
             }
         } flag = true;
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        // or call onBackPressed()
+        return true;
     }
 
 }
