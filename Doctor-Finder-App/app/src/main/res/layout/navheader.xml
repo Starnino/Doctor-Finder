@@ -21,7 +21,7 @@
                 android:id="@+id/user_propic"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/person"
+                android:src="@drawable/mario"
                 android:gravity="center"
                 android:layout_margin="16dp" />
         </LinearLayout>
@@ -39,7 +39,7 @@
                 android:id="@+id/name_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome Cognome"
+
                 android:textSize="12sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/white" />
@@ -48,7 +48,7 @@
                 android:id="@+id/email_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="nomecognome@email.com"
+
                 android:textSize="12sp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

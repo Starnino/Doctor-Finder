@@ -348,9 +348,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     public void switchFAB(int position){
         switch(position){
             case 0:
-                Log.d("fab", "open");
-                fab_location.startAnimation(fab_close);
-                fab_location.setClickable(false);
+                if (isFabOpen) {
+                    Log.d("fab", "open");
+                    fab_location.startAnimation(fab_close);
+                    fab_location.setClickable(false);
+                    isFabOpen = false;
+                }
                 fab.startAnimation(fab_open_normal);
                 fab.setClickable(true);
                 break;

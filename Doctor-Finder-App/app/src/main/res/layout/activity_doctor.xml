@@ -38,7 +38,7 @@
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.7"
                     android:cropToPadding="false"
-                    android:src="@drawable/header_background" />
+                    android:src="@drawable/background" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -48,7 +48,7 @@
                         android:id="@+id/user_propic"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:src="@drawable/person"
+                        android:src="@drawable/mario"
                         android:gravity="center"
                         android:layout_margin="16dp" />
                 </LinearLayout>
