@@ -376,7 +376,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             super.onBackPressed();
         }
 
-        Log.d("finish", "activity");
+
         this.finish();
     }
 

@@ -220,8 +220,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255, 255)); //Color of your title
-        //to set logo doc
-        //toolbar.setLogo(R.drawable.logotext);
+
 
         //set drawer things
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);

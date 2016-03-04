@@ -8,37 +8,36 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
+import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorActivity extends AppCompatActivity {
+public class DoctorActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     //Doctor information
-    public int index;
+    private static int index;
     private boolean DOCTOR_SEX;
 
     private String DOCTOR_FIRST_NAME;
@@ -49,12 +48,16 @@ public class DoctorActivity extends AppCompatActivity {
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
     private String Title;
+    private boolean isFabOpen = false;
+    private FloatingActionButton fabcontact,fabfeedback,fabemail, fabtelephone;
+    private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_doctor);
         //take index
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -69,6 +72,25 @@ public class DoctorActivity extends AppCompatActivity {
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
 
 
+        //find fab buttons
+        fabcontact = (FloatingActionButton)findViewById(R.id.fabcontact);
+        fabfeedback= (FloatingActionButton)findViewById(R.id.fabfeedback);
+        fabtelephone = (FloatingActionButton)findViewById(R.id.fabtelephone);
+        fabemail = (FloatingActionButton)findViewById(R.id.fabemail);
+
+        //load animation
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open_normal);
+
+        //onClick button
+        fabcontact.setOnClickListener(this);
+        fabfeedback.setOnClickListener(this);
+        fabtelephone.setOnClickListener(this);
+        fabemail.setOnClickListener(this);
+
 
 
         // Begin the transaction
@@ -81,7 +103,7 @@ public class DoctorActivity extends AppCompatActivity {
         // Complete the changes added above
         ft.commit();
 
-
+        fabcontact.startAnimation(fab_open_normal);
 
 
 
@@ -101,8 +123,6 @@ public class DoctorActivity extends AppCompatActivity {
 
 
 
-
-        setContentView(R.layout.activity_doctor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
         setSupportActionBar(toolbar);
 
@@ -132,19 +152,13 @@ public class DoctorActivity extends AppCompatActivity {
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_doctor);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
 
 
 
     }
+
     public void refreshDoctorList(Doctor currentDoctor){
         //set flag
         if (!GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
@@ -176,6 +190,86 @@ public class DoctorActivity extends AppCompatActivity {
         return true;
     }
 
+    //animation fab buttons
+    public void animateFAB() {
 
+        if (isFabOpen) {
+
+            fabcontact.startAnimation(rotate_backward);
+            fabemail.startAnimation(fab_close);
+            fabtelephone.startAnimation(fab_close);
+            fabemail.setClickable(false);
+            fabtelephone.setClickable(false);
+            isFabOpen = false;
+            Log.d("button", "close");
+
+        } else {
+
+            fabcontact.startAnimation(rotate_forward);
+            fabemail.startAnimation(fab_open);
+            fabtelephone.startAnimation(fab_open);
+            fabemail.setClickable(true);
+            fabtelephone.setClickable(true);
+            isFabOpen = true;
+            Log.d("button", "open");
+        }
+    }
+
+    //switch fab
+    public void switchFAB(int position){
+        switch(position){
+            case 0:
+                if (isFabOpen) {
+                    Log.d("fab", "open");
+                    fabfeedback.startAnimation(fab_close);
+                    fabfeedback.setClickable(false);
+                    isFabOpen = false;
+                }
+                fabcontact.startAnimation(fab_open_normal);
+                fabcontact.setClickable(true);
+                break;
+            case 1:
+                Log.d("fab_location", "open");
+                fabcontact.startAnimation(fab_close);
+                fabcontact.setClickable(false);
+                fabfeedback.startAnimation(fab_open_normal);
+                fabfeedback.setClickable(true);
+                break;
+        }
+    }
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch(id){
+            case R.id.fabcontact:
+                animateFAB();
+                break;
+
+            case R.id.fabfeedback:
+                openFeedbackDialog();
+                break;
+
+            case R.id.fabemail:
+                //TODO
+                break;
+
+            case R.id.fabtelephone:
+                //TODO
+                break;
+        }
+    }
+
+    private void openFeedbackDialog(){
+
+    }
+    public static void FeedbackStarter(){
+        /*Fragment fragment = new FeedbackFragment();
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_doctor, fragment)
+                .commit();*/
+    }
 
 }
