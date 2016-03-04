@@ -89,8 +89,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
         }
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -180,8 +178,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             String curPosition = DOCTORTHIS.get("Marker").toString();
             //String latString=curPosition.substring(6, 15);
             //String lonString=curPosition.substring(22, 31);
-            double lon = Double.parseDouble(curPosition.substring(6, 15));
-            double lat = Double.parseDouble(curPosition.substring(22, 31));
+            double lat = Double.parseDouble(curPosition.substring(6, 15));
+            double lon = Double.parseDouble(curPosition.substring(22, 31));
             String sex="";
             if(DOCTORTHIS.get("Sesso").equals("M"))
                 sex="Dott.";
@@ -189,7 +187,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 sex="Dott.ssa";
 
                 Marker currentMarker = gMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(lon, lat))
+                    .position(new LatLng(lat, lon))
                         .title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
                         .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
 
@@ -197,7 +195,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         }
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(ROMA)      // Sets the center of the map to mi position
-                .zoom(2)                   // Sets the zoom
+                .zoom(5)                   // Sets the zoom
                 .bearing(0)                // Sets the orientation of the camera to east
                 .build();                   // Creates a CameraPosition from the builder
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
