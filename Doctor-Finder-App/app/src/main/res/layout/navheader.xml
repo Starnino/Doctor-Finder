@@ -19,18 +19,21 @@
 
             <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
                 android:id="@+id/user_propic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/person"
                 android:gravity="center"
-                android:layout_margin="@dimen/fab_margin" />
+                android:layout_margin="16dp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="left|center_vertical">
+            android:gravity="left|center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:id="@+id/name_user"

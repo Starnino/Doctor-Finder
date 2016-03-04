@@ -36,6 +36,7 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 
 //import com.doctorfinderapp.doctorfinder.fragment.SearchFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -116,12 +117,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             View header = navigationView.getHeaderView(0);
             TextView nome= (TextView) header.findViewById(R.id.name_user);
 
-            Log.d("",user.getString("fName"));
+            Log.d("", user.getString("fName"));
             String name =user.getString("fName") ;
             nome.setText(name);
             TextView email= (TextView) header.findViewById(R.id.email_user);
 
             email.setText(user.getEmail());
+            //Re -set image
+            Log.d("ciao",GlobalVariable.UserPropic.toString());
+            if(GlobalVariable.UserPropic!=null) {
+                RoundedImageView mImg = (RoundedImageView) header.findViewById(R.id.user_propic);
+                mImg.setImageBitmap(GlobalVariable.UserPropic);
+            }
         }
 
     }
