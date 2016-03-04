@@ -1,12 +1,14 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -90,6 +92,7 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         //bugga parse
+
         user = GlobalVariable.USER;
 
         ParseObject USERTHIS = user.get(index);
@@ -97,8 +100,13 @@ public class UserProfileActivity extends AppCompatActivity {
         USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
-*/
-        }
+
+        //volevo far visualizzare il numero di telefono sul profilo utente perchè le info sono poche
+        TelephonyManager tMgr = (TelephonyManager)mAppContext.getSystemService(Context.TELEPHONY_SERVICE);
+        String mPhoneNumber = tMgr.getLine1Number();
+
+        */
+    }
 
 
         //UserImage Baccerino uno di noi

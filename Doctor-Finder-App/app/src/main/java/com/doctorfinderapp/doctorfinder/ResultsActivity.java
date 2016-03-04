@@ -187,42 +187,47 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent_qurami);
                 break;
             case R.id.inserisci_dottore:
-                Intent intent2 = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
 
-                Bundle b = new Bundle();
-                b.putString("URL",
+                Bundle dottore = new Bundle();
+                dottore.putString("URL",
                         "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing" ); //Your id
-                intent2.putExtras(b);
-                startActivity(intent2);
+                intent_dottore.putExtras(dottore);
+                startActivity(intent_dottore);
                 break;
             case R.id.about:
-                Intent intent3 = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_about = new Intent(ResultsActivity.this, WebViewActivity.class);
 
-                Bundle b3 = new Bundle();
-                b3.putString("URL",
+                Bundle about = new Bundle();
+                about.putString("URL",
                         "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
-                intent3.putExtras(b3);
-                startActivity(intent3);
+                intent_about.putExtras(about);
+                startActivity(intent_about);
                 break;
 
             case R.id.support:
-                String url_support = "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing";
-                Intent i_support = new Intent(Intent.ACTION_VIEW);
-                i_support.setData(Uri.parse(url_support));
-                startActivity(i_support);
+                Intent intent_supporto = new Intent(ResultsActivity.this, WebViewActivity.class);
+
+                Bundle supporto = new Bundle();
+                supporto.putString("URL",
+                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
+                intent_supporto.putExtras(supporto);
+                startActivity(intent_supporto);
                 break;
 
             case R.id.like:
-                Intent intent4 = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_like = new Intent(ResultsActivity.this, WebViewActivity.class);
 
-                Bundle b4 = new Bundle();
-                b4.putString("URL",
-                        "https://www.facebook.com/dcfind" ); //Your id
-                intent4.putExtras(b4);
-                startActivity(intent4);
+                Bundle like = new Bundle();
+                like.putString("URL",
+                        "https://www.facebook.com/dcfind"); //Your id
+                intent_like.putExtras(like);
+                startActivity(intent_like);
                 break;
+
             case R.id.settings:
                 break;
+
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");
