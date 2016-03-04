@@ -44,7 +44,7 @@
     <string name="action_example">Example action</string>
 
     <string name="profile">Profilo</string>
-    <string name="gestisci">Qurami!</string>
+    <string name="gestisci">Qurami</string>
     <string name="inserisci_dottore">Registra Dottore</string>
     <string name="logout">Logout</string>
     <string name="about">Riguardo Doctor Finder</string>

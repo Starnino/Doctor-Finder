@@ -180,8 +180,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             String curPosition = DOCTORTHIS.get("Marker").toString();
             //String latString=curPosition.substring(6, 15);
             //String lonString=curPosition.substring(22, 31);
-            double lat = Double.parseDouble(curPosition.substring(6, 15));
-            double lon = Double.parseDouble(curPosition.substring(22, 31));
+            double lon = Double.parseDouble(curPosition.substring(6, 15));
+            double lat = Double.parseDouble(curPosition.substring(22, 31));
             String sex="";
             if(DOCTORTHIS.get("Sesso").equals("M"))
                 sex="Dott.";
