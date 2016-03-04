@@ -22,10 +22,12 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
+import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.google.android.gms.appindexing.Thing;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -35,21 +37,103 @@ import java.util.List;
  * A placeholder fragment containing a simple view.
  */
 public class DoctorFragment extends Fragment {
+    private String DOCTOR_FIRST_NAME;
+    private String DOCTOR_LAST_NAME;
+    private String DOCTOR_EXPERIENCE;
+    private ArrayList<String> DOCTOR_WORK;
+    private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
+    private ArrayList<String> DOCTOR_CITY_ARRAY;
+    private String DOCTOR_FEEDBACK;
+    private boolean DOCTOR_SEX;
+    private String DOCTOR_DESCRIPTION;
+    private int DOCTOR_PHOTO;
+    private ComponentName cn;
+    private List<ParseObject> doctors;
+    private Doctor currentDoctor;
 
-
-
-
+    private static int index;
 
     public DoctorFragment() {
     }
+    public static DoctorFragment newInstance(int index) {
+        DoctorFragment doc = new DoctorFragment();
+        Bundle args = new Bundle();
+        args.putInt("index", index);
 
+        doc.setArguments(args);
+        return doc;
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        int indexFragment = getArguments().getInt("index", 0);
+        index=indexFragment;
+
+
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.fragment_doctor,
+                container, false);
+
+        //set ParseDoctor this
+        doctors = GlobalVariable.DOCTORS;
+        ParseObject DOCTORTHIS = doctors.get(index);
 
 
-        return inflater.inflate(R.layout.fragment_doctor, container, false);
+        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
+        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+        DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
+        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
+        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
+        DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
+        DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");
+        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
+        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+
+        //getting data from xml
+        TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);
+        TextView special = (TextView) rootView.findViewById(R.id.tvNumber2);
+        TextView years = (TextView) rootView.findViewById(R.id.years);
+        TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
+        TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
+        RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
+
+
+        if(DOCTOR_SEX)
+            nameProfile.setText("Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME);
+        else
+            nameProfile.setText("Dott.ssa "+ DOCTOR_FIRST_NAME+ " " + DOCTOR_LAST_NAME);
+
+
+        years.setText(DOCTOR_EXPERIENCE);
+
+        workPlace.setText(Util.setCity(DOCTOR_WORK));
+
+        info.setText(DOCTOR_DESCRIPTION);
+
+        special.setText(Util.setSpecialization(DOCTOR_SPECIALIZATION_ARRAY));
+
+        ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
+
+
+
+
+
+        /**refresh recentDoctors*/                                   //doctor_rounded_avatar
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.doctor_rounded_avatar,
+                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
+        refreshDoctorList(currentDoctor);
+        /**updated recent_doctor*/
+
+
+        return rootView;
+
+
 
 
 

@@ -42,13 +42,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="bottom"
                     android:paddingLeft="20dp"
-                    android:paddingBottom="100dp">
+                    android:gravity="center">
                     <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
                         android:id="@+id/user_propic"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:src="@drawable/person"
                         android:gravity="center"
                         android:layout_margin="16dp" />
@@ -73,7 +72,14 @@
 
 
 
-        <include layout="@layout/content_doctor" />
+
+    <FrameLayout
+        android:id="@+id/frame_doctor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+    </FrameLayout>
 
 
 

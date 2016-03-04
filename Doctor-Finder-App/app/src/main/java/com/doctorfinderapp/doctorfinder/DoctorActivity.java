@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
 
@@ -25,18 +27,11 @@ public class DoctorActivity extends AppCompatActivity {
 
 
     //Doctor information
-    private int index;
+    public int index;
+    private boolean DOCTOR_SEX;
+
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
-    private String DOCTOR_EXPERIENCE;
-    private ArrayList<String> DOCTOR_WORK;
-    private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
-    private ArrayList<String> DOCTOR_CITY_ARRAY;
-    private String DOCTOR_FEEDBACK;
-    private boolean DOCTOR_SEX;
-    private String DOCTOR_DESCRIPTION;
-    private int DOCTOR_PHOTO;
-    private ComponentName cn;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -49,7 +44,6 @@ public class DoctorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         //take index
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -57,17 +51,25 @@ public class DoctorActivity extends AppCompatActivity {
         }
         doctors = GlobalVariable.DOCTORS;
 
+
         //set ParseDoctor this
         ParseObject DOCTORTHIS = doctors.get(index);
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
-        DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
-        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
-        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
-        DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
-        DOCTOR_WORK = (ArrayList<String>) DOCTORTHIS.get("Work");
-        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
-        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+
+
+        // Begin the transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Replace the contents of the container with the new fragment
+        //add parameters
+        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
+        ft.replace(R.id.frame_doctor, doctorFragment);
+        // or ft.add(R.id.your_placeholder, new FooFragment());
+        // Complete the changes added above
+        ft.commit();
+
+
+
 
 
         //getting data from xml
@@ -78,11 +80,7 @@ public class DoctorActivity extends AppCompatActivity {
         TextView info = (TextView) findViewById(R.id.doctor_info);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
 
-        /**refresh recentDoctors*/                                   //doctor_rounded_avatar
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME,DOCTOR_LAST_NAME, R.drawable.doctor_rounded_avatar,
-                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-        refreshDoctorList(currentDoctor);
-        /**updated recent_doctor*/
+
 
 
         //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends2);
@@ -95,7 +93,7 @@ public class DoctorActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
         setSupportActionBar(toolbar);
 
-
+        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         if(DOCTOR_SEX)
             Title="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
@@ -104,7 +102,7 @@ public class DoctorActivity extends AppCompatActivity {
         //nameProfile.setText(Title);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setTitle(Title);
-            
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 
