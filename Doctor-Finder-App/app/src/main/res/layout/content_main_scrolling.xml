@@ -230,7 +230,7 @@
 
                 <TextView
                     android:id="@+id/city1"
-                    android:layout_width="0p"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
