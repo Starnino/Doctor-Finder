@@ -356,10 +356,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?android:attr/borderlessButtonStyle"
                 android:text="Prenota Visita"
                 android:id="@+id/prenota"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:textColor="@color/docfinder"
                 />
 
             <Button
@@ -367,9 +367,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Videochiama"
+                style="?android:attr/borderlessButtonStyle"
                 android:id="@+id/videochiama"
-                android:backgroundTint="@color/flat_red"
-                android:textColor="@color/white"
+                android:textColor="@color/docfinder"
                 />
 
         </LinearLayout>
