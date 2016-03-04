@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -205,6 +207,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setTitle("DoctorFinder");
+
+        }
+
+
+        final CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("Doctor Finder");
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+        // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255, 255)); //Color of your title
         //to set logo doc
         //toolbar.setLogo(R.drawable.logotext);
 

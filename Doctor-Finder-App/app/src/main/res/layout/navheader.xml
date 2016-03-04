@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:orientation="horizontal"
-    android:background="@drawable/header_background">
+    android:background="@color/docfinder">
 
     <LinearLayout
         android:orientation="horizontal"

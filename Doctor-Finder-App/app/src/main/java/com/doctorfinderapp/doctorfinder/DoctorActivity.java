@@ -1,7 +1,9 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.ComponentName;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -98,10 +100,16 @@ public class DoctorActivity extends AppCompatActivity {
         else
            Title="Dott.ssa "+ DOCTOR_FIRST_NAME+ " " + DOCTOR_LAST_NAME;
 
-        nameProfile.setText(Title);
+        //nameProfile.setText(Title);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setTitle(Title);
         }
+        final CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
+        collapsingToolbarLayout.setTitle(Title);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+        // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
 
 
