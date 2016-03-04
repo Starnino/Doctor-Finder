@@ -246,6 +246,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         super.finish();
         super.onBackPressed();
     }
+
     public void refreshDoctorList(Doctor currentDoctor){
         //set flag
         if (!GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;

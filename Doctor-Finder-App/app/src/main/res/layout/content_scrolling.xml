@@ -129,9 +129,9 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem3"
-                    android:layout_toLeftOf="@+id/chkState3"
+
                     android:layout_toRightOf="@id/ivContactItem3"
-                    android:layout_toStartOf="@+id/chkState3"
+
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="Anni di esperienza: "
@@ -182,9 +182,9 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem4"
-                    android:layout_toLeftOf="@+id/chkState4"
+
                     android:layout_toRightOf="@id/ivContactItem4"
-                    android:layout_toStartOf="@+id/chkState4"
+
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="Luogo di lavoro"
@@ -318,9 +318,9 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem6"
-                    android:layout_toLeftOf="@+id/chkState6"
+
                     android:layout_toRightOf="@id/ivContactItem6"
-                    android:layout_toStartOf="@+id/chkState6"
+
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="Info:"

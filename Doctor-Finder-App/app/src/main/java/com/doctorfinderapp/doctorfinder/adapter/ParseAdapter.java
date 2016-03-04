@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -86,7 +87,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, DoctorProfileActivity.class);
+                Intent intent = new Intent(context, DoctorActivity.class);
                 //------
                 intent.putExtra("index", position);
                 //------
