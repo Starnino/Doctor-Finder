@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
@@ -106,6 +107,22 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setting header
+
+        ParseUser user=ParseUser.getCurrentUser();
+        if(user!=null){
+
+            View header = navigationView.getHeaderView(0);
+            TextView nome= (TextView) header.findViewById(R.id.name_user);
+
+            Log.d("",user.getString("fName"));
+            String name =user.getString("fName") ;
+            nome.setText(name);
+            TextView email= (TextView) header.findViewById(R.id.email_user);
+
+            email.setText(user.getEmail());
+        }
 
     }
 

@@ -108,12 +108,14 @@
             android:name=".DoctorProfileActivity"
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".WebViewActivity"></activity>
-
+        <activity android:name=".WebViewActivity" />
         <activity
             android:name=".Qurami.MainActivityQurami"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".DoctorActivity"
+            android:label="@string/title_activity_doctor"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

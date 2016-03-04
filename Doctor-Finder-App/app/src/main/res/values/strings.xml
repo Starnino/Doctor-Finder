@@ -271,7 +271,7 @@
 
     <string name="title_activity_buttare">ButtareActivity</string>
     <string name="title_activity_settings">Settings</string>
-
+    <string name="title_activity_doctor">DoctorActivity</string>
 
 
 </resources>
