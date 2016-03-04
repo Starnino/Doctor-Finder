@@ -115,7 +115,19 @@
         <activity
             android:name=".DoctorActivity"
             android:label="@string/title_activity_doctor"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <!--Intro-->
+        <activity
+            android:name=".Intro.DefaultIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Intro.CustomIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Intro.MainActivityIntro"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

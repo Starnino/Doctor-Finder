@@ -273,5 +273,12 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_doctor">DoctorActivity</string>
 
+    <!--INTRO-->
+    <string name="skip">Y U DO DIS TO ME?</string>
+    <string name="title_activity_custom_intro">CustomIntro</string>
+    <string name="title_activity_default_intro">Default Intro</string>
+
+
+
 
 </resources>
