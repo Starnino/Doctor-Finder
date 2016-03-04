@@ -20,5 +20,6 @@ public class GlobalVariable {
     public static ArrayList<Doctor> recentDoctors = new ArrayList();
     public static boolean FLAG_CARD_DOCTOR_VISIBLE = false;
     public static boolean FLAG_CARD_SEARCH_VISIBLE = false;
+    public static boolean FLAGCARDVISIBLE = false;
 
 }

@@ -2,6 +2,8 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.MailTo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -58,6 +60,8 @@ public class DoctorProfileActivity extends AppCompatActivity {
     private String DOCTOR_DESCRIPTION;
     private int DOCTOR_PHOTO;
     private ComponentName cn;
+    public  String emailIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +172,8 @@ public class DoctorProfileActivity extends AppCompatActivity {
             }
         });
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +181,16 @@ public class DoctorProfileActivity extends AppCompatActivity {
                 Snackbar.make(view, "Invia una mail a Dottore", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
+                /*
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+
+                emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"Email dottore"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Cliente da Doctor Finder");
+                emailIntent.putExtra(Intent.EXTRA_TEXT   , "Message Body");
+*/
 
             }
         });
