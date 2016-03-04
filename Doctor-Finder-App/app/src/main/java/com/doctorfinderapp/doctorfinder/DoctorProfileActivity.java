@@ -233,7 +233,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
     public void refreshDoctorList(Doctor currentDoctor){
         //set visible flag
-        if (!GlobalVariable.FLAGCARDVISIBLE) GlobalVariable.FLAGCARDVISIBLE = true;
+        if (!GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
         boolean flag = true;
         //if doctor not exist in list
         for (int i = 0; i < GlobalVariable.recentDoctors.size(); i++) {
