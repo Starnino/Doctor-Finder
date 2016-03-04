@@ -18,6 +18,7 @@ public class GlobalVariable {
     public static Bitmap UserPropic=null;
     public static ArrayList<Doctor> recentDoctors = new ArrayList();
     public static boolean FLAGCARDVISIBLE = false;
+    public static int COUNTLLINEAR = 1;
 
    // public static byte[]
 

@@ -209,8 +209,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     tools:ignore="ContentDescription" />
+
                 <TextView
+                    android:id="@+id/categ1"
                     android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:text="Categoria\ne altre 2"
                     android:textColor="@color/grey"
@@ -222,17 +225,29 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_location_city_white_24dp"
                     android:tint="@color/docfinder"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/fab_margin" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/city1"
+                    android:layout_width="0p"
                     android:layout_height="wrap_content"
                     android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_white_24dp"
+                    android:tint="@color/docfinder"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    tools:ignore="ContentDescription" />
+
             </LinearLayout>
 
 
@@ -253,6 +268,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"/>
                 <TextView
+                    android:id="@+id/categ2"
+                    android:layout_weight="0.5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categoria\ne altre 2"
@@ -270,13 +287,14 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
+                    android:id="@+id/city2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -307,7 +325,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     tools:ignore="ContentDescription" />
+
                 <TextView
+                    android:id="@+id/categ3"
+                    android:layout_weight="0.5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categoria\ne altre 2"
@@ -325,13 +346,14 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
+                    android:id="@+id/city3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Citta\nealtre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -362,7 +384,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     tools:ignore="ContentDescription" />
+
                 <TextView
+                    android:layout_weight="0.5"
+                    android:id="@+id/categ4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categoria\ne altre 2"
@@ -380,13 +405,14 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
+                    android:id="@+id/city4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -417,7 +443,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
                     tools:ignore="ContentDescription" />
+
                 <TextView
+                    android:layout_weight="0.5"
+                    android:id="@+id/categ5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categoria\ne altre 2"
@@ -434,13 +463,14 @@
                     android:layout_marginStart="@dimen/fab_margin"/>
 
                 <TextView
+                    android:id="@+id/city5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Citta\ne altre 3"
                     android:textColor="@color/grey"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <ImageButton
                     android:layout_width="wrap_content"

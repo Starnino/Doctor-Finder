@@ -49,6 +49,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -77,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     //Parameters shared by fragment goes in activity
 
     private FloatingActionButton fab;
-    private LinearLayout selcitta, selcateg;
+    private LinearLayout selcitta, selcateg,
+            search1, search2, search3, search4, search5;
     private String[] citta, special;
     private ArrayList<String> CITY, SPECIAL;
     private TextView cityText, specialText;
     private Animation fab_open;
-    private CardView card_recent;
-    private CardView card_recent_null;
+    private CardView card_recent, card_recent_null, card3, card_search_null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //cards
         card_recent = (CardView) findViewById(R.id.card2);
         card_recent_null = (CardView) findViewById(R.id.recent_doctors_null);
+        card3 = (CardView) findViewById(R.id.card3);
+        card_search_null = (CardView) findViewById(R.id.card_ricerca_null);
 
         //set recycler doctors continuously
         updateRecycler();
@@ -136,8 +140,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         cityText.setText("");
         specialText.setText("");
 
-
-
+        //get Linear
+        search1 = (LinearLayout) findViewById(R.id.ricerca1);
+        search2 = (LinearLayout) findViewById(R.id.ricerca2);
+        search3 = (LinearLayout) findViewById(R.id.ricerca3);
+        search4 = (LinearLayout) findViewById(R.id.ricerca4);
+        search5 = (LinearLayout) findViewById(R.id.ricerca5);
 
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
@@ -177,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                 else {
                     showDataM();
+                    updateRecentSearch(GlobalVariable.COUNTLLINEAR,
+                            specialText.getText().toString(), cityText.getText().toString());
                 }
             }
         });
@@ -567,6 +577,64 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
 
+    }
 
+    public void updateRecentSearch(int count, String categ, String city){
+        card3.setVisibility(View.VISIBLE);
+        card_search_null.setVisibility(View.INVISIBLE);
+        TextView textCategoria;
+        TextView textCitta;
+
+        if (count <= 5){
+            switch (count){
+                case 1:
+                    search1.setVisibility(View.VISIBLE);
+                    textCategoria = (TextView)findViewById(R.id.categ1);
+                    textCitta = (TextView)findViewById(R.id.city1);
+                    textCategoria.setText(categ);
+                    textCitta.setText(city);
+                    GlobalVariable.COUNTLLINEAR++;
+                    break;
+
+                case 2:
+                    search2.setVisibility(View.VISIBLE);
+                    textCategoria = (TextView)findViewById(R.id.categ2);
+                    textCitta = (TextView)findViewById(R.id.city2);
+                    textCategoria.setText(categ);
+                    textCitta.setText(city);
+                    GlobalVariable.COUNTLLINEAR++;
+                    break;
+
+                case 3:
+                    search3.setVisibility(View.VISIBLE);
+                    textCategoria = (TextView)findViewById(R.id.categ3);
+                    textCitta = (TextView)findViewById(R.id.city3);
+                    textCategoria.setText(categ);
+                    textCitta.setText(city);
+                    GlobalVariable.COUNTLLINEAR++;
+                    break;
+
+                case 4:
+                    search3.setVisibility(View.VISIBLE);
+                    textCategoria = (TextView)findViewById(R.id.categ4);
+                    textCitta = (TextView)findViewById(R.id.city4);
+                    textCategoria.setText(categ);
+                    textCitta.setText(city);
+                    GlobalVariable.COUNTLLINEAR++;
+                    break;
+
+                case 5:
+                    search5.setVisibility(View.VISIBLE);
+                    textCategoria = (TextView)findViewById(R.id.categ5);
+                    textCitta = (TextView)findViewById(R.id.city5);
+                    textCategoria.setText(categ);
+                    textCitta.setText(city);
+                    GlobalVariable.COUNTLLINEAR++;
+                    break;
+            }
+
+        } else {
+            //TODO DIOPORCO
+        }
     }
 }

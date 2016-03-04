@@ -55,9 +55,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                         == PackageManager.PERMISSION_GRANTED) {
             gMap.setMyLocationEnabled(true);
         }
-        /**permissionRequest();*/
+        permissionRequest();
 
-        /**setUpMap(gMap);*/
+        setUpMap(gMap);
 
     }
 
