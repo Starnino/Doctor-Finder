@@ -126,10 +126,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //cards
-        card_recent_doctor = (CardView) findViewById(R.id.card2);
+        card_recent_doctor = (CardView) findViewById(R.id.card_doctors);
         card_recent_doctor_null = (CardView) findViewById(R.id.recent_doctors_null);
-        card_recent_search = (CardView) findViewById(R.id.card3);
-        card_recent_search_null = (CardView) findViewById(R.id.card_ricerca_null);
+        card_recent_search = (CardView) findViewById(R.id.card_research);
+        card_recent_search_null = (CardView) findViewById(R.id.recent_search_null);
 
 
         //set recycler doctors continuously
