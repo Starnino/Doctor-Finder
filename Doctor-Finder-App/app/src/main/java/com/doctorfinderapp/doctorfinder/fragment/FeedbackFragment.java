@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,7 +34,7 @@ public class FeedbackFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ParseAdapter feedbackAdapter;
+    private FeedbackAdapter feedbackAdapter;
     private List<ParseObject> FeedbackArray;
 
     public FeedbackFragment() {
@@ -64,17 +66,18 @@ public class FeedbackFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_feedback,
                 container, false);
         //recycler view
+
         RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recycler_view);
 
-
-
+        FeedbackArray= new ArrayList<>();
+        FeedbackArray.add(new ParseObject("Feedback"));
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        feedbackAdapter = new ParseAdapter(FeedbackArray);
+        feedbackAdapter = new FeedbackAdapter(FeedbackArray);
 
         mRecyclerView.setAdapter(feedbackAdapter);
 

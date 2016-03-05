@@ -1,17 +1,12 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.doctorfinderapp.doctorfinder.Class.Feedback;
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.ParseObject;
 
 import java.util.List;
 
@@ -44,9 +39,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         }
     }
 
-    List<Feedback> feedbacklist;
+    List<ParseObject> feedbacklist;
 
-    public FeedbackAdapter(List<Feedback> feedbacks) {
+    public FeedbackAdapter(List<ParseObject> feedbacks) {
         super();
         this.feedbacklist = feedbacks;
     }

@@ -104,7 +104,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.replace(R.id.frame_doctor, doctorFragment);
         // or ft.add(R.id.your_placeholder, new FooFragment());
         // Complete the changes added above
-        ft.addToBackStack(null);
+        //ft.addToBackStack(null);
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);

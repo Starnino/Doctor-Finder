@@ -131,8 +131,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             email.setText(user.getEmail());
             //Re -set image
-            Log.d("ciao",GlobalVariable.UserPropic.toString());
+
             if(GlobalVariable.UserPropic!=null) {
+                Log.d("ciao",GlobalVariable.UserPropic.toString());
                 RoundedImageView mImg = (RoundedImageView) header.findViewById(R.id.user_propic);
                 mImg.setImageBitmap(GlobalVariable.UserPropic);
             }

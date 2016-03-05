@@ -173,7 +173,7 @@ public class DoctorFragment extends Fragment {
                 FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
                 ft.replace(R.id.frame_doctor, fragment);
-
+                ft.addToBackStack(null);
                 ft.commit();
 
 
