@@ -43,7 +43,7 @@ public class FeedbackFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int indexFragment = getArguments().getInt("index", 0);
-        index=indexFragment;
+        this.index=indexFragment;
     }
 
     @Override

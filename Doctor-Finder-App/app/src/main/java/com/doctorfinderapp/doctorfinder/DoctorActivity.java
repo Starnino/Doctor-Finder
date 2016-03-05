@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -263,13 +264,21 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private void openFeedbackDialog(){
 
     }
-    public static void FeedbackStarter(){
-        /*Fragment fragment = new FeedbackFragment();
+    public static void FeedbackStarter(View view){
+
+        FragmentActivity activity = (FragmentActivity)view.getContext();
+
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
+
+        ft.replace(R.id.frame_doctor, fragment);
+
+        ft.commit();
+       // DoctorFragment doctorFragment = DoctorFragment.newInstance(index)
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_doctor, fragment)
-                .commit();*/
+
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+
     }
 
 }
