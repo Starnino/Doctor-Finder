@@ -18,6 +18,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -35,7 +36,7 @@ import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorActivity extends AppCompatActivity implements View.OnClickListener,FeedbackFragment.OnFragmentInteractionListener{
+public class DoctorActivity extends AppCompatActivity implements View.OnClickListener,FeedbackFragment.OnFragmentInteractionListener,FragmentManager.OnBackStackChangedListener {
 
 
     //Doctor information
@@ -103,6 +104,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.replace(R.id.frame_doctor, doctorFragment);
         // or ft.add(R.id.your_placeholder, new FooFragment());
         // Complete the changes added above
+        ft.addToBackStack(null);
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
@@ -136,7 +138,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         //nameProfile.setText(Title);
         if(getSupportActionBar()!=null){
-            getSupportActionBar().setTitle(Title);
+            //getSupportActionBar().setTitle(Title);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -187,10 +189,32 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     }
     @Override
     public boolean onSupportNavigateUp(){
-        finish();
-        // or call onBackPressed()
+        /*FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+            return true;
+        }else {
+            super.finish();
+            return true;
+        }*/
+        getSupportFragmentManager().popBackStack();
         return true;
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                FragmentManager fm = getSupportFragmentManager();
+                if (fm.getBackStackEntryCount() > 0) {
+                    fm.popBackStack();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     //animation fab buttons
     public void animateFAB() {
@@ -270,5 +294,23 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+    @Override
+    public void onBackStackChanged() {
+        shouldDisplayHomeUp();
+    }
+    public void shouldDisplayHomeUp(){
+        //Enable Up button only  if there are entries in the back stack
+        boolean canback = getSupportFragmentManager().getBackStackEntryCount()>0;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(canback);
     }
 }

@@ -4,11 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.parse.ParseObject;
+
+import java.util.List;
 
 
 /**
@@ -23,6 +30,10 @@ public class FeedbackFragment extends Fragment {
     private int index;
 
     private OnFragmentInteractionListener mListener;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ParseAdapter feedbackAdapter;
+    private List<ParseObject> FeedbackArray;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -52,6 +63,28 @@ public class FeedbackFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_feedback,
                 container, false);
+        //recycler view
+        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recycler_view);
+
+
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        feedbackAdapter = new ParseAdapter(FeedbackArray);
+
+        mRecyclerView.setAdapter(feedbackAdapter);
+
+
+
+
+
+
+
+
         return rootView;
     }
 
