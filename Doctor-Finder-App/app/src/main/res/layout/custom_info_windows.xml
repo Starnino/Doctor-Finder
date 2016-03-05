@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/profile_image"
+        android:src="@drawable/doctoravatar"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:layout_toEndOf="@id/profile_image"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Nome" />
+
+        <TextView
+            android:text="Specializzazione"
+            android:id="@+id/special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+
+        <RatingBar
+            android:layout_marginTop="-5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:scaleX="0.55"
+            android:scaleY="0.55"
+            android:layout_gravity="start|bottom"
+            android:layout_marginStart="-58dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

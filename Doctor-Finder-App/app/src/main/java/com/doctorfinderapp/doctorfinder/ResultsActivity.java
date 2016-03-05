@@ -441,6 +441,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
                     dialog.dismiss();
                     setupViewPager(viewPager);
+
+
+
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
                 } else {

@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -10,10 +11,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.test.mock.MockPackageManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -25,30 +33,44 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseObject;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback {
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
-    private List<ParseObject> doctors;
-    private Doctor currentDoctor;
+public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+    private static List<ParseObject> doctors;
+
     private final String TAG = "Doctor Maps";
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
+    public static Resources mResources;
 
     private String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static GoogleMap googleMap;
+    private Bitmap MarkerSmall;
 
 
     @Override
     public void onMapReady(GoogleMap gMap) {
         googleMap = gMap;
 
-       // gMap.setMyLocationEnabled(true);
-        Boolean u=ActivityCompat.checkSelfPermission(getContext(),
+        //rimpicciolisco il marker
+        // MarkerSmall = resizeMarker(R.drawable.markermini,100);
+
+        mResources = getResources();
+        if (mResources == null) {
+            Log.d("mappa", "mResourcesis null");
+        }
+
+        // gMap.setMyLocationEnabled(true);
+        Boolean u = ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-        Log.d(TAG,u.toString());
-        Log.d(TAG,Manifest.permission.ACCESS_COARSE_LOCATION.toString());
+        Log.d(TAG, u.toString());
+        Log.d(TAG, Manifest.permission.ACCESS_COARSE_LOCATION.toString());
         if (u
                 &&
                 ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -57,21 +79,23 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         }
         permissionRequest();
 
-        //TODO setUpMap(gMap);
+        //setUpMap(gMap);
+        //setup map
+        setUpMap();
 
     }
 
-    private void permissionRequest(){
+    private void permissionRequest() {
         googleMap.setMyLocationEnabled(true);
         if (Build.VERSION.SDK_INT < 23) {
             googleMap.setMyLocationEnabled(true);
-            Log.d(TAG,"sdk<23");
+            Log.d(TAG, "sdk<23");
 
         } else {
             int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION);
             if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-                Log.d(TAG,"permission granted on check");
+                Log.d(TAG, "permission granted on check");
                 googleMap.setMyLocationEnabled(true);
 
             } else {
@@ -79,7 +103,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 ActivityCompat.requestPermissions(getActivity(),
                         PERMISSIONS,
                         MY_PERMISSIONS_REQUEST_LOCATION);
-                Log.d(TAG,"Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
+                Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
@@ -89,12 +113,13 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        Log.d(TAG, "request code "+requestCode);
-        Log.d(TAG," permissions" +PERMISSIONS.toString());
-        Log.d(TAG,"grant results" +grantResults.toString());
+        Log.d(TAG, "request code " + requestCode);
+        Log.d(TAG, " permissions" + PERMISSIONS.toString());
+        Log.d(TAG, "grant results" + grantResults.toString());
         switch (requestCode) {
 
 
@@ -112,7 +137,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                     if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
                         googleMap.setMyLocationEnabled(true);
 
-                }
+                    }
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -159,19 +184,21 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
     //Fedebyes Funct
-    private void setUpMap(GoogleMap gMap) {
+    public void setUpMap() {
+
+        GoogleMap gMap = googleMap;
 
         doctors = GlobalVariable.DOCTORS;
         int numMarker = doctors.size();
 
-        // Create a LatLngBounds that includes Australia.
-        LatLng ROMA =new LatLng(41.9000, 12.5000);
+
+        LatLng ROMA = new LatLng(41.9000, 12.5000);
 
         //rimpicciolisco il marker
-        Bitmap markerSmall = resizeMarker(R.drawable.markermini,100);
+        Bitmap markerSmall = resizeMarker(R.drawable.markermini, 100);
 
 
-        ArrayList<Marker> markers= new ArrayList<Marker>();
+        ArrayList<Marker> markers = new ArrayList<Marker>();
 
         for (int i = 0; i < numMarker; i++) {
             ParseObject DOCTORTHIS = doctors.get(i);
@@ -180,18 +207,26 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             //String lonString=curPosition.substring(22, 31);
             double lat = Double.parseDouble(curPosition.substring(6, 15));
             double lon = Double.parseDouble(curPosition.substring(22, 31));
-            String sex="";
-            if(DOCTORTHIS.get("Sesso").equals("M"))
-                sex="Dott.";
+            ArrayList<String> spec = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+            Util.setSpecialization(spec);
+
+
+            String sex = "";
+            if (DOCTORTHIS.get("Sesso").equals("M"))
+                sex = "Dott.";
             else
-                sex="Dott.ssa";
+                sex = "Dott.ssa";
 
-                Marker currentMarker = gMap.addMarker(new MarkerOptions()
+
+            String id = Integer.toString(i);
+            Marker currentMarker = gMap.addMarker(new MarkerOptions()
                     .position(new LatLng(lat, lon))
-                        .title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
-                        .icon(BitmapDescriptorFactory.fromBitmap(markerSmall)));
+                            //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
+                    .title(id)
 
-            markers.add(i,currentMarker);
+                    .icon(BitmapDescriptorFactory.fromBitmap(markerSmall))
+                    .snippet(Util.setSpecialization(spec)));
+            markers.add(i, currentMarker);
         }
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(ROMA)      // Sets the center of the map to mi position
@@ -200,11 +235,17 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 .build();                   // Creates a CameraPosition from the builder
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+        gMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+
+
     }
 
-    public Bitmap resizeMarker(int id,int width){
+    public Bitmap resizeMarker(int id, int width) {
 
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), id);
+        if (imageBitmap == null) {
+            Log.d("mappa", "imagebitmapis null");
+        }
         float aspectRatio = imageBitmap.getWidth() /
                 (float) imageBitmap.getHeight();
 
@@ -218,6 +259,64 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         return resizedBitmap;
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this.getContext(), "Info window clicked",
+                Toast.LENGTH_SHORT).show();
+    }
+
+
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter() {
+            //LayoutInflater li = (LayoutInflater)getContext();
+            myContentsView = getLayoutInflater(null).inflate(R.layout.custom_info_windows, null);
+        }
+
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+           /* TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            tvSnippet.setText(marker.getSnippet());
+            */
+
+            String id= marker.getTitle();
+            int index= parseInt(id);
+
+            TextView name = (TextView) myContentsView.findViewById(R.id.name);
+            TextView special = (TextView) myContentsView.findViewById(R.id.special);
+            RatingBar ratingBar = (RatingBar) myContentsView.findViewById(R.id.ratingBar);
+            TextView city = (TextView) myContentsView.findViewById(R.id.city);
+            RoundedImageView profile = (RoundedImageView) myContentsView.findViewById(R.id.profile_image);
+
+
+            ParseObject CURRENTDOCTOR=GlobalVariable.DOCTORS.get(index);
+
+            name.setText(CURRENTDOCTOR.getString("FirstName") + " " + CURRENTDOCTOR.getString("LastName"));
+            ArrayList<String> spec = (ArrayList<String>) CURRENTDOCTOR.get("Specialization");
+            special.setText(Util.setCity(spec));
+            ratingBar.setRating(parseFloat(CURRENTDOCTOR.getString("Feedback")));
+            //todo set photo
+
+
+
+            return myContentsView;
+        }
+    }
 
 
 }
+
+
+
+
