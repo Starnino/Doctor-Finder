@@ -154,7 +154,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onPageSelected(int position) {
-
                 switchFAB(position);
             }
 
@@ -184,9 +183,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
-                    Log.d("DOTTORE-PRIMA-QUERY", GlobalVariable.DOCTORS.get(i).getString("LastName"));
-                }
                 final List<ParseObject> doctorsFilter = filter(GlobalVariable.DOCTORS, newText);
                 DoctorListFragment.refreshDoctors(doctorsFilter);
                 return false;
@@ -279,12 +275,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    boolean flag = false;
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
-        switch(id){
+        switch(id) {
             case R.id.fab:
                 animateFAB();
                 break;
@@ -380,6 +376,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                     fab.setClickable(false);
                     isFabOpen = false;
                 }
+                fab.startAnimation(fab_close);
+                fab.setClickable(false);
                 fab_location.startAnimation(fab_open_normal);
                 fab_location.setClickable(true);
                 break;
@@ -411,7 +409,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
-        //retrieve object with multiple city
+        /*TODO REMOVE COMMENT //retrieve object with multiple city
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
@@ -422,7 +420,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         //order by LastName
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
-        }
+        }*/
 
         //progress dialog
         final ProgressDialog dialog = ProgressDialog.show(ResultsActivity.this, "",

@@ -169,20 +169,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onClick(View v) {
                 //Download parse data
-                if (!FLAGSPEC)  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
+                /*TODO REMOVE COMMENT if (!FLAGSPEC)  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                        .setAction("Action", null).show();*/
 
-                else {
+                //else {
                     //showDataM();
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
                     startActivity(intent);
                     GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
                     setLinear(specialText, cityText);
-                }
+                //}
             }
         });
 
@@ -383,56 +383,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onRestoreInstanceState(savedInstanceState);
 
     }
-
-    //download doctors from DB
-
-    /*public  void showDataM() {
-
-        //get query: All doctor
-        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
-
-        //retrieve object with multiple city
-        if (CITY.size() != 0 && CITY.size() != citta.length)
-            doctorsQuery.whereContainedIn("Province", CITY);
-
-        //retrieve object with multiple city
-        if (SPECIAL.size() != 0 && SPECIAL.size() != special.length)
-            doctorsQuery.whereContainedIn("Specialization", SPECIAL);
-
-        //order by LastName
-        if (CITY.size() != 0 || SPECIAL.size() != 0) {
-            doctorsQuery.orderByAscending("LastName");
-        }
-
-        //progress dialog
-        final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                "Caricamento...", true);
-
-        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                if (e == null) {
-
-                    GlobalVariable.DOCTORS = objects;
-                    for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
-                        int j = i + 1;
-                        Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
-                    }
-
-                    Intent intent = new Intent(MainActivity.this,
-                            ResultsActivity.class);
-                    startActivity(intent);
-                    dialog.dismiss();
-
-                } else {
-
-                    Log.d("Main", "Error downloading parse data ");
-                }
-            }
-        });
-
-    }*/
 
 
     @Override
