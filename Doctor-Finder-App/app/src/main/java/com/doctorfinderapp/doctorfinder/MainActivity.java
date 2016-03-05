@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ResearchAdapter sAdapter;
-    private ArrayList<Doctor> doctors;
+    private List<Doctor> doctors;
     private ArrayList<String[]> research = new ArrayList<>();
     static List<ParseObject> USERSMAIN = null;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,

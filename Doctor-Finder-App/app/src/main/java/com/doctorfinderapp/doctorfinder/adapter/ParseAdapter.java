@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
     List<ParseObject> DOCTORS;
 
-    public ParseAdapter(List<ParseObject> doctors) { this.DOCTORS = doctors;}
+    public ParseAdapter(List<ParseObject> doctors) { this.DOCTORS = new ArrayList<>(doctors);}
 
     @Override
     public ParseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -105,4 +106,56 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+    public ParseObject removeItem(int position) {
+        final ParseObject doctor = DOCTORS.remove(position);
+        notifyItemRemoved(position);
+        return doctor;
+    }
+
+    public void addItem(int position, ParseObject doctor) {
+        DOCTORS.add(position, doctor);
+        notifyItemInserted(position);
+    }
+
+    public void moveItem(int fromPosition, int toPosition) {
+        final ParseObject doctor = DOCTORS.remove(fromPosition);
+        DOCTORS.add(toPosition, doctor);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    public void animateTo(List<ParseObject> doctors) {
+        applyAndAnimateRemovals(doctors);
+        applyAndAnimateAdditions(doctors);
+        applyAndAnimateMovedItems(doctors);
+    }
+
+    private void applyAndAnimateRemovals(List<ParseObject> newDoctor) {
+        for (int i = DOCTORS.size() - 1; i >= 0; i--) {
+            final ParseObject doctor = DOCTORS.get(i);
+            if (!newDoctor.contains(doctor)) {
+                removeItem(i);
+            }
+        }
+    }
+
+    private void applyAndAnimateAdditions(List<ParseObject> newDoctor) {
+        for (int i = 0, count = newDoctor.size(); i < count; i++) {
+            final ParseObject doctor = newDoctor.get(i);
+            if (!DOCTORS.contains(doctor)) {
+                addItem(i, doctor);
+            }
+        }
+    }
+
+    private void applyAndAnimateMovedItems(List<ParseObject> newDoctor) {
+        for (int toPosition = newDoctor.size() - 1; toPosition >= 0; toPosition--) {
+            final ParseObject doctor = newDoctor.get(toPosition);
+            final int fromPosition = newDoctor.indexOf(doctor);
+            if (fromPosition >= 0 && fromPosition != toPosition) {
+                moveItem(fromPosition, toPosition);
+            }
+        }
+    }
+
 }

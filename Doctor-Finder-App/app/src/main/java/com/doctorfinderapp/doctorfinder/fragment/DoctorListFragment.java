@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.parse.ParseObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,9 +26,10 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 
 public class DoctorListFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
+    private static RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ParseAdapter parseAdapter;
+    private static ParseAdapter parseAdapter;
+    private List<ParseObject> DOCTORS;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,9 @@ public class DoctorListFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        parseAdapter = new ParseAdapter(GlobalVariable.DOCTORS);
+        DOCTORS = GlobalVariable.DOCTORS;
+
+        parseAdapter = new ParseAdapter(DOCTORS);
 
         mRecyclerView.setAdapter(parseAdapter);
 
@@ -54,4 +61,8 @@ public class DoctorListFragment extends Fragment {
         super.onDestroy();
     }
 
+    public static void refreshDoctors(List<ParseObject> filters){
+        parseAdapter.animateTo(filters);
+        mRecyclerView.scrollToPosition(0);
+    }
 }

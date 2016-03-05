@@ -28,6 +28,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -178,12 +179,16 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                    Log.d("DOTTORE-PRIMA-QUERY", GlobalVariable.DOCTORS.get(i).getString("LastName"));
+                }
+                final List<ParseObject> doctorsFilter = filter(GlobalVariable.DOCTORS, newText);
+                DoctorListFragment.refreshDoctors(doctorsFilter);
                 return false;
             }
         });
@@ -448,9 +453,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void filter(String query){
+    public List<ParseObject> filter(List<ParseObject> Doctors,String query){
         query = query.toLowerCase();
-
+        final List<ParseObject> filteredModelList = new ArrayList<>();
+        for (ParseObject doctor : Doctors) {
+            //final String textName = doctor.getString("FirstName").toLowerCase();
+            final String textSurname = doctor.getString("LastName").toLowerCase();
+            if (textSurname.startsWith(query)) {
+                Log.d("QUERY: " + query + "--> ", textSurname);
+                filteredModelList.add(doctor);
+            }
+        }
+        return filteredModelList;
     }
 }
 
