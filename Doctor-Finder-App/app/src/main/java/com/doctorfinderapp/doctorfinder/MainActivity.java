@@ -39,6 +39,7 @@ import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
+import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -55,6 +56,7 @@ import com.parse.ParseUser;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,11 +68,13 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView mRecyclerView, sRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager, sLayoutManager;
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
+    private ResearchAdapter sAdapter;
     private ArrayList<Doctor> doctors;
+    private ArrayList<String[]> research = new ArrayList<>();
     static List<ParseObject> USERSMAIN = null;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -116,14 +120,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
+        sRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_research);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
+        sRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        sLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        sRecyclerView.setLayoutManager(sLayoutManager);
 
         //cards
         card_recent_doctor = (CardView) findViewById(R.id.card_doctors);
@@ -131,9 +139,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         card_recent_search = (CardView) findViewById(R.id.card_research);
         card_recent_search_null = (CardView) findViewById(R.id.recent_search_null);
 
-
         //set recycler doctors continuously
-        updateRecycler();
+        updateRecyclerDoctor();
 
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
@@ -182,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                 else {
                     showDataM();
-                    updateRecentSearch();
+                    setLinear(specialText, cityText);
                 }
             }
         });
@@ -563,11 +570,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     @Override
     protected void onResume() {
-        updateRecycler();
+        updateRecyclerDoctor();
+        updateRecentSearch();
         super.onResume();
     }
 
-    public void updateRecycler(){
+    //method tu update DoctorRecycler
+    public void updateRecyclerDoctor(){
         if (GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) {
             card_recent_doctor_null.setVisibility(View.INVISIBLE);
             card_recent_doctor.setVisibility(View.VISIBLE);
@@ -575,21 +584,48 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
         //initialize more Persons
         doctors = GlobalVariable.recentDoctors;
-
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
-
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
+    //method to update Linear recycler
     public void updateRecentSearch(){
         if (GlobalVariable.FLAG_CARD_SEARCH_VISIBLE) {
             card_recent_search_null.setVisibility(View.INVISIBLE);
             card_recent_search.setVisibility(View.VISIBLE);
             GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
         }
-        //TODO recycler
+
+        //specify adapter
+        sAdapter = new ResearchAdapter(research);
+        //set adapter to recycler view
+        sRecyclerView.setAdapter(sAdapter);
     }
+
+    //method to add Linear to recycler
+    public void setLinear(TextView s, TextView c){
+        String special = s.getText().toString();
+        String city = c.getText().toString();
+        String[] linear = {special, city};
+        boolean flag = true;
+
+        for (int i = 0; i < research.size() ; i++) {
+            if (research.get(i)[0].equals(linear[0]) && research.get(i)[1].equals(linear[1])){
+                flag = false;
+            }
+
+        }
+        //if linear not exist add it
+        if (flag){
+
+            if (research.size() < 10) research.add(linear);
+            else {
+                research.add(0, linear);
+                research.remove(10);
+            }
+        }
+    }
+
 }

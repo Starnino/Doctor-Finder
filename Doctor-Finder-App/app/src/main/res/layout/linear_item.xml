@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_healing_white_24dp"
+            android:tint="@color/docfinder"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/fab_margin"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/categ"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:text="Categoria\ne altre 2"
+            android:textColor="@color/grey"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/fab_margin"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_city_white_24dp"
+            android:tint="@color/docfinder"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/fab_margin" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:textSize="11sp"
+            android:layout_height="wrap_content"
+            android:text="Citta\ne altre 3"
+            android:textColor="@color/grey"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_weight="0.5" />
+
+        <ImageButton
+            android:id="@+id/research_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_white_24dp"
+            android:tint="@color/docfinder"
+            android:background="@color/white"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/fab_margin"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+</RelativeLayout>

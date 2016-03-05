@@ -165,14 +165,14 @@ public class DoctorFragment extends Fragment {
         feedback_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DoctorActivity.showFeedback(v);
+                /*//DoctorActivity.showFeedback(v);
                 Fragment fragment = new FeedbackFragment();
                 // Insert the fragment by replacing any existing fragment
-                FragmentManager fragmentManager = getChildFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_doctor, fragment)
-                        .commit();
-                //DoctorActivity.FeedbackStarter(v);
+                        .commit();*/
+               // DoctorActivity.FeedbackStarter();
             }
         });
 
