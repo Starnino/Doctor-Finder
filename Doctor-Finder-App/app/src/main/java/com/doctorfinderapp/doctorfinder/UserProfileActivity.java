@@ -76,7 +76,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        /*
+/*
 
         segnala = (Button) findViewById(R.id.segnala) ;
         segnala.setOnClickListener(new View.OnClickListener() {
@@ -100,17 +100,12 @@ public class UserProfileActivity extends AppCompatActivity {
         USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
-
-        //volevo far visualizzare il numero di telefono sul profilo utente perchè le info sono poche
-        TelephonyManager tMgr = (TelephonyManager)mAppContext.getSystemService(Context.TELEPHONY_SERVICE);
-        String mPhoneNumber = tMgr.getLine1Number();
-
-        */
+*/
     }
 
 
         //UserImage Baccerino uno di noi
-
+/*
     private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
         query.whereEqualTo("username", user.getEmail());
@@ -149,6 +144,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
-
+*/
 }
 
