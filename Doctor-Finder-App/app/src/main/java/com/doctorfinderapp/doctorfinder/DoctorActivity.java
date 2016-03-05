@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -34,7 +35,7 @@ import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorActivity extends AppCompatActivity implements View.OnClickListener{
+public class DoctorActivity extends AppCompatActivity implements View.OnClickListener,FeedbackFragment.OnFragmentInteractionListener{
 
 
     //Doctor information
@@ -93,6 +94,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fabemail.setOnClickListener(this);
 
 
+
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Replace the contents of the container with the new fragment
@@ -104,6 +106,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
+
+
 
         //getting data from xml
         TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
@@ -181,7 +185,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         } flag = true;
     }
-
     @Override
     public boolean onSupportNavigateUp(){
         finish();
@@ -262,26 +265,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private void openFeedbackDialog(){
 
     }
-    public static void FeedbackStarter(View view){
 
-        FragmentActivity activity = (FragmentActivity)view.getContext();
-
-        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
-
-        ft.replace(R.id.frame_doctor, fragment);
-
-        ft.commit();
-       // DoctorFragment doctorFragment = DoctorFragment.newInstance(index)
-        // Insert the fragment by replacing any existing fragment
-
-        //FragmentManager fragmentManager = getSupportFragmentManager();
-
-    }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        refreshDoctorList(currentDoctor);
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

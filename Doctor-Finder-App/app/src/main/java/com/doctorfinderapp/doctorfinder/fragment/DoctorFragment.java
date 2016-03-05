@@ -161,18 +161,23 @@ public class DoctorFragment extends Fragment {
         refreshDoctorList(currentDoctor);
         /**updated recent_doctor*/
 
-        CardView feedback_card = (CardView) rootView.findViewById(R.id.feedback_card);
-        feedback_card.setOnClickListener(new View.OnClickListener() {
+
+
+
+        RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
+        feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*//DoctorActivity.showFeedback(v);
-                Fragment fragment = new FeedbackFragment();
-                // Insert the fragment by replacing any existing fragment
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_doctor, fragment)
-                        .commit();*/
-               // DoctorActivity.FeedbackStarter();
+
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
+
+                ft.replace(R.id.frame_doctor, fragment);
+
+                ft.commit();
+
+
+
             }
         });
 

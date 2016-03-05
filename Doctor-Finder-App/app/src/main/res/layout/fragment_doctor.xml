@@ -429,12 +429,12 @@
             android:background="@color/white">
 
             <RelativeLayout
-
+                android:id="@+id/feedback_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:onClick="onClick"
+
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <ImageView
@@ -463,7 +463,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/feedback_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
