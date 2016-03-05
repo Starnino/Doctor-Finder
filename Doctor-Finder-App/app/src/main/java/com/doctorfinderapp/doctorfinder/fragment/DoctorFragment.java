@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
@@ -161,18 +162,23 @@ public class DoctorFragment extends Fragment {
         refreshDoctorList(currentDoctor);
         /**updated recent_doctor*/
 
-        CardView feedback_card = (CardView) rootView.findViewById(R.id.feedback_card);
-        feedback_card.setOnClickListener(new View.OnClickListener() {
+
+
+
+        RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
+        feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DoctorActivity.showFeedback(v);
-                Fragment fragment = new FeedbackFragment();
-                // Insert the fragment by replacing any existing fragment
-                FragmentManager fragmentManager = getChildFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_doctor, fragment)
-                        .commit();
-                //DoctorActivity.FeedbackStarter(v);
+
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
+
+                ft.replace(R.id.frame_doctor, fragment);
+
+                ft.commit();
+
+
+
             }
         });
 
