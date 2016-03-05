@@ -187,19 +187,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         } flag = true;
     }
-    @Override
-    public boolean onSupportNavigateUp(){
-        /*FragmentManager fm = getSupportFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStack();
-            return true;
-        }else {
-            super.finish();
-            return true;
-        }*/
-        getSupportFragmentManager().popBackStack();
-        return true;
-    }
+
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -208,6 +197,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 FragmentManager fm = getSupportFragmentManager();
                 if (fm.getBackStackEntryCount() > 0) {
                     fm.popBackStack();
+                }else{
+                    super.onBackPressed();
+                    finish();
                 }
                 return true;
             default:
@@ -298,19 +290,48 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
+        Log.d("Doctor Activity"," On back pressed");
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("Doctor Activity",""+getSupportFragmentManager().getBackStackEntryCount());
+            getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
+            finish();
         }
     }
     @Override
     public void onBackStackChanged() {
+        Log.d("Doctor Activity"," On back stqck changed");
         shouldDisplayHomeUp();
     }
     public void shouldDisplayHomeUp(){
-        //Enable Up button only  if there are entries in the back stack
-        boolean canback = getSupportFragmentManager().getBackStackEntryCount()>0;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(canback);
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("Doctor Activity",""+getSupportFragmentManager().getBackStackEntryCount());
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+            finish();
+        }
     }
+    @Override
+    public boolean onSupportNavigateUp(){
+        /*FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+            return true;
+        }else {
+            super.finish();
+            return true;
+        }*/
+        Log.d("Doctor Activity"," On support Navigate up");
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("Doctor Activity",""+getSupportFragmentManager().getBackStackEntryCount());
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+            finish();
+        }
+        return true;
+    }
+
 }

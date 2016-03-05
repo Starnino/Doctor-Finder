@@ -263,10 +263,11 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this.getContext(), "Info window clicked",
                 Toast.LENGTH_SHORT).show();
+        Log.d("mappa","infowindow clicked");
     }
 
 
-    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter,GoogleMap.OnInfoWindowClickListener {
 
         private final View myContentsView;
 
@@ -311,6 +312,12 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
             return myContentsView;
+        }
+
+        @Override
+        public void onInfoWindowClick(Marker marker) {
+
+            Log.d("mappa","infowindow2 clicked");
         }
     }
 
