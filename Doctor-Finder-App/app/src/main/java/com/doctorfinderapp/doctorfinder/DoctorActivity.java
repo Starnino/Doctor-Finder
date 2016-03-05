@@ -93,7 +93,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fabemail.setOnClickListener(this);
 
 
-
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Replace the contents of the container with the new fragment
@@ -105,8 +104,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
-
-
 
         //getting data from xml
         TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
@@ -184,6 +181,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         } flag = true;
     }
+
     @Override
     public boolean onSupportNavigateUp(){
         finish();
@@ -281,4 +279,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        refreshDoctorList(currentDoctor);
+    }
 }

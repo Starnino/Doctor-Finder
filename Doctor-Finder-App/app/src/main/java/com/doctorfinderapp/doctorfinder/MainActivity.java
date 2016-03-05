@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                 else {
                     showDataM();
+                    GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
                     setLinear(specialText, cityText);
                 }
             }

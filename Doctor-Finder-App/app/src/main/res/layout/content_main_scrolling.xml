@@ -166,24 +166,6 @@
 
         <android.support.v7.widget.CardView
             android:layout_below="@id/recent_search"
-            android:id="@+id/card_research"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_margin="@dimen/fab_margin"
-            android:visibility="invisible">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_research"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
-            android:layout_gravity="center">
-        </android.support.v7.widget.RecyclerView>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_below="@id/recent_search"
             android:id="@+id/recent_search_null"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -200,6 +182,25 @@
                 android:textColor="@color/grey"/>
 
         </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/recent_search"
+            android:id="@+id/card_research"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/fab_margin"
+            android:visibility="invisible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_research"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:layout_gravity="center">
+        </android.support.v7.widget.RecyclerView>
+
+        </android.support.v7.widget.CardView>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabmain"
