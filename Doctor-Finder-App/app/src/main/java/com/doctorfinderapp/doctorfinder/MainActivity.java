@@ -81,14 +81,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
     public static final int FAB_OPEN_TIME = 1500;
-    boolean FLAGCITY = false, FLAGSPEC = false;
+    private boolean FLAGCITY = false, FLAGSPEC = false;
 
     //Parameters shared by fragment goes in activity
 
     private FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
-    private String[] citta, special;
-    private ArrayList<String> CITY, SPECIAL;
+    public static String[] citta, special;
+    public static ArrayList<String> CITY, SPECIAL;
     private TextView cityText, specialText;
     private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
@@ -188,7 +188,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         .setAction("Action", null).show();
 
                 else {
-                    showDataM();
+                    //showDataM();
+                    Intent intent = new Intent(MainActivity.this,
+                            ResultsActivity.class);
+                    startActivity(intent);
                     GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
                     setLinear(specialText, cityText);
                 }
@@ -394,9 +397,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     //download doctors from DB
-    //This must be done only here
 
-    public  void showDataM() {
+    /*public  void showDataM() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -418,31 +420,31 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
                 "Caricamento...", true);
 
-       doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
-           @Override
-           public void done(List<ParseObject> objects, ParseException e) {
+        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
 
-               if (e == null) {
+                if (e == null) {
 
-                   GlobalVariable.DOCTORS = objects;
-                   for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
-                       int j = i + 1;
-                       Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
-                   }
+                    GlobalVariable.DOCTORS = objects;
+                    for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                        int j = i + 1;
+                        Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
+                    }
 
-                   Intent intent = new Intent(MainActivity.this,
-                           ResultsActivity.class);
-                   startActivity(intent);
-                   dialog.dismiss();
+                    Intent intent = new Intent(MainActivity.this,
+                            ResultsActivity.class);
+                    startActivity(intent);
+                    dialog.dismiss();
 
-               } else {
+                } else {
 
-                   Log.d("Main", "Error downloading parse data ");
-               }
-           }
-       });
+                    Log.d("Main", "Error downloading parse data ");
+                }
+            }
+        });
 
-    }
+    }*/
 
 
     @Override

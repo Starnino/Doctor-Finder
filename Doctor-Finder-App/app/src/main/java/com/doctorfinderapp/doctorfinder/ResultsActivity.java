@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -38,6 +39,10 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -47,6 +52,8 @@ import java.util.List;
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
+    private static ViewPager viewPager;
+    private static TabLayout tabs;
     private boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2, fab_location;
     private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
@@ -54,8 +61,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Toast.makeText(this.getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
         //adding doctors data
         //AddDoctors.addData();
@@ -66,6 +71,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         //ParseUser currentUser = ParseUser.getCurrentUser();
+
+        //download from db
+        showDataM();
 
         setContentView(R.layout.activity_results);
 
@@ -89,12 +97,11 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         fab_location.setOnClickListener(this);
 
         // Setting ViewPager for each Tabs
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         // Give the TabLayout
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        tabs = (TabLayout) findViewById(R.id.tabs);
+
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.results_toolbar);
@@ -157,6 +164,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
         viewPager.setAdapter(adapter);
+        tabs.setupWithViewPager(viewPager);
         fab.startAnimation(fab_open_normal);
     }
 
@@ -171,6 +179,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return true;
             }
 
@@ -261,6 +270,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -359,6 +369,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 Log.d("fab_location", "open");
                 if (isFabOpen) {
                     fab.startAnimation(fab_close);
+                    fab1.startAnimation(fab_close);
+                    fab2.startAnimation(fab_close);
+                    fab1.setClickable(false);
+                    fab2.setClickable(false);
                     fab.setClickable(false);
                     isFabOpen = false;
                 }
@@ -384,6 +398,60 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void finish() {
         super.finish();
+    }
+
+    //download doctors from DB
+
+    public void showDataM() {
+
+        //get query: All doctor
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+
+        //retrieve object with multiple city
+        if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
+            doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
+
+        //retrieve object with multiple city
+        if (MainActivity.SPECIAL.size() != 0 && MainActivity.SPECIAL.size() != MainActivity.special.length)
+            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL);
+
+        //order by LastName
+        if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
+            doctorsQuery.orderByAscending("LastName");
+        }
+
+        //progress dialog
+        final ProgressDialog dialog = ProgressDialog.show(ResultsActivity.this, "",
+                "Caricamento...", true);
+
+        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    GlobalVariable.DOCTORS = objects;
+                    for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                        int j = i + 1;
+                        Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
+                    }
+
+                    dialog.dismiss();
+                    setupViewPager(viewPager);
+                    Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    Log.d("Main", "Error downloading parse data ");
+                }
+            }
+        });
+
+    }
+
+    public void filter(String query){
+        query = query.toLowerCase();
+
     }
 }
 
