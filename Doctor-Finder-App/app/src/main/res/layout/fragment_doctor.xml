@@ -356,7 +356,7 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:visibility="visible"iconuidlll
+                    android:visibility="visible"
                     app:iiv_color="@color/colorPrimaryDark"
                     app:iiv_icon="gmd-favorite"/>
 
