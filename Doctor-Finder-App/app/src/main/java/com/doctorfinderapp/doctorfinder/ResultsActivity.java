@@ -185,6 +185,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
+        page=Page.LIST;
+
         switch (page) {
             case LIST:
 
