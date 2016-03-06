@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         View header = navigationView.getHeaderView(0);
         TextView nome= (TextView) header.findViewById(R.id.name_user);
 
-        Log.d("dice di non usare i cazzo di log vuoti",user.getString("fName"));
+        //Log.d("dice di non usare i cazzo di log vuoti",user.getString("fName"));
         String name =user.getString("fName") ;
            nome.setText(name);
         TextView email= (TextView) header.findViewById(R.id.email_user);

@@ -42,14 +42,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="20dp"
                     android:gravity="center">
+
                     <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
                         android:id="@+id/user_propic"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:src="@drawable/doctoravatar"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:layout_margin="16dp" />
                 </LinearLayout>
 
@@ -67,22 +67,12 @@
         </android.support.design.widget.AppBarLayout>
 
 
-
-
-
-
-
-
     <FrameLayout
         android:id="@+id/frame_doctor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </FrameLayout>
-
-
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabtelephone"
