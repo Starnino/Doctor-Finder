@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.doctorfinderapp.doctorfinder">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -28,7 +29,8 @@
     <application
         android:name=".functions.App"
         android:allowBackup="true"
-        android:icon="@drawable/iconaapp"
+        tools:replace="android:icon"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"

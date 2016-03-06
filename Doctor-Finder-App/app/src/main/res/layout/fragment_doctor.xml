@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-
     android:background="@color/google_grey"
-
     android:theme="@style/AppTheme"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.doctorfinderapp.doctorfinder.DoctorActivity">
@@ -42,17 +39,15 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_account_circle_black_24dp" />
 
                     <TextView
                         android:id="@+id/txtnome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem1"
-                        android:layout_toRightOf="@id/ivContactItem1"
                         android:text="Nome:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#212121" />
@@ -63,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/ivContactItem1"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@+id/ivContactItem1"
                         android:text="Nessun nome settato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -86,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_info_black_24dp"
                         android:visibility="visible" />
 
@@ -94,10 +89,8 @@
                         android:id="@+id/txtSpec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem2"
-                        android:layout_toRightOf="@id/ivContactItem2"
                         android:text="Specializzazione:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#212121" />
@@ -107,11 +100,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtSpec"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="8dp"
                         android:layout_toEndOf="@id/ivContactItem2"
-                        android:layout_toRightOf="@id/ivContactItem2"
                         android:text="Nessuna specializzazione settata"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
@@ -133,19 +124,16 @@
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_book_black_24dp" />
 
                     <TextView
                         android:id="@+id/tvNumber3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem3"
-
                         android:layout_toRightOf="@id/ivContactItem3"
-
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="Anni di esperienza: "
@@ -157,11 +145,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvNumber3"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="8dp"
                         android:layout_toEndOf="@id/ivContactItem3"
-                        android:layout_toRightOf="@id/ivContactItem3"
                         android:text="Non settato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
@@ -183,7 +169,7 @@
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_explore_black_24dp"
                         android:visibility="visible" />
 
@@ -194,25 +180,24 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem4"
-
-                        android:layout_toRightOf="@id/ivContactItem4"
-
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="Luogo di lavoro:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#212121" />
+
                     <ImageButton
                         android:id="@+id/maps_button"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                         android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:onClick="onClick"
                         android:padding="6dp" />
                     <TextView
@@ -220,11 +205,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvNumber4"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="8dp"
                         android:layout_toEndOf="@id/ivContactItem4"
-                        android:layout_toRightOf="@id/ivContactItem4"
                         android:text="Città"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
@@ -257,17 +240,15 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_account_circle_black_24dp" />
 
                     <TextView
                         android:id="@+id/txtprice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem7"
-                        android:layout_toRightOf="@id/ivContactItem7"
                         android:text="Prezzo medio della visita:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#212121" />
@@ -278,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/ivContactItem7"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@+id/ivContactItem7"
                         android:text="Nessun prezzo settato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -300,17 +281,15 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/ic_account_circle_black_24dp" />
 
                     <TextView
                         android:id="@+id/txtvisit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@id/ivContactItem8"
-                        android:layout_toRightOf="@id/ivContactItem8"
                         android:text="Orario:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#212121" />
@@ -321,16 +300,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/ivContactItem8"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@+id/ivContactItem8"
                         android:text="Nessun prezzo settato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
 
-
                 </RelativeLayout>
-
-
 
             </LinearLayout>
 
@@ -348,7 +324,7 @@
                 android:text="Amici che lo consigliano"
                 android:textAlignment="center"
                 android:textColor="@color/docfinder"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <!--@Starnino occupatene te
             <android.support.v7.widget.RecyclerView
@@ -367,8 +343,6 @@
             android:background="@color/white">
 
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -382,7 +356,7 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:tint="@color/colorPrimaryDark"
                     android:src="@drawable/ic_book_black_24dp"
                     android:visibility="visible" />
 
@@ -390,12 +364,8 @@
                     android:id="@+id/tvNumber6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem6"
-
-                    android:layout_toRightOf="@id/ivContactItem6"
-
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="Info:"
@@ -406,11 +376,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber6"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/ivContactItem6"
-                    android:layout_toRightOf="@id/ivContactItem6"
                     android:maxLines="10"
                     android:id="@+id/doctor_info"
                     android:text="Informazioni"
@@ -439,23 +407,21 @@
 
                 <ImageView
                     android:id="@+id/ivContactItem5"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_info_black_24dp" />
+                    android:scaleY="1.5"
+                    android:scaleX="1.5"
+                    android:tint="@color/colorPrimaryDark"
+                    android:src="@drawable/ic_star_rate_white_18dp" />
 
                 <TextView
                     android:id="@+id/tvNumber5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem5"
-
-                    android:layout_toRightOf="@id/ivContactItem5"
-
                     android:clickable="true"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -468,12 +434,13 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:checked="true"
+                    android:scaleX="0.6"
+                    android:scaleY="0.6"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:onClick="onClick"
                     android:padding="6dp" />
 
@@ -486,7 +453,8 @@
                     android:numStars="5"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:isIndicator="true"/>
+                    android:isIndicator="true"
+                    android:layout_marginStart="-15dp"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
