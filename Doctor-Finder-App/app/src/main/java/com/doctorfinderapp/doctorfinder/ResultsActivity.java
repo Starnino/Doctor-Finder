@@ -28,7 +28,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -46,6 +45,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 
 
@@ -57,6 +57,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2, fab_location;
     private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
+    public enum Page {LIST, MAP}
+    private Page page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +158,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onPageSelected(int position) {
                 switchFAB(position);
+                if (position == 0)
+                    page = Page.LIST;
+                else page = Page.MAP;
             }
 
             @Override
@@ -172,23 +177,43 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     //search view
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
+        getMenuInflater().inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+
+        switch (page) {
+            case LIST:
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
                 return true;
             }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                final List<ParseObject> doctorsFilter = filter(GlobalVariable.DOCTORS, newText);
-                DoctorListFragment.refreshDoctors(doctorsFilter);
-                return false;
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    final List<ParseObject> doctorsFilter = filter(GlobalVariable.DOCTORS, newText);
+                    DoctorListFragment.refreshDoctors(doctorsFilter);
+                    return false;
+                }
+            });
+
+            case MAP:
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
+                });
+
+        }
+
         // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
     }
@@ -217,10 +242,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
                 startActivity(intent_user);
                 break;
+
             case R.id.Qurami:
                 Intent intent_qurami = new Intent(ResultsActivity.this, MainActivityQurami.class);
                 startActivity(intent_qurami);
                 break;
+
             case R.id.inserisci_dottore:
                 Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
 
@@ -230,6 +257,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
+
             case R.id.about:
                 Intent intent_about = new Intent(ResultsActivity.this, WebViewActivity.class);
 
@@ -252,9 +280,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.like:
                 Intent intent_like = Util.getOpenFacebookIntent(this);
-
-
-
                 startActivity(intent_like);
                 break;
 
@@ -276,7 +301,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    boolean flag = false;
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
