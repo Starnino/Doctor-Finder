@@ -222,16 +222,12 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             double lon = Double.parseDouble(curPosition.substring(22, 31));
             ArrayList<String> spec = (ArrayList<String>) DOCTORTHIS.get("Specialization");
             Util.setSpecialization(spec);
-
-
-
-
+//
             String sex = "";
             if (DOCTORTHIS.get("Sesso").equals("M"))
                 sex = "Dott.";
             else
                 sex = "Dott.ssa";
-
 
             String id = Integer.toString(i);
             Marker currentMarker = gMap.addMarker(new MarkerOptions()
