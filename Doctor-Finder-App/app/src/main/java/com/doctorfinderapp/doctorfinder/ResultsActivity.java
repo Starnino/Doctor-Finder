@@ -151,7 +151,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
-        //adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -216,8 +216,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         for (int i = 0; i < numMarker; i++) {
             ParseObject DOCTORTHIS = doctors.get(i);
             String curPosition = DOCTORTHIS.get("Marker").toString();
-
             Log.d("mapp",DOCTORTHIS.getString("FirstName"));
+            Log.d("lat", curPosition.substring(6, 15));
+            Log.d("long", curPosition.substring(22, 31));
             double lat = Double.parseDouble(curPosition.substring(6, 15));
             double lon = Double.parseDouble(curPosition.substring(22, 31));
             ArrayList<String> spec = (ArrayList<String>) DOCTORTHIS.get("Specialization");
