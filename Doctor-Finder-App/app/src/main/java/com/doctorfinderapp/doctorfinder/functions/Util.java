@@ -66,4 +66,10 @@ public class Util {
             return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/dcfind"));
         }
     }
+
+
+    public ParseObject getDoctorFromList(ArrayList<ParseObject> list, int index){
+
+        return list.get(index);
+    }
 }

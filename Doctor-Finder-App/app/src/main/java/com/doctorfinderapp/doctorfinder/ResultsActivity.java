@@ -488,7 +488,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
                 } else {
-
+                    dialog.dismiss();
                     Log.d("Main", "Error downloading parse data ");
                 }
             }

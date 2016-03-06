@@ -110,7 +110,7 @@ public class CalendarAdapter extends BaseAdapter {
             setSelected(v);
             previousView = v;
         } else {
-            v.setBackgroundResource(R.layout.list_item_background);
+           // v.setBackgroundResource(R.layout.list_item_background);
         }
         dayView.setText(gridvalue);
 

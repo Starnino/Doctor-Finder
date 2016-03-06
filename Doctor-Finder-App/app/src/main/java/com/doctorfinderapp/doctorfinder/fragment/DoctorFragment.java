@@ -42,6 +42,10 @@ import com.google.android.gms.maps.GoogleMap;
 
 import com.parse.ParseObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +62,7 @@ public class DoctorFragment extends Fragment {
     private ArrayList<String> DOCTOR_WORK_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
+    private JSONArray DOCTOR_MARKER_ARRAY;
     private String DOCTOR_FEEDBACK;
     private boolean DOCTOR_SEX;
     private String DOCTOR_DESCRIPTION;
@@ -69,6 +74,7 @@ public class DoctorFragment extends Fragment {
     private double LONG;
     private static int index;
     public  GoogleMap googleMap;
+
 
     public DoctorFragment() {
     }
@@ -113,10 +119,28 @@ public class DoctorFragment extends Fragment {
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
 
+        /*DOCTOR_MARKER_ARRAY= (JSONArray) DOCTORTHIS.get("Marker");
 
+
+
+        try {
+            JSONObject marker= (JSONObject) DOCTOR_MARKER_ARRAY.get(0);
+            LAT = Double.parseDouble((String) marker.get("Lat"));
+            LONG=Double.parseDouble((String) marker.get("Long"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+*/
         String curPosition = DOCTORTHIS.get("Marker").toString();
+
+
+        /*DONT USE SUBSTRING IS NOT JSON*/
+
         LAT = Double.parseDouble(curPosition.substring(6, 15));
         LONG = Double.parseDouble(curPosition.substring(22, 31));
+
+
+
 
         //getting data from xml
         TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);

@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyAndroidKey'
+            keyPassword 'quantomacina'
+            storeFile file('/home/fedebyes/workspace/keystores/android.jks')
+            storePassword 'quantomacina'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     productFlavors {
@@ -17,24 +25,20 @@ android {
             minSdkVersion 15
         }
     }
-
     defaultConfig {
 
         applicationId "com.doctorfinderapp.doctorfinder"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.01"
     }
-
-
     buildTypes {
         release {
             minifyEnabled false
-
+            signingConfig signingConfigs.config
         }
     }
-
 }
 repositories {
     mavenCentral()
@@ -43,27 +47,19 @@ repositories {
 
 
 dependencies {
-
-
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.+'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
-
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
-
     //qurami
     compile 'com.qurami.android.link:quramilink:0.1.0'
-
     //intro
     compile 'com.github.paolorotolo:appintro:3.4.0'
-
-
-
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
 
