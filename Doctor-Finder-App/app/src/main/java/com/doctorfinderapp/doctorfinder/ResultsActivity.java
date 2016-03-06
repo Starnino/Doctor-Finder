@@ -30,6 +30,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
@@ -185,6 +186,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         MenuItem filterItem = menu.findItem(R.id.action_filter);
+
+        page=Page.LIST;
 
         switch (page) {
 

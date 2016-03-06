@@ -9,6 +9,12 @@ android {
             storeFile file('/home/fedebyes/workspace/keystores/android.jks')
             storePassword 'quantomacina'
         }
+        keyGiampo {
+            keyAlias 'doctorfinderkeystore'
+            keyPassword 'mianonna'
+            storeFile file('/home/fedebyes/workspace/keystores/doctorfinder.jks')
+            storePassword 'mianonna'
+        }
     }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -31,7 +37,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 2
-        versionName "1.01"
+        versionName "2.0"
     }
     buildTypes {
         release {
