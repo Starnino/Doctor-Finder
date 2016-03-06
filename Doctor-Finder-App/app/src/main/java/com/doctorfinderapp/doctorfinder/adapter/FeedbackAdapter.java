@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import java.util.List;
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.FeedbackViewHolder> {
 
 
+    List<ParseObject> feedbacklist;
+
     @Override
     public FeedbackAdapter.FeedbackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.feedback_item, parent, false);
@@ -30,7 +33,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     @Override
     public int getItemCount() {
-        return feedbacklist.size();
+        Log.d("Feedback", "" + feedbacklist.size());
+        return 3;
     }
 
     public static class FeedbackViewHolder extends RecyclerView.ViewHolder {
@@ -39,7 +43,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         }
     }
 
-    List<ParseObject> feedbacklist;
+
 
     public FeedbackAdapter(List<ParseObject> feedbacks) {
         super();

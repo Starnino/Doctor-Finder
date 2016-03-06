@@ -49,6 +49,7 @@ import java.util.List;
  * Fedebyes
  */
 public class DoctorFragment extends Fragment {
+
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -67,7 +68,7 @@ public class DoctorFragment extends Fragment {
     private double LAT;
     private double LONG;
     private static int index;
-    private GoogleMap googleMap;
+    public  GoogleMap googleMap;
 
     public DoctorFragment() {
     }
@@ -87,7 +88,7 @@ public class DoctorFragment extends Fragment {
         int indexFragment = getArguments().getInt("index", 0);
         index = indexFragment;
 
-
+        DoctorActivity.switchFAB(0);
     }
 
     @Override

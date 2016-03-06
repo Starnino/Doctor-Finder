@@ -1,7 +1,9 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -31,6 +33,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 
@@ -39,6 +42,7 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.google.android.gms.maps.GoogleMap;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -295,7 +299,19 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.fab_location:
-                //TODO
+
+                final Context context = this;
+                DoctorMapsFragment.googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+                    @Override
+                    public boolean onMyLocationButtonClick() {
+                        LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                            Toast.makeText(context, "GPS is disabled!", Toast.LENGTH_SHORT).show();
+                        }
+                        return false;
+                    }
+                });
+
                 break;
         }
     }

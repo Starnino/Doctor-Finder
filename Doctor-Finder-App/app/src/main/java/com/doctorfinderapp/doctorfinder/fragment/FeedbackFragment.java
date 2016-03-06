@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
@@ -58,6 +59,7 @@ public class FeedbackFragment extends Fragment {
         super.onCreate(savedInstanceState);
         int indexFragment = getArguments().getInt("index", 0);
         this.index=indexFragment;
+        DoctorActivity.switchFAB(1);
     }
 
     @Override
@@ -67,6 +69,7 @@ public class FeedbackFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_feedback,
                 container, false);
         //recycler view
+
 
         RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recycler_view);
 
@@ -114,6 +117,7 @@ public class FeedbackFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        DoctorActivity.switchFAB(0);
         mListener = null;
     }
 

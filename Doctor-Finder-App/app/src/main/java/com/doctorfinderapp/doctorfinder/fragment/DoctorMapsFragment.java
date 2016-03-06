@@ -1,6 +1,8 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -26,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -50,13 +54,14 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
     private String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
-    private static GoogleMap googleMap;
+    public static GoogleMap googleMap;
     private Bitmap MarkerSmall;
 
 
     @Override
     public void onMapReady(GoogleMap gMap) {
         googleMap = gMap;
+
 
         //rimpicciolisco il marker
         // MarkerSmall = resizeMarker(R.drawable.markermini,100);
@@ -81,12 +86,13 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
         //setUpMap(gMap);
         //setup map
+
         setUpMap();
 
     }
 
     private void permissionRequest() {
-        googleMap.setMyLocationEnabled(true);
+        //googleMap.setMyLocationEnabled(true);
         if (Build.VERSION.SDK_INT < 23) {
             googleMap.setMyLocationEnabled(true);
             Log.d(TAG, "sdk<23");
@@ -159,22 +165,26 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     private void setUpMapIfNeeded() {
         if (googleMap == null) {
             getMapAsync(this);
+            //setUpMap();
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        setUpMapIfNeeded();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        setUpMapIfNeeded();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
+
     }
 
     @Override
@@ -187,6 +197,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     public void setUpMap() {
 
         GoogleMap gMap = googleMap;
+
+
+        gMap.getUiSettings().setMapToolbarEnabled(true);
 
         doctors = GlobalVariable.DOCTORS;
         int numMarker = doctors.size();
@@ -209,6 +222,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             double lon = Double.parseDouble(curPosition.substring(22, 31));
             ArrayList<String> spec = (ArrayList<String>) DOCTORTHIS.get("Specialization");
             Util.setSpecialization(spec);
+
+
 
 
             String sex = "";
@@ -236,6 +251,27 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         gMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+
+
+        gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+
+                                              @Override
+                                              public void onInfoWindowClick(Marker marker) {
+                                                  String id= marker.getTitle();
+                                                  int index= parseInt(id);
+
+
+
+                                                  Context context = getContext();
+                                                  Intent intent = new Intent(context, DoctorActivity.class);
+                                                  //------
+                                                  intent.putExtra("index", index);
+                                                  //------
+                                                  context.startActivity(intent);
+                                                  Log.d("mappa","infowindow3 clicked");
+                                              }
+                                          }
+        );
 
 
     }
@@ -267,7 +303,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     }
 
 
-    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter,GoogleMap.OnInfoWindowClickListener {
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
 
@@ -314,11 +350,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             return myContentsView;
         }
 
-        @Override
-        public void onInfoWindowClick(Marker marker) {
 
-            Log.d("mappa","infowindow2 clicked");
-        }
     }
 
 

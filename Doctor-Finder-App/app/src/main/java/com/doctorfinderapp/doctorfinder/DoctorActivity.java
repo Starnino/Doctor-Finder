@@ -41,6 +41,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     //Doctor information
     private static int index;
+
     private boolean DOCTOR_SEX;
 
     private String DOCTOR_FIRST_NAME;
@@ -51,9 +52,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
     private String Title;
-    private boolean isFabOpen = false;
-    private FloatingActionButton fabcontact,fabfeedback,fabemail, fabtelephone;
-    private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
+    private static boolean isFabOpen = false;
+    private static FloatingActionButton fabcontact,fabfeedback,fabemail, fabtelephone;
+    private static Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
 
 
     @Override
@@ -234,7 +235,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //switch fab
-    public void switchFAB(int position){
+    public static void switchFAB(int position){
         switch(position){
             case 0:
                 if (isFabOpen) {
@@ -333,5 +334,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
+
 
 }
