@@ -30,6 +30,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
