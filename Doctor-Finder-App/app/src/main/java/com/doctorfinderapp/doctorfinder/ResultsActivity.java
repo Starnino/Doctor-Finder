@@ -62,8 +62,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2, fab_location;
     private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
-    public enum Page {LIST, MAP}
-    private Page page = Page.LIST;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +151,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
-        adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+        //adapter.addFragment(new DoctorMapsFragment(), "Mappa");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -163,9 +161,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onPageSelected(int position) {
                 switchFAB(position);
-                if (position == 0)
-                    page = Page.LIST;
-                else page = Page.MAP;
             }
 
             @Override
@@ -187,12 +182,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         MenuItem filterItem = menu.findItem(R.id.action_filter);
 
-        page=Page.LIST;
-
-        switch (page) {
-
-            case LIST:
-
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -206,22 +195,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                     return false;
                 }
             });
-
-            case MAP:
-
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        //TODO
-                        return false;
-                    }
-                });
-        }
 
         // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
@@ -505,9 +478,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         query = query.toLowerCase();
         final List<ParseObject> filteredModelList = new ArrayList<>();
         for (ParseObject doctor : Doctors) {
-            //final String textName = doctor.getString("FirstName").toLowerCase();
+            final String textName = doctor.getString("FirstName").toLowerCase();
             final String textSurname = doctor.getString("LastName").toLowerCase();
-            if (textSurname.startsWith(query)) {
+            if (textSurname.startsWith(query) || textName.startsWith(query)) {
                 Log.d("QUERY: " + query + "--> ", textSurname);
                 filteredModelList.add(doctor);
             }
