@@ -62,7 +62,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private FloatingActionButton fab,fab1,fab2, fab_location;
     private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
     public enum Page {LIST, MAP}
-    private Page page;
+    private Page page = Page.LIST;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,8 +184,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         getMenuInflater().inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        MenuItem filterItem = menu.findItem(R.id.action_filter);
 
         switch (page) {
+
             case LIST:
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -212,10 +214,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
+                        //TODO
                         return false;
                     }
                 });
-
         }
 
         // Configure the search info and add any event listeners...
