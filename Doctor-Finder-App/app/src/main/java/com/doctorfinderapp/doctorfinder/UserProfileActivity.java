@@ -45,7 +45,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button segnala;
     private String USER_EMAIL;
     private int index;
-    //private List<ParseObject> user;
     private RelativeLayout segnalalo;
     private RelativeLayout rateus;
     private RelativeLayout cambia;
@@ -66,13 +65,10 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
+       // String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
 
-        setInfo(indexUser);
+        //.setInfo(indexUser);
 
-        //ParseObject USERTHIS = GlobalVariable.USER.get(index);
-        //Log.d("USERTHIS", USER_EMAIL);
-        //USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
 
@@ -150,44 +146,4 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 }
-/*
-    private void getUserImage(ParseUser user){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
-        query.whereEqualTo("username", user.getEmail());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject userPhoto, ParseException e) {
-                //userphoto exists
-
-                if (userPhoto == null) {
-                    Log.d("userphoto", "isnull");
-
-                } else {
-                    ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
-                    file.getDataInBackground(new GetDataCallback() {
-                        public void done(byte[] data, ParseException e) {
-                            if (e == null) {
-                                // data has the bytes for the resume
-                                //data is the image in array byte
-                                //must change image on profile
-                                GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                Log.d("Userphoto", "downloaded");
-
-                                RoundedImageView mImg = (RoundedImageView) findViewById(R.id.userino);
-                                mImg.setImageBitmap(GlobalVariable.UserPropic);
-                                //iv.setImageBitmap(bitmap );
-
-                            } else {
-                                // something went wrong
-                                Log.d("UserPhoto ", "problem download image");
-                            }
-                        }
-                    });
-
-                }
-            }
-        });
-
-    }
-*/
 

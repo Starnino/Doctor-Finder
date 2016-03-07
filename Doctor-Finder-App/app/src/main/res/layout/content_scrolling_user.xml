@@ -236,7 +236,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/icona_segnala"
                 android:layout_toRightOf="@id/icona_segnala"
-                android:text="Cambia i dati del mio profilo"
+                android:text="Segnalaci un problema"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -271,7 +271,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/rate"
                 android:layout_toRightOf="@id/rate"
-                android:text="Cambia i dati del mio profilo"
+                android:text="Valuta la nostra applicazione"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
