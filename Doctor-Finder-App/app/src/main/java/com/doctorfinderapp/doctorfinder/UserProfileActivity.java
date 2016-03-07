@@ -125,7 +125,7 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 new SweetAlertDialog(UserProfileActivity.this)
                         .setTitleText("Hai qualcosa da segnalarci?")
-                        .setContentText("Inviaci una mail a info@doctorfinderapp.com")
+                        .setContentText("Clicca sul pulsante posto in basso.")
                         .setConfirmText("Riceverai presto nostre notizie!")
                         .show();
             }
@@ -146,13 +146,20 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        RelativeLayout cambia = (RelativeLayout) findViewById(R.id.cambiamelo);
+        RelativeLayout cambia = (RelativeLayout) findViewById(R.id.inviaci_mail);
         cambia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SweetAlertDialog(UserProfileActivity.this)
-                        .setTitleText("Non lo so fare")
-                        .show();
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"info@doctorfinderapp.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
+                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+                try {
+                    startActivity(Intent.createChooser(i, "Invia mail usando..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(UserProfileActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -417,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             case R.id.Qurami:
                 Intent intent_qurami = new Intent(MainActivity.this, MainActivityQurami.class);
                 startActivity(intent_qurami);
+
                 break;
 
             case R.id.inserisci_dottore:

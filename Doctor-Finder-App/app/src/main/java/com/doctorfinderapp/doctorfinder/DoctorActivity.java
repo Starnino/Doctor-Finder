@@ -17,8 +17,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -33,6 +35,7 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -76,7 +79,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             index = extras.getInt("index");
         }
         doctors = GlobalVariable.DOCTORS;
-
 
         //set ParseDoctor this
         ParseObject DOCTORTHIS = doctors.get(index);
@@ -125,22 +127,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         fabcontact.startAnimation(fab_open_normal);
 
-       /*
+
         //bottone prenota visita
-        prenota_dottore.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View v) {
-                                           Intent i = new Intent();
-                                           //Froyo or greater (mind you I just tested this on CM7 and the less than froyo one worked so it depends on the phone...)
-                                           cn = new ComponentName("com.google.android.calendar", "com.android.calendar.LaunchActivity");
-                                           //less than Froyo
-                                           cn = new ComponentName("com.android.calendar", "com.android.calendar.LaunchActivity");
-                                           i.setComponent(cn);
-                                           startActivity(i);
-
-                                       }
-                                   }); */
-
+        //porco dio
 
             //getting data from xml
             TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);

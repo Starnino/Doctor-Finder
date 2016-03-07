@@ -243,6 +243,40 @@
 
         </RelativeLayout>
 
+        <include layout="@layout/item_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:id="@+id/inviaci_mail"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/inviacela"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_mail_outline_black_24dp"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/maill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/inviacela"
+                android:layout_toRightOf="@id/inviacela"
+                android:text="Mandaci una mail!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
