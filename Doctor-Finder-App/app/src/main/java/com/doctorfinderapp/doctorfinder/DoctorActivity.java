@@ -31,8 +31,11 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +46,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static int index;
 
     private boolean DOCTOR_SEX;
-
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
-
+    private ArrayList<String> DOCTOR_CITY_ARRAY;
+    private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ParseObject> doctors;
@@ -74,7 +77,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ParseObject DOCTORTHIS = doctors.get(index);
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
+        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
+        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
 
+
+        //refresh doctors searched
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.giampa,
+                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX );
+        refreshDoctorList(currentDoctor);
 
         //find fab buttons
         fabcontact = (FloatingActionButton)findViewById(R.id.fabcontact);
@@ -94,7 +105,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fabfeedback.setOnClickListener(this);
         fabtelephone.setOnClickListener(this);
         fabemail.setOnClickListener(this);
-
 
 
         // Begin the transaction
@@ -131,7 +141,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
         setSupportActionBar(toolbar);
 
-        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         if(DOCTOR_SEX)
             Title="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
@@ -145,21 +154,13 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         }
+
         final CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
         collapsingToolbarLayout.setTitle(Title);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
-
-
-
-
-
-
-
-
 
 
     }

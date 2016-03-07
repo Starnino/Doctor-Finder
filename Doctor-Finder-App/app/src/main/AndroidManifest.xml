@@ -107,10 +107,6 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="wIgqO6QfRM4vFuD3pWJi" />
 
-        <activity
-            android:name=".DoctorProfileActivity"
-            android:label="@string/title_activity_doctors_profile"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".WebViewActivity" />
         <activity
             android:name=".Qurami.MainActivityQurami"

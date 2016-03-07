@@ -3,7 +3,6 @@ package com.doctorfinderapp.doctorfinder.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.doctorfinderapp.doctorfinder.R.drawable.p_default;
+import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
+import static com.doctorfinderapp.doctorfinder.R.drawable.doctoravatar_piccolo;
 
 /**
  * Created by francesco on 01/03/16.
@@ -82,7 +80,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
         holder.city.setText(Util.setCity(city));
 
-        holder.profile.setImageResource(p_default);
+        holder.profile.setImageResource(doctor_avatar);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

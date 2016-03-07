@@ -87,12 +87,6 @@ public class FeedbackFragment extends Fragment {
         mRecyclerView.setAdapter(feedbackAdapter);
 
 
-
-
-
-
-
-
         return rootView;
     }
 

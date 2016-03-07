@@ -181,7 +181,7 @@ public class DoctorFragment extends Fragment {
 
 
         /**refresh recentDoctors*/                                   //doctor_rounded_avatar
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_rounded_avatar,
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
         refreshDoctorList(currentDoctor);
         /**updated recent_doctor*/

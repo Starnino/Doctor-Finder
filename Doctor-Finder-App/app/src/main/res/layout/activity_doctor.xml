@@ -48,7 +48,7 @@
                         android:id="@+id/user_propic"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:src="@drawable/doctoravatar"
+                        android:src="@drawable/doctor_avatar"
                         android:gravity="center_vertical"
                         android:layout_margin="16dp" />
                 </LinearLayout>

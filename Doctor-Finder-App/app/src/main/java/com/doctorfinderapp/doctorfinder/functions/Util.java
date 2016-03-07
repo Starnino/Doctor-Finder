@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -20,6 +21,7 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by francesco on 02/03/16.
@@ -89,7 +91,25 @@ public class Util {
 
 
     public ParseObject getDoctorFromList(ArrayList<ParseObject> list, int index){
-
         return list.get(index);
+    }
+
+    public static Bitmap downloadPhotoDoctor(ParseObject Doctor){
+        final String tablePhoto = "DoctorPh";
+        final String columnId = "idDoctor";
+        final String ID = Doctor.getObjectId();
+        Bitmap photo = null;
+        Log.d(columnId, ID);
+
+        ParseQuery<ParseObject> queryPhoto = ParseQuery.getQuery(tablePhoto);
+        queryPhoto.whereEqualTo(columnId, ID);
+
+        queryPhoto.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+            }
+        });
+        return photo;
     }
 }

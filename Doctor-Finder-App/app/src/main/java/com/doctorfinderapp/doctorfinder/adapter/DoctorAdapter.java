@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.doctorfinderapp.doctorfinder.DoctorProfileActivity;
+import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -59,7 +59,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, DoctorProfileActivity.class);
+                Intent intent = new Intent(context, DoctorActivity.class);
                 //------
                 intent.putExtra("index", position);
                 //------

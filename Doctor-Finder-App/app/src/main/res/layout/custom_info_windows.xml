@@ -8,7 +8,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/profile_image"
-        android:src="@drawable/doctoravatar"
+        android:src="@drawable/doctor_avatar"
         android:layout_centerVertical="true" />
 
     <LinearLayout
