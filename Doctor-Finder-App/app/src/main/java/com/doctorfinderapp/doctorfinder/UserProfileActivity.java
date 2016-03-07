@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -45,6 +46,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private int index;
     private List<ParseObject> user;
     private Button segnalalo;
+    private Button rateus;
+    private Button cambia;
 
 
     @Override
@@ -79,19 +82,41 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         Button segnala = (Button) findViewById(R.id.segnalalo);
-        fab.setOnClickListener(new View.OnClickListener() {
+        segnala.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new SweetAlertDialog(UserProfileActivity.this)
-                        .setTitleText("Invia una mail a info@doctorfinderapp.com . Saremo felici di risolvere il tuo problema")
+                        .setTitleText("Hai qualcosa da segnalarci?")
+                        .setContentText("Inviaci una mail a info@doctorfinderapp.com")
+                        .setConfirmText("Riceverai presto nostre notizie!")
                         .show();
 
             }
         });
 
+        Button rateus = (Button) findViewById(R.id.rateus);
+        rateus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
 
+                Bundle about = new Bundle();
+                about.putString("URL",
+                        "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
+                intent_about.putExtras(about);
+                startActivity(intent_about);
+                            }
+        });
 
-
+        Button cambia = (Button) findViewById(R.id.cambia);
+        cambia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SweetAlertDialog(UserProfileActivity.this)
+                        .setTitleText("Non lo so fare")
+                        .show();
+            }
+        });
 
 /*
 

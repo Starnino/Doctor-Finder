@@ -200,6 +200,7 @@
             android:layout_weight="1"
             android:text="Cambia i dati del mio profilo"
             android:clickable="true"
+            android:id="@+id/cambia"
             android:textColor="@color/docfinder"
             android:layout_gravity="center_horizontal" />
 
