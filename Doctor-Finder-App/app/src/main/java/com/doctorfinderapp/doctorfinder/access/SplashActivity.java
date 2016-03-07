@@ -12,6 +12,9 @@ import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//diobacco
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,6 +25,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+
 
         //inizialize parse
         //startParse(this.getApplicationContext());

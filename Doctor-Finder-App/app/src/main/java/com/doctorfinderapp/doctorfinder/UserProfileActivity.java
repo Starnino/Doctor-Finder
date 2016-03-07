@@ -54,7 +54,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private List<ParseObject> userList = null;
     private ParseObject currentUser = null;
     private boolean USER_SEX;
-    private String Title;
+    private String Title ="";
 
 
     @Override
@@ -74,24 +74,6 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
-        //Titolo AppBar
-        Title="Utente";
-
-        //nameProfile.setText(Title);
-        if(getSupportActionBar()!=null){
-            //getSupportActionBar().setTitle(Title);
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-
-        final CollapsingToolbarLayout collapsingToolbarLayout =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
-        collapsingToolbarLayout.setTitle(Title);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-        // transperent color = #00000000
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
         //se non sei loggato vai via
 
         if(ParseUser.getCurrentUser()!=null) {
@@ -108,8 +90,26 @@ public class UserProfileActivity extends AppCompatActivity {
             utente.setText(fisrtName + " " + lastName);
             email.setText(email_users);
 
+            Title=fisrtName + " " + lastName;
+
 
         }
+
+        //nameProfile.setText(Title);
+        if(getSupportActionBar()!=null){
+            //getSupportActionBar().setTitle(Title);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        final CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
+        collapsingToolbarLayout.setTitle(Title);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+        // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
+
 
 
         //floating button for report problems
