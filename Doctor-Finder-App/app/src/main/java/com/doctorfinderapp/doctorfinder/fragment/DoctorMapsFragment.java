@@ -300,7 +300,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
             tvSnippet.setText(marker.getSnippet());
             */
-
             String id= marker.getTitle();
             int index= parseInt(id);
 
