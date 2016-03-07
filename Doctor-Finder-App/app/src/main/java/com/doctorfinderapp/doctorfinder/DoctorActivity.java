@@ -130,13 +130,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         TextView info = (TextView) findViewById(R.id.doctor_info);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
 
-
-
-
         //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends2);
-
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
         setSupportActionBar(toolbar);
@@ -189,8 +183,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         } flag = true;
     }
-
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -283,13 +275,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private void openFeedbackDialog(){
 
     }
-
-
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
-
     @Override
     public void onBackPressed() {
         Log.d("Doctor Activity"," On back pressed");
