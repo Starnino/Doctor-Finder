@@ -229,14 +229,12 @@
 
 
     <string-array name="years">
-        <item>Tutti</item>
         <item>Meno di 5</item>
         <item>Tra 5 e 10</item>
         <item>Più di 10</item>
     </string-array>
 
     <string-array name="prezzi">
-        <item>Tutti</item>
         <item>Meno di 100</item>
         <item>101-150</item>
         <item>151-200</item>
@@ -244,7 +242,6 @@
     </string-array>
 
     <string-array name="feedback">
-        <item>Tutti</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

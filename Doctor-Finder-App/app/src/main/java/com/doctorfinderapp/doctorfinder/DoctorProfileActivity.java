@@ -21,9 +21,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.Calendar.CalendarAdapter;
-import com.doctorfinderapp.doctorfinder.Calendar.CalendarView;
-import com.doctorfinderapp.doctorfinder.Calendar.Utility;
+
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
@@ -212,15 +210,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
                 i.setComponent(cn);
                 startActivity(i);
 
-                //non è servito ad un cazzo perchè mi apre quello di sistema, DIO!
-
-                //in questo modo crasha
-               // Intent intent_calendario = new Intent(DoctorProfileActivity.this, CalendarContract.Calendars.class);
-               // startActivity(intent_calendario);
-
-                //stesso collegamento di qurami sul drawer
-               // Intent intent_qurami = new Intent(DoctorProfileActivity.this, MainActivityQurami.class);
-                //startActivity(intent_qurami);
             }
         });
 
