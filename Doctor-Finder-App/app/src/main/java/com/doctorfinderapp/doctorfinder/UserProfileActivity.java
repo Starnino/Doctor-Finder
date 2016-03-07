@@ -13,6 +13,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
@@ -45,9 +46,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private String USER_EMAIL;
     private int index;
     //private List<ParseObject> user;
-    private Button segnalalo;
-    private Button rateus;
-    private Button cambia;
+    private RelativeLayout segnalalo;
+    private RelativeLayout rateus;
+    private RelativeLayout cambia;
 
 
     @Override
@@ -65,13 +66,13 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //User information
-        //user = GlobalVariable.USER;
+        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
 
-        //
-        ParseObject USERTHIS = GlobalVariable.USER.get(index);
-        Log.d("USERTHIS", USER_EMAIL);
-        USER_EMAIL = USERTHIS.getString("email");
+        setInfo(indexUser);
+
+        //ParseObject USERTHIS = GlobalVariable.USER.get(index);
+        //Log.d("USERTHIS", USER_EMAIL);
+        //USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
 
@@ -92,7 +93,21 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button segnala = (Button) findViewById(R.id.segnalalo);
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert = new AlertDialog.Builder(UserProfileActivity.this);
+                alert.setTitle("Hai bisogno di aiuto?");
+                alert.setMessage("Se stai riscontrando problemi con il tuo profilo, o " +
+                        "hai problemi con un dottore, clicca sul pulsante posto in basso, segnala problema, " +
+                        " e spiegaci il tuo problema. Saremo a tua disposizione per aiutarti!");
+                alert.setPositiveButton("Ho capito", null);
+                alert.show();
+            }
+        });
+
+        RelativeLayout segnala = (RelativeLayout) findViewById(R.id.segnalalo);
         segnala.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +120,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button rateus = (Button) findViewById(R.id.rateus);
+        RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,10 +131,10 @@ public class UserProfileActivity extends AppCompatActivity {
                         "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
                 intent_about.putExtras(about);
                 startActivity(intent_about);
-                            }
+            }
         });
 
-        Button cambia = (Button) findViewById(R.id.cambia);
+        RelativeLayout cambia = (RelativeLayout) findViewById(R.id.cambiamelo);
         cambia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +143,10 @@ public class UserProfileActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+    }
+
+    private void setInfo(String inUser){
 
     }
 }
