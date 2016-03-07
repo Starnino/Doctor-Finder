@@ -65,6 +65,17 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //User information
+        user = GlobalVariable.USER;
+
+        ParseObject USERTHIS = user.get(index);
+        Log.d("USERTHIS", USER_EMAIL);
+        USER_EMAIL = USERTHIS.getString("email");
+
+        TextView email = (TextView) findViewById(R.id.emaillino);
+
+        //UserPhoto
+
 
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -118,19 +129,8 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-/*
-
-       //bugga parse
-
-        user = GlobalVariable.USER;
-
-        ParseObject USERTHIS = user.get(index);
-        Log.d("USERTHIS", USER_EMAIL);
-        USER_EMAIL = USERTHIS.getString("email");
-
-        TextView email = (TextView) findViewById(R.id.emaillino);
-*/
     }
+}
 
 
 /*
@@ -173,5 +173,4 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 */
-}
 

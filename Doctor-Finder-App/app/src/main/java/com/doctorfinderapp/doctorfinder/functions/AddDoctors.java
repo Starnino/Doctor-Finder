@@ -142,7 +142,7 @@ public class AddDoctors {
         drPhoto.saveInBackground();
     }
 
-    public  static void addData(Context c) {
+    public static void addData(Context c) {
 
         //CREATE DOCTORS
         /*context=c;
