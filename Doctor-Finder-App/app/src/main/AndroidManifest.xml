@@ -86,9 +86,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.doctorfinderapp.doctorfinder.MainActivity" />
         </activity>
-        <activity
-            android:name=".FeedbackItemActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".UserProfileActivity" />
 
         <meta-data

@@ -369,7 +369,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
-        //TODO REMOVE COMMENT //retrieve object with multiple city
+        //retrieve object with multiple city
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 

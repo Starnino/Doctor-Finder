@@ -66,16 +66,15 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_feedback,
-                container, false);
-        //recycler view
 
-
-        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recycler_view);
+        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
         FeedbackArray= new ArrayList<>();
+
         FeedbackArray.add(new ParseObject("Feedback"));
+        FeedbackArray.add(new ParseObject("Dio"));
         Log.d("Feedback",""+ FeedbackArray.size());
+
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -87,7 +86,7 @@ public class FeedbackFragment extends Fragment {
         mRecyclerView.setAdapter(feedbackAdapter);
 
 
-        return rootView;
+        return mRecyclerView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
