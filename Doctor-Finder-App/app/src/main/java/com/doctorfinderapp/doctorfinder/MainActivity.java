@@ -493,6 +493,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 mImg.setImageBitmap(GlobalVariable.UserPropic);
                                 //iv.setImageBitmap(bitmap );
 
+
                             } else {
                                 // something went wrong
                                 Log.d("UserPhoto ", "problem download image");

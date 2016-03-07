@@ -23,9 +23,7 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             app:contentScrim="?attr/colorPrimary"
-            android:fitsSystemWindows="true"
             app:expandedTitleTextAppearance="@android:color/transparent"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -37,7 +35,7 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
                 android:cropToPadding="false"
-                android:src="@drawable/header_background2" />
+                android:src="@drawable/userbackground" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +43,7 @@
                 android:gravity="center">
 
                 <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
-                    android:id="@+id/user_propic"
+                    android:id="@+id/user_photo"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:src="@drawable/doctor_avatar"
@@ -66,26 +64,15 @@
 
     <include layout="@layout/content_scrolling_user" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        android:popupTheme="@style/AppTheme.PopupOverlay" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/white"
-        android:src="@drawable/ic_info_black_24dp"
+        android:src="@drawable/information_icon"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         android:theme="@style/AppTheme"
         app:backgroundTint="@color/colorPrimary"/>
-
-
 
 </android.support.design.widget.CoordinatorLayout>

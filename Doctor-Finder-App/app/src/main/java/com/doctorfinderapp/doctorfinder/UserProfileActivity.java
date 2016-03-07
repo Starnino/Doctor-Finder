@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -57,7 +59,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ParseObject currentUser = null;
     private boolean USER_SEX;
     private String Title ="";
-
+    private RoundedImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
             Title=fisrtName + " " + lastName;
 
+            profile = (RoundedImageView) findViewById(R.id.user_photo);
+            profile.setImageBitmap(GlobalVariable.UserPropic);
 
         }
 
@@ -158,17 +162,17 @@ public class UserProfileActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                FragmentManager fm = getSupportFragmentManager();
-                if (fm.getBackStackEntryCount() > 0) {
-                    fm.popBackStack();
-                }else{
-                    super.onBackPressed();
-                    finish();
-                }
-                return true;
+                onBackPressed();
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }
 
