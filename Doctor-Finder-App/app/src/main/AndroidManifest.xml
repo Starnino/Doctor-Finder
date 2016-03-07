@@ -122,6 +122,8 @@
         <activity
             android:name=".Intro.MainActivityIntro"
             android:screenOrientation="portrait" />
+        <activity android:name=".Intro.DefaultIntro"
+            android:screenOrientation="portrait"/>
 
         </application>
 

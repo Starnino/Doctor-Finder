@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.Intro.CustomIntro;
+import com.doctorfinderapp.doctorfinder.Intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.ResultsActivity;
+import com.doctorfinderapp.doctorfinder.UserProfileActivity;
+import com.parse.ParseUser;
 
 public class FirstActivity extends Activity {
 
@@ -28,9 +32,6 @@ public class FirstActivity extends Activity {
         //immersion mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //parse inizialized?
-
 
         //set activity layout
         super.onCreate(savedInstanceState);
@@ -51,6 +52,11 @@ public class FirstActivity extends Activity {
         alert.setMessage("Non utilizzare questa applicazione in caso di emergenza, grazie!");
         alert.setPositiveButton("OK", null);
         alert.show();
+
+        //intro
+        if(ParseUser.getCurrentUser()==null){
+            Intent intent_intro = new Intent(FirstActivity.this, DefaultIntro.class);
+            startActivity(intent_intro);}
 
         //searchButton Click Listener
         searchButton.setOnClickListener(new View.OnClickListener() {
