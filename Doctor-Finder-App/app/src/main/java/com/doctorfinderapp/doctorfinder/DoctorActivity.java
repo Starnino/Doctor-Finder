@@ -260,12 +260,17 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 if (isFabOpen) {
                     Log.d("fab", "open");
                     fabfeedback.startAnimation(fab_close);
+                    fabcontact.startAnimation(fab_close);
+                    fabtelephone.startAnimation(fab_close);
+                    fabcontact.setClickable(false);
+                    fabtelephone.setClickable(false);
                     fabfeedback.setClickable(false);
                     isFabOpen = false;
                 }
                 fabcontact.startAnimation(fab_open_normal);
                 fabcontact.setClickable(true);
                 break;
+
             case 1:
                 Log.d("fab_location", "open");
                 fabcontact.startAnimation(fab_close);

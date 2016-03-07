@@ -89,7 +89,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem3"
                 android:layout_toRightOf="@id/ivContactItem3"
-                android:text="email utente:"
+                android:text="Email utente:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -139,7 +139,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/feedbackk"
                 android:layout_toRightOf="@id/feedbackk"
-                android:text="Visualizza Feedback lasciati"
+                android:text="Visualizza feedback lasciati"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -148,7 +148,7 @@
         <include layout="@layout/item_divider" />
 
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>-->
 
-        </android.support.v7.widget.CardView>
+        </LinearLayout>
 
 
         <include layout="@layout/item_divider" />
@@ -261,8 +261,8 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:tint="@color/colorPrimaryDark"
-                android:scaleX="2.0"
-                android:scaleY="2.0"
+                android:scaleX="1.8"
+                android:scaleY="1.8"
                 android:src="@drawable/ic_star_rate_white_18dp"
                 android:visibility="visible" />
             <TextView

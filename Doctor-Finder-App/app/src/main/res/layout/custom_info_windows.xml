@@ -60,7 +60,8 @@
             android:textColor="@color/docfinder"
             android:backgroundTint="@color/colorPrimaryDark"
             android:layout_gravity="right|bottom"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginBottom="@dimen/fab_margin"/>
 
     </LinearLayout>
 
