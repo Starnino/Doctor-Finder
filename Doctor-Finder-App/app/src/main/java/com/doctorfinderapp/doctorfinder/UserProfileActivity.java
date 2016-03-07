@@ -31,6 +31,8 @@ import android.util.Log;
 import java.util.List;
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String USER_EMAIL;
     private int index;
     private List<ParseObject> user;
-
+    private Button segnalalo;
 
 
     @Override
@@ -76,22 +78,24 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-/*
+        Button segnala = (Button) findViewById(R.id.segnalalo);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SweetAlertDialog(UserProfileActivity.this)
+                        .setTitleText("Invia una mail a info@doctorfinderapp.com . Saremo felici di risolvere il tuo problema")
+                        .show();
 
-        segnala = (Button) findViewById(R.id.segnala) ;
-        segnala.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-                alert.setTitle("Inviaci una mail!");
-                alert.setMessage("Scrivi una mail a info@doctorfinderapp.com spiegando " +
-                        "dettagliatamente il tuo problema. Saremo felici di aiutarti");
-                alert.setPositiveButton("Invia", null);
-                alert.setNegativeButton("Cancella",null);
-                alert.show();
-           }
+            }
         });
 
-        //bugga parse
+
+
+
+
+/*
+
+       //bugga parse
 
         user = GlobalVariable.USER;
 
@@ -104,7 +108,6 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
 
-        //UserImage Baccerino uno di noi
 /*
     private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");

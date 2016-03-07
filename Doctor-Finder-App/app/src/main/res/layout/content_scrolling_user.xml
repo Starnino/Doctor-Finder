@@ -200,7 +200,8 @@
             android:layout_weight="1"
             android:text="Cambia i dati del mio profilo"
             android:clickable="true"
-            android:textColor="@color/docfinder"/>
+            android:textColor="@color/docfinder"
+            android:layout_gravity="center_horizontal" />
 
         <include layout="@layout/item_divider" />
 
@@ -213,10 +214,12 @@
             android:layout_weight="1"
             android:text="Segnala problema"
             android:clickable="true"
-            android:textColor="@color/docfinder"/>
+            android:textColor="@color/docfinder"
+            android:layout_gravity="center_horizontal" />
 
 
         <include layout="@layout/item_divider" />
+
 
         <Button
             android:id="@+id/rateus"
@@ -227,7 +230,10 @@
             android:layout_weight="1"
             android:text="Valuta e Recensisci"
             android:clickable="true"
-            android:textColor="@color/docfinder"/>
+            android:textColor="@color/docfinder"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true" />
+
 
 
     </LinearLayout>
