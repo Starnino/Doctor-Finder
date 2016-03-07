@@ -124,7 +124,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
-/*
+
+       /*
         //bottone prenota visita
         prenota_dottore.setOnClickListener(new View.OnClickListener() {
                                        @Override
