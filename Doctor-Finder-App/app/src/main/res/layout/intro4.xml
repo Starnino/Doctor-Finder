@@ -46,7 +46,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:onClick="getStarted"
-        android:text="GET STARTED"/>
+        android:text="I PIATTI SONO FINITI, ADESSO FAI QUALCOSA DI SERIO E PROVA L'APPLICAZIONE"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
