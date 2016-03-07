@@ -48,6 +48,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private RelativeLayout segnalalo;
     private RelativeLayout rateus;
     private RelativeLayout cambia;
+    private boolean USER_SEX;
+    private String Title;
+
 
 
     @Override
@@ -65,15 +68,18 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       // String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
 
-        //.setInfo(indexUser);
+        Title="Utente";
 
+        //nameProfile.setText(Title);
+        if(getSupportActionBar()!=null){
+            //getSupportActionBar().setTitle(Title);
 
-        TextView email = (TextView) findViewById(R.id.emaillino);
-
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         
-        //UserPhoto
+
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
