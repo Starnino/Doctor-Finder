@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.doctorfinderapp.doctorfinder.Intro.CustomIntro;
 
@@ -25,7 +26,7 @@ public class DefaultIntro extends AppIntro {
     }
 
     private void loadMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, FirstActivity.class);
         startActivity(intent);
     }
 
