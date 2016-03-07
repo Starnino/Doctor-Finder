@@ -67,7 +67,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
        // String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
 
-        //setInfo(indexUser);
+        //.setInfo(indexUser);
 
 
         TextView email = (TextView) findViewById(R.id.emaillino);
