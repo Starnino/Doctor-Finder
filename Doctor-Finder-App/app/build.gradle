@@ -4,7 +4,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            storeFile file('/Users/vindel100/Desktop/doctorfinder.jks')
+            storeFile file('/home/giovanni/Desktop/doctorfinder_keystore')
             keyAlias 'doctorfinderkeystore'
             keyPassword 'mianonna'
             storePassword 'mianonna'

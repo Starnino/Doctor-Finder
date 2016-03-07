@@ -4,12 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +61,8 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         //retrieve index from Activity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -68,7 +71,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //scrolling
         setContentView(R.layout.activity_scrolling_user);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
         //Titolo AppBar
@@ -82,21 +85,33 @@ public class UserProfileActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
-        //setInfo(indexUser);
-        TextView utente = (TextView) findViewById(R.id.txt_users);
-        TextView email = (TextView) findViewById(R.id.emaillino);
+        final CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
+        collapsingToolbarLayout.setTitle(Title);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+        // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
-        //utente.setText(ParseUser.getCurrentUser().get("fName").toString() + " " + currentUser.get("lName").toString());
-        String fisrtName = ParseUser.getCurrentUser().get("fName").toString();
-        String lastName = ParseUser.getCurrentUser().get("lName").toString();
-        String email_users = ParseUser.getCurrentUser().get("email").toString();
-        utente.setText(fisrtName + " " + lastName);
-        email.setText(email_users);
+        //se non sei loggato vai via
 
-        //email.setText(ParseUser.getCurrentUser().get("email").toString());
+        if(ParseUser.getCurrentUser()!=null) {
 
-        //UserPhoto
+
+            String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
+            //setInfo(indexUser);
+            TextView utente = (TextView) findViewById(R.id.txt_users);
+            TextView email = (TextView) findViewById(R.id.emaillino);
+
+            String fisrtName = ParseUser.getCurrentUser().get("fName").toString();
+            String lastName = ParseUser.getCurrentUser().get("lName").toString();
+            String email_users = ParseUser.getCurrentUser().get("email").toString();
+            utente.setText(fisrtName + " " + lastName);
+            email.setText(email_users);
+
+
+        }
+
+
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -164,39 +179,5 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
-
-    /*private void setInfo(final String idUser){
-
-        ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("_User");
-
-        userQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                if (e == null) {
-
-                    userList = objects;
-
-                    for (int i = 0; i < userList.size(); i++) {
-                        if(userList.get(i).getObjectId().equals(idUser))
-                            currentUser=userList.get(i);
-                    }
-                }
-                else {
-                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Oops...")
-                            .setContentText("Qualcosa è andato storto!")
-                            .show();
-                }
-            }
-        });
-
-        TextView utente = (TextView) findViewById(R.id.tvNumber1);
-        TextView email = (TextView) findViewById(R.id.email);
-
-        //utente.setText(currentUser.get("fName").toString() + " " + currentUser.get("lName").toString());
-        //email.setText(currentUser.get("email").toString());
-
-    }*/
 }
 

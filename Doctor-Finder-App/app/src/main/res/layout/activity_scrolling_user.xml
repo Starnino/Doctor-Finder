@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white"
-    tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
-    android:theme="@style/AppTheme">
+    tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -18,7 +17,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
 
-            android:id="@+id/collapsing_toolbar_doc"
+            android:id="@+id/collapsing_toolbar_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:expandedTitleMarginStart="48dp"
@@ -56,7 +55,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_doctor"
+                android:id="@+id/toolbar_user"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"

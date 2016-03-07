@@ -224,8 +224,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);
+                if(ParseUser.getCurrentUser()!=null){
+                    Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
+                    startActivity(intent_user);}
                 break;
 
             case R.id.Qurami:

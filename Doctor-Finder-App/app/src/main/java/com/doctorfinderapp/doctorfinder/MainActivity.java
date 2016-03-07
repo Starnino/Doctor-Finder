@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -337,12 +338,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             ((AlertDialog) dialog).getListView().setItemChecked(i, false);
                         }
 
-                        if (title.equals("Seleziona Categoria")){
+                        if (title.equals("Seleziona Categoria")) {
                             specialText.setText("Nessuna");
                             FLAGSPEC = false;
-                        }
-
-                        else if (title.equals("Seleziona Provincia")) {
+                        } else if (title.equals("Seleziona Provincia")) {
                             cityText.setText("Nessuna");
                             FLAGCITY = false;
                         }
@@ -390,8 +389,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
+                if(ParseUser.getCurrentUser()!=null){
                 Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);
+                startActivity(intent_user);}
                 break;
 
             case R.id.Qurami:
