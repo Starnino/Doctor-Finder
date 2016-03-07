@@ -44,7 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button segnala;
     private String USER_EMAIL;
     private int index;
-    private List<ParseObject> user;
+    //private List<ParseObject> user;
     private Button segnalalo;
     private Button rateus;
     private Button cambia;
@@ -66,17 +66,17 @@ public class UserProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //User information
-        user = GlobalVariable.USER;
+        //user = GlobalVariable.USER;
 
-        ParseObject USERTHIS = user.get(index);
+        //
+        ParseObject USERTHIS = GlobalVariable.USER.get(index);
         Log.d("USERTHIS", USER_EMAIL);
         USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
 
+        
         //UserPhoto
-
-
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -131,8 +131,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 }
-
-
 /*
     private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");

@@ -90,7 +90,6 @@ public class AddDoctors {
                    doctorPhoto.saveInBackground();
 
                     */
-
                     Doctor.saveInBackground();
 
 
@@ -113,15 +112,13 @@ public class AddDoctors {
 
                 Log.d("Add doctor", "Saving doctor that not exist");
                 Log.d("Doctor", "adding" + email);
-
-
             }
         });
 
 
     }
 
-    public  static void addPhoto(Resources res) {
+    public static void addPhoto(Resources res) {
 
         //int photId[] = {R.drawable.p1-OK,R.drawable.p2-OK,R.drawable.p3-OK,R.drawable.p4,R.drawable.p5,R.drawable.p6,R.drawable.p7,R.drawable.p8};
         //String docid[] = {"56d76fb18f32d118c2ddab24-OK","56d76fb18f32d118c2ddab26-OK","56d76fb18f32d118c2ddab27-OK","56d76fb18f32d118c2ddab34-OK","56d76fb18f32d118c2ddab31-OK","56d76fb18f32d118c2ddab33-OK","56d76fb18f32d118c2ddab37"};

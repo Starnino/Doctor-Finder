@@ -382,9 +382,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
     }
-
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -433,8 +431,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             case R.id.like:
                 Intent intent_like = Util.getOpenFacebookIntent(this);
-
-
 
                 startActivity(intent_like);
                 break;

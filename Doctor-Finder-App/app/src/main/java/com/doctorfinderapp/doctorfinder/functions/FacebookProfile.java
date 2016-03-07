@@ -87,8 +87,6 @@ public class FacebookProfile {
 
                                //Log.d("friendsParse",friendsParse.toString());
 
-
-
                                //Log.d("Graph Response", "FriendS" + friends);
 
                                //Log.d("Graph Response", "email" + email);
@@ -126,8 +124,6 @@ public class FacebookProfile {
                                            if(results.size()>0){
                                               //UserPhoto exists
 
-
-
                                           }else{
 
                                               //userphoto NOT exists
@@ -149,12 +145,7 @@ public class FacebookProfile {
                                               userPhoto.put("username", userP.getUsername());
                                               userPhoto.put("profilePhoto", file);
                                               userPhoto.save();
-
-
-
                                           }
-
-
                                        } else {
                                            Log.d("Error get UserPhoto", "Error: " + e.getMessage());
                                        }

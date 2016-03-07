@@ -369,7 +369,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
-        /*TODO REMOVE COMMENT //retrieve object with multiple city
+        //TODO REMOVE COMMENT //retrieve object with multiple city
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
@@ -380,7 +380,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         //order by LastName
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
-        }*/
+        }
 
         //progress dialog
         final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
