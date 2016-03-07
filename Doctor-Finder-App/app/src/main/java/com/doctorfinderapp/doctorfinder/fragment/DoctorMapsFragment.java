@@ -322,9 +322,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             return myContentsView;
         }
 
-
     }
-
 
 }
 

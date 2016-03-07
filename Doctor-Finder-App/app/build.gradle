@@ -3,17 +3,11 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+        release {
+            storeFile file('/Users/francesco/Desktop/android.jks')
             keyAlias 'MyAndroidKey'
             keyPassword 'quantomacina'
-            storeFile file('/home/fedebyes/workspace/keystores/android.jks')
             storePassword 'quantomacina'
-        }
-        keyGiampo {
-            keyAlias 'doctorfinderkeystore'
-            keyPassword 'mianonna'
-            storeFile file('/home/fedebyes/workspace/keystores/doctorfinder.jks')
-            storePassword 'mianonna'
         }
     }
     compileSdkVersion 23
@@ -31,6 +25,7 @@ android {
             minSdkVersion 15
         }
     }
+
     defaultConfig {
 
         applicationId "com.doctorfinderapp.doctorfinder"
@@ -39,12 +34,15 @@ android {
         versionCode 2
         versionName "2.0"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.config
+
         }
     }
+
 }
 repositories {
     mavenCentral()
@@ -53,19 +51,33 @@ repositories {
 
 
 dependencies {
+
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.+'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
+
     //qurami
     compile 'com.qurami.android.link:quramilink:0.1.0'
+
     //intro
     compile 'com.github.paolorotolo:appintro:3.4.0'
+
+    compile 'cn.pedant.sweetalert:library:1.3'
+
+    compile 'com.code-troopers.betterpickers:library:2.5.1'
+
+    compile 'com.orhanobut:dialogplus:1.11@aar'
+
+    compile 'com.mikepenz:iconics-core:2.5.8@aar'
+    compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
 

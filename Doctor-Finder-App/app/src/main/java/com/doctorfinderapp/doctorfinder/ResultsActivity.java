@@ -53,6 +53,8 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
@@ -443,8 +445,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }*/
 
         //progress dialog
-        final ProgressDialog dialog = ProgressDialog.show(ResultsActivity.this, "",
-                "Caricamento...", true);
+        final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("Caricamento");
+        dialog.getProgressHelper().setBarColor(getResources().getColor(R.color.docfinder));
+        dialog.show();
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -458,16 +462,17 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                         Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
                     }
 
-                    dialog.dismiss();
+                    dialog.cancel();
                     setupViewPager(viewPager);
-
-
 
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
                 } else {
-                    dialog.dismiss();
-                    Log.d("Main", "Error downloading parse data ");
+                    dialog.cancel();
+                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText("Qualcosa è andato storto!")
+                            .show();
                 }
             }
         });
