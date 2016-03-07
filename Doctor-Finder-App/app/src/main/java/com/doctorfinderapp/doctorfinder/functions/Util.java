@@ -19,6 +19,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by francesco on 02/03/16.
@@ -40,6 +41,25 @@ public class Util {
         }
         return specializationString;
         /**finish setting specialization*/
+    }
+
+    public static String[][] setPosition(ArrayList<HashMap> position){
+        String[][] positionString = new String[position.size()][2];
+
+        HashMap currentMap;
+
+        if (position.size() == 1) {
+            currentMap = position.get(0);
+            positionString[0][0]= currentMap.get("Lat").toString();
+            positionString[0][1]= currentMap.get("Long").toString();
+        }else{
+            for (int i = 0; i <position.size() ; i++) {
+                currentMap = position.get(i);
+                positionString[i][0]= currentMap.get("Lat").toString();
+                positionString[i][1]= currentMap.get("Long").toString();
+            }
+        }
+        return positionString;
     }
 
     public static String reduceString(String string){

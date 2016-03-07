@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
         android:layout_width="70dp"
@@ -50,6 +50,16 @@
             android:scaleY="0.55"
             android:layout_gravity="start|bottom"
             android:layout_marginStart="-58dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="@string/doctor_map"
+            android:id="@+id/visualizza_profilo"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_gravity="start|bottom"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 

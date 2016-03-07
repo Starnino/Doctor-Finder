@@ -278,5 +278,7 @@
     <string name="title_activity_custom_intro">CustomIntro</string>
     <string name="title_activity_default_intro">Default Intro</string>
 
+    <string name="doctor_map">Visualizza Profilo</string>
+
 
 </resources>
