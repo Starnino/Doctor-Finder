@@ -20,6 +20,7 @@ import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -28,6 +29,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import java.util.List;
@@ -38,7 +40,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    private  AlertDialog.Builder alert;
+    private AlertDialog.Builder alert;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
@@ -48,9 +50,10 @@ public class UserProfileActivity extends AppCompatActivity {
     private RelativeLayout segnalalo;
     private RelativeLayout rateus;
     private RelativeLayout cambia;
+    private List<ParseObject> userList = null;
+    private ParseObject currentUser = null;
     private boolean USER_SEX;
     private String Title;
-
 
 
     @Override
@@ -68,7 +71,7 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        //Titolo AppBar
         Title="Utente";
 
         //nameProfile.setText(Title);
@@ -78,8 +81,21 @@ public class UserProfileActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        
 
+        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
+        //setInfo(indexUser);
+        TextView utente = (TextView) findViewById(R.id.txt_users);
+        TextView email = (TextView) findViewById(R.id.emaillino);
+
+        //utente.setText(ParseUser.getCurrentUser().get("fName").toString() + " " + currentUser.get("lName").toString());
+        String fisrtName = ParseUser.getCurrentUser().get("fName").toString();
+        String lastName = ParseUser.getCurrentUser().get("lName").toString();
+        String email_users = ParseUser.getCurrentUser().get("email").toString();
+        utente.setText(fisrtName + " " + lastName);
+        email.setText(email_users);
+        //email.setText(ParseUser.getCurrentUser().get("email").toString());
+
+        //UserPhoto
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +164,38 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    private void setInfo(String inUser){
+    /*private void setInfo(final String idUser){
 
-    }
+        ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("_User");
+
+        userQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    userList = objects;
+
+                    for (int i = 0; i < userList.size(); i++) {
+                        if(userList.get(i).getObjectId().equals(idUser))
+                            currentUser=userList.get(i);
+                    }
+                }
+                else {
+                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText("Qualcosa è andato storto!")
+                            .show();
+                }
+            }
+        });
+
+        TextView utente = (TextView) findViewById(R.id.tvNumber1);
+        TextView email = (TextView) findViewById(R.id.email);
+
+        //utente.setText(currentUser.get("fName").toString() + " " + currentUser.get("lName").toString());
+        //email.setText(currentUser.get("email").toString());
+
+    }*/
 }
 
