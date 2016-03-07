@@ -115,7 +115,6 @@
         </activity>
 
         <!--Intro-->
-
         <activity android:name=".Intro.DefaultIntro"
             android:screenOrientation="portrait"/>
 
