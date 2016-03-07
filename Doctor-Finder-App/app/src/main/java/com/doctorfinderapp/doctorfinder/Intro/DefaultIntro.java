@@ -2,23 +2,32 @@ package com.doctorfinderapp.doctorfinder.Intro;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
+import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.github.paolorotolo.appintro.AppIntro;
-import com.doctorfinderapp.doctorfinder.Intro.CustomIntro;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class DefaultIntro extends AppIntro {
 
     @Override
     public void init(Bundle savedInstanceState) {
+
+        //add immersive mode
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+        //finish immersive mode
+
         addSlide(SampleSlide.newInstance(R.layout.intro));
         addSlide(SampleSlide.newInstance(R.layout.intro2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));
@@ -26,8 +35,8 @@ public class DefaultIntro extends AppIntro {
     }
 
     private void loadMainActivity() {
-        Intent intent = new Intent(this, FirstActivity.class);
-        startActivity(intent);
+        Log.d("NON PARTE", "DIOCANE");
+        finish();
     }
 
     @Override
@@ -37,8 +46,6 @@ public class DefaultIntro extends AppIntro {
     @Override
     public void onSkipPressed() {
         loadMainActivity();
-        Toast.makeText(getApplicationContext(),
-                getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override

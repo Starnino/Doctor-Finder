@@ -108,6 +108,26 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
 
+        if (ParseUser.getCurrentUser() == null) {
+
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Avviso importante")
+                    .setContentText("Non usare questa applicazione in caso di emergenza!")
+                    .setConfirmText("OK, ho capito")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog
+                                    .setTitleText("Confermato")
+                                    .setContentText("In caso di emergenza chiama sempre prima i soccorsi!")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(null)
+                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        }
+                    })
+                    .show();
+        }
+
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
         sRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_research);

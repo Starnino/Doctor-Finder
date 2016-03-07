@@ -10,13 +10,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.Intro.CustomIntro;
 import com.doctorfinderapp.doctorfinder.Intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
-import com.doctorfinderapp.doctorfinder.UserProfileActivity;
 import com.parse.ParseUser;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FirstActivity extends Activity {
 
@@ -37,6 +36,14 @@ public class FirstActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
+        if (ParseUser.getCurrentUser() == null) {
+            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                    .setTitleText("Benvenuto su DoctorFinder!")
+                    .setContentText("Troverai facilmete lo specialista che stai cercando")
+                    .setCustomImage(R.drawable.logoverde)
+                    .show();
+        }
+
         //buttons get xml layout
         searchButton = (ImageButton) findViewById(R.id.search_button);
         loginButton = (Button) findViewById(R.id.login_button);
@@ -44,19 +51,6 @@ public class FirstActivity extends Activity {
 
         //textview get xml
         searchText = (TextView) findViewById(R.id.search_text);
-
-
-        //alert
-        alert = new AlertDialog.Builder(FirstActivity.this);
-        alert.setTitle("Attenzione");
-        alert.setMessage("Non utilizzare questa applicazione in caso di emergenza, grazie!");
-        alert.setPositiveButton("OK", null);
-        alert.show();
-
-        //intro
-        if(ParseUser.getCurrentUser()==null){
-            Intent intent_intro = new Intent(FirstActivity.this, DefaultIntro.class);
-            startActivity(intent_intro);}
 
         //searchButton Click Listener
         searchButton.setOnClickListener(new View.OnClickListener() {
