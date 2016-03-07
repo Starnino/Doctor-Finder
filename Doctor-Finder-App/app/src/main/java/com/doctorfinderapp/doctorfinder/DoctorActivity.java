@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
@@ -58,6 +60,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static boolean isFabOpen = false;
     private static FloatingActionButton fabcontact,fabfeedback,fabemail, fabtelephone;
     private static Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
+    private ComponentName cn;
+    private RelativeLayout prenota_dottore;
+
 
 
     @Override
@@ -119,45 +124,66 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
+/*
+        //bottone prenota visita
+        prenota_dottore.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           Intent i = new Intent();
+                                           //Froyo or greater (mind you I just tested this on CM7 and the less than froyo one worked so it depends on the phone...)
+                                           cn = new ComponentName("com.google.android.calendar", "com.android.calendar.LaunchActivity");
+                                           //less than Froyo
+                                           cn = new ComponentName("com.android.calendar", "com.android.calendar.LaunchActivity");
+                                           i.setComponent(cn);
+                                           startActivity(i);
+
+                                       }
+                                   }); */
 
 
+            //getting data from xml
+            TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
+            TextView special = (TextView) findViewById(R.id.tvNumber2);
+            TextView years = (TextView) findViewById(R.id.years);
+            TextView workPlace = (TextView) findViewById(R.id.workPlace);
+            TextView info = (TextView) findViewById(R.id.doctor_info);
+            RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
 
-        //getting data from xml
-        TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
-        TextView special = (TextView) findViewById(R.id.tvNumber2);
-        TextView years = (TextView) findViewById(R.id.years);
-        TextView workPlace = (TextView) findViewById(R.id.workPlace);
-        TextView info = (TextView) findViewById(R.id.doctor_info);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
+            //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends2);
 
-        //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends2);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
-        setSupportActionBar(toolbar);
+            setSupportActionBar(toolbar);
 
-        if(DOCTOR_SEX)
-            Title="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
-        else
-           Title="Dott.ssa "+ DOCTOR_FIRST_NAME+ " " + DOCTOR_LAST_NAME;
+            if(DOCTOR_SEX)
+            Title="Dott. "+DOCTOR_FIRST_NAME+" "+DOCTOR_LAST_NAME;
+            else
+            Title="Dott.ssa "+DOCTOR_FIRST_NAME+" "+DOCTOR_LAST_NAME;
 
-        //nameProfile.setText(Title);
-        if(getSupportActionBar()!=null){
-            //getSupportActionBar().setTitle(Title);
+            //nameProfile.setText(Title);
+            if(
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar()
+
+            !=null)
+
+            {
+                //getSupportActionBar().setTitle(Title);
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+            }
+
+            final CollapsingToolbarLayout collapsingToolbarLayout =
+                    (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
+            collapsingToolbarLayout.setTitle(Title);
+            collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+            // transperent color = #00000000
+            collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255,255));
 
         }
 
-        final CollapsingToolbarLayout collapsingToolbarLayout =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
-        collapsingToolbarLayout.setTitle(Title);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-        // transperent color = #00000000
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
-
-    }
 
     public void refreshDoctorList(Doctor currentDoctor){
         //set flag
