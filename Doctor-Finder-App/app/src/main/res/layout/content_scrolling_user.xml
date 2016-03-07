@@ -261,8 +261,8 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:tint="@color/colorPrimaryDark"
-                android:scaleX="2.5"
-                android:scaleY="2.5"
+                android:scaleX="2.0"
+                android:scaleY="2.0"
                 android:src="@drawable/ic_star_rate_white_18dp"
                 android:visibility="visible" />
             <TextView
@@ -278,9 +278,6 @@
                 android:textColor="#212121" />
 
         </RelativeLayout>
-
-
-
 
     </LinearLayout>
 

@@ -12,10 +12,6 @@ import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//diobacco
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
-
-
 
 public class SplashActivity extends AppCompatActivity {
     public static final int SPLASH_ACTIVITY_TIME = 4000;
@@ -25,11 +21,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
-
-        //inizialize parse
-        //startParse(this.getApplicationContext());
 
         //add immersive mode
         getWindow().getDecorView().setSystemUiVisibility(
@@ -69,8 +60,6 @@ public class SplashActivity extends AppCompatActivity {
                     finish();
                 }
 
-
-
             }
         };
         Timer timer = new Timer();
@@ -79,8 +68,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -100,10 +87,4 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
 }
