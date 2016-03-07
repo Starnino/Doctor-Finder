@@ -81,7 +81,6 @@
                 android:tint="@color/colorPrimaryDark"
                 android:src="@drawable/ic_mail_outline_black_24dp"
                 android:visibility="visible" />
-
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
@@ -132,7 +131,6 @@
                 android:src="@drawable/ic_info_black_24dp"
                 android:visibility="visible" />
 
-
             <TextView
                 android:id="@+id/feed"
                 android:layout_width="wrap_content"
@@ -176,7 +174,6 @@
 
 
         <include layout="@layout/item_divider" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -266,7 +263,6 @@
                 android:tint="@color/colorPrimaryDark"
                 android:src="@drawable/ic_star_rate_white_18dp"
                 android:visibility="visible" />
-
             <TextView
                 android:id="@+id/rataci"
                 android:layout_width="wrap_content"

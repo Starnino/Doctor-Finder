@@ -45,7 +45,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button segnala;
     private String USER_EMAIL;
     private int index;
-    private List<ParseObject> user;
+    //private List<ParseObject> user;
     private RelativeLayout segnalalo;
     private RelativeLayout rateus;
     private RelativeLayout cambia;
@@ -65,19 +65,35 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        //User information
-        user = GlobalVariable.USER;
 
-        ParseObject USERTHIS = user.get(index);
-        Log.d("USERTHIS", USER_EMAIL);
-        USER_EMAIL = USERTHIS.getString("email");
+        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
+
+        setInfo(indexUser);
+
+        //ParseObject USERTHIS = GlobalVariable.USER.get(index);
+        //Log.d("USERTHIS", USER_EMAIL);
+        //USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
-        */
 
+        
+        //UserPhoto
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert = new AlertDialog.Builder(UserProfileActivity.this);
+                alert.setTitle("Hai bisogno di aiuto?");
+                alert.setMessage("Se stai riscontrando problemi con il tuo profilo, o " +
+                        "hai problemi con un dottore, clicca sul pulsante posto in basso, segnala problema, " +
+                        " e spiegaci il tuo problema. Saremo a tua disposizione per aiutarti!");
+                alert.setPositiveButton("Ho capito", null);
+                alert.show();
+            }
+        });
+
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +131,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
                 intent_about.putExtras(about);
                 startActivity(intent_about);
-                            }
+            }
         });
 
         RelativeLayout cambia = (RelativeLayout) findViewById(R.id.cambiamelo);
@@ -129,9 +145,11 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
+
+    private void setInfo(String inUser){
+
+    }
 }
-
-
 /*
     private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
