@@ -29,6 +29,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
+
                 android:src="@drawable/ic_account_circle_black_24dp"
                 android:visibility="visible" />
 
@@ -40,7 +42,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Nome utente:"
+                android:text="Utente:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -76,6 +78,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
                 android:src="@drawable/ic_mail_outline_black_24dp"
                 android:visibility="visible" />
 
@@ -111,54 +114,36 @@
 
 
         <RelativeLayout
-            android:id="@+id/feedback_relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-
+            android:id="@+id/feedback"
+            android:background="?attr/selectableItemBackground"
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
-                android:id="@+id/ivContactItem5"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:id="@+id/feedbackk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_info_black_24dp" />
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_info_black_24dp"
+                android:visibility="visible" />
+
 
             <TextView
-                android:id="@+id/tvNumber5"
+                android:id="@+id/feed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem5"
-
-                android:layout_toRightOf="@id/ivContactItem5"
-
-                android:clickable="true"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Ultimo Feedback lasciato"
+                android:layout_toEndOf="@id/feedbackk"
+                android:layout_toRightOf="@id/feedbackk"
+                android:text="Visualizza Feedback lasciati"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
-
-            <ImageView
-                android:id="@+id/feedback_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:checked="true"
-                android:onClick="onClick"
-                android:padding="6dp" />
-
 
         </RelativeLayout>
 
@@ -192,48 +177,110 @@
 
         <include layout="@layout/item_divider" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_weight="1"
-            android:text="Cambia i dati del mio profilo"
             android:clickable="true"
-            android:id="@+id/cambia"
-            android:textColor="@color/docfinder"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/cambiamelo"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/cambialo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_mail_outline_black_24dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/cambia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/cambialo"
+                android:layout_toRightOf="@id/cambialo"
+                android:text="Cambia i dati del mio profilo"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
 
         <include layout="@layout/item_divider" />
 
-        <Button
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
             android:id="@+id/segnalalo"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:text="Segnala problema"
-            android:clickable="true"
-            android:textColor="@color/docfinder"
-            android:layout_gravity="center_horizontal" />
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
 
+            <ImageView
+                android:id="@+id/icona_segnala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_book_white_24dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/segnala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/icona_segnala"
+                android:layout_toRightOf="@id/icona_segnala"
+                android:text="Cambia i dati del mio profilo"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
 
         <include layout="@layout/item_divider" />
 
 
-        <Button
-            android:id="@+id/rateus"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:text="Valuta e Recensisci"
             android:clickable="true"
-            android:textColor="@color/docfinder"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/rateus"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_star_rate_white_18dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/rataci"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/rate"
+                android:layout_toRightOf="@id/rate"
+                android:text="Cambia i dati del mio profilo"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
+
 
 
 

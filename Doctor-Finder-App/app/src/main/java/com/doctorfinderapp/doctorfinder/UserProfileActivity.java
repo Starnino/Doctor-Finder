@@ -13,6 +13,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
@@ -44,10 +45,10 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button segnala;
     private String USER_EMAIL;
     private int index;
-    //private List<ParseObject> user;
-    private Button segnalalo;
-    private Button rateus;
-    private Button cambia;
+    private List<ParseObject> user;
+    private RelativeLayout segnalalo;
+    private RelativeLayout rateus;
+    private RelativeLayout cambia;
 
 
     @Override
@@ -64,19 +65,17 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         //User information
-        //user = GlobalVariable.USER;
+        user = GlobalVariable.USER;
 
-        //
-        ParseObject USERTHIS = GlobalVariable.USER.get(index);
+        ParseObject USERTHIS = user.get(index);
         Log.d("USERTHIS", USER_EMAIL);
         USER_EMAIL = USERTHIS.getString("email");
 
         TextView email = (TextView) findViewById(R.id.emaillino);
+        */
 
-        
-        //UserPhoto
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +91,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button segnala = (Button) findViewById(R.id.segnalalo);
+        RelativeLayout segnala = (RelativeLayout) findViewById(R.id.segnalalo);
         segnala.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +104,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button rateus = (Button) findViewById(R.id.rateus);
+        RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +118,7 @@ public class UserProfileActivity extends AppCompatActivity {
                             }
         });
 
-        Button cambia = (Button) findViewById(R.id.cambia);
+        RelativeLayout cambia = (RelativeLayout) findViewById(R.id.cambiamelo);
         cambia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +130,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 }
+
+
 /*
     private void getUserImage(ParseUser user){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
