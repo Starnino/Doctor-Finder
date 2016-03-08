@@ -281,6 +281,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.informativa:
+                Intent informativa = new Intent(ResultsActivity.this, Report_Feedback.class);
+                startActivity(informativa);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);

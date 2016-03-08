@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -57,6 +58,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private RelativeLayout segnalalo;
     private RelativeLayout rateus;
     private RelativeLayout cambia;
+    private RelativeLayout condividi;
     private List<ParseObject> userList = null;
     private ParseObject currentUser = null;
     private boolean USER_SEX;
@@ -171,20 +173,26 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        RelativeLayout condividi = (RelativeLayout) findViewById(R.id.cambiamelo);
+        rateus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
+
+                Bundle about = new Bundle();
+                about.putString("URL",
+                        "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
+                intent_about.putExtras(about);
+                startActivity(intent_about);
+            }
+        });
+
         RelativeLayout cambia = (RelativeLayout) findViewById(R.id.inviaci_mail);
         cambia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"info@doctorfinderapp.com"});
-                i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
-                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
-                try {
-                    startActivity(Intent.createChooser(i, "Invia mail usando..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(UserProfileActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                }
+                Intent intent_share = new Intent(UserProfileActivity.this, MainActivitySocialShare.class);
+                startActivity(intent_share);
             }
         });
 

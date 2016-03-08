@@ -38,8 +38,8 @@ public class FirstActivity extends Activity {
 
         if (ParseUser.getCurrentUser() == null) {
             new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("Benvenuto su DoctorFinder!")
-                    .setContentText("Troverai facilmete lo specialista che stai cercando")
+                    .setTitleText("Benvenuto su Doctor Finder")
+                    .setContentText("Con il nostro aiuto troverai facilmente lo specialista che stai cercando")
                     .setCustomImage(R.drawable.logoverde)
                     .show();
         }
