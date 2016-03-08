@@ -112,4 +112,17 @@ public class Util {
         });
         return photo;
     }
+
+    public static ArrayList<String> getUserFacebookFriends(ParseUser user){
+        ArrayList<String> friends = new ArrayList<>();
+        if (user == null) return friends;
+
+        if (user.getString("Facebook") == "true"){
+            friends = (ArrayList<String>) user.get("friends");
+            for (int i = 0; i < friends.size(); i++) {
+                Log.d("porco", friends.get(i));
+            }
+        }
+        return friends;
+    }
 }

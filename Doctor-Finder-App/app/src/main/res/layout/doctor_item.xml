@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+        android:id="@+id/doctor_photo"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/doctor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctor_photo"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="Dott.ssa Carboncelli"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/doctor_profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctor_name"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        android:gravity="bottom"
+        android:text="Oculista e Odontoiatra"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/province"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctor_profession"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        android:gravity="bottom"
+        android:text="Palermo, Caltanissetta"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

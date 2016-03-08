@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +31,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
+import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -58,6 +61,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private PersonAdapter mAdapter;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
     private String Title;
@@ -88,7 +92,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-
 
         //refresh doctors searched
         currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.giampa,

@@ -74,7 +74,9 @@ public class DoctorFragment extends Fragment {
     private double LONG;
     private static int index;
     public  GoogleMap googleMap;
-
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PersonAdapter mAdapter;
 
     public DoctorFragment() {
     }
@@ -139,8 +141,24 @@ public class DoctorFragment extends Fragment {
         LAT = Double.parseDouble(curPosition.substring(6, 15));
         LONG = Double.parseDouble(curPosition.substring(22, 31));
 
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
+        mRecyclerView.setHasFixedSize(true);
 
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        ArrayList<Person> persons = new ArrayList<>();
+
+        persons.add(new Person("Giovanni", R.drawable.giampa));
+        persons.add(new Person("Francesco", R.drawable.starnino));
+        persons.add(new Person("Vincenzo", R.drawable.vindel));
+        persons.add(new Person("Federico", R.drawable.fedebyes));
+        persons.add(new Person("Angelo", R.drawable.angelo));
+
+        mAdapter = new PersonAdapter(persons);
+
+        mRecyclerView.setAdapter(mAdapter);
 
         //getting data from xml
         TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);

@@ -153,23 +153,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:paddingBottom="@dimen/fab_margin"
                 android:text="Amici che usano Doctor Finder"
                 android:textAlignment="center"
                 android:textColor="@color/docfinder"
                 android:textSize="20sp" />
 
 
-            <!--<android.support.v7.widget.RecyclerView
-                android:id="@+id/my_recycler_friends2"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_friends"
                 android:scrollbars="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"/>-->
+                android:layout_height="100dp"/>
 
         </LinearLayout>
 

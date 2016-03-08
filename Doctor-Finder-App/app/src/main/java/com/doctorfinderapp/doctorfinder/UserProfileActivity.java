@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -100,6 +102,29 @@ public class UserProfileActivity extends AppCompatActivity {
             profile.setImageBitmap(GlobalVariable.UserPropic);
 
         }
+
+        //recycler view
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        //Util.getUserFacebookFriends(ParseUser.getCurrentUser());
+        //set adapter to recycler
+        ArrayList<Person> persons = new ArrayList<>();
+
+        persons.add(new Person("Giovanni", R.drawable.giampa));
+        persons.add(new Person("Francesco", R.drawable.starnino));
+        persons.add(new Person("Vincenzo", R.drawable.vindel));
+        persons.add(new Person("Federico", R.drawable.fedebyes));
+        persons.add(new Person("Angelo", R.drawable.angelo));
+
+        mAdapter = new PersonAdapter(persons);
+
+        mRecyclerView.setAdapter(mAdapter);
 
         //nameProfile.setText(Title);
         if(getSupportActionBar()!=null){

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:elevation="20dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
 
