@@ -18,74 +18,74 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="?android:attr/selectableItemBackground"
-    android:transitionGroup="false"
-    android:touchscreenBlocksFocus="false"
-    android:clickable="false"
-    android:gravity="start|center_horizontal">
-
-    <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/profile_image"
-        android:src="@drawable/doctor_avatar"
-        android:layout_centerVertical="true" />
-
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        android:layout_toEndOf="@id/profile_image"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:id="@+id/linearLayout2">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="?android:attr/selectableItemBackground"
+        android:transitionGroup="false"
+        android:touchscreenBlocksFocus="false"
+        android:clickable="false"
+        android:gravity="start|center_horizontal">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
+        <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/profile_image"
+            android:src="@drawable/doctor_avatar"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Nome" />
+            android:gravity="left|center_vertical"
+            android:layout_toEndOf="@id/profile_image"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:id="@+id/linearLayout2">
 
-        <TextView
-            android:text="Specializzazione"
-            android:id="@+id/special"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Nome" />
 
-        <TextView
-            android:layout_marginTop="2dp"
-            android:text="Citta"
-            android:id="@+id/city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey" />
+            <TextView
+                android:text="Specializzazione"
+                android:id="@+id/special"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark" />
 
-        <RatingBar
-            android:layout_marginTop="-5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:rating="4"
-            android:scaleX="0.55"
-            android:scaleY="0.55"
-            android:layout_gravity="start|bottom"
-            android:layout_marginStart="-58dp" />
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Citta"
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey" />
 
-    </LinearLayout>
+            <RatingBar
+                android:layout_marginTop="-5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4"
+                android:scaleX="0.55"
+                android:scaleY="0.55"
+                android:layout_gravity="start|bottom"
+                android:layout_marginStart="-58dp" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
 

@@ -330,7 +330,13 @@
         che a lungo termine, di qualsiasi entità essi siano, riscontrati utilizzando Doctor Finder.
 
     </string>
-
+    <string name="feedback_dialog_name">Il tuo feedback</string>
+    <string name="feedback_send">Invia</string>
+    <string name="cancel">Annulla</string>
+    <string name="giudizio">Il tuo giudizio</string>
+    <string name="descrizione">La tua descrizione</string>
+    <string name="descrizione_visita">Descrivi la visita...</string>
+    <string name="respons">Dichiaro che questo feedback è frutto di un\'esperienza reale</string>
 
 
 </resources>

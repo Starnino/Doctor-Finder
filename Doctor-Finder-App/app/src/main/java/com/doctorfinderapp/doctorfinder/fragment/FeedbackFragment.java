@@ -22,14 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FeedbackFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FeedbackFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FeedbackFragment extends Fragment {
     private int index;
 
@@ -75,7 +67,7 @@ public class FeedbackFragment extends Fragment {
         FeedbackArray= new ArrayList<>();
 
         FeedbackArray.add(new ParseObject("Feedback"));
-        FeedbackArray.add(new ParseObject("Dio"));
+
         Log.d("Feedback",""+ FeedbackArray.size());
 
         mRecyclerView.setHasFixedSize(true);
@@ -92,7 +84,7 @@ public class FeedbackFragment extends Fragment {
         return mRecyclerView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -131,4 +123,5 @@ public class FeedbackFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

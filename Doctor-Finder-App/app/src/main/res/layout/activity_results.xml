@@ -71,7 +71,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:elevation="6dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_location_searching_white_24dp"
+        android:src="@drawable/ic_gps_fixed_white_24dp"
         app:pressedTranslationZ="12dp"
         app:backgroundTint="@color/docfinder"/>
 

@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -207,7 +208,7 @@ public class DoctorFragment extends Fragment {
 
 
 
-        RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
+        LinearLayout feedback_button = (LinearLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
