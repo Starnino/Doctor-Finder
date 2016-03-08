@@ -39,10 +39,12 @@ import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class DoctorActivity extends AppCompatActivity implements View.OnClickListener,FeedbackFragment.OnFragmentInteractionListener,FragmentManager.OnBackStackChangedListener {
 
@@ -63,8 +65,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static boolean isFabOpen = false;
     private static FloatingActionButton fabcontact,fabfeedback,fabemail, fabtelephone;
     private static Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
-    private ComponentName cn;
     private RelativeLayout prenota_dottore;
+    private RelativeLayout video;
+    private String polletto ="";
+
 
 
 
@@ -129,7 +133,31 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
 
         //bottone prenota visita
-        //porco dio
+
+
+        //bottone videocall
+        //non funziona anche se l'ho fatto come sempre #dincibacco
+        /*
+        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
+        String email_users = ParseUser.getCurrentUser().get("email").toString();
+        polletto=email_users;
+
+        RelativeLayout video = (RelativeLayout) findViewById(R.id.videochiama_dottore);
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_call = new Intent(DoctorActivity.this, WebViewActivity.class);
+
+                Bundle callalo = new Bundle();
+                callalo.putString("URL",
+                        "https://hangouts.google.com%20mobile/" + "polletto" );
+                intent_call.putExtras(callalo);
+                startActivity(intent_call);
+            }
+        });
+
+        */
+
 
             //getting data from xml
             TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
@@ -138,8 +166,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             TextView workPlace = (TextView) findViewById(R.id.workPlace);
             TextView info = (TextView) findViewById(R.id.doctor_info);
             RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
-
-            //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends2);
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
 
@@ -150,7 +176,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             else
             Title="Dott.ssa "+DOCTOR_FIRST_NAME+" "+DOCTOR_LAST_NAME;
 
-            //nameProfile.setText(Title);
             if(
 
             getSupportActionBar()
@@ -158,7 +183,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             !=null)
 
             {
-                //getSupportActionBar().setTitle(Title);
 
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -169,7 +193,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                     (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
             collapsingToolbarLayout.setTitle(Title);
             collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-            // transperent color = #00000000
             collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255,255));
 
         }
@@ -310,7 +333,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             super.onBackPressed();
             finish();
         }
-    }
+    }            // transperent color = #00000000
+
     @Override
     public void onBackStackChanged() {
         Log.d("Doctor Activity"," On back stqck changed");

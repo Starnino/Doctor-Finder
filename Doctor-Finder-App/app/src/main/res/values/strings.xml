@@ -277,5 +277,9 @@
 
     <string name="doctor_map">Visualizza Profilo</string>
 
+    <!--forse stavolta ce la faccio-->
+    <string name="title_share_text">Share Text</string>
+
+
 
 </resources>
