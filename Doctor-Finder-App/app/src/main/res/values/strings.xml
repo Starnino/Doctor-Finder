@@ -281,39 +281,53 @@
     <!--forse stavolta ce la faccio-->
     <string name="title_share_text">Share Text</string>
 
-
-
-
-
-
-
-
-
-
     <!--Informativa-->
-    <string name="informativa1">Informativa</string>
-    <string name="informativa2">Informativa2</string>
+    <string name="informativa1">
+
+        Ai sensi dell art. 13 del D. Lgs. 196/2003.
+        Il presente documento, "Informativa Privacy", descrive le modalità del trattamento dei dati raccolti tramite Doctor Finder.
+        La presente Informativa Privacy è resa solo ed esclusivamente per l applicazione "Doctor Finder" e non anche
+        per eventuali siti web attraverso i quali ad esempio se un Utente dovesse accedere a / o utilizzare l applicazione.
+        Installando questa applicazione, l’Utente acconsente alla raccolta e al trattamento dei dati di seguito indicati.
+        Raccolta dei dati personali e trasmissione dei dati I servizi forniti dall App, nonché le
+        caratteristiche e le funzioni della stessa non richiedono alcuna forma di registrazione degli Utenti.
+        Informiamo l Utente che l App prevede la possibilità di utilizzo dei servizi di localizzazione presenti sul dispositivo dell’Utente,
+        e associabili all App.
+        Tali servizi verranno attivati soltanto a seguito di un autorizzazione fornita dall Utente, attraverso la scelta dell’opzione "Ok"
+        al momento della richiesta di attivazione.
+        Se invece l’Utente sceglie l’opzione "Nega", l App non avrà accesso ai predetti servizi di localizzazione. Detti servizi si possono
+        attivare/disattivare in qualsiasi momento attraverso le impostazioni fornite dal dispositivo dell Utente.
+        I dati sono trattati con strumenti automatizzati e non, per il solo tempo strettamente necessario a conseguire le finalità per cui sono stati raccolti.
+        In qualsiasi momento l Utente potrà disinstallare dal proprio dispositivo la App scaricata, revocando così il consenso al trattamento dei dati.
+        Si consiglia pertanto di leggere attentamente le relative politiche sulla privacy ed i termini d uso di tali siti, prima di fornire i propri dati personali.
+        La presente informativa è stata aggiornata il  09/03/2016.
+        </string>
+
+    <string name="informativa2">
+
+        Il Garante acconsente ad operazioni di trattamento di dati sensibili a determinate condizioni e per
+        determinati fini; stabilisce prescrizioni uniformi per settori omogenei di attività
+        (rapporto di lavoro, sanità, professionisti, assicurazioni, investigazioni ecc.),
+        snellisce l attività burocratica gravante sull ufficio del Garante ed alleggerisce gli
+        adempimenti del titolare individuandone l ambito e le modalità di trattamento. Pertanto
+        è possibile la gestione dei dati sensibili entro i limiti prescritti senza richiedere
+        specifica ed individuale autorizzazione al Garante.
+
+    </string>
+
     <string name="informativa3">
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
-        In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano
+
+        Art. 1229 c.c. disciplina le clausole di esonero della responsabilità stabilendo la nullità delle
+        stesse ove siano dirette ad esonerare il debitore dalla responsabilità conseguente
+        all inadempimento doloso o per colpa grave ovvero, anche per colpa lieve, qualora
+        il fatto del debitore o dei suoi ausiliari costituisca violazione di obblighi derivanti
+        da norme di ordine publico.
+        A tale proposito: Si dichiara;
+        Di sollevare il Doctor Finder da ogni responsabilità connessa all utilizzo della suddetta applicazione,
+        nel modo più ampio per se, ed aventi causa a qualsiasi titolo,
+        da ogni e qualsiasi obbligazione di corrispondere compensi di alcun genere
+        a titolo di risarcimento danni, indennizzi, rimborsi , ecc. nell’eventualità di problemi fisici, sia a breve
+        che a lungo termine, di qualsiasi entità essi siano, riscontrati utilizzando Doctor Finder.
 
     </string>
 

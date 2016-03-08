@@ -280,9 +280,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent_like);
                 break;
 
-            case R.id.settings:
-                break;
-
             case R.id.logout:
                 ParseUser.logOut();
                 Log.d("R", "Logged out");

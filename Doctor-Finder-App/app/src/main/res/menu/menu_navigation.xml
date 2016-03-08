@@ -20,7 +20,7 @@
             android:id="@+id/inserisci_dottore" />
         <item
             android:icon="@drawable/ic_info_white_24dp"
-            android:title="Informativa"
+            android:title="Informativa sull'utilizzo"
             android:id="@+id/informativa" />
     </group>
 
@@ -41,12 +41,6 @@
                 android:title="@string/like"
                 android:icon="@drawable/com_facebook_favicon_white" />
 
-        <item
-            android:id="@+id/settings"
-            android:title="@string/action_settings"
-            android:textColor="@color/docfinder"
-            app:showAsAction="never"
-            android:icon="@drawable/ic_menu_manage"/>
 
         <item android:title="@string/logout"
             android:textColor="@color/black"
