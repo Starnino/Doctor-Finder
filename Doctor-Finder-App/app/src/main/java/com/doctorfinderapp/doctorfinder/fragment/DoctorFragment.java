@@ -138,8 +138,8 @@ public class DoctorFragment extends Fragment {
 
         /*DONT USE SUBSTRING IS NOT JSON*/
 
-        LAT = Double.parseDouble(curPosition.substring(6, 15));
-        LONG = Double.parseDouble(curPosition.substring(22, 31));
+        //LAT = Double.parseDouble(curPosition.substring(6, 15));
+        //LONG = Double.parseDouble(curPosition.substring(22, 31));
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
@@ -189,13 +189,13 @@ public class DoctorFragment extends Fragment {
         ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
 
 
-        RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
+       /* RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
         workMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMaps(LAT, LONG);
             }
-        });
+        });*/
 
 
         /**refresh recentDoctors*/                                   //doctor_rounded_avatar

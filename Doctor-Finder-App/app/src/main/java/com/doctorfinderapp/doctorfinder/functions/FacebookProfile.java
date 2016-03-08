@@ -70,19 +70,28 @@ public class FacebookProfile {
                                String lastname = response.getJSONObject().getString("last_name");
                                String firstname = response.getJSONObject().getString("first_name");
                                String friends = response.getJSONObject().getString("friends");
+                               //friends2 = response.getJSONArray().get("")
+                               //Log.d(TAG,friends2)
 
                                JSONObject friendsJSON = (JSONObject) response.getJSONObject().get("friends");
 
                                //Log.d("friendsJSON",friendsJSON.toString());
                                JSONArray friendsData = friendsJSON.getJSONArray("data");
                                //Log.d("friendsData",friendsData.toString());
-                               List<String> friendsParse=new ArrayList<String>();
+
+                               //list string into JSONARRAY
+                               JSONArray friendArray=new JSONArray();
+
+                               //List<String> friendsParse=new ArrayList<String>();
                                for(int i=0;i<friendsData.length();i++){
-                                   String it= friendsData.getJSONObject(i).getString("id");
-                                   friendsParse.add(it);
+                                   friendArray.put(friendsData.getJSONObject(i).get("id"));
+                                   //String it= friendsData.getJSONObject(i).getString("id");
+                                   //friendsParse.add(it);
 
                                }
-
+                               Log.d("Facebook utils", friendArray.toString());
+                               //Log.d("Facebook utils",friendArray.get(0).toString());
+                               //friendArray.
                                String facebookId = response.getJSONObject().getString("id");
 
                                //Log.d("friendsParse",friendsParse.toString());
@@ -100,7 +109,9 @@ public class FacebookProfile {
                                userP.put("facebookId",facebookId);
                                //friends tha uses app
 
-                               userP.put("friends", friendsParse.toString());
+                               userP.put("friends", friendArray);
+                               Log.d("Facebook utils", userP.get("friends").toString());
+                               //Log.d("Facebook utils",  userP.get("friends").get(0).toString());
                                // URL=response.getJSONObject().getString("profile");
 
                                //dowload facebook image

@@ -6,6 +6,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -89,18 +90,28 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         //onClick button
         fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
-                DoctorMapsFragment.googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+               /* DoctorMapsFragment.googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
                     public boolean onMyLocationButtonClick() {
+                        Snackbar snackbar = Snackbar
+                                .make(v, "Cercando la tua posizione", Snackbar.LENGTH_LONG);
+
+                        snackbar.show();
                         LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                         if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                            Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
+
+                            Snackbar snackbar2 = Snackbar
+                                    .make(v, "GPS is disabled! ", Snackbar.LENGTH_LONG);
+                            snackbar2.show();
+
+
                         }
                         return false;
                     }
-                });
+                });*/
             }
         });
 

@@ -60,6 +60,9 @@ public class FeedbackFragment extends Fragment {
         int indexFragment = getArguments().getInt("index", 0);
         this.index=indexFragment;
         DoctorActivity.switchFAB(1);
+
+
+
     }
 
     @Override

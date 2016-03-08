@@ -164,6 +164,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     //-->Fedebyes Funct<--//
     public void setUpMap(GoogleMap gMap) {
         gMap.getUiSettings().setMapToolbarEnabled(true);
+        //gMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         doctors = GlobalVariable.DOCTORS;
         int numMarker = doctors.size();
@@ -175,6 +176,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         ArrayList<String> spec;
         ArrayList<HashMap> position;
         String [][] latLong;
+
+
+
 
         ArrayList<Marker> markers = new ArrayList<Marker>();
 
@@ -250,6 +254,11 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                                               }
                                           }
         );
+
+
+
+        //set onclick
+
     }
     public Bitmap resizeMarker(int id, int width) {
 

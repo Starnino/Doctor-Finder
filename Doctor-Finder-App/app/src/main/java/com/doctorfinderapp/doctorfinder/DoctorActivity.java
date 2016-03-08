@@ -246,7 +246,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
 
     //animation fab buttons
-    public void animateFAB() {
+    public static void animateFAB() {
 
         if (isFabOpen) {
 
@@ -272,7 +272,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     //switch fab
     public static void switchFAB(int position){
-        switch(position){
+        switch(position) {
             case 0:
                 if (isFabOpen) {
                     Log.d("fab", "open");
@@ -321,7 +321,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void openFeedbackDialog(){
-
+        //todo create dialog
     }
     @Override
     public void onFragmentInteraction(Uri uri) {
