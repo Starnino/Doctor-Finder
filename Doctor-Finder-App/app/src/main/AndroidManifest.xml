@@ -118,6 +118,9 @@
         <activity android:name=".Intro.DefaultIntro"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".Report_Feedback"
+            android:screenOrientation="portrait"/>
+
         <!--Forse questa volta ce la faccio-->
 
         <activity android:name=".SocialShare.MainActivitySocialShare"

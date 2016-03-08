@@ -469,6 +469,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.informativa:
+                Intent informativa = new Intent(MainActivity.this, Report_Feedback.class);
+                startActivity(informativa);
+                break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_main);

@@ -18,6 +18,10 @@
             android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/inserisci_dottore"
             android:id="@+id/inserisci_dottore" />
+        <item
+            android:icon="@drawable/ic_info_white_24dp"
+            android:title="Informativa"
+            android:id="@+id/informativa" />
     </group>
 
     <group android:checkableBehavior="single"
