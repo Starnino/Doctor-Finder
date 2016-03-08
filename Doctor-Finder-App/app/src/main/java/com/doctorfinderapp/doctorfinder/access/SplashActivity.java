@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.doctorfinderapp.doctorfinder.Intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.parse.ParseUser;
@@ -49,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
                     // show the signup or login screen
 
                     Intent mainIntent = new Intent().setClass(
-                            SplashActivity.this,FirstActivity.class);
+                            SplashActivity.this, DefaultIntro.class);
                     mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     //mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainIntent);

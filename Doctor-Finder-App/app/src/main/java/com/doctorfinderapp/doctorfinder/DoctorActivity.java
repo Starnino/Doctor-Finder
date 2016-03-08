@@ -30,6 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;

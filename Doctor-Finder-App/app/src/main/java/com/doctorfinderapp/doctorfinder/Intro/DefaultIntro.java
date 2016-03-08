@@ -36,7 +36,8 @@ public class DefaultIntro extends AppIntro {
 
     private void loadMainActivity() {
         Log.d("NON PARTE", "DIOCANE");
-        finish();
+        Intent intent = new Intent(this,FirstActivity.class);
+        startActivity(intent);
     }
 
     @Override

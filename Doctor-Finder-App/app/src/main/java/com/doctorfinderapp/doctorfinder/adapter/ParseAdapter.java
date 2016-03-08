@@ -6,19 +6,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.DoctorsDB;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.orhanobut.dialogplus.Holder;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
 import static com.doctorfinderapp.doctorfinder.R.drawable.doctoravatar_piccolo;
+import static com.doctorfinderapp.doctorfinder.R.drawable.recurrence_bubble_fill;
 
 /**
  * Created by francesco on 01/03/16.
@@ -32,6 +36,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public static final String FEEDBACK = "Feedback";
     public static final String CITY = "Province";
 
+
     public static class ParseViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
@@ -39,6 +44,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         RatingBar ratingBar;
         RoundedImageView profile;
         TextView city;
+        int realPosition;
 
         public ParseViewHolder(final View itemView) {
 
@@ -54,11 +60,17 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             //todo download photo
 
         }
+
     }
 
     List<ParseObject> DOCTORS;
+    int[] realIndexes;
 
-    public ParseAdapter(List<ParseObject> doctors) { this.DOCTORS = new ArrayList<>(doctors);}
+    public ParseAdapter(List<ParseObject> doctors) {
+        this.DOCTORS = new ArrayList<>(doctors);
+    }
+
+
 
     @Override
     public ParseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,8 +79,9 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         return new ParseViewHolder(v);
     }
 
+
     @Override
-    public void onBindViewHolder(ParseViewHolder holder, final int position) {
+    public void onBindViewHolder(final ParseViewHolder holder, final int position) {
 
         holder.name.setText(DOCTORS.get(position).getString(NAME) + " " + DOCTORS.get(position).getString(SURNAME));
 
@@ -82,23 +95,28 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         holder.profile.setImageResource(doctor_avatar);
 
+        holder.realPosition = position;
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, DoctorActivity.class);
                 //------
-                intent.putExtra("index", position);
+                intent.putExtra("index", holder.realPosition );
                 //------
                 context.startActivity(intent);
             }
         });
+
     }
+    
 
     @Override
     public int getItemCount() {
         return DOCTORS.size();
     }
+
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
