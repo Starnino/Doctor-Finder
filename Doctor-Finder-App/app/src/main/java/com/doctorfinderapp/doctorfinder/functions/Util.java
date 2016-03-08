@@ -19,6 +19,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,10 @@ import java.util.List;
  * Created by francesco on 02/03/16.
  */
 public class Util {
+
+    public static final String FRIENDS = "friends";
+    public static final String FACEBOOK = "Facebook";
+
     public static String setSpecialization(ArrayList<String> specialization){
 
         String specializationString="";
@@ -117,11 +123,11 @@ public class Util {
         ArrayList<String> friends = new ArrayList<>();
         if (user == null) return friends;
 
-        if (user.getString("Facebook") == "true"){
-            friends = (ArrayList<String>) user.get("friends");
-            for (int i = 0; i < friends.size(); i++) {
-                Log.d("porco", friends.get(i));
-            }
+        if (user.getString(FACEBOOK).equals("true")){
+            friends = (ArrayList<String>) user.get(FRIENDS);
+        }
+        for (int i = 0; i < friends.size(); i++) {
+            Log.d("AMICO --> ", friends.get(i));
         }
         return friends;
     }

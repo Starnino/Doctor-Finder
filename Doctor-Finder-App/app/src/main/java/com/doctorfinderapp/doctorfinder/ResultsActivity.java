@@ -56,6 +56,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private boolean isFabOpen = false;
     private FloatingActionButton fab, fab_location;
     private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
+    private MenuItem searchItem;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +177,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onPageSelected(int position) {
                 switchFAB(position);
+                switchMenuItem(position);
             }
 
             @Override
@@ -184,7 +187,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         });
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        fab.startAnimation(fab_open_normal);
+        //fab.startAnimation(fab_open_normal);
     }
 
 
@@ -192,8 +195,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         MenuItem filterItem = menu.findItem(R.id.action_filter);
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -214,21 +217,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         return super.onCreateOptionsMenu(menu);
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -302,9 +290,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
 
-
-
-
     static class Adapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -355,6 +340,17 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 fab_location.startAnimation(fab_open_normal);
                 fab_location.setClickable(true);
                 break;
+        }
+    }
+
+    public void switchMenuItem(int position){
+        if (position == 1) {
+            searchItem.setVisible(false);
+            searchView.setVisibility(View.INVISIBLE);
+        }
+        else {
+            searchItem.setVisible(true);
+            searchView.setVisibility(View.VISIBLE);
         }
     }
 

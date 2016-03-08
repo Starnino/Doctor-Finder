@@ -385,12 +385,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         return super.onOptionsItemSelected(item);
     }
 
-    //action view search
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     //code added to save activity states
     @Override

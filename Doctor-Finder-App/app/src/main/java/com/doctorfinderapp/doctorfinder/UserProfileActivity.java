@@ -97,11 +97,11 @@ public class UserProfileActivity extends AppCompatActivity {
             String email_users = ParseUser.getCurrentUser().get("email").toString();
             utente.setText(fisrtName + " " + lastName);
             email.setText(email_users);
-
             Title=fisrtName + " " + lastName;
-
             profile = (RoundedImageView) findViewById(R.id.user_photo);
             profile.setImageBitmap(GlobalVariable.UserPropic);
+
+            Util.getUserFacebookFriends(ParseUser.getCurrentUser());
 
         }
 
