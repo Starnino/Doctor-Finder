@@ -139,6 +139,7 @@
             android:parentActivityName="com.eh.telerik.robotsocial.MainActivity">
         </activity>
 
+
         <uses-sdk
             android:minSdkVersion="10"
             android:targetSdkVersion="19" />
