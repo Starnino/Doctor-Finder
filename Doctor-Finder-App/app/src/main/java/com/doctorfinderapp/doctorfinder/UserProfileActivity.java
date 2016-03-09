@@ -16,13 +16,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
-import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseUser;
-import java.util.ArrayList;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -30,7 +28,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private PersonAdapter mAdapter;
+    private FacebookAdapter mAdapter;
     private Button segnala;
     public final String USER_EMAIL = "email";
     public static final String NAME = "fName";
@@ -76,7 +74,6 @@ public class UserProfileActivity extends AppCompatActivity {
             profile = (RoundedImageView) findViewById(R.id.user_photo);
             profile.setImageBitmap(GlobalVariable.UserPropic);
 
-            Util.getUserFacebookFriends(user);
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
 
@@ -91,15 +88,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //Util.getUserFacebookFriends(ParseUser.getCurrentUser());
         //set adapter to recycler
-        ArrayList<Person> persons = new ArrayList<>();
 
-        persons.add(new Person("Giovanni", R.drawable.giampa));
-        persons.add(new Person("Francesco", R.drawable.starnino));
-        persons.add(new Person("Vincenzo", R.drawable.vindel));
-        persons.add(new Person("Federico", R.drawable.fedebyes));
-        persons.add(new Person("Angelo", R.drawable.angelo));
-
-        mAdapter = new PersonAdapter(persons);
+        mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
 
         mRecyclerView.setAdapter(mAdapter);
 

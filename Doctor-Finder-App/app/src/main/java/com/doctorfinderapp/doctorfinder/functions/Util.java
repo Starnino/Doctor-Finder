@@ -126,72 +126,29 @@ public class Util {
         return photo;
     }
 
-    public static List<String> getUserFacebookFriends(ParseUser user){
-        List<String> friends = new ArrayList<>();
+    public static List<ParseObject> getUserFacebookFriends(ParseUser user){
+        List<String> id = new ArrayList<>();
+        List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
         if (!user.getString(FACEBOOK).equals("true")) return friends;
         if (user.getString(FRIENDS).equals(null)) return friends;
         if (user.getString(FACEBOOK).equals("true")){
-            friends = Arrays.asList(user.get(FRIENDS).toString().split(","));
+            id = Arrays.asList(user.get(FRIENDS).toString().split(","));
         }
-        for (int i = 0; i < friends.size(); i++) {
-            Log.d("AMICO --> ", friends.get(i));
+        for (int i = 0; i < id.size(); i++) {
+            Log.d("AMICO --> ", id.get(i));
         }
 
         ParseQuery<ParseObject> friend = ParseQuery.getQuery(USER);
-        friend.whereContainedIn(ID, friends);
+        friend.whereContainedIn(ID, id);
 
-        //get query in background
-        friend.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                ArrayList<Person> fbfriends = new ArrayList<>();
-                ParseObject parseObj;
-                for (int i = 0; i < objects.size(); i++) {
-                    parseObj = objects.get(i);
-                    //TODO Facebook adapter
-                    fbfriends.add(new Person(parseObj.getString(NAME) + " " + parseObj.getString(SURNAME),
-                            R.drawable.giampa));
-                }
-            }
-        });
+        //get query non in background
+        try {
+            friends = friend.find();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return friends;
-    }
-
-
-    public static void getImage(ParseObject user){
-        final Bitmap[] res = new Bitmap[1];
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
-        query.whereEqualTo("username", user.getString(EMAIl));
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject userPhoto, ParseException e) {
-
-                //userphoto exists
-
-                if (userPhoto == null) {
-                    Log.d("userphoto", "isnull");
-
-                } else {
-                    ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
-                    file.getDataInBackground(new GetDataCallback() {
-                        public void done(byte[] data, ParseException e) {
-                            if (e == null) {
-                                // data has the bytes for the resume
-                                //data is the image in array byte
-                                //must change image on profile
-                                BitmapFactory.decodeByteArray(data, 0, data.length);
-                                Log.d("Userphoto", "downloaded");
-
-                            } else {
-                                // something went wrong
-                                Log.d("UserPhoto ", "problem download image");
-                            }
-                        }
-                    });
-                }
-            }
-        });
     }
 
 }
