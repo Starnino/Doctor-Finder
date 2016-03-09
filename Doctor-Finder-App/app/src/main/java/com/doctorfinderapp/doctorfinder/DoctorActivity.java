@@ -35,6 +35,7 @@ import java.util.List;
 public class DoctorActivity extends AppCompatActivity implements View.OnClickListener, FeedbackFragment.OnFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
 
 
+    private  String DOCTOR_EMAIL ="";
     //Doctor information
     private static int index;
     private static boolean isFabOpen = false;
@@ -132,6 +133,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.giampa,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
         refreshDoctorList(currentDoctor);
+        DOCTOR_EMAIL=DOCTORTHIS.getString("Email");
 
         //find fab buttons
         fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);
@@ -298,8 +300,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     private void openFeedbackDialog() {
 
-        //todo controls
-        DialogFragment newFragment = new FeedbackDialogFragment();
+
+        Log.d("DoctorActivity",DOCTOR_EMAIL.toString());
+        DialogFragment newFragment = new FeedbackDialogFragment().newInstance(DOCTOR_EMAIL);
         newFragment.show(getSupportFragmentManager(), "feedback");
     }
 
