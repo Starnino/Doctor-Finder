@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="@dimen/fab_margin"
-    android:paddingLeft="@dimen/fab_margin"
+    android:paddingRight="8dp"
+    android:paddingLeft="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling_user">
+    tools:showIn="@layout/activity_scrolling_user"
+    android:background="@color/google_grey">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -172,13 +173,17 @@
         </android.support.v7.widget.CardView>
 
 
-
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp">
         <LinearLayout
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
@@ -198,10 +203,10 @@
                 android:layout_height="100dp"/>
 
             </LinearLayout>
+        </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.CardView
-
         android:id="@+id/cardio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

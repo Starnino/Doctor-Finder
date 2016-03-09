@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/google_grey"
     android:theme="@style/AppTheme"
+    android:layout_margin="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.doctorfinderapp.doctorfinder.DoctorActivity">
     <LinearLayout
@@ -17,7 +18,6 @@
             android:id="@+id/card1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="@color/white">
 
             <LinearLayout
@@ -311,17 +311,19 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="6dp"
             android:background="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="10dp">
 
                 <TextView
                 android:layout_width="match_parent"
@@ -346,9 +348,8 @@
             android:id="@+id/card3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/white">
-
+            android:background="@color/white"
+            android:layout_marginTop="6dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -362,7 +363,6 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:visibility="visible"
                     app:iiv_color="@color/colorPrimaryDark"
                     app:iiv_icon="gmd-favorite"/>
@@ -397,11 +397,10 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-
+            android:layout_marginTop="6dp"
             android:id="@+id/feedback_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="@color/white">
 
             <LinearLayout
@@ -410,7 +409,6 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <TextView
