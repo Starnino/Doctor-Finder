@@ -524,8 +524,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     }
 
+
     @Override
     protected void onResume() {
+        //update image
+
+
+
         updateRecyclerDoctor();
         updateRecentSearch();
         super.onResume();

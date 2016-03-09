@@ -80,16 +80,18 @@ public class FacebookProfile {
                                //Log.d("friendsData",friendsData.toString());
 
                                //list string into JSONARRAY
-                               JSONArray friendArray=new JSONArray();
+                               //JSONArray friendArray=new JSONArray();
 
                                //List<String> friendsParse=new ArrayList<String>();
+                               String friendlist="";
                                for(int i=0;i<friendsData.length();i++){
-                                   friendArray.put(friendsData.getJSONObject(i).get("id"));
+                                   //friendArray.put(friendsData.getJSONObject(i).get("id"));
+                                   friendlist+=friendsData.getJSONObject(i).get("id")+",";
                                    //String it= friendsData.getJSONObject(i).getString("id");
                                    //friendsParse.add(it);
 
                                }
-                               Log.d("Facebook utils", friendArray.toString());
+                               //Log.d("Facebook utils", friendArray.toString());
                                //Log.d("Facebook utils",friendArray.get(0).toString());
                                //friendArray.
                                String facebookId = response.getJSONObject().getString("id");
@@ -109,7 +111,7 @@ public class FacebookProfile {
                                userP.put("facebookId",facebookId);
                                //friends tha uses app
 
-                               userP.put("friends", friendArray);
+                               userP.put("friends", friendlist);
                                Log.d("Facebook utils", userP.get("friends").toString());
                                //Log.d("Facebook utils",  userP.get("friends").get(0).toString());
                                // URL=response.getJSONObject().getString("profile");
@@ -122,9 +124,14 @@ public class FacebookProfile {
                                final String pictureUrl = data.getString("url");
 
 
-                               userP.saveInBackground();
-                               //Log.d("Graph Response",userP.getString("lName"));
+                               userP.saveInBackground(new SaveCallback() {
+                                   @Override
+                                   public void done(com.parse.ParseException e) {
+                                       if(e==null)Log.d("facebook","utente salvato");
 
+                                   }
+                               });
+                               //Log.d("Graph Response",userP.getString("lName"));
                                ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
                                query.whereEqualTo("username", email);
                                query.findInBackground(new FindCallback<ParseObject>() {
