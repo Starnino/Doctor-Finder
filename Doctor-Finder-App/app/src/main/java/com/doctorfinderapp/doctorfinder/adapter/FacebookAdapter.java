@@ -83,11 +83,11 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
                                 //data is the image in array byte
                                 //must change image on profile
                                 holder.personPhoto.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
-                                Log.d("Userphoto", "downloaded");
+                                Log.d("FriendPhoto", "downloaded");
 
                             } else {
                                 // something went wrong
-                                Log.d("UserPhoto ", "problem download image");
+                                Log.d("FriendPhoto ", "problem download image");
                             }
                         }
                     });
