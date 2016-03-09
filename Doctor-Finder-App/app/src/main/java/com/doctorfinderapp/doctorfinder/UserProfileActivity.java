@@ -1,16 +1,10 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,61 +15,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.GetDataCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import android.util.Log;
-import android.widget.Toast;
-
-
-import java.util.List;
 import java.util.ArrayList;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    private AlertDialog.Builder alert;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
     private Button segnala;
-    private String USER_EMAIL;
-    private int index;
-    private RelativeLayout segnalalo;
-    private RelativeLayout rateus;
-    private RelativeLayout cambia;
-    private RelativeLayout condividi;
-    private List<ParseObject> userList = null;
-    private ParseObject currentUser = null;
-    private boolean USER_SEX;
+    public final String USER_EMAIL = "email";
+    public static final String NAME = "fName";
+    public static final String SURNAME = "lName";
     private String Title ="";
     private RoundedImageView profile;
+    private String firstName = "";
+    private String lastName = "";
+    private TextView utente;
+    private TextView email;
+    private String email_users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-        //retrieve index from Activity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            index = extras.getInt("index");
-        }
 
         //scrolling
         setContentView(R.layout.activity_scrolling_user);
@@ -83,26 +53,31 @@ public class UserProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //se non sei loggato vai via
+        ParseUser user = ParseUser.getCurrentUser();
 
-        if(ParseUser.getCurrentUser()!=null) {
+        if(user != null) {
 
+            if (user.getString(NAME) != null)
+                firstName = user.get(NAME).toString();
 
-            String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
-            //setInfo(indexUser);
-            TextView utente = (TextView) findViewById(R.id.txt_users);
-            TextView email = (TextView) findViewById(R.id.emaillino);
+            if (user.getString(SURNAME) != null)
+                lastName = user.get(SURNAME).toString();
 
-            String fisrtName = ParseUser.getCurrentUser().get("fName").toString();
-            String lastName = ParseUser.getCurrentUser().get("lName").toString();
-            String email_users = ParseUser.getCurrentUser().get("email").toString();
-            utente.setText(fisrtName + " " + lastName);
+            if (user.getString(USER_EMAIL) != null)
+                email_users = user.get(USER_EMAIL).toString();
+
+            utente = (TextView) findViewById(R.id.txt_users);
+            email = (TextView) findViewById(R.id.emaillino);
+
+            utente.setText(firstName + " " + lastName);
             email.setText(email_users);
-            Title=fisrtName + " " + lastName;
+
+            Title = firstName + " " + lastName;
             profile = (RoundedImageView) findViewById(R.id.user_photo);
             profile.setImageBitmap(GlobalVariable.UserPropic);
 
-            Util.getUserFacebookFriends(ParseUser.getCurrentUser());
-
+            Util.getUserFacebookFriends(user);
+            Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
 
         //recycler view

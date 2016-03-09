@@ -260,19 +260,21 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //setting header
         //download user image
         ParseUser user=ParseUser.getCurrentUser();
+
         if(user!=null){
             getUserImage(ParseUser.getCurrentUser());
-        View header = navigationView.getHeaderView(0);
-        TextView nome= (TextView) header.findViewById(R.id.name_user);
+            View header = navigationView.getHeaderView(0);
+            TextView nome= (TextView) header.findViewById(R.id.name_user);
 
-        //Log.d("dice di non usare i cazzo di log vuoti",user.getString("fName"));
-        String name =user.getString("fName") ;
-           nome.setText(name);
-        TextView email= (TextView) header.findViewById(R.id.email_user);
+            //Log.d("dice di non usare i cazzo di log vuoti",user.getString("fName"));
+            String name =user.getString("fName") ;
+            nome.setText(name);
+            TextView email= (TextView) header.findViewById(R.id.email_user);
 
-        email.setText(user.getEmail());
+            email.setText(user.getEmail());
         }
     }
+
     public AlertDialog OnCreateDialog(final String title, final ArrayList<String> checked, final String[] items){
         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
