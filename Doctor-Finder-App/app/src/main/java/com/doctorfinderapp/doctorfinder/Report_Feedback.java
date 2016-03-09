@@ -22,9 +22,11 @@ public class Report_Feedback extends AppCompatActivity{
 
     private String Title = "Informativa";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_scrolling_report_feedback);
 /*
     final CollapsingToolbarLayout collapsingToolbarLayout =
@@ -35,6 +37,17 @@ public class Report_Feedback extends AppCompatActivity{
     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
 */
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

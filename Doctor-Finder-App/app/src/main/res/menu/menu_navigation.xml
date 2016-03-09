@@ -29,7 +29,7 @@
         android:layout_height="wrap_content">
 
         <item
-                android:icon="@drawable/ic_info_white_24dp"
+                android:icon="@drawable/ic_arrow_forward_white_24px"
                 android:title="@string/about"
                 android:id="@+id/about"/>
             <item

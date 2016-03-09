@@ -15,7 +15,7 @@ public class MainActivitySocialShare extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_picture);
+        setContentView(R.layout.share_activity_main);
 
         setupEvents();
     }
