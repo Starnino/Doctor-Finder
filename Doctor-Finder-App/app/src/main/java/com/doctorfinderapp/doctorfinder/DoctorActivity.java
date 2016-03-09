@@ -176,13 +176,11 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
         String email_users = ParseUser.getCurrentUser().get("email").toString();
         polletto=email_users;
-
         RelativeLayout video = (RelativeLayout) findViewById(R.id.videochiama_dottore);
         video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent_call = new Intent(DoctorActivity.this, WebViewActivity.class);
-
                 Bundle callalo = new Bundle();
                 callalo.putString("URL",
                         "https://hangouts.google.com%20mobile/" + "polletto" );
@@ -190,7 +188,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent_call);
             }
         });
-
         */
 
 

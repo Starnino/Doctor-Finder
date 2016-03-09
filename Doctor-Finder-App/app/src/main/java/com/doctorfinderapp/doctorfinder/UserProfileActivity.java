@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,8 +16,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
+import com.doctorfinderapp.doctorfinder.Class.Person;
+import com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity;
+import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -128,13 +134,11 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
-
-                Bundle about = new Bundle();
-                about.putString("URL",
-                        "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
-                intent_about.putExtras(about);
-                startActivity(intent_about);
+                new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("Ciao!")
+                        .setContentText("Condividi Doctor Finder con i tuoi amici")
+                        .setCustomImage(R.drawable.logoverde)
+                        .show();
             }
         });
 
@@ -142,6 +146,13 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
+                }
+                /*
                 Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
 
                 Bundle about = new Bundle();
@@ -149,6 +160,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
                 intent_about.putExtras(about);
                 startActivity(intent_about);
+                */
             }
         });
 
@@ -156,8 +168,16 @@ public class UserProfileActivity extends AppCompatActivity {
         cambia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_share = new Intent(UserProfileActivity.this, MainActivitySocialShare.class);
-                startActivity(intent_share);
+                Intent i = new Intent(Intent.ACTION_SEND);
+                               i.setType("message/rfc822");
+                              i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"info@doctorfinderapp.com"});
+                               i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
+                                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+                               try {
+                                       startActivity(Intent.createChooser(i, "Invia mail usando..."));
+                                   } catch (android.content.ActivityNotFoundException ex) {
+                                       Toast.makeText(UserProfileActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                                   }
             }
         });
 

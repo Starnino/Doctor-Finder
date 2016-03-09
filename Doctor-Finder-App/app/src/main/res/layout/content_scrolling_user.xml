@@ -13,8 +13,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,7 +75,6 @@
 
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -109,7 +120,6 @@
 
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
 
 
         <RelativeLayout
@@ -136,16 +146,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/feedbackk"
-                android:layout_toRightOf="@id/feedbackk"
-                android:text="Visualizza feedback lasciati"
+                android:text="Ultimi feedback lasciati"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
+                android:textColor="#212121"
+                android:layout_alignBottom="@+id/feedbackk"
+                android:layout_toEndOf="@+id/feedbackk" />
+            <ImageButton
+                android:id="@+id/bottonedio"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:checked="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="6dp" />
 
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
+        </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
 
 
         <LinearLayout
@@ -172,10 +197,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
 
-        <include layout="@layout/item_divider" />
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/cardio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -203,13 +240,26 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/cambialo"
                 android:layout_toRightOf="@id/cambialo"
-                android:text="Condividi o suggerisci applicazione"
+                android:text="Condividi o suggerisci l'applicazione"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
+            <ImageButton
+                android:id="@+id/cristoforo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:checked="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="6dp" />
+
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -239,13 +289,26 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/rate"
                 android:layout_toRightOf="@id/rate"
-                android:text="Valuta la nostra applicazione"
+                android:text="Valuta Doctor Finder"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
+            <ImageButton
+                android:id="@+id/colombo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:checked="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="6dp" />
+
         </RelativeLayout>
 
-        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -277,8 +340,32 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
+            <ImageButton
+                android:id="@+id/maps_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:checked="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="6dp" />
+
         </RelativeLayout>
 
     </LinearLayout>
 
+    </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+
+
 </android.support.v4.widget.NestedScrollView>
+
