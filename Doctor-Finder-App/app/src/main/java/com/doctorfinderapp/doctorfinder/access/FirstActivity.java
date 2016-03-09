@@ -16,6 +16,7 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.parse.ParseUser;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 
 public class FirstActivity extends Activity {
 
@@ -27,6 +28,8 @@ public class FirstActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
 
         //immersion mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
