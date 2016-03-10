@@ -18,4 +18,8 @@
     <dimen name="image_final_width">20dp</dimen>
     <dimen name="image_width">100dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
+
+    <!--New social Share-->
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
 </resources>

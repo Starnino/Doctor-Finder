@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doctorfinderapp.doctorfinder.NewSocialShare.MainActivityNewSocialShare;
 import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.Class.Person;
@@ -146,13 +147,17 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent_about = new Intent(UserProfileActivity.this, MainActivityNewSocialShare.class);
+                startActivity(intent_about);
+                 /*
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                 } catch (android.content.ActivityNotFoundException anfe) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
                 }
-                /*
+
                 Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
 
                 Bundle about = new Bundle();
