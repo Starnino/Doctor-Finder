@@ -55,15 +55,14 @@ Social networks connects people all around the world and we thought to use those
 
 #Milestone 3 - Final
 
-* Improvements of the overall UI/UX
-* Book appointment directly via app
-* Front-end & Back-end finally improved
-* Push Notification
-* VideoCall a doctor
-* Customer loyalty
-* Qurami
-* Advertise
-* Play store
+* [Improved Website](http://www.doctorfinderapp.com/)
+* [How to install Doctor Finder (recommended at least android 4.4 Kitkat] (https://drive.google.com/file/d/0B_cyDM3ySwG4RHBMUW9Zakc2eXM/view?usp=sharing)
+* [Probmlem installing the app? Click here!] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
+* [Final Presentation] ()
+* [Live application] ()
+* [Advertising] ()
+* [The way we've organised and worked till now] (https://trello.com/b/0uSh0ofs/doctor-finder)
+* [#3 Final Demo video] ()
 
 
 #Doctor Finder Team
