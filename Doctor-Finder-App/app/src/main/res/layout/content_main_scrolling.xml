@@ -120,9 +120,9 @@
             android:layout_below="@id/recent_doctors"
             android:id="@+id/card_doctors"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_doctors"
@@ -157,7 +157,7 @@
 
         <TextView
             android:id="@+id/recent_search"
-            android:layout_below="@id/card_doctors"
+            android:layout_below="@id/recent_doctors_null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ricerche Recenti"
@@ -187,7 +187,7 @@
             android:layout_below="@id/recent_search"
             android:id="@+id/card_research"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:visibility="invisible">
 

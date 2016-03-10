@@ -548,6 +548,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         doctors = GlobalVariable.recentDoctors;
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
+        if (doctors.size() != 0) {
+            mRecyclerView.getLayoutParams().height = 280;
+            card_recent_doctor_null.getLayoutParams().height = 280;
+        }
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -562,6 +566,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //specify adapter
         sAdapter = new ResearchAdapter(research);
+        if (research.size() != 0) sRecyclerView.getLayoutParams().height = 400;
         //set adapter to recycler view
         sRecyclerView.setAdapter(sAdapter);
     }

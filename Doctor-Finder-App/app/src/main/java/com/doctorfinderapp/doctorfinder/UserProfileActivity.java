@@ -44,6 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String lastName = "";
     private TextView utente;
     private TextView email;
+    private TextView friend_null;
     private String email_users;
 
     @Override
@@ -57,6 +58,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //se non sei loggato vai via
         ParseUser user = ParseUser.getCurrentUser();
+
+        friend_null = (TextView) findViewById(R.id.friend_null);
 
         if(user != null) {
 
@@ -77,7 +80,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
             Title = firstName + " " + lastName;
             profile = (RoundedImageView) findViewById(R.id.user_photo);
-            profile.setImageBitmap(GlobalVariable.UserPropic);
+
+            if (GlobalVariable.UserPropic != null)
+                profile.setImageBitmap(GlobalVariable.UserPropic);
 
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
@@ -95,6 +100,11 @@ public class UserProfileActivity extends AppCompatActivity {
         //set adapter to recycler
 
         mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+
+        if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
+
+        //if friends.size() is not empty set height to 100dp
+        if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
 
         mRecyclerView.setAdapter(mAdapter);
 
