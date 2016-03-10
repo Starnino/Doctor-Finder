@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
@@ -186,6 +187,16 @@ public class UserProfileActivity extends AppCompatActivity {
                 facebukkalo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (ParseUser.getCurrentUser() != null) {
+                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                                    .setTitleText("Ti sei già loggato su Facebook")
+                                    .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
+                                    .show();
+
+                        }
+                        else{
+
+                        }
 
                     }
                 });
