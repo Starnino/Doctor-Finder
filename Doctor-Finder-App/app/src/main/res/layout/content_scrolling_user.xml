@@ -230,7 +230,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:id="@+id/cambiamelo"
+            android:id="@+id/condividi"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/activity_horizontal_margin">
 
