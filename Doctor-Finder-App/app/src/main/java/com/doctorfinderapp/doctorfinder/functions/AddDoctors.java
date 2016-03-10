@@ -1,37 +1,26 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.util.Base64;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
-import com.google.android.gms.maps.model.LatLng;
+
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.ProgressCallback;
 import com.parse.SaveCallback;
 
-//import java.lang.reflect.Array;
 import java.io.ByteArrayOutputStream;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+//import java.lang.reflect.Array;
 
 
 public class AddDoctors {
@@ -40,8 +29,8 @@ public class AddDoctors {
 
 
     private static void AddDoctors2(final String FirstName, final String LastName, final String email, String data,
-                                   final String[] Specialization, final String[] Work, final String anni,
-                                   final String cellphone, final String description, final String latlng)  {
+                                    final String[] Specialization, final String[] Work, final String anni,
+                                    final String cellphone, final String description, final String latlng) {
 
         //codice per vedere se la mail del dottore esiste nel database
 
@@ -67,23 +56,22 @@ public class AddDoctors {
                     Doctor.put("Years", anni);
 
 
+                    Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.personavatar);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
 
-                   Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.personavatar);
-                   ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                   avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                   byte[] byteArray = stream.toByteArray();
 
+                    ParseFile file = new ParseFile("Doctorpropic.jpg", byteArray);
+                    file.saveInBackground();
+                    // Creazione di un ParseObject da inviare
 
-                   ParseFile file = new ParseFile("Doctorpropic.jpg", byteArray);
-                   file.saveInBackground();
-                   // Creazione di un ParseObject da inviare
+                    //todo create photo only if doctor don't have one
 
-                   //todo create photo only if doctor don't have one
-
-                   ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
-                   doctorPhoto.put("username", email);
-                   doctorPhoto.put("profilePhoto", file);
-                   doctorPhoto.saveInBackground();
+                    ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
+                    doctorPhoto.put("username", email);
+                    doctorPhoto.put("profilePhoto", file);
+                    doctorPhoto.saveInBackground();
 
 
                     Doctor.saveInBackground();
@@ -115,40 +103,113 @@ public class AddDoctors {
 
     }
 
-    public static void addPhoto(Resources res) {
+    public static void addPhoto(final Resources res) {
 
-        int photId[] = {R.drawable.antonio_renna11_gmail_com,R.drawable.antoniodecillis_virgilio_it,R.drawable.canossaelisa_gmail_com,R.drawable.cristinapoggi_psi_gmail_com,R.drawable.daspoldi_tin_it,R.drawable.dottordeigiudici_outlook_it,R.drawable.fabiosichel_gmail_com,R.drawable.federico_solignani_gmail_com,R.drawable.gcalabretti_gmail_com,R.drawable.graziaferramosca_gmail_com,R.drawable.jessife_libero_it,R.drawable.nicola_savarese_hotmail_it,R.drawable.phisio_daniel_gmail_com,R.drawable.psicologamilano_tiscali_it,R.drawable.sarah_pederboni_gmail_com,R.drawable.valeriagemmiti_gmail_com, R.drawable.nicolina_capuano, R.drawable.lucio_mucci_libero_it, R.drawable.silviapiro_alice_it };
-        String docid[] = {"56d76fb18f32d118c2ddab31","56d76fb18f32d118c2ddab27","56d76fb18f32d118c2ddab33","56d76fb18f32d118c2ddab30","56dc2c34e4b066b0efdff965","56dc5a21e4b066b0efdffc70","56dc2c07e4b066b0efdff95f","56d76fb18f32d118c2ddab34","56d76fb18f32d118c2ddab26","56d76fb18f32d118c2ddab37","56d76fb18f32d118c2ddab29","56dc2bf3e4b066b0efdff95d","56d76fb18f32d118c2ddab36","56dc2b54e4b066b0efdff94d","56dc2c7ae4b066b0efdff967","56d76fb18f32d118c2ddab38","56dc2baae4b066b0efdff956","56deb3a1e4b088c9371befc8", "56dea028e4b0c05f88d04dd6"};
+        final int photId[] =
+                {R.drawable.antonio_renna11_gmail_com,
+                        R.drawable.antoniodecillis_virgilio_it,
+                        R.drawable.canossaelisa_gmail_com,
+                        R.drawable.cristinapoggi_psi_gmail_com,
+                        R.drawable.daspoldi_tin_it,
+                        R.drawable.dottordeigiudici_outlook_it,
+                        R.drawable.fabiosichel_gmail_com,
+                        R.drawable.federico_solignani_gmail_com,
+                        R.drawable.gcalabretti_gmail_com,
+                        R.drawable.graziaferramosca_gmail_com,
+                        R.drawable.jessife_libero_it,
+                        R.drawable.nicola_savarese_hotmail_it,
+                        R.drawable.phisio_daniel_gmail_com,
+                        R.drawable.psicologamilano_tiscali_it,
+                        R.drawable.sarah_pederboni_gmail_com,
+                        R.drawable.valeriagemmiti_gmail_com,
+                        R.drawable.nicolina_capuano,
+                        R.drawable.lucio_mucci_libero_it,
+                        R.drawable.silviapiro_alice_it};
+        final String emaildoc[] = {
+                "antonio.renna11@gmail.com",
+                "antoniodecillis@virgilio.it",
+                "canossaelisa@gmail.com",
+                "cristinapoggi.psi@gmail.com",
+                "daspoldi@tin.it",
+                "dottordeigiudici@outlook.it",
+                "fabiosichel@gmail.com",
+                "federico.solignani@gmail.com",
+                "gcalabretti@gmail.com",
+                "graziaferramosca@gmail.com",
+                "jessife@libero.it",
+                "nicola.savarese@hotmail.it",
+                "phisio.daniel@gmail.com",
+                "psicologamilano@tiscali.it",
+                "sarah.pederboni@gmail.com",
+                "valeriagemmiti@gmail.com",
+                "capuanonicolina@gmail.com",
+                "lucio.mucci@libero.it",
+                "silviapiro@alice.it"
 
-        for (int i = 0; i < 1 ; i++) {
-        //int i = 0;
-            Bitmap bm = BitmapFactory.decodeResource(res, photId[i]);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 20, baos); //bm is the bitmap object
-            byte[] byteArrayImage = baos.toByteArray();
 
-            ParseFile file = new ParseFile(photId[i] + "_doctor_profile.png",byteArrayImage);
+        };
+        final String docid[] = {"56d76fb18f32d118c2ddab31", "56d76fb18f32d118c2ddab27",
+                "56d76fb18f32d118c2ddab33", "56d76fb18f32d118c2ddab30", "56dc2c34e4b066b0efdff965",
+                "56dc5a21e4b066b0efdffc70", "56dc2c07e4b066b0efdff95f", "56d76fb18f32d118c2ddab34",
+                "56d76fb18f32d118c2ddab26", "56d76fb18f32d118c2ddab37", "56d76fb18f32d118c2ddab29",
+                "56dc2bf3e4b066b0efdff95d", "56d76fb18f32d118c2ddab36", "56dc2b54e4b066b0efdff94d",
+                "56dc2c7ae4b066b0efdff967", "56d76fb18f32d118c2ddab38", "56dc2baae4b066b0efdff956",
+                "56deb3a1e4b088c9371befc8", "56dea028e4b0c05f88d04dd6"};
 
-            ParseObject drPhoto = new ParseObject("DoctorPh");
-            drPhoto.put("idDoctor", docid[i]);
-            drPhoto.put("photoByte", file.getName());
-                try {
-                   // file.saveInBackground();
-                    file.save();
-                    drPhoto.save();
-                }
-                catch (ParseException ex) {
-                }
-            }
 
-        //ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
-        //file.saveInBackground();
+        Log.d("addphoto","length of email[]"+emaildoc.length);
+        Log.d("addphoto","length of id[]"+docid.length);
+        Log.d("addphoto","length of drawable[]"+photId.length);
+        for (int i = 0; i < emaildoc.length; i++) {
+            //int i = 0;
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("DoctorPhoto");
+            query.whereEqualTo("email", emaildoc[i]);
+            final int ii=i;
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
 
-        }
+                    if(object==null){
+                    Bitmap bm = BitmapFactory.decodeResource(res, photId[ii]);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.PNG, 70, baos); //bm is the bitmap object
+                    byte[] byteArrayImage = baos.toByteArray();
 
-    public static void addData(Context c) {
+                    final ParseFile file = new ParseFile(photId[ii] + "_doctor_profile.png", byteArrayImage);
+                    file.saveInBackground(new SaveCallback() {
+                                              @Override
+                                              public void done(ParseException e) {
+                                                  Log.d("addPhoto", "file saved");
+                                                  ParseObject drPhoto = new ParseObject("DoctorPhoto");
+                                                  drPhoto.put("idDoctor", docid[ii]);
+                                                  drPhoto.put("email", emaildoc[ii]);
+                                                  drPhoto.put("photoByte", file.getName());
 
-        //CREATE DOCTORS
+                                                  // file.saveInBackground();
+                                                  //file.save();
+                                                  drPhoto.saveInBackground(new SaveCallback() {
+                                                      @Override
+                                                      public void done(ParseException e) {
+                                                          Log.d("addPhoto", "photo saved " + emaildoc[ii]);
+                                                      }
+                                                  });
+                                              }
+                                          }
+                    );
+
+                }}
+
+                //ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
+                //file.saveInBackground();
+
+            });
+
+
+        }}
+
+        public static void addData (Context c){
+
+            //CREATE DOCTORS
         /*context=c;
         LatLng Doc1 =new LatLng(38.121932, 13.357361);
         AddDoctors("Calogero Roaul", "Aiello", "roaulaiello@gmail.com", "25/05/1983",
@@ -177,10 +238,8 @@ public class AddDoctors {
 
     /**/
 
-        Log.d("main", "adding doctor post");
+            Log.d("main", "adding doctor post");
+        }
+
+
     }
-
-
-
-
-}

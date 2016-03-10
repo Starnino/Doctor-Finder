@@ -98,7 +98,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         holder.ratingBar.setRating(Float.parseFloat(DOCTORS.get(position).get(FEEDBACK).toString()));
 
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
-        holder.city.setText(Util.setCity(city));
+        holder.city.setText(Util.setSpecialization(city));
 
         holder.profile.setImageResource(doctor_avatar);
 

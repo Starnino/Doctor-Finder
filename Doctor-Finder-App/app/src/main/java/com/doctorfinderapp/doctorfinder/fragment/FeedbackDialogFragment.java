@@ -9,7 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
@@ -101,11 +103,67 @@ public class FeedbackDialogFragment extends DialogFragment {
 
 
     }
-    private void pushFeedback(View rootView,String email_user,String email_doctor){
-        EditText feedback_description_editText=
+    private void pushFeedback(View rootView, final String email_user, final String email_doctor){
+        //todo checked
+        final CheckBox checkBox = (CheckBox) rootView.findViewById(R.id.checkBox_respons);
+        if (checkBox.isChecked()) {
+
+
+
+
+        final EditText feedback_description_editText=
                 (EditText) rootView.findViewById(R.id.editText);
-        String feedback_description= feedback_description_editText.getText().toString();
-        ParseObject feedback = new ParseObject("Feedback");
+        final String feedback_description= feedback_description_editText.getText().toString();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+        query.whereEqualTo("email_user", email_user);
+        query.whereEqualTo("email_doctor", email_doctor);
+
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (object != null) {
+
+                    //case editing mode
+                    Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
+                    String feedback_description = object.getString("feedback_description");
+                    //feedback_description_editText.setText(feedback_description);
+                    //ParseObject feedback = new ParseObject("Feedback");
+                    object.put("email_user", email_user);
+                    object.put("email_doctor", email_doctor);
+                    object.put("feedback_description", feedback_description);
+
+                    object.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            Log.d("Push feedback", "feedback saved");
+                        }
+                    });
+                    //todo set ratingbar
+
+                } else {
+
+                    //case never inserted feedback
+                    ParseObject feedback = new ParseObject("Feedback");
+                    feedback.put("email_user", email_user);
+                    feedback.put("email_doctor", email_doctor);
+                    feedback.put("feedback_description", feedback_description);
+
+                    feedback.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            Log.d("Push feedback", "feedback saved");
+                        }
+                    });
+                }
+
+            }
+        });}
+        else{
+            //checkbox not checked
+            Toast toast = Toast.makeText(getContext(), R.string.notchecked, Toast.LENGTH_LONG);
+            toast.show();
+        }
+        /*ParseObject feedback = new ParseObject("Feedback");
         feedback.put("email_user", email_user);
         feedback.put("email_doctor", email_doctor);
         feedback.put("feedback_description", feedback_description);
@@ -115,7 +173,7 @@ public class FeedbackDialogFragment extends DialogFragment {
             public void done(ParseException e) {
                 Log.d("Push feedback","feedback saved");
             }
-        });
+        });*/
     }
 
 }

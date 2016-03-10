@@ -36,6 +36,7 @@ import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         setContentView(R.layout.activity_main);
 
+        //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
 
         if(
