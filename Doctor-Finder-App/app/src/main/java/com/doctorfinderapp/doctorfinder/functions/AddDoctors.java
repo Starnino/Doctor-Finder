@@ -33,19 +33,15 @@ import java.util.Date;
 import java.util.List;
 
 
-/**
- * Created by fedebyes on 12/02/16.
- */
-
 
 public class AddDoctors {
     private static boolean exist;
     private static Context context;
 
 
-    private static void AddDoctors(final String FirstName, final String LastName, final String email, String data,
-                                  final String[] Specialization, final String[] Work, final String anni,
-                                  final String cellphone, final String description, final String latlng)  {
+    private static void AddDoctors2(final String FirstName, final String LastName, final String email, String data,
+                                   final String[] Specialization, final String[] Work, final String anni,
+                                   final String cellphone, final String description, final String latlng)  {
 
         //codice per vedere se la mail del dottore esiste nel database
 
@@ -71,8 +67,8 @@ public class AddDoctors {
                     Doctor.put("Years", anni);
 
 
-                  /*
-                   Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
+
+                   Bitmap avatar = BitmapFactory.decodeResource(context.getResources(), R.drawable.personavatar);
                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
                    avatar.compress(Bitmap.CompressFormat.PNG, 100, stream);
                    byte[] byteArray = stream.toByteArray();
@@ -89,7 +85,7 @@ public class AddDoctors {
                    doctorPhoto.put("profilePhoto", file);
                    doctorPhoto.saveInBackground();
 
-                    */
+
                     Doctor.saveInBackground();
 
 
@@ -108,10 +104,11 @@ public class AddDoctors {
                     objects.get(0).saveInBackground();
 
                 }
-                // e.printStackTrace();
+                e.printStackTrace();
 
                 Log.d("Add doctor", "Saving doctor that not exist");
                 Log.d("Doctor", "adding" + email);
+
             }
         });
 
@@ -120,23 +117,34 @@ public class AddDoctors {
 
     public static void addPhoto(Resources res) {
 
-        //int photId[] = {R.drawable.antonio_renna11_gmail_com,R.drawable.antoniodecillis_virgilio_it,R.drawable.canossaelisa_gmail_com,R.drawable.cristinapoggi_psi_gmail_com,R.drawable.daspoldi_tin_it,R.drawable.dottordeigiudici_outlook_it,R.drawable.fabiosichel_gmail_com,R.drawable.federico_solignani_gmail_com,R.drawable.gcalabretti_gmail_com,R.drawable.graziaferramosca_gmail_com,R.drawable.jessife_libero_it,R.drawable.nicola_savarese_hotmail_it,R.drawable.phisio_daniel_gmail_com,R.drawable.psicologamilano_tiscali_it,R.drawable.sarah_pederboni_gmail_com,R.drawable.valeriagemmiti_gmail_com};
-        //String docid[] = {"56d76fb18f32d118c2ddab31","56d76fb18f32d118c2ddab27","56d76fb18f32d118c2ddab33","56d76fb18f32d118c2ddab30","56dc2c34e4b066b0efdff965","56dc5a21e4b066b0efdffc70","56dc2c07e4b066b0efdff95f","56d76fb18f32d118c2ddab34","56d76fb18f32d118c2ddab26","56d76fb18f32d118c2ddab37","56d76fb18f32d118c2ddab29","56dc2bf3e4b066b0efdff95d","56d76fb18f32d118c2ddab36","56dc2b54e4b066b0efdff94d","56dc2c7ae4b066b0efdff967","56d76fb18f32d118c2ddab38"};
+        int photId[] = {R.drawable.antonio_renna11_gmail_com,R.drawable.antoniodecillis_virgilio_it,R.drawable.canossaelisa_gmail_com,R.drawable.cristinapoggi_psi_gmail_com,R.drawable.daspoldi_tin_it,R.drawable.dottordeigiudici_outlook_it,R.drawable.fabiosichel_gmail_com,R.drawable.federico_solignani_gmail_com,R.drawable.gcalabretti_gmail_com,R.drawable.graziaferramosca_gmail_com,R.drawable.jessife_libero_it,R.drawable.nicola_savarese_hotmail_it,R.drawable.phisio_daniel_gmail_com,R.drawable.psicologamilano_tiscali_it,R.drawable.sarah_pederboni_gmail_com,R.drawable.valeriagemmiti_gmail_com, R.drawable.nicolina_capuano, R.drawable.lucio_mucci_libero_it, R.drawable.silviapiro_alice_it };
+        String docid[] = {"56d76fb18f32d118c2ddab31","56d76fb18f32d118c2ddab27","56d76fb18f32d118c2ddab33","56d76fb18f32d118c2ddab30","56dc2c34e4b066b0efdff965","56dc5a21e4b066b0efdffc70","56dc2c07e4b066b0efdff95f","56d76fb18f32d118c2ddab34","56d76fb18f32d118c2ddab26","56d76fb18f32d118c2ddab37","56d76fb18f32d118c2ddab29","56dc2bf3e4b066b0efdff95d","56d76fb18f32d118c2ddab36","56dc2b54e4b066b0efdff94d","56dc2c7ae4b066b0efdff967","56d76fb18f32d118c2ddab38","56dc2baae4b066b0efdff956","56deb3a1e4b088c9371befc8", "56dea028e4b0c05f88d04dd6"};
 
-        Bitmap bm = BitmapFactory.decodeResource(res, R.drawable.p1);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 20, baos); //bm is the bitmap object
-        byte[] byteArrayImage = baos.toByteArray();
+        for (int i = 0; i < 1 ; i++) {
+        //int i = 0;
+            Bitmap bm = BitmapFactory.decodeResource(res, photId[i]);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.PNG, 20, baos); //bm is the bitmap object
+            byte[] byteArrayImage = baos.toByteArray();
 
-        ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
-        file.saveInBackground();
+            ParseFile file = new ParseFile(photId[i] + "_doctor_profile.png",byteArrayImage);
 
-        ParseObject drPhoto = new ParseObject("DoctorPh");
-        drPhoto.put("idDoctor", "56d76fb18f32d118c2ddab37");
-        drPhoto.put("photoByte", file.getName());
+            ParseObject drPhoto = new ParseObject("DoctorPh");
+            drPhoto.put("idDoctor", docid[i]);
+            drPhoto.put("photoByte", file.getName());
+                try {
+                   // file.saveInBackground();
+                    file.save();
+                    drPhoto.save();
+                }
+                catch (ParseException ex) {
+                }
+            }
 
-        drPhoto.saveInBackground();
-    }
+        //ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
+        //file.saveInBackground();
+
+        }
 
     public static void addData(Context c) {
 
