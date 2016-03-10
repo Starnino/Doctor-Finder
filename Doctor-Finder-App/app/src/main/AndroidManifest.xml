@@ -121,35 +121,6 @@
         <activity android:name=".Report_Feedback"
             android:screenOrientation="portrait"/>
 
-        <!--Forse questa volta ce la faccio-->
-
-        <activity android:name=".SocialShare.MainActivitySocialShare"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SocialShare.SharePictureActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SocialShare.ShareTextActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            package="com.eh.telerik.robotsocial"
-            android:versionCode="1"
-            android:versionName="1.0"
-            android:name="com.eh.telerik.robotsocial.ShareTextActivity"
-            android:label="@string/title_share_text"
-            android:parentActivityName="com.eh.telerik.robotsocial.MainActivity">
-        </activity>
-
-
-        <uses-sdk
-            android:minSdkVersion="10"
-            android:targetSdkVersion="19" />
-
-
-        <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
 
     </application>
 

@@ -19,7 +19,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
@@ -27,7 +26,6 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.ParseObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,7 +130,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
 
         //refresh doctors searched
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.giampa,
+        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, 3,
                 DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
         refreshDoctorList(currentDoctor);
         DOCTOR_EMAIL=DOCTORTHIS.getString("Email");
@@ -169,31 +167,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
-
-
-        //bottone prenota visita
-
-
-        //bottone videocall
-        //non funziona anche se l'ho fatto come sempre #dincibacco
-        /*
-        String indexUser = ParseUser.getCurrentUser().getObjectId().toString();
-        String email_users = ParseUser.getCurrentUser().get("email").toString();
-        polletto=email_users;
-        RelativeLayout video = (RelativeLayout) findViewById(R.id.videochiama_dottore);
-        video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_call = new Intent(DoctorActivity.this, WebViewActivity.class);
-                Bundle callalo = new Bundle();
-                callalo.putString("URL",
-                        "https://hangouts.google.com%20mobile/" + "polletto" );
-                intent_call.putExtras(callalo);
-                startActivity(intent_call);
-            }
-        });
-        */
-
 
         //getting data from xml
         TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);

@@ -68,7 +68,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         //AddDoctors.addData();
 
         //aggiungo le foto dei dottori
-        AddDoctors.addPhoto(getResources());
+       // AddDoctors.addPhoto(getResources());
 
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -18,10 +18,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
+
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -45,6 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String lastName = "";
     private TextView utente;
     private TextView email;
+    private TextView friend_null;
     private String email_users;
 
     @Override
@@ -58,6 +58,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //se non sei loggato vai via
         ParseUser user = ParseUser.getCurrentUser();
+
+        friend_null = (TextView) findViewById(R.id.friend_null);
 
         if(user != null) {
 
@@ -78,7 +80,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
             Title = firstName + " " + lastName;
             profile = (RoundedImageView) findViewById(R.id.user_photo);
-            profile.setImageBitmap(GlobalVariable.UserPropic);
+
+            if (GlobalVariable.UserPropic != null)
+                profile.setImageBitmap(GlobalVariable.UserPropic);
 
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
@@ -96,6 +100,11 @@ public class UserProfileActivity extends AppCompatActivity {
         //set adapter to recycler
 
         mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+
+        if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
+
+        //if friends.size() is not empty set height to 100dp
+        if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -146,13 +155,45 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+/*       <!-- Forse questa volta ce la faccio -->
+
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.SharePictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.eh.telerik.robotsocial.ShareTextActivity"
+            package="com.eh.telerik.robotsocial"
+            android:label="@string/title_share_text"
+            android:parentActivityName="com.eh.telerik.robotsocial.MainActivity"
+            android:versionCode="1"
+            android:versionName="1.0" >
+        </activity>
+
+        <uses-sdk
+            android:minSdkVersion="19"
+            android:targetSdkVersion="23" />
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                 } catch (android.content.ActivityNotFoundException anfe) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
                 }
-                /*
+
                 Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
 
                 Bundle about = new Bundle();
