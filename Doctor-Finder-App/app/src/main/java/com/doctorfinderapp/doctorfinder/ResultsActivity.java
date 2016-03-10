@@ -33,6 +33,7 @@ import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
+import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -65,6 +66,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         //adding doctors data
         //AddDoctors.addData();
+
+        //aggiungo le foto dei dottori
+        AddDoctors.addPhoto(getResources());
+
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

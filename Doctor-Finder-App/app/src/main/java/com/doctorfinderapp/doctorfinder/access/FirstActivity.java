@@ -34,12 +34,6 @@ public class FirstActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-
-
-        //aggiungo le foto dei dottori
-        AddDoctors pollo = new AddDoctors();
-        pollo.addPhoto(getResources());
-
         //immersion mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
