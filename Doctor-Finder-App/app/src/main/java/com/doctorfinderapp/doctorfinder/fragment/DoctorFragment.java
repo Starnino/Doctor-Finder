@@ -36,6 +36,7 @@ import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -63,11 +64,9 @@ public class DoctorFragment extends Fragment {
     private ArrayList<String> DOCTOR_WORK_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
-    private JSONArray DOCTOR_MARKER_ARRAY;
     private String DOCTOR_FEEDBACK;
     private boolean DOCTOR_SEX;
     private String DOCTOR_DESCRIPTION;
-    private int DOCTOR_PHOTO;
     private ComponentName cn;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
@@ -108,9 +107,8 @@ public class DoctorFragment extends Fragment {
                 container, false);
 
         //set ParseDoctor this
-        doctors = GlobalVariable.DOCTORS;
-        ParseObject DOCTORTHIS = doctors.get(index);
 
+        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
@@ -121,7 +119,8 @@ public class DoctorFragment extends Fragment {
         DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-        //DOCTOR_PHOTO = DOCTORTHIS.ge
+
+
 
         /*DOCTOR_MARKER_ARRAY= (JSONArray) DOCTORTHIS.get("Marker");
 
@@ -199,16 +198,6 @@ public class DoctorFragment extends Fragment {
             }
         });*/
 
-
-        /**refresh recentDoctors*/                                   //doctor_rounded_avatar
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
-                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-        refreshDoctorList(currentDoctor);
-        /**updated recent_doctor*/
-
-
-
-
         LinearLayout feedback_button = (LinearLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,44 +210,12 @@ public class DoctorFragment extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
 
-
-
             }
         });
-
-
-
 
         return rootView;
     }
 
-
-    public void refreshDoctorList(Doctor currentDoctor) {
-        //set visible flag
-        if (!GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE)
-            GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
-        boolean flag = true;
-        //if doctor not exist in list
-        for (int i = 0; i < GlobalVariable.recentDoctors.size(); i++) {
-            if ((GlobalVariable.recentDoctors.get(i).getName() + GlobalVariable.recentDoctors.get(i).getSurname())
-                    .equals(currentDoctor.getName() + currentDoctor.getSurname()))
-                flag = false;
-        }
-
-        if (flag) {
-
-            //if size of list is minor of 10
-            if (GlobalVariable.recentDoctors.size() < 10)
-                GlobalVariable.recentDoctors.add(currentDoctor);
-
-                //if size is 10 or plus
-            else {
-                GlobalVariable.recentDoctors.add(0, currentDoctor);
-                GlobalVariable.recentDoctors.remove(10);
-            }
-        }
-        flag = true;
-    }
 
     private void openMaps(double lat, double lng) {
         // Creates an Intent that will load a map of San Francisco

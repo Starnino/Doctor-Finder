@@ -1,6 +1,9 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -25,7 +28,14 @@ import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,16 +54,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String DOCTOR_LAST_NAME;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
-    private int DOCTOR_PHOTO;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private PersonAdapter mAdapter;
+    private Bitmap DOCTOR_PHOTO;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
     private String Title;
-    private RelativeLayout prenota_dottore;
-    private RelativeLayout video;
-    private String polletto = "";
+    public final String EMAIL = "Email";
+    public static ParseObject DOCTORTHIS;
 
     //animation fab buttons
     public static void animateFAB() {
@@ -123,19 +129,58 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         doctors = GlobalVariable.DOCTORS;
 
         //set ParseDoctor this
-        ParseObject DOCTORTHIS = doctors.get(index);
+        DOCTORTHIS = doctors.get(index);
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-        //DOCTOR_PHOTO
+        DOCTOR_EMAIL = DOCTORTHIS.getString(EMAIL);
+
+        final RoundedImageView photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
+
+        final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+        doctorph.whereEqualTo(EMAIL, DOCTOR_EMAIL);
+
+        //TODO MODIFICARE
+        doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject doctorPhoto, ParseException e) {
+
+                if (doctorPhoto == null)
+                    Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
+
+                else {
+
+                    ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                    if (e == null) {
+
+                        file.getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] data, ParseException e) {
+                                DOCTOR_PHOTO = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                Log.d("DOCTOR PHOTO --> ", DOCTOR_PHOTO == null ? "is null" : "ok");
+                                photoProfile.setImageBitmap(DOCTOR_PHOTO);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+        //if photo exist
+        if (DOCTOR_PHOTO != null)
+            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, DOCTOR_PHOTO,
+                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
+        //if photo not exist
+        else
+            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
+                    DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
+
 
         //refresh doctors searched
-        currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, 3,
-                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
         refreshDoctorList(currentDoctor);
-        DOCTOR_EMAIL=DOCTORTHIS.getString("Email");
+
 
         //find fab buttons
         fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);
@@ -169,14 +214,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
 
         fabcontact.startAnimation(fab_open_normal);
-
-        //getting data from xml
-        TextView nameProfile = (TextView) findViewById(R.id.tvNumber1);
-        TextView special = (TextView) findViewById(R.id.tvNumber2);
-        TextView years = (TextView) findViewById(R.id.years);
-        TextView workPlace = (TextView) findViewById(R.id.workPlace);
-        TextView info = (TextView) findViewById(R.id.doctor_info);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDoctorProfile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
 

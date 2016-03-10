@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -72,7 +73,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         }
     }
 
-    public static List<ParseObject> DOCTORS;
+    List<ParseObject> DOCTORS;
 
     public ParseAdapter(List<ParseObject> doctors) {
         this.DOCTORS = new ArrayList<>(doctors);
@@ -109,7 +110,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             public void done(ParseObject doctorPhoto, ParseException e) {
 
                 if (doctorPhoto == null)
-                    Log.d("doctorphoto", DOCTORS.get(position).getString(EMAIL) + " isNull");
+                    Log.d("doctorphoto", "isNull");
 
                 else {
 

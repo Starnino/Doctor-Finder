@@ -52,7 +52,11 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         holder.personName.setText((visits.get(position).havePisello() ? "Dott. " : "Dott.ssa ")
                 + Util.reduceString(visits.get(position).getSurname()));
 
-        holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
+        if (visits.get(position).getPhoto() != null)
+            holder.personPhoto = visits.get(position).getPhoto();
+        else
+            holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
+
         holder.profession.setText(Util.reduceString(visits.get(position).getProfession()));
         holder.province.setText(visits.get(position).getCity());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
