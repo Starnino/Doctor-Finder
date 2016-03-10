@@ -230,6 +230,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:id="@+id/facebook"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/facebookkalo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/com_facebook_button_icon_blue"
+                android:visibility="visible"
+                android:scaleX="1.5"
+                android:scaleY="1.5"/>
+
+            <TextView
+                android:id="@+id/face"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/facebookkalo"
+                android:layout_toRightOf="@id/facebookkalo"
+                android:text="Connetti il tuo account con Facebook"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+            <ImageButton
+                android:id="@+id/facebookino"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:checked="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="6dp" />
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
             android:id="@+id/condividi"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/activity_horizontal_margin">

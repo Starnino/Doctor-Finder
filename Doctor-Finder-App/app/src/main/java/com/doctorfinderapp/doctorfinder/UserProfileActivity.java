@@ -181,6 +181,15 @@ public class UserProfileActivity extends AppCompatActivity {
                     }
                 });
 
+
+                RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
+                facebukkalo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
             }
         });
 
