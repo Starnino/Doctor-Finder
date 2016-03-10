@@ -118,7 +118,7 @@
         <activity android:name=".Intro.DefaultIntro"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".Report_Feedback"
+        <activity android:name=".Informativa"
             android:screenOrientation="portrait"/>
 
 

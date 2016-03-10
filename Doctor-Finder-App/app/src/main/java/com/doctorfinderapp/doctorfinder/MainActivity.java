@@ -22,7 +22,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -36,7 +35,6 @@ import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -265,6 +263,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         if(user!=null){
             getUserImage(ParseUser.getCurrentUser());
+            //after 2 sec re set image if is the first time
+
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    getUserImage(ParseUser.getCurrentUser());
+                }};
+            Timer timer2 = new Timer();
+            timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
             TextView nome= (TextView) header.findViewById(R.id.name_user);
 
@@ -465,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.informativa:
-                Intent informativa = new Intent(MainActivity.this, Report_Feedback.class);
+                Intent informativa = new Intent(MainActivity.this, Informativa.class);
                 startActivity(informativa);
                 break;
 

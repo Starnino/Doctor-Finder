@@ -3,24 +3,16 @@ package com.doctorfinderapp.doctorfinder.functions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.ImageView;
 
-import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import org.json.JSONObject;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -151,4 +143,46 @@ public class Util {
         return friends;
     }
 
+
+    public static void calculateFeedback(final String doctor_email){
+
+
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+        query.whereEqualTo("Email", doctor_email);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(final ParseObject object, ParseException e) {
+                if (object == null) {
+                    Log.d("calculate feedback", "Error doctor not exists ");
+                } else {
+                    ParseQuery query2 = ParseQuery.getQuery("Feedback");
+                    query2.whereEqualTo("Email", doctor_email);
+                    query2.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List objects, ParseException e) {
+                            float somma=0;
+                            for(int i=0;i< objects.size();i++){
+                                somma+= (float)objects.get(i);
+                            }
+                            float media=somma/objects.size();
+                            object.put("Feedback",media);
+                            object.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    Log.d("Feedback",doctor_email+" salvato");
+                                }
+                            });
+
+
+                        }
+
+
+                    });
+
+
+                }
+
+                            //else
+                }
+        });
+    }
 }

@@ -75,9 +75,48 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/anonymus"
+        android:id="@+id/checkBox_anonymus"
+        android:checked="false"
+        android:textSize="11dp" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/respons"
         android:id="@+id/checkBox_respons"
         android:checked="false"
         android:textSize="11dp" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/cancel"
+            android:id="@+id/annulla"
+            android:textAllCaps="true"
+
+            android:gravity="left"
+            android:layout_margin="16dp"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/feedback_send"
+            android:id="@+id/invia"
+            android:layout_alignParentTop="true"
+            android:textAllCaps="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -18,7 +18,7 @@ import android.support.v7.widget.Toolbar;
 /**
  * Created by giovanni on 3/8/16.
  */
-public class Report_Feedback extends AppCompatActivity{
+public class Informativa extends AppCompatActivity{
 
     private String Title = "Informativa";
 

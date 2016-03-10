@@ -304,6 +304,8 @@
     <string name="descrizione_visita">Descrivi la visita...</string>
     <string name="respons">Dichiaro che questo feedback è frutto di un\'esperienza reale</string>
     <string name="notchecked">Devi dichiarare che il feedback sia reale</string>
+    <string name="feedback_sended">Feedback inviato, grazie!</string>
+    <string name="anonymus">Voglio che il mio feedback sia anonimo</string>
 
 
 </resources>

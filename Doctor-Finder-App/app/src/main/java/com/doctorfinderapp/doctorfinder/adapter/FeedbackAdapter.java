@@ -45,15 +45,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     @Override
     public void onBindViewHolder(FeedbackAdapter.FeedbackViewHolder holder, int position) {
         String text = "";
-        for (int i = 0; i < 100; i++) {
-            text += "porco dio" + position + " ";
-        }
+
         holder.feedback_text.setText(text);
     }
 
     @Override
     public int getItemCount() {
-        Log.d("Feedback", "" + feedbacklist.size());
+        //Log.d("Feedback", "" + feedbacklist.size());
         return feedbacklist.size();
     }
 

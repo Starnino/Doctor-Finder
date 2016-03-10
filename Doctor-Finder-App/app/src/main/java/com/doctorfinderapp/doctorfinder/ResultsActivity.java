@@ -1,12 +1,9 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,11 +30,9 @@ import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.google.android.gms.maps.GoogleMap;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -285,7 +280,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.informativa:
-                Intent informativa = new Intent(ResultsActivity.this, Report_Feedback.class);
+                Intent informativa = new Intent(ResultsActivity.this, Informativa.class);
                 startActivity(informativa);
                 break;
         }

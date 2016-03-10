@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -22,6 +23,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
@@ -60,6 +63,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String Title;
     public final String EMAIL = "Email";
     public static ParseObject DOCTORTHIS;
+    private static Context c;
 
     //animation fab buttons
     public static void animateFAB() {
@@ -118,6 +122,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        c=getApplicationContext();
         setContentView(R.layout.activity_doctor);
         //take index
         Bundle extras = getIntent().getExtras();
@@ -315,11 +321,16 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private void openFeedbackDialog() {
 
 
-        Log.d("DoctorActivity",DOCTOR_EMAIL.toString());
+        //Log.d("DoctorActivity",DOCTOR_EMAIL.toString());
         DialogFragment newFragment = new FeedbackDialogFragment().newInstance(DOCTOR_EMAIL);
         newFragment.show(getSupportFragmentManager(), "feedback");
+
     }
 
+    public static void showToastFeedback(){
+        Toast.makeText(c, R.string.feedback_sended,
+                Toast.LENGTH_LONG).show();
+    }
 
 
     @Override
