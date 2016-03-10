@@ -17,13 +17,13 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="Slide 2 title"/>
+        android:text="Sfoglia la lista"/>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="400dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:layout_weight="5">
 
         <ImageView
@@ -44,7 +44,7 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="#TACCHINOALFORNO"/>
+        android:text="Visualizza i dottori in lista.."/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
