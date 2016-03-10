@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
-
+        //AddDoctors.addFile(getResources());
         if(
             ActivityCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -193,7 +193,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onClick(View v) {
                 //Download parse data
-                /*TODO REMOVE COMMENT if (!FLAGSPEC)  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
+                /*TODO REMOVE COMMENT if (!FLAGSPEC)
+                 Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)

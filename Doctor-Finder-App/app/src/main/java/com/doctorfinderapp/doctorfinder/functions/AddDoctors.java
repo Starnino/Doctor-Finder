@@ -10,6 +10,7 @@ import com.doctorfinderapp.doctorfinder.R;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -17,6 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -103,6 +105,39 @@ public class AddDoctors {
 
     }
 
+    public static void addFile(final Resources res){
+        int a=R.drawable.antonio_renna11_gmail_com;
+        Bitmap bm = BitmapFactory.decodeResource(res, a);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        ParseFile file = new ParseFile("fileprova_doctor_profile.jpg", byteArrayImage);
+
+        try {
+            file.save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        // Creazione di un ParseObject da inviare
+        ParseObject doctorPhoto = new ParseObject("DoctorPhoto");
+
+        doctorPhoto.put("profilePhoto", file);
+        try {
+            doctorPhoto.save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.d("addfile","file saved");
+        ParseFile get = (ParseFile)doctorPhoto.get("profilePhoto");
+        try {
+            get.getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     public static void addPhoto(final Resources res) {
 
         final int photId[] =
@@ -160,44 +195,65 @@ public class AddDoctors {
         Log.d("addphoto","length of email[]"+emaildoc.length);
         Log.d("addphoto","length of id[]"+docid.length);
         Log.d("addphoto","length of drawable[]"+photId.length);
+        //for (int i = 0; i < emaildoc.length; i++) {
         for (int i = 0; i < emaildoc.length; i++) {
             //int i = 0;
             ParseQuery<ParseObject> query = ParseQuery.getQuery("DoctorPhoto");
             query.whereEqualTo("email", emaildoc[i]);
-            final int ii=i;
+            final int ii = i;
             query.getFirstInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
 
-                    if(object==null){
-                    Bitmap bm = BitmapFactory.decodeResource(res, photId[ii]);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bm.compress(Bitmap.CompressFormat.PNG, 70, baos); //bm is the bitmap object
-                    byte[] byteArrayImage = baos.toByteArray();
+                    if (object == null) {
+                        Bitmap bm = BitmapFactory.decodeResource(res, photId[ii]);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bm.compress(Bitmap.CompressFormat.JPEG, 70, baos); //bm is the bitmap object
+                        byte[] byteArrayImage = baos.toByteArray();
+                        ParseFile file = new ParseFile(emaildoc[ii]+"_doctor_profile.jpg", byteArrayImage);
 
-                    final ParseFile file = new ParseFile(photId[ii] + "_doctor_profile.png", byteArrayImage);
-                    file.saveInBackground(new SaveCallback() {
-                                              @Override
-                                              public void done(ParseException e) {
-                                                  Log.d("addPhoto", "file saved");
-                                                  ParseObject drPhoto = new ParseObject("DoctorPhoto");
-                                                  drPhoto.put("idDoctor", docid[ii]);
-                                                  drPhoto.put("email", emaildoc[ii]);
-                                                  drPhoto.put("photoByte", file.getName());
+                        //final ParseFile file = new ParseFile("_doctor_profile.png", byteArrayImage);
+                        final ParseFile file1=file;
+                       file.saveInBackground(new SaveCallback() {
+                                                  @Override
+                                                  public void done(ParseException e) {
 
-                                                  // file.saveInBackground();
-                                                  //file.save();
-                                                  drPhoto.saveInBackground(new SaveCallback() {
-                                                      @Override
-                                                      public void done(ParseException e) {
-                                                          Log.d("addPhoto", "photo saved " + emaildoc[ii]);
+                                                      Log.d("addPhoto", "file saved"+emaildoc[ii]);
+                                                      final ParseObject drPhoto = new ParseObject("DoctorPhoto");
+                                                      drPhoto.put("idDoctor", docid[ii]);
+                                                      drPhoto.put("Email", emaildoc[ii]);
+                                                      drPhoto.put("profilePhoto", file1);
+                                                      if(e!=null){
+                                                          Log.d("addPhoto",e.toString());
                                                       }
-                                                  });
-                                              }
-                                          }
-                    );
 
-                }}
+
+                                                      drPhoto.saveInBackground(new SaveCallback() {
+                                                          @Override
+                                                          public void done(ParseException e) {
+                                                              Log.d("addPhoto", "photo saved " + emaildoc[ii]);
+                                                              if(e!=null){
+                                                                  Log.d("addPhoto",e.toString());
+
+
+                                                              }
+                                                              ParseFile get = (ParseFile)drPhoto.get("profilePhoto");
+                                                              try {
+                                                                  get.getData();
+                                                              } catch (ParseException e1) {
+                                                                  e1.printStackTrace();
+                                                              }
+                                                              Log.d("addPhoto","photosaved");
+
+
+                                                          }
+                                                      });
+                                                  }
+                                              }
+                        );
+
+                    }
+                }
 
                 //ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
                 //file.saveInBackground();
