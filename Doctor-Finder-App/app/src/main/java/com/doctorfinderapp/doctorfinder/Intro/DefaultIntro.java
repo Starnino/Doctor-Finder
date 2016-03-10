@@ -12,6 +12,7 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.github.paolorotolo.appintro.AppIntro;
+import com.parse.ParseUser;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -27,6 +28,15 @@ public class DefaultIntro extends AppIntro {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
         //finish immersive mode
+
+        //pop up
+        if (ParseUser.getCurrentUser() == null) {
+            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                    .setTitleText("Benvenuto su Doctor Finder")
+                    .setContentText("Con il nostro aiuto troverai facilmente lo specialista che stai cercando")
+                    .setCustomImage(R.drawable.logoverde)
+                    .show();
+        }
 
         addSlide(SampleSlide.newInstance(R.layout.intro));
         addSlide(SampleSlide.newInstance(R.layout.intro2));

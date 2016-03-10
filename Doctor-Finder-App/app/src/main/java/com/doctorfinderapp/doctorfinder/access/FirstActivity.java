@@ -41,7 +41,7 @@ public class FirstActivity extends Activity {
         //set activity layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
+/*
         if (ParseUser.getCurrentUser() == null) {
             new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                     .setTitleText("Benvenuto su Doctor Finder")
@@ -49,6 +49,7 @@ public class FirstActivity extends Activity {
                     .setCustomImage(R.drawable.logoverde)
                     .show();
         }
+        */
 
         //buttons get xml layout
         searchButton = (ImageButton) findViewById(R.id.search_button);
