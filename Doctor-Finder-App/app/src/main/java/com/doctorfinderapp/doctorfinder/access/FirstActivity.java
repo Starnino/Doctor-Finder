@@ -3,6 +3,8 @@ package com.doctorfinderapp.doctorfinder.access;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,10 +15,13 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.facebook.internal.DialogPresenter;
 import com.parse.ParseUser;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
+
+import java.security.Policy;
 
 public class FirstActivity extends Activity {
 
@@ -30,6 +35,10 @@ public class FirstActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
 
 
+
+        //aggiungo le foto dei dottori
+        AddDoctors pollo = new AddDoctors();
+        pollo.addPhoto(getResources());
 
         //immersion mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
