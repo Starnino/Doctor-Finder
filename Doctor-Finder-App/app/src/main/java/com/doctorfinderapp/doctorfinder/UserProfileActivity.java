@@ -34,7 +34,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
-    private Button segnala;
     public final String USER_EMAIL = "email";
     public static final String NAME = "fName";
     public static final String SURNAME = "lName";
@@ -138,55 +137,23 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        RelativeLayout condividi = (RelativeLayout) findViewById(R.id.condividi);
+        condividi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Ciao, ti consiglio di provare questa fantastica applicazione! https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+
+
 
         RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                        .setTitleText("Ciao!")
-                        .setContentText("Condividi Doctor Finder con i tuoi amici")
-                        .setCustomImage(R.drawable.logoverde)
-                        .show();
-            }
-        });
-
-        RelativeLayout condividi = (RelativeLayout) findViewById(R.id.cambiamelo);
-        rateus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-/*       <!-- Forse questa volta ce la faccio -->
-
-        <activity
-            android:name="com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.doctorfinderapp.doctorfinder.SocialShare.SharePictureActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.eh.telerik.robotsocial.ShareTextActivity"
-            package="com.eh.telerik.robotsocial"
-            android:label="@string/title_share_text"
-            android:parentActivityName="com.eh.telerik.robotsocial.MainActivity"
-            android:versionCode="1"
-            android:versionName="1.0" >
-        </activity>
-
-        <uses-sdk
-            android:minSdkVersion="19"
-            android:targetSdkVersion="23" />
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
@@ -194,33 +161,30 @@ public class UserProfileActivity extends AppCompatActivity {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
                 }
 
-                Intent intent_about = new Intent(UserProfileActivity.this, WebViewActivity.class);
-
-                Bundle about = new Bundle();
-                about.putString("URL",
-                        "https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" );
-                intent_about.putExtras(about);
-                startActivity(intent_about);
-                */
             }
         });
 
-        RelativeLayout cambia = (RelativeLayout) findViewById(R.id.inviaci_mail);
-        cambia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                               i.setType("message/rfc822");
-                              i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"info@doctorfinderapp.com"});
-                               i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
-                                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
-                               try {
-                                       startActivity(Intent.createChooser(i, "Invia mail usando..."));
-                                   } catch (android.content.ActivityNotFoundException ex) {
-                                       Toast.makeText(UserProfileActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                                   }
+
+                RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
+                inviacela.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(Intent.ACTION_SEND);
+                        i.setType("message/rfc822");
+                        i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
+                        i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
+                        i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+                        try {
+                            startActivity(Intent.createChooser(i, "Invia mail usando..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
+
 
     }
 
