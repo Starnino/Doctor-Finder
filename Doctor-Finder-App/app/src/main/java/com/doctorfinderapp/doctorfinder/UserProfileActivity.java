@@ -147,10 +147,10 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+/*
                 Intent intent_about = new Intent(UserProfileActivity.this, MainActivityNewSocialShare.class);
                 startActivity(intent_about);
-                 /*
+
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
