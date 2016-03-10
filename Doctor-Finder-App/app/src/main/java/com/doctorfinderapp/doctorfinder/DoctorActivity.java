@@ -117,7 +117,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             index = extras.getInt("index");
+            Log.d("INDEX", index + "");
         }
+
         doctors = GlobalVariable.DOCTORS;
 
         //set ParseDoctor this

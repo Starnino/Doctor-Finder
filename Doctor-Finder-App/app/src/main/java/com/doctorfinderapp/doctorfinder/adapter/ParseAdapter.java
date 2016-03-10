@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,11 @@ import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.DoctorsDB;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.orhanobut.dialogplus.Holder;
@@ -36,15 +39,13 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public static final String FEEDBACK = "Feedback";
     public static final String CITY = "Province";
 
-
-    public static class ParseViewHolder extends RecyclerView.ViewHolder {
+    public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView name;
         TextView special;
         RatingBar ratingBar;
         RoundedImageView profile;
         TextView city;
-        int realPosition;
 
         public ParseViewHolder(final View itemView) {
 
@@ -54,26 +55,32 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             city = (TextView) itemView.findViewById(R.id.city);
             profile = (RoundedImageView) itemView.findViewById(R.id.profile_image);
-
-            //todo query if photo exists on doctorphoto
-
-            //todo download photo
-
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+
+            int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
+            Context context = v.getContext();
+
+            Intent intent = new Intent(context, DoctorActivity.class);
+            //------
+            intent.putExtra("index", position);
+            //------
+            context.startActivity(intent);
+            Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+        }
     }
 
-    List<ParseObject> DOCTORS;
-    int[] realIndexes;
+    public static List<ParseObject> DOCTORS;
 
     public ParseAdapter(List<ParseObject> doctors) {
         this.DOCTORS = new ArrayList<>(doctors);
     }
 
-
-
     @Override
-    public ParseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ParseViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctor_card_item, parent, false);
         return new ParseViewHolder(v);
@@ -95,22 +102,14 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         holder.profile.setImageResource(doctor_avatar);
 
-        holder.realPosition = position;
+        for (int i = 0; i < DOCTORS.size(); i++) {
+            Log.d("DOCTOR SIZE --> ", (i+1)+"");
+        }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, DoctorActivity.class);
-                //------
-                intent.putExtra("index", holder.realPosition );
-                //------
-                context.startActivity(intent);
-            }
-        });
+        //todo query if photo exists on doctorphoto
 
+        //todo download photo
     }
-    
 
     @Override
     public int getItemCount() {
