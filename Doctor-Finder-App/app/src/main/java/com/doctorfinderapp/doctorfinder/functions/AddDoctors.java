@@ -116,7 +116,7 @@ public class AddDoctors {
     }
 
     public static void addPhoto(Resources res) {
-/*
+
         int photId[] = {R.drawable.antonio_renna11_gmail_com,R.drawable.antoniodecillis_virgilio_it,R.drawable.canossaelisa_gmail_com,R.drawable.cristinapoggi_psi_gmail_com,R.drawable.daspoldi_tin_it,R.drawable.dottordeigiudici_outlook_it,R.drawable.fabiosichel_gmail_com,R.drawable.federico_solignani_gmail_com,R.drawable.gcalabretti_gmail_com,R.drawable.graziaferramosca_gmail_com,R.drawable.jessife_libero_it,R.drawable.nicola_savarese_hotmail_it,R.drawable.phisio_daniel_gmail_com,R.drawable.psicologamilano_tiscali_it,R.drawable.sarah_pederboni_gmail_com,R.drawable.valeriagemmiti_gmail_com, R.drawable.nicolina_capuano, R.drawable.lucio_mucci_libero_it, R.drawable.silviapiro_alice_it };
         String docid[] = {"56d76fb18f32d118c2ddab31","56d76fb18f32d118c2ddab27","56d76fb18f32d118c2ddab33","56d76fb18f32d118c2ddab30","56dc2c34e4b066b0efdff965","56dc5a21e4b066b0efdffc70","56dc2c07e4b066b0efdff95f","56d76fb18f32d118c2ddab34","56d76fb18f32d118c2ddab26","56d76fb18f32d118c2ddab37","56d76fb18f32d118c2ddab29","56dc2bf3e4b066b0efdff95d","56d76fb18f32d118c2ddab36","56dc2b54e4b066b0efdff94d","56dc2c7ae4b066b0efdff967","56d76fb18f32d118c2ddab38","56dc2baae4b066b0efdff956","56deb3a1e4b088c9371befc8", "56dea028e4b0c05f88d04dd6"};
 
@@ -140,7 +140,7 @@ public class AddDoctors {
                 catch (ParseException ex) {
                 }
             }
-*/
+
         //ParseFile file = new ParseFile("56d76fb18f32d118c2ddab37_doctor_profile.png",byteArrayImage);
         //file.saveInBackground();
 

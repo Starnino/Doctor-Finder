@@ -18,11 +18,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.NewSocialShare.MainActivityNewSocialShare;
-import com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare;
+
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -147,9 +145,37 @@ public class UserProfileActivity extends AppCompatActivity {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
-                Intent intent_about = new Intent(UserProfileActivity.this, MainActivityNewSocialShare.class);
-                startActivity(intent_about);
+
+
+/*       <!-- Forse questa volta ce la faccio -->
+
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.MainActivitySocialShare"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.SharePictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.doctorfinderapp.doctorfinder.SocialShare.ShareTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.eh.telerik.robotsocial.ShareTextActivity"
+            package="com.eh.telerik.robotsocial"
+            android:label="@string/title_share_text"
+            android:parentActivityName="com.eh.telerik.robotsocial.MainActivity"
+            android:versionCode="1"
+            android:versionName="1.0" >
+        </activity>
+
+        <uses-sdk
+            android:minSdkVersion="19"
+            android:targetSdkVersion="23" />
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
