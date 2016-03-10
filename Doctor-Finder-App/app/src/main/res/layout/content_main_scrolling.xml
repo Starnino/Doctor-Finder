@@ -211,6 +211,7 @@
             app:pressedTranslationZ="12dp"
             app:backgroundTint="@color/docfinder"
             app:layout_anchorGravity="bottom|right|end"
+            app:layout_anchor ="@id/card1"
             android:visibility="invisible"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_above="@+id/recent_doctors"

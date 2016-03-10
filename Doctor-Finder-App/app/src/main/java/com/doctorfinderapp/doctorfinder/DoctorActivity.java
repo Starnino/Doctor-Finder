@@ -44,6 +44,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String DOCTOR_LAST_NAME;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
+    private int DOCTOR_PHOTO;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private PersonAdapter mAdapter;
@@ -128,6 +129,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+        //DOCTOR_PHOTO
 
         //refresh doctors searched
         currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, 3,

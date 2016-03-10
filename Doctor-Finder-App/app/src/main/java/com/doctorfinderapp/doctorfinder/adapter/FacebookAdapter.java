@@ -75,6 +75,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
                     Log.d("userphoto", "isnull");
 
                 } else {
+
                     ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
                     file.getDataInBackground(new GetDataCallback() {
                         public void done(byte[] data, ParseException e) {

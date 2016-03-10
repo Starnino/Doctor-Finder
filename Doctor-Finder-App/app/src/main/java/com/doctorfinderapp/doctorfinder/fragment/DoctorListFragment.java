@@ -65,4 +65,5 @@ public class DoctorListFragment extends Fragment {
         parseAdapter.animateTo(filters);
         mRecyclerView.scrollToPosition(0);
     }
+
 }

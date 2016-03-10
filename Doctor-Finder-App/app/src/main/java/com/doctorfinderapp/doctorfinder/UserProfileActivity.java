@@ -95,7 +95,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //Util.getUserFacebookFriends(ParseUser.getCurrentUser());
         //set adapter to recycler
 
         mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));

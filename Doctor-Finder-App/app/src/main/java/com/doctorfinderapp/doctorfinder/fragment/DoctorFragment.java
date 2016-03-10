@@ -121,6 +121,7 @@ public class DoctorFragment extends Fragment {
         DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+        //DOCTOR_PHOTO = DOCTORTHIS.ge
 
         /*DOCTOR_MARKER_ARRAY= (JSONArray) DOCTORTHIS.get("Marker");
 

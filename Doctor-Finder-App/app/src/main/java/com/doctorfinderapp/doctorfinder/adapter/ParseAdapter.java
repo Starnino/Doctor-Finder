@@ -2,30 +2,28 @@ package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.functions.DoctorsDB;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.orhanobut.dialogplus.Holder;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
-import static com.doctorfinderapp.doctorfinder.R.drawable.doctoravatar_piccolo;
-import static com.doctorfinderapp.doctorfinder.R.drawable.recurrence_bubble_fill;
 
 /**
  * Created by francesco on 01/03/16.
@@ -38,6 +36,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public static final String SPECIALIZATION = "Specialization";
     public static final String FEEDBACK = "Feedback";
     public static final String CITY = "Province";
+    public static final String EMAIL = "Email";
 
     public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -102,13 +101,35 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         holder.profile.setImageResource(doctor_avatar);
 
-        for (int i = 0; i < DOCTORS.size(); i++) {
+        final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+        doctorph.whereEqualTo(EMAIL, DOCTORS.get(position).getString(EMAIL));
+
+        doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject doctorPhoto, ParseException e) {
+
+                if (doctorPhoto == null)
+                    Log.d("doctorphoto", DOCTORS.get(position).getString(EMAIL) + " isNull");
+
+                else {
+
+                    ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                    if (e == null) {
+
+                        file.getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] data, ParseException e) {
+                                holder.profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+        /*for (int i = 0; i < DOCTORS.size(); i++) {
             Log.d("DOCTOR SIZE --> ", (i+1)+"");
-        }
-
-        //todo query if photo exists on doctorphoto
-
-        //todo download photo
+        }*/
     }
 
     @Override

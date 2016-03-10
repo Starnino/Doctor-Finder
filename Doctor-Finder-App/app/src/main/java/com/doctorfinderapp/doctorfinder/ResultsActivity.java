@@ -173,6 +173,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -192,7 +193,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         });
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        //fab.startAnimation(fab_open_normal);
+        fab.startAnimation(fab_open_normal);
     }
 
 
@@ -332,8 +333,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch(position){
             case 0:
                 Log.d("fab", "open");
-                fab_location.startAnimation(fab_close);
-                fab_location.setClickable(false);
+                //fab_location.startAnimation(fab_close);
+                //fab_location.setClickable(false);
                 fab.startAnimation(fab_open_normal);
                 fab.setClickable(true);
                 break;
@@ -342,8 +343,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 Log.d("fab_location", "open");
                 fab.startAnimation(fab_close);
                 fab.setClickable(false);
-                fab_location.startAnimation(fab_open_normal);
-                fab_location.setClickable(true);
+                //fab_location.startAnimation(fab_open_normal);
+                //fab_location.setClickable(true);
                 break;
         }
     }
