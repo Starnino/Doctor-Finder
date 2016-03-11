@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
+    android:background="#D32F2F"
     android:layout_weight="10"
     android:id="@+id/main">
 
@@ -43,8 +43,9 @@
         android:textColor="#ffffff"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
+        android:fontFamily="sans-serif-thin"
         android:textSize="16sp"
-        android:text="Visualizza i dottori in lista.."/>
+        android:text="Visualizza i dottori in lista"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

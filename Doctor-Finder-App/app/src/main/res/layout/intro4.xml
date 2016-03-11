@@ -43,7 +43,7 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:textStyle="bold"
+        android:fontFamily="sans-serif-thin"
         android:onClick="getStarted"
         android:text=" Infine, visualizza il profilo dello specialista della salute e guarda tutte le informazioni di cui hai bisogno"/>
     <TextView
