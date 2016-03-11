@@ -36,7 +36,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -322,7 +328,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             TextView special = (TextView) myContentsView.findViewById(R.id.special);
             RatingBar ratingBar = (RatingBar) myContentsView.findViewById(R.id.ratingBar);
             TextView city = (TextView) myContentsView.findViewById(R.id.city);
-            RoundedImageView profile = (RoundedImageView) myContentsView.findViewById(R.id.profile_image);
+            final RoundedImageView profile = (RoundedImageView) myContentsView.findViewById(R.id.profile_image);
 
 
             ParseObject CURRENTDOCTOR=GlobalVariable.DOCTORS.get(index);
@@ -331,6 +337,33 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             ArrayList<String> spec = (ArrayList<String>) CURRENTDOCTOR.get("Specialization");
             special.setText(Util.setCity(spec));
             ratingBar.setRating(parseFloat(CURRENTDOCTOR.get("Feedback").toString()));
+
+            final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+            doctorph.whereEqualTo("Email",CURRENTDOCTOR.get("Email").toString());
+
+            doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject doctorPhoto, ParseException e) {
+
+                    if (doctorPhoto == null)
+                        Log.d("doctorphoto", "isNull");
+
+                    else {
+
+                        ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                        if (e == null) {
+
+                            file.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] data, ParseException e) {
+                                   profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
             //todo set photo
 
             return myContentsView;

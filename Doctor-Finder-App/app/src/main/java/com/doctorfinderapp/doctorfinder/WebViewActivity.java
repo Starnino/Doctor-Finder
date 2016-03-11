@@ -21,7 +21,7 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
         Bundle b = getIntent().getExtras();
         String URL = b.getString("URL");
-        Toast.makeText(this,URL,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,URL,Toast.LENGTH_LONG).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_webview);
         setSupportActionBar(toolbar);
 
