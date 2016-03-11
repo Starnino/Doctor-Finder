@@ -16,7 +16,10 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +69,21 @@ public class FeedbackFragment extends Fragment {
 
         FeedbackArray= new ArrayList<>();
 
-        FeedbackArray.add(new ParseObject("Feedback"));
+        //FeedbackArray.add(new ParseObject("Feedback"));
+        /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+        query.whereEqualTo("", "Dan Stemkoski");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });*/
+
+
+
 
         Log.d("Feedback",""+ FeedbackArray.size());
 

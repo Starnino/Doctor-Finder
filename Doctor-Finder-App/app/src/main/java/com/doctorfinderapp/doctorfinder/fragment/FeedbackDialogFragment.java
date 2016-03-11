@@ -152,13 +152,14 @@ public class FeedbackDialogFragment extends DialogFragment {
                         //ParseObject feedback = new ParseObject("Feedback");
                         object.put("email_user", email_user);
                         object.put("email_doctor", email_doctor);
-                        object.put("Rating", ratingbar.getRating());
+                        object.put("Rating", new Float(ratingbar.getRating()));
                         object.put("Anonymus",anonymus);
                         object.put("feedback_description", feedback_description);
 
                         object.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
+                                if(e!=null)Log.d("Push feedback", e.toString());
                                 Log.d("Push feedback", "feedback saved");
 
                                 DoctorActivity.showToastFeedback();
@@ -173,11 +174,12 @@ public class FeedbackDialogFragment extends DialogFragment {
                         feedback.put("email_doctor", email_doctor);
                         feedback.put("Anonymus",anonymus);
                         feedback.put("feedback_description", feedback_description);
-                        feedback.put("Rating",ratingbar.getRating());
+                        feedback.put("Rating",new Float( ratingbar.getRating()));
 
                         feedback.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
+                                if(e!=null)Log.d("Push feedback", e.toString());
                                 Log.d("Push feedback", "feedback saved");
                             }
                         });
