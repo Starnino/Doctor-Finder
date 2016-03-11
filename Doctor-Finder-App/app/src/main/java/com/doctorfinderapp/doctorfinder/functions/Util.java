@@ -190,55 +190,7 @@ public class Util {
 
 
 
-        /*query.getFirstInBackground(new GetCallback<ParseObject>() {
-            public void done(final ParseObject doctor, ParseException e) {
 
-                if (doctor == null) {
-                    Log.d("calculate feedback", "Error doctor not exists ");
-                } else {
-                    ParseQuery query2 = ParseQuery.getQuery("Feedback");
-
-                    query2.whereEqualTo("email_doctor", doctor_email);
-                    Log.d("Feedback", doctor.toString());
-                    query2.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> objects, ParseException e) {
-                            ParseObject d=doctor;
-                            Float somma = 0f;
-                            for (int i = 0; i < objects.size(); i++) {
-                                String f = objects.get(i).get("Rating").toString();
-                                Log.d("Feedback", f);
-                                somma = somma + Float.parseFloat(f);
-                            }
-                            float media = somma / objects.size();
-                            Log.d("Feedback", "object.size() " + objects.size() + "");
-                            Log.d("Feedback", "somma " + somma + "");
-                            Log.d("Feedback", "media " + media + "");
-
-
-                            Log.d("Feedback", d.toString());
-                            d.put("Feedback", media);
-
-                            d.saveInBackground(new SaveCallback() {
-                                @Override
-                                public void done(ParseException e) {
-                                    if (e != null) Log.d("calculate feedback", e.toString());
-                                    Log.d("Feedback", doctor_email + " salvato");
-                                }
-                            });
-
-
-                        }
-
-
-                    });
-
-
-                }
-
-
-            }
-        });*/
     }
 
     public ParseObject getDoctorFromList(ArrayList<ParseObject> list, int index) {

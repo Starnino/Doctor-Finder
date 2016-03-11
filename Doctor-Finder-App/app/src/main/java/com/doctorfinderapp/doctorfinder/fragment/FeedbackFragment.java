@@ -10,12 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
-import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -65,25 +62,24 @@ public class FeedbackFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
+        String EMAIL = DOCTORTHIS.getString("Email");
+
         mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
         FeedbackArray= new ArrayList<>();
 
-        //FeedbackArray.add(new ParseObject("Feedback"));
-        /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
-        query.whereEqualTo("", "Dan Stemkoski");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+        query.whereEqualTo("Email", EMAIL);
         query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> scoreList, ParseException e) {
+            public void done(List<ParseObject> feedList, ParseException e) {
                 if (e == null) {
-                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+
                 } else {
-                    Log.d("score", "Error: " + e.getMessage());
+                    Log.d("feedback", "Error: " + e.getMessage());
                 }
             }
-        });*/
-
-
-
+        });
 
         Log.d("Feedback",""+ FeedbackArray.size());
 

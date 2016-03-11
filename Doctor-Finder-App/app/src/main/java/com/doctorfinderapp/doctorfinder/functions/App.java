@@ -16,19 +16,24 @@ public class App extends Application{
     private static final String TAG = "StartParse" ;
 
     @Override public void onCreate() {
+        //Log.d(TAG,"on create Start parse");
+        startParse(getApplicationContext());
         super.onCreate();
 
-       startParse(getApplicationContext());
+
     }
 
     private static void startParse(Context c){
-        Parse.enableLocalDatastore(c);
+
         try {
+            //Parse.enableLocalDatastore(c);
             Parse.initialize(new Parse.Configuration.Builder(c)
                             .applicationId("VfxaK2Tk5qApR5nvAulR")
                             .clientKey("wIgqO6QfRM4vFuD3pWJi")
+                            .enableLocalDataStore()
                             .server("http://doctor-finder-server.herokuapp.com/parse/")
                             .build()
+
             );
             ParseFacebookUtils.initialize(c);
             ParseInstallation.getCurrentInstallation().saveInBackground();
