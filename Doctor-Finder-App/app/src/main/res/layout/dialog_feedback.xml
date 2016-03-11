@@ -78,14 +78,17 @@
         android:text="@string/anonymus"
         android:id="@+id/checkBox_anonymus"
         android:checked="false"
-        android:textSize="11dp" />
+        android:textSize="11dp"
+        android:layout_marginLeft="16dp" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/respons"
         android:id="@+id/checkBox_respons"
         android:checked="false"
-        android:textSize="11dp" />
+        android:textSize="11dp"
+        android:layout_marginLeft="16dp"
+        android:lines="2" />
 
     <RelativeLayout
         android:orientation="horizontal"

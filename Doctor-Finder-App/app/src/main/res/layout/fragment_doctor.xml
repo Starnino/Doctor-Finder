@@ -228,47 +228,7 @@
 
 
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/Price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:padding="@dimen/activity_horizontal_margin">
 
-                    <ImageView
-                        android:id="@+id/ivContactItem7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_account_circle_black_24dp" />
-
-                    <TextView
-                        android:id="@+id/txtprice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_toEndOf="@id/ivContactItem7"
-                        android:text="Prezzo medio della visita:"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#212121" />
-
-                    <TextView
-                        android:id="@+id/tvNumber7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/ivContactItem7"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_toEndOf="@+id/ivContactItem7"
-                        android:text="Nessun prezzo settato"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="#727272" />
-
-
-                </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/visit"
                     android:layout_width="match_parent"
@@ -277,14 +237,14 @@
                     android:clickable="true"
                     android:padding="@dimen/activity_horizontal_margin">
 
-                    <ImageView
+                    <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_account_circle_black_24dp" />
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-watch_later"/>
 
                     <TextView
                         android:id="@+id/txtvisit"
@@ -310,10 +270,118 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/ivContactItem7"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-attach_money"/>
+
+                    <TextView
+                        android:id="@+id/txtprice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/ivContactItem7"
+                        android:text="Prezzo medio della visita:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
+
+                    <TextView
+                        android:id="@+id/tvNumber7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@+id/ivContactItem7"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@+id/ivContactItem7"
+                        android:text="Nessun prezzo settato"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#727272" />
+
+
+                </RelativeLayout>
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="6dp"
+            android:id="@+id/feedback_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+            <RelativeLayout
+                android:id="@+id/feedback_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                >
+
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:id="@+id/ivContactItem5"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="visible"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-supervisor_account"/>
+
+                <TextView
+                    android:id="@+id/tvNumber5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_toEndOf="@id/ivContactItem5"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Feedback:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#212121"  />
+
+                <ImageView
+                    android:id="@+id/feedback_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                    android:checked="true"
+                    android:scaleX="0.6"
+                    android:scaleY="0.6"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:onClick="onClick"
+                    android:padding="6dp" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarDoctorProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+
+                    android:isIndicator="true"
+                    android:layout_below="@+id/tvNumber5"
+                    android:layout_alignStart="@+id/tvNumber5" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:id="@+id/card2"
             android:layout_width="match_parent"
@@ -367,7 +435,7 @@
                     android:layout_centerVertical="true"
                     android:visibility="visible"
                     app:iiv_color="@color/colorPrimaryDark"
-                    app:iiv_icon="gmd-favorite"/>
+                    app:iiv_icon="gmd-info_outline"/>
 
 
                 <TextView
@@ -398,60 +466,7 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="6dp"
-            android:id="@+id/feedback_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white">
 
-            <RelativeLayout
-                android:id="@+id/feedback_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:padding="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:id="@+id/tvNumber5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:clickable="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Punteggio Feedback"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#212121" />
-
-                <ImageView
-                    android:id="@+id/feedback_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                    android:checked="true"
-                    android:scaleX="0.6"
-                    android:scaleY="0.6"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:onClick="onClick"
-                    android:padding="6dp" />
-
-                <RatingBar
-                    android:id="@+id/ratingBarDoctorProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-
-                    android:isIndicator="true"
-                    android:layout_below="@+id/tvNumber5"
-                    android:layout_alignParentStart="true" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
 
 
 
