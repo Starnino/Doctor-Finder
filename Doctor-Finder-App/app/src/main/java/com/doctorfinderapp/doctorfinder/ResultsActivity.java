@@ -34,6 +34,7 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -228,26 +229,30 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+
         switch (item.getItemId()) {
 
             case R.id.profile:
                 if(ParseUser.getCurrentUser()!=null){
-                    Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
-                    startActivity(intent_user);}
+                    Intent intent_user = new Intent(this, UserProfileActivity.class);
+                    startActivity(intent_user);
+                }
                 break;
 
+
             case R.id.inserisci_dottore:
-                Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_dottore = new Intent(this, WebViewActivity.class);
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing" ); //Your id
+                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
             case R.id.about:
-                Intent intent_about = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_about = new Intent(this, WebViewActivity.class);
 
                 Bundle about = new Bundle();
                 about.putString("URL",
@@ -257,7 +262,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.support:
-                Intent intent_supporto = new Intent(ResultsActivity.this, WebViewActivity.class);
+                Intent intent_supporto = new Intent(this, WebViewActivity.class);
 
                 Bundle supporto = new Bundle();
                 supporto.putString("URL",
@@ -268,23 +273,30 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
             case R.id.like:
                 Intent intent_like = Util.getOpenFacebookIntent(this);
+
                 startActivity(intent_like);
                 break;
 
             case R.id.logout:
-                ParseUser.logOut();
-                Log.d("R", "Logged out");
-                Toast.makeText(getApplicationContext(),
-                        "Logged out",
-                        Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
-                startActivity(intent);
+                ParseUser.logOutInBackground(new LogOutCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Log.d("R", "Logged out");
+                        Toast.makeText(getApplicationContext(),
+                                "Logged out",
+                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ResultsActivity.this ,  SplashActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
                 break;
 
             case R.id.informativa:
-                Intent informativa = new Intent(ResultsActivity.this, Informativa.class);
+                Intent informativa = new Intent(this, Informativa.class);
                 startActivity(informativa);
                 break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);

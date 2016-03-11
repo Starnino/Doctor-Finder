@@ -4,11 +4,12 @@
     <shared>
       <config>
         <devices>
+          <device id="Nexus 5" />
           <device id="Nexus 7 2013" />
+          <device id="Nexus 6" />
           <device id="Nexus 5X" />
           <device id="Nexus 10" />
           <device id="Nexus S" />
-          <device id="Nexus 5" />
           <device id="10.1in WXGA (Tablet)" />
         </devices>
         <target>android-23</target>
@@ -30,6 +31,11 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml">
         <config>
           <theme>@style/AppTheme</theme>
@@ -47,18 +53,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="916e854c-bcfe-40f7-9eb2-cff8bf622810" name="Default" comment="Feedback on recycler view with photo, all it's working&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/FeedbackAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/FeedbackAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java" />
+    <list default="true" id="916e854c-bcfe-40f7-9eb2-cff8bf622810" name="Default" comment="feedback fragment on close dialog updated&#10;xml doctor fragment setted&#10;back button added&#10;bugfixed send feedback&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Doctor-Finder-App.iws" />
@@ -96,6 +94,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="DoctorMapsFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="143" column="5" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
+              <folding>
+                <element signature="e#5674#5861#0" expanded="true" />
+                <element signature="e#5860#5861#0" expanded="true" />
+                <element signature="method#resizeMarker#0;class#DoctorMapsFragment#0" expanded="false" />
+                <element signature="class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+                <element signature="method#getInfoContents#0;class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FeedbackFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -108,70 +122,136 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DoctorMapsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
+      <file leaf-file-name="DoctorActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/DoctorActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="327" column="83" selection-start-line="327" selection-start-column="83" selection-end-line="327" selection-end-column="83" />
+              <caret line="273" column="8" selection-start-line="273" selection-start-column="8" selection-end-line="273" selection-end-column="8" />
+              <folding>
+                <element signature="e#2519#2543#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content_scrolling.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParseAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/ParseAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.842105">
-              <caret line="128" column="11" selection-start-line="104" selection-start-column="9" selection-end-line="128" selection-end-column="11" />
+      <file leaf-file-name="content_scrolling_user.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="doctor_card_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="35" selection-end-column="41" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2005#2024#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeedbackAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FeedbackAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/FeedbackAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39781022">
+            <state vertical-scroll-proportion="0.0">
               <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="484" column="9" selection-start-line="417" selection-start-column="8" selection-end-line="484" selection-end-column="9" />
               <folding>
-                <element signature="e#2703#3715#0" expanded="true" />
-                <element signature="e#3223#3553#0" expanded="true" />
-                <element signature="e#3552#3553#0" expanded="true" />
-                <element signature="e#3714#3715#0" expanded="true" />
-                <element signature="e#3769#3791#0" expanded="true" />
+                <element signature="e#19381#19889#0" expanded="true" />
+                <element signature="e#19888#19889#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultsActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ResultsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="402" column="72" selection-start-line="402" selection-start-column="72" selection-end-line="402" selection-end-column="72" />
+            <state vertical-scroll-proportion="-0.8863636">
+              <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
               <folding>
-                <element signature="e#3186#3718#0" expanded="true" />
-                <element signature="e#3717#3718#0" expanded="true" />
-                <element signature="e#3787#4937#0" expanded="true" />
-                <element signature="e#4936#4937#0" expanded="true" />
-                <element signature="e#5470#5501#0" expanded="true" />
-                <element signature="e#5503#5535#0" expanded="true" />
-                <element signature="e#8098#8099#0" expanded="true" />
-                <element signature="e#8141#8142#0" expanded="true" />
-                <element signature="e#11527#11528#0" expanded="true" />
-                <element signature="e#11565#11566#0" expanded="true" />
-                <element signature="e#11632#11633#0" expanded="true" />
-                <element signature="e#11690#11691#0" expanded="true" />
-                <element signature="e#11741#11742#0" expanded="true" />
-                <element signature="e#11792#11793#0" expanded="true" />
-                <element signature="e#12031#12032#0" expanded="true" />
-                <element signature="e#12094#12095#0" expanded="true" />
-                <element signature="e#13593#13594#0" expanded="true" />
-                <element signature="e#13623#13624#0" expanded="true" />
-                <element signature="e#14756#15835#0" expanded="true" />
-                <element signature="e#15834#15835#0" expanded="true" />
+                <element signature="e#5503#5534#0" expanded="true" />
+                <element signature="e#5536#5568#0" expanded="true" />
+                <element signature="e#10608#11121#0" expanded="true" />
+                <element signature="e#11120#11121#0" expanded="true" />
+                <element signature="class#Adapter#0;class#ResultsActivity#0" expanded="false" />
+                <element signature="method#switchFAB#0;class#ResultsActivity#0" expanded="false" />
+                <element signature="method#switchMenuItem#0;class#ResultsActivity#0" expanded="false" />
+                <element signature="method#onBackPressed#0;class#ResultsActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_doctor.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+              <folding>
+                <element signature="e#485#525#0" expanded="true" />
+                <element signature="e#1495#1530#0" expanded="true" />
+                <element signature="e#2919#2954#0" expanded="true" />
+                <element signature="e#3664#3699#0" expanded="true" />
+                <element signature="e#4282#4317#0" expanded="true" />
+                <element signature="e#5032#5067#0" expanded="true" />
+                <element signature="e#5787#5822#0" expanded="true" />
+                <element signature="e#6569#6604#0" expanded="true" />
+                <element signature="e#7256#7291#0" expanded="true" />
+                <element signature="e#8046#8081#0" expanded="true" />
+                <element signature="e#8133#8168#0" expanded="true" />
+                <element signature="e#8895#8930#0" expanded="true" />
+                <element signature="e#9645#9680#0" expanded="true" />
+                <element signature="e#10890#10925#0" expanded="true" />
+                <element signature="e#11643#11678#0" expanded="true" />
+                <element signature="e#12323#12358#0" expanded="true" />
+                <element signature="e#13009#13044#0" expanded="true" />
+                <element signature="e#13763#13798#0" expanded="true" />
+                <element signature="e#14462#14497#0" expanded="true" />
+                <element signature="e#15486#15521#0" expanded="true" />
+                <element signature="e#16213#16248#0" expanded="true" />
+                <element signature="e#16919#16954#0" expanded="true" />
+                <element signature="e#18625#18644#0" expanded="true" />
+                <element signature="e#19615#19650#0" expanded="true" />
+                <element signature="e#20319#20354#0" expanded="true" />
+                <element signature="e#20924#20959#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2844,29 +2924,30 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main_scrolling.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_results.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/FacebookProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/access/SignupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/ParseAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/AddDoctors.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Informativa.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/DoctorActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/App.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/FeedbackAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/DoctorActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
       </list>
     </option>
   </component>
@@ -3420,6 +3501,7 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="398" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.WIDTH" value="256" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -3926,7 +4008,37 @@
       <option name="project" value="LOCAL" />
       <updated>1457718618787</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Feedback on recycler view with photo, all it's working&#10;">
+      <created>1457727701523</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1457727701523</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Changed feedback item xml">
+      <created>1457729026482</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1457729026482</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Intent changed opening google maps using @vindel100 funct">
+      <created>1457729295365</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1457729295365</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feedback fragment on close dialog updated&#10;xml doctor fragment setted&#10;back button added&#10;bugfixed send feedback&#10;">
+      <created>1457732894327</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1457732894327</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed bug on map&#10;fixed some xml">
+      <created>1457734820512</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1457734820512</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3940,7 +4052,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1364" height="743" extended-state="4" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8397329" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3950,7 +4062,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6527546" sideWeight="0.51826483" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.49415693" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49749583" sideWeight="0.48173517" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49749583" sideWeight="0.48173517" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6761269" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.312187" sideWeight="0.48630136" order="2" side_tool="false" content_ui="tabs" />
@@ -4021,10 +4133,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="New Doctor Activity&#10;Fragment Feedback&#10;Fragment Doctor Profile" />
-    <MESSAGE value="First fixed&#10;Main With logo&#10;Doctor with cover and avatar&#10;Results with avatar&#10;Fragment doctor with card&#10;Todo: set parse data" />
-    <MESSAGE value="Updated title and drawer&#10;" />
-    <MESSAGE value="Updated web view&#10;Start facebook activity for likes&#10;" />
     <MESSAGE value="Working hard on doctor profile with card" />
     <MESSAGE value="Big update on doctorProfile &#10;" />
     <MESSAGE value="Feedback fragment work&#10;&#10;" />
@@ -4046,40 +4154,19 @@
     <MESSAGE value="Feedback avg ok&#10;Doctor copied&#10;" />
     <MESSAGE value="Deleted Scrolling activity (a che serviva??)&#10;Deleted UserDB &#10;Changed enable local datastore parse&#10;Working on feedback recycler view&#10;" />
     <MESSAGE value="Feedback on recycler view with photo, all it's working&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feedback on recycler view with photo, all it's working&#10;" />
+    <MESSAGE value="Changed feedback item xml" />
+    <MESSAGE value="Intent changed opening google maps using @vindel100 funct" />
+    <MESSAGE value="feedback fragment on close dialog updated&#10;xml doctor fragment setted&#10;back button added&#10;bugfixed send feedback&#10;" />
+    <MESSAGE value="fixed bug on map&#10;fixed some xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on map&#10;fixed some xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/person_item.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/Class/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="5" selection-start-line="7" selection-start-column="4" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/DoctorAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="39" selection-start-line="45" selection-start-column="8" selection-end-line="46" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/intro.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -4175,17 +4262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.071428">
           <caret line="210" column="8" selection-start-line="210" selection-start-column="8" selection-end-line="210" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="6" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -4333,40 +4409,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="21" selection-start-line="407" selection-start-column="21" selection-end-line="407" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -4393,92 +4439,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/DoctorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="330" column="24" selection-start-line="330" selection-start-column="24" selection-end-line="330" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.778641">
-          <caret line="201" column="28" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/UtenteFeedRilasciatiFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-          <folding>
-            <element signature="e#7533#7969#0" expanded="true" />
-            <element signature="e#7968#7969#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="182" column="80" selection-start-line="182" selection-start-column="80" selection-end-line="182" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/ParseAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.842105">
-          <caret line="128" column="11" selection-start-line="104" selection-start-column="9" selection-end-line="128" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="327" column="83" selection-start-line="327" selection-start-column="83" selection-end-line="327" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="27" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.107143">
-          <caret line="48" column="59" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -4510,45 +4474,255 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="402" column="72" selection-start-line="402" selection-start-column="72" selection-end-line="402" selection-end-column="72" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/feedback_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.357142">
+          <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/ParseAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
-            <element signature="e#3186#3718#0" expanded="true" />
-            <element signature="e#3717#3718#0" expanded="true" />
-            <element signature="e#3787#4937#0" expanded="true" />
-            <element signature="e#4936#4937#0" expanded="true" />
-            <element signature="e#5470#5501#0" expanded="true" />
-            <element signature="e#5503#5535#0" expanded="true" />
-            <element signature="e#8098#8099#0" expanded="true" />
-            <element signature="e#8141#8142#0" expanded="true" />
-            <element signature="e#11527#11528#0" expanded="true" />
-            <element signature="e#11565#11566#0" expanded="true" />
-            <element signature="e#11632#11633#0" expanded="true" />
-            <element signature="e#11690#11691#0" expanded="true" />
-            <element signature="e#11741#11742#0" expanded="true" />
-            <element signature="e#11792#11793#0" expanded="true" />
-            <element signature="e#12031#12032#0" expanded="true" />
-            <element signature="e#12094#12095#0" expanded="true" />
-            <element signature="e#13593#13594#0" expanded="true" />
-            <element signature="e#13623#13624#0" expanded="true" />
-            <element signature="e#14756#15835#0" expanded="true" />
-            <element signature="e#15834#15835#0" expanded="true" />
+            <element signature="e#4021#4815#0" expanded="false" />
+            <element signature="e#4814#4815#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74825174">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_feedback.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="44" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackDialogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="48" selection-start-line="178" selection-start-column="48" selection-end-line="178" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="32" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="32" />
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="32" />
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="32" />
+          <caret line="42" column="32" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="32" />
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="32" />
+          <caret line="40" column="32" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="32" />
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="32" />
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="32" />
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="32" />
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="32" />
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="32" />
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="32" />
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="32" />
+          <caret line="32" column="32" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="32" />
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="32" />
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="32" />
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="32" />
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="32" />
+          <caret line="24" column="32" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="32" />
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="32" />
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="32" />
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="32" />
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="32" />
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="32" />
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="32" />
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="32" />
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="32" />
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="32" />
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="32" />
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="32" />
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="32" />
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="32" />
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/FeedbackFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="98" column="27" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling_user.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_scrolling.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+          <folding>
+            <element signature="e#485#525#0" expanded="true" />
+            <element signature="e#1495#1530#0" expanded="true" />
+            <element signature="e#2919#2954#0" expanded="true" />
+            <element signature="e#3664#3699#0" expanded="true" />
+            <element signature="e#4282#4317#0" expanded="true" />
+            <element signature="e#5032#5067#0" expanded="true" />
+            <element signature="e#5787#5822#0" expanded="true" />
+            <element signature="e#6569#6604#0" expanded="true" />
+            <element signature="e#7256#7291#0" expanded="true" />
+            <element signature="e#8046#8081#0" expanded="true" />
+            <element signature="e#8133#8168#0" expanded="true" />
+            <element signature="e#8895#8930#0" expanded="true" />
+            <element signature="e#9645#9680#0" expanded="true" />
+            <element signature="e#10890#10925#0" expanded="true" />
+            <element signature="e#11643#11678#0" expanded="true" />
+            <element signature="e#12323#12358#0" expanded="true" />
+            <element signature="e#13009#13044#0" expanded="true" />
+            <element signature="e#13763#13798#0" expanded="true" />
+            <element signature="e#14462#14497#0" expanded="true" />
+            <element signature="e#15486#15521#0" expanded="true" />
+            <element signature="e#16213#16248#0" expanded="true" />
+            <element signature="e#16919#16954#0" expanded="true" />
+            <element signature="e#18625#18644#0" expanded="true" />
+            <element signature="e#19615#19650#0" expanded="true" />
+            <element signature="e#20319#20354#0" expanded="true" />
+            <element signature="e#20924#20959#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/DoctorActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="273" column="8" selection-start-line="273" selection-start-column="8" selection-end-line="273" selection-end-column="8" />
+          <folding>
+            <element signature="e#2519#2543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="143" column="5" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
+          <folding>
+            <element signature="e#5674#5861#0" expanded="true" />
+            <element signature="e#5860#5861#0" expanded="true" />
+            <element signature="method#resizeMarker#0;class#DoctorMapsFragment#0" expanded="false" />
+            <element signature="class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+            <element signature="method#getInfoContents#0;class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_card_item.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="35" selection-end-column="41" />
+          <folding>
+            <element signature="e#2005#2024#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/adapter/FeedbackAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39781022">
+        <state vertical-scroll-proportion="0.0">
           <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="484" column="9" selection-start-line="417" selection-start-column="8" selection-end-line="484" selection-end-column="9" />
           <folding>
-            <element signature="e#2703#3715#0" expanded="true" />
-            <element signature="e#3223#3553#0" expanded="true" />
-            <element signature="e#3552#3553#0" expanded="true" />
-            <element signature="e#3714#3715#0" expanded="true" />
-            <element signature="e#3769#3791#0" expanded="true" />
+            <element signature="e#19381#19889#0" expanded="true" />
+            <element signature="e#19888#19889#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8863636">
+          <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
+          <folding>
+            <element signature="e#5503#5534#0" expanded="true" />
+            <element signature="e#5536#5568#0" expanded="true" />
+            <element signature="e#10608#11121#0" expanded="true" />
+            <element signature="e#11120#11121#0" expanded="true" />
+            <element signature="class#Adapter#0;class#ResultsActivity#0" expanded="false" />
+            <element signature="method#switchFAB#0;class#ResultsActivity#0" expanded="false" />
+            <element signature="method#switchMenuItem#0;class#ResultsActivity#0" expanded="false" />
+            <element signature="method#onBackPressed#0;class#ResultsActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

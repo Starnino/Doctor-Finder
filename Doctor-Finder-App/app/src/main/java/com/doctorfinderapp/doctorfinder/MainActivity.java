@@ -42,6 +42,7 @@ import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.LogOutCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -430,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing" ); //Your id
+                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
@@ -462,13 +463,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.logout:
-                ParseUser.logOut();
-                Log.d("R", "Logged out");
-                Toast.makeText(getApplicationContext(),
-                        "Logged out",
-                        Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-                startActivity(intent);
+                ParseUser.logOutInBackground(new LogOutCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Log.d("R", "Logged out");
+                        Toast.makeText(getApplicationContext(),
+                                "Logged out",
+                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
                 break;
 
             case R.id.informativa:
