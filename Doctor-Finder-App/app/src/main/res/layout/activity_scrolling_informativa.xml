@@ -8,6 +8,8 @@
     android:background="@color/white"
     tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -44,10 +46,26 @@
                 app:layout_collapseMode="pin"
                 android:popupTheme="@style/CollapsingTheme" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/torna_indietro">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/docfinder"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:visibility="visible"
+                    android:src="@drawable/ic_arrow_forward_white_24px"/>
+            </RelativeLayout>
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_scrolling_report_feedback" />
+    <include layout="@layout/content_scrolling_informativa" />
 
 </android.support.design.widget.CoordinatorLayout>

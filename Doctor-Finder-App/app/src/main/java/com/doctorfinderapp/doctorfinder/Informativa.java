@@ -1,16 +1,20 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 
+import android.util.Log;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Toast;
 
 
 /**
  * Created by giovanni on 3/8/16.
  */
+
 public class Informativa extends AppCompatActivity{
 
     private String Title = "Informativa";
@@ -19,7 +23,7 @@ public class Informativa extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_scrolling_report_feedback);
+        setContentView(R.layout.activity_scrolling_informativa);
 /*
     final CollapsingToolbarLayout collapsingToolbarLayout =
             (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
@@ -27,25 +31,28 @@ public class Informativa extends AppCompatActivity{
     collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
     // transperent color = #00000000
     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
 */
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case android.R.id.home:
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.torna_indietro:
                 onBackPressed();
-
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
-    }
+        Log.d("Informativa", " On back pressed");
+            super.onBackPressed();
+            finish();
+            }
 
 }
+
+

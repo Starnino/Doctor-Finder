@@ -24,13 +24,13 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_weight="5">
+        android:layout_weight="8">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="16dp"
+            android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
             android:src="@drawable/ic_slide3"/>
     </LinearLayout>
