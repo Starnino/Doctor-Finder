@@ -52,9 +52,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Fedebyes
- */
+
 public class DoctorFragment extends Fragment {
 
     private String TitoloDot;
@@ -106,10 +104,7 @@ public class DoctorFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
-
-        //set ParseDoctor this
-
-        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
+         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
@@ -121,29 +116,17 @@ public class DoctorFragment extends Fragment {
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
 
-
-
-        /*DOCTOR_MARKER_ARRAY= (JSONArray) DOCTORTHIS.get("Marker");
-
-
-
-        try {
-            JSONObject marker= (JSONObject) DOCTOR_MARKER_ARRAY.get(0);
-            LAT = Double.parseDouble((String) marker.get("Lat"));
-            LONG=Double.parseDouble((String) marker.get("Long"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-*/
-        String curPosition = DOCTORTHIS.get("Marker").toString();
-
-
-        /*DONT USE SUBSTRING IS NOT JSON*/
-
-        //LAT = Double.parseDouble(curPosition.substring(6, 15));
-        //LONG = Double.parseDouble(curPosition.substring(22, 31));
         ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
-        String[][]latLong = Util.setPosition(position);
+        final String[][]latLong = Util.setPosition(position);
+        RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
+        workMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LAT = Double.parseDouble(latLong[0][0]);
+                LONG = Double.parseDouble(latLong[0][1]);
+                openMaps(LAT, LONG);
+            }
+        });
 
 
 
@@ -193,20 +176,14 @@ public class DoctorFragment extends Fragment {
         special.setText(Util.setSpecialization(DOCTOR_SPECIALIZATION_ARRAY));
 
         if(DOCTOR_FEEDBACK!=null){
-            Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
+            //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
         }else{
-            Log.d("DoctorFragment","Feedback is null");
+            //Log.d("DoctorFragment","Feedback is null");
         }
 
 
-       /* RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
-        workMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMaps(LAT, LONG);
-            }
-        });*/
+
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
@@ -228,7 +205,7 @@ public class DoctorFragment extends Fragment {
 
 
     private void openMaps(double lat, double lng) {
-        // Creates an Intent that will load a map of San Francisco
+
         String uristring = "geo:" + lat + "," + lng+"?q="+lat+","+lng+"("+TitoloDot+")";
         //?q=<lat>,<long>(Label+Name)
         Log.d(TAG, uristring);
