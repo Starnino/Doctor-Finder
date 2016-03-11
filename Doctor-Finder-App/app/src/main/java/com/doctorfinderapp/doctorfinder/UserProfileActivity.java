@@ -134,7 +134,6 @@ public class UserProfileActivity extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
 
-
         //floating button for report problems
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

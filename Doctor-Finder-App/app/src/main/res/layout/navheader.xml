@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/status_bar">
+        android:layout_marginTop="@dimen/status_bar"
+        android:clickable="true"
+        android:id="@+id/profile_click"
+        android:onClick="profile_click">
 
         <LinearLayout
             android:layout_width="100dp"

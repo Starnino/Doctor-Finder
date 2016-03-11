@@ -11,10 +11,6 @@
             android:title="@string/profile"
             android:id="@+id/profile"/>
         <item
-            android:icon="@drawable/iconqurami"
-            android:title="@string/gestisci"
-            android:id="@+id/Qurami" />
-        <item
             android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/inserisci_dottore"
             android:id="@+id/inserisci_dottore" />
@@ -29,7 +25,7 @@
         android:layout_height="wrap_content">
 
         <item
-                android:icon="@drawable/ic_arrow_forward_white_24px"
+                android:icon="@drawable/ic_perm_device_information_white_24dp"
                 android:title="@string/about"
                 android:id="@+id/about"/>
             <item

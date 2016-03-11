@@ -49,10 +49,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
-    private boolean isFabOpen = false;
-    private FloatingActionButton fab, fab_location;
-    private Animation fab_open_normal,fab_open,fab_close,rotate_forward,rotate_backward;
+    private com.melnykov.fab.FloatingActionButton fab, fab_location;
     private MenuItem searchItem;
+    private MenuItem filterItem;
     private SearchView searchView;
 
     @Override
@@ -79,16 +78,21 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_results);
 
         //find fab buttons
-        fab_location = (FloatingActionButton) findViewById(R.id.fab_location);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab_location = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_location);
+        fab = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab);
 
-        //load animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
-        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
 
+                Bundle dottore = new Bundle();
+                dottore.putString("URL",
+                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing"); //Your id
+                intent_dottore.putExtras(dottore);
+                startActivity(intent_dottore);
+            }
+        });
         //onClick button
         fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +192,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         });
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        fab.startAnimation(fab_open_normal);
+        fab.show();
     }
 
 
@@ -197,8 +201,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         searchItem = menu.findItem(R.id.action_search);
+        filterItem = menu.findItem(R.id.action_filter);
+
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        MenuItem filterItem = menu.findItem(R.id.action_filter);
+
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -227,11 +233,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 if(ParseUser.getCurrentUser()!=null){
                     Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);}
-                break;
-
-            case R.id.Qurami:
-                Intent intent_qurami = new Intent(ResultsActivity.this, MainActivityQurami.class);
-                startActivity(intent_qurami);
                 break;
 
             case R.id.inserisci_dottore:
@@ -330,13 +331,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 Log.d("fab", "open");
                 //fab_location.startAnimation(fab_close);
                 //fab_location.setClickable(false);
-                fab.startAnimation(fab_open_normal);
+                fab.show();
                 fab.setClickable(true);
                 break;
 
             case 1:
                 Log.d("fab_location", "open");
-                fab.startAnimation(fab_close);
+                fab.hide();
                 fab.setClickable(false);
                 //fab_location.startAnimation(fab_open_normal);
                 //fab_location.setClickable(true);
@@ -348,10 +349,12 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (position == 1) {
             searchItem.setVisible(false);
             searchView.setVisibility(View.INVISIBLE);
+            filterItem.setVisible(false);
         }
         else {
             searchItem.setVisible(true);
             searchView.setVisibility(View.VISIBLE);
+            filterItem.setVisible(true);
         }
     }
 
@@ -440,6 +443,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             }
         }
         return filteredModelList;
+    }
+
+    public void profile_click(View v){
+        if(ParseUser.getCurrentUser()!=null){
+            Intent intent_user = new Intent(ResultsActivity.this, UserProfileActivity.class);
+            startActivity(intent_user);
+        }
     }
 }
 

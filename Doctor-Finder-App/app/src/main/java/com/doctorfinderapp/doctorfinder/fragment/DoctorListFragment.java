@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.melnykov.fab.FloatingActionButton;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class DoctorListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private static ParseAdapter parseAdapter;
     private List<ParseObject> DOCTORS;
+    private FloatingActionButton fab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class DoctorListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
         mRecyclerView.setHasFixedSize(true);
@@ -51,6 +54,11 @@ public class DoctorListFragment extends Fragment {
         parseAdapter = new ParseAdapter(DOCTORS);
 
         mRecyclerView.setAdapter(parseAdapter);
+
+        //fab
+        fab = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fab);
+        //attach fab to recycler view on scroll
+        fab.attachToRecyclerView(mRecyclerView);
 
         return mRecyclerView;
     }

@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
@@ -38,8 +39,10 @@ import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -257,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //set drawer things
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
 
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
@@ -424,16 +428,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                //if(ParseUser.getCurrentUser()!=null){
-                Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);
-        //}
+                if(ParseUser.getCurrentUser()!=null){
+                    Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
+                    startActivity(intent_user);
+                    }
                 break;
 
-            case R.id.Qurami:
-                Intent intent_qurami = new Intent(MainActivity.this, MainActivityQurami.class);
-                startActivity(intent_qurami);
-                break;
 
             case R.id.inserisci_dottore:
                 Intent intent_dottore = new Intent(MainActivity.this, WebViewActivity.class);
@@ -562,15 +562,36 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
         }
         //initialize more Persons
-        doctors = GlobalVariable.recentDoctors;
-        // specify an adapter
-        mAdapter = new DoctorAdapter(doctors);
-        if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = 300;
-            card_recent_doctor_null.getLayoutParams().height = 300;
-        }
-        //set adapter to recycler view
-        mRecyclerView.setAdapter(mAdapter);
+        /**doctors = GlobalVariable.recentDoctors; REMOVE*/
+        final List<Doctor> doctors = new ArrayList<>();
+        //TODO mi dice che devo chiamare il cazzo di Parse enable local data store
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (int i = 0; i < objects.size(); i++) {
+                    //add doctor to adapter
+                    doctors.add(new Doctor(
+                            objects.get(i).getString("FN"),                 //Nome
+                            objects.get(i).getString("LN"),                 //Cognome
+                            (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
+                            (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
+                            objects.get(i).getBoolean("SEX"),               //Sesso
+                            objects.get(i).getString("E@")));               //Email
+                }
+                // specify an adapter
+                mAdapter = new DoctorAdapter(doctors);
+                if (doctors.size() != 0) {
+                    mRecyclerView.getLayoutParams().height = 300;
+                    card_recent_doctor_null.getLayoutParams().height = 300;
+                }
+                //set adapter to recycler view
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        });
+
+
     }
 
     //method to update Linear recycler
@@ -609,6 +630,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 research.add(0, linear);
                 research.remove(10);
             }
+        }
+    }
+
+    public void profile_click(View v){
+        if(ParseUser.getCurrentUser()!=null){
+            Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
+            startActivity(intent_user);
         }
     }
 

@@ -77,8 +77,6 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         holder.personName.setText((visits.get(position).havePisello() ? "Dott. " : "Dott.ssa ")
                 + Util.reduceString(visits.get(position).getSurname()));
 
-        Log.d("DOCTOR ADAPTER --> ", visits.get(position).getPhoto() == null ? "is null" : "dio porco");
-
         holder.personPhoto.setImageResource(R.drawable.doctor_avatar);
 
             final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");

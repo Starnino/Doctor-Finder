@@ -9,9 +9,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.doctorfinderapp.doctorfinder.R;
-import com.qurami.android.link.QuramiLink;
+
 
 public class PlaceholderFragment extends Fragment {
 
@@ -43,6 +42,6 @@ public class PlaceholderFragment extends Fragment {
         FragmentActivity contextActivity = getActivity();
         String officeLink = editTextOfficeLink.getText().toString();
 
-        QuramiLink.openQuramiOfficeWithOfficeLink(contextActivity, officeLink);
+        //QuramiLink.openQuramiOfficeWithOfficeLink(contextActivity, officeLink);
     }
 }

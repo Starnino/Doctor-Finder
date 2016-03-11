@@ -150,17 +150,25 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
             //if photo exist
             if (DOCTOR_PHOTO != null)
-                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, DOCTOR_PHOTO,
+                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
                         DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
                 //if photo not exist
             else
-                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
+                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
                         DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
 
 
-            //refresh doctors searched
-            refreshDoctorList(currentDoctor);
+        ParseObject doctor = new ParseObject("recentDoctor");
+        doctor.put("FN", DOCTOR_FIRST_NAME);
+        doctor.put("LN", DOCTOR_LAST_NAME);
+        doctor.put("E@", DOCTOR_EMAIL);
+        doctor.put("SPEC", DOCTOR_SPECIALIZATION_ARRAY);
+        doctor.put("CITY", DOCTOR_CITY_ARRAY);
+        doctor.put("SEX", DOCTOR_SEX);
+        //doctor.pinInBackground();
 
+        //refresh doctors searched
+            /**REMOVE refreshDoctorList(currentDoctor); */
 
             //find fab buttons
             fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);

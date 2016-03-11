@@ -17,14 +17,12 @@ public class Doctor {
 
     private String profession, surname, city, name;
     private boolean sesso; //true --> M, false --> F
-    private RoundedImageView photo;
-    private int photoId;
     String email;
 
-    public Doctor(String name, String surname, Bitmap bitmap, ArrayList<String> profession,
+    public Doctor(String name, String surname, ArrayList<String> profession,
                   ArrayList<String> city, boolean sesso, String email) {
+
         this.email = email;
-        photo.setImageBitmap(bitmap);
         this.name = name;
         this.profession = Util.setSpecialization(profession);
         this.sesso = sesso;
@@ -32,20 +30,7 @@ public class Doctor {
         this.city = Util.setCity(city);
     }
 
-    public Doctor(String name, String surname, int photoid, ArrayList<String> profession,
-                  ArrayList<String> city, boolean sesso, String email) {
-        this.email = email;
-        this.photoId = photoid;
-        this.name = name;
-        this.profession = Util.setSpecialization(profession);
-        this.sesso = sesso;
-        this.surname = surname;
-        this.city = Util.setCity(city);
-    }
 
-    public int getPhotoId() {return photoId;}
-
-    public RoundedImageView getPhoto(){return photo;}
 
     public String getName() {return name;}
 
