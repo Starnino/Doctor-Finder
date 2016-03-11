@@ -1,11 +1,14 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +23,11 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
-import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
+import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -46,6 +48,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView email;
     private TextView friend_null;
     private String email_users;
+    private static Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,6 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
-        //se non sei loggato vai via
         ParseUser user = ParseUser.getCurrentUser();
 
         friend_null = (TextView) findViewById(R.id.friend_null);
@@ -187,32 +189,54 @@ public class UserProfileActivity extends AppCompatActivity {
                 facebukkalo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (ParseUser.getCurrentUser() != null) {
-                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                                    .setTitleText("Ti sei già loggato su Facebook")
-                                    .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
-                                    .show();
+                        if (ParseUser.getCurrentUser() == null) {
 
                         }
                         else{
-
+                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                                    .setTitleText("Hai già fatto il log in tramite Facebook")
+                                    .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
+                                    .show();
                         }
 
                     }
                 });
 
+                final int feed_lasciati=0;
+                //qualcosa che prende il numero di feed lasciati o insomma che controlli
+
+                RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
+                feedback_utente.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(feed_lasciati==0){
+                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Ops")
+                                    .setContentText("Non hai lasciato ancora alcun feedback!")
+                                    .show();
+                        }else{
+                           //lancia feed fragment utente recycler view
+                        }
+                    }
+                });
+
             }
         });
-
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
 
+            case android.R.id.home:
+                FragmentManager fm = getSupportFragmentManager();
+                if (fm.getBackStackEntryCount() > 0) {
+                    fm.popBackStack();
+                } else {
+                    super.onBackPressed();
+                    finish();
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -223,5 +247,13 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onBackPressed();
         this.finish();
     }
+
+
+
+    public static void showToastFeedback(){
+        Toast.makeText(c, R.string.feedback_visual,
+                Toast.LENGTH_LONG).show();
+    }
+
 }
 
