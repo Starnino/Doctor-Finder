@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        //Util.copyAll();
 
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());

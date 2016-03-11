@@ -198,7 +198,7 @@ public class DoctorFragment extends Fragment {
             }
         });*/
 
-        LinearLayout feedback_button = (LinearLayout) rootView.findViewById(R.id.feedback_relative);
+        RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
