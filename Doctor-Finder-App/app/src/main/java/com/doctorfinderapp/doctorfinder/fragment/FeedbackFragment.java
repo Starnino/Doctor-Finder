@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
+import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -29,7 +30,7 @@ public class FeedbackFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private FeedbackAdapter feedbackAdapter;
+    public static FeedbackAdapter feedbackAdapter;
     private List<ParseObject> FeedbackArray;
     ProgressDialog progress;
 
@@ -55,8 +56,6 @@ public class FeedbackFragment extends Fragment {
         this.index=indexFragment;
         DoctorActivity.switchFAB(1);
 
-
-
     }
 
     @Override
@@ -68,6 +67,9 @@ public class FeedbackFragment extends Fragment {
         String EMAIL = DOCTORTHIS.getString("Email");
 
         mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
+
+        FloatingActionButton fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
+        fabfeedback.attachToRecyclerView(mRecyclerView);
 
         FeedbackArray= new ArrayList<>();
 

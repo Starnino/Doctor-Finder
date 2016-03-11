@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -67,7 +68,6 @@ public class FeedbackDialogFragment extends DialogFragment {
                 final CheckBox checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
                 Log.d("FeedbackDialog", "send clicked");
                 if (checkBox.isChecked()) {
-
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
                 }

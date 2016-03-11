@@ -26,6 +26,7 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.github.clans.fab.FloatingActionMenu;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -44,8 +45,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     //Doctor information
     private static int index;
     private static boolean isFabOpen = false;
-    private static FloatingActionButton fabcontact, fabfeedback, fabemail, fabtelephone;
-    private static Animation fab_open_normal, fab_open, fab_close, rotate_forward, rotate_backward;
+    private static com.melnykov.fab.FloatingActionButton fabfeedback;
+    private static FloatingActionMenu fabmenu;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram;
     private static Context c;
     public final String EMAIL = "Email";
     private String DOCTOR_EMAIL = "";
@@ -72,55 +74,22 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         ft.commit();
     }
 
-    //animation fab buttons
-    public static void animateFAB() {
-
-        if (isFabOpen) {
-
-            fabcontact.startAnimation(rotate_backward);
-            fabemail.startAnimation(fab_close);
-            fabtelephone.startAnimation(fab_close);
-            fabemail.setClickable(false);
-            fabtelephone.setClickable(false);
-            isFabOpen = false;
-            Log.d("button", "close");
-
-        } else {
-
-            fabcontact.startAnimation(rotate_forward);
-            fabemail.startAnimation(fab_open);
-            fabtelephone.startAnimation(fab_open);
-            fabemail.setClickable(true);
-            fabtelephone.setClickable(true);
-            isFabOpen = true;
-            Log.d("button", "open");
-        }
-    }
-
     //switch fab
     public static void switchFAB(int position) {
         switch (position) {
             case 0:
-                if (isFabOpen) {
-                    Log.d("fab", "open");
-                    fabfeedback.startAnimation(fab_close);
-                    fabcontact.startAnimation(fab_close);
-                    fabtelephone.startAnimation(fab_close);
-                    fabcontact.setClickable(false);
-                    fabtelephone.setClickable(false);
-                    fabfeedback.setClickable(false);
-                    isFabOpen = false;
+                if (fabfeedback.isVisible()){
+                    fabfeedback.hide();
                 }
-                fabcontact.startAnimation(fab_open_normal);
-                fabcontact.setClickable(true);
+                fabmenu.showMenu(true);
+
                 break;
 
             case 1:
-                Log.d("fab_location", "open");
-                fabcontact.startAnimation(fab_close);
-                fabcontact.setClickable(false);
-                fabfeedback.startAnimation(fab_open_normal);
-                fabfeedback.setClickable(true);
+                fabmenu.hideMenu(true);
+                fabfeedback.setVisibility(View.VISIBLE);
+                fabfeedback.show();
+
                 break;
         }
     }
@@ -219,24 +188,17 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         /**REMOVE refreshDoctorList(currentDoctor); */
 
         //find fab buttons
-        fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);
-        fabfeedback = (FloatingActionButton) findViewById(R.id.fabfeedback);
-        fabtelephone = (FloatingActionButton) findViewById(R.id.fabtelephone);
-        fabemail = (FloatingActionButton) findViewById(R.id.fabemail);
-
-        //load animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
-        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
+        fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
+        fabmenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+        fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
+        fab_whastapp = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_whastapp);
+        fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
 
         //onClick button
-        fabcontact.setOnClickListener(this);
         fabfeedback.setOnClickListener(this);
-        fabtelephone.setOnClickListener(this);
-        fabemail.setOnClickListener(this);
-
+        fab_email.setOnClickListener(this);
+        fab_whastapp.setOnClickListener(this);
+        fab_telegram.setOnClickListener(this);
 
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -248,8 +210,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         // Complete the changes added above
         //ft.addToBackStack(null);
         ft.commit();
-
-        fabcontact.startAnimation(fab_open_normal);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
 
@@ -321,21 +281,11 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         int id = v.getId();
 
         switch (id) {
-            case R.id.fabcontact:
-                animateFAB();
-                break;
 
             case R.id.fabfeedback:
                 openFeedbackDialog();
                 break;
 
-            case R.id.fabemail:
-                //TODO
-                break;
-
-            case R.id.fabtelephone:
-                //TODO
-                break;
         }
     }
 
