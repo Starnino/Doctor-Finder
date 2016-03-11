@@ -93,6 +93,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent_dottore);
             }
         });
+
         //onClick button
         fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
