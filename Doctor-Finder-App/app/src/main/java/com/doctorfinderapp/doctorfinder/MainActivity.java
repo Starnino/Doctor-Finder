@@ -414,9 +414,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null){
+                //if(ParseUser.getCurrentUser()!=null){
                 Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);}
+                startActivity(intent_user);
+        //}
                 break;
 
             case R.id.Qurami:

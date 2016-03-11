@@ -16,19 +16,28 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
+import com.doctorfinderapp.doctorfinder.access.LoginActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
+import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
+
+import java.util.Arrays;
+import java.util.List;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -190,6 +199,60 @@ public class UserProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (ParseUser.getCurrentUser() == null) {
+                            Button FLogin = (Button) findViewById(R.id.flogin);
+                            FLogin.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View arg0) {
+                                    List<String> permissions = Arrays.asList("email", "public_profile", "user_friends");
+                                    //progressBar.setVisibility(View.VISIBLE);
+                                    ParseFacebookUtils.logInWithReadPermissionsInBackground(UserProfileActivity.this, GlobalVariable.permissions, new LogInCallback() {
+
+
+                                        @Override
+                                        public void done(ParseUser user, ParseException err) {
+                                            if (user == null) {
+                                                Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                                                Log.d("MyApp", "errore parse" + err.toString());
+                                                //progressBar.setVisibility(View.INVISIBLE);
+
+                                            } else if (user.isNew()) {
+                                                Log.d("MyApp", "User signed up and logged in through Facebook!");
+                                                Log.d("login with facebook", user.toString());
+                                                FacebookProfile.getGraphRequest(user);
+
+
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Logged in",
+                                                        Toast.LENGTH_LONG).show();
+                                                //progressBar.setVisibility(View.INVISIBLE);
+                                                Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+
+                                                startActivity(intent);
+
+                                            } else {
+                                                Log.d("MyApp", "User logged in through Facebook!");
+                                                //progressBar.setVisibility(View.INVISIBLE);
+
+                                                //facebook things
+                                                Log.d("login with facebook", user.toString());
+                                                FacebookProfile.getGraphRequest(user);
+                                                //FacebookProfile.getGraphRequestFriends(user);
+
+
+
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Logged in",
+                                                        Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+
+                                                startActivity(intent);
+
+                                            }
+                                        }
+                                    });
+                                }
+
+                            });
 
                         }
                         else{

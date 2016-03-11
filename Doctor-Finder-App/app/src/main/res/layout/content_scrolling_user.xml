@@ -229,7 +229,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
+            android:clickable="true"
             android:id="@+id/facebook"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/activity_horizontal_margin">
