@@ -35,36 +35,24 @@
                     android:clickable="true"
                     android:padding="@dimen/activity_horizontal_margin">
 
-                    <ImageView
+                    <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_account_circle_black_24dp" />
-
-                    <TextView
-                        android:id="@+id/txtnome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_toEndOf="@id/ivContactItem1"
-                        android:text="Nome:"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#212121" />
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-account_circle"/>
 
                     <TextView
                         android:id="@+id/tvNumber1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/ivContactItem1"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_toEndOf="@+id/ivContactItem1"
                         android:text="Nessun nome settato"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#727272" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#212121"
+                        android:layout_alignTop="@+id/ivContactItem1"
+                        android:layout_toEndOf="@+id/ivContactItem1" />
 
 
                 </RelativeLayout>
@@ -77,15 +65,14 @@
                     android:clickable="true"
                     android:padding="@dimen/activity_horizontal_margin">
 
-                    <ImageView
+                    <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_info_black_24dp"
-                        android:visibility="visible" />
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-work"/>
 
                     <TextView
                         android:id="@+id/txtSpec"
@@ -120,14 +107,14 @@
                     android:clickable="true"
                     android:padding="@dimen/activity_horizontal_margin">
 
-                    <ImageView
+                    <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem3"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_book_black_24dp" />
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-attach_money"/>
 
                     <TextView
                         android:id="@+id/tvNumber3"
@@ -165,15 +152,14 @@
                     android:padding="@dimen/activity_horizontal_margin"
                     android:id="@+id/Work">
 
-                    <ImageView
+                    <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem4"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_explore_black_24dp"
-                        android:visibility="visible" />
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-place"/>
 
                     <TextView
                         android:id="@+id/tvNumber4"

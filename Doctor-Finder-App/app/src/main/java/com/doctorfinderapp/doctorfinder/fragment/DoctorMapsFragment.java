@@ -134,7 +134,12 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
     private void setUpMapIfNeeded() {
         if (googleMap == null) {
-            getMapAsync(this);
+            getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    setUpMap(googleMap);
+                }
+            });
         }
     }
 

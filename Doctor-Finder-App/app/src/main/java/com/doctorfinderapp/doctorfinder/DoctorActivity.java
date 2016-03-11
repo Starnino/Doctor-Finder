@@ -138,11 +138,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        final CollapsingToolbarLayout collapsingToolbarLayout =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
-        collapsingToolbarLayout.setTitle(Title);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
+
 
         doctors = GlobalVariable.DOCTORS;
 
@@ -268,10 +264,16 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+
         if (DOCTOR_SEX)
             Title = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
             Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
+        collapsingToolbarLayout.setTitle(Title);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+        //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.docfinder));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255,255));
 
     }
 
