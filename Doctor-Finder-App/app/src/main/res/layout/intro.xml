@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#304FFE"
+    android:background="@color/docfinder"
     android:layout_weight="10"
     android:id="@+id/main">
 
@@ -33,6 +33,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:src="@drawable/ic_slide1"/>
+
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"

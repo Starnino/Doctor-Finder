@@ -254,7 +254,8 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_toEndOf="@id/facebookkalo"
                 android:layout_toRightOf="@id/facebookkalo"
-                android:text="Connetti il tuo account con Facebook"
+                android:text="Connetti con Facebook"
+                android:layout_centerInParent="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -305,6 +306,7 @@
                 android:layout_toEndOf="@id/cambialo"
                 android:layout_toRightOf="@id/cambialo"
                 android:text="Condividi o suggerisci l'applicazione"
+                android:layout_centerInParent="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -347,7 +349,6 @@
                 android:visibility="visible" />
             <TextView
                 android:id="@+id/rataci"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -355,6 +356,7 @@
                 android:layout_toEndOf="@id/rate"
                 android:layout_toRightOf="@id/rate"
                 android:text="Valuta Doctor Finder"
+                android:layout_centerInParent="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 

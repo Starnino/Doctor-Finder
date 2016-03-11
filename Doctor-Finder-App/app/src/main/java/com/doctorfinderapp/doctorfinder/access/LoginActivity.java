@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 passwordtxt = password.getText().toString();
 
 
+
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
