@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content">
 
                 <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:id="@+id/user_image_feed"
                     android:src="@drawable/personavatar" />
 
@@ -70,7 +70,7 @@
 
 
                 <RatingBar
-                    android:layout_gravity="center"
+
                     android:clickable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +78,10 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-                    android:layout_marginTop="16dp" />
+                    android:scaleX="0.55"
+                    android:scaleY="0.55"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="-58dp" />
 
             </LinearLayout>
         </LinearLayout>

@@ -49,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -141,6 +142,10 @@ public class DoctorFragment extends Fragment {
 
         //LAT = Double.parseDouble(curPosition.substring(6, 15));
         //LONG = Double.parseDouble(curPosition.substring(22, 31));
+        ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
+        String[][]latLong = Util.setPosition(position);
+
+
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
