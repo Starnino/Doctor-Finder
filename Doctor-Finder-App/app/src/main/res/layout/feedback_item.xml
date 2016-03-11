@@ -68,13 +68,17 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:text="NomeUtente" />
 
-                <TextView
-                    android:layout_marginTop="2dp"
-                    android:text="Voto Generale"
-                    android:id="@+id/general_vote"
+
+                <RatingBar
+                    android:layout_gravity="center"
+                    android:clickable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey" />
+                    android:id="@+id/ratingBar"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:layout_marginTop="16dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -88,16 +92,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <RatingBar
-                    android:layout_gravity="center"
-                    android:clickable="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:rating="4" />
 
                 <TextView
                     android:layout_width="match_parent"

@@ -113,7 +113,7 @@ public class DoctorFragment extends Fragment {
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
         DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
-        DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
+        DOCTOR_FEEDBACK = DOCTORTHIS.get("Feedback").toString();
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
         DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
@@ -187,7 +187,12 @@ public class DoctorFragment extends Fragment {
 
         special.setText(Util.setSpecialization(DOCTOR_SPECIALIZATION_ARRAY));
 
-        ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
+        if(DOCTOR_FEEDBACK!=null){
+            Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
+            ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
+        }else{
+            Log.d("DoctorFragment","Feedback is null");
+        }
 
 
        /* RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);

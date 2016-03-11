@@ -307,6 +307,7 @@
     <string name="feedback_sended">Feedback inviato, grazie!</string>
     <string name="feedback_visual">Ecco tutti i feedback che hai lasciato</string>
     <string name="anonymus">Voglio che il mio feedback sia anonimo</string>
+    <string name="anonymus_name">Utente Anonimo</string>
 
 
 </resources>

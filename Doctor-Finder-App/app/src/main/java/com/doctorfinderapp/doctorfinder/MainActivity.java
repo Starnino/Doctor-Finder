@@ -92,16 +92,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         setContentView(R.layout.activity_main);
         //Util.copyAll();
-
-
-        //todo levalo
-        ParseObject gameScore = new ParseObject("GameScore");
-        gameScore.put("score", 1337);
-        gameScore.put("playerName", "Sean Plott");
-        gameScore.put("cheatMode", false);
-
-        gameScore.pinInBackground();
-
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
         //AddDoctors.addFile(getResources());

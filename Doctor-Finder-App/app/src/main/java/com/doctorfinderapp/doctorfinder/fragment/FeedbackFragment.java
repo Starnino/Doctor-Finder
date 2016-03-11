@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class FeedbackFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private FeedbackAdapter feedbackAdapter;
     private List<ParseObject> FeedbackArray;
+    ProgressDialog progress;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -61,7 +63,7 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+         progress = ProgressDialog.show(this.getContext(),"", "Caicamento", true);
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
         String EMAIL = DOCTORTHIS.getString("Email");
 
@@ -70,30 +72,31 @@ public class FeedbackFragment extends Fragment {
         FeedbackArray= new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
-        query.whereEqualTo("Email", EMAIL);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> feedList, ParseException e) {
-                if (e == null) {
+        //Log.d("Feedback","showing feedback of"+ EMAIL);
+        query.whereEqualTo("email_doctor", EMAIL);
 
-                } else {
-                    Log.d("feedback", "Error: " + e.getMessage());
-                }
-            }
-        });
-
-        Log.d("Feedback",""+ FeedbackArray.size());
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        feedbackAdapter = new FeedbackAdapter(FeedbackArray);
-
-        mRecyclerView.setAdapter(feedbackAdapter);
+        try {
+            FeedbackArray=query.find();
 
 
+
+
+
+            mRecyclerView.setHasFixedSize(true);
+
+            mLayoutManager = new LinearLayoutManager(getActivity());
+
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            feedbackAdapter = new FeedbackAdapter(FeedbackArray);
+
+            mRecyclerView.setAdapter(feedbackAdapter);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        progress.dismiss();
         return mRecyclerView;
     }
 
@@ -120,6 +123,7 @@ public class FeedbackFragment extends Fragment {
         super.onDetach();
         DoctorActivity.switchFAB(0);
         mListener = null;
+        progress.dismiss();
     }
 
     /**

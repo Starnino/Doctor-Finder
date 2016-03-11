@@ -325,7 +325,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             name.setText(CURRENTDOCTOR.getString("FirstName") + " " + CURRENTDOCTOR.getString("LastName"));
             ArrayList<String> spec = (ArrayList<String>) CURRENTDOCTOR.get("Specialization");
             special.setText(Util.setCity(spec));
-            ratingBar.setRating(parseFloat(CURRENTDOCTOR.getString("Feedback")));
+            ratingBar.setRating(parseFloat(CURRENTDOCTOR.get("Feedback").toString()));
             //todo set photo
 
             return myContentsView;

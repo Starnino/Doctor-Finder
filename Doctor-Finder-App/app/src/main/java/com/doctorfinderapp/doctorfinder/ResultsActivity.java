@@ -160,7 +160,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             //Re -set image
 
             if (GlobalVariable.UserPropic != null) {
-                Log.d("ciao", GlobalVariable.UserPropic.toString());
+                //Log.d("ciao", GlobalVariable.UserPropic.toString());
                 RoundedImageView mImg = (RoundedImageView) header.findViewById(R.id.user_propic);
                 mImg.setImageBitmap(GlobalVariable.UserPropic);
             }

@@ -90,32 +90,31 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/cancel"
             android:id="@+id/annulla"
             android:textAllCaps="true"
 
             android:gravity="left"
-            android:layout_margin="32dp"
+            android:layout_margin="20dp"
             android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/feedback_send"
             android:id="@+id/invia"
             android:layout_alignParentTop="true"
             android:textAllCaps="true"
             android:layout_alignParentEnd="true"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_margin="32dp" />
+            android:layout_margin="20dp" />
 
     </RelativeLayout>
 

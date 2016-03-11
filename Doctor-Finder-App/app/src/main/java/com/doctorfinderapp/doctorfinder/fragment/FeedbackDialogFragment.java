@@ -131,7 +131,7 @@ public class FeedbackDialogFragment extends DialogFragment {
     private void pushFeedback(View rootView, final String email_user, final String email_doctor, final boolean anonymus) {
         //todo checked
 
-
+            final String name= ParseUser.getCurrentUser().get("fName").toString();
             final EditText feedback_description_editText =
                     (EditText) rootView.findViewById(R.id.editText);
             final String feedback_description = feedback_description_editText.getText().toString();
@@ -172,6 +172,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                         ParseObject feedback = new ParseObject("Feedback");
                         feedback.put("email_user", email_user);
                         feedback.put("email_doctor", email_doctor);
+                        feedback.put("Name",name);
                         feedback.put("Anonymus",anonymus);
                         feedback.put("feedback_description", feedback_description);
                         feedback.put("Rating",new Float( ratingbar.getRating()));
@@ -180,6 +181,8 @@ public class FeedbackDialogFragment extends DialogFragment {
                             @Override
                             public void done(ParseException e) {
                                 if(e!=null)Log.d("Push feedback", e.toString());
+                                DoctorActivity.showToastFeedback();
+                                Util.calculateFeedback(email_doctor);
                                 Log.d("Push feedback", "feedback saved");
                             }
                         });
