@@ -2,7 +2,9 @@ package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +12,17 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,11 +30,14 @@ import java.util.List;
  */
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder> {
 
-    public static class DoctorViewHolder extends RecyclerView.ViewHolder {
+    private final String EMAIL = "Email";
+
+    public static class DoctorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView personName;
         TextView profession;
         RoundedImageView personPhoto;
         TextView province;
+        String email;
 
         DoctorViewHolder(View itemView) {
             super(itemView);
@@ -32,13 +45,25 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             profession = (TextView) itemView.findViewById(R.id.doctor_profession);
             personName = (TextView) itemView.findViewById(R.id.doctor_name);
             province = (TextView) itemView.findViewById(R.id.province);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            Context context = v.getContext();
+            Intent intent = new Intent(context, DoctorActivity.class);
+            //------
+            intent.putExtra("email", email);
+            //------
+            context.startActivity(intent);
         }
     }
 
-    List<Doctor> visits;
+    static List<Doctor> visits;
 
     public DoctorAdapter(List<Doctor> doctors) {
-        this.visits = doctors;
+        this.visits = new ArrayList<>(doctors);
     }
 
     @Override
@@ -48,28 +73,45 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     }
 
     @Override
-    public void onBindViewHolder(DoctorViewHolder holder, final int position) {
+    public void onBindViewHolder(final DoctorViewHolder holder, final int position) {
         holder.personName.setText((visits.get(position).havePisello() ? "Dott. " : "Dott.ssa ")
                 + Util.reduceString(visits.get(position).getSurname()));
 
-        if (visits.get(position).getPhoto() != null)
-            holder.personPhoto = visits.get(position).getPhoto();
-        else
-            holder.personPhoto.setImageResource(visits.get(position).getPhotoId());
+        Log.d("DOCTOR ADAPTER --> ", visits.get(position).getPhoto() == null ? "is null" : "dio porco");
+
+        holder.personPhoto.setImageResource(R.drawable.doctor_avatar);
+
+            final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+            doctorph.whereEqualTo(EMAIL, visits.get(position).getEmail());
+
+            doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject doctorPhoto, ParseException e) {
+
+                    if (doctorPhoto == null)
+                        Log.d("doctorphoto", "isNull");
+
+                    else {
+
+                        ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                        if (e == null) {
+
+                            file.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] data, ParseException e) {
+                                    holder.personPhoto.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
+
 
         holder.profession.setText(Util.reduceString(visits.get(position).getProfession()));
         holder.province.setText(visits.get(position).getCity());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, DoctorActivity.class);
-                //------
-                intent.putExtra("index", position);
-                //------
-                context.startActivity(intent);
-            }
-        });
+        holder.email = visits.get(position).getEmail();
     }
 
     @Override
