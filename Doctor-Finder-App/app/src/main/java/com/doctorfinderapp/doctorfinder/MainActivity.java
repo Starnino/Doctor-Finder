@@ -402,7 +402,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
     }
 
     @Override
@@ -416,9 +415,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null){
+                //if(ParseUser.getCurrentUser()!=null){
                 Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
-                startActivity(intent_user);}
+                startActivity(intent_user);
+        //}
                 break;
 
             case R.id.Qurami:
@@ -529,7 +529,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             }
                         }
                     });
-
                 }
             }
         });
@@ -540,8 +539,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         //update image
-
-
 
         updateRecyclerDoctor();
         updateRecentSearch();
@@ -560,8 +557,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
         if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = 280;
-            card_recent_doctor_null.getLayoutParams().height = 280;
+            mRecyclerView.getLayoutParams().height = 300;
+            card_recent_doctor_null.getLayoutParams().height = 300;
         }
         //set adapter to recycler view
         mRecyclerView.setAdapter(mAdapter);

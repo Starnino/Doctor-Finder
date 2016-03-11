@@ -64,183 +64,21 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public final String EMAIL = "Email";
     public static ParseObject DOCTORTHIS;
     private static Context c;
-
-    //animation fab buttons
-    public static void animateFAB() {
-
-        if (isFabOpen) {
-
-            fabcontact.startAnimation(rotate_backward);
-            fabemail.startAnimation(fab_close);
-            fabtelephone.startAnimation(fab_close);
-            fabemail.setClickable(false);
-            fabtelephone.setClickable(false);
-            isFabOpen = false;
-            Log.d("button", "close");
-
-        } else {
-
-            fabcontact.startAnimation(rotate_forward);
-            fabemail.startAnimation(fab_open);
-            fabtelephone.startAnimation(fab_open);
-            fabemail.setClickable(true);
-            fabtelephone.setClickable(true);
-            isFabOpen = true;
-            Log.d("button", "open");
-        }
-    }
-
-    //switch fab
-    public static void switchFAB(int position) {
-        switch (position) {
-            case 0:
-                if (isFabOpen) {
-                    Log.d("fab", "open");
-                    fabfeedback.startAnimation(fab_close);
-                    fabcontact.startAnimation(fab_close);
-                    fabtelephone.startAnimation(fab_close);
-                    fabcontact.setClickable(false);
-                    fabtelephone.setClickable(false);
-                    fabfeedback.setClickable(false);
-                    isFabOpen = false;
-                }
-                fabcontact.startAnimation(fab_open_normal);
-                fabcontact.setClickable(true);
-                break;
-
-            case 1:
-                Log.d("fab_location", "open");
-                fabcontact.startAnimation(fab_close);
-                fabcontact.setClickable(false);
-                fabfeedback.startAnimation(fab_open_normal);
-                fabfeedback.setClickable(true);
-                break;
-        }
-    }
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        c=getApplicationContext();
+        c = getApplicationContext();
         setContentView(R.layout.activity_doctor);
         //take index
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            index = extras.getInt("index");
-            Log.d("INDEX", index + "");
-        }
 
-        doctors = GlobalVariable.DOCTORS;
-
-        //set ParseDoctor this
-        DOCTORTHIS = doctors.get(index);
-        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
-        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
-        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
-        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
-        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-        DOCTOR_EMAIL = DOCTORTHIS.getString(EMAIL);
-
-        final RoundedImageView photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
-
-        final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
-        doctorph.whereEqualTo(EMAIL, DOCTOR_EMAIL);
-
-        //TODO MODIFICARE
-        doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject doctorPhoto, ParseException e) {
-
-                if (doctorPhoto == null)
-                    Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
-
-                else {
-
-                    ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
-                    if (e == null) {
-
-                        file.getDataInBackground(new GetDataCallback() {
-                            @Override
-                            public void done(byte[] data, ParseException e) {
-                                DOCTOR_PHOTO = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                Log.d("DOCTOR PHOTO --> ", DOCTOR_PHOTO == null ? "is null" : "ok");
-                                photoProfile.setImageBitmap(DOCTOR_PHOTO);
-                            }
-                        });
-                    }
-                }
-            }
-        });
-
-        //if photo exist
-        if (DOCTOR_PHOTO != null)
-            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, DOCTOR_PHOTO,
-                DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-        //if photo not exist
-        else
-            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
-                    DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX);
-
-
-        //refresh doctors searched
-        refreshDoctorList(currentDoctor);
-
-
-        //find fab buttons
-        fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);
-        fabfeedback = (FloatingActionButton) findViewById(R.id.fabfeedback);
-        fabtelephone = (FloatingActionButton) findViewById(R.id.fabtelephone);
-        fabemail = (FloatingActionButton) findViewById(R.id.fabemail);
-
-        //load animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
-        fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
-
-        //onClick button
-        fabcontact.setOnClickListener(this);
-        fabfeedback.setOnClickListener(this);
-        fabtelephone.setOnClickListener(this);
-        fabemail.setOnClickListener(this);
-
-
-        // Begin the transaction
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-        //add parameters
-        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
-        ft.replace(R.id.frame_doctor, doctorFragment);
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
-        //ft.addToBackStack(null);
-        ft.commit();
-
-        fabcontact.startAnimation(fab_open_normal);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
-
-        setSupportActionBar(toolbar);
-
-        if (DOCTOR_SEX)
-            Title = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
-        else
-            Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
-
-        if (
-
-                getSupportActionBar()
-
-                        != null)
-
-        {
-
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         }
 
         final CollapsingToolbarLayout collapsingToolbarLayout =
@@ -248,6 +86,123 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         collapsingToolbarLayout.setTitle(Title);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
+
+        doctors = GlobalVariable.DOCTORS;
+
+        //set ParseDoctor this
+        if (extras != null) {
+
+            email = extras.getString("email");
+            index = extras.getInt("index");
+            Log.d("EXTRAS ===> ", "email: " + email + " " + "index: " + index );
+        }
+
+            if (email == null) {
+                DOCTORTHIS = doctors.get(index);
+            } else {
+                ParseQuery doctorQuery = ParseQuery.getQuery("Doctor");
+                doctorQuery.whereEqualTo(EMAIL, email);
+                try {
+                    DOCTORTHIS = doctorQuery.getFirst();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            doctors = GlobalVariable.DOCTORS;
+
+            DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
+            DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+            DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
+            DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
+            DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+            DOCTOR_EMAIL = DOCTORTHIS.getString(EMAIL);
+
+            final RoundedImageView photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
+
+            final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+            doctorph.whereEqualTo(EMAIL, DOCTOR_EMAIL);
+
+            doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject doctorPhoto, ParseException e) {
+
+                    if (doctorPhoto == null)
+                        Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
+
+                    else {
+
+                        ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                        if (e == null) {
+
+                            file.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] data, ParseException e) {
+                                    DOCTOR_PHOTO = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    Log.d("DOCTOR PHOTO --> ", DOCTOR_PHOTO == null ? "is null" : "ok");
+                                    photoProfile.setImageBitmap(DOCTOR_PHOTO);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
+            //if photo exist
+            if (DOCTOR_PHOTO != null)
+                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, DOCTOR_PHOTO,
+                        DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
+                //if photo not exist
+            else
+                currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME, R.drawable.doctor_avatar,
+                        DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
+
+
+            //refresh doctors searched
+            refreshDoctorList(currentDoctor);
+
+
+            //find fab buttons
+            fabcontact = (FloatingActionButton) findViewById(R.id.fabcontact);
+            fabfeedback = (FloatingActionButton) findViewById(R.id.fabfeedback);
+            fabtelephone = (FloatingActionButton) findViewById(R.id.fabtelephone);
+            fabemail = (FloatingActionButton) findViewById(R.id.fabemail);
+
+            //load animation
+            fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+            fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+            rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
+            rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
+            fab_open_normal = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
+
+            //onClick button
+            fabcontact.setOnClickListener(this);
+            fabfeedback.setOnClickListener(this);
+            fabtelephone.setOnClickListener(this);
+            fabemail.setOnClickListener(this);
+
+
+            // Begin the transaction
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            // Replace the contents of the container with the new fragment
+            //add parameters
+            DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
+            ft.replace(R.id.frame_doctor, doctorFragment);
+            // or ft.add(R.id.your_placeholder, new FooFragment());
+            // Complete the changes added above
+            //ft.addToBackStack(null);
+            ft.commit();
+
+            fabcontact.startAnimation(fab_open_normal);
+
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
+
+            setSupportActionBar(toolbar);
+
+            if (DOCTOR_SEX)
+                Title = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+            else
+                Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
     }
 
@@ -377,6 +332,59 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             finish();
         }
         return true;
+    }
+
+    //animation fab buttons
+    public static void animateFAB() {
+
+        if (isFabOpen) {
+
+            fabcontact.startAnimation(rotate_backward);
+            fabemail.startAnimation(fab_close);
+            fabtelephone.startAnimation(fab_close);
+            fabemail.setClickable(false);
+            fabtelephone.setClickable(false);
+            isFabOpen = false;
+            Log.d("button", "close");
+
+        } else {
+
+            fabcontact.startAnimation(rotate_forward);
+            fabemail.startAnimation(fab_open);
+            fabtelephone.startAnimation(fab_open);
+            fabemail.setClickable(true);
+            fabtelephone.setClickable(true);
+            isFabOpen = true;
+            Log.d("button", "open");
+        }
+    }
+
+    //switch fab
+    public static void switchFAB(int position) {
+        switch (position) {
+            case 0:
+                if (isFabOpen) {
+                    Log.d("fab", "open");
+                    fabfeedback.startAnimation(fab_close);
+                    fabcontact.startAnimation(fab_close);
+                    fabtelephone.startAnimation(fab_close);
+                    fabcontact.setClickable(false);
+                    fabtelephone.setClickable(false);
+                    fabfeedback.setClickable(false);
+                    isFabOpen = false;
+                }
+                fabcontact.startAnimation(fab_open_normal);
+                fabcontact.setClickable(true);
+                break;
+
+            case 1:
+                Log.d("fab_location", "open");
+                fabcontact.startAnimation(fab_close);
+                fabcontact.setClickable(false);
+                fabfeedback.startAnimation(fab_open_normal);
+                fabfeedback.setClickable(true);
+                break;
+        }
     }
 
 

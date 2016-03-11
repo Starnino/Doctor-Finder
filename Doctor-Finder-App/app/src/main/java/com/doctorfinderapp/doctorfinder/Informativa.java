@@ -1,18 +1,11 @@
 package com.doctorfinderapp.doctorfinder;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
+
 
 
 /**
@@ -21,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 public class Informativa extends AppCompatActivity{
 
     private String Title = "Informativa";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

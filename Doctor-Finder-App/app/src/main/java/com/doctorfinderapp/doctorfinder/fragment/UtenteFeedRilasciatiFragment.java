@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.R;
 
 /*
-public class UtenteFeedRilasciati extends Fragment {
+public class UtenteFeedRilasciatiFragment extends Fragment {
 
-    public UtenteFeedRilasciati() {
+    public UtenteFeedRilasciatiFragment() {
         // Required empty public constructor
     }
 
-    public static UtenteFeedRilasciati newInstance(int index) {
-        UtenteFeedRilasciati fragment = new UtenteFeedRilasciati();
+    public static UtenteFeedRilasciatiFragment newInstance(int index) {
+        UtenteFeedRilasciatiFragment fragment = new UtenteFeedRilasciatiFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
 
@@ -29,7 +29,7 @@ public class UtenteFeedRilasciati extends Fragment {
 }
 */
 
-public class UtenteFeedRilasciati extends Fragment {
+public class UtenteFeedRilasciatiFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,26 +42,8 @@ public class UtenteFeedRilasciati extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public UtenteFeedRilasciati() {
+    public UtenteFeedRilasciatiFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookFragment newInstance(String param1, String param2) {
-        BookFragment fragment = new BookFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -77,7 +59,7 @@ public class UtenteFeedRilasciati extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.feedlasciati, container, false);
+        return inflater.inflate(R.layout.fragment_book_feed_lasciati, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
