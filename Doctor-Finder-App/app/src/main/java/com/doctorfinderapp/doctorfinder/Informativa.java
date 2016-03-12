@@ -29,7 +29,7 @@ public class Informativa extends AppCompatActivity{
             (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
     collapsingToolbarLayout.setTitle(Title);
     collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-    // transperent color = #00000000
+    // transperent color = #00000009
     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 */
     }
