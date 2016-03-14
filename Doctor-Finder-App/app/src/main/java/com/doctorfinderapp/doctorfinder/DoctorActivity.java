@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,8 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
@@ -33,9 +30,12 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class DoctorActivity extends AppCompatActivity implements View.OnClickListener, FeedbackFragment.OnFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
@@ -47,9 +47,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static boolean isFabOpen = false;
     private static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram;
     private static Context c;
+    private static FragmentManager p;
     public final String EMAIL = "Email";
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
@@ -61,7 +62,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private Doctor currentDoctor;
     private String Title;
     private String email;
-    private  static FragmentManager p;
 
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_sended,
@@ -78,7 +78,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static void switchFAB(int position) {
         switch (position) {
             case 0:
-                if (fabfeedback.isVisible()){
+                if (fabfeedback.isVisible()) {
                     fabfeedback.hide();
                 }
                 fabmenu.showMenu(true);
@@ -202,13 +202,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-        //add parameters
+
         DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
         ft.replace(R.id.frame_doctor, doctorFragment);
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
-        //ft.addToBackStack(null);
+
         ft.commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
@@ -228,7 +225,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         collapsingToolbarLayout.setTitle(Title);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.docfinder));
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255,255));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
     }
 
@@ -283,7 +280,17 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         switch (id) {
 
             case R.id.fabfeedback:
-                openFeedbackDialog();
+
+                if (ParseUser.getCurrentUser() != null) {
+
+                    openFeedbackDialog();
+                } else {
+                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Feedback")
+                            .setContentText("Devi registrarti per lasciare un feedbacks")
+                            .setConfirmText("OK")
+                            .show();
+                }
                 break;
 
         }

@@ -289,6 +289,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         Intent intent = new Intent(ResultsActivity.this ,  SplashActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                     }
                 });
 

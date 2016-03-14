@@ -178,6 +178,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
+                                                finish();
 
                                             } else {
                                                 //
@@ -257,6 +258,7 @@ public class SignupActivity extends AppCompatActivity {
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
@@ -271,6 +273,7 @@ public class SignupActivity extends AppCompatActivity {
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
 
                         }
                     }

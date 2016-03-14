@@ -28,11 +28,12 @@ import com.parse.ParseUser;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String NAME = "fName";
     public static final String SURNAME = "lName";
     private static Context c;
+    private static com.melnykov.fab.FloatingActionButton fab_share;
     public final String USER_EMAIL = "email";
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -55,12 +56,17 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //scrolling
         setContentView(R.layout.activity_scrolling_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
         ParseUser user = ParseUser.getCurrentUser();
+
+
+        fab_share= (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
+        fab_share.setOnClickListener(this);
 
         friend_null = (TextView) findViewById(R.id.friend_null);
 
@@ -126,18 +132,8 @@ public class UserProfileActivity extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
 
-        //floating button for report problems
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new SweetAlertDialog(UserProfileActivity.this)
-                        .setTitleText("Hai qualcosa da segnalarci?")
-                        .setContentText("Clicca sul pulsante posto in basso.")
-                        .setConfirmText("Riceverai presto nostre notizie!")
-                        .show();
-            }
-        });
+
+
 
         RelativeLayout condividi = (RelativeLayout) findViewById(R.id.condividi);
         condividi.setOnClickListener(new View.OnClickListener() {
@@ -146,54 +142,54 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Ciao, ti consiglio di provare questa fantastica applicazione! https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_email);
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
-            }});
+            }
+        });
 
-                RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
-                rateus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-                        try {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                        } catch (android.content.ActivityNotFoundException anfe) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
-                        }
-
-                    }
-                });
-
-
-
-            RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
-            inviacela.setOnClickListener(new View.OnClickListener()
-
-            {
-                @Override
-                public void onClick (View view){
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
-                i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
-                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+        RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
+        rateus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
-                    startActivity(Intent.createChooser(i, "Invia mail usando..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
                 }
+
             }
-            }
-
-            );
+        });
 
 
-            RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
-            facebukkalo.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
+        inviacela.setOnClickListener(new View.OnClickListener()
 
-                @Override
-                public void onClick (View v){
+                                     {
+                                         @Override
+                                         public void onClick(View view) {
+                                             Intent i = new Intent(Intent.ACTION_SEND);
+                                             i.setType("message/rfc822");
+                                             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
+                                             i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
+                                             i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+                                             try {
+                                                 startActivity(Intent.createChooser(i, "Invia mail usando..."));
+                                             } catch (android.content.ActivityNotFoundException ex) {
+                                                 Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
+                                             }
+                                         }
+                                     }
+
+        );
+
+
+        RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
+        facebukkalo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
 
 
                 Log.d("User profile", "linking fb");
@@ -208,10 +204,10 @@ public class UserProfileActivity extends AppCompatActivity {
                         }*/
 
 
-            });
+        });
 
-            final int feed_lasciati = 0;
-                //qualcosa che prende il numero di feed lasciati o insomma che controlli
+        final int feed_lasciati = 0;
+        //qualcosa che prende il numero di feed lasciati o insomma che controlli
 
                /* RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
                 feedback_utente.setOnClickListener(new View.OnClickListener()
@@ -235,23 +231,44 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });*/
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case android.R.id.home:
 
-            {super.onBackPressed();
-                    finish();
-                }
-                return true;
+            {
+                super.onBackPressed();
+                finish();
+            }
+            return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+
+            case R.id.fab_share:
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_email);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
+
+        }
     }
 
 }

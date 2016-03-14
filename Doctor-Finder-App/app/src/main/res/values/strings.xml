@@ -309,6 +309,9 @@
     <string name="anonymus">Voglio che il mio feedback sia anonimo</string>
     <string name="anonymus_name">Utente Anonimo</string>
     <string name="fatto">Operazione eseguita</string>
+    <string name="share_email">Ciao, prova questa nuova applicazione che ti permette di trovare il dottore perfetto per te</string>
+    <string name="feedback_warning">Feedback</string>
+    <string name="feedback_warting_message">Devi essere registrato per lasciare il feedback</string>
 
 
 </resources>

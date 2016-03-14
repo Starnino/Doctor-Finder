@@ -471,6 +471,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         Intent intent = new Intent(MainActivity.this, SplashActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                     }
                 });
 
