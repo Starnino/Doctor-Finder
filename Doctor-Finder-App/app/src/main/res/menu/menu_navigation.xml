@@ -18,30 +18,37 @@
             android:icon="@drawable/ic_info_white_24dp"
             android:title="Informativa sull'utilizzo"
             android:id="@+id/informativa" />
+
+        <item
+            android:icon="@drawable/ic_help_white_24dp"
+            android:title="@string/support"
+            android:id="@+id/support"/>
+
+
+
     </group>
+
+
 
     <group android:checkableBehavior="single"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <item
-                android:icon="@drawable/ic_perm_device_information_white_24dp"
+            <item
+                android:icon="@drawable/githubfinder"
                 android:title="@string/about"
                 android:id="@+id/about"/>
-            <item
-                android:icon="@drawable/ic_help_white_24dp"
-                android:title="@string/support"
-                android:id="@+id/support"/>
+
             <item
                 android:id="@+id/like"
                 android:title="@string/like"
-                android:icon="@drawable/com_facebook_favicon_white" />
-
+                android:icon="@drawable/facebook_doctor_finder_icon" />
 
         <item android:title="@string/logout"
             android:textColor="@color/black"
             android:id="@+id/logout"
             android:icon="@drawable/ic_exit_to_app_white_24dp"/>
+
 
     </group>
 
