@@ -17,10 +17,10 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="Cominciamo..."/>
+        android:text="Doctor Finder"/>
 
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_gravity="center"
@@ -29,10 +29,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
-            android:src="@drawable/ic_slide1"/>
+            android:src="@drawable/s1"/>
 
     </LinearLayout>
     <TextView
@@ -46,7 +45,7 @@
         android:paddingRight="64dp"
         android:textSize="16sp"
         android:fontFamily="sans-serif-thin"
-        android:text="Doctore Finder ti permette di trovare il dottore giusto per te utilizzando i parametri che ritieni più giusti! "/>
+        android:text="Doctore Finder ti permette di trovare il dottore giusto per te utilizzando i parametri che ritieni più giusti"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

@@ -17,7 +17,7 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="La lista non ti basta?"/>
+        android:text="Veloce"/>
 
     <LinearLayout
         android:layout_width="400dp"
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
-            android:src="@drawable/ic_slide3"/>
+            android:src="@drawable/s3"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="...cerca tramite la mappa"/>
+        android:text="Usa la mappa per trovare il dottore più vicino a te"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

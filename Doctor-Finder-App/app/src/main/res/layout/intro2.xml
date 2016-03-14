@@ -17,7 +17,7 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="Sfoglia la lista"/>
+        android:text="Semplice"/>
 
     <LinearLayout
         android:layout_width="400dp"
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
-            android:src="@drawable/ic_slide2"/>
+            android:src="@drawable/s2"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
         android:paddingRight="64dp"
         android:fontFamily="sans-serif-thin"
         android:textSize="16sp"
-        android:text="Visualizza i dottori in lista"/>
+        android:text="Cerca il dottore per nome o  specializzazione"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
