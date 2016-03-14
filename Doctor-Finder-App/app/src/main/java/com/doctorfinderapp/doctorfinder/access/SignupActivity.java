@@ -176,6 +176,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
 
                                             } else {
@@ -254,7 +255,7 @@ public class SignupActivity extends AppCompatActivity {
 
                             progressBar.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
 
                         } else {
@@ -268,7 +269,7 @@ public class SignupActivity extends AppCompatActivity {
                             FacebookProfile.getGraphRequest(user);
 
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
 
                         }

@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                                         "Logged in",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
 
                             } else {
@@ -149,7 +150,8 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
                         } else {
@@ -160,14 +162,12 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
                             //FacebookProfile.getGraphRequestFriends(user);
-
-
-
                             Toast.makeText(getApplicationContext(),
                                     "Logged in",
                                     Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
                         }

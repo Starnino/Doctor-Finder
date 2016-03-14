@@ -286,6 +286,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                                 "Logged out",
                                 Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(ResultsActivity.this ,  SplashActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });
@@ -410,10 +411,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         }
 
         //progress dialog
-        /*final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Caricamento");
         dialog.getProgressHelper().setBarColor(getResources().getColor(R.color.docfinder));
-        dialog.show();*/
+        dialog.show();
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -427,13 +428,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
                     }
 
-                   // dialog.cancel();
+                    dialog.cancel();
                     setupViewPager(viewPager);
 
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
 
                 } else {
-                    //dialog.cancel();
+                    dialog.cancel();
                     new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Oops...")
                             .setContentText("Qualcosa è andato storto!")

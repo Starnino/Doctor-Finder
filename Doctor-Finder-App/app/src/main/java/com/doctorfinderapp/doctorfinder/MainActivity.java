@@ -471,6 +471,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 "Logged out",
                                 Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });
@@ -566,24 +567,28 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                for (int i = 0; i < objects.size(); i++) {
-                    //add doctor to adapter
-                    doctors.add(new Doctor(
-                            objects.get(i).getString("FN"),                 //Nome
-                            objects.get(i).getString("LN"),                 //Cognome
-                            (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
-                            (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
-                            objects.get(i).getBoolean("SEX"),               //Sesso
-                            objects.get(i).getString("E@")));               //Email
+                if(e==null) {
+                    for (int i = 0; i < objects.size(); i++) {
+                        //add doctor to adapter
+                        doctors.add(new Doctor(
+                                objects.get(i).getString("FN"),                 //Nome
+                                objects.get(i).getString("LN"),                 //Cognome
+                                (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
+                                (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
+                                objects.get(i).getBoolean("SEX"),               //Sesso
+                                objects.get(i).getString("E@")));               //Email
+                    }
+                    // specify an adapter
+                    mAdapter = new DoctorAdapter(doctors);
+                    if (doctors.size() != 0) {
+                        mRecyclerView.getLayoutParams().height = 300;
+                        card_recent_doctor_null.getLayoutParams().height = 300;
+                    }
+                    //set adapter to recycler view
+                    mRecyclerView.setAdapter(mAdapter);
+                }else{
+                    e.printStackTrace();
                 }
-                // specify an adapter
-                mAdapter = new DoctorAdapter(doctors);
-                if (doctors.size() != 0) {
-                    mRecyclerView.getLayoutParams().height = 300;
-                    card_recent_doctor_null.getLayoutParams().height = 300;
-                }
-                //set adapter to recycler view
-                mRecyclerView.setAdapter(mAdapter);
             }
         });
 

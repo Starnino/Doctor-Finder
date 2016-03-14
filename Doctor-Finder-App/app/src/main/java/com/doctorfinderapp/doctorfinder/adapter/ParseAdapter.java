@@ -119,9 +119,12 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
                         file.getDataInBackground(new GetDataCallback() {
                             @Override
-                            public void done(byte[] data, ParseException e) {
-                                holder.profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
-                            }
+                             public void done(byte[] data, ParseException e) {
+                                if (e == null) {
+                                    holder.profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                                } else {
+                                    e.printStackTrace();
+                                }}
                         });
                     }
                 }

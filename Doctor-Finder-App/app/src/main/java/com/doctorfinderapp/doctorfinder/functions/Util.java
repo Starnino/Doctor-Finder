@@ -94,24 +94,7 @@ public class Util {
         }
     }
 
-    public static Bitmap downloadPhotoDoctor(ParseObject Doctor) {
-        final String tablePhoto = "DoctorPh";
-        final String columnId = "idDoctor";
-        final String ID = Doctor.getObjectId();
-        Bitmap photo = null;
-        Log.d(columnId, ID);
 
-        ParseQuery<ParseObject> queryPhoto = ParseQuery.getQuery(tablePhoto);
-        queryPhoto.whereEqualTo(columnId, ID);
-
-        queryPhoto.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-            }
-        });
-        return photo;
-    }
 
     public static List<ParseObject> getUserFacebookFriends(ParseUser user) {
         List<String> id = new ArrayList<>();
@@ -193,9 +176,7 @@ public class Util {
 
     }
 
-    public ParseObject getDoctorFromList(ArrayList<ParseObject> list, int index) {
-        return list.get(index);
-    }
+
 
     public static void copyAll(){
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");

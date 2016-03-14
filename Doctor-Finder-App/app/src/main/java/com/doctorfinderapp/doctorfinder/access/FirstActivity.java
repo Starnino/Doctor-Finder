@@ -73,6 +73,7 @@ public class FirstActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstActivity.this, LoginActivity.class);
+
                 startActivity(intent);
             }
         });

@@ -10,12 +10,11 @@ import java.util.List;
 public class GlobalVariable {
 
     public static String idDoctors;
-    public static int idUsers;
+
     public static List<String> permissions = Arrays.asList("email", "public_profile", "user_friends");
-    public static int numdoctors;
+
     public static List<ParseObject> DOCTORS;
-    public static List<ParseObject> USER;
-    public static boolean locationActive=false;
+
     public static Bitmap UserPropic=null;
     public static List<Doctor> recentDoctors = new ArrayList<>();
     public static boolean FLAG_CARD_DOCTOR_VISIBLE = false;
