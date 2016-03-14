@@ -9,6 +9,7 @@ import android.view.View;
 import com.doctorfinderapp.doctorfinder.Intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.parse.ParseUser;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,6 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
+                    FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
