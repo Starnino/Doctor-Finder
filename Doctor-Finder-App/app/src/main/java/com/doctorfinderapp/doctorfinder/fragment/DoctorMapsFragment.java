@@ -59,6 +59,28 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap gMap) {
+                googleMap = gMap;
+                gMap.getUiSettings().setMapToolbarEnabled(true);
+                setUpMap(googleMap);
+                permissionRequest();
+                LatLng ROMA = new LatLng(41.9000, 12.5000);
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(ROMA)      // Sets the center of the map to mi position
+                        .zoom(5)                   // Sets the zoom
+                        .bearing(0)                // Sets the orientation of the camera to east
+                        .build();                   // Creates a CameraPosition from the builder
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+        });
+
+    }
+
+    @Override
     public void onMapReady(GoogleMap gMap) {
         googleMap = gMap;
         mResources = getResources();
@@ -73,15 +95,9 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             gMap.setMyLocationEnabled(true);
         }
 
-
+        gMap.getUiSettings().setMapToolbarEnabled(true);
         setUpMap(gMap);
-        LatLng ROMA = new LatLng(41.9000, 12.5000);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(ROMA)      // Sets the center of the map to mi position
-                .zoom(5)                   // Sets the zoom
-                .bearing(0)                // Sets the orientation of the camera to east
-                .build();                   // Creates a CameraPosition from the builder
-        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
 
         //permissionRequest();
     }
@@ -139,7 +155,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     public void onResume() {
         super.onResume();
 
-        setUpMapIfNeeded();
+       setUpMapIfNeeded();
 
     }
 
@@ -147,12 +163,33 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         if (googleMap == null) {
             getMapAsync(new OnMapReadyCallback() {
                 @Override
-                public void onMapReady(GoogleMap googleMap) {
+                public void onMapReady(GoogleMap gMap) {
+                    googleMap = gMap;
                     setUpMap(googleMap);
                     permissionRequest();
+
                 }
             });
         }
+    }
+    private void setUpMapIfNeededCamera(){
+        if (googleMap == null) {
+            getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    setUpMap(googleMap);
+                    permissionRequest();
+                    LatLng ROMA = new LatLng(41.9000, 12.5000);
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(ROMA)      // Sets the center of the map to mi position
+                            .zoom(5)                   // Sets the zoom
+                            .bearing(0)                // Sets the orientation of the camera to east
+                            .build();                   // Creates a CameraPosition from the builder
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
+            });
+        }
+
     }
 
     @Override
