@@ -223,4 +223,14 @@ public class DoctorFragment extends Fragment {
         startActivity(mapIntent);
     }
 
+    private void openWhatsapp(String number,String doctorname){
+        Intent sendIntent = new Intent();
+
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.setPackage("com.whatsapp");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
 }

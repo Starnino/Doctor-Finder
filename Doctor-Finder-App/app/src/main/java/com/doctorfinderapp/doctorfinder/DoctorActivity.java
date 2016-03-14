@@ -291,7 +291,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 } else {
                     new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Feedback")
-                            .setContentText("Devi registrarti per lasciare un feedbacks")
+                            .setContentText("Devi registrarti per lasciare un feedback")
                             .setConfirmText("OK")
                             .show();
                 }
