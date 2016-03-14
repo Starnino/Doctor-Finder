@@ -45,9 +45,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         //immersion mode
-
+/*
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                */
 
         super.onCreate(savedInstanceState);
 
@@ -129,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View arg0) {
                 List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
-                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 

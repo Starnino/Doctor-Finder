@@ -74,13 +74,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:text="@string/text_rememberMe" />
         <TextView
             android:id="@+id/forgot_password"
