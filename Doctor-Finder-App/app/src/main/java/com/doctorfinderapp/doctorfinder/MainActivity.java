@@ -546,7 +546,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         //update image
-
+        getUserImage(ParseUser.getCurrentUser());
         updateRecyclerDoctor();
         updateRecentSearch();
         super.onResume();

@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -148,7 +149,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Ciao, ti consiglio di provare questa fantastica applicazione! https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
-
+            }});
 
                 RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
                 rateus.setOnClickListener(new View.OnClickListener() {
@@ -165,36 +166,41 @@ public class UserProfileActivity extends AppCompatActivity {
                 });
 
 
-                RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
-                inviacela.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(Intent.ACTION_SEND);
-                        i.setType("message/rfc822");
-                        i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
-                        i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
-                        i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
-                        try {
-                            startActivity(Intent.createChooser(i, "Invia mail usando..."));
-                        } catch (android.content.ActivityNotFoundException ex) {
-                            Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+
+            RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
+            inviacela.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick (View view){
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
+                i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
+                try {
+                    startActivity(Intent.createChooser(i, "Invia mail usando..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            }
+
+            );
 
 
-                RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
-                facebukkalo.setOnClickListener(new View.OnClickListener() {
+            RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
+            facebukkalo.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
+                @Override
+                public void onClick (View v){
 
 
-                        Log.d("User profile", "linking fb");
-                        Toast.makeText(getApplicationContext(), R.string.fatto, Toast.LENGTH_LONG);
-                        FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
+                Log.d("User profile", "linking fb");
+                Toast.makeText(getApplicationContext(), R.string.fatto, Toast.LENGTH_LONG);
+                FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
 
-                    }/* else {
+            }/* else {
                             new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                                     .setTitleText("Hai già fatto il log in tramite Facebook")
                                     .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
@@ -202,12 +208,12 @@ public class UserProfileActivity extends AppCompatActivity {
                         }*/
 
 
-                });
+            });
 
-                final int feed_lasciati = 0;
+            final int feed_lasciati = 0;
                 //qualcosa che prende il numero di feed lasciati o insomma che controlli
 
-                RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
+               /* RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
                 feedback_utente.setOnClickListener(new View.OnClickListener()
 
                                                    {
@@ -227,9 +233,21 @@ public class UserProfileActivity extends AppCompatActivity {
                 );
 
             }
-        });
+        });*/
     }
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+            {super.onBackPressed();
+                    finish();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

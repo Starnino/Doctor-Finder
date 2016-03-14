@@ -123,14 +123,15 @@
         </RelativeLayout>
 
 
-
+        <!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:id="@+id/feedback_lasciati"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:padding="@dimen/activity_horizontal_margin"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/feedbackk"
@@ -168,7 +169,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="6dp" />
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         </LinearLayout>
 
