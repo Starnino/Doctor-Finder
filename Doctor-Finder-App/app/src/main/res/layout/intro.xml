@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/docfinder"
+    android:background="#00796B"
     android:layout_weight="10"
     android:id="@+id/main">
 
@@ -46,7 +46,7 @@
         android:paddingRight="64dp"
         android:textSize="16sp"
         android:fontFamily="sans-serif-thin"
-        android:text="Cerca lo specialista della salute ulizzando i parametri che ritieni più giusti! "/>
+        android:text="Doctore Finder ti permette di trovare il dottore giusto per te utilizzando i parametri che ritieni più giusti! "/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
