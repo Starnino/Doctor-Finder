@@ -259,11 +259,11 @@ public class Util {
                     public void done(ParseObject doctorPhoto, ParseException e) {
 
                         if (doctorPhoto == null) {
-                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " isNull");
+                            //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " isNull");
 
 
                         } else {
-                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exists");
+                            //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exists");
                             final ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
                             if (e == null) {
 
@@ -271,10 +271,10 @@ public class Util {
                                     @Override
                                     public void done(byte[] data, ParseException e) {
                                         if (e == null) {
-                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " downloaded");
+                                            //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " downloaded");
                                             GlobalVariable.DOCTORPHOTO.add(finalI,data);
                                         } else {
-                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exception" + e.toString());
+                                            //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exception" + e.toString());
                                         }
 
 

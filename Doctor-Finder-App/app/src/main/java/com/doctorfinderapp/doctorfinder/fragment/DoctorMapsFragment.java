@@ -46,7 +46,9 @@ import java.util.List;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
-public class DoctorMapsFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+public class DoctorMapsFragment extends SupportMapFragment
+
+{
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     public static Resources mResources;
@@ -80,27 +82,25 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
     }
 
-    @Override
+    /*@Override
     public void onMapReady(GoogleMap gMap) {
         googleMap = gMap;
-        mResources = getResources();
-        if (mResources == null) {
-            Log.d("mappa", "mResourcesis null");
-        }
+
+
+
         Boolean u = ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-        Log.d(TAG, u.toString());
-        Log.d(TAG, Manifest.permission.ACCESS_COARSE_LOCATION.toString());
+
         if (u && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             gMap.setMyLocationEnabled(true);
         }
 
-        gMap.getUiSettings().setMapToolbarEnabled(true);
-        setUpMap(gMap);
 
+        setUpMap(gMap);
+        gMap.getUiSettings().setMapToolbarEnabled(true);
 
         //permissionRequest();
-    }
+    }*/
 
     private void permissionRequest() {
         //googleMap.setMyLocationEnabled(true);
@@ -146,8 +146,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                 }
                 return;
             }
-            // other 'case' lines to check for other
-            // permissions this app might request
+
         }
     }
 
@@ -172,52 +171,8 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             });
         }
     }
-    private void setUpMapIfNeededCamera(){
-        if (googleMap == null) {
-            getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    setUpMap(googleMap);
-                    permissionRequest();
-                    LatLng ROMA = new LatLng(41.9000, 12.5000);
-                    CameraPosition cameraPosition = new CameraPosition.Builder()
-                            .target(ROMA)      // Sets the center of the map to mi position
-                            .zoom(5)                   // Sets the zoom
-                            .bearing(0)                // Sets the orientation of the camera to east
-                            .build();                   // Creates a CameraPosition from the builder
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                }
-            });
-        }
 
-    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        setUpMapIfNeeded();
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        setUpMapIfNeeded();
-
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
 
 
     //-->Fedebyes Funct<--//
@@ -301,7 +256,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                                                   intent.putExtra("index", index);
                                                   //------
                                                   context.startActivity(intent);
-                                                  Log.d("mappa", "infowindow3 clicked");
+                                                  //Log.d("mappa", "infowindow3 clicked");
                                               }
                                           }
         );
@@ -330,12 +285,12 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         return resizedBitmap;
     }
 
-    @Override
+    /*@Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this.getContext(), "Info window clicked",
                 Toast.LENGTH_SHORT).show();
         Log.d("mappa", "infowindow clicked");
-    }
+    }*/
 
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
@@ -358,11 +313,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         @Override
         public View getInfoContents(final Marker marker) {
 
-           /* TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
-            tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
-            tvSnippet.setText(marker.getSnippet());
-            */
+
             String id = marker.getTitle();
             int index = parseInt(id);
 

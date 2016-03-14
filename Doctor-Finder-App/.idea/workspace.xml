@@ -54,8 +54,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="916e854c-bcfe-40f7-9eb2-cff8bf622810" name="Default" comment="Working on infowindow">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -108,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Util.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Util.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="274" column="87" selection-start-line="274" selection-start-column="87" selection-end-line="274" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.6381909">
+              <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
               <folding>
                 <element signature="method#setPosition#0;class#Util#0" expanded="false" />
                 <element signature="method#reduceString#0;class#Util#0" expanded="false" />
@@ -123,10 +123,11 @@
                 <element signature="e#4766#6682#0" expanded="true" />
                 <element signature="e#6681#6682#0" expanded="true" />
                 <element signature="method#copyAll#0;class#Util#0" expanded="false" />
-                <element signature="e#10181#11634#0" expanded="true" />
-                <element signature="e#10814#11536#0" expanded="true" />
-                <element signature="e#11535#11536#0" expanded="true" />
-                <element signature="e#11633#11634#0" expanded="true" />
+                <element signature="method#dowloadDoctorPhoto#0;class#Util#0" expanded="false" />
+                <element signature="e#10181#11642#0" expanded="true" />
+                <element signature="e#10818#11544#0" expanded="true" />
+                <element signature="e#11543#11544#0" expanded="true" />
+                <element signature="e#11641#11642#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,23 +168,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DoctorMapsFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DoctorMapsFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6951424">
-              <caret line="97" column="56" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="286" column="0" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
               <folding>
-                <element signature="e#2433#3314#0" expanded="true" />
-                <element signature="e#3313#3314#0" expanded="true" />
-                <element signature="method#permissionRequest#0;class#DoctorMapsFragment#0" expanded="false" />
-                <element signature="e#6774#7036#0" expanded="true" />
-                <element signature="e#7035#7036#0" expanded="true" />
-                <element signature="method#setUpMapIfNeededCamera#0;class#DoctorMapsFragment#0" expanded="false" />
-                <element signature="e#7155#7994#0" expanded="true" />
-                <element signature="e#7993#7994#0" expanded="true" />
-                <element signature="e#8967#8975#0" expanded="true" />
-                <element signature="method#resizeMarker#0;class#DoctorMapsFragment#0" expanded="false" />
-                <element signature="class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+                <element signature="e#2367#3248#0" expanded="true" />
+                <element signature="e#3247#3248#0" expanded="true" />
+                <element signature="e#6375#6637#0" expanded="true" />
+                <element signature="e#6636#6637#0" expanded="true" />
+                <element signature="e#7195#7203#0" expanded="true" />
+                <element signature="e#9473#10479#0" expanded="true" />
+                <element signature="e#10478#10479#0" expanded="true" />
+                <element signature="e#11781#11782#0" expanded="true" />
+                <element signature="e#11816#11817#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2898,8 +2897,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_info_windows.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/GlobalVariable.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java" />
       </list>
     </option>
   </component>
@@ -3217,36 +3216,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Doctor-Finder-App" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Doctor-Finder-App" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4054,7 +4023,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457965538302</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Maps zoom fixed">
+      <created>1457966484691</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1457966484691</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -4075,9 +4050,9 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49749583" sideWeight="0.52130896" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49679488" sideWeight="0.52130896" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.49415693" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.49415693" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8349359" sideWeight="0.478691" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6761269" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -4086,7 +4061,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48747912" sideWeight="0.5151057" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33157098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -4149,7 +4124,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Recycler view feedback&#10;Added some images&#10;Changed some images&#10;working on feedback item" />
     <MESSAGE value="Recycler View on feedback&#10;back stack button on doctor activity work&#10;&#10;" />
     <MESSAGE value="Info windows created" />
     <MESSAGE value="Added info dialog on maps&#10;Added home as up behvior on doctor activity&#10;Changed Feedaback item&#10;Working on infowindow on click&#10;Working on Feedback upload" />
@@ -4174,11 +4148,12 @@
     <MESSAGE value="updated infowindows&#10;changed doctor card item" />
     <MESSAGE value="Working on infowindow" />
     <MESSAGE value="Download photos for infowindows completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Download photos for infowindows completed" />
+    <MESSAGE value="Maps zoom fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Maps zoom fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -4645,28 +4620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="274" column="87" selection-start-line="274" selection-start-column="87" selection-end-line="274" selection-end-column="87" />
-          <folding>
-            <element signature="method#setPosition#0;class#Util#0" expanded="false" />
-            <element signature="method#reduceString#0;class#Util#0" expanded="false" />
-            <element signature="method#setCity#0;class#Util#0" expanded="false" />
-            <element signature="method#getOpenFacebookIntent#0;class#Util#0" expanded="false" />
-            <element signature="method#getUserFacebookFriends#0;class#Util#0" expanded="false" />
-            <element signature="method#calculateFeedback#0;class#Util#0" expanded="false" />
-            <element signature="e#4766#6682#0" expanded="true" />
-            <element signature="e#6681#6682#0" expanded="true" />
-            <element signature="method#copyAll#0;class#Util#0" expanded="false" />
-            <element signature="e#10181#11634#0" expanded="true" />
-            <element signature="e#10814#11536#0" expanded="true" />
-            <element signature="e#11535#11536#0" expanded="true" />
-            <element signature="e#11633#11634#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/ResultsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4698,20 +4651,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/fragment/DoctorMapsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6951424">
-          <caret line="97" column="56" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="286" column="0" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
           <folding>
-            <element signature="e#2433#3314#0" expanded="true" />
-            <element signature="e#3313#3314#0" expanded="true" />
-            <element signature="method#permissionRequest#0;class#DoctorMapsFragment#0" expanded="false" />
-            <element signature="e#6774#7036#0" expanded="true" />
-            <element signature="e#7035#7036#0" expanded="true" />
-            <element signature="method#setUpMapIfNeededCamera#0;class#DoctorMapsFragment#0" expanded="false" />
-            <element signature="e#7155#7994#0" expanded="true" />
-            <element signature="e#7993#7994#0" expanded="true" />
-            <element signature="e#8967#8975#0" expanded="true" />
-            <element signature="method#resizeMarker#0;class#DoctorMapsFragment#0" expanded="false" />
-            <element signature="class#MyInfoWindowAdapter#0;class#DoctorMapsFragment#0" expanded="false" />
+            <element signature="e#2367#3248#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
+            <element signature="e#6375#6637#0" expanded="true" />
+            <element signature="e#6636#6637#0" expanded="true" />
+            <element signature="e#7195#7203#0" expanded="true" />
+            <element signature="e#9473#10479#0" expanded="true" />
+            <element signature="e#10478#10479#0" expanded="true" />
+            <element signature="e#11781#11782#0" expanded="true" />
+            <element signature="e#11816#11817#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/doctorfinderapp/doctorfinder/functions/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6381909">
+          <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+          <folding>
+            <element signature="method#setPosition#0;class#Util#0" expanded="false" />
+            <element signature="method#reduceString#0;class#Util#0" expanded="false" />
+            <element signature="method#setCity#0;class#Util#0" expanded="false" />
+            <element signature="method#getOpenFacebookIntent#0;class#Util#0" expanded="false" />
+            <element signature="method#getUserFacebookFriends#0;class#Util#0" expanded="false" />
+            <element signature="method#calculateFeedback#0;class#Util#0" expanded="false" />
+            <element signature="e#4766#6682#0" expanded="true" />
+            <element signature="e#6681#6682#0" expanded="true" />
+            <element signature="method#copyAll#0;class#Util#0" expanded="false" />
+            <element signature="method#dowloadDoctorPhoto#0;class#Util#0" expanded="false" />
+            <element signature="e#10181#11642#0" expanded="true" />
+            <element signature="e#10818#11544#0" expanded="true" />
+            <element signature="e#11543#11544#0" expanded="true" />
+            <element signature="e#11641#11642#0" expanded="true" />
           </folding>
         </state>
       </provider>
