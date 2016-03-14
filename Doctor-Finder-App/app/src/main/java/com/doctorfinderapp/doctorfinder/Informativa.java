@@ -39,8 +39,8 @@ public class Informativa extends AppCompatActivity{
         int id = v.getId();
 
         switch (id) {
-            case R.id.torna_indietro:
-                onBackPressed();
+            case R.id.home:
+                finish();
                 break;
         }
 
@@ -48,7 +48,7 @@ public class Informativa extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        Log.d("Informativa", " On back pressed");
+
             super.onBackPressed();
             finish();
             }
