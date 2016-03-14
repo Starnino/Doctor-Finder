@@ -61,6 +61,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
     @Override
     public void onBindViewHolder(final FacebookViewHolder holder, int position) {
         holder.personName.setText(friends.get(position).getString(NAME));
+        holder.personPhoto.setImageResource(R.drawable.mario);
 
         //set dinamically photo
         ParseQuery<ParseObject> query = ParseQuery.getQuery(PHOTO);

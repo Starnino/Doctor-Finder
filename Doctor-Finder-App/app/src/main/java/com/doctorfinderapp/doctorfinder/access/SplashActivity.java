@@ -40,10 +40,9 @@ public class SplashActivity extends AppCompatActivity {
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 if (currentUser != null) {
 
-
+                    FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
-                    FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();

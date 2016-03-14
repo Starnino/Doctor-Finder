@@ -72,12 +72,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
-    public static final int FAB_OPEN_TIME = 1500;
     private boolean FLAGCITY = false, FLAGSPEC = false;
 
     //Parameters shared by fragment goes in activity
 
-    private FloatingActionButton fab;
+    private com.melnykov.fab.FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     public static String[] citta, special;
     public static ArrayList<String> CITY, SPECIAL;
@@ -189,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             }
         });
 
-        fab = (FloatingActionButton) findViewById(R.id.fabmain);
+        fab = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabmain);
         //fab action results activity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,23 +212,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             }
         });
 
-        //set animation
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open_normal);
-
         //start animation
         Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        fab.startAnimation(fab_open);
-                    }
-                });
-
-            }
-        }, FAB_OPEN_TIME);
 
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);

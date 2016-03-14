@@ -65,7 +65,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         String text = feedbacklist.get(position).get("feedback_description").toString();
         String rating= feedbacklist.get(position).get("Rating").toString();
         boolean anonymus=(boolean)feedbacklist.get(position).get("Anonymus");
-
+        holder.propic.setImageResource(R.drawable.mario);
         holder.feedback_text.setText(text);
         holder.ratingBar.setRating(Float.parseFloat(rating));
         if(!anonymus){

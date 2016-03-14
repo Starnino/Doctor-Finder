@@ -34,6 +34,7 @@ import com.doctorfinderapp.doctorfinder.Class.Doctor;
 import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -43,10 +44,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +66,7 @@ public class DoctorFragment extends Fragment {
     private ArrayList<String> DOCTOR_WORK_ARRAY;
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private ArrayList<String> DOCTOR_CITY_ARRAY;
+    private String DOCTOR_EMAIL;
     private String DOCTOR_FEEDBACK;
     private boolean DOCTOR_SEX;
     private String DOCTOR_DESCRIPTION;
@@ -75,7 +79,8 @@ public class DoctorFragment extends Fragment {
     public  GoogleMap googleMap;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private PersonAdapter mAdapter;
+    private FacebookAdapter mAdapter;
+    private TextView suggest_null;
 
     public DoctorFragment() {
     }
@@ -113,6 +118,7 @@ public class DoctorFragment extends Fragment {
         DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
         DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
         DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
+        DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
 
@@ -128,6 +134,15 @@ public class DoctorFragment extends Fragment {
             }
         });
 
+        //getting data from xml
+        TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);
+        TextView special = (TextView) rootView.findViewById(R.id.tvNumber2);
+        TextView years = (TextView) rootView.findViewById(R.id.years);
+        TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
+        TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
+        TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
+        RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
+        suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
@@ -137,26 +152,16 @@ public class DoctorFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<Person> persons = new ArrayList<>();
+        mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
 
-        persons.add(new Person("Giovanni", R.drawable.giampa));
-        persons.add(new Person("Francesco", R.drawable.starnino));
-        persons.add(new Person("Vincenzo", R.drawable.vindel));
-        persons.add(new Person("Federico", R.drawable.fedebyes));
-        persons.add(new Person("Angelo", R.drawable.angelo));
+        int adapter_count = mAdapter.getItemCount();
 
-        mAdapter = new PersonAdapter(persons);
+        if (adapter_count != 0) {
+            mRecyclerView.getLayoutParams().height = 300;
+            suggest_null.setText(adapter_count + " amici trovati!");
+        }
 
         mRecyclerView.setAdapter(mAdapter);
-
-        //getting data from xml
-        TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);
-        TextView special = (TextView) rootView.findViewById(R.id.tvNumber2);
-        TextView years = (TextView) rootView.findViewById(R.id.years);
-        TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
-        TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
-        TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
-        RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
 
 
         if (DOCTOR_SEX)
@@ -170,10 +175,15 @@ public class DoctorFragment extends Fragment {
         cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
         workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
 
-
         info.setText(DOCTOR_DESCRIPTION);
 
-        special.setText(Util.setSpecialization(DOCTOR_SPECIALIZATION_ARRAY));
+        String text = "";
+
+        for (int i = 0; i < DOCTOR_SPECIALIZATION_ARRAY.size(); i++) {
+            text += DOCTOR_SPECIALIZATION_ARRAY.get(i);
+        }
+
+        special.setText(text);
 
         if(DOCTOR_FEEDBACK!=null){
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
@@ -181,8 +191,6 @@ public class DoctorFragment extends Fragment {
         }else{
             //Log.d("DoctorFragment","Feedback is null");
         }
-
-
 
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);

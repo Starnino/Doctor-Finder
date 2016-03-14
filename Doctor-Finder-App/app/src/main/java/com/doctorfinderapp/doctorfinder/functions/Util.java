@@ -13,6 +13,7 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -35,9 +36,13 @@ public class Util {
     public static final String FACEBOOK = "Facebook";
     public static final String USER = "_User";
     public static final String ID = "facebookId";
+    public static final String FEEDBACK = "Feedback";
     public static final String NAME = "fName";
     public static final String SURNAME = "lName";
+    public static final String USER_EMAIl = "email_user";
     public static final String EMAIl = "email";
+    public static final String DOCTOR_EMAIL = "email_doctor";
+    public static final String ANONYMOUS = "anonymus";
 
     public static String setSpecialization(ArrayList<String> specialization) {
 
@@ -115,15 +120,64 @@ public class Util {
             Log.d("AMICO --> ", id.get(i));
         }
 
-        ParseQuery<ParseObject> friend = ParseQuery.getQuery(USER);
-        friend.whereContainedIn(ID, id);
+        ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
+
+        friendQuery.whereContainedIn(ID, id);
 
         //get query non in background
         try {
-            friends = friend.find();
+            friends = friendQuery.find();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        return friends;
+    }
+
+    public static List<ParseObject> getUserFacebookFriendsAndFeedback(ParseUser user, String doctor_email) {
+
+        //Log.d("EMAIL DOCTOR --> ", doctor_email);
+
+        List<ParseObject> friends = getUserFacebookFriends(user);
+
+        ArrayList<String> friends_email = new ArrayList<>();
+
+        for (int i = 0; i < friends.size(); i++)
+            friends_email.add(friends.get(i).getString(EMAIl));
+
+        ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
+        feedback.whereEqualTo(DOCTOR_EMAIL, doctor_email);
+        feedback.whereContainedIn(USER_EMAIl, friends_email);
+        feedback.whereEqualTo(ANONYMOUS, "false");
+
+        try {
+            friends = new ArrayList<>(feedback.find());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < friends.size(); i++) {
+            //Log.d("ALL FEEDBACK --> ", friends.get(i).getString(USER_EMAIl));
+        }
+
+        friends_email.clear();
+        for (int i = 0; i < friends.size(); i++) {
+            friends_email.add(friends.get(i).getString(USER_EMAIl));
+        }
+
+        ParseQuery<ParseObject> ret = ParseQuery.getQuery(USER);
+        ret.whereContainedIn(EMAIl, friends_email);
+
+        try {
+            friends = new ArrayList<>(ret.find());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < friends.size(); i++) {
+            //Log.d("SUGGEST FEEDBACK --> ", friends.get(i).getString(EMAIl));
+        }
+
         return friends;
     }
 
