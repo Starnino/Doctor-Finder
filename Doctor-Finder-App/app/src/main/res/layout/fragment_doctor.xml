@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:text="Nessun nome settato"
+                        android:text="Nessun nome dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="#212121"
                         android:layout_alignTop="@+id/ivContactItem1"
@@ -95,7 +95,50 @@
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="8dp"
                         android:layout_toEndOf="@id/ivContactItem2"
-                        android:text="Nessuna specializzazione settata"
+                        android:text="Nessuna specializzazione dichiarata"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#727272" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/ivContactphone"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-phone"/>
+
+                    <TextView
+                        android:id="@+id/txtphone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/ivContactphone"
+                        android:text="Telefono:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
+
+                    <TextView
+                        android:id="@+id/phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtphone"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@id/ivContactphone"
+                        android:text="Nessun numero dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
 
@@ -140,7 +183,7 @@
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="8dp"
                         android:layout_toEndOf="@id/ivContactItem3"
-                        android:text="Non settato"
+                        android:text="Non dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
 
@@ -254,7 +297,7 @@
                         android:layout_below="@+id/ivContactItem8"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@+id/ivContactItem8"
-                        android:text="Nessun prezzo settato"
+                        android:text="Nessun prezzo dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
 
@@ -296,7 +339,7 @@
                         android:layout_below="@+id/ivContactItem7"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_toEndOf="@+id/ivContactItem7"
-                        android:text="Nessun prezzo settato"
+                        android:text="Nessun prezzo dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
 

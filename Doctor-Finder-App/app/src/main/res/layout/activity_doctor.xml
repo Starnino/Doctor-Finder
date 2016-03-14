@@ -148,7 +148,7 @@
         fab:menu_colorPressed="@color/colorPrimaryDark"
         fab:menu_colorRipple="@color/google_grey"
         fab:menu_animationDelayPerItem="50"
-        fab:menu_icon="@drawable/fab_add"
+        fab:menu_icon="@drawable/ic_perm_phone_msg_white_24dp"
         fab:menu_buttonSpacing="0dp"
         fab:menu_labels_margin="0dp"
         fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
@@ -170,8 +170,19 @@
         fab:menu_labels_maxLines="-1"
         fab:menu_labels_position="left"
         fab:menu_openDirection="up"
-        fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_fab_label="Contatta" >
+        fab:menu_backgroundColor="@android:color/transparent">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "right|bottom"
+            android:src="@drawable/ic_star_border_white_24dp"
+            fab:fab_size="mini"
+            fab:fab_label="Feedback"
+            fab:fab_colorNormal="@color/colorPrimaryDark"
+            fab:fab_colorPressed="@color/darkdf"
+            fab:fab_colorRipple="@color/grey"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_telegram"
@@ -205,6 +216,18 @@
             android:src="@drawable/ic_mail_outline_white_24dp"
             fab:fab_size="mini"
             fab:fab_label="Email"
+            fab:fab_colorNormal="@color/colorPrimaryDark"
+            fab:fab_colorPressed="@color/darkdf"
+            fab:fab_colorRipple="@color/grey"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "right|bottom"
+            android:src="@drawable/ic_phone_white_24dp"
+            fab:fab_size="mini"
+            fab:fab_label="Telefono"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"/>

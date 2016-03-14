@@ -50,7 +50,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static Context c;
     private static FragmentManager p;
     public final String EMAIL = "Email";
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram, fab_phone;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
@@ -193,12 +193,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
         fab_whastapp = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_whastapp);
         fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
+        fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
+
 
         //onClick button
         fabfeedback.setOnClickListener(this);
         fab_email.setOnClickListener(this);
         fab_whastapp.setOnClickListener(this);
         fab_telegram.setOnClickListener(this);
+        fab_phone.setOnClickListener(this);
 
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -293,6 +296,17 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
 
+            case R.id.fab_email:
+                break;
+
+            case R.id.fab_phone:
+                break;
+
+            case R.id.fab_telegram:
+                break;
+
+            case R.id.fab_whastapp:
+                break;
         }
     }
 
