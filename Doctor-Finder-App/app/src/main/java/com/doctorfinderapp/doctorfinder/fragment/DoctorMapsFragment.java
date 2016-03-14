@@ -75,6 +75,13 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
 
 
         setUpMap(gMap);
+        LatLng ROMA = new LatLng(41.9000, 12.5000);
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(ROMA)      // Sets the center of the map to mi position
+                .zoom(5)                   // Sets the zoom
+                .bearing(0)                // Sets the orientation of the camera to east
+                .build();                   // Creates a CameraPosition from the builder
+        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         //permissionRequest();
     }
@@ -261,13 +268,6 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
                                               }
                                           }
         );
-        LatLng ROMA = new LatLng(41.9000, 12.5000);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(ROMA)      // Sets the center of the map to mi position
-                .zoom(5)                   // Sets the zoom
-                .bearing(0)                // Sets the orientation of the camera to east
-                .build();                   // Creates a CameraPosition from the builder
-        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
 
@@ -304,6 +304,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
+        private boolean isShowed=false;
 
         MyInfoWindowAdapter() {
             //LayoutInflater li = (LayoutInflater)getContext();
@@ -315,6 +316,7 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
         public View getInfoWindow(Marker marker) {
             return null;
         }
+
 
         @Override
         public View getInfoContents(final Marker marker) {
@@ -341,52 +343,61 @@ public class DoctorMapsFragment extends SupportMapFragment implements OnMapReady
             special.setText(Util.setCity(spec));
             ratingBar.setRating(parseFloat(CURRENTDOCTOR.get("Feedback").toString()));
 
-            final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
-            doctorph.whereEqualTo("Email", CURRENTDOCTOR.get("Email").toString());
-            try {
-                doctorph.getFirst();
-            } catch (ParseException e) {
-                e.printStackTrace();
+            byte[] photo=GlobalVariable.DOCTORPHOTO.get(index);
+            if(photo.length>0){
+                profile.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+            }else{
+                Drawable myDrawable = ContextCompat.getDrawable(getContext(), R.drawable.doctor_avatar);
+
+                profile.setImageDrawable(myDrawable);
+
             }
-            doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject doctorPhoto, ParseException e) {
 
-                    if (doctorPhoto == null){
-                        Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " isNull");
-                    Drawable myDrawable = ContextCompat.getDrawable(getContext(), R.drawable.doctor_avatar);
 
-                    profile.setImageDrawable(myDrawable);
 
-                }else {
-                        Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString()+" exists");
-                        ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
-                        if (e == null) {
+               /* final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+                doctorph.whereEqualTo("Email", CURRENTDOCTOR.get("Email").toString());
 
-                            file.getDataInBackground(new GetDataCallback() {
-                                @Override
-                                public void done(byte[] data, ParseException e) {
-                                    if (e == null) {
-                                        Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString()+" downloaded");
+                doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject doctorPhoto, ParseException e) {
 
-                                        profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
-                                        if (marker != null && marker.isInfoWindowShown()) {
+                        if (doctorPhoto == null) {
+                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " isNull");
+                            Drawable myDrawable = ContextCompat.getDrawable(getContext(), R.drawable.doctor_avatar);
 
-                                            marker.hideInfoWindow();
-                                            marker.showInfoWindow();
+                            profile.setImageDrawable(myDrawable);
 
+                        } else {
+                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exists");
+                            ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                            if (e == null) {
+
+                                file.getDataInBackground(new GetDataCallback() {
+                                    @Override
+                                    public void done(byte[] data, ParseException e) {
+                                        if (e == null) {
+                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " downloaded");
+
+                                            profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                                            if (marker != null && marker.isInfoWindowShown()) {
+
+                                                marker.hideInfoWindow();
+                                                marker.showInfoWindow();
+
+                                            }
+                                        } else {
+                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exception" + e.toString());
                                         }
-                                    } else {
-                                        Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString()+" exception"+e.toString());
+
+
                                     }
-
-
-                                }
-                            });
+                                });
+                            }
                         }
                     }
-                }
-            });
+                });*/
+
 
 
             return myContentsView;

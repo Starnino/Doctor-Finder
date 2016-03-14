@@ -3,13 +3,19 @@ package com.doctorfinderapp.doctorfinder.functions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.doctorfinderapp.doctorfinder.R;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseACL;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -184,40 +190,40 @@ public class Util {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                for (int i =0;i<objects.size();i++){
-                    ParseObject d=new ParseObject("Doctor2");
-                    ParseObject DOCTORTHIS=objects.get(i);
+                for (int i = 0; i < objects.size(); i++) {
+                    ParseObject d = new ParseObject("Doctor2");
+                    ParseObject DOCTORTHIS = objects.get(i);
                     String DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
                     String DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
                     String DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
                     String DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
-                    String DOCTOR_EMAIL= DOCTORTHIS.getString("Email");
+                    String DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
                     String DOCTOR_SEX = DOCTORTHIS.getString("Sesso");
                     String DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
                     ArrayList<String> DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
                     ArrayList<String> DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
                     ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-                    String DOCTOR_CELLPHONE=DOCTORTHIS.getString("Cellphone");
-                    String DOCTOR_VISIT=DOCTORTHIS.getString("Visit");
-                    String DOCTOR_BORN=DOCTORTHIS.getString("Born");
-                    String DOCTOR_PRICE=DOCTORTHIS.getString("Price");
-                    ArrayList<String> DOCTOR_Marker=(ArrayList<String>)DOCTORTHIS.get("Marker");
+                    String DOCTOR_CELLPHONE = DOCTORTHIS.getString("Cellphone");
+                    String DOCTOR_VISIT = DOCTORTHIS.getString("Visit");
+                    String DOCTOR_BORN = DOCTORTHIS.getString("Born");
+                    String DOCTOR_PRICE = DOCTORTHIS.getString("Price");
+                    ArrayList<String> DOCTOR_Marker = (ArrayList<String>) DOCTORTHIS.get("Marker");
 
-                    d.put("FirstName",DOCTOR_FIRST_NAME);
-                    d.put("LastName",DOCTOR_LAST_NAME);
-                    d.put("Exp",DOCTOR_EXPERIENCE);
-                    d.put("Feedback",DOCTOR_FEEDBACK);
-                    d.put("Email",DOCTOR_EMAIL );
-                    d.put("Sesso",DOCTOR_SEX );
-                    d.put("Description",DOCTOR_DESCRIPTION );
-                    d.put("Work",DOCTOR_WORK_ARRAY );
-                    d.put("Province",DOCTOR_CITY_ARRAY );
-                    d.put("Specialization",DOCTOR_SPECIALIZATION_ARRAY );
-                    d.put("Cellphone",DOCTOR_CELLPHONE );
-                    d.put("Visit",DOCTOR_VISIT );
-                    d.put("Born",DOCTOR_BORN );
-                    d.put("Price",DOCTOR_PRICE );
-                    d.put("Marker",DOCTOR_Marker );
+                    d.put("FirstName", DOCTOR_FIRST_NAME);
+                    d.put("LastName", DOCTOR_LAST_NAME);
+                    d.put("Exp", DOCTOR_EXPERIENCE);
+                    d.put("Feedback", DOCTOR_FEEDBACK);
+                    d.put("Email", DOCTOR_EMAIL);
+                    d.put("Sesso", DOCTOR_SEX);
+                    d.put("Description", DOCTOR_DESCRIPTION);
+                    d.put("Work", DOCTOR_WORK_ARRAY);
+                    d.put("Province", DOCTOR_CITY_ARRAY);
+                    d.put("Specialization", DOCTOR_SPECIALIZATION_ARRAY);
+                    d.put("Cellphone", DOCTOR_CELLPHONE);
+                    d.put("Visit", DOCTOR_VISIT);
+                    d.put("Born", DOCTOR_BORN);
+                    d.put("Price", DOCTOR_PRICE);
+                    d.put("Marker", DOCTOR_Marker);
                     try {
                         d.save();
                     } catch (ParseException e1) {
@@ -228,9 +234,69 @@ public class Util {
                 }
 
 
-
             }
         });
 
 
-    }}
+    }
+
+
+    public static void dowloadDoctorPhoto(List<ParseObject> doctors){
+        GlobalVariable.DOCTORPHOTO=new ArrayList<>(doctors.size());
+
+        //Log.d("Download Doctor Photo", "doctors.size()" + doctors.size());
+
+        for(int i =0;i<doctors.size();i++){
+            final ParseObject CURRENTDOCTOR=doctors.get(i);
+            GlobalVariable.DOCTORPHOTO.add(i,new byte[]{});
+            if(CURRENTDOCTOR!=null) {
+                final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+                doctorph.whereEqualTo("Email", CURRENTDOCTOR.get("Email").toString());
+
+                final int finalI = i;
+                doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject doctorPhoto, ParseException e) {
+
+                        if (doctorPhoto == null) {
+                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " isNull");
+
+
+                        } else {
+                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exists");
+                            final ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                            if (e == null) {
+
+                                file.getDataInBackground(new GetDataCallback() {
+                                    @Override
+                                    public void done(byte[] data, ParseException e) {
+                                        if (e == null) {
+                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " downloaded");
+                                            GlobalVariable.DOCTORPHOTO.add(finalI,data);
+                                        } else {
+                                            Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exception" + e.toString());
+                                        }
+
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+
+
+            }
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+}

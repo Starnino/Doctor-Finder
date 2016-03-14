@@ -47,6 +47,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    private static final String TAG ="Results Activity" ;
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
@@ -432,7 +433,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     setupViewPager(viewPager);
 
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
-
+                    Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
+                    Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
                     dialog.cancel();
                     new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)

@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.functions;
 
 import android.graphics.Bitmap;
 import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,5 +20,7 @@ public class GlobalVariable {
     public static List<Doctor> recentDoctors = new ArrayList<>();
     public static boolean FLAG_CARD_DOCTOR_VISIBLE = false;
     public static boolean FLAG_CARD_SEARCH_VISIBLE = false;
+
+    public static List<byte[]> DOCTORPHOTO;
 
 }
