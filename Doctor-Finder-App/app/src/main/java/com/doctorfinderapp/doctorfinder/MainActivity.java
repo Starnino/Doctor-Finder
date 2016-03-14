@@ -279,8 +279,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
             TextView nome= (TextView) header.findViewById(R.id.name_user);
-
-            //Log.d("dice di non usare i cazzo di log vuoti",user.getString("fName"));
             String name =user.getString("fName") ;
             nome.setText(name);
             TextView email= (TextView) header.findViewById(R.id.email_user);
@@ -502,42 +500,45 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
 
     private void getUserImage(ParseUser user){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
-        query.whereEqualTo("username", user.getEmail());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject userPhoto, ParseException e) {
+        if(GlobalVariable.UserPropic==null) {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
 
-                //userphoto exists
+            query.whereEqualTo("username", user.getEmail());
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject userPhoto, ParseException e) {
 
-                if (userPhoto == null) {
-                    Log.d("userphoto", "isnull");
+                    //userphoto exists
 
-                } else {
-                    ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
-                    file.getDataInBackground(new GetDataCallback() {
-                        public void done(byte[] data, ParseException e) {
-                            if (e == null) {
-                                // data has the bytes for the resume
-                                //data is the image in array byte
-                                //must change image on profile
-                                GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                Log.d("Userphoto", "downloaded");
+                    if (userPhoto == null) {
+                        Log.d("userphoto", "isnull");
 
-                                RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
-                                mImg.setImageBitmap(GlobalVariable.UserPropic);
-                                //iv.setImageBitmap(bitmap );
+                    } else {
+                        ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
+                        file.getDataInBackground(new GetDataCallback() {
+                            public void done(byte[] data, ParseException e) {
+                                if (e == null) {
+                                    // data has the bytes for the resume
+                                    //data is the image in array byte
+                                    //must change image on profile
+                                    GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    Log.d("Userphoto", "downloaded");
+
+                                    RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                                    mImg.setImageBitmap(GlobalVariable.UserPropic);
+                                    //iv.setImageBitmap(bitmap );
 
 
-                            } else {
-                                // something went wrong
-                                Log.d("UserPhoto ", "problem download image");
+                                } else {
+                                    // something went wrong
+                                    Log.d("UserPhoto ", "problem download image");
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
 
     }
 

@@ -111,7 +111,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
             email = extras.getString("email");
             index = extras.getInt("index");
-            Log.d("EXTRAS ===> ", "email: " + email + " " + "index: " + index);
+            //Log.d("EXTRAS ===> ", "email: " + email + " " + "index: " + index);
         }
 
         if (email == null) {

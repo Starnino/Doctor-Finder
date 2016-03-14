@@ -7,49 +7,36 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
-import com.doctorfinderapp.doctorfinder.access.LoginActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
-import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
-
-import java.util.Arrays;
-import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class UserProfileActivity extends AppCompatActivity {
 
+    public static final String NAME = "fName";
+    public static final String SURNAME = "lName";
+    private static Context c;
+    public final String USER_EMAIL = "email";
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
-    public final String USER_EMAIL = "email";
-    public static final String NAME = "fName";
-    public static final String SURNAME = "lName";
-    private String Title ="";
+    private String Title = "";
     private RoundedImageView profile;
     private String firstName = "";
     private String lastName = "";
@@ -57,7 +44,11 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView email;
     private TextView friend_null;
     private String email_users;
-    private static Context c;
+
+    public static void showToastFeedback() {
+        Toast.makeText(c, R.string.feedback_visual,
+                Toast.LENGTH_LONG).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +63,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         friend_null = (TextView) findViewById(R.id.friend_null);
 
-        if(user != null) {
+        if (user != null) {
 
             if (user.getString(NAME) != null)
                 firstName = user.get(NAME).toString();
@@ -119,7 +110,7 @@ public class UserProfileActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         //nameProfile.setText(Title);
-        if(getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             //getSupportActionBar().setTitle(Title);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -159,20 +150,19 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(sendIntent);
 
 
+                RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
+                rateus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
+                        }
 
-        RelativeLayout rateus = (RelativeLayout) findViewById(R.id.rateus);
-        rateus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                } catch (android.content.ActivityNotFoundException anfe) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder" + appPackageName)));
-                }
-
-            }
-        });
+                    }
+                });
 
 
                 RelativeLayout inviacela = (RelativeLayout) findViewById(R.id.inviaci_mail);
@@ -195,110 +185,55 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
                 facebukkalo.setOnClickListener(new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
-                        if (ParseUser.getCurrentUser() == null) {
-                            Button FLogin = (Button) findViewById(R.id.flogin);
-                            FLogin.setOnClickListener(new View.OnClickListener() {
-
-                                public void onClick(View arg0) {
-                                    List<String> permissions = Arrays.asList("email", "public_profile", "user_friends");
-                                    //progressBar.setVisibility(View.VISIBLE);
-                                    ParseFacebookUtils.logInWithReadPermissionsInBackground(UserProfileActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
-                                        @Override
-                                        public void done(ParseUser user, ParseException err) {
-                                            if (user == null) {
-                                                Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                                                Log.d("MyApp", "errore parse" + err.toString());
-                                                //progressBar.setVisibility(View.INVISIBLE);
+                        Log.d("User profile", "linking fb");
+                        Toast.makeText(getApplicationContext(), R.string.fatto, Toast.LENGTH_LONG);
+                        FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
 
-                                            } else if (user.isNew()) {
-                                                Log.d("MyApp", "User signed up and logged in through Facebook!");
-                                                Log.d("login with facebook", user.toString());
-                                                FacebookProfile.getGraphRequest(user);
-
-
-                                                Toast.makeText(getApplicationContext(),
-                                                        "Logged in",
-                                                        Toast.LENGTH_LONG).show();
-                                                //progressBar.setVisibility(View.INVISIBLE);
-                                                Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
-
-                                                startActivity(intent);
-
-                                            } else {
-                                                Log.d("MyApp", "User logged in through Facebook!");
-                                                //progressBar.setVisibility(View.INVISIBLE);
-
-                                                //facebook things
-                                                Log.d("login with facebook", user.toString());
-                                                FacebookProfile.getGraphRequest(user);
-                                                //FacebookProfile.getGraphRequestFriends(user);
-
-
-
-                                                Toast.makeText(getApplicationContext(),
-                                                        "Logged in",
-                                                        Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
-
-                                                startActivity(intent);
-
-                                            }
-                                        }
-                                    });
-                                }
-
-                            });
-
-                        }
-                        else{
+                    }/* else {
                             new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                                     .setTitleText("Hai già fatto il log in tramite Facebook")
                                     .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
                                     .show();
-                        }
+                        }*/
 
-                    }
+
                 });
 
-                final int feed_lasciati=0;
+                final int feed_lasciati = 0;
                 //qualcosa che prende il numero di feed lasciati o insomma che controlli
 
                 RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
-                feedback_utente.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(feed_lasciati==0){
-                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Ops")
-                                    .setContentText("Non hai lasciato ancora alcun feedback!")
-                                    .show();
-                        }else{
-                           //lancia feed fragment utente recycler view
-                        }
-                    }
-                });
+                feedback_utente.setOnClickListener(new View.OnClickListener()
+
+                                                   {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           if (feed_lasciati == 0) {
+                                                               new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                                                       .setTitleText("Ops")
+                                                                       .setContentText("Non hai lasciato ancora alcun feedback!")
+                                                                       .show();
+                                                           } else {
+                                                               //lancia feed fragment utente recycler view
+                                                           }
+                                                       }
+                                                   }
+
+                );
 
             }
         });
     }
 
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
-    }
-
-
-
-    public static void showToastFeedback(){
-        Toast.makeText(c, R.string.feedback_visual,
-                Toast.LENGTH_LONG).show();
     }
 
 }
