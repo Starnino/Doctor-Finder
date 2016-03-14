@@ -1,10 +1,13 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,34 +27,35 @@ public class Informativa extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_scrolling_informativa);
-/*
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_report_feedback);
+
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }
+
     final CollapsingToolbarLayout collapsingToolbarLayout =
-            (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_user);
+            (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_report_feedback);
     collapsingToolbarLayout.setTitle(Title);
     collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
     // transperent color = #00000009
     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-*/
+
     }
 
 
-    public void onClick(View v) {
-        int id = v.getId();
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (id) {
-            case R.id.home:
-                finish();
-                break;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+               finish();
+                return true;
+
         }
-
+        return true;
     }
 
-    @Override
-    public void onBackPressed() {
-
-            super.onBackPressed();
-            finish();
-            }
 
 }
 

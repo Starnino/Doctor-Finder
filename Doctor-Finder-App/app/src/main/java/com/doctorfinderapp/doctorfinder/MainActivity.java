@@ -563,7 +563,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //initialize more Persons
         /**doctors = GlobalVariable.recentDoctors; REMOVE*/
         final List<Doctor> doctors = new ArrayList<>();
-        //TODO mi dice che devo chiamare il cazzo di Parse enable local data store
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
 
         query.findInBackground(new FindCallback<ParseObject>() {
