@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
@@ -24,6 +25,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,6 +72,15 @@ public class LoginActivity extends AppCompatActivity {
         // Locate EditTexts in xml
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        TextView forgot_password=(TextView) findViewById(R.id.forgot_password);
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(username.getText().toString().length()>0)
+                resetPassword(username.getText().toString());
+            }
+        });
 
         // Locate Buttons in xml
 
@@ -196,6 +207,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void resetPassword(String email ){
+        ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // An email was successfully sent with reset instructions.
+                } else {
+                    Log.d("Reset password",e.toString());
+                    Toast.makeText(getApplicationContext(),
+                            "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
 
