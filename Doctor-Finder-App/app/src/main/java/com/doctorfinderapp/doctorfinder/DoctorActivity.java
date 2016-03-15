@@ -340,7 +340,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");
-            sendIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, no);
+            //sendIntent.setData(Uri.parse("address:" +no));
+            sendIntent.putExtra("address:", no);
 
             if (defaultSmsPackageName != null)// Can be null in case that there is no default, then the user would be able to choose
             // any app that support this intent.
@@ -354,7 +355,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
             smsIntent.setType("vnd.android-dir/mms-sms");
-            smsIntent.putExtra("address", no);
+            smsIntent.putExtra("address:", no);
             startActivity(smsIntent);
         }
     }
