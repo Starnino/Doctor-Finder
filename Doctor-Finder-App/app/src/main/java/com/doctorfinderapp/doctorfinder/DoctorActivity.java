@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -204,6 +205,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_phone.setOnClickListener(this);
         fab_feedback.setOnClickListener(this);
 
+
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -298,9 +300,26 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.fab_email:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_EMAIL, DOCTORTHIS.get("Email").toString());
+                sendIntent.setType("text/plain");
+
+                // Verify that the intent will resolve to an activity
+                if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(sendIntent);
+                }
                 break;
 
             case R.id.fab_phone:
+                try{
+                    String no = DOCTORTHIS.get("Cellphone").toString();
+                    Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +no));
+                    startActivity(callintent);
+                }
+                catch (SecurityException e){
+
+                }
                 break;
 
             case R.id.fab_telegram:
@@ -310,6 +329,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.fab_feedback:
+                /*Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+                smsIntent.setType("vnd.android-dir/mms-sms");
+                smsIntent.putExtra("address", DOCTORTHIS.get("Cellphone").toString());
+                startActivity(smsIntent);*/
                 break;
         }
     }

@@ -182,7 +182,8 @@
             fab:fab_label="Feedback"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"/>
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="visible" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_telegram"
@@ -194,7 +195,8 @@
             fab:fab_label="Telegram"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"/>
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="invisible" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_whastapp"
@@ -206,7 +208,8 @@
             fab:fab_label="Whastapp"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"/>
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="invisible" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_email"
@@ -218,7 +221,8 @@
             fab:fab_label="Email"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"/>
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="visible" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_phone"
@@ -230,7 +234,8 @@
             fab:fab_label="Telefono"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"/>
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="visible" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
