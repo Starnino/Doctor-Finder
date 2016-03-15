@@ -302,6 +302,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fab_email:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Mail da Doctor Finder");
                 sendIntent.putExtra(Intent.EXTRA_EMAIL, DOCTORTHIS.get("Email").toString());
                 sendIntent.setType("text/plain");
 
