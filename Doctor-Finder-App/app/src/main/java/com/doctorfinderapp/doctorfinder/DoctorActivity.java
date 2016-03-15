@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -324,20 +326,36 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.fab_message:
-                try{
-
-                    Intent smsIntent = new Intent(Intent.ACTION_MAIN);
-                    smsIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                    smsIntent.setClassName("com.android.mms", "com.android.mms.ui.ConversationList");
-                    smsIntent.putExtra("address", DOCTORTHIS.get("Cellphone").toString());
-                    startActivity(smsIntent);
-                }
-                catch (SecurityException e){
-
-                }
-
+                sendSMS();
                 break;
 
+        }
+    }
+
+    private void sendSMS() {
+        String no = DOCTORTHIS.get("Cellphone").toString();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) // At least KitKat
+        {
+            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this); // Need to change the build to API 19
+
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            sendIntent.setType("text/plain");
+            sendIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, no);
+
+            if (defaultSmsPackageName != null)// Can be null in case that there is no default, then the user would be able to choose
+            // any app that support this intent.
+            {
+                sendIntent.setPackage(defaultSmsPackageName);
+            }
+            startActivity(sendIntent);
+
+        }
+        else // For early versions, do what worked for you before.
+        {
+            Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
+            smsIntent.setType("vnd.android-dir/mms-sms");
+            smsIntent.putExtra("address", no);
+            startActivity(smsIntent);
         }
     }
 
