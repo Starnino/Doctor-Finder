@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     startActivity(intent);
                     GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
                     setLinear(specialText, cityText, SPECIAL, CITY);
+                    Log.d("SET LINEAR --> ", CITY + "");
                 }
             }
         });
@@ -623,17 +624,22 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             if (research.size() < 10){
                 research.add(linear);
-                research_special_parameters.add(SPECIAL);
-                research_city_parameters.add(CITY);
+                research_special_parameters.add(0,spec);
+                research_city_parameters.add(0,ci);
+
             }
             else {
                 research.add(0, linear);
                 research.remove(10);
-                research_special_parameters.add(0,SPECIAL);
+                research_special_parameters.add(0, SPECIAL);
                 research_special_parameters.remove(10);
                 research_city_parameters.add(0,CITY);
                 research_city_parameters.remove(10);
             }
+        }
+
+        for (int i = 0; i < research_city_parameters.size(); i++) {
+            Log.d("LIST RESEARCH --> ", research_city_parameters.get(i) + " " + i);
         }
     }
 
@@ -645,8 +651,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public static void research(ArrayList<String> special, ArrayList<String> city){
-        SPECIAL = special;
-        CITY = city;
+        SPECIAL = new ArrayList<>(special);
+        CITY = new ArrayList<>(city);
+        Log.d("CITY BEFORE LAUNCH --> ", CITY + "");
         Intent intent = new Intent(mContext, ResultsActivity.class);
         mContext.startActivity(intent);
     }

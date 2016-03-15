@@ -52,11 +52,10 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("ON CLICK SEARCH --> ", MainActivity.research_city_parameters.get(position) + " " + position);
                 MainActivity.research(MainActivity.research_special_parameters.get(position),
                         MainActivity.research_city_parameters.get(position));
-                for (int i = 0; i < MainActivity.research_special_parameters.size() ; i++) {
-                    Log.d("LINEAR ADAPTER --> ", MainActivity.research_city_parameters.get(i) + "" + position);
-                }
+
             }
         });
     }
