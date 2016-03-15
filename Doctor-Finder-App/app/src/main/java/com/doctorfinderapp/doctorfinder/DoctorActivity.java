@@ -331,7 +331,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
     private void sendSMS() {
         String no = DOCTORTHIS.get("Cellphone").toString();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) // At least KitKat
