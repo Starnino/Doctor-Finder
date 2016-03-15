@@ -23,4 +23,5 @@ public class GlobalVariable {
 
     public static List<byte[]> DOCTORPHOTO;
 
+
 }

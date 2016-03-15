@@ -42,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private GoogleApiClient client;
     private ImageButton close;
+    private TextView resetpsw;
+    TextView resetTv;
+    EditText resetEt;
 
 
 
@@ -82,14 +85,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Locate Buttons in xml
+        //password dimenticata
+        resetpsw = (TextView)findViewById(R.id.forgot_password);
+        resetpsw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            // An email was successfully sent with reset instructions.
+                        } else {
+                            // Something went wrong. Look at the ParseException to see what's up.
+                        }
+                    }
+                });
+            }
+        });
 
+        // Locate Buttons in xml
         Button loginButton = (Button) findViewById(R.id.login_button2);
         ImageButton close = (ImageButton) findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               finish();
+                finish();
             }
         });
 
@@ -99,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View arg0) {
                 // Retrieve the text entered from the EditText
-                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
 
@@ -109,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
                                 Toast.makeText(getApplicationContext(),
-                                        "Logged in",
+                                        "Accesso effettuato",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -118,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(),
-                                        "Incorrect Username or Password",
+                                        "Username o Password non corretti!",
                                         Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
@@ -141,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View arg0) {
                 List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
@@ -159,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             Toast.makeText(getApplicationContext(),
-                                    "Logged in",
+                                    "Accesso effettuato",
                                     Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -177,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
                             FacebookProfile.getGraphRequest(user);
                             //FacebookProfile.getGraphRequestFriends(user);
                             Toast.makeText(getApplicationContext(),
-                                    "Logged in",
+                                    "Accesso effettuato",
                                     Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
