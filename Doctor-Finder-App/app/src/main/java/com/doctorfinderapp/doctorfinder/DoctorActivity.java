@@ -88,7 +88,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
             case 1:
                 fabmenu.hideMenu(true);
-                fabfeedback.setVisibility(View.INVISIBLE);
+                fabfeedback.setVisibility(View.VISIBLE);
                 fabfeedback.show();
 
                 break;
