@@ -51,7 +51,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static Context c;
     private static FragmentManager p;
     public final String EMAIL = "Email";
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_whastapp, fab_telegram, fab_phone, fab_feedback;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
@@ -88,7 +88,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
             case 1:
                 fabmenu.hideMenu(true);
-                fabfeedback.setVisibility(View.VISIBLE);
+                fabfeedback.setVisibility(View.INVISIBLE);
                 fabfeedback.show();
 
                 break;
@@ -192,18 +192,18 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
         fabmenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
         fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
-        fab_whastapp = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_whastapp);
-        fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
+        fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
         fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
-        fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
+        //fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
+        //fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
 
         //onClick button
         fabfeedback.setOnClickListener(this);
         fab_email.setOnClickListener(this);
-        fab_whastapp.setOnClickListener(this);
-        fab_telegram.setOnClickListener(this);
         fab_phone.setOnClickListener(this);
-        fab_feedback.setOnClickListener(this);
+        fab_message.setOnClickListener(this);
+        //fab_telegram.setOnClickListener(this);
+        //fab_feedback.setOnClickListener(this);
 
 
         // Begin the transaction
@@ -302,8 +302,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fab_email:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Mail da Doctor Finder");
-                sendIntent.putExtra(Intent.EXTRA_EMAIL, DOCTORTHIS.get("Email").toString());
+                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{DOCTORTHIS.get("Email").toString()});
+                sendIntent.setData(Uri.parse(DOCTORTHIS.get("Email").toString()));
                 sendIntent.setType("text/plain");
 
                 // Verify that the intent will resolve to an activity
@@ -323,23 +323,25 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
 
-            case R.id.fab_telegram:
+            case R.id.fab_message:
+                try{
+
+                    Intent smsIntent = new Intent(Intent.ACTION_MAIN);
+                    smsIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    smsIntent.setClassName("com.android.mms", "com.android.mms.ui.ConversationList");
+                    smsIntent.putExtra("address", DOCTORTHIS.get("Cellphone").toString());
+                    startActivity(smsIntent);
+                }
+                catch (SecurityException e){
+
+                }
+
                 break;
 
-            case R.id.fab_whastapp:
-                break;
-
-            case R.id.fab_feedback:
-                /*Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-                smsIntent.setType("vnd.android-dir/mms-sms");
-                smsIntent.putExtra("address", DOCTORTHIS.get("Cellphone").toString());
-                startActivity(smsIntent);*/
-                break;
         }
     }
 
     private void openFeedbackDialog() {
-
 
         //Log.d("DoctorActivity",DOCTOR_EMAIL.toString());
         DialogFragment newFragment = new FeedbackDialogFragment().newInstance(DOCTOR_EMAIL);
