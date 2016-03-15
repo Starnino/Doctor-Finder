@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +54,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,12 +71,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private ResearchAdapter sAdapter;
     private List<Doctor> doctors;
     private ArrayList<String[]> research = new ArrayList<>();
-    static List<ParseObject> USERSMAIN = null;
+    public static ArrayList<ArrayList<String>> research_special_parameters = new ArrayList<>();
+    public static ArrayList<ArrayList<String>> research_city_parameters = new ArrayList<>();
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
     private boolean FLAGCITY = false, FLAGSPEC = false;
+    private static Context mContext;
 
     //Parameters shared by fragment goes in activity
 
@@ -91,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        mContext = this;
+
         //Util.copyAll();
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
@@ -194,21 +203,21 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onClick(View v) {
                 //Download parse data
-                /*TODO REMOVE COMMENT if (!FLAGSPEC)
+                if (!FLAGSPEC)
                  Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();*/
+                        .setAction("Action", null).show();
 
-                //else {
-                    //showDataM();
+                else {
+
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
                     startActivity(intent);
                     GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
-                    setLinear(specialText, cityText);
-                //}
+                    setLinear(specialText, cityText, SPECIAL, CITY);
+                }
             }
         });
 
@@ -545,7 +554,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
         }
         //initialize more Persons
-        /**doctors = GlobalVariable.recentDoctors; REMOVE*/
+        doctors = GlobalVariable.recentDoctors;
         final List<Doctor> doctors = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
@@ -553,7 +562,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if(e==null) {
+                if (e == null) {
                     for (int i = 0; i < objects.size(); i++) {
                         //add doctor to adapter
                         doctors.add(new Doctor(
@@ -568,11 +577,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     mAdapter = new DoctorAdapter(doctors);
                     if (doctors.size() != 0) {
                         mRecyclerView.getLayoutParams().height = 300;
-                        card_recent_doctor_null.getLayoutParams().height = 300;
+                        card_recent_doctor.getLayoutParams().height = 300;
                     }
                     //set adapter to recycler view
                     mRecyclerView.setAdapter(mAdapter);
-                }else{
+                } else {
                     e.printStackTrace();
                 }
             }
@@ -597,7 +606,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     //method to add Linear to recycler
-    public void setLinear(TextView s, TextView c){
+    public void setLinear(TextView s, TextView c, ArrayList<String> spec, ArrayList<String> ci){
         String special = s.getText().toString();
         String city = c.getText().toString();
         String[] linear = {special, city};
@@ -612,10 +621,18 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //if linear not exist add it
         if (flag){
 
-            if (research.size() < 10) research.add(linear);
+            if (research.size() < 10){
+                research.add(linear);
+                research_special_parameters.add(SPECIAL);
+                research_city_parameters.add(CITY);
+            }
             else {
                 research.add(0, linear);
                 research.remove(10);
+                research_special_parameters.add(0,SPECIAL);
+                research_special_parameters.remove(10);
+                research_city_parameters.add(0,CITY);
+                research_city_parameters.remove(10);
             }
         }
     }
@@ -625,6 +642,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
             startActivity(intent_user);
         }
+    }
+
+    public static void research(ArrayList<String> special, ArrayList<String> city){
+        SPECIAL = special;
+        CITY = city;
+        Intent intent = new Intent(mContext, ResultsActivity.class);
+        mContext.startActivity(intent);
     }
 
 }

@@ -53,7 +53,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static Context c;
     private static FragmentManager p;
     public final String EMAIL = "Email";
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone, fab_feedback;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
@@ -81,9 +81,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static void switchFAB(int position) {
         switch (position) {
             case 0:
-                if (fabfeedback.isVisible()) {
+                if (fabfeedback.isVisible())
                     fabfeedback.hide();
-                }
+
                 fabmenu.showMenu(true);
 
                 break;
@@ -188,7 +188,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         //doctor.pinInBackground();
 
         //refresh doctors searched
-        /**REMOVE refreshDoctorList(currentDoctor); */
+        refreshDoctorList(currentDoctor);
 
         //find fab buttons
         fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
@@ -197,7 +197,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
         fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
         //fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
-        //fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
+        fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
 
         //onClick button
         fabfeedback.setOnClickListener(this);
@@ -205,7 +205,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_phone.setOnClickListener(this);
         fab_message.setOnClickListener(this);
         //fab_telegram.setOnClickListener(this);
-        //fab_feedback.setOnClickListener(this);
+        fab_feedback.setOnClickListener(this);
 
 
         // Begin the transaction
@@ -232,7 +232,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
         collapsingToolbarLayout.setTitle(Title);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-        //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.docfinder));
+
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
 
     }
@@ -290,8 +290,25 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fabfeedback:
 
                 if (ParseUser.getCurrentUser() != null) {
-
+                    Log.d("dio", "cane");
                     openFeedbackDialog();
+
+                } else {
+                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Feedback")
+                            .setContentText("Devi registrarti per lasciare un feedback")
+                            .setConfirmText("OK")
+                            .show();
+                }
+                break;
+
+
+            case R.id.fab_feedback:
+
+                if (ParseUser.getCurrentUser() != null) {
+                    Log.d("dio", "cane");
+                    openFeedbackDialog();
+
                 } else {
                     new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Feedback")
@@ -332,7 +349,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     private void sendSMS() {
-        String no = DOCTORTHIS.get("Cellphone").toString();
+        String no = DOCTORTHIS.getString("Cellphone");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) // At least KitKat
         {
             String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this); // Need to change the build to API 19

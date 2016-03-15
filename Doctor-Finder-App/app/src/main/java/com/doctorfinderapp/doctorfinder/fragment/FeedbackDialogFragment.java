@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
@@ -66,8 +67,26 @@ public class FeedbackDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 final CheckBox checkBox = (CheckBox) rootView.findViewById(R.id.checkBox_respons);
                 final CheckBox checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
+
+                EditText text = (EditText) rootView.findViewById(R.id.editText);
+                RatingBar ratingbar = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback);
                 Log.d("FeedbackDialog", "send clicked");
-                if (checkBox.isChecked()) {
+
+                if (ratingbar.getRating() == 0)
+                    Toast.makeText(getContext(),"Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
+
+                else if (text.getText().length() == 0)
+                    Toast.makeText(getContext(),"Scrivi un feedback!", Toast.LENGTH_SHORT).show();
+
+                else if(text.getText().toString().split(" ").length < 10)
+                    Toast.makeText(getContext(),"Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
+
+                else if (!checkBox.isChecked()) {
+                    Toast.makeText(getContext(),"Dichiara che la tua visita è stata veramente effettuata. " +
+                            "Attenzione! Verranno effettuati severi controlli per la sua veririca", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
                 }
@@ -161,7 +180,10 @@ public class FeedbackDialogFragment extends DialogFragment {
                             Util.calculateFeedback(email_doctor);
                         }
                     });
-                } else {
+                }
+
+                else {
+
 
                     //case never inserted feedback
                     ParseObject feedback = new ParseObject("Feedback");

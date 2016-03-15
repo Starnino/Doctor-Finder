@@ -209,7 +209,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         searchItem = menu.findItem(R.id.action_search);
-        filterItem = menu.findItem(R.id.action_filter);
+        //TODO REMOVE filterItem = menu.findItem(R.id.action_filter);
 
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
@@ -370,12 +370,12 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (position == 1) {
             searchItem.setVisible(false);
             searchView.setVisibility(View.INVISIBLE);
-            filterItem.setVisible(false);
+            //TODO REMOVE filterItem.setVisible(false);
         }
         else {
             searchItem.setVisible(true);
             searchView.setVisibility(View.VISIBLE);
-            filterItem.setVisible(true);
+            //TODO REMOVE filterItem.setVisible(true);
         }
     }
 
@@ -387,7 +387,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         } else {
             super.onBackPressed();
         }
-
 
         this.finish();
     }

@@ -54,6 +54,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 
 public class DoctorFragment extends Fragment {
@@ -70,6 +71,9 @@ public class DoctorFragment extends Fragment {
     private String DOCTOR_FEEDBACK;
     private boolean DOCTOR_SEX;
     private String DOCTOR_DESCRIPTION;
+    private String DOCTOR_PHONE;
+    private String DOCTOR_DATE;
+    private String DOCTOR_PRICE;
     private ComponentName cn;
     private List<ParseObject> doctors;
     private Doctor currentDoctor;
@@ -99,7 +103,6 @@ public class DoctorFragment extends Fragment {
         super.onCreate(savedInstanceState);
         int indexFragment = getArguments().getInt("index", 0);
         index = indexFragment;
-
         DoctorActivity.switchFAB(0);
     }
 
@@ -121,6 +124,9 @@ public class DoctorFragment extends Fragment {
         DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
         DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
         DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+        DOCTOR_PHONE = DOCTORTHIS.getString("Cellphone");
+        DOCTOR_PRICE = DOCTORTHIS.getString("Price");
+        DOCTOR_DATE = DOCTORTHIS.getString("Visit");
 
         ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
         final String[][]latLong = Util.setPosition(position);
@@ -142,6 +148,9 @@ public class DoctorFragment extends Fragment {
         TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
         TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
         RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
+        TextView price = (TextView) rootView.findViewById(R.id.price_text);
+        TextView visit = (TextView) rootView.findViewById(R.id.visit_date);
+        TextView phone = (TextView) rootView.findViewById(R.id.phone_number);
         suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
 
 
@@ -158,7 +167,10 @@ public class DoctorFragment extends Fragment {
 
         if (adapter_count != 0) {
             mRecyclerView.getLayoutParams().height = 300;
-            suggest_null.setText(adapter_count + " amici trovati!");
+            if (adapter_count > 1)
+                suggest_null.setText(adapter_count + " amici trovati!");
+            else
+                suggest_null.setText(adapter_count + " amico trovato!");
         }
 
         mRecyclerView.setAdapter(mAdapter);
@@ -174,7 +186,9 @@ public class DoctorFragment extends Fragment {
 
         cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
         workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
-
+        price.setText(DOCTOR_PRICE);
+        phone.setText(DOCTOR_PHONE);
+        visit.setText(DOCTOR_DATE);
         info.setText(DOCTOR_DESCRIPTION);
 
         String text = "";
@@ -191,6 +205,8 @@ public class DoctorFragment extends Fragment {
         }else{
             //Log.d("DoctorFragment","Feedback is null");
         }
+
+
 
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);

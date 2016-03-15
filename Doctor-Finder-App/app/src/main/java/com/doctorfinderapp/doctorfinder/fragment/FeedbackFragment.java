@@ -80,10 +80,6 @@ public class FeedbackFragment extends Fragment {
         try {
             FeedbackArray=query.find();
 
-
-
-
-
             mRecyclerView.setHasFixedSize(true);
 
             mLayoutManager = new LinearLayoutManager(getActivity());

@@ -1,12 +1,15 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 
 import java.util.ArrayList;
@@ -21,7 +24,6 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         TextView special;
         TextView city;
         ImageButton search;
-
 
         ResearchViewHolder(View itemView) {
             super(itemView);
@@ -44,10 +46,19 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
     }
 
     @Override
-    public void onBindViewHolder(ResearchViewHolder holder, int position) {
+    public void onBindViewHolder(final ResearchViewHolder holder, final int position) {
         holder.special.setText(linearLayouts.get(position)[0]);
         holder.city.setText(linearLayouts.get(position)[1]);
-        //TODO holder.search.set
+        holder.search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.research(MainActivity.research_special_parameters.get(position),
+                        MainActivity.research_city_parameters.get(position));
+                for (int i = 0; i < MainActivity.research_special_parameters.size() ; i++) {
+                    Log.d("LINEAR ADAPTER --> ", MainActivity.research_city_parameters.get(i) + "" + position);
+                }
+            }
+        });
     }
 
     @Override

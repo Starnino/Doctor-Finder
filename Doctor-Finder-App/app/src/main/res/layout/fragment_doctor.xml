@@ -290,7 +290,7 @@
                         android:textColor="#212121" />
 
                     <TextView
-                        android:id="@+id/tvNumber8"
+                        android:id="@+id/visit_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -332,7 +332,7 @@
                         android:textColor="#212121" />
 
                     <TextView
-                        android:id="@+id/tvNumber7"
+                        android:id="@+id/price_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"

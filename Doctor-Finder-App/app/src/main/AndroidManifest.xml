@@ -19,6 +19,8 @@
     <uses-permission android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <permission
         android:name="com.doctorfinderapp.doctorfinder.permission.C2D_MESSAGE"
@@ -110,6 +112,7 @@
         <activity
             android:name=".Qurami.MainActivityQurami"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".DoctorActivity"
             android:label="@string/title_activity_doctor"
@@ -120,6 +123,7 @@
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
+
 
         <!--Intro-->
         <activity android:name=".Intro.DefaultIntro"

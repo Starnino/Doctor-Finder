@@ -173,11 +173,23 @@
         fab:menu_backgroundColor="@android:color/transparent">
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "right|bottom"
+            android:src="@drawable/ic_star_white_24dp"
+            fab:fab_size="mini"
+            fab:fab_colorNormal="@color/colorPrimaryDark"
+            fab:fab_colorPressed="@color/darkdf"
+            fab:fab_colorRipple="@color/grey"
+            android:visibility="visible" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity = "right|bottom"
-            android:src="@drawable/ic_message"
+            android:src="@drawable/ic_textsms_white_24dp"
             fab:fab_size="mini"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"

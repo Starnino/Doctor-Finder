@@ -42,7 +42,7 @@ public class Util {
     public static final String USER_EMAIl = "email_user";
     public static final String EMAIl = "email";
     public static final String DOCTOR_EMAIL = "email_doctor";
-    public static final String ANONYMOUS = "anonymus";
+    public static final String ANONYMOUS = "Anonymus";
 
     public static String setSpecialization(ArrayList<String> specialization) {
 
@@ -148,7 +148,8 @@ public class Util {
         ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
         feedback.whereEqualTo(DOCTOR_EMAIL, doctor_email);
         feedback.whereContainedIn(USER_EMAIl, friends_email);
-        feedback.whereEqualTo(ANONYMOUS, "false");
+        feedback.whereEqualTo(ANONYMOUS, false);
+
 
         try {
             friends = new ArrayList<>(feedback.find());
