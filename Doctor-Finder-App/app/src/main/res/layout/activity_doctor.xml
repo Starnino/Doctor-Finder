@@ -172,7 +172,7 @@
         fab:menu_openDirection="up"
         fab:menu_backgroundColor="@android:color/transparent">
 
-        <com.github.clans.fab.FloatingActionButton
+        <!--<com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,8 +182,7 @@
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
-            app:fab_label="Feedback"
-            android:visibility="visible" />
+            android:visibility="visible" />-->
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_message"
@@ -192,10 +191,10 @@
             android:layout_gravity = "right|bottom"
             android:src="@drawable/ic_textsms_white_24dp"
             fab:fab_size="mini"
+            app:fab_label="Sms"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
-            app:fab_label="Messaggio"
             android:visibility="invisible" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -205,10 +204,10 @@
             android:layout_gravity = "right|bottom"
             android:src="@drawable/ic_mail_outline_white_24dp"
             fab:fab_size="mini"
+            app:fab_label="Email"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
-            app:fab_label="Email"
             android:visibility="visible" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -218,10 +217,10 @@
             android:layout_gravity = "right|bottom"
             android:src="@drawable/ic_phone_white_24dp"
             fab:fab_size="mini"
+            app:fab_label="Chiama"
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
-            app:fab_label="Telefona"
             android:visibility="visible" />
 
     </com.github.clans.fab.FloatingActionMenu>

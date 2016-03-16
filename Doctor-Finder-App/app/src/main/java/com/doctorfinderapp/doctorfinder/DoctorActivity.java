@@ -201,7 +201,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
         fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
         //fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
-        fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
+        //fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
 
         //onClick button
         fabfeedback.setOnClickListener(this);
@@ -209,7 +209,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_phone.setOnClickListener(this);
         fab_message.setOnClickListener(this);
         //fab_telegram.setOnClickListener(this);
-        fab_feedback.setOnClickListener(this);
+        //fab_feedback.setOnClickListener(this);
 
 
         // Begin the transaction
@@ -308,7 +308,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
 
-            case R.id.fab_feedback:
+            /*case R.id.fab_feedback:
 
                 if (ParseUser.getCurrentUser() != null) {
                     Log.d("dio", "cane");
@@ -322,6 +322,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                             .show();
                 }
                 break;
+            */
 
             case R.id.fab_email:
                 Intent sendIntent = new Intent();
@@ -374,7 +375,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fab_message:
                 sendSMS();
                 break;
-
         }
     }
 
@@ -455,6 +455,4 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
-
-
 }
