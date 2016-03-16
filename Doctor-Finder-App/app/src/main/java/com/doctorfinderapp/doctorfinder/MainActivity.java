@@ -103,19 +103,19 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //AddDoctors.addPhoto(getResources());
         //AddDoctors.addFile(getResources());
         if(
-            ActivityCompat.checkSelfPermission(getApplicationContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED
+                ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED
 
-                &&
-                    ActivityCompat.checkSelfPermission(getApplicationContext(),
-                            Manifest.permission.ACCESS_COARSE_LOCATION)
-                            != PackageManager.PERMISSION_GRANTED
+                        &&
+                        ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                Manifest.permission.ACCESS_COARSE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED
                 ){
             ActivityCompat.requestPermissions(this,
-                PERMISSIONS,
-                MY_PERMISSIONS_REQUEST_LOCATION);
-        Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
+                    PERMISSIONS,
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+            Log.d(TAG, "Requesting permission " + MY_PERMISSIONS_REQUEST_LOCATION);
         }
 
         if (ParseUser.getCurrentUser() == null) {
@@ -202,8 +202,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             public void onClick(View v) {
                 //Download parse data
                 if (!FLAGSPEC)
-                 Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                    Snackbar.make(v, "Seleziona almeno una Specializzazione!", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
 
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 if(ParseUser.getCurrentUser()!=null){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
-                    }
+                }
                 break;
 
 
@@ -556,9 +556,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         doctors = GlobalVariable.recentDoctors;
 
         /*final List<Doctor> doctors = new ArrayList<>();
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
-
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -580,7 +578,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         card_recent_doctor.getLayoutParams().height = 300;
                     }
                     else card_recent_doctor_null.getLayoutParams().height = 30;
-
                     //set adapter to recycler view
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
@@ -588,16 +585,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 }
             }
         });*/
-                    // specify an adapter
-                    mAdapter = new DoctorAdapter(doctors);
-                    if (doctors.size() != 0) {
-                        mRecyclerView.getLayoutParams().height = 330;
-                        card_recent_doctor.getLayoutParams().height = 330;
-                    }
-                    else card_recent_doctor_null.getLayoutParams().height = 100;
+        // specify an adapter
+        mAdapter = new DoctorAdapter(doctors);
+        if (doctors.size() != 0) {
+            mRecyclerView.getLayoutParams().height = 330;
+            card_recent_doctor.getLayoutParams().height = 330;
+        }
+        else card_recent_doctor_null.getLayoutParams().height = 100;
 
-                    //set adapter to recycler view
-                    mRecyclerView.setAdapter(mAdapter);
+        //set adapter to recycler view
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     //method to update Linear recycler
