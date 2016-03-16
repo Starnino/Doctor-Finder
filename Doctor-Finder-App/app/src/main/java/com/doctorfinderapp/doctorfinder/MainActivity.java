@@ -666,5 +666,4 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Intent intent = new Intent(mContext, ResultsActivity.class);
         mContext.startActivity(intent);
     }
-
 }
