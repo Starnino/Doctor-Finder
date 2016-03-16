@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
-            android:src="@drawable/slice1"/>
+            android:src="@drawable/s1"/>
 
     </LinearLayout>
     <TextView
