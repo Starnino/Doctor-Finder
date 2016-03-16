@@ -182,6 +182,7 @@
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
+            app:fab_label="Feedback"
             android:visibility="visible" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -194,6 +195,7 @@
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
+            app:fab_label="Messaggio"
             android:visibility="invisible" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -206,6 +208,7 @@
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
+            app:fab_label="Email"
             android:visibility="visible" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -218,6 +221,7 @@
             fab:fab_colorNormal="@color/colorPrimaryDark"
             fab:fab_colorPressed="@color/darkdf"
             fab:fab_colorRipple="@color/grey"
+            app:fab_label="Telefona"
             android:visibility="visible" />
 
     </com.github.clans.fab.FloatingActionMenu>

@@ -179,6 +179,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         else
             currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
                     DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
+
         p = getSupportFragmentManager();
 
         ParseObject doctor = new ParseObject("recentDoctor");
@@ -264,6 +265,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 GlobalVariable.recentDoctors.remove(10);
             }
         }
+
         flag = true;
     }
 

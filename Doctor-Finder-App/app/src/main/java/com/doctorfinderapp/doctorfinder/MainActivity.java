@@ -554,7 +554,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
         //initialize more Persons
         doctors = GlobalVariable.recentDoctors;
-        final List<Doctor> doctors = new ArrayList<>();
+
+        /*final List<Doctor> doctors = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
 
@@ -565,28 +566,38 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     for (int i = 0; i < objects.size(); i++) {
                         //add doctor to adapter
                         doctors.add(new Doctor(
-                                objects.get(i).getString("FN"),                 //Nome
-                                objects.get(i).getString("LN"),                 //Cognome
+                                objects.get(i).getString("FirstName"),                 //Nome
+                                objects.get(i).getString("LastName"),                 //Cognome
                                 (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
                                 (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
                                 objects.get(i).getBoolean("SEX"),               //Sesso
                                 objects.get(i).getString("E@")));               //Email
                     }
                     // specify an adapter
-                    mAdapter = new DoctorAdapter(doctors);
+                    /*mAdapter = new DoctorAdapter(doctors);
                     if (doctors.size() != 0) {
                         mRecyclerView.getLayoutParams().height = 300;
                         card_recent_doctor.getLayoutParams().height = 300;
                     }
+                    else card_recent_doctor_null.getLayoutParams().height = 30;
+
                     //set adapter to recycler view
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
+                    // specify an adapter
+                    mAdapter = new DoctorAdapter(doctors);
+                    if (doctors.size() != 0) {
+                        mRecyclerView.getLayoutParams().height = 330;
+                        card_recent_doctor.getLayoutParams().height = 330;
+                    }
+                    else card_recent_doctor_null.getLayoutParams().height = 100;
 
-
+                    //set adapter to recycler view
+                    mRecyclerView.setAdapter(mAdapter);
     }
 
     //method to update Linear recycler

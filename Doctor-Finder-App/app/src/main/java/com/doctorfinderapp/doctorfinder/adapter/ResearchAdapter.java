@@ -50,7 +50,7 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
     public void onBindViewHolder(final ResearchViewHolder holder, final int position) {
         holder.special.setText(linearLayouts.get(position)[0]);
         holder.city.setText(linearLayouts.get(position)[1]);
-        holder.search.setOnClickListener(new View.OnClickListener() {
+        /*TODO REMOVE holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("ON CLICK SEARCH --> ", GlobalVariable.research_city_parameters.get(position) + " " + position);
@@ -58,7 +58,8 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
                         GlobalVariable.research_city_parameters.get(position));
 
             }
-        });
+        });*/
+
     }
 
     @Override

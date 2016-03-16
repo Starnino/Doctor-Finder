@@ -51,15 +51,16 @@
             android:layout_weight="0.5" />
 
         <ImageButton
+
             android:id="@+id/research_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_white_24dp"
             android:tint="@color/docfinder"
             android:background="@color/white"
             android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/fab_margin"
             tools:ignore="ContentDescription" />
+        <!--android:src="@drawable/ic_search_white_24dp"-->
 
     </LinearLayout>
 </RelativeLayout>
