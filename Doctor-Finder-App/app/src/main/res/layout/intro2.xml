@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:paddingLeft="3.5dp"
             android:paddingRight="16dp"
-            android:src="@drawable/s2"/>
+            android:src="@drawable/slice2"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
