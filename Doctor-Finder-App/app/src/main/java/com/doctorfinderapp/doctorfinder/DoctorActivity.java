@@ -132,6 +132,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
 
+
         doctors = GlobalVariable.DOCTORS;
 
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
