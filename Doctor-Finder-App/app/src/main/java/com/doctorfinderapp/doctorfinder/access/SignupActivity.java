@@ -208,7 +208,7 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     });
                     progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
 
 
                 }
