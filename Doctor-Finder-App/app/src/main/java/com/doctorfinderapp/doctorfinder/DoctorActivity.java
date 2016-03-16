@@ -325,15 +325,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             */
 
             case R.id.fab_email:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{DOCTORTHIS.get("Email").toString()});
-                sendIntent.setData(Uri.parse(DOCTORTHIS.get("Email").toString()));
-                sendIntent.setType("text/plain");
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",DOCTORTHIS.get("Email").toString(), null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Richiesta informazioni");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "/n/n/nMessaggio inviato tramite Doctor Finder ");
+                startActivity(Intent.createChooser(emailIntent, "Invia mail"));
 
                 // Verify that the intent will resolve to an activity
-                if (sendIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(sendIntent);
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(emailIntent);
                 }
                 break;
 
