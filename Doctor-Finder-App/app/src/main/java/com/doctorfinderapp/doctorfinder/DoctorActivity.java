@@ -348,33 +348,30 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-    private void sendSMS() {
+
+    private void sendSMS(){
+        Intent intent;
         String no = DOCTORTHIS.getString("Cellphone");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) // At least KitKat
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {
-            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this); // Need to change the build to API 19
+            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this);
 
-            Intent sendIntent = new Intent(Intent.ACTION_SEND);
-            sendIntent.setType("text/plain");
-            //sendIntent.setData(Uri.parse("address:" +no));
-            sendIntent.putExtra("address:", no);
+            intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + no));
 
-            if (defaultSmsPackageName != null)// Can be null in case that there is no default, then the user would be able to choose
-            // any app that support this intent.
+            if (defaultSmsPackageName != null)
             {
-                sendIntent.setPackage(defaultSmsPackageName);
+                intent.setPackage(defaultSmsPackageName);
             }
-            startActivity(sendIntent);
-
         }
-        else // For early versions, do what worked for you before.
+        else
         {
-            Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
-            smsIntent.setType("vnd.android-dir/mms-sms");
-            smsIntent.putExtra("address:", no);
-            startActivity(smsIntent);
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setType("vnd.android-dir/mms-sms");
+            intent.putExtra("address", no);
         }
+        startActivity(intent);
     }
+
 
     private void openFeedbackDialog() {
 
