@@ -338,7 +338,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(callintent);
                 }
                 catch (SecurityException e){
-                    Log.d("SecureException fab_phone",e.getMessage());
+                    Log.d("SecureExceptionfabphone",e.getMessage());
                 }
                 break;
 
