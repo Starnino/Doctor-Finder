@@ -165,6 +165,7 @@ public class DoctorMapsFragment extends SupportMapFragment
                 public void onMapReady(GoogleMap gMap) {
                     googleMap = gMap;
                     setUpMap(googleMap);
+                    gMap.getUiSettings().setMapToolbarEnabled(true);
                     permissionRequest();
 
                 }
@@ -238,6 +239,7 @@ public class DoctorMapsFragment extends SupportMapFragment
                 }
 
             }
+
         }
 
 
@@ -262,7 +264,7 @@ public class DoctorMapsFragment extends SupportMapFragment
         );
 
 
-
+        gMap.getUiSettings().setMapToolbarEnabled(true);
 
     }
 

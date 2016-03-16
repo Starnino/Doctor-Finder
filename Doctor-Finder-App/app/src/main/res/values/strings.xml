@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Doctor Finder</string>
     <string name="action_settings">Impostazioni</string>
 
     <string name="title_activity_splash">SplashActivity</string>
