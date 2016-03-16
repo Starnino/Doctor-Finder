@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private ResearchAdapter sAdapter;
     private List<Doctor> doctors;
     private ArrayList<String[]> research = new ArrayList<>();
-    public static ArrayList<ArrayList<String>> research_special_parameters = new ArrayList<>();
-    public static ArrayList<ArrayList<String>> research_city_parameters = new ArrayList<>();
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
@@ -624,22 +622,22 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             if (research.size() < 10){
                 research.add(linear);
-                research_special_parameters.add(0,spec);
-                research_city_parameters.add(0,ci);
+                GlobalVariable.research_special_parameters.add(research.size() - 1, spec);
+                GlobalVariable.research_city_parameters.add(research.size() - 1, ci);
 
             }
             else {
                 research.add(0, linear);
                 research.remove(10);
-                research_special_parameters.add(0, SPECIAL);
-                research_special_parameters.remove(10);
-                research_city_parameters.add(0,CITY);
-                research_city_parameters.remove(10);
+                GlobalVariable.research_special_parameters.add(0, SPECIAL);
+                GlobalVariable.research_special_parameters.remove(10);
+                GlobalVariable.research_city_parameters.add(0, CITY);
+                GlobalVariable.research_city_parameters.remove(10);
             }
         }
 
-        for (int i = 0; i < research_city_parameters.size(); i++) {
-            Log.d("LIST RESEARCH --> ", research_city_parameters.get(i) + " " + i);
+        for (int i = 0; i < GlobalVariable.research_city_parameters.size(); i++) {
+            Log.d("LIST RESEARCH --> ", GlobalVariable.research_city_parameters.get(i) + " " + i);
         }
     }
 

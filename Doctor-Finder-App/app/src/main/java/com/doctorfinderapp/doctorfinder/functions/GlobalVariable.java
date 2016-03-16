@@ -20,8 +20,10 @@ public class GlobalVariable {
     public static List<Doctor> recentDoctors = new ArrayList<>();
     public static boolean FLAG_CARD_DOCTOR_VISIBLE = false;
     public static boolean FLAG_CARD_SEARCH_VISIBLE = false;
-
     public static List<byte[]> DOCTORPHOTO;
+    public static ArrayList<ArrayList<String>> research_special_parameters = new ArrayList<>();
+    public static ArrayList<ArrayList<String>> research_city_parameters = new ArrayList<>();
+    public static ArrayList<String> research;
 
 
 }

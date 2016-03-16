@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -52,9 +53,9 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ON CLICK SEARCH --> ", MainActivity.research_city_parameters.get(position) + " " + position);
-                MainActivity.research(MainActivity.research_special_parameters.get(position),
-                        MainActivity.research_city_parameters.get(position));
+                Log.d("ON CLICK SEARCH --> ", GlobalVariable.research_city_parameters.get(position) + " " + position);
+                MainActivity.research(GlobalVariable.research_special_parameters.get(position),
+                        GlobalVariable.research_city_parameters.get(position));
 
             }
         });
