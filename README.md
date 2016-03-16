@@ -61,6 +61,7 @@ Social networks connects people all around the world and we thought to use those
 * [Problem installing the app? Click here!] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
 * [The way we've organised and worked till now] (https://trello.com/b/0uSh0ofs/doctor-finder)
 * [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
+* [Team working ( task division and time spent)] ()
 * Final Presentation
 * Live application
 * #3 Final Demo video
