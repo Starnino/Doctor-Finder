@@ -112,7 +112,7 @@ public class DoctorFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
-         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
+        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");

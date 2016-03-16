@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
     private String TAG= "Main Activity";
-    private boolean FLAGCITY = false, FLAGSPEC = false;
+    private boolean FLAGCITY = true, FLAGSPEC = true;
     private static Context mContext;
 
     //Parameters shared by fragment goes in activity
@@ -167,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         specialText = (TextView) findViewById(R.id.special_text_selected);
 
         //set empty text
-        cityText.setText("Nessuna");
-        specialText.setText("Nessuna");
+        cityText.setText("Tutte");
+        specialText.setText("Tutte");
 
 
         //Dialog for cities

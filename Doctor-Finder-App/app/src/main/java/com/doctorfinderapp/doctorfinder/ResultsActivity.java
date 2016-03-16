@@ -407,7 +407,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
-        Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
+        //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL.size() != 0 && MainActivity.SPECIAL.size() != MainActivity.special.length)
