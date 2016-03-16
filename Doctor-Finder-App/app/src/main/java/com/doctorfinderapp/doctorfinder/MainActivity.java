@@ -167,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         specialText = (TextView) findViewById(R.id.special_text_selected);
 
         //set empty text
-        cityText.setText("");
-        specialText.setText("");
+        cityText.setText("Nessuna");
+        specialText.setText("Nessuna");
 
 
         //Dialog for cities
