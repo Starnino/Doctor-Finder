@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -10,9 +11,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -332,10 +335,34 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.fab_phone:
-                try{
-                    String no = DOCTORTHIS.get("Cellphone").toString();
-                    Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +no));
-                    startActivity(callintent);
+                try {
+                    final String no = DOCTORTHIS.getString("Cellphone");
+
+                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Sicuro di chiamare?")
+                            .setContentText("Stai contattando un professionista, non abusare del suo numero")
+                            .setConfirmText("Si,voglio chiamare")
+                            .setCancelText("No")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                                    Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + no));
+
+                                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                        // TODO: Consider calling
+                                        //    ActivityCompat#requestPermissions
+                                        // here to request the missing permissions, and then overriding
+                                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                        //                                          int[] grantResults)
+                                        // to handle the case where the user grants the permission. See the documentation
+                                        // for ActivityCompat#requestPermissions for more details.
+                                        return;
+                                    }
+                                    startActivity(callintent);
+                                }
+                            })
+                            .show();
                 }
                 catch (SecurityException e){
                     Log.d("SecureExceptionfabphone",e.getMessage());

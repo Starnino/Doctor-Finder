@@ -622,16 +622,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
             if (research.size() < 10){
                 research.add(linear);
-                GlobalVariable.research_special_parameters.add(research.size() - 1, spec);
-                GlobalVariable.research_city_parameters.add(research.size() - 1, ci);
-
+                GlobalVariable.research_special_parameters.add(spec);
+                GlobalVariable.research_city_parameters.add(ci);
             }
+
             else {
                 research.add(0, linear);
                 research.remove(10);
-                GlobalVariable.research_special_parameters.add(0, SPECIAL);
+                GlobalVariable.research_special_parameters.add(0, spec);
                 GlobalVariable.research_special_parameters.remove(10);
-                GlobalVariable.research_city_parameters.add(0, CITY);
+                GlobalVariable.research_city_parameters.add(0, ci);
                 GlobalVariable.research_city_parameters.remove(10);
             }
         }
