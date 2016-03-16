@@ -48,20 +48,21 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="36dp"
             android:text="@string/action_log_in"
             android:id="@+id/login_button"
             android:textColor="@color/white"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
 
         <Button
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="36dp"
             android:text="@string/action_sign2_up"
             android:id="@+id/signin_button"
             android:textColor="@color/white"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
     </LinearLayout>
 

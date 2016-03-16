@@ -130,23 +130,22 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="36dp"
             android:id="@+id/buttonSignUp"
             android:text="@string/action_sign2_up"
             android:textColor="@color/white"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
 
         <Button
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="36dp"
             android:id="@+id/flogin2"
             android:text="Signup con Facebook"
-            android:backgroundTint="@color/com_facebook_blue"
+            android:background="@color/com_facebook_blue"
             android:textColor="@color/white"
-            android:textAllCaps="false"
-
-            />
+            android:textAllCaps="false" />
 
         <RelativeLayout
             android:orientation="vertical"
