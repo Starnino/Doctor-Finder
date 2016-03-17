@@ -59,9 +59,9 @@ Social networks connects people all around the world and we thought to use those
 * [More Feedback!](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm)
 * [How to install Doctor Finder (recommended at least android 4.4 Kitkat)] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
 * [Problem installing the app? Click here!] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
-* [The way we've organised and worked till now] (https://trello.com/b/0uSh0ofs/doctor-finder)
+* [The way we've organised and worked till now(Trello)] (https://trello.com/b/0uSh0ofs/doctor-finder)
 * [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
-* [Team working ( task division and time spent)] ()
+* [Important extra documentation (slide)]
 * Final Presentation
 * Live application
 * #3 Final Demo video
