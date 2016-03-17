@@ -12,21 +12,8 @@
   
 </head>
 <body>
-   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-       <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
-           <script src="js/inizialize.js" type="text/javascript"></script>
-
-<script type="text/javascript" >
-  try{
   
-  Parse.initialize("VfxaK2Tk5qApR5nvAulR","wIgqO6QfRM4vFuD3pWJi");
-  Parse.serverURL = 'https://doctor-finder-server.herokuapp.com/parse/'; 
-      
-  }catch (err) {
-    alert(err.message);
-}
-</script>
+
 
 
   <nav class="#00897b teal" role="navigation">
@@ -43,8 +30,8 @@
     </div>
   </nav>
   
-  <div class="card-view">
-<div class="container">
+  <div id="card-view">
+    <div class="container">
     <div class="section">
     
     
@@ -54,7 +41,8 @@
     
     
     </div>
-</div>    </div>
+</div>    
+</div>
     
   <!--<div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
@@ -192,6 +180,21 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
     <script src="js/inizialize.js" type="text/javascript"></script>-->
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+       <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+           <script src="js/inizialize.js" type="text/javascript"></script>
+           <script type="text/javascript" >
+  try{
+  
+  Parse.initialize("VfxaK2Tk5qApR5nvAulR","wIgqO6QfRM4vFuD3pWJi");
+  Parse.serverURL = 'https://doctor-finder-server.herokuapp.com/parse/'; 
+      
+  }catch (err) {
+    alert(err.message);
+}
+</script>
+
 
   </body>
 </html>
