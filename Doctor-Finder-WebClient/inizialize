@@ -1,0 +1,4 @@
+ <script type="text/javascript">
+    Parse.initialize("VfxaK2Tk5qApR5nvAulR","wIgqO6QfRM4vFuD3pWJi");
+    Parse.serverURL = 'https://doctor-finder-server.herokuapp.com/parse/';
+     
