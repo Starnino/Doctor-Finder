@@ -329,7 +329,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto",DOCTORTHIS.get("Email").toString(), null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Richiesta informazioni");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "/n/n/nMessaggio inviato tramite Doctor Finder ");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
+                        " \n " +
+                        " \n " +
+                        " \n " +" \n " +
+                        " \n " +
+
+                        " \n " +
+                        " \n " +
+                        "Messaggio inviato tramite Doctor Finder ");
                 startActivity(Intent.createChooser(emailIntent, "Invia mail"));
 
                 // Verify that the intent will resolve to an activity
@@ -339,10 +347,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.fab_phone:
-                try {
+                //try {
                     final String no = DOCTORTHIS.getString("Cellphone");
-
-                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+no));
+                    startActivity(intent);
+                    /*new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Sicuro di chiamare?")
                             .setContentText("Stai contattando un professionista, non abusare del suo numero")
                             .setConfirmText("Si,voglio chiamare")
@@ -351,9 +361,11 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
 
-                                    Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + no));
-
-                                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    //Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + no));
+                                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                                    intent.setData(Uri.parse("tel:" + no));
+                                    startActivity(intent);
+                                    /*if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                                         // TODO: Consider calling
                                         //    ActivityCompat#requestPermissions
                                         // here to request the missing permissions, and then overriding
@@ -361,16 +373,18 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                                         //                                          int[] grantResults)
                                         // to handle the case where the user grants the permission. See the documentation
                                         // for ActivityCompat#requestPermissions for more details.
+
+                                        ActivityCompat.requestPermissions(this,
+                                                new String[]{Manifest.permission.},
+                                                MY_PERMISSIONS_REQUEST_READ_CONTACTS);
                                         return;
                                     }
                                     startActivity(callintent);
                                 }
                             })
-                            .show();
-                }
-                catch (SecurityException e){
-                    Log.d("SecureExceptionfabphone",e.getMessage());
-                }
+                            .show();*/
+
+
                 break;
 
             case R.id.fab_message:
@@ -380,7 +394,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void sendSMS(){
-        Intent intent;
+        /*Intent intent;
         String no = DOCTORTHIS.getString("Cellphone");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {
@@ -400,6 +414,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtra("address", no);
         }
         startActivity(intent);
+        */
+        final String no = DOCTORTHIS.getString("Cellphone");
+        //String number = "12346556";  // The number on which you want to send SMS
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", no, null)));
+
+
     }
 
 

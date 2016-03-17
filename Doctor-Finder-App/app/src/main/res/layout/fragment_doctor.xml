@@ -125,6 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:autoLink="phone"
                         android:layout_toEndOf="@id/ivContactphone"
                         android:text="Telefono:"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -141,6 +142,23 @@
                         android:text="Nessun numero dichiarato"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="#727272" />
+
+
+                    <ImageButton
+                        android:id="@+id/call_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:onClick="onClick"
+                        android:padding="6dp" />
+
 
 
                 </RelativeLayout>
@@ -410,9 +428,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:numStars="5"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:layout_marginStart="-30dp"
+
+
                     android:isIndicator="true"
                     android:layout_below="@+id/tvNumber5"
                     android:layout_alignStart="@+id/tvNumber5" />
@@ -437,7 +454,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Amici che lo consigliano"
+                android:text="Amici che consigliano questo medico"
                 android:textAlignment="center"
                 android:paddingBottom="@dimen/fab_margin"
                 android:textColor="@color/docfinder"
@@ -455,7 +472,7 @@
                     android:id="@+id/suggest_null"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="Nessun amico trovato!"
+                    android:text="Ancora nessun amico ha lasciato feedback per questo medico"
                     android:layout_gravity="center"
                     android:textSize="18sp"/>
             </LinearLayout>

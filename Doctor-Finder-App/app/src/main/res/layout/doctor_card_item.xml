@@ -82,7 +82,7 @@
                 android:scaleX="0.55"
                 android:scaleY="0.55"
                 android:layout_gravity="start|bottom"
-                android:layout_marginStart="-58dp" />
+                android:layout_marginStart="-50dp" />
 
         </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
@@ -60,11 +61,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private MenuItem searchItem;
     private MenuItem filterItem;
     private SearchView searchView;
+    private static Context c;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        c=getApplicationContext();
         //adding doctors data
         //AddDoctors.addData();
 
@@ -474,6 +477,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             startActivity(intent_user);
         }
     }
+
+
 
 
 

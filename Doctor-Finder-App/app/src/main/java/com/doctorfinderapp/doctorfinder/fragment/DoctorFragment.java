@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -56,6 +57,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class DoctorFragment extends Fragment {
 
@@ -85,6 +88,7 @@ public class DoctorFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
     private TextView suggest_null;
+    private Context c;
 
     public DoctorFragment() {
     }
@@ -113,7 +117,7 @@ public class DoctorFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
-
+         c=getContext();
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
         DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
@@ -206,20 +210,47 @@ public class DoctorFragment extends Fragment {
             //Log.d("DoctorFragment","Feedback is null");
         }
 
-
+        RelativeLayout call_button = (RelativeLayout) rootView.findViewById(R.id.telefono);
+        call_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String no =DOCTOR_PHONE;
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+no));
+                startActivity(intent);
+            }
+        });
 
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final SweetAlertDialog dialog = new SweetAlertDialog(v.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                dialog.setTitleText("Caricamento");
+                dialog.getProgressHelper().setBarColor(v.getResources().getColor(R.color.docfinder));
+                dialog.show();
+
+
+
+
+
+
+                /*FragmentTransaction ft2 = getActivity().getSupportFragmentManager().beginTransaction();
+                ProgressFragment f2=ProgressFragment.newInstance("","");
+                ft2.replace(R.id.frame_doctor, f2);
+
+                ft2.commit();*/
+
 
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
-                ft.replace(R.id.frame_doctor, fragment);
+                ft.replace(R.id.frame_doctor,fragment);
                 ft.addToBackStack(null);
                 ft.commit();
+                dialog.dismiss();
+
 
             }
         });
