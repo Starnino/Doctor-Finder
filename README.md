@@ -62,6 +62,7 @@ Social networks connects people all around the world and we thought to use those
 * [The way we've organised and worked till now(Trello)] (https://trello.com/b/0uSh0ofs/doctor-finder)
 * [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
 * [Important extra documentation (slide)]
+* [Web live Application] (http://www.doctorfinderapp.com/web/)
 * Final Presentation
 * Live application
 * #3 Final Demo video
