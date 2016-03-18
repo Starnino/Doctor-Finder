@@ -64,7 +64,7 @@ Social networks connects people all around the world and we thought to use those
 * [Web Application] (http://www.doctorfinderapp.com/web/)
 * [Presentation] ()
 * [Important extra documentation (Slide)] (https://drive.google.com/file/d/0BxkBkMzhXo2-VF82a2dZSmN1SnM/view?usp=sharing)
-* [#3 Demo video] ()
+* [#3 Demo video] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
 
 
 #Final Submission
