@@ -61,7 +61,7 @@ Social networks connects people all around the world and we thought to use those
 * [How to install Doctor Finder (recommended at least android 4.4 Kitkat)] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
 * [The way we've organised and worked till now(Trello)] (https://trello.com/b/0uSh0ofs/doctor-finder)
 * [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
-* [Web Application (alpha)] (http://www.doctorfinderapp.com/web/)
+* [Web Application (Alpha)] (http://www.doctorfinderapp.com/web/)
 * [Presentation] (https://drive.google.com/file/d/0BxkBkMzhXo2-M2N5dm9GNDBiUXM/view?usp=sharing)
 * [Important extra documentation (Slide)] (https://drive.google.com/file/d/0BxkBkMzhXo2-VF82a2dZSmN1SnM/view?usp=sharing)
 * [#3 Demo video] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
