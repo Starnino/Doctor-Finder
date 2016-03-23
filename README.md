@@ -56,14 +56,16 @@ Social networks connects people all around the world and we thought to use those
 
 #Milestone 3 - Final
 
-* [Improved Website](http://www.doctorfinderapp.com/)
-* [More Feedback!](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm)
-* [How to install Doctor Finder (recommended at least android 4.4 Kitkat)] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
-* [The way we've organised and worked till now (Trello)] (https://trello.com/b/0uSh0ofs/doctor-finder)
-* [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
-* [Presentation] (https://drive.google.com/file/d/0BxkBkMzhXo2-M2N5dm9GNDBiUXM/view?usp=sharing)
-* [Important extra documentation (Slide)] (https://drive.google.com/file/d/0BxkBkMzhXo2-VF82a2dZSmN1SnM/view?usp=sharing)
-* [#3 Demo video] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
+* [Presentation] (https://drive.google.com/open?id=0B1SUy2ysIW0SY1RtQWIwUW1fVWM)
+* [Video Presentation] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
+
+
+* [Website](http://www.doctorfinderapp.com/)
+* [User's and Doctor's Feedback](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm)
+* [Trello (Team workflow)] (https://trello.com/b/0uSh0ofs/doctor-finder)
+
+* [Installation Guide] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
+* [App on Play Store] (https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder)
 
 
 #Final Submission
