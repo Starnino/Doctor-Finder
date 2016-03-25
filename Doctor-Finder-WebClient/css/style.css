@@ -28,6 +28,10 @@ p {
   .parallax-container .section {
     width: 100%;
   }
+  
+  #map{
+  height:500px;
+  }
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {

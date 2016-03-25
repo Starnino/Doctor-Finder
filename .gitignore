@@ -1,9 +1,9 @@
 /*.iml
 Doctor-Finder-App/.gradle
 Doctor-Finder-App/local.properties
-Doctor-Finder-App/.idea/workspace.xml
-/Doctor-Finder-App/.idea/workspace.xml
 Doctor-Finder-App/.idea/libraries
 .DS_Store
 Doctor-Finder-App/build
 /captures
+Doctor-Finder-App/app/build.gradle
+Doctor-Finder-App/.idea/workspace.xml

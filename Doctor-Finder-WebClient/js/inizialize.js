@@ -18,10 +18,49 @@
       var html=document.getElementById("card-view");
       //html.innerHTML=result;
   //console.log(html);
+      
+          var  map_container= document.getElementById("map_container");
+      
+      map_container.style.display = "none";
+      
+      
+ 
   
-   query(html);
+  // query(html);
    //console.log(query());
+   
+   
+   var  mappa= document.getElementById("mappa");
+
+    mappa.addEventListener('click', function() {
+        
+         //var html=document.getElementById("card-view");
+        // createMap(html);
+     map_container= document.getElementById("map_container");
+      
+      map_container.style.display = "block";
+   
+       
+   
+    }, false);
+
+   var  list= document.getElementById("lista");
+
+    list.addEventListener('click', function() {
+        
+         var html=document.getElementById("card-view");
+         
+   // alert('Hello world');
+    }, false);
+   
 });
+  var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
   
   function query(inner) {
       var Doctor = Parse.Object.extend("Doctor");
@@ -63,8 +102,14 @@
       
   }
   
+  
+  
+  
   function createCard(Doctor){
       var Name= Doctor.get("FirstName");
+      Name+=" ";
+      Name+= Doctor.get("LastName");
+      var Spec=Doctor.get("Specialization");
       var result="";
       result+="\
     <div class=\"card-panel\">\
