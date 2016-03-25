@@ -13,7 +13,7 @@ Contacts us by email on **info@doctorfinderapp.com**
 - **[Feedback](http://goo.gl/forms/Tbt5klLhCW=)**
 
 
-**Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015 in Sapienza University of Rome. 
+**Doctor Finder** is a project born by an idea from four students of computer engineering where challenging in Google workshop 2015 in Sapienza University of Rome.  
 
 Our main purpose is to connect people in a way quickly and simply to the health specialists that they need.
 
