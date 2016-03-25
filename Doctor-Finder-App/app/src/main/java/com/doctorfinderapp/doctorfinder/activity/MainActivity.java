@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 }
             }
         });
-
         //start animation
         Timer timer = new Timer();
 
@@ -252,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting header
         //download user image
         ParseUser user=ParseUser.getCurrentUser();
         setProfileInformation(user);
