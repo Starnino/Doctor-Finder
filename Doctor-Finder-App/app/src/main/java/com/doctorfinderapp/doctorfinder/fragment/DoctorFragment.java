@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -36,6 +37,7 @@ import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
+import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.PersonAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
@@ -116,8 +118,11 @@ public class DoctorFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
+        c = getContext();
+
+
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
-         c=getContext();
+
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
         DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
@@ -146,7 +151,7 @@ public class DoctorFragment extends Fragment {
 
         //getting data from xml
         TextView nameProfile = (TextView) rootView.findViewById(R.id.tvNumber1);
-        TextView special = (TextView) rootView.findViewById(R.id.tvNumber2);
+        TextView special = (TextView) rootView.findViewById(R.id.specializations);
         TextView years = (TextView) rootView.findViewById(R.id.years);
         TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
         TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
@@ -165,25 +170,32 @@ public class DoctorFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
+        /**set recycler view if possible*/
+        if (ParseUser.getCurrentUser() != null & GlobalVariable.SEMAPHORE) {
+            mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
 
-        int adapter_count = mAdapter.getItemCount();
+            ImageView fb_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
+            fb_tip.setVisibility(View.INVISIBLE);
+            int adapter_count = mAdapter.getItemCount();
 
-        if (adapter_count != 0) {
-            mRecyclerView.getLayoutParams().height = 300;
-            if (adapter_count > 1)
-                suggest_null.setText(adapter_count + " amici trovati!");
-            else
-                suggest_null.setText(adapter_count + " amico trovato!");
+            if (adapter_count != 0) {
+                mRecyclerView.getLayoutParams().height = 300;
+                if (adapter_count > 1)
+                    suggest_null.setText(adapter_count + " amici trovati!");
+                else
+                    suggest_null.setText(adapter_count + " amico trovato!");
+            }
+
+            mRecyclerView.setAdapter(mAdapter);
         }
 
-        mRecyclerView.setAdapter(mAdapter);
-
+        else suggest_null.setText("Per conoscere gli amici che hanno recensito\nquesto dottore devi essere loggato a Facebook");
 
         if (DOCTOR_SEX)
             TitoloDot="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
             TitoloDot="Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+
         nameProfile.setText(TitoloDot);
 
         years.setText(DOCTOR_EXPERIENCE);
@@ -214,12 +226,13 @@ public class DoctorFragment extends Fragment {
         call_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String no =DOCTOR_PHONE;
+                final String no = DOCTOR_PHONE;
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+no));
+                intent.setData(Uri.parse("tel:" + no));
                 startActivity(intent);
             }
         });
+
 
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
@@ -230,11 +243,6 @@ public class DoctorFragment extends Fragment {
                 dialog.setTitleText("Caricamento");
                 dialog.getProgressHelper().setBarColor(v.getResources().getColor(R.color.docfinder));
                 dialog.show();
-
-
-
-
-
 
                 /*FragmentTransaction ft2 = getActivity().getSupportFragmentManager().beginTransaction();
                 ProgressFragment f2=ProgressFragment.newInstance("","");

@@ -182,15 +182,15 @@ public class FacebookProfile {
                            Log.d("Graph Response", "error JSON");
                        }
 
-
-
+                    /** unlock semaphore
+                    /**/ GlobalVariable.SEMAPHORE = true;
+                       Log.d("SEMAPHORE ===> ", "UNLOCK");
                    }
                });
        Bundle parameters = new Bundle();
        parameters.putString("fields", "id,name,email,link,first_name,last_name,friends,picture.type(large)");
        request.setParameters(parameters);
        request.executeAsync();
-
    }
 
 

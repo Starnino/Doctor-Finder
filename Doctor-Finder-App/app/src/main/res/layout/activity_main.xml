@@ -33,7 +33,6 @@
                 app:contentScrim="?attr/colorPrimary"
                 android:fitsSystemWindows="true"
                 app:expandedTitleTextAppearance="@android:color/transparent"
-
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 

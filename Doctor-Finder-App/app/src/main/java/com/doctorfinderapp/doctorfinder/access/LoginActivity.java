@@ -168,7 +168,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException err) {
                         if (user == null) {
                             Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                            Log.d("MyApp", "errore parse" + err.toString());
                             progressBar.setVisibility(View.INVISIBLE);
 
                         } else if (user.isNew()) {

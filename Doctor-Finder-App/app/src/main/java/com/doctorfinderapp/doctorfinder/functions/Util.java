@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -116,9 +118,10 @@ public class Util {
         if (user.getString(FACEBOOK).equals("true")) {
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
         }
-        for (int i = 0; i < id.size(); i++) {
-            Log.d("AMICO --> ", id.get(i));
-        }
+
+         /**for (int i = 0; i < id.size(); i++) {
+          *  Log.d("AMICO --> ", id.get(i));
+         }*/
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 
@@ -232,9 +235,13 @@ public class Util {
             }
         });
 
+    }
 
-
-
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 
@@ -343,10 +350,6 @@ public class Util {
 
             }
         }
-
-
-
-
 
 
     }
