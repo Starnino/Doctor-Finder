@@ -29,10 +29,11 @@ Social networks connects people all around the world and we thought to use those
 * [Keep in contact!](https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing)
 
 <img src="http://i.imgur.com/u0FMmUV.png" height="480" width="285"/>
-<img src="http://i.imgur.com/mRupjv4.png" height="480" width="285"/> 
-<img src="http://i.imgur.com/kiO3wKA.png" height="480" width="285"/> <br>
-
+<img src="http://i.imgur.com/kiO3wKA.png" height="480" width="285"/>
 <img src="http://i.imgur.com/5G9mxar.png" height="480" width="285"/>
+<br>
+
+<img src="http://i.imgur.com/JsNPhbS.jpg" height="480" width="285"/> 
 <img src="http://i.imgur.com/PThQ4uI.png" height="480" width="285"/> 
 <img src="http://i.imgur.com/Wn9rbx5.png" height="480" width="285"/>
 
@@ -55,19 +56,19 @@ Social networks connects people all around the world and we thought to use those
 
 #Milestone 3 - Final
 
-* [Improved Website](http://www.doctorfinderapp.com/)
-* [More Feedback!](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm)
-* [How to install Doctor Finder (recommended at least android 4.4 Kitkat)] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
-* [Problem installing the app? Click here!] (https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill)
-* [The way we've organised and worked till now(Trello)] (https://trello.com/b/0uSh0ofs/doctor-finder)
-* [Advertising] (https://drive.google.com/file/d/0B_cyDM3ySwG4eDFrVWo0amVKeEU/view?usp=sharing)
-* [Important extra documentation (slide)]
-* Final Presentation
-* Live application
-* #3 Final Demo video
+* [Presentation] (https://drive.google.com/open?id=0B1SUy2ysIW0SY1RtQWIwUW1fVWM)
+* [Video Presentation] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
+* [Website](http://www.doctorfinderapp.com/)
+* [User's and Doctor's Feedback](https://docs.google.com/forms/d/1tBpFF8EJFsCzFIZ7Ic06JE3pYEB8dFVHJU0tlvyriDE/viewanalytics?usp=form_confirm)
+* [Trello (Team workflow)] (https://trello.com/b/0uSh0ofs/doctor-finder)
+* [Installation Guide] (https://drive.google.com/file/d/0B_cyDM3ySwG4MlZmSEg1cjY5Nm8/view?usp=sharing)
+* [App on Play Store] (https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder)
 
 
 #Final Submission
+
+* Documentation - User Manual 
+* Download App from Play Store 
 
 
 #Doctor Finder Team
