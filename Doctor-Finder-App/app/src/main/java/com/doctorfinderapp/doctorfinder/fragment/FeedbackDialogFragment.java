@@ -13,9 +13,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.DoctorActivity;
+import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.GetCallback;
 import com.parse.ParseException;

@@ -1,10 +1,5 @@
-package com.doctorfinderapp.doctorfinder.Class;
+package com.doctorfinderapp.doctorfinder.objects;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-
-import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 
 import java.util.ArrayList;

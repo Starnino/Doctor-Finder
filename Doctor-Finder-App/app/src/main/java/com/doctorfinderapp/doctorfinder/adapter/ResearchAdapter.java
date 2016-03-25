@@ -1,20 +1,15 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by francesco on 04/03/16.

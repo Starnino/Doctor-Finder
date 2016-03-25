@@ -1,8 +1,7 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.graphics.Bitmap;
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.parse.ParseFile;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.Arrays;

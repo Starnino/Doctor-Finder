@@ -6,7 +6,7 @@
     android:background="@color/google_grey"
     android:theme="@style/AppTheme"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.doctorfinderapp.doctorfinder.DoctorActivity">
+    tools:context=".activity.DoctorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -4,7 +4,6 @@ package com.doctorfinderapp.doctorfinder.adapter;
  * Created by francesco on 09/03/16.
  */
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.Class.Person;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;

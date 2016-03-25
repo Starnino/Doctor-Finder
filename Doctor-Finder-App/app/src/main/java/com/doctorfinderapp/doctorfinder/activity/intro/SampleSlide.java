@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Intro;
+package com.doctorfinderapp.doctorfinder.activity.intro;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

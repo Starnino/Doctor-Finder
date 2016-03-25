@@ -1,23 +1,15 @@
-package com.doctorfinderapp.doctorfinder.Intro;
+package com.doctorfinderapp.doctorfinder.activity.intro;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.access.FirstActivity;
-import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.github.paolorotolo.appintro.AppIntro;
-import com.parse.ParseUser;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class DefaultIntro extends AppIntro {
