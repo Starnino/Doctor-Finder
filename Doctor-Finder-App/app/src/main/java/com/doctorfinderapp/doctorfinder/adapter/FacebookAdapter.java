@@ -73,7 +73,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
                 //userphoto exists
 
                 if (userPhoto == null) {
-                    Log.d("userphoto", "isnull");
+                   // Log.d("userphoto", "isnull");
 
                 } else {
 
@@ -85,7 +85,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
                                 //data is the image in array byte
                                 //must change image on profile
                                 holder.personPhoto.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
-                                Log.d("FriendPhoto", "downloaded");
+                                //Log.d("FriendPhoto", "downloaded");
 
                             } else {
                                 // something went wrong

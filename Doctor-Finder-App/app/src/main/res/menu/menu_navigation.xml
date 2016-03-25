@@ -35,11 +35,6 @@
         android:layout_height="wrap_content">
 
             <item
-                android:icon="@drawable/githubfinder"
-                android:title="@string/about"
-                android:id="@+id/about"/>
-
-            <item
                 android:id="@+id/like"
                 android:title="@string/like"
                 android:icon="@drawable/facebook_doctor_finder_icon" />

@@ -36,12 +36,13 @@ import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
  */
 public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHolder> {
 
-    public static final String NAME = "FirstName";
-    public static final String SURNAME = "LastName";
-    public static final String SPECIALIZATION = "Specialization";
-    public static final String FEEDBACK = "Feedback";
-    public static final String CITY = "Province";
-    public static final String EMAIL = "Email";
+    public final String NAME = "FirstName";
+    public final String SURNAME = "LastName";
+    public final String SPECIALIZATION = "Specialization";
+    public final String FEEDBACK = "Feedback";
+    public final String CITY = "Province";
+    public final String EMAIL = "Email";
+    public static SweetAlertDialog dialog = null;
 
     public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -64,6 +65,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         @Override
         public void onClick(View v) {
+
             int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
             Context context = v.getContext();
 
@@ -73,7 +75,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             //------
             context.startActivity(intent);
 
-            Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+            //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
         }
     }
 
@@ -113,10 +115,10 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             @Override
             public void done(ParseObject doctorPhoto, ParseException e) {
 
-                if (doctorPhoto == null)
-                    Log.d("doctorphoto", "isNull");
+                if (doctorPhoto == null) {
+                    //Log.d("doctorphoto", "isNull");
 
-                else {
+                } else {
 
                     ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
                     if (e == null) {

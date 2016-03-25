@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
             card_recent_search, card_recent_search_null;
+    private NavigationView navigationView;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -208,6 +209,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
+                else if(!Util.isOnline(getApplicationContext()))
+                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+
                 else {
 
                     Intent intent = new Intent(MainActivity.this,
@@ -251,14 +256,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
+        navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting header
         //download user image
         ParseUser user=ParseUser.getCurrentUser();
+        setProfileInformation(user);
+    }
 
-        if(user!=null){
+    public void setProfileInformation(ParseUser user){
+        if(user != null && GlobalVariable.SEMAPHORE){
             getUserImage(ParseUser.getCurrentUser());
             //after 2 sec re set image if is the first time
 
@@ -267,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 public void run() {
                     getUserImage(ParseUser.getCurrentUser());
                 }};
-            Timer timer2 = new Timer();
+            Timer timer = new Timer();
             timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
             TextView nome= (TextView) header.findViewById(R.id.name_user);
@@ -409,12 +417,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null){
+                if(ParseUser.getCurrentUser()!=null && GlobalVariable.SEMAPHORE){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
+                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
                 break;
-
 
             case R.id.inserisci_dottore:
                 Intent intent_dottore = new Intent(MainActivity.this, WebViewActivity.class);
@@ -424,16 +433,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
-                break;
-
-            case R.id.about:
-                Intent intent_about = new Intent(MainActivity.this, WebViewActivity.class);
-
-                Bundle about = new Bundle();
-                about.putString("URL",
-                        "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
-                intent_about.putExtras(about);
-                startActivity(intent_about);
                 break;
 
             case R.id.support:
@@ -491,7 +490,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
     }
 
-
     private void getUserImage(ParseUser user){
         if(GlobalVariable.UserPropic==null) {
             ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
@@ -539,8 +537,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         //update image
-        if (ParseUser.getCurrentUser() != null)
+        if (ParseUser.getCurrentUser() != null) {
             getUserImage(ParseUser.getCurrentUser());
+            setProfileInformation(ParseUser.getCurrentUser());
+        }
         updateRecyclerDoctor();
         updateRecentSearch();
         super.onResume();

@@ -68,6 +68,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private Doctor currentDoctor;
     private String Title;
     private String email;
+    public static SweetAlertDialog dialog;
 
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_sended,

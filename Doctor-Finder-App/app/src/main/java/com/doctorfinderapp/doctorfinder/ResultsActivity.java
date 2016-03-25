@@ -2,9 +2,11 @@ package com.doctorfinderapp.doctorfinder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,13 +42,17 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -62,6 +68,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private MenuItem filterItem;
     private SearchView searchView;
     private static Context c;
+    private NavigationView navigationView;
 
 
     @Override
@@ -150,14 +157,19 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_results);
+        navigationView = (NavigationView) findViewById(R.id.nav_view_results);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting header
 
         ParseUser user = ParseUser.getCurrentUser();
-        if (user != null) {
+        setProfileInformation(user);
 
+    }
+
+    public void setProfileInformation(ParseUser user){
+        if (user != null && GlobalVariable.SEMAPHORE) {
+            getUserImage(user);
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
 
@@ -206,6 +218,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         fab.show();
     }
 
+    @Override
+    protected void onResume() {
+        setProfileInformation(ParseUser.getCurrentUser());
+        super.onResume();
+    }
 
     //search view
     @Override
@@ -243,10 +260,12 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null){
+                if(ParseUser.getCurrentUser() != null && GlobalVariable.SEMAPHORE){
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
+                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
                 break;
 
 
@@ -258,16 +277,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
-                break;
-
-            case R.id.about:
-                Intent intent_about = new Intent(this, WebViewActivity.class);
-
-                Bundle about = new Bundle();
-                about.putString("URL",
-                        "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
-                intent_about.putExtras(about);
-                startActivity(intent_about);
                 break;
 
             case R.id.support:
@@ -434,10 +443,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
+                    /*for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
                         int j = i + 1;
                         Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
-                    }
+                    }*/
 
                     dialog.cancel();
                     setupViewPager(viewPager);
@@ -464,7 +473,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             final String textName = doctor.getString("FirstName").toLowerCase();
             final String textSurname = doctor.getString("LastName").toLowerCase();
             if (textSurname.startsWith(query) || textName.startsWith(query)) {
-                Log.d("QUERY: " + query + "--> ", textSurname);
+                //Log.d("QUERY: " + query + "--> ", textSurname);
                 filteredModelList.add(doctor);
             }
         }
@@ -478,7 +487,48 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         }
     }
 
+    private void getUserImage(ParseUser user){
+        if(GlobalVariable.UserPropic==null) {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
 
+            query.whereEqualTo("username", user.getEmail());
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject userPhoto, ParseException e) {
+
+                    //userphoto exists
+
+                    if (userPhoto == null) {
+                        Log.d("userphoto", "isnull");
+
+                    } else {
+                        ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
+                        file.getDataInBackground(new GetDataCallback() {
+                            public void done(byte[] data, ParseException e) {
+                                if (e == null) {
+                                    // data has the bytes for the resume
+                                    //data is the image in array byte
+                                    //must change image on profile
+                                    GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    Log.d("Userphoto", "downloaded");
+
+                                    RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
+                                    mImg.setImageBitmap(GlobalVariable.UserPropic);
+                                    //iv.setImageBitmap(bitmap );
+
+
+                                } else {
+                                    // something went wrong
+                                    Log.d("UserPhoto ", "problem download image");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+    }
 
 
 
