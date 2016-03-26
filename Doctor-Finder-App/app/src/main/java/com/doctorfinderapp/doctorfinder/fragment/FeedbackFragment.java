@@ -30,7 +30,6 @@ public class FeedbackFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     public static FeedbackAdapter feedbackAdapter;
     private List<ParseObject> FeedbackArray;
-    ProgressDialog progress;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -60,7 +59,7 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         progress = ProgressDialog.show(this.getContext(),"", "Caicamento", true);
+
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
         String EMAIL = DOCTORTHIS.getString("Email");
 
@@ -80,7 +79,7 @@ public class FeedbackFragment extends Fragment {
 
             mRecyclerView.setHasFixedSize(true);
 
-            mLayoutManager = new LinearLayoutManager(getActivity());
+            mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
             mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -92,7 +91,6 @@ public class FeedbackFragment extends Fragment {
             e.printStackTrace();
         }
 
-        progress.dismiss();
         return mRecyclerView;
     }
 
@@ -119,7 +117,6 @@ public class FeedbackFragment extends Fragment {
         super.onDetach();
         DoctorActivity.switchFAB(0);
         mListener = null;
-        progress.dismiss();
     }
 
     /**

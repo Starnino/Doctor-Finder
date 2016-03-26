@@ -145,7 +145,7 @@ public class DoctorFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         /**set recycler view if possible*/
-        if (ParseUser.getCurrentUser() != null & GlobalVariable.SEMAPHORE) {
+        if (ParseUser.getCurrentUser() != null){ //& GlobalVariable.SEMAPHORE) {
             mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
 
             ImageView fb_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
