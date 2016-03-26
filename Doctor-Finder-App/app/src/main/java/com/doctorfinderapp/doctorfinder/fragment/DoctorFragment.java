@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -215,10 +216,6 @@ public class DoctorFragment extends Fragment {
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SweetAlertDialog dialog = new SweetAlertDialog(v.getContext(), SweetAlertDialog.PROGRESS_TYPE);
-                dialog.setTitleText("Caricamento");
-                dialog.getProgressHelper().setBarColor(v.getResources().getColor(R.color.docfinder));
-                dialog.show();
 
                 /*FragmentTransaction ft2 = getActivity().getSupportFragmentManager().beginTransaction();
                 ProgressFragment f2=ProgressFragment.newInstance("","");
@@ -226,16 +223,12 @@ public class DoctorFragment extends Fragment {
 
                 ft2.commit();*/
 
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
-
-                ft.replace(R.id.frame_doctor,fragment);
-                ft.addToBackStack(null);
-                ft.commit();
-                dialog.dismiss();
-
-
+                    ft.replace(R.id.frame_doctor,fragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
             }
         });
 

@@ -38,7 +38,6 @@ import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
@@ -649,7 +648,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public void profile_click(View v){
-        if(ParseUser.getCurrentUser()!=null){
+
+        if (ParseUser.getCurrentUser()!=null){
             Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
             startActivity(intent_user);
         }

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -28,8 +29,8 @@ public class FeedbackFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    public static FeedbackAdapter feedbackAdapter;
-    private List<ParseObject> FeedbackArray;
+    public static FeedbackAdapter feedbackAdapter, nullAdapter;
+    private List<ParseObject> FeedbackArray, nullArray;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -70,27 +71,36 @@ public class FeedbackFragment extends Fragment {
 
         FeedbackArray= new ArrayList<>();
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
-        //Log.d("Feedback","showing feedback of"+ EMAIL);
-        query.whereEqualTo("email_doctor", EMAIL);
+        mRecyclerView.setHasFixedSize(true);
 
-        try {
-            FeedbackArray=query.find();
+        mLayoutManager = new LinearLayoutManager(getActivity());
 
-            mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-            mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        if (Util.isOnline(getActivity())) {
+            //If there is Internet connection
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+            //Log.d("Feedback","showing feedback of"+ EMAIL);
+            query.whereEqualTo("email_doctor", EMAIL);
 
-            mRecyclerView.setLayoutManager(mLayoutManager);
+            try {
+                FeedbackArray = query.find();
 
-            feedbackAdapter = new FeedbackAdapter(FeedbackArray);
+                feedbackAdapter = new FeedbackAdapter(FeedbackArray);
 
-            mRecyclerView.setAdapter(feedbackAdapter);
+                mRecyclerView.setAdapter(feedbackAdapter);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+                //TODO set null text
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            //if there is not Internet connection set null Array
+            nullArray = new ArrayList<>();
+            nullAdapter = new FeedbackAdapter(nullArray);
+            mRecyclerView.setAdapter(nullAdapter);
         }
-
         return mRecyclerView;
     }
 
