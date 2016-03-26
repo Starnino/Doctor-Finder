@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
                     })
                     .show();
+        }else{
+
+            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
         }
 
         //set view for doctors visited

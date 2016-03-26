@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.activity.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -115,8 +116,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // Login Button Click Listener
         loginButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
+            @Override
+            public void onClick(final View v) {
                 // Retrieve the text entered from the EditText
                 progressBar.setVisibility(View.INVISIBLE);
                 usernametxt = username.getText().toString();
@@ -127,19 +128,24 @@ public class LoginActivity extends AppCompatActivity {
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
-                                Toast.makeText(getApplicationContext(),
+                                /*Toast.makeText(getApplicationContext(),
                                         "Accesso effettuato",
-                                        Toast.LENGTH_LONG).show();
+                                        Toast.LENGTH_LONG).show();*/
+                                Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                        .setAction("Action", null).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
 
                             } else {
-                                Toast.makeText(getApplicationContext(),
+                                /*Toast.makeText(getApplicationContext(),
                                         "Username o Password non corretti!",
-                                        Toast.LENGTH_LONG).show();
+                                        Toast.LENGTH_LONG).show();*/
+                                Snackbar.make(v, R.string.bad_login, Snackbar.LENGTH_SHORT)
+                                        .setAction("Action", null).show();
                                 progressBar.setVisibility(View.INVISIBLE);
+
                             }
                         }
                     });
@@ -158,9 +164,11 @@ public class LoginActivity extends AppCompatActivity {
         Button FLogin = (Button) findViewById(R.id.flogin);
         FLogin.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View arg0) {
+            @Override
+            public void onClick(final View v) {
                 List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
                 progressBar.setVisibility(View.VISIBLE);
+
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
@@ -176,9 +184,8 @@ public class LoginActivity extends AppCompatActivity {
                             FacebookProfile.getGraphRequest(user);
 
 
-                            Toast.makeText(getApplicationContext(),
-                                    "Accesso effettuato",
-                                    Toast.LENGTH_LONG).show();
+                            Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                    .setAction("Action", null).show();
                             progressBar.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -194,9 +201,8 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
                             //FacebookProfile.getGraphRequestFriends(user);
-                            Toast.makeText(getApplicationContext(),
-                                    "Accesso effettuato",
-                                    Toast.LENGTH_LONG).show();
+                            Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                    .setAction("Action", null).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

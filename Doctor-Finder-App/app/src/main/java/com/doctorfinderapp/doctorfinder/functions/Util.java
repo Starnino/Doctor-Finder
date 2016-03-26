@@ -113,8 +113,13 @@ public class Util {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (!user.getString(FACEBOOK).equals("true")) return friends;
-        if (user.getString(FRIENDS).equals(null)) return friends;
+        if (user.getString(FACEBOOK)!=null){
+            //user getstring puo essere null @starnino
+            if(!user.getString(FACEBOOK).equals("true")) return friends;
+
+        }
+
+        if (user.getString(FRIENDS)==null) return friends;
         if (user.getString(FACEBOOK).equals("true")) {
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
         }
