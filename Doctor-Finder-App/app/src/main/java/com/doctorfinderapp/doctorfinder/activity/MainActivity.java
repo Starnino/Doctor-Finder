@@ -408,6 +408,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
+
                 if(ParseUser.getCurrentUser()!=null && GlobalVariable.SEMAPHORE){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
@@ -642,7 +643,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public void profile_click(View v){
-        if(ParseUser.getCurrentUser()!=null){
+
+        if (ParseUser.getCurrentUser()!=null){
             Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
             startActivity(intent_user);
         }

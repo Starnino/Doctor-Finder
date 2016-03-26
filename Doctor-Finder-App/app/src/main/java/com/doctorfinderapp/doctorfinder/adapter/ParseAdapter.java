@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,17 +63,22 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         @Override
         public void onClick(View v) {
+            if (Util.isOnline(v.getContext())){
 
-            int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
-            Context context = v.getContext();
+                int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
+                Context context = v.getContext();
 
-            Intent intent = new Intent(context, DoctorActivity.class);
-            //------
-            intent.putExtra("index", position);
-            //------
-            context.startActivity(intent);
+                Intent intent = new Intent(context, DoctorActivity.class);
+                //------
+                intent.putExtra("index", position);
+                //------
+                context.startActivity(intent);
 
-            //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+                //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+            } else {
+                Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
         }
     }
 

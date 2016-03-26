@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.LayoutDirection;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,25 +95,31 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
 
-        //recycler view
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
+        if (Util.isOnline(getApplicationContext())) {
+            //recycler view
+            mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
 
-        mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //set adapter to recycler
+            //set adapter to recycler
 
-        mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+            mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
 
-        if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
+            if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
 
-        //if friends.size() is not empty set height to 100dp
-        if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
+            //if friends.size() is not empty set height to 100dp
+            if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
 
-        mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setAdapter(mAdapter);
+
+        } else {
+            friend_null.setText("C'è qualche problema. Assicurati che la tua connessione a Internet funzioni!");
+            friend_null.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        }
 
         //nameProfile.setText(Title);
         if (getSupportActionBar() != null) {
