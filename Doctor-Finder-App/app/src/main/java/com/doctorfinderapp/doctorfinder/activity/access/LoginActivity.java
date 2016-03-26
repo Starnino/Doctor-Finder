@@ -6,6 +6,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -49,10 +50,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         //immersion mode
-/*
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                */
+
 
         super.onCreate(savedInstanceState);
 

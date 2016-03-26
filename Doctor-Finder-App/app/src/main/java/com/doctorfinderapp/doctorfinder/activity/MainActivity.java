@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 }
             }
         });
+
         //start animation
         Timer timer = new Timer();
 
@@ -251,13 +252,16 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //setting header
         //download user image
         ParseUser user=ParseUser.getCurrentUser();
         setProfileInformation(user);
     }
 
     public void setProfileInformation(ParseUser user){
-        if(user != null && GlobalVariable.SEMAPHORE){
+        if(user != null
+                //&& GlobalVariable.SEMAPHORE
+                ){
             getUserImage(ParseUser.getCurrentUser());
             //after 2 sec re set image if is the first time
 
@@ -408,8 +412,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-
-                if(ParseUser.getCurrentUser()!=null && GlobalVariable.SEMAPHORE){
+                if(ParseUser.getCurrentUser()!=null
+                        //&& GlobalVariable.SEMAPHORE
+                        ){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }

@@ -56,7 +56,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:layout_toEndOf="@id/profile_image"
+                android:layout_toRightOf="@id/profile_image"
                 android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginLeft="@dimen/fab_margin"
                 android:id="@+id/linearLayout2"
                 android:layout_alignParentTop="true">
 
@@ -81,7 +83,8 @@
                     android:scaleX="0.55"
                     android:scaleY="0.55"
                     android:layout_gravity="start|bottom"
-                    android:layout_marginStart="-50dp" />
+                    android:layout_marginStart="-50dp"
+                    android:layout_marginLeft="-50dp"/>
 
             </LinearLayout>
         </LinearLayout>
