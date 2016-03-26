@@ -123,18 +123,48 @@ public class FacebookProfile {
                                JSONObject data = picture.getJSONObject("data");
                                final String pictureUrl = data.getString("url");
 
+                               userP.save();
 
+                              /*
+                              //save in background
                                userP.saveInBackground(new SaveCallback() {
+
                                    @Override
                                    public void done(com.parse.ParseException e) {
                                        if(e==null)Log.d("facebook","utente salvato");
 
                                    }
-                               });
+                               });*/
                                //Log.d("Graph Response",userP.getString("lName"));
                                ParseQuery<ParseObject> query = ParseQuery.getQuery("UserPhoto");
                                query.whereEqualTo("username", email);
+
+                               List<ParseObject> results= query.find();
+                               if(results.size()>0) {
+                                   //UserPhoto exists
+                               }else{
+                                   URL aURL = new URL(pictureUrl);
+                                   URLConnection conn = aURL.openConnection();
+                                   conn.connect();
+                                   InputStream is = conn.getInputStream();
+                                   BufferedInputStream bis = new BufferedInputStream(is);
+
+                                   //comprilo l'immagine in byte[] e la invio come parseFile
+                                   ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                   (BitmapFactory.decodeStream(bis)).compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                                   byte[] pp = stream.toByteArray();
+                                   ParseFile file = new ParseFile("propic.jpg", pp);
+                                   file.save();
+                                   // Creazione di un ParseObject da inviare
+                                   ParseObject userPhoto = new ParseObject("UserPhoto");
+                                   userPhoto.put("username", userP.getUsername());
+                                   userPhoto.put("profilePhoto", file);
+                                   userPhoto.save();
+                               }
+                               /*
+                               //query in background
                                query.findInBackground(new FindCallback<ParseObject>() {
+
                                    public void done(List<ParseObject> results, com.parse.ParseException e) {
 
                                        try{
@@ -174,17 +204,23 @@ public class FacebookProfile {
                                        }
 
                                    }
-                               });
+                               });*/
 
                            }
                      } catch (JSONException e) {
                            e.printStackTrace();
                            Log.d("Graph Response", "error JSON");
+                       } catch (com.parse.ParseException e) {
+                           e.printStackTrace();
+                       } catch (MalformedURLException e) {
+                           e.printStackTrace();
+                       } catch (IOException e) {
+                           e.printStackTrace();
                        }
 
-                    /** unlock semaphore
-                    /**/ GlobalVariable.SEMAPHORE = true;
-                       Log.d("SEMAPHORE ===> ", "UNLOCK");
+                       /** unlock semaphore
+                    /* GlobalVariable.SEMAPHORE = true;
+                       Log.d("SEMAPHORE ===> ", "UNLOCK");*/
                    }
                });
        Bundle parameters = new Bundle();

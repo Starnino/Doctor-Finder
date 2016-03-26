@@ -38,6 +38,7 @@ import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
@@ -259,7 +260,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public void setProfileInformation(ParseUser user){
-        if(user != null && GlobalVariable.SEMAPHORE){
+        if(user != null
+                //&& GlobalVariable.SEMAPHORE
+                ){
             getUserImage(ParseUser.getCurrentUser());
             //after 2 sec re set image if is the first time
 
@@ -410,7 +413,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null && GlobalVariable.SEMAPHORE){
+                if(ParseUser.getCurrentUser()!=null
+                        //&& GlobalVariable.SEMAPHORE
+                        ){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }

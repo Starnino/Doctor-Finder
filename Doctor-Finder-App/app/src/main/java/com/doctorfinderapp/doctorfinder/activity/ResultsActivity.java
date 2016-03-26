@@ -160,7 +160,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
     public void setProfileInformation(ParseUser user){
-        if (user != null && GlobalVariable.SEMAPHORE) {
+        if (user != null
+                //&& GlobalVariable.SEMAPHORE
+                ) {
             getUserImage(user);
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
@@ -252,7 +254,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser() != null && GlobalVariable.SEMAPHORE){
+                if(ParseUser.getCurrentUser() != null
+                       // && GlobalVariable.SEMAPHORE
+                        ){
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
