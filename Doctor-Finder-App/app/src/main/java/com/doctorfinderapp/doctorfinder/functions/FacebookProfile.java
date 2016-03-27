@@ -46,9 +46,7 @@ import java.net.URLConnection;
 
 public class FacebookProfile {
 
-    private  static String URL="";
-    private static com.parse.ParseException ret = null;
-    private static Bitmap propic;
+
 
 
    public static void getGraphRequest(final ParseUser   userP) {

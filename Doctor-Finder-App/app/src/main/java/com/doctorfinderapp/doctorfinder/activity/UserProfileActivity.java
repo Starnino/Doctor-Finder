@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,13 @@ import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.Collection;
 
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,7 +68,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
-        ParseUser user = ParseUser.getCurrentUser();
+        final ParseUser user = ParseUser.getCurrentUser();
 
 
         fab_share= (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
@@ -174,15 +181,23 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                                      {
                                          @Override
                                          public void onClick(View view) {
-                                             Intent i = new Intent(Intent.ACTION_SEND);
-                                             i.setType("message/rfc822");
-                                             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@doctorfinderapp.com"});
-                                             i.putExtra(Intent.EXTRA_SUBJECT, "UTENTE DI DOCTOR FINDER");
-                                             i.putExtra(Intent.EXTRA_TEXT, "Ciao, sto inviando questa mail perchè");
-                                             try {
-                                                 startActivity(Intent.createChooser(i, "Invia mail usando..."));
-                                             } catch (android.content.ActivityNotFoundException ex) {
-                                                 Toast.makeText(UserProfileActivity.this, "Non ci sono client email installati!, Installane uno e riprova!", Toast.LENGTH_SHORT).show();
+                                             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                                     "mailto","info@doctorfinderapp.com", null));
+                                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback app");
+                                             emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
+                                                     " \n " +
+                                                     " \n " +
+                                                     " \n " +" \n " +
+                                                     " \n " +
+
+                                                     " \n " +
+                                                     " \n " +
+                                                     "Messaggio inviato tramite Doctor Finder ");
+                                             startActivity(Intent.createChooser(emailIntent, "Invia mail"));
+
+                                             // Verify that the intent will resolve to an activity
+                                             if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                                                 //startActivity(emailIntent);
                                              }
                                          }
                                      }
@@ -194,48 +209,41 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         facebukkalo.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
+                if (!ParseFacebookUtils.isLinked(user)) {
+                    ParseFacebookUtils.linkWithReadPermissionsInBackground(user, UserProfileActivity.this,
+                            (Collection<String>) GlobalVariable.permissions,
+                            new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    Log.d("Facebook link", e+"EXCEPTION");
+                                    if (ParseFacebookUtils.isLinked(user)) {
+                                        Snackbar.make(v, R.string.facebook_linked, Snackbar.LENGTH_SHORT)
+                                                .setAction("Action", null).show();
+
+                                        FacebookProfile.getGraphRequest(user);
+                                        Log.d("MyApp", "Woohoo, user logged in with Facebook!");
+                                    }else{
+                                        Snackbar.make(v, R.string.error_facebook, Snackbar.LENGTH_SHORT)
+                                                .setAction("Action", null).show();
+                                    }
+                                }
+                            });
+
+                }
 
 
-                Log.d("User profile", "linking fb");
-                Toast.makeText(getApplicationContext(), R.string.fatto, Toast.LENGTH_LONG);
-                FacebookProfile.getGraphRequest(ParseUser.getCurrentUser());
 
-            }/* else {
-                            new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                                    .setTitleText("Hai già fatto il log in tramite Facebook")
-                                    .setContentText("Tutti i tuoi dati di cui abbiamo bisogno già sono presenti sulla nostra applicazione!")
-                                    .show();
-                        }*/
+                }});}
 
 
-        });
 
-        final int feed_lasciati = 0;
-        //qualcosa che prende il numero di feed lasciati o insomma che controlli
 
-               /* RelativeLayout feedback_utente = (RelativeLayout) findViewById(R.id.feedback_lasciati);
-                feedback_utente.setOnClickListener(new View.OnClickListener()
 
-                                                   {
-                                                       @Override
-                                                       public void onClick(View v) {
-                                                           if (feed_lasciati == 0) {
-                                                               new SweetAlertDialog(UserProfileActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                                                       .setTitleText("Ops")
-                                                                       .setContentText("Non hai lasciato ancora alcun feedback!")
-                                                                       .show();
-                                                           } else {
-                                                               //lancia feed fragment utente recycler view
-                                                           }
-                                                       }
-                                                   }
 
-                );
 
-            }
-        });*/
-    }
+
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
 

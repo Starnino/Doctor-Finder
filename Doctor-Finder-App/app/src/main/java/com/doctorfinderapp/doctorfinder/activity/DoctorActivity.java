@@ -339,7 +339,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
                 // Verify that the intent will resolve to an activity
                 if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(emailIntent);
+                    //startActivity(emailIntent);
                 }
                 break;
 
