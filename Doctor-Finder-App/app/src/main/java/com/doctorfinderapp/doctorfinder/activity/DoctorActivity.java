@@ -473,4 +473,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
+
+    public static void loginwithfb(){
+
+    }
 }

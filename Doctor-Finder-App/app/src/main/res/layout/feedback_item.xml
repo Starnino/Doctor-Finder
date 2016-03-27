@@ -105,6 +105,16 @@
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis fermentum neque, ac porttitor eros commodo quis. Sed sed vehicula sapien. Donec ornare felis vel risus bibendum mattis. Nam tristique ipsum tempus, bibendum erat vitae, euismod magna. Vivamus vitae hendrerit felis, vitae elementum tortor. Nullam ante orci, semper vel tellus sit amet, eleifend auctor libero. Phasellus ac neque tincidunt, consectetur quam vel, porttitor nibh. Nulla commodo sodales velit, quis semper turpis placerat ut. Phasellus eleifend enim diam, sit amet auctor orci scelerisque nec. Suspendisse potenti. Proin eget condimentum leo. Curabitur a molestie metus, at condimentum orci. Vestibulum ullamcorper, lorem in tempor aliquam, diam mi pharetra ligula, et vehicula ligula risus vitae turpis. Nam ultricies neque est. Duis id sollicitudin orci, eget rhoncus elit. In sed velit nec tellus tempus aliquam."
                     android:id="@+id/feedback_text"
                     android:layout_margin="@dimen/fab_margin" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:padding="@dimen/fab_margin"
+                    android:id="@+id/login_facebook_feedback"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    android:background="@color/facebook_color"/>
+
             </LinearLayout>
 
         </LinearLayout>

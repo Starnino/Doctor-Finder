@@ -18,6 +18,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class FeedbackFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     public static FeedbackAdapter feedbackAdapter, nullAdapter;
-    private List<ParseObject> FeedbackArray, nullArray;
+    private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -77,7 +78,7 @@ public class FeedbackFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        if (Util.isOnline(getActivity())) {
+        if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
             //If there is Internet connection
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
             //Log.d("Feedback","showing feedback of"+ EMAIL);
@@ -90,14 +91,19 @@ public class FeedbackFragment extends Fragment {
 
                 mRecyclerView.setAdapter(feedbackAdapter);
 
-                //TODO set null text
-
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        } else if(Util.isOnline(getActivity()) && ParseUser.getCurrentUser() == null){
+            ParseObject feedback_null = new ParseObject("NOLOGIN");
+            nullArray.add(feedback_null);
+            nullAdapter = new FeedbackAdapter(nullArray);
+            mRecyclerView.setAdapter(nullAdapter);
+
         } else {
             //if there is not Internet connection set null Array
-            nullArray = new ArrayList<>();
+            ParseObject feedback_null = new ParseObject("NULL");
+            nullArray.add(feedback_null);
             nullAdapter = new FeedbackAdapter(nullArray);
             mRecyclerView.setAdapter(nullAdapter);
         }

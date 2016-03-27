@@ -128,9 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                     ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
-                                /*Toast.makeText(getApplicationContext(),
-                                        "Accesso effettuato",
-                                        Toast.LENGTH_LONG).show();*/
+
                                 Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
                                         .setAction("Action", null).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -139,9 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
 
                             } else {
-                                /*Toast.makeText(getApplicationContext(),
-                                        "Username o Password non corretti!",
-                                        Toast.LENGTH_LONG).show();*/
+
                                 Snackbar.make(v, R.string.bad_login, Snackbar.LENGTH_SHORT)
                                         .setAction("Action", null).show();
                                 progressBar.setVisibility(View.INVISIBLE);
