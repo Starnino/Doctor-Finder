@@ -1,6 +1,5 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +31,7 @@ public class FeedbackFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     public static FeedbackAdapter feedbackAdapter, nullAdapter;
     private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
+    int color_red, color_red_pressed;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -54,7 +54,8 @@ public class FeedbackFragment extends Fragment {
         int indexFragment = getArguments().getInt("index", 0);
         this.index=indexFragment;
         DoctorActivity.switchFAB(1);
-
+        color_red = getResources().getColor(R.color.red_btn_bg_color);
+        color_red_pressed = getResources().getColor(R.color.red_btn_bg_pressed_color);
     }
 
     @Override
@@ -97,6 +98,8 @@ public class FeedbackFragment extends Fragment {
         } else if(Util.isOnline(getActivity()) && ParseUser.getCurrentUser() == null){
             ParseObject feedback_null = new ParseObject("NOLOGIN");
             nullArray.add(feedback_null);
+            DoctorActivity.fabfeedback.setColorNormal(color_red);
+            DoctorActivity.fabfeedback.setColorPressed(color_red);
             nullAdapter = new FeedbackAdapter(nullArray);
             mRecyclerView.setAdapter(nullAdapter);
 
@@ -104,6 +107,8 @@ public class FeedbackFragment extends Fragment {
             //if there is not Internet connection set null Array
             ParseObject feedback_null = new ParseObject("NULL");
             nullArray.add(feedback_null);
+            DoctorActivity.fabfeedback.setColorNormal(color_red);
+            DoctorActivity.fabfeedback.setColorPressed(color_red);
             nullAdapter = new FeedbackAdapter(nullArray);
             mRecyclerView.setAdapter(nullAdapter);
         }

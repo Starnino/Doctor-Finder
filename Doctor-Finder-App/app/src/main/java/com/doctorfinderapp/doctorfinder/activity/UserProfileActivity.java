@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.activity;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.melnykov.fab.ObservableScrollView;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -69,7 +74,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
 
         final ParseUser user = ParseUser.getCurrentUser();
-
 
         fab_share= (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
         fab_share.setOnClickListener(this);
@@ -119,7 +123,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
 
             //if friends.size() is not empty set height to 100dp
-            if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
+            if (mAdapter.getItemCount() != 0) {
+                mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                mRecyclerView.getLayoutParams().width  = (int) getResources().getDimension(R.dimen.doctor_item_width);
+            }
 
             mRecyclerView.setAdapter(mAdapter);
 

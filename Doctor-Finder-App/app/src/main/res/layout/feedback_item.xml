@@ -47,7 +47,6 @@
                     android:layout_height="100dp"
                     android:id="@+id/user_image_feed"
                     android:src="@drawable/personavatar" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -106,16 +105,9 @@
                     android:id="@+id/feedback_text"
                     android:layout_margin="@dimen/fab_margin" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:padding="@dimen/fab_margin"
-                    android:id="@+id/login_facebook_feedback"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"
-                    android:background="@color/facebook_color"/>
 
             </LinearLayout>
+
 
         </LinearLayout>
 

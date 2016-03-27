@@ -590,7 +590,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
         if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = 330;
+            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
             card_recent_doctor.getLayoutParams().height = 330;
         }
         else card_recent_doctor_null.getLayoutParams().height = 100;

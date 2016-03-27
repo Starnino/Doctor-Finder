@@ -47,12 +47,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     //Doctor information
     private static int index;
     private static boolean isFabOpen = false;
-    private static com.melnykov.fab.FloatingActionButton fabfeedback;
+    public static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
     private static Context c;
     private static FragmentManager p;
     public final String EMAIL = "Email";
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone, fab_feedback;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
