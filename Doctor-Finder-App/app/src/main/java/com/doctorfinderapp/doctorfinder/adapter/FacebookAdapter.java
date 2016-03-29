@@ -46,7 +46,17 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
     List<ParseObject> friends;
 
     public FacebookAdapter(List<ParseObject> persons) {
+
+
         this.friends = persons;
+
+        //Log.d("FacebookAdapter",persons.size()+"numero persone passate adapter");
+
+        for(int i=0;i<friends.size();i++){
+            //Log.d("FacebookAdapter","name number "+i+": "+friends.get(i).get(NAME));
+        }
+
+
     }
 
     @Override
@@ -58,8 +68,13 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
 
     @Override
     public void onBindViewHolder(final FacebookViewHolder holder, int position) {
-        holder.personName.setText(friends.get(position).getString(NAME));
+        //Log.d("FacebookAdapter", "Nome amico:" + friends.get(position).getString(NAME));
+
+       if(friends.get(position).getString(NAME)!=null) holder.personName.setText(friends.get(position).getString(NAME));
         holder.personPhoto.setImageResource(R.drawable.mario);
+
+       // Log.d("FacebookAdapter","Nome amico:"+friends.get(position).getString(NAME));
+
 
         //set dinamically photo
         ParseQuery<ParseObject> query = ParseQuery.getQuery(PHOTO);

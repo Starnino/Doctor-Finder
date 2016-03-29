@@ -126,14 +126,16 @@ public class Util {
         }
 
          for (int i = 0; i < id.size(); i++) {
-           Log.d("AMICO --> ", id.get(i));
+          // Log.d("AMICO --> ", id.get(i));
          }
+        //Log.d("getUserFacebookfriend", ""+id.size());
+
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 
         friendQuery.whereContainedIn(ID, id);
 
-        //get query non in background
+        // todo get query non in background
         try {
             friends = friendQuery.find();
         } catch (ParseException e) {
