@@ -25,11 +25,41 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-    <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/webview"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarWeb"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view"
-        android:layout_marginTop="?attr/actionBarSize" />
+        android:visibility="gone"
+        android:id="@+id/rel1">
+
+        <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>
 

@@ -130,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
                     })
                     .show();
+        }else{
+
+            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
         }
 
         //set view for doctors visited
@@ -423,23 +427,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.inserisci_dottore:
-                Intent intent_dottore = new Intent(MainActivity.this, WebViewActivity.class);
+                Intent intent_dottore = new Intent(this, WebViewActivity.class);
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
             case R.id.support:
-                Intent intent_supporto = new Intent(MainActivity.this, WebViewActivity.class);
-
-                Bundle supporto = new Bundle();
-                supporto.putString("URL",
-                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
-                intent_supporto.putExtras(supporto);
-                startActivity(intent_supporto);
+                Util.sendFeedbackMail(MainActivity.this);
                 break;
 
             case R.id.like:
@@ -586,7 +584,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
         if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = 330;
+            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
             card_recent_doctor.getLayoutParams().height = 330;
         }
         else card_recent_doctor_null.getLayoutParams().height = 100;

@@ -25,7 +25,7 @@
     <string name="text_repeatPassword">Ripeti password</string>
     <string name="text_useyourEmail">Altrimenti usa la tua email</string>
     <string name="text_useyourAccount">Altrimenti usa il tuo account</string>
-    <string name="text_username">Username</string>
+    <string name="text_username">Email</string>
     <string name="text_forgotPassword">Passoword dimenticata?</string>
     <string name="text_rememberMe">Ricordami</string>
     <string name="text_signupNow">Registrati ora!</string>
@@ -312,6 +312,16 @@
     <string name="share_email">Ciao, prova questa nuova applicazione che ti permette di trovare il dottore perfetto per te</string>
     <string name="feedback_warning">Feedback</string>
     <string name="feedback_warting_message">Devi essere registrato per lasciare il feedback</string>
+    <string name="password_longer">La password deve essere di almeno 6 caratteri</string>
+    <string name="password_match_no">Le password sono diverse</string>
+    <string name="complete_form">Completa tutti i campi!</string>
+    <string name="user_exists">L\'utente esiste già</string>
+    <string name="access_ok">Accesso Effettuato</string>
+    <string name="bad_login">Email o password errati</string>
+    <string name="signup_completed">Registrato correttamente!</string>
+    <string name="good_login">Login effettuato</string>
+    <string name="facebook_linked">Il tuo profilo di Facebook è stato associato al tuo utente</string>
+    <string name="error_facebook">Qualcosa non va..</string>
 
 
 </resources>

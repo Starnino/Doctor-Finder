@@ -15,96 +15,98 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingTop="16dp">
 
-    <android.support.v7.widget.CardView
+        <android.support.v7.widget.CardView
 
-        android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:background="@color/white">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
+            android:id="@+id/card1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:gravity="center_vertical">
+            android:layout_margin="1dp"
+            android:background="@color/white">
 
-            <ImageView
-                android:id="@+id/ivContactItem1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                android:src="@drawable/ic_account_circle_black_24dp"
-                android:visibility="visible" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="Nome preso da parse"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:id="@+id/txt_users"
-                android:layout_alignParentBottom="false"
-                android:layout_toEndOf="@+id/ivContactItem1" />
+                    <ImageView
+                        android:id="@+id/ivContactItem1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+
+                        android:src="@drawable/ic_account_circle_black_24dp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:text="Nome preso da parse"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121"
+                        android:id="@+id/txt_users"
+                        android:layout_alignParentBottom="false"
+                        android:layout_toEndOf="@+id/ivContactItem1" />
 
 
-        </RelativeLayout>
+                </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin">
 
-            <ImageView
-                android:id="@+id/ivContactItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_mail_outline_black_24dp"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/email_users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem3"
-                android:layout_toRightOf="@id/ivContactItem3"
-                android:text="Email utente:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
+                    <ImageView
+                        android:id="@+id/ivContactItem3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/ic_mail_outline_black_24dp"
+                        android:visibility="visible" />
+                    <TextView
+                        android:id="@+id/email_users"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/ivContactItem3"
+                        android:layout_toRightOf="@id/ivContactItem3"
+                        android:text="Email utente:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/email_users"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/ivContactItem3"
-                android:layout_toRightOf="@id/ivContactItem3"
-                android:text="email presa da parse"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272"
-                android:id="@+id/emaillino"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/email_users"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@id/ivContactItem3"
+                        android:layout_toRightOf="@id/ivContactItem3"
+                        android:text="email presa da parse"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#727272"
+                        android:id="@+id/emaillino"/>
 
         </RelativeLayout>
 
@@ -119,45 +121,45 @@
             android:padding="@dimen/activity_horizontal_margin"
             android:visibility="visible">
 
-            <ImageView
-                android:id="@+id/feedbackk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_info_black_24dp"
-                android:visibility="visible" />
+                    <ImageView
+                        android:id="@+id/feedbackk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/ic_info_black_24dp"
+                        android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/feed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_centerInParent="true"
-                android:text="Ultimi feedback lasciati"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:layout_alignBottom="@+id/feedbackk"
-                android:layout_toEndOf="@+id/feedbackk" />
-            <ImageButton
-                android:id="@+id/bottonedio"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:checked="true"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:padding="6dp" />
+                    <TextView
+                        android:id="@+id/feed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_centerInParent="true"
+                        android:text="Ultimi feedback lasciati"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121"
+                        android:layout_alignBottom="@+id/feedbackk"
+                        android:layout_toEndOf="@+id/feedbackk" />
+                    <ImageButton
+                        android:id="@+id/bottonedio"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:padding="6dp" />
 
-        </RelativeLayout>-->
+                </RelativeLayout>-->
 
-        </LinearLayout>
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -168,85 +170,226 @@
             android:background="@color/white"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp">
-        <LinearLayout
-            android:id="@+id/card2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/card2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/fab_margin"
-                android:text="Amici che usano Doctor Finder"
-                android:textAlignment="center"
-                android:textColor="@color/docfinder"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nessun amico trovato"
-                android:layout_gravity="center"
-                android:id="@+id/friend_null"/>
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/my_recycler_friends"
-                android:scrollbars="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/fab_margin"
+                    android:text="Amici che usano Doctor Finder"
+                    android:textAlignment="center"
+                    android:textColor="@color/docfinder"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nessun amico trovato"
+                    android:layout_gravity="center"
+                    android:id="@+id/friend_null"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/my_recycler_friends"
+                    android:scrollbars="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:background="@color/white">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/condividi"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:layout_margin="1dp"
+            android:background="@color/white">
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/cambialo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:visibility="visible"
-                app:iiv_color="@color/colorPrimaryDark"
-                app:iiv_icon="gmd-share" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/cambia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/cambialo"
-                android:layout_toRightOf="@id/cambialo"
-                android:text="Condividi Doctor Finder"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:layout_centerInParent="true"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:id="@+id/condividi"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/cambialo"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:visibility="visible"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-share" />
+
+                    <TextView
+                        android:id="@+id/cambia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/cambialo"
+                        android:layout_toRightOf="@id/cambialo"
+                        android:text="Condividi Doctor Finder"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121"
+                        android:layout_centerInParent="true"/>
+
+                    <ImageButton
+                        android:id="@+id/cristoforo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:padding="6dp" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:id="@+id/rateus"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/ic_star_border_white_24dp"
+                        android:visibility="visible" />
+                    <TextView
+                        android:id="@+id/rat"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/rate"
+                        android:layout_toRightOf="@id/rate"
+                        android:text="Valuta Doctor Finder"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
+
+                    <ImageButton
+                        android:id="@+id/colombo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:padding="6dp" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:id="@+id/inviaci_mail"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/inviacela"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/ic_mail_outline_black_24dp"
+                        android:visibility="visible" />
+                    <TextView
+                        android:id="@+id/rataci"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/inviacela"
+                        android:layout_toRightOf="@id/inviacela"
+                        android:text="Inviaci una mail"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
+
+                    <ImageButton
+                        android:id="@+id/maps_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:padding="6dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:id="@+id/facebook"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/face"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/com_facebook_favicon_white"
+                        android:visibility="visible" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/face"
+                        android:layout_toRightOf="@id/face"
+                        android:layout_centerInParent="true"
+                        android:text="Collegati a Facebook"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
 
             <ImageButton
-                android:id="@+id/cristoforo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
@@ -259,153 +402,12 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="6dp" />
 
-        </RelativeLayout>
+                </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/rateus"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_star_border_white_24dp"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/rat"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/rate"
-                android:layout_toRightOf="@id/rate"
-                android:text="Valuta Doctor Finder"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <ImageButton
-                android:id="@+id/colombo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:checked="true"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:padding="6dp" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/inviaci_mail"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
-
-            <ImageView
-                android:id="@+id/inviacela"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_mail_outline_black_24dp"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/rataci"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/inviacela"
-                android:layout_toRightOf="@id/inviacela"
-                android:text="Inviaci una mail"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <ImageButton
-                android:id="@+id/maps_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:checked="true"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:padding="6dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/facebook"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin">
-
-            <ImageView
-                android:id="@+id/face"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/com_facebook_favicon_white"
-                android:visibility="visible" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/face"
-                android:layout_toRightOf="@id/face"
-                android:layout_centerInParent="true"
-                android:text="Collegati a Facebook"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:checked="true"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:padding="6dp" />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
