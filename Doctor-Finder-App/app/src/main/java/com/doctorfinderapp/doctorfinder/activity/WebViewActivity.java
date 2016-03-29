@@ -1,20 +1,17 @@
 package com.doctorfinderapp.doctorfinder.activity;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
 
@@ -29,15 +26,13 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
         // Makes Progress bar Visible
         //getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
 
 
         setContentView(R.layout.activity_web_view);
-        ProgressBar progressBarWeb= (ProgressBar) findViewById(R.id.progressBarWeb);
-        final RelativeLayout rel1 =(RelativeLayout) findViewById(R.id.rel1);
+        ProgressBar progressBarWeb = (ProgressBar) findViewById(R.id.progressBarWeb);
+        final RelativeLayout rel1 = (RelativeLayout) findViewById(R.id.rel1);
 
         Bundle b = getIntent().getExtras();
         String URL = b.getString("URL");

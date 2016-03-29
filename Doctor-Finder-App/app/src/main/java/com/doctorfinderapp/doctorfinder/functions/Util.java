@@ -125,9 +125,9 @@ public class Util {
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
         }
 
-         /**for (int i = 0; i < id.size(); i++) {
-          *  Log.d("AMICO --> ", id.get(i));
-         }*/
+         for (int i = 0; i < id.size(); i++) {
+           Log.d("AMICO --> ", id.get(i));
+         }
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 

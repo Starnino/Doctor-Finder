@@ -161,7 +161,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                final String appPackageName = getPackageName();
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                 } catch (android.content.ActivityNotFoundException anfe) {
@@ -210,6 +210,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                                 }
                             });
 
+                }else{
+                    Snackbar.make(v, R.string.facebook_linked, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
                 }
 
 
@@ -256,6 +259,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+    }
+
 
 }
 
