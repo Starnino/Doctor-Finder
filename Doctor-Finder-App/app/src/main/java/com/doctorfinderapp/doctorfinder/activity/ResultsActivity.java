@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,8 +82,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         //ParseUser currentUser = ParseUser.getCurrentUser();
 
-        //download from db
-        showDataM();
+
 
         setContentView(R.layout.activity_results);
 
@@ -156,6 +156,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         ParseUser user = ParseUser.getCurrentUser();
         setProfileInformation(user);
+
+
+        //download from db
+        showDataM();
+        setupViewPager(viewPager);
 
     }
 
@@ -438,10 +443,14 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     }*/
 
                     //dialog.cancel();
-                    setupViewPager(viewPager);
+                    //setupViewPager(viewPager);
 
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
+                    DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+
+
+
                     Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
                     //dialog.cancel();
