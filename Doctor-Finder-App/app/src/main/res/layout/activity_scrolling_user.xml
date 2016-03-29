@@ -27,36 +27,19 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:fitsSystemWindows="true">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7"
-                android:cropToPadding="false"
-                android:background="@color/docfinder" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+            android:fitsSystemWindows="true"
+            android:layout_gravity="center">
 
                 <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
                     android:id="@+id/user_photo"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:src="@drawable/personavatar"
-                    android:gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:layout_margin="16dp"
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.7"/>
 
-
-
-            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_user"

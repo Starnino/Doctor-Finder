@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.Class.Person;
+import com.doctorfinderapp.doctorfinder.objects.Person;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 
 import java.util.List;

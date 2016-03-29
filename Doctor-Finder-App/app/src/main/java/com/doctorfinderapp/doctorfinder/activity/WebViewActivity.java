@@ -1,24 +1,39 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.activity;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+
+import com.doctorfinderapp.doctorfinder.R;
 
 
 public class WebViewActivity extends AppCompatActivity {
     WebView myWebView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        requestWindowFeature(Window.FEATURE_PROGRESS);
         super.onCreate(savedInstanceState);
+
+
+        // Makes Progress bar Visible
+        //getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
+
+
         setContentView(R.layout.activity_web_view);
+        ProgressBar progressBarWeb = (ProgressBar) findViewById(R.id.progressBarWeb);
+        final RelativeLayout rel1 = (RelativeLayout) findViewById(R.id.rel1);
+
         Bundle b = getIntent().getExtras();
         String URL = b.getString("URL");
         //Toast.makeText(this,URL,Toast.LENGTH_LONG).show();
@@ -28,8 +43,17 @@ public class WebViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.setWebViewClient(new WebViewClient());
+        final Activity activity = this;
+
+        myWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                rel1.setVisibility(View.VISIBLE);
+            }
+        });
+
         myWebView.loadUrl(URL);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -46,8 +70,9 @@ public class WebViewActivity extends AppCompatActivity {
         // system behavior (probably exit the activity)
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         // or call onBackPressed()
         return true;

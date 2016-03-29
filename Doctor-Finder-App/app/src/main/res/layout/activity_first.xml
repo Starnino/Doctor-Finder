@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="25dp"
         android:clickable="true"
         android:background="@drawable/logodc"
         tools:ignore="ContentDescription" />
@@ -25,26 +25,30 @@
         android:text="@string/action_search"
         android:layout_alignBottom="@id/search_button"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textColor="@color/white" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dcf_screen"
-        android:scaleType="centerCrop"
-        tools:ignore="ContentDescription" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/fab_margin">
+
+        tools:ignore="ContentDescription"
+        android:cropToPadding="false"
+        android:adjustViewBounds="true"
+
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
     <LinearLayout
         android:id="@+id/log_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp">
 
         <Button
             android:layout_width="match_parent"
@@ -56,16 +60,17 @@
             android:textAllCaps="false"/>
 
         <Button
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:text="@string/action_sign2_up"
             android:id="@+id/signin_button"
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
     </LinearLayout>
 
-    </RelativeLayout>
+
 
 </RelativeLayout>

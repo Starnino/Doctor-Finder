@@ -1,10 +1,13 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -111,20 +114,28 @@ public class Util {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (!user.getString(FACEBOOK).equals("true")) return friends;
-        if (user.getString(FRIENDS).equals(null)) return friends;
+        if (user.getString(FACEBOOK)!=null){
+            //user getstring puo essere null @starnino
+            if(!user.getString(FACEBOOK).equals("true")) return friends;
+
+        }
+
+        if (user.getString(FRIENDS)==null) return friends;
         if (user.getString(FACEBOOK).equals("true")) {
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
         }
-        for (int i = 0; i < id.size(); i++) {
-            Log.d("AMICO --> ", id.get(i));
-        }
+
+         for (int i = 0; i < id.size(); i++) {
+          // Log.d("AMICO --> ", id.get(i));
+         }
+        //Log.d("getUserFacebookfriend", ""+id.size());
+
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 
         friendQuery.whereContainedIn(ID, id);
 
-        //get query non in background
+        // todo get query non in background
         try {
             friends = friendQuery.find();
         } catch (ParseException e) {
@@ -232,9 +243,13 @@ public class Util {
             }
         });
 
+    }
 
-
-
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 
@@ -345,13 +360,28 @@ public class Util {
         }
 
 
-
-
-
-
     }
 
 
+    public static void sendFeedbackMail(Activity a){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "info@doctorfinderapp.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback app");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
+                " \n " +
+                " \n " +
+                " \n " + " \n " +
+                " \n " +
 
+                " \n " +
+                " \n " +
+                "Messaggio inviato tramite Doctor Finder ");
+        a.startActivity(Intent.createChooser(emailIntent, "Invia mail"));
+
+        // Verify that the intent will resolve to an activity
+        if (emailIntent.resolveActivity(a.getPackageManager()) != null) {
+            //startActivity(emailIntent);
+        }
+    }
 
 }

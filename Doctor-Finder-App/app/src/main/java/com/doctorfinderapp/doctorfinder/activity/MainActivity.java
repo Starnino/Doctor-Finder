@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -27,26 +26,21 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.doctorfinderapp.doctorfinder.Class.Person;
-import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
-import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
+import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -54,7 +48,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -88,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
             card_recent_search, card_recent_search_null;
+    private NavigationView navigationView;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -136,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
                     })
                     .show();
+        }else{
+
+            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
         }
 
         //set view for doctors visited
@@ -208,6 +206,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 else if (!FLAGCITY)  Snackbar.make(v, "Seleziona almeno una Provincia!", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
+                else if(!Util.isOnline(getApplicationContext()))
+                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+
                 else {
 
                     Intent intent = new Intent(MainActivity.this,
@@ -251,14 +253,19 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
+        navigationView = (NavigationView) findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting header
         //download user image
         ParseUser user=ParseUser.getCurrentUser();
+        setProfileInformation(user);
+    }
 
-        if(user!=null){
+    public void setProfileInformation(ParseUser user){
+        if(user != null
+                //&& GlobalVariable.SEMAPHORE
+                ){
             getUserImage(ParseUser.getCurrentUser());
             //after 2 sec re set image if is the first time
 
@@ -267,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 public void run() {
                     getUserImage(ParseUser.getCurrentUser());
                 }};
-            Timer timer2 = new Timer();
+            Timer timer = new Timer();
             timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
             TextView nome= (TextView) header.findViewById(R.id.name_user);
@@ -409,41 +416,28 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser()!=null){
+                if(ParseUser.getCurrentUser()!=null
+                        //&& GlobalVariable.SEMAPHORE
+                        ){
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
+                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
                 break;
 
-
             case R.id.inserisci_dottore:
-                Intent intent_dottore = new Intent(MainActivity.this, WebViewActivity.class);
+                Intent intent_dottore = new Intent(this, WebViewActivity.class);
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
-            case R.id.about:
-                Intent intent_about = new Intent(MainActivity.this, WebViewActivity.class);
-
-                Bundle about = new Bundle();
-                about.putString("URL",
-                        "https://github.com/Starnino/Doctor-Finder/blob/master/README.md" ); //Your id
-                intent_about.putExtras(about);
-                startActivity(intent_about);
-                break;
-
             case R.id.support:
-                Intent intent_supporto = new Intent(MainActivity.this, WebViewActivity.class);
-
-                Bundle supporto = new Bundle();
-                supporto.putString("URL",
-                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
-                intent_supporto.putExtras(supporto);
-                startActivity(intent_supporto);
+                Util.sendFeedbackMail(MainActivity.this);
                 break;
 
             case R.id.like:
@@ -490,7 +484,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             super.onBackPressed();
         }
     }
-
 
     private void getUserImage(ParseUser user){
         if(GlobalVariable.UserPropic==null) {
@@ -539,8 +532,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @Override
     protected void onResume() {
         //update image
-        if (ParseUser.getCurrentUser() != null)
+        if (ParseUser.getCurrentUser() != null) {
             getUserImage(ParseUser.getCurrentUser());
+            setProfileInformation(ParseUser.getCurrentUser());
+        }
         updateRecyclerDoctor();
         updateRecentSearch();
         super.onResume();
@@ -589,7 +584,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         // specify an adapter
         mAdapter = new DoctorAdapter(doctors);
         if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = 330;
+            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
             card_recent_doctor.getLayoutParams().height = 330;
         }
         else card_recent_doctor_null.getLayoutParams().height = 100;
@@ -651,7 +646,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     public void profile_click(View v){
-        if(ParseUser.getCurrentUser()!=null){
+
+        if (ParseUser.getCurrentUser()!=null){
             Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
             startActivity(intent_user);
         }

@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -13,9 +14,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.DoctorActivity;
+import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -81,11 +81,14 @@ public class FeedbackDialogFragment extends DialogFragment {
                 else if(text.getText().toString().split(" ").length < 10)
                     Toast.makeText(getContext(),"Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
 
-                else if (!checkBox.isChecked()) {
+                else if (!checkBox.isChecked())
                     Toast.makeText(getContext(),"Dichiara che la tua visita è stata veramente effettuata. " +
                             "Attenzione! Verranno effettuati severi controlli per la sua veririca", Toast.LENGTH_SHORT).show();
-                }
 
+
+                else if (!Util.isOnline(getActivity()))
+                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
                 else {
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();

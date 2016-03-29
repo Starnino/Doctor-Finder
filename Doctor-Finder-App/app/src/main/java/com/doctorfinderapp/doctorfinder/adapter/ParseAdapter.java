@@ -2,18 +2,16 @@ package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import com.doctorfinderapp.doctorfinder.DoctorActivity;
+import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -36,12 +34,13 @@ import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
  */
 public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHolder> {
 
-    public static final String NAME = "FirstName";
-    public static final String SURNAME = "LastName";
-    public static final String SPECIALIZATION = "Specialization";
-    public static final String FEEDBACK = "Feedback";
-    public static final String CITY = "Province";
-    public static final String EMAIL = "Email";
+    public final String NAME = "FirstName";
+    public final String SURNAME = "LastName";
+    public final String SPECIALIZATION = "Specialization";
+    public final String FEEDBACK = "Feedback";
+    public final String CITY = "Province";
+    public final String EMAIL = "Email";
+    public static SweetAlertDialog dialog = null;
 
     public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -64,16 +63,22 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         @Override
         public void onClick(View v) {
-            int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
-            Context context = v.getContext();
+            if (Util.isOnline(v.getContext())){
 
-            Intent intent = new Intent(context, DoctorActivity.class);
-            //------
-            intent.putExtra("index", position);
-            //------
-            context.startActivity(intent);
+                int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
+                Context context = v.getContext();
 
-            Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+                Intent intent = new Intent(context, DoctorActivity.class);
+                //------
+                intent.putExtra("index", position);
+                //------
+                context.startActivity(intent);
+
+                //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+            } else {
+                Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
         }
     }
 
@@ -113,10 +118,10 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
             @Override
             public void done(ParseObject doctorPhoto, ParseException e) {
 
-                if (doctorPhoto == null)
-                    Log.d("doctorphoto", "isNull");
+                if (doctorPhoto == null) {
+                    //Log.d("doctorphoto", "isNull");
 
-                else {
+                } else {
 
                     ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
                     if (e == null) {
