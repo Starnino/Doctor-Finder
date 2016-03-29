@@ -322,6 +322,12 @@
     <string name="good_login">Login effettuato</string>
     <string name="facebook_linked">Il tuo profilo di Facebook è stato associato al tuo utente</string>
     <string name="error_facebook">Qualcosa non va..</string>
+    <string name="no_connection_friend">C\'è qualche problema. Assicurati che la tua connessione a Internet funzioni!</string>
+    <string name="effettua_login">Fai il login per visulizzare il tuo profilo!</string>
+    <string name="effettua_login_facebook">Effettua il login con Facebook</string>
+    <string name="friends_tip">Amici che consigliano questo medico</string>
+    <string name="connection_control">Controlla la tua connessione a Internet!</string>
+    <string name="tip_dcf_user">Connettiti a Facebook per una migliore esperienza di navigazione su Doctor Finder e per conoscere i feedback e i pareri dei tuoi amici</string>
 
 
 </resources>
