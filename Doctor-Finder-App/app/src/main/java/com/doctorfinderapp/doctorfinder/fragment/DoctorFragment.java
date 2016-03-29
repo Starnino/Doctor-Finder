@@ -4,9 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,14 +18,12 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.objects.Doctor;
-import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.google.android.gms.maps.GoogleMap;
-
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -34,11 +31,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 
 public class DoctorFragment extends Fragment {
 
+    private static int index;
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -54,13 +50,8 @@ public class DoctorFragment extends Fragment {
     private String DOCTOR_PHONE;
     private String DOCTOR_DATE;
     private String DOCTOR_PRICE;
-    private ComponentName cn;
-    private List<ParseObject> doctors;
-    private Doctor currentDoctor;
     private double LAT;
     private double LONG;
-    private static int index;
-    public  GoogleMap googleMap;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
@@ -113,7 +104,7 @@ public class DoctorFragment extends Fragment {
         DOCTOR_DATE = DOCTORTHIS.getString("Visit");
 
         ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
-        final String[][]latLong = Util.setPosition(position);
+        final String[][] latLong = Util.setPosition(position);
         RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
         workMaps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +138,7 @@ public class DoctorFragment extends Fragment {
 
         /**set recycler view if possible*/
         if (ParseUser.getCurrentUser() != null
-                //& GlobalVariable.SEMAPHORE
+            //& GlobalVariable.SEMAPHORE
                 ) {
             mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
 
@@ -164,14 +155,13 @@ public class DoctorFragment extends Fragment {
             }
 
             mRecyclerView.setAdapter(mAdapter);
-        }
-
-        else suggest_null.setText("Per conoscere gli amici che hanno recensito\nquesto dottore devi essere loggato a Facebook");
+        } else
+            suggest_null.setText("Per conoscere gli amici che hanno recensito\nquesto dottore devi essere loggato a Facebook");
 
         if (DOCTOR_SEX)
-            TitoloDot="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+            TitoloDot = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
-            TitoloDot="Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+            TitoloDot = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
         nameProfile.setText(TitoloDot);
 
@@ -192,10 +182,10 @@ public class DoctorFragment extends Fragment {
 
         special.setText(text);
 
-        if(DOCTOR_FEEDBACK!=null){
+        if (DOCTOR_FEEDBACK != null) {
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
-        }else{
+        } else {
             //Log.d("DoctorFragment","Feedback is null");
         }
 
@@ -211,7 +201,6 @@ public class DoctorFragment extends Fragment {
         });
 
 
-
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
         feedback_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,12 +212,12 @@ public class DoctorFragment extends Fragment {
 
                 ft2.commit();*/
 
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
-                    ft.replace(R.id.frame_doctor,fragment);
-                    ft.addToBackStack(null);
-                    ft.commit();
+                ft.replace(R.id.frame_doctor, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -238,7 +227,7 @@ public class DoctorFragment extends Fragment {
 
     private void openMaps(double lat, double lng) {
 
-        String uristring = "geo:" + lat + "," + lng+"?q="+lat+","+lng+"("+TitoloDot+")";
+        String uristring = "geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + TitoloDot + ")";
         //?q=<lat>,<long>(Label+Name)
         Log.d(TAG, uristring);
         Uri gmmIntentUri = Uri.parse(uristring);
@@ -247,7 +236,7 @@ public class DoctorFragment extends Fragment {
         startActivity(mapIntent);
     }
 
-    private void openWhatsapp(String number,String doctorname){
+    private void openWhatsapp(String number, String doctorname) {
         Intent sendIntent = new Intent();
 
         sendIntent.setAction(Intent.ACTION_SEND);

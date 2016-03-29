@@ -26,10 +26,13 @@ import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,7 +44,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     public final String USER_EMAIL = "email";
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private FacebookAdapter mAdapter;
+    private static FacebookAdapter mAdapter;
     private String Title = "";
     private RoundedImageView profile;
     private String firstName = "";
@@ -112,7 +115,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
             //set adapter to recycler
 
-            mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+            //mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+            mAdapter = new FacebookAdapter(new ArrayList<ParseObject>());
+            Util.getUserFacebookFriendsInBackground(user);
+
+
 
             if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
 
@@ -222,6 +229,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+
+    public static void notifyDownloaded(ArrayList<ParseObject> friends){
+        mAdapter.notifyDataSetChanged();
+    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
