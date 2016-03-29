@@ -448,16 +448,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+                    DoctorListFragment.setProgressBar(View.GONE);
 
 
 
                     Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
-                    //dialog.cancel();
-                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Oops...")
-                            .setContentText("Qualcosa è andato storto!")
-                            .show();
+
                 }
             }
         });
