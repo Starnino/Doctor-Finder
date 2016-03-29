@@ -151,8 +151,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void done(ParseObject doctorPhoto, ParseException e) {
 
-                if (doctorPhoto == null)
+                if (doctorPhoto == null) {
                     Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
+                }
 
                 else {
 
