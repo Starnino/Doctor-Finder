@@ -114,7 +114,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         Snackbar snackbar = Snackbar
                                 .make(v, "Cercando la tua posizione", Snackbar.LENGTH_LONG);
 
-                        snackbar.show();
+                        snackbar.show();s
                         LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                         if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                            // Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
@@ -157,10 +157,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         ParseUser user = ParseUser.getCurrentUser();
         setProfileInformation(user);
 
-
+        setupViewPager(viewPager);
         //download from db
         showDataM();
-        setupViewPager(viewPager);
+
+
 
     }
 
@@ -195,6 +196,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -213,6 +215,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             }
         });
         viewPager.setAdapter(adapter);
+
         tabs.setupWithViewPager(viewPager);
         fab.show();
     }
@@ -387,10 +390,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            GlobalVariable.DOCTORS=new ArrayList<>();
             super.onBackPressed();
         }
 
@@ -449,7 +455,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
-
+                    viewPager.getAdapter().notifyDataSetChanged();
 
 
                     Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
