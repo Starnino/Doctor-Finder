@@ -27,6 +27,7 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.maps.GoogleMap;
 
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -146,17 +147,17 @@ public class DoctorFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         /**set recycler view if possible*/
-        if (ParseUser.getCurrentUser() != null
-                //& GlobalVariable.SEMAPHORE
-                ) {
+        if (ParseUser.getCurrentUser() != null && ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
             mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
 
             ImageView fb_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
-            fb_tip.setVisibility(View.INVISIBLE);
+            fb_tip.setVisibility(View.GONE);
+
             int adapter_count = mAdapter.getItemCount();
 
             if (adapter_count != 0) {
-                mRecyclerView.getLayoutParams().height = 300;
+                mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+
                 if (adapter_count > 1)
                     suggest_null.setText(adapter_count + " amici trovati!");
                 else
@@ -166,7 +167,6 @@ public class DoctorFragment extends Fragment {
             mRecyclerView.setAdapter(mAdapter);
         }
 
-        else suggest_null.setText("Per conoscere gli amici che hanno recensito\nquesto dottore devi essere loggato a Facebook");
 
         if (DOCTOR_SEX)
             TitoloDot="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
@@ -174,9 +174,7 @@ public class DoctorFragment extends Fragment {
             TitoloDot="Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
         nameProfile.setText(TitoloDot);
-
         years.setText(DOCTOR_EXPERIENCE);
-
         cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
         workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
         price.setText(DOCTOR_PRICE);

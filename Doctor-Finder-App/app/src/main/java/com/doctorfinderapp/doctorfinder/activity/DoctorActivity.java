@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
@@ -29,6 +31,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -198,16 +201,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
         fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
         fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
-        //fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
-        //fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
 
         //onClick button
         fabfeedback.setOnClickListener(this);
         fab_email.setOnClickListener(this);
         fab_phone.setOnClickListener(this);
         fab_message.setOnClickListener(this);
-        //fab_telegram.setOnClickListener(this);
-        //fab_feedback.setOnClickListener(this);
 
 
         // Begin the transaction
@@ -293,7 +292,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fabfeedback:
 
                 if (ParseUser.getCurrentUser() != null) {
-                    Log.d("dio", "cane");
+                    //Log.d("dio", "cane");
                     openFeedbackDialog();
 
                 } else {
@@ -305,22 +304,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
 
-
-            /*case R.id.fab_feedback:
-
-                if (ParseUser.getCurrentUser() != null) {
-                    Log.d("dio", "cane");
-                    openFeedbackDialog();
-
-                } else {
-                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Feedback")
-                            .setContentText("Devi registrarti per lasciare un feedback")
-                            .setConfirmText("OK")
-                            .show();
-                }
-                break;
-            */
 
             case R.id.fab_email:
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(

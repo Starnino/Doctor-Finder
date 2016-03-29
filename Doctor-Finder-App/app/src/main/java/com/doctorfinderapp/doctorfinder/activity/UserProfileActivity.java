@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,9 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.Collection;
+import java.util.TimerTask;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,6 +54,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private TextView email;
     private TextView friend_null;
     private String email_users;
+    private CardView card_friend;
 
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_visual,
@@ -59,6 +64,17 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!ParseFacebookUtils.isLinked(ParseUser.getCurrentUser()) && !GlobalVariable.FLAG_DIALOG) {
+            SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                    .setTitleText("Doctor Finder & Facebook")
+                    .setContentText(getString(R.string.tip_dcf_user))
+                    .setCustomImage(R.drawable.facebook_doctor_finder_icon);
+
+            dialog.getProgressHelper().setRimColor(R.color.facebook_color);
+            dialog.show();
+            GlobalVariable.FLAG_DIALOG = true;
+        }
 
 
         //scrolling
@@ -73,6 +89,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         fab_share.setOnClickListener(this);
 
         friend_null = (TextView) findViewById(R.id.friend_null);
+        card_friend = (CardView) findViewById(R.id.card_friends);
 
         if (user != null) {
 
@@ -101,29 +118,41 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
 
         if (Util.isOnline(getApplicationContext())) {
-            //recycler view
-            mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
 
-            mRecyclerView.setHasFixedSize(true);
+            if (ParseFacebookUtils.isLinked(user)) {
+                //recycler view
+                mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
 
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                mRecyclerView.setHasFixedSize(true);
 
-            mRecyclerView.setLayoutManager(mLayoutManager);
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-            //set adapter to recycler
+                mRecyclerView.setLayoutManager(mLayoutManager);
 
-            mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+                //set adapter to recycler
 
-            if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
+                Log.d("UTENTE --> ", "RECYCLER");
 
-            //if friends.size() is not empty set height to 100dp
-            if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
+                mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
 
-            mRecyclerView.setAdapter(mAdapter);
+                if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.GONE);
+
+                //if friends.size() is not empty set height to 160dp
+                if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height =
+                        (int) getResources().getDimension(R.dimen.doctor_item_height);
+
+                mRecyclerView.setAdapter(mAdapter);
+
+            } else  card_friend.setVisibility(View.GONE);
 
         } else {
-            friend_null.setText("C'è qualche problema. Assicurati che la tua connessione a Internet funzioni!");
-            friend_null.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+            if (ParseFacebookUtils.isLinked(user)) {
+
+                friend_null.setText(R.string.no_connection_friend);
+                friend_null.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+            } else card_friend.setVisibility(View.GONE);
         }
 
         //nameProfile.setText(Title);
@@ -204,6 +233,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                                                 .setAction("Action", null).show();
 
                                         FacebookProfile.getGraphRequest(user);
+
                                         Log.d("MyApp", "Woohoo, user logged in with Facebook!");
                                     } else {
                                         Snackbar.make(v, R.string.error_facebook, Snackbar.LENGTH_SHORT)
@@ -268,6 +298,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
 
