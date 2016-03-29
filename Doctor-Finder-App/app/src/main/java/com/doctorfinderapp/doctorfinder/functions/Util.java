@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -360,6 +361,25 @@ public class Util {
     }
 
 
+    public static void sendFeedbackMail(Activity a){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "info@doctorfinderapp.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback app");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
+                " \n " +
+                " \n " +
+                " \n " + " \n " +
+                " \n " +
 
+                " \n " +
+                " \n " +
+                "Messaggio inviato tramite Doctor Finder ");
+        a.startActivity(Intent.createChooser(emailIntent, "Invia mail"));
+
+        // Verify that the intent will resolve to an activity
+        if (emailIntent.resolveActivity(a.getPackageManager()) != null) {
+            //startActivity(emailIntent);
+        }
+    }
 
 }

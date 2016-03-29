@@ -1,6 +1,5 @@
 package com.doctorfinderapp.doctorfinder.activity;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,18 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.LayoutDirection;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +24,6 @@ import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.melnykov.fab.ObservableScrollView;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
@@ -75,7 +68,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
         final ParseUser user = ParseUser.getCurrentUser();
 
-        fab_share= (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
+        fab_share = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
         fab_share.setOnClickListener(this);
 
         friend_null = (TextView) findViewById(R.id.friend_null);
@@ -125,7 +118,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             //if friends.size() is not empty set height to 100dp
             if (mAdapter.getItemCount() != 0) {
                 mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
-                mRecyclerView.getLayoutParams().width  = (int) getResources().getDimension(R.dimen.doctor_item_width);
+                mRecyclerView.getLayoutParams().width = (int) getResources().getDimension(R.dimen.doctor_item_width);
             }
 
             mRecyclerView.setAdapter(mAdapter);
@@ -149,9 +142,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
-
-
 
 
         RelativeLayout condividi = (RelativeLayout) findViewById(R.id.condividi);
@@ -188,24 +178,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                                      {
                                          @Override
                                          public void onClick(View view) {
-                                             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                                     "mailto","info@doctorfinderapp.com", null));
-                                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback app");
-                                             emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
-                                                     " \n " +
-                                                     " \n " +
-                                                     " \n " +" \n " +
-                                                     " \n " +
-
-                                                     " \n " +
-                                                     " \n " +
-                                                     "Messaggio inviato tramite Doctor Finder ");
-                                             startActivity(Intent.createChooser(emailIntent, "Invia mail"));
-
-                                             // Verify that the intent will resolve to an activity
-                                             if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                                                 //startActivity(emailIntent);
-                                             }
+                                            Util.sendFeedbackMail(UserProfileActivity.this);
                                          }
                                      }
 
@@ -214,23 +187,23 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
         RelativeLayout facebukkalo = (RelativeLayout) findViewById(R.id.facebook);
         facebukkalo.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(final View v) {
+                Log.d("Facebook link", "is Linked" + user + ParseFacebookUtils.isLinked(user));
                 if (!ParseFacebookUtils.isLinked(user)) {
                     ParseFacebookUtils.linkWithReadPermissionsInBackground(user, UserProfileActivity.this,
                             (Collection<String>) GlobalVariable.permissions,
                             new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    Log.d("Facebook link", e+"EXCEPTION");
+                                    if(e!=null)Log.d("Facebook link", e + "EXCEPTION");
                                     if (ParseFacebookUtils.isLinked(user)) {
                                         Snackbar.make(v, R.string.facebook_linked, Snackbar.LENGTH_SHORT)
                                                 .setAction("Action", null).show();
 
                                         FacebookProfile.getGraphRequest(user);
                                         Log.d("MyApp", "Woohoo, user logged in with Facebook!");
-                                    }else{
+                                    } else {
                                         Snackbar.make(v, R.string.error_facebook, Snackbar.LENGTH_SHORT)
                                                 .setAction("Action", null).show();
                                     }
@@ -240,16 +213,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 }
 
 
-
-                }});}
-
-
-
-
-
-
-
-
+            }
+        });
+    }
 
 
     public boolean onOptionsItemSelected(MenuItem item) {

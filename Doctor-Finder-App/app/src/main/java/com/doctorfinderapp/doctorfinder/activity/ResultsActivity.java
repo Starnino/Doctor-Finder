@@ -97,7 +97,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing"); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
             }
@@ -184,7 +184,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
 
-    // Add Fragments to Tabs------------------------------------------------------------------------
+    // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
@@ -270,19 +270,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
             case R.id.support:
-                Intent intent_supporto = new Intent(this, WebViewActivity.class);
-
-                Bundle supporto = new Bundle();
-                supporto.putString("URL",
-                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
-                intent_supporto.putExtras(supporto);
-                startActivity(intent_supporto);
+                Util.sendFeedbackMail(ResultsActivity.this);
                 break;
 
             case R.id.like:
@@ -350,8 +344,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }//---------------------------------------------------------------------------------------------
-
+    }
 
     //switch fab
     public void switchFAB(int position){

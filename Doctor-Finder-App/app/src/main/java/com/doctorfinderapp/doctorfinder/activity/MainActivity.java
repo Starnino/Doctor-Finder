@@ -427,23 +427,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 break;
 
             case R.id.inserisci_dottore:
-                Intent intent_dottore = new Intent(MainActivity.this, WebViewActivity.class);
+                Intent intent_dottore = new Intent(this, WebViewActivity.class);
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
             case R.id.support:
-                Intent intent_supporto = new Intent(MainActivity.this, WebViewActivity.class);
-
-                Bundle supporto = new Bundle();
-                supporto.putString("URL",
-                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
-                intent_supporto.putExtras(supporto);
-                startActivity(intent_supporto);
+                Util.sendFeedbackMail(MainActivity.this);
                 break;
 
             case R.id.like:
