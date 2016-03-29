@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -30,6 +32,7 @@ public class DoctorListFragment extends Fragment {
     private static ParseAdapter parseAdapter;
     private List<ParseObject> DOCTORS;
     private FloatingActionButton fab;
+    private static ProgressBar progressBar;
 
 
     public DoctorListFragment() {
@@ -57,6 +60,7 @@ public class DoctorListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_doctorlist,
                 container, false);
 
+        progressBar= (ProgressBar) rootView.findViewById(R.id.progressBarResults);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.result_recyclerview);
 
@@ -89,6 +93,10 @@ public class DoctorListFragment extends Fragment {
     public static void refreshDoctors(List<ParseObject> filters){
         parseAdapter.animateTo(filters);
         mRecyclerView.scrollToPosition(0);
+    }
+
+    public static void setProgressBar(int visibility){
+        progressBar.setVisibility(visibility);
     }
 
 }
