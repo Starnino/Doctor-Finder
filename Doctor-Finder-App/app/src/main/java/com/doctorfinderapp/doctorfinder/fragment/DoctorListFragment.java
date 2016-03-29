@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.ParseObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +31,19 @@ public class DoctorListFragment extends Fragment {
     private List<ParseObject> DOCTORS;
     private FloatingActionButton fab;
 
+
+    public DoctorListFragment() {
+    }
+
+    public static DoctorListFragment newInstance(int index) {
+        DoctorListFragment doc = new DoctorListFragment();
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+
+        doc.setArguments(args);
+        return doc;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +53,12 @@ public class DoctorListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
+        super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_doctorlist,
+                container, false);
+
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.result_recyclerview);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -61,7 +77,7 @@ public class DoctorListFragment extends Fragment {
         //attach fab to recycler view on scroll
         fab.attachToRecyclerView(mRecyclerView);
 
-        return mRecyclerView;
+        return rootView;
     }
 
 

@@ -61,12 +61,17 @@ public class FeedbackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        super.onCreateView(inflater, container, savedInstanceState);
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
         String EMAIL = DOCTORTHIS.getString("Email");
 
-        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_feedback,
+                container, false);
+
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recyclerview);
 
         FloatingActionButton fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
         fabfeedback.attachToRecyclerView(mRecyclerView);
@@ -112,7 +117,7 @@ public class FeedbackFragment extends Fragment {
             nullAdapter = new FeedbackAdapter(nullArray);
             mRecyclerView.setAdapter(nullAdapter);
         }
-        return mRecyclerView;
+        return rootView;
     }
 
 
