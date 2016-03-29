@@ -135,11 +135,13 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                 mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
 
-                if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.GONE);
+                //if friends.size() is not empty set height to dimen dp
+                if (mAdapter.getItemCount() != 0) {
 
-                //if friends.size() is not empty set height to 160dp
-                if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height =
-                        (int) getResources().getDimension(R.dimen.doctor_item_height);
+                    friend_null.setVisibility(View.GONE);
+                    mRecyclerView.getLayoutParams().height =
+                            (int) getResources().getDimension(R.dimen.doctor_item_height);
+                }
 
                 mRecyclerView.setAdapter(mAdapter);
 

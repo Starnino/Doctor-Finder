@@ -195,6 +195,7 @@
                     android:id="@+id/friend_null"/>
 
                 <android.support.v7.widget.RecyclerView
+                    android:paddingTop="20dp"
                     android:id="@+id/my_recycler_friends"
                     android:scrollbars="horizontal"
                     android:layout_width="match_parent"
