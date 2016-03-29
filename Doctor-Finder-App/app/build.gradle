@@ -1,20 +1,31 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'doctorfinderkeystore'
+            keyPassword 'mianonna'
+            storeFile file('/home/fedebyes/workspace/keystores/doctorfinder.jks')
+            storePassword 'mianonna'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
-      applicationId "com.doctorfinderapp.doctorfinder"
+        applicationId "com.doctorfinderapp.doctorfinder"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 4
-        versionName "0.6"
+        versionCode 6
+        versionName "0.8"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -25,7 +36,7 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
