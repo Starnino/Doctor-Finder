@@ -18,9 +18,12 @@
     <dimen name="image_final_width">20dp</dimen>
     <dimen name="image_width">100dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
-
+    <dimen name="button_height">36dp</dimen>
     <!--New social Share-->
     <dimen name="dialog_padding">24dp</dimen>
     <dimen name="dialog_button_padding">8dp</dimen>
+
+    <dimen name="doctor_item_height">130dp</dimen>
+    <dimen name="doctor_item_width">130dp</dimen>
 
 </resources>

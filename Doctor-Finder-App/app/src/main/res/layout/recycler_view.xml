@@ -7,6 +7,5 @@
     android:clipToPadding="false"
     android:paddingBottom="@dimen/fab_margin"
     android:paddingTop="@dimen/fab_margin"
-    android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:padding="8dp" />

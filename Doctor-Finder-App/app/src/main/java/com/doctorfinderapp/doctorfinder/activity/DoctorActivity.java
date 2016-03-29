@@ -1,21 +1,16 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,7 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
@@ -51,12 +47,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     //Doctor information
     private static int index;
     private static boolean isFabOpen = false;
-    private static com.melnykov.fab.FloatingActionButton fabfeedback;
+    public static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
     private static Context c;
     private static FragmentManager p;
     public final String EMAIL = "Email";
-    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone, fab_feedback;
+    private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
@@ -343,47 +339,16 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
                 // Verify that the intent will resolve to an activity
                 if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(emailIntent);
+                    //startActivity(emailIntent);
                 }
                 break;
 
             case R.id.fab_phone:
-                //try {
+
                     final String no = DOCTORTHIS.getString("Cellphone");
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:"+no));
                     startActivity(intent);
-                    /*new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Sicuro di chiamare?")
-                            .setContentText("Stai contattando un professionista, non abusare del suo numero")
-                            .setConfirmText("Si,voglio chiamare")
-                            .setCancelText("No")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-
-                                    //Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + no));
-                                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                                    intent.setData(Uri.parse("tel:" + no));
-                                    startActivity(intent);
-                                    /*if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                        // TODO: Consider calling
-                                        //    ActivityCompat#requestPermissions
-                                        // here to request the missing permissions, and then overriding
-                                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                        //                                          int[] grantResults)
-                                        // to handle the case where the user grants the permission. See the documentation
-                                        // for ActivityCompat#requestPermissions for more details.
-
-                                        ActivityCompat.requestPermissions(this,
-                                                new String[]{Manifest.permission.},
-                                                MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-                                        return;
-                                    }
-                                    startActivity(callintent);
-                                }
-                            })
-                            .show();*/
 
 
                 break;
@@ -395,38 +360,16 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void sendSMS(){
-        /*Intent intent;
-        String no = DOCTORTHIS.getString("Cellphone");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-        {
-            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this);
 
-            intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + no));
-
-            if (defaultSmsPackageName != null)
-            {
-                intent.setPackage(defaultSmsPackageName);
-            }
-        }
-        else
-        {
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setType("vnd.android-dir/mms-sms");
-            intent.putExtra("address", no);
-        }
-        startActivity(intent);
-        */
         final String no = DOCTORTHIS.getString("Cellphone");
-        //String number = "12346556";  // The number on which you want to send SMS
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", no, null)));
 
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", no, null)));
 
     }
 
 
     private void openFeedbackDialog() {
 
-        //Log.d("DoctorActivity",DOCTOR_EMAIL.toString());
         DialogFragment newFragment = new FeedbackDialogFragment().newInstance(DOCTOR_EMAIL);
         newFragment.show(getSupportFragmentManager(), "feedback");
 
@@ -477,4 +420,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
+
+
 }

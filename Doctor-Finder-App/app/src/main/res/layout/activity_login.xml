@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".access.LoginActivity"
+    tools:context=".activity.access.LoginActivity"
     android:background="@color/docfinder"
     android:theme="@style/AppThemeDark">
 
@@ -16,7 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/close"
-            android:background="@drawable/ic_close_white_24dp" />
+            android:background="@drawable/ic_close_white_24dp"
+            android:layout_marginTop="5dp" />
     </LinearLayout>
 
     <ImageView

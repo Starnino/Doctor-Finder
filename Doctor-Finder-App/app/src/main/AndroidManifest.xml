@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme"
         android:largeHeap="true">
         <activity
-            android:name=".access.SplashActivity"
+            android:name=".activity.access.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -59,36 +59,36 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".access.LoginActivity"
-            android:parentActivityName=".access.FirstActivity"
+            android:name=".activity.access.LoginActivity"
+            android:parentActivityName=".activity.access.FirstActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+                android:value=".activity.access.FirstActivity" />
         </activity>
         <activity
-            android:name=".access.FirstActivity"
+            android:name=".activity.access.FirstActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".access.SignupActivity"
-            android:parentActivityName=".access.FirstActivity"
+            android:name=".activity.access.SignupActivity"
+            android:parentActivityName=".activity.access.FirstActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.doctorfinderapp.doctorfinder.access.FirstActivity" />
+                android:value=".activity.access.FirstActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ResultsActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".activity.ResultsActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.doctorfinderapp.doctorfinder.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
-        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".activity.UserProfileActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -106,13 +106,11 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="wIgqO6QfRM4vFuD3pWJi" />
 
-        <activity android:name=".WebViewActivity" />
-        <activity
-            android:name=".Qurami.MainActivityQurami"
-            android:screenOrientation="portrait" />
+        <activity android:name=".activity.WebViewActivity" />
+
 
         <activity
-            android:name=".DoctorActivity"
+            android:name=".activity.DoctorActivity"
             android:label="@string/title_activity_doctor"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -123,10 +121,10 @@
 
 
         <!--Intro-->
-        <activity android:name=".Intro.DefaultIntro"
+        <activity android:name=".activity.intro.DefaultIntro"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".Informativa"
+        <activity android:name=".activity.Informativa"
             android:screenOrientation="portrait"/>
 
 

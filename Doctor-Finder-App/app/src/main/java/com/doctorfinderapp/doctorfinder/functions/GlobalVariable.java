@@ -1,8 +1,7 @@
 package com.doctorfinderapp.doctorfinder.functions;
 
 import android.graphics.Bitmap;
-import com.doctorfinderapp.doctorfinder.Class.Doctor;
-import com.parse.ParseFile;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +22,6 @@ public class GlobalVariable {
     public static List<byte[]> DOCTORPHOTO;
     public static ArrayList<ArrayList<String>> research_special_parameters = new ArrayList<>();
     public static ArrayList<ArrayList<String>> research_city_parameters = new ArrayList<>();
-    public static boolean SEMAPHORE = false;
-
+   // public static boolean SEMAPHORE = false;
+public static String URLDoctorForm= "http://goo.gl/forms/0zI6yS6ox6";
 }

@@ -1,4 +1,4 @@
-package com.doctorfinderapp.doctorfinder.Class;
+package com.doctorfinderapp.doctorfinder.objects;
 
 
 public class Person {

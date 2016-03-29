@@ -1,10 +1,9 @@
-package com.doctorfinderapp.doctorfinder;
+package com.doctorfinderapp.doctorfinder.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -18,8 +17,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,15 +24,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.doctorfinderapp.doctorfinder.Qurami.MainActivityQurami;
-import com.doctorfinderapp.doctorfinder.access.SplashActivity;
+
+import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorMapsFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
@@ -52,7 +45,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -105,7 +97,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8/edit?usp=sharing"); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
             }
@@ -168,7 +160,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
     public void setProfileInformation(ParseUser user){
-        if (user != null && GlobalVariable.SEMAPHORE) {
+        if (user != null
+                //&& GlobalVariable.SEMAPHORE
+                ) {
             getUserImage(user);
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
@@ -190,7 +184,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
 
-    // Add Fragments to Tabs------------------------------------------------------------------------
+    // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new DoctorListFragment(), "Lista");
@@ -260,7 +254,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser() != null && GlobalVariable.SEMAPHORE){
+                if(ParseUser.getCurrentUser() != null
+                       // && GlobalVariable.SEMAPHORE
+                        ){
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
@@ -274,19 +270,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
                 Bundle dottore = new Bundle();
                 dottore.putString("URL",
-                        "https://docs.google.com/forms/d/181fRG5ppgIeGdW6VjJZtXz3joc3ldIfCunl58GPcxi8" ); //Your id
+                        GlobalVariable.URLDoctorForm );
                 intent_dottore.putExtras(dottore);
                 startActivity(intent_dottore);
                 break;
 
             case R.id.support:
-                Intent intent_supporto = new Intent(this, WebViewActivity.class);
-
-                Bundle supporto = new Bundle();
-                supporto.putString("URL",
-                        "https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/prefill" );
-                intent_supporto.putExtras(supporto);
-                startActivity(intent_supporto);
+                Util.sendFeedbackMail(ResultsActivity.this);
                 break;
 
             case R.id.like:
@@ -354,8 +344,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }//---------------------------------------------------------------------------------------------
-
+    }
 
     //switch fab
     public void switchFAB(int position){
