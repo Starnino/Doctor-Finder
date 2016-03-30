@@ -114,16 +114,12 @@ public class Util {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (user.getString(FACEBOOK)!=null){
-            //user getstring puo essere null @starnino
+        if (user.getString(FACEBOOK)!=null)
             if(!user.getString(FACEBOOK).equals("true")) return friends;
 
-        }
-
         if (user.getString(FRIENDS)==null) return friends;
-        if (user.getString(FACEBOOK).equals("true")) {
+        if (user.getString(FACEBOOK).equals("true"))
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
-        }
 
          for (int i = 0; i < id.size(); i++) {
           // Log.d("AMICO --> ", id.get(i));
@@ -135,7 +131,6 @@ public class Util {
 
         friendQuery.whereContainedIn(ID, id);
 
-        // todo get query non in background
         try {
             friends = friendQuery.find();
         } catch (ParseException e) {
@@ -145,110 +140,11 @@ public class Util {
         return friends;
     }
 
-    public static void getUserFacebookFriendsInBackground(ParseUser user) {
-        List<String> id = new ArrayList<>();
-
-        if (user == null) return ;
-        if (user.getString(FACEBOOK)!=null){
-            //user getstring puo essere null @starnino
-            if(!user.getString(FACEBOOK).equals("true")) return ;
-
-        }
-
-        if (user.getString(FRIENDS)==null) return ;
-        if (user.getString(FACEBOOK).equals("true")) {
-            id = Arrays.asList(user.get(FRIENDS).toString().split(","));
-        }
-
-        for (int i = 0; i < id.size(); i++) {
-            // Log.d("AMICO --> ", id.get(i));
-        }
-        //Log.d("getUserFacebookfriend", ""+id.size());
-
-
-        ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
-
-        friendQuery.whereContainedIn(ID, id);
-
-
-
-
-        friendQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e!=null){
-                    ArrayList<ParseObject>friends=(ArrayList<ParseObject> )objects;
-
-
-                }
-            }
-        });
-
-
-        return ;
-    }
-
-
-
-    public static List<ParseObject> getUserFeFInBackground(ParseUser user, String doctor_email) {
+    public static List<ParseObject> getUserFacebookFriendsAndFeedback(ParseUser user, String doctor_email, List<ParseObject> friends_objects) {
 
         //Log.d("EMAIL DOCTOR --> ", doctor_email);
 
-        List<ParseObject> friends = getUserFacebookFriends(user);
-
-        ArrayList<String> friends_email = new ArrayList<>();
-
-        for (int i = 0; i < friends.size(); i++)
-            friends_email.add(friends.get(i).getString(EMAIl));
-
-        ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
-        feedback.whereEqualTo(DOCTOR_EMAIL, doctor_email);
-        feedback.whereContainedIn(USER_EMAIl, friends_email);
-        feedback.whereEqualTo(ANONYMOUS, false);
-
-        friends = new ArrayList<>();
-
-        feedback.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                //if (e==null)friends=objects;
-            }
-        });
-
-
-
-        for (int i = 0; i < friends.size(); i++) {
-            //Log.d("ALL FEEDBACK --> ", friends.get(i).getString(USER_EMAIl));
-        }
-
-        friends_email.clear();
-        for (int i = 0; i < friends.size(); i++) {
-            friends_email.add(friends.get(i).getString(USER_EMAIl));
-        }
-
-        ParseQuery<ParseObject> ret = ParseQuery.getQuery(USER);
-        ret.whereContainedIn(EMAIl, friends_email);
-
-        try {
-            friends = new ArrayList<>(ret.find());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < friends.size(); i++) {
-            //Log.d("SUGGEST FEEDBACK --> ", friends.get(i).getString(EMAIl));
-        }
-
-        return friends;
-    }
-
-
-    public static List<ParseObject> getUserFacebookFriendsAndFeedback(ParseUser user, String doctor_email) {
-
-        //Log.d("EMAIL DOCTOR --> ", doctor_email);
-
-        List<ParseObject> friends = getUserFacebookFriends(user);
+        List<ParseObject> friends = friends_objects;
 
         ArrayList<String> friends_email = new ArrayList<>();
 

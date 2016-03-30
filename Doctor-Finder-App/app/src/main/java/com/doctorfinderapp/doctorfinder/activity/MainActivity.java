@@ -42,6 +42,7 @@ import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         mContext = this;
 
+        View parentLayout = findViewById(R.id.drawer_main);
+
         //Util.copyAll();
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     .show();
         }else{
 
-            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+            Snackbar.make(parentLayout, R.string.good_login, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
         }
 
@@ -207,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         .setAction("Action", null).show();
 
                 else if(!Util.isOnline(getApplicationContext()))
-                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(v, R.string.connection_control, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
 
                 else {
@@ -422,7 +425,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
-                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                else Snackbar.make(mDrawerLayout, R.string.effettua_login, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 

@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
@@ -29,6 +32,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -119,25 +123,31 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         if (email == null) {
             DOCTORTHIS = doctors.get(index);
+
         } else {
-            ParseQuery doctorQuery = ParseQuery.getQuery("Doctor");
+
+            ParseQuery<ParseObject> doctorQuery = ParseQuery.getQuery("Doctor");
             doctorQuery.whereEqualTo(EMAIL, email);
-            try {
-                DOCTORTHIS = doctorQuery.getFirst();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            doctorQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    DOCTORTHIS = object;
+                    new GetSet().execute();
+                }
+            });
         }
 
+        // Begin the transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
+        ft.replace(R.id.frame_doctor, doctorFragment);
+
+        ft.commit();
+
+        p = getSupportFragmentManager();
 
         doctors = GlobalVariable.DOCTORS;
-
-        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
-        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
-        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
-        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
-        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-        DOCTOR_EMAIL = DOCTORTHIS.getString(EMAIL);
 
         final RoundedImageView photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
 
@@ -148,10 +158,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void done(ParseObject doctorPhoto, ParseException e) {
 
-                if (doctorPhoto == null)
+                if (doctorPhoto == null) {
                     Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
-
-                else {
+                } else {
 
                     ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
                     if (e == null) {
@@ -169,6 +178,51 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        //find fab buttons
+        fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
+        fabmenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+        fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
+        fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
+        fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
+
+        //onClick button
+        fabfeedback.setOnClickListener(this);
+        fab_email.setOnClickListener(this);
+        fab_phone.setOnClickListener(this);
+        fab_message.setOnClickListener(this);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
+
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
+        collapsingToolbarLayout.setTitle(Title);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
+
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
+
+    }
+
+    public void getAndSetDoctorInformation(){
+
+        DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
+        DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+        DOCTOR_SEX = DOCTORTHIS.getString("Sesso").equals("M");
+        DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
+        DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+        DOCTOR_EMAIL = DOCTORTHIS.getString(EMAIL);
+
+        if (DOCTOR_SEX)
+            Title = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+        else
+            Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+
         //if photo exist
         if (DOCTOR_PHOTO != null)
             currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
@@ -177,8 +231,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         else
             currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
                     DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
-
-        p = getSupportFragmentManager();
 
         ParseObject doctor = new ParseObject("recentDoctor");
         doctor.put("FN", DOCTOR_FIRST_NAME);
@@ -191,52 +243,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         //refresh doctors searched
         refreshDoctorList(currentDoctor);
+    }
 
-        //find fab buttons
-        fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
-        fabmenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
-        fab_email = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_email);
-        fab_message = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_message);
-        fab_phone = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_phone);
-        //fab_telegram = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_telegram);
-        //fab_feedback = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab_feedback);
+    class GetSet extends AsyncTask<Void,Void, Void>{
 
-        //onClick button
-        fabfeedback.setOnClickListener(this);
-        fab_email.setOnClickListener(this);
-        fab_phone.setOnClickListener(this);
-        fab_message.setOnClickListener(this);
-        //fab_telegram.setOnClickListener(this);
-        //fab_feedback.setOnClickListener(this);
-
-
-        // Begin the transaction
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
-        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
-        ft.replace(R.id.frame_doctor, doctorFragment);
-
-        ft.commit();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_doctor);
-
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        @Override
+        protected Void doInBackground(Void... params) {
+            getAndSetDoctorInformation();
+            return null;
         }
-
-
-        if (DOCTOR_SEX)
-            Title = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
-        else
-            Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
-        collapsingToolbarLayout.setTitle(Title);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
-
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
-
     }
 
     public void refreshDoctorList(Doctor currentDoctor) {
@@ -293,7 +308,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fabfeedback:
 
                 if (ParseUser.getCurrentUser() != null) {
-                    Log.d("dio", "cane");
+                    //Log.d("dio", "cane");
                     openFeedbackDialog();
 
                 } else {
@@ -305,22 +320,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
 
-
-            /*case R.id.fab_feedback:
-
-                if (ParseUser.getCurrentUser() != null) {
-                    Log.d("dio", "cane");
-                    openFeedbackDialog();
-
-                } else {
-                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Feedback")
-                            .setContentText("Devi registrarti per lasciare un feedback")
-                            .setConfirmText("OK")
-                            .show();
-                }
-                break;
-            */
 
             case R.id.fab_email:
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
@@ -420,6 +419,5 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
-
 
 }

@@ -23,7 +23,8 @@
     <dimen name="dialog_padding">24dp</dimen>
     <dimen name="dialog_button_padding">8dp</dimen>
 
-    <dimen name="doctor_item_height">130dp</dimen>
-    <dimen name="doctor_item_width">130dp</dimen>
+    <dimen name="doctor_item_height">140dp</dimen>
+    <dimen name="doctor_item_width">140dp</dimen>
+    <dimen name="padding_recycler_top">20dp</dimen>
 
 </resources>

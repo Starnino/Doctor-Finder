@@ -4,8 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,23 +18,38 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
+import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.google.android.gms.maps.GoogleMap;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class DoctorFragment extends Fragment {
 
-    private static int index;
+    public final String USER = "_User";
+    public final String FEEDBACK = "Feedback";
+    public final String USER_EMAIl = "email_user";
+    public final String EMAIl = "email";
+    public final String DOC_EMAIL = "email_doctor";
+    public final String ANONYMOUS = "Anonymus";
+    public static String FRIENDS = "friends";
+    public static String FACEBOOK = "Facebook";
+    public static String ID = "facebookId";
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -50,13 +65,20 @@ public class DoctorFragment extends Fragment {
     private String DOCTOR_PHONE;
     private String DOCTOR_DATE;
     private String DOCTOR_PRICE;
+    private ComponentName cn;
+    private List<ParseObject>  friends_tip;
+    private Doctor currentDoctor;
     private double LAT;
     private double LONG;
+    private static int index;
+    public  GoogleMap googleMap;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
     private TextView suggest_null;
+    private ImageView facebook_tip;
     private Context c;
+    private ProgressWheel progress_tip;
 
     public DoctorFragment() {
     }
@@ -86,6 +108,9 @@ public class DoctorFragment extends Fragment {
                 container, false);
         c = getContext();
 
+        progress_tip = (ProgressWheel) rootView.findViewById(R.id.progress_tip);
+        progress_tip.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progress_tip.spin();
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 
@@ -104,7 +129,7 @@ public class DoctorFragment extends Fragment {
         DOCTOR_DATE = DOCTORTHIS.getString("Visit");
 
         ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
-        final String[][] latLong = Util.setPosition(position);
+        final String[][]latLong = Util.setPosition(position);
         RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
         workMaps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,46 +152,56 @@ public class DoctorFragment extends Fragment {
         TextView visit = (TextView) rootView.findViewById(R.id.visit_date);
         TextView phone = (TextView) rootView.findViewById(R.id.phone_number);
         suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
-
+        facebook_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
-        mRecyclerView.setHasFixedSize(true);
+        if (ParseUser.getCurrentUser() != null) {
 
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+            if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
 
-        /**set recycler view if possible*/
-        if (ParseUser.getCurrentUser() != null
-            //& GlobalVariable.SEMAPHORE
-                ) {
-            mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
+                mRecyclerView.setHasFixedSize(true);
 
-            ImageView fb_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
-            fb_tip.setVisibility(View.INVISIBLE);
-            int adapter_count = mAdapter.getItemCount();
+                mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
-            if (adapter_count != 0) {
-                mRecyclerView.getLayoutParams().height = 300;
-                if (adapter_count > 1)
-                    suggest_null.setText(adapter_count + " amici trovati!");
-                else
-                    suggest_null.setText(adapter_count + " amico trovato!");
+                mRecyclerView.setLayoutManager(mLayoutManager);
+
+                friends_tip = new ArrayList<>();
+
+                final ParseUser user = ParseUser.getCurrentUser();
+
+                if (user != null && user.getString(FACEBOOK) != null && user.getString(FACEBOOK).equals("true")) {
+
+                    //get user friends
+                    List<String> id = Arrays.asList(user.get(FRIENDS).toString().split(","));
+
+                    ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
+                    friendQuery.whereContainedIn(ID, id);
+                    friendQuery.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, ParseException e) {
+                            friends_tip = Util.getUserFacebookFriendsAndFeedback(user, DOCTOR_EMAIL, objects);
+                            setAdapter();
+                        }
+                    });
+
+                }
+
+            } else {
+                progress_tip.setVisibility(View.GONE);
+                suggest_null.setVisibility(View.VISIBLE);
+                facebook_tip.setVisibility(View.VISIBLE);
             }
+        }
 
-            mRecyclerView.setAdapter(mAdapter);
-        } else
-            suggest_null.setText("Per conoscere gli amici che hanno recensito\nquesto dottore devi essere loggato a Facebook");
 
         if (DOCTOR_SEX)
-            TitoloDot = "Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+            TitoloDot="Dott. " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
         else
-            TitoloDot = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
+            TitoloDot="Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
         nameProfile.setText(TitoloDot);
-
         years.setText(DOCTOR_EXPERIENCE);
-
         cityPlace.setText(Util.setCity(DOCTOR_CITY_ARRAY));
         workPlace.setText(Util.setCity(DOCTOR_WORK_ARRAY));
         price.setText(DOCTOR_PRICE);
@@ -182,10 +217,10 @@ public class DoctorFragment extends Fragment {
 
         special.setText(text);
 
-        if (DOCTOR_FEEDBACK != null) {
+        if(DOCTOR_FEEDBACK!=null){
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
-        } else {
+        }else{
             //Log.d("DoctorFragment","Feedback is null");
         }
 
@@ -199,6 +234,7 @@ public class DoctorFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
 
         RelativeLayout feedback_button = (RelativeLayout) rootView.findViewById(R.id.feedback_relative);
@@ -215,7 +251,7 @@ public class DoctorFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
-                ft.replace(R.id.frame_doctor, fragment);
+                ft.replace(R.id.frame_doctor,fragment);
                 ft.addToBackStack(null);
                 ft.commit();
             }
@@ -227,7 +263,7 @@ public class DoctorFragment extends Fragment {
 
     private void openMaps(double lat, double lng) {
 
-        String uristring = "geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + TitoloDot + ")";
+        String uristring = "geo:" + lat + "," + lng+"?q="+lat+","+lng+"("+TitoloDot+")";
         //?q=<lat>,<long>(Label+Name)
         Log.d(TAG, uristring);
         Uri gmmIntentUri = Uri.parse(uristring);
@@ -236,14 +272,29 @@ public class DoctorFragment extends Fragment {
         startActivity(mapIntent);
     }
 
-    private void openWhatsapp(String number, String doctorname) {
-        Intent sendIntent = new Intent();
+    public void setAdapter(){
 
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.setPackage("com.whatsapp");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        mAdapter = new FacebookAdapter(friends_tip);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+        int adapter_count = mAdapter.getItemCount();
+
+        facebook_tip.setVisibility(View.GONE);
+        progress_tip.setVisibility(View.GONE);
+
+        if (adapter_count != 0) {
+            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+
+            if (adapter_count > 1)
+                suggest_null.setText(adapter_count + " amici trovati!");
+            else
+                suggest_null.setText(adapter_count + " amico trovato!");
+        }
+        else {
+            suggest_null.setVisibility(View.VISIBLE);
+            suggest_null.setText(R.string.feedback_null);
+        }
     }
 
 }

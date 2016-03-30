@@ -9,6 +9,7 @@ import java.util.List;
 
 public class GlobalVariable {
 
+    public static boolean FLAG_DIALOG = false;
     public static String idDoctors;
 
     public static List<String> permissions = Arrays.asList("email", "public_profile", "user_friends");
