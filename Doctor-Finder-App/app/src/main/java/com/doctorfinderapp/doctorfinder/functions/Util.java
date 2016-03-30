@@ -114,16 +114,12 @@ public class Util {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (user.getString(FACEBOOK)!=null){
-            //user getstring puo essere null @starnino
+        if (user.getString(FACEBOOK)!=null)
             if(!user.getString(FACEBOOK).equals("true")) return friends;
 
-        }
-
         if (user.getString(FRIENDS)==null) return friends;
-        if (user.getString(FACEBOOK).equals("true")) {
+        if (user.getString(FACEBOOK).equals("true"))
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
-        }
 
          for (int i = 0; i < id.size(); i++) {
           // Log.d("AMICO --> ", id.get(i));
@@ -135,7 +131,6 @@ public class Util {
 
         friendQuery.whereContainedIn(ID, id);
 
-        // todo get query non in background
         try {
             friends = friendQuery.find();
         } catch (ParseException e) {
