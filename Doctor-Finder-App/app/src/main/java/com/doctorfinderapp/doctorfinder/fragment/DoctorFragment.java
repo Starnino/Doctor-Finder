@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -27,9 +28,13 @@ import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.maps.GoogleMap;
 
+import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +45,12 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DoctorFragment extends Fragment {
 
+    public final String USER = "_User";
+    public final String FEEDBACK = "Feedback";
+    public final String USER_EMAIl = "email_user";
+    public final String EMAIl = "email";
+    public final String DOC_EMAIL = "email_doctor";
+    public final String ANONYMOUS = "Anonymus";
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -56,7 +67,7 @@ public class DoctorFragment extends Fragment {
     private String DOCTOR_DATE;
     private String DOCTOR_PRICE;
     private ComponentName cn;
-    private List<ParseObject> doctors;
+    private List<ParseObject>  friends_tip;
     private Doctor currentDoctor;
     private double LAT;
     private double LONG;
@@ -66,7 +77,9 @@ public class DoctorFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
     private TextView suggest_null;
+    private ImageView facebook_tip;
     private Context c;
+    private ProgressWheel progress_tip;
 
     public DoctorFragment() {
     }
@@ -96,6 +109,9 @@ public class DoctorFragment extends Fragment {
                 container, false);
         c = getContext();
 
+        progress_tip = (ProgressWheel) rootView.findViewById(R.id.progress_tip);
+        progress_tip.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progress_tip.spin();
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 
@@ -137,34 +153,34 @@ public class DoctorFragment extends Fragment {
         TextView visit = (TextView) rootView.findViewById(R.id.visit_date);
         TextView phone = (TextView) rootView.findViewById(R.id.phone_number);
         suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
+        facebook_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
 
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
+        if (ParseUser.getCurrentUser() != null) {
 
-        mRecyclerView.setHasFixedSize(true);
+            if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
+                mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+                mRecyclerView.setHasFixedSize(true);
 
-        /**set recycler view if possible*/
-        if (ParseUser.getCurrentUser() != null && ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
-            mAdapter = new FacebookAdapter(Util.getUserFacebookFriendsAndFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL));
+                mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
-            ImageView fb_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
-            fb_tip.setVisibility(View.GONE);
+                mRecyclerView.setLayoutManager(mLayoutManager);
 
-            int adapter_count = mAdapter.getItemCount();
+                friends_tip = new ArrayList<>();
 
-            if (adapter_count != 0) {
-                mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                mAdapter = new FacebookAdapter(friends_tip);
 
-                if (adapter_count > 1)
-                    suggest_null.setText(adapter_count + " amici trovati!");
-                else
-                    suggest_null.setText(adapter_count + " amico trovato!");
+                mRecyclerView.setAdapter(mAdapter);
+
+                //update recycler in background
+                new AsyncGetFeedback().execute();
+
+            } else {
+                progress_tip.setVisibility(View.GONE);
+                suggest_null.setVisibility(View.VISIBLE);
+                facebook_tip.setVisibility(View.VISIBLE);
             }
-
-            mRecyclerView.setAdapter(mAdapter);
         }
 
 
@@ -253,6 +269,84 @@ public class DoctorFragment extends Fragment {
         sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    public void getUserFriendsFeedback(ParseUser user, String email_doctor){
+
+        friends_tip = Util.getUserFacebookFriends(user);
+
+        ArrayList<String> friends_email = new ArrayList<>();
+
+        for (int i = 0; i < friends_tip.size(); i++)
+            friends_email.add(friends_tip.get(i).getString(EMAIl));
+
+        ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
+        feedback.whereEqualTo(DOC_EMAIL, email_doctor);
+        feedback.whereContainedIn(USER_EMAIl, friends_email);
+        feedback.whereEqualTo(ANONYMOUS, false);
+
+        try {
+            friends_tip = new ArrayList<>(feedback.find());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        friends_email.clear();
+        for (int i = 0; i < friends_tip.size(); i++) {
+            friends_email.add(friends_tip.get(i).getString(USER_EMAIl));
+        }
+
+        ParseQuery<ParseObject> ret = ParseQuery.getQuery(USER);
+        ret.whereContainedIn(EMAIl, friends_email);
+
+        try {
+            friends_tip = new ArrayList<>(ret.find());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        /*for (int i = 0; i < friends_tip.size(); i++) {
+            Log.d("SUGGEST FEEDBACK --> ", friends_tip.get(i).getString(EMAIl));
+        }*/
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setAdapter();
+            }
+        });
+    }
+
+    class AsyncGetFeedback extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            getUserFriendsFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL);
+            return null;
+        }
+    }
+
+    public void setAdapter(){
+        //TODO METTE APPOSTO QUE
+        mAdapter.notifyDataSetChanged();
+
+        int adapter_count = mAdapter.getItemCount();
+
+        facebook_tip.setVisibility(View.GONE);
+        progress_tip.setVisibility(View.GONE);
+
+        if (adapter_count != 0) {
+            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+
+            if (adapter_count > 1)
+                suggest_null.setText(adapter_count + " amici trovati!");
+            else
+                suggest_null.setText(adapter_count + " amico trovato!");
+        }
+        else {
+            suggest_null.setVisibility(View.VISIBLE);
+            suggest_null.setText(R.string.feedback_null);
+        }
     }
 
 }
