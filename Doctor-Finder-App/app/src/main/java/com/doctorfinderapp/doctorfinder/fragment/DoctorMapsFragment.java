@@ -152,7 +152,7 @@ public class DoctorMapsFragment extends SupportMapFragment
 
     }
 
-    private void setUpMapIfNeeded() {
+    private  void setUpMapIfNeeded() {
         if (googleMap == null) {
             getMapAsync(new OnMapReadyCallback() {
                 @Override
