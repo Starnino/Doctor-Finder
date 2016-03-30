@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         mContext = this;
 
+        View parentLayout = findViewById(R.id.drawer_main);
+
         //Util.copyAll();
         //aggiungo le foto dei dottori
         //AddDoctors.addPhoto(getResources());
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     .show();
         }else{
 
-            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+            Snackbar.make(parentLayout, R.string.good_login, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
         }
 

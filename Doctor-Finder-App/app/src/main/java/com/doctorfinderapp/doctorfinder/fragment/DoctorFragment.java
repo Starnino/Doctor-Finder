@@ -4,8 +4,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -24,11 +22,10 @@ import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.maps.GoogleMap;
 
-import com.parse.Parse;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
@@ -37,10 +34,9 @@ import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class DoctorFragment extends Fragment {
@@ -51,6 +47,9 @@ public class DoctorFragment extends Fragment {
     public final String EMAIl = "email";
     public final String DOC_EMAIL = "email_doctor";
     public final String ANONYMOUS = "Anonymus";
+    public static String FRIENDS = "friends";
+    public static String FACEBOOK = "Facebook";
+    public static String ID = "facebookId";
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -155,11 +154,11 @@ public class DoctorFragment extends Fragment {
         suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
         facebook_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
 
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
         if (ParseUser.getCurrentUser() != null) {
 
             if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
-                mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
                 mRecyclerView.setHasFixedSize(true);
 
@@ -169,12 +168,24 @@ public class DoctorFragment extends Fragment {
 
                 friends_tip = new ArrayList<>();
 
-                mAdapter = new FacebookAdapter(friends_tip);
+                final ParseUser user = ParseUser.getCurrentUser();
 
-                mRecyclerView.setAdapter(mAdapter);
+                if (user != null && user.getString(FACEBOOK) != null && user.getString(FACEBOOK).equals("true")) {
 
-                //update recycler in background
-                new AsyncGetFeedback().execute();
+                    //get user friends
+                    List<String> id = Arrays.asList(user.get(FRIENDS).toString().split(","));
+
+                    ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
+                    friendQuery.whereContainedIn(ID, id);
+                    friendQuery.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, ParseException e) {
+                            friends_tip = Util.getUserFacebookFriendsAndFeedback(user, DOCTOR_EMAIL, objects);
+                            setAdapter();
+                        }
+                    });
+
+                }
 
             } else {
                 progress_tip.setVisibility(View.GONE);
@@ -261,74 +272,11 @@ public class DoctorFragment extends Fragment {
         startActivity(mapIntent);
     }
 
-    private void openWhatsapp(String number,String doctorname){
-        Intent sendIntent = new Intent();
-
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.setPackage("com.whatsapp");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
-    }
-
-    public void getUserFriendsFeedback(ParseUser user, String email_doctor){
-
-        friends_tip = Util.getUserFacebookFriends(user);
-
-        ArrayList<String> friends_email = new ArrayList<>();
-
-        for (int i = 0; i < friends_tip.size(); i++)
-            friends_email.add(friends_tip.get(i).getString(EMAIl));
-
-        ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
-        feedback.whereEqualTo(DOC_EMAIL, email_doctor);
-        feedback.whereContainedIn(USER_EMAIl, friends_email);
-        feedback.whereEqualTo(ANONYMOUS, false);
-
-        try {
-            friends_tip = new ArrayList<>(feedback.find());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        friends_email.clear();
-        for (int i = 0; i < friends_tip.size(); i++) {
-            friends_email.add(friends_tip.get(i).getString(USER_EMAIl));
-        }
-
-        ParseQuery<ParseObject> ret = ParseQuery.getQuery(USER);
-        ret.whereContainedIn(EMAIl, friends_email);
-
-        try {
-            friends_tip = new ArrayList<>(ret.find());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        /*for (int i = 0; i < friends_tip.size(); i++) {
-            Log.d("SUGGEST FEEDBACK --> ", friends_tip.get(i).getString(EMAIl));
-        }*/
-
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                setAdapter();
-            }
-        });
-    }
-
-    class AsyncGetFeedback extends AsyncTask<Void,Void,Void>{
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            getUserFriendsFeedback(ParseUser.getCurrentUser(), DOCTOR_EMAIL);
-            return null;
-        }
-    }
-
     public void setAdapter(){
-        //TODO METTE APPOSTO QUE
-        mAdapter.notifyDataSetChanged();
+
+        mAdapter = new FacebookAdapter(friends_tip);
+
+        mRecyclerView.setAdapter(mAdapter);
 
         int adapter_count = mAdapter.getItemCount();
 
