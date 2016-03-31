@@ -132,6 +132,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             doctorQuery.whereEqualTo(EMAIL, email);
             try {
                 DOCTORTHIS = doctorQuery.getFirst();
+                Log.d("DOCTORTHIS", "received by email");
             } catch (ParseException e) {
                 e.printStackTrace();
             }
