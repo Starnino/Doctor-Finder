@@ -70,11 +70,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private ProgressWheel progress;
     private ParseUser user = null;
 
-    public static void showToastFeedback() {
-        Toast.makeText(c, R.string.feedback_visual,
-                Toast.LENGTH_LONG).show();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +128,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
-
 
             if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
 
@@ -312,9 +306,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         if (user.getString(FACEBOOK).equals("true"))
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
 
-        for (int i = 0; i < id.size(); i++) {
-            // Log.d("AMICO --> ", id.get(i));
-        }
+        /*for (int i = 0; i < id.size(); i++) {
+            Log.d("AMICO --> ", id.get(i));
+        }*/
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 
