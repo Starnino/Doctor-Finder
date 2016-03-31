@@ -140,7 +140,7 @@ public class Util {
         return friends;
     }
 
-    public static List<ParseObject> getUserFacebookFriendsAndFeedback(ParseUser user, String doctor_email, List<ParseObject> friends_objects) {
+    public static List<ParseObject> getUserFacebookFriendsAndFeedback(String doctor_email, List<ParseObject> friends_objects) {
 
         //Log.d("EMAIL DOCTOR --> ", doctor_email);
 
