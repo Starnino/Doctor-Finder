@@ -281,13 +281,6 @@ public class DoctorMapsFragment extends SupportMapFragment
         return resizedBitmap;
     }
 
-    /*@Override
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this.getContext(), "Info window clicked",
-                Toast.LENGTH_SHORT).show();
-        Log.d("mappa", "infowindow clicked");
-    }*/
-
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
