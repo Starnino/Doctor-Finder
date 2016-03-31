@@ -1,23 +1,33 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
+import android.animation.LayoutTransition;
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.mikepenz.iconics.view.IconicsButton;
+import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -37,12 +47,16 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         return new FeedbackViewHolder(v);
     }
 
-    public static class FeedbackViewHolder extends RecyclerView.ViewHolder {
+    public static class FeedbackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView feedback_text;
         RatingBar ratingBar;
         TextView name;
         RoundedImageView propic;
+        IconicsImageView spam;
+        IconicsImageView thumb;
+        TextView num_thumb;
+        boolean THUMB_PRESSED;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -50,6 +64,42 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
             name = (TextView) itemView.findViewById(R.id.username);
             propic = (RoundedImageView) itemView.findViewById(R.id.user_image_feed);
+            spam = (IconicsImageView) itemView.findViewById(R.id.feed_spam);
+            thumb = (IconicsImageView) itemView.findViewById(R.id.feed_like);
+            num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
+
+            THUMB_PRESSED = false;
+            spam.setOnClickListener(this);
+            thumb.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+
+            switch(id){
+                case R.id.feed_spam:
+
+                    break;
+
+                case R.id.feed_like:
+                    switchColorAndThumb();
+                    break;
+            }
+        }
+
+        public void switchColorAndThumb(){
+
+            if (!THUMB_PRESSED){
+                thumb.setColor(itemView.getResources().getColor(R.color.colorPrimaryDark));
+                num_thumb.setText(String.valueOf(Integer.parseInt(num_thumb.getText().toString()) + 1));
+                THUMB_PRESSED = true;
+
+            } else {
+                thumb.setColor(itemView.getResources().getColor(R.color.grey));
+                num_thumb.setText(String.valueOf(Integer.parseInt(num_thumb.getText().toString()) - 1));
+                THUMB_PRESSED = false;
+            }
         }
     }
 
@@ -129,4 +179,5 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         //Log.d("Feedback", "" + feedbacklist.size());
         return feedbacklist.size();
     }
+
 }

@@ -31,23 +31,6 @@
         android:clickable="false"
         android:gravity="start|center_horizontal">
 
-        <ImageButton
-            android:id="@+id/tre_pallini"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
-            android:clickable="true"
-            android:backgroundTint="@color/docfinder"
-            android:background="@drawable/ic_more_vert_black_24dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-
-
-
         <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -61,7 +44,9 @@
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:layout_toEndOf="@id/profile_image"
+            android:layout_toRightOf="@id/profile_image"
             android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin"
             android:id="@+id/linearLayout2">
 
             <TextView
@@ -99,25 +84,10 @@
                 android:scaleX="0.55"
                 android:scaleY="0.55"
                 android:layout_gravity="start|bottom"
-                android:layout_marginStart="-50dp" />
+                android:layout_marginStart="-50dp"
+                android:layout_marginLeft="-50dp" />
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/thumbs_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:clickable="true"
-            android:backgroundTint="@color/docfinder"
-            android:background="@drawable/ic_thumb_up_black_24dp"
-            android:layout_below="@+id/tre_pallini"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
