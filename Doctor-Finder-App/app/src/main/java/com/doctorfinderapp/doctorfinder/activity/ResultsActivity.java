@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -24,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,12 +64,30 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
+    private ImageButton trepallini;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
+
+        /*
+
+        //tre pallini
+        trepallini = (ImageButton) findViewById(R.id.tre_pallini);
+
+        //tre pallini Click Listener
+        trepallini.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "testo",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+        */
+
         //adding doctors data
         //AddDoctors.addData();
 

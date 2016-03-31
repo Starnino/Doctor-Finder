@@ -26,11 +26,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
@@ -400,6 +402,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 
     //code added to save activity states
