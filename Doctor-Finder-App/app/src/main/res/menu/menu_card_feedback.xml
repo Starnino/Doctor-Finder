@@ -4,7 +4,6 @@
     tools:context=".activity.DoctorActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/report_spam"
+        app:showAsAction="always" />
 </menu>
