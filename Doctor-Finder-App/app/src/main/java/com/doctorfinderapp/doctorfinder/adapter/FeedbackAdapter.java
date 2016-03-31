@@ -1,23 +1,16 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
-import android.animation.LayoutTransition;
-import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
-import com.mikepenz.iconics.view.IconicsButton;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -25,8 +18,6 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -57,6 +48,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         IconicsImageView thumb;
         TextView num_thumb;
         boolean THUMB_PRESSED;
+        PopupMenu popup;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -80,9 +72,22 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             switch(id){
                 case R.id.feed_spam:
 
+                    //get instance of menu
+                    popup = new PopupMenu(itemView.getContext(), spam);
+                    popup.getMenuInflater().inflate(R.menu.menu_card_feedback, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            //TODO report spam
+                            return true;
+                        }
+                    });
+
+                    popup.show();
                     break;
 
                 case R.id.feed_like:
+                    //TODO thumb up
                     switchColorAndThumb();
                     break;
             }
