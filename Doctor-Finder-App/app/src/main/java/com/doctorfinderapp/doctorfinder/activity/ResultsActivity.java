@@ -3,7 +3,6 @@ package com.doctorfinderapp.doctorfinder.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -15,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +29,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -49,8 +48,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 
 public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -65,12 +62,39 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private static Context c;
     private NavigationView navigationView;
     private ImageButton trepallini;
+    private SwipeRefreshLayout swipeContainer;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
+
+        // pull to update
+        /*
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getApplicationContext(), "testo",
+                        Toast.LENGTH_LONG).show();
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchTimelineAsync(0);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+*/
+
+
+
 
         /*
 
@@ -87,6 +111,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         });
 
         */
+
+
 
         //adding doctors data
         //AddDoctors.addData();
@@ -184,6 +210,17 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
 
     }
+
+    //fecth del pull to refresh
+    public void fetchTimelineAsync(int page) {
+        // Send the network request to fetch the updated data
+        // `client` here is an instance of Android Async HTTP
+        }
+
+
+
+
+
 
     public void setProfileInformation(ParseUser user){
         if (user != null
