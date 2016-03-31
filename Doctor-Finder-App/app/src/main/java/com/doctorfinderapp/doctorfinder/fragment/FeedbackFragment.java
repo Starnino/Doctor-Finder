@@ -14,6 +14,7 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.melnykov.fab.FloatingActionButton;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -76,30 +77,20 @@ public class FeedbackFragment extends Fragment {
         FloatingActionButton fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
         fabfeedback.attachToRecyclerView(mRecyclerView);
 
-        FeedbackArray= new ArrayList<>();
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
         if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
             //If there is Internet connection
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
             //Log.d("Feedback","showing feedback of"+ EMAIL);
             query.whereEqualTo("email_doctor", EMAIL);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    FeedbackArray = objects;
+                    setRecyclerView();
+                }
+            });
 
-            try {
-                FeedbackArray = query.find();
-
-                feedbackAdapter = new FeedbackAdapter(FeedbackArray);
-
-                mRecyclerView.setAdapter(feedbackAdapter);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
         } else if(Util.isOnline(getActivity()) && ParseUser.getCurrentUser() == null){
             ParseObject feedback_null = new ParseObject("NOLOGIN");
             nullArray.add(feedback_null);
@@ -162,4 +153,16 @@ public class FeedbackFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void setRecyclerView(){
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        feedbackAdapter = new FeedbackAdapter(FeedbackArray);
+
+        mRecyclerView.setAdapter(feedbackAdapter);
+    }
 }
