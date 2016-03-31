@@ -42,14 +42,9 @@ import java.util.List;
 public class DoctorFragment extends Fragment {
 
     public final String USER = "_User";
-    public final String FEEDBACK = "Feedback";
-    public final String USER_EMAIl = "email_user";
-    public final String EMAIl = "email";
-    public final String DOC_EMAIL = "email_doctor";
-    public final String ANONYMOUS = "Anonymus";
-    public static String FRIENDS = "friends";
-    public static String FACEBOOK = "Facebook";
-    public static String ID = "facebookId";
+    public final String FRIENDS = "friends";
+    public final String FACEBOOK = "Facebook";
+    public final String ID = "facebookId";
     private String TitoloDot;
     private String TAG = "DoctorFragment";
     private String DOCTOR_FIRST_NAME;
@@ -65,13 +60,10 @@ public class DoctorFragment extends Fragment {
     private String DOCTOR_PHONE;
     private String DOCTOR_DATE;
     private String DOCTOR_PRICE;
-    private ComponentName cn;
     private List<ParseObject>  friends_tip;
-    private Doctor currentDoctor;
     private double LAT;
     private double LONG;
     private static int index;
-    public  GoogleMap googleMap;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private FacebookAdapter mAdapter;
