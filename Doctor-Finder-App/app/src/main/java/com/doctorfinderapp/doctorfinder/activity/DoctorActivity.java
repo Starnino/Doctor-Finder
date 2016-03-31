@@ -58,6 +58,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public final String EMAIL = "Email";
     private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
+    RoundedImageView photoProfile;
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
@@ -126,15 +127,15 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         } else {
 
+            //TODO query in background
             ParseQuery<ParseObject> doctorQuery = ParseQuery.getQuery("Doctor");
             doctorQuery.whereEqualTo(EMAIL, email);
-            doctorQuery.getFirstInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
-                    DOCTORTHIS = object;
-                    new GetSet().execute();
-                }
-            });
+            try {
+                DOCTORTHIS = doctorQuery.getFirst();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
 
         // Begin the transaction
@@ -149,34 +150,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         doctors = GlobalVariable.DOCTORS;
 
-        final RoundedImageView photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
-
-        final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
-        doctorph.whereEqualTo(EMAIL, DOCTOR_EMAIL);
-
-        doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject doctorPhoto, ParseException e) {
-
-                if (doctorPhoto == null) {
-                    Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
-                } else {
-
-                    ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
-                    if (e == null) {
-
-                        file.getDataInBackground(new GetDataCallback() {
-                            @Override
-                            public void done(byte[] data, ParseException e) {
-                                DOCTOR_PHOTO = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                Log.d("DOCTOR PHOTO --> ", DOCTOR_PHOTO == null ? "is null" : "ok");
-                                photoProfile.setImageBitmap(DOCTOR_PHOTO);
-                            }
-                        });
-                    }
-                }
-            }
-        });
+        //get and set
+        photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
+        new GetSet().execute();
 
         //find fab buttons
         fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
@@ -199,7 +175,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
         collapsingToolbarLayout.setTitle(Title);
@@ -243,6 +218,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         //refresh doctors searched
         refreshDoctorList(currentDoctor);
+        getDoctorPhoto();
     }
 
     class GetSet extends AsyncTask<Void,Void, Void>{
@@ -280,6 +256,36 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         flag = true;
+    }
+
+    public void getDoctorPhoto(){
+
+        final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
+        doctorph.whereEqualTo(EMAIL, DOCTOR_EMAIL);
+
+        doctorph.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject doctorPhoto, ParseException e) {
+
+                if (doctorPhoto == null) {
+                    Log.d("doctorphoto", DOCTOR_EMAIL + " isNull");
+                } else {
+
+                    ParseFile file = (ParseFile) doctorPhoto.get("profilePhoto");
+                    if (e == null) {
+
+                        file.getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] data, ParseException e) {
+                                DOCTOR_PHOTO = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                Log.d("DOCTOR PHOTO --> ", DOCTOR_PHOTO == null ? "is null" : "ok");
+                                photoProfile.setImageBitmap(DOCTOR_PHOTO);
+                            }
+                        });
+                    }
+                }
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -134,7 +134,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
 
-        if (Util.isOnline(getApplicationContext())) {
 
             if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
 
@@ -157,21 +156,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
             } else  card_friend.setVisibility(View.GONE);
 
-        } else {
 
-            if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
 
-                friend_null.setText(R.string.no_connection_friend);
-                friend_null.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                progress.setVisibility(View.GONE);
-                friend_null.setVisibility(View.VISIBLE);
-
-            } else card_friend.setVisibility(View.GONE);
-        }
-
-        //nameProfile.setText(Title);
         if (getSupportActionBar() != null) {
-            //getSupportActionBar().setTitle(Title);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -328,7 +315,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         for (int i = 0; i < id.size(); i++) {
             // Log.d("AMICO --> ", id.get(i));
         }
-        //Log.d("getUserFacebookfriend", ""+id.size());
 
         ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
 

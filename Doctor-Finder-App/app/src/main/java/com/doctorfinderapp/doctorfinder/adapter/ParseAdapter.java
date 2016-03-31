@@ -30,8 +30,9 @@ import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
 
 /**
  * Created by francesco on 01/03/16.
- * p
+ *
  */
+
 public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHolder> {
 
     public final String NAME = "FirstName";
@@ -63,7 +64,6 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         @Override
         public void onClick(View v) {
-            if (Util.isOnline(v.getContext())){
 
                 int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
                 Context context = v.getContext();
@@ -75,10 +75,6 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
                 context.startActivity(intent);
 
                 //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
-            } else {
-                Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
-            }
         }
     }
 
