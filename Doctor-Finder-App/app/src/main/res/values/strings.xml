@@ -7,6 +7,10 @@
 
     <string name="doctorfindername">Doctor Finder</string>
     <string name="action_log_in">Login </string>
+    <string name="send_data_button">Invia i dati </string>
+    <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa piattaforma!</string>
+    <string name="casella_nome_cognome_spec">Nome e Cognome specialista</string>
+    <string name="casella_contatti_spec">Suo recapito email e/o telefonico</string>
     <string name="action_sign2_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
@@ -15,7 +19,7 @@
     <string name="error_field_required">Questo campo è obbligatorio</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="action_search">"Ricerca rapida"</string>
-
+    <string name="button_reset">Cancella </string>
     <string name="action_login_with_facebook">"Login con facebook"</string>
     <string name="action_login_with_google">"Login con Google+"</string>
     <string name="text_firstName">Nome</string>
