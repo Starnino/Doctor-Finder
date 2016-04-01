@@ -70,49 +70,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
 
-        // pull to update
-        /*
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(getApplicationContext(), "testo",
-                        Toast.LENGTH_LONG).show();
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
-                fetchTimelineAsync(0);
-            }
-        });
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-*/
-
-
-
-
-        /*
-
-        //tre pallini
-        trepallini = (ImageButton) findViewById(R.id.tre_pallini);
-
-        //tre pallini Click Listener
-        trepallini.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "testo",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-
-        */
-
-
-
         //adding doctors data
         //AddDoctors.addData();
 
@@ -210,18 +167,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     }
 
-    //fecth del pull to refresh
-    public void fetchTimelineAsync(int page) {
-        // Send the network request to fetch the updated data
-        // `client` here is an instance of Android Async HTTP
-        }
-
-
-
-
-
-
-    public void setProfileInformation(ParseUser user){
+      public void setProfileInformation(ParseUser user){
         if (user != null
                 //&& GlobalVariable.SEMAPHORE
                 ) {
