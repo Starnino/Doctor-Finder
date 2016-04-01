@@ -1,15 +1,20 @@
 <android.support.v4.widget.swiperefreshlayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipeContainer"
+    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvItems"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:text="Controllo se ci sono nuovi specialisti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"/>
+
+    </ScrollView>
 
 </android.support.v4.widget.swiperefreshlayout>

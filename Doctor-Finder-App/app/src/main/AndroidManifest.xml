@@ -127,6 +127,9 @@
         <activity android:name=".activity.Informativa"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activity.ClaimDoctorActivity"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

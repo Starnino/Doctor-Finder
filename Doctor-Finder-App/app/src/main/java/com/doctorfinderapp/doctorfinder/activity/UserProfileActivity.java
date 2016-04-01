@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
@@ -173,7 +172,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Ciao, prova questa nuova applicazione che ti permette di trovare il dottore perfetto per te. Clicca qui per scaricarla -> http://bit.do/doctor-finder-App ");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Prova Doctor Finder --> http://bit.do/Doctor-Finder-App ");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
@@ -279,7 +278,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Ciao, prova questa nuova applicazione che ti permette di trovare il dottore perfetto per te. Clicca qui per scaricarla -> http://bit.do/doctor-finder-App ");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Prova Doctor Finder --> http://bit.do/Doctor-Finder-App ");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
                 break;
