@@ -8,7 +8,7 @@
     <string name="doctorfindername">Doctor Finder</string>
     <string name="action_log_in">Login </string>
     <string name="send_data_button">Invia i dati </string>
-    <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa piattaforma!</string>
+    <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa applicazione!</string>
     <string name="casella_nome_cognome_spec">Nome e Cognome specialista</string>
     <string name="casella_contatti_spec">Suo recapito email e/o telefonico</string>
     <string name="action_sign2_up">Sign up</string>
@@ -101,7 +101,6 @@
         <item>Neuropsichiatria Infantile</item>
         <item>Oculistica</item>
         <item>Odontoiatria</item>
-
         <item>Oncologia</item>
         <item>Ortopedia e Traumatologia</item>
         <item>Otorinolaringoiatria</item>
@@ -232,29 +231,6 @@
 
     <string name="facebook_app_id">235657870105831</string>
 
-
-    <string-array name="years">
-        <item>Meno di 5</item>
-        <item>Tra 5 e 10</item>
-        <item>Più di 10</item>
-    </string-array>
-
-    <string-array name="prezzi">
-        <item>Meno di 100</item>
-        <item>101-150</item>
-        <item>151-200</item>
-        <item>201-250</item>
-    </string-array>
-
-    <string-array name="feedback">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-    </string-array>
-
-
     <string name="title_activity_doctor_maps_fragment">Map</string>
     <string name="title_activity_maps">Map</string>
 
@@ -281,9 +257,6 @@
     <string name="title_activity_default_intro">Default Intro</string>
 
     <string name="doctor_map">Visualizza Profilo</string>
-
-    <!--forse stavolta ce la faccio-->
-    <string name="title_share_text">Share Text</string>
 
     <!--Informativa-->
 
