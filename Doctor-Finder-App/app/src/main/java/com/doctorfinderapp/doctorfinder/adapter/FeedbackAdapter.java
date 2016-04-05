@@ -1,7 +1,9 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Icon;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.facebook.internal.LockOnGetVariable;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
@@ -50,6 +55,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String NUM_THUMB = "num_thumb";
     String THUMB_LIST = "thumb_list";
     String DATE = "date";
+    String NAME = "Name";
+    String ANONYMUS = "Anonymus";
+    String FEEDBACK_DESCRIPTION = "feedback_description";
+    String RATING = "Rating";
 
 
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
@@ -177,6 +186,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             else holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
 
         holder.num_thumb.setText(String.valueOf(feedbacklist.get(position).getInt(NUM_THUMB)));
+
         holder.thumb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,13 +195,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     holder.THUMB_PRESSED = false;
                 else holder.THUMB_PRESSED = true;
 
-                switchColorAndThumb(holder, position);
-            }
-        });
-
-        holder.thumb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 onClickButton(v, holder, position);
             }
         });
@@ -218,7 +221,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     }
 
 
-    public void onClickButton(View v, FeedbackViewHolder holder, int position) {
+    public void onClickButton(final View v, final FeedbackViewHolder holder, final int position) {
         int id = v.getId();
 
         switch (id) {
@@ -251,7 +254,36 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
-                            deleteFeedback();
+                            deleteFeedback(position);
+                            Snackbar.make(v, "Cancellato!", Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Annulla", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            holder.clear.setClickable(false);
+                                            ParseQuery<ParseObject> pin = ParseQuery.getQuery(FEEDBACK);
+                                            pin.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+                                            pin.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
+                                            pin.fromLocalDatastore();
+                                            pin.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                @Override
+                                                public void done(ParseObject object, ParseException e) {
+                                                    if (e != null) {
+                                                        //error
+                                                    } else try {
+                                                        object.unpin();
+                                                        feedbacklist.add(object);
+                                                        safeSave(object);
+                                                        holder.clear.setClickable(true);
+
+                                                    } catch (ParseException e1) {
+                                                        e1.printStackTrace();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    })
+                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
+                                    .show();
                         }
                         return true;
                     }
@@ -261,11 +293,14 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 break;
 
             case R.id.feed_like:
+                holder.thumb.setClickable(false);
                 switchColorAndThumb(holder, position);
         }
     }
 
     public void switchColorAndThumb(FeedbackViewHolder holder, int position) {
+        Animation resize_big = AnimationUtils.loadAnimation(holder.itemView.getContext(),R.anim.resize_big);
+        holder.thumb.startAnimation(resize_big);
 
         if (holder.THUMB_PRESSED) {
             //TODO start thumb animation
@@ -282,6 +317,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     public void ThumbUtil(final boolean THUMB_PRESSED, int position, final FeedbackViewHolder holder) {
 
+        final Animation resize_small = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.resize_small);
         final String user_email = feedbacklist.get(position).getString(USER_EMAIL);
         ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
         feedback.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
@@ -293,7 +329,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     //error
 
                 } else {
-                    Log.d("THUMB LIST --> ", object.getString(USER_EMAIL) + " & " + object.getString(DOCTOR_EMAIL) + "AGGIUNTO");
+                    //Log.d("THUMB LIST --> ", object.getString(USER_EMAIL) + " & " + object.getString(DOCTOR_EMAIL) + " AGGIUNTO");
                     //case of thumb was pressed and we need to put object and increment 1 like
                     if (THUMB_PRESSED) {
 
@@ -327,13 +363,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         }
                     }
                     holder.thumb.setClickable(true);
-                    //TODO finish thumb animation
+                    holder.thumb.startAnimation(resize_small);
                 }
             }
         });
     }
 
-    public void deleteFeedback(){
+    public void deleteFeedback(final int position){
         //TODO start progress bar
         ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
         delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
@@ -343,6 +379,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             public void done(ParseObject object, ParseException e) {
                 try {
                     object.delete();
+                    object.pin();
+                    feedbacklist.remove(position);
                     notifyDataSetChanged();
                     //TODO finish progress bar
                 } catch (ParseException e1) {
@@ -350,5 +388,29 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 }
             }
         });
+    }
+
+    public void changeItem(ParseObject item){
+        feedbacklist.add(item);
+        notifyDataSetChanged();
+    }
+
+    public void safeSave(ParseObject object){
+        ParseObject feedback = new ParseObject(FEEDBACK);
+        feedback.put(USER_EMAIL, object.getString(USER_EMAIL));
+        feedback.put(DOCTOR_EMAIL, object.getString(DOCTOR_EMAIL));
+        feedback.put(NAME, object.getString(NAME));
+        feedback.put(ANONYMUS, object.getBoolean(ANONYMUS));
+        feedback.put(FEEDBACK_DESCRIPTION, object.getString(FEEDBACK_DESCRIPTION));
+        feedback.put(RATING, Float.parseFloat(object.get(RATING).toString()));
+        feedback.put(DATE, object.getString(DATE));
+        feedback.put(THUMB_LIST, object.getList(THUMB_LIST));
+        feedback.put(NUM_THUMB, object.getInt(NUM_THUMB));
+        try {
+            feedback.save();
+            notifyDataSetChanged();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
