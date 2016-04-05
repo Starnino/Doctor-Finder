@@ -303,7 +303,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         holder.thumb.startAnimation(resize_big);
 
         if (holder.THUMB_PRESSED) {
-            //TODO start thumb animation
             holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
             holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) + 1));
             ThumbUtil(holder.THUMB_PRESSED, position, holder);
