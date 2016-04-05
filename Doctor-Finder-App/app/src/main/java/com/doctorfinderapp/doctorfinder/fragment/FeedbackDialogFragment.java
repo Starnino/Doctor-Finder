@@ -105,7 +105,7 @@ public class FeedbackDialogFragment extends DialogFragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("FeedbackDialog", "cancel clicked");
+                //Log.d("FeedbackDialog", "cancel clicked");
                 FeedbackDialogFragment.this.dismiss();
 
 
@@ -132,13 +132,13 @@ public class FeedbackDialogFragment extends DialogFragment {
             public void done(ParseObject object, ParseException e) {
                 if (object != null) {
 
-                    Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
+                    //Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
 
                     String feedback_description = object.getString("feedback_description");
 
                     if (feedback_description != null) {
-                        Log.d("Feedback", feedback_description.toString());
-                        Log.d("Feedback", (object.get("Anonymus")).toString());
+                        //Log.d("Feedback", feedback_description.toString());
+                        //Log.d("Feedback", (object.get("Anonymus")).toString());
                         checkBoxAnonymus.setChecked(object.getBoolean("Anonymus"));
                         feedback_description_editText.setText(feedback_description);
                         ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
@@ -168,10 +168,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                 if (object != null) {
 
                     //case editing mode
-                    Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
-                    //String feedback_description = object.getString("feedback_description");
-                    //feedback_description_editText.setText(feedback_description);
-                    //ParseObject feedback = new ParseObject("Feedback");
+                    //Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
                     object.put("email_user", email_user);
                     object.put("email_doctor", email_doctor);
                     object.put("Rating", new Float(ratingbar.getRating()));
@@ -185,8 +182,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            Log.d("Push feedback", "feedback saved");
-
+                            //Log.d("Push feedback", "feedback saved");
                             DoctorActivity.showToastFeedback();
                             Util.calculateFeedback(email_doctor);
                         }
@@ -197,7 +193,7 @@ public class FeedbackDialogFragment extends DialogFragment {
 
 
                     //case never inserted feedback
-                    ParseObject feedback = new ParseObject("Feedback");
+                    final ParseObject feedback = new ParseObject("Feedback");
                     feedback.put("email_user", email_user);
                     feedback.put("email_doctor", email_doctor);
                     feedback.put("Name", name);
@@ -214,8 +210,9 @@ public class FeedbackDialogFragment extends DialogFragment {
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
                             DoctorActivity.showToastFeedback();
+                            FeedbackFragment.feedbackAdapter.changeItem(feedback);
                             Util.calculateFeedback(email_doctor);
-                            Log.d("Push feedback", "feedback saved");
+                            //Log.d("Push feedback", "feedback saved");
                         }
                     });
                 }

@@ -74,12 +74,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_sended,
                 Toast.LENGTH_LONG).show();
-        FragmentTransaction ft = p.beginTransaction();
+        /*FragmentTransaction ft = p.beginTransaction();
         FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
         ft.replace(R.id.frame_doctor, fragment);
 
-        ft.commit();
+        ft.commit();*/
     }
 
     //switch fab
