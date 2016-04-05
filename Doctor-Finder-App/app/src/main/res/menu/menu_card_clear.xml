@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.DoctorActivity">
     <item
-        android:id="@+id/action_spam"
-        android:title="@string/report_spam"
+        android:id="@+id/action_clear"
+        android:title="@string/clear"
         app:showAsAction="always" />
 </menu>

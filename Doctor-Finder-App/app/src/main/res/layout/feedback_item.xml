@@ -33,14 +33,32 @@
         android:gravity="start|center_horizontal"
         android:orientation="vertical">
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/feed_spam"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:visibility="visible"
-            app:iiv_color="@color/grey"
-            app:iiv_icon="gmd-more_vert"
-            android:layout_gravity="right|top"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/feed_spam"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:visibility="visible"
+                app:iiv_color="@color/grey"
+                app:iiv_icon="gmd-more_vert"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/feed_clear"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:clickable="false"
+                android:visibility="invisible"
+                app:iiv_color="@color/grey"
+                app:iiv_icon="gmd-clear"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -120,10 +138,22 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end">
+
+            <TextView
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/feed_date"
+                android:layout_width="match_parent"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:text="10/03/2016"
+                android:visibility="visible"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
 
         <TextView
             android:layout_marginEnd="8dp"
@@ -131,14 +161,16 @@
             android:id="@+id/num_thumb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
+            android:text="0"
+            android:layout_gravity="end"
             android:visibility="visible"
             android:textSize="18sp" />
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:id="@+id/feed_like"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
             android:visibility="visible"
             app:iiv_color="@color/grey"
             app:iiv_icon="gmd-thumb_up"/>
