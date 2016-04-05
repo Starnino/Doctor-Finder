@@ -360,8 +360,6 @@
                         android:layout_alignStart="@+id/cityPlace"
                         android:layout_alignLeft="@+id/cityPlace"/>
 
-
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -568,8 +566,8 @@
 
                 <com.pnikosis.materialishprogress.ProgressWheel
                     android:id="@+id/progress_tip"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"/>
 
             <LinearLayout

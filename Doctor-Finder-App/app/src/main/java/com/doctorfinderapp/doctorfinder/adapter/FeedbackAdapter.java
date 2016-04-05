@@ -255,7 +255,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                         if (item.getItemId() == R.id.action_clear) {
                             deleteFeedback(position);
-                            Snackbar.make(v, "Cancellato!", Snackbar.LENGTH_INDEFINITE)
+                            Snackbar.make(v, "Cancellato!", Snackbar.LENGTH_LONG)
                                     .setAction("Annulla", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -348,10 +348,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                         List<String> thumbList = object.getList(THUMB_LIST);
 
-                        if (ParseUser.getCurrentUser().getEmail() != null) {
-                            if (thumbList.remove(EMAIL_USER_THIS))
-                                Log.d("THUMB LIST --> ", "RIMOSSO");
-                        }
+                        if (ParseUser.getCurrentUser().getEmail() != null)
+                            thumbList.remove(EMAIL_USER_THIS);
 
                         object.put(THUMB_LIST, thumbList);
                         object.increment(NUM_THUMB, -1);
