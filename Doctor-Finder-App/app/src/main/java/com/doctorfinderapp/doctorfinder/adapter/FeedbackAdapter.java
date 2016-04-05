@@ -309,5 +309,4 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             }
         });
     }
-
 }
