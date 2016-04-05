@@ -33,6 +33,7 @@ public class FeedbackFragment extends Fragment {
     public static FeedbackAdapter feedbackAdapter, nullAdapter;
     private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
     int color_red, color_red_pressed;
+    String EMAIL;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -65,7 +66,7 @@ public class FeedbackFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
-        String EMAIL = DOCTORTHIS.getString("Email");
+        EMAIL = DOCTORTHIS.getString("Email");
 
 
         View rootView = inflater.inflate(R.layout.fragment_feedback,
@@ -96,7 +97,7 @@ public class FeedbackFragment extends Fragment {
             nullArray.add(feedback_null);
             DoctorActivity.fabfeedback.setColorNormal(color_red);
             DoctorActivity.fabfeedback.setColorPressed(color_red);
-            nullAdapter = new FeedbackAdapter(nullArray);
+            nullAdapter = new FeedbackAdapter(nullArray, EMAIL, ParseUser.getCurrentUser().getEmail());
             mRecyclerView.setAdapter(nullAdapter);
 
         } else {
@@ -105,7 +106,7 @@ public class FeedbackFragment extends Fragment {
             nullArray.add(feedback_null);
             DoctorActivity.fabfeedback.setColorNormal(color_red);
             DoctorActivity.fabfeedback.setColorPressed(color_red);
-            nullAdapter = new FeedbackAdapter(nullArray);
+            nullAdapter = new FeedbackAdapter(nullArray, EMAIL, ParseUser.getCurrentUser().getEmail());
             mRecyclerView.setAdapter(nullAdapter);
         }
         return rootView;
@@ -161,7 +162,7 @@ public class FeedbackFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        feedbackAdapter = new FeedbackAdapter(FeedbackArray);
+        feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 
         mRecyclerView.setAdapter(feedbackAdapter);
     }

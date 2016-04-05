@@ -21,8 +21,13 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseSession;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by fedebyes on 08/03/16.
@@ -173,6 +178,9 @@ public class FeedbackDialogFragment extends DialogFragment {
                     object.put("Anonymus", anonymus);
                     object.put("feedback_description", feedback_description);
 
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    object.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
+
                     object.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -196,6 +204,10 @@ public class FeedbackDialogFragment extends DialogFragment {
                     feedback.put("Anonymus", anonymus);
                     feedback.put("feedback_description", feedback_description);
                     feedback.put("Rating", new Float(ratingbar.getRating()));
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    feedback.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
+                    feedback.put("thumb_list", new ArrayList<String>());
+                    feedback.put("num_thumb", 0);
 
                     feedback.saveInBackground(new SaveCallback() {
                         @Override
