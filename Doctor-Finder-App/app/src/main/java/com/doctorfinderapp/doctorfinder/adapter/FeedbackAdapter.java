@@ -26,6 +26,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
@@ -41,11 +42,11 @@ import java.util.List;
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.FeedbackViewHolder> {
 
     List<ParseObject> feedbacklist;
-    static String EMAIL_DOCTOR_THIS;
-    static String EMAIL_USER_THIS;
-    static String FEEDBACK = "Feedback";
-    static String USER_EMAIL = "email_user";
-    static String DOCTOR_EMAIL = "email_doctor";
+    String EMAIL_DOCTOR_THIS;
+    String EMAIL_USER_THIS;
+    String FEEDBACK = "Feedback";
+    String USER_EMAIL = "email_user";
+    String DOCTOR_EMAIL = "email_doctor";
     String NUM_THUMB = "num_thumb";
     String THUMB_LIST = "thumb_list";
     String DATE = "date";
@@ -63,7 +64,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         return new FeedbackViewHolder(v);
     }
 
-    public static class FeedbackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class FeedbackViewHolder extends RecyclerView.ViewHolder {
 
         TextView feedback_text;
         RatingBar ratingBar;
@@ -76,7 +77,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         boolean THUMB_PRESSED;
         TextView date;
         PopupMenu popup;
-        ParseObject push;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -89,78 +89,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             thumb = (IconicsImageView) itemView.findViewById(R.id.feed_like);
             num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
             date = (TextView) itemView.findViewById(R.id.feed_date);
-            spam.setOnClickListener(this);
-            clear.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            int id = v.getId();
-
-            switch (id) {
-                case R.id.feed_spam:
-
-                    //get instance of menu
-                    popup = new PopupMenu(itemView.getContext(), spam);
-                    popup.getMenuInflater().inflate(R.menu.menu_card_feedback, popup.getMenu());
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            //TODO report spam
-                            if (item.getItemId() == R.id.action_spam) {
-                                Log.d("FEEDBACK ADAPTER --> ", "SPAM CLICKED");
-                            }
-                            return true;
-                        }
-                    });
-
-                    popup.show();
-                    break;
-
-                case R.id.feed_clear:
-
-                    //get instance of menu
-                    popup = new PopupMenu(itemView.getContext(), clear);
-                    popup.getMenuInflater().inflate(R.menu.menu_card_clear, popup.getMenu());
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-
-                            if (item.getItemId() == R.id.action_clear) {
-                                //start progress bar
-                                ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
-                                delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
-                                delete.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
-                                delete.getFirstInBackground(new GetCallback<ParseObject>() {
-                                    @Override
-                                    public void done(ParseObject object, ParseException e) {
-                                        if (e != null) {
-                                            //errore
-                                        }
-
-                                        else object.deleteInBackground(new DeleteCallback() {
-                                            @Override
-                                            public void done(ParseException e) {
-                                                if (e != null){
-                                                    //errore
-
-                                                } else {
-                                                    //finish progress bar
-                                                    //notifydatasetchanged
-                                                }
-                                            }
-                                        });
-                                    }
-                                });
-
-                            }
-                            return true;
-                        }
-                    });
-
-                    popup.show();
-                    break;
-            }
         }
     }
 
@@ -252,6 +180,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         holder.thumb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.thumb.setClickable(false);
                 if (holder.THUMB_PRESSED)
                     holder.THUMB_PRESSED = false;
                 else holder.THUMB_PRESSED = true;
@@ -260,7 +189,26 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             }
         });
 
+        holder.thumb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton(v, holder, position);
+            }
+        });
 
+        holder.spam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton(v, holder, position);
+            }
+        });
+
+        holder.clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton(v, holder, position);
+            }
+        });
     }
 
     @Override
@@ -269,21 +217,70 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         return feedbacklist.size();
     }
 
-    public void switchColorAndThumb(FeedbackViewHolder holder, int position) {
 
-        if (holder.THUMB_PRESSED) {
-            ThumbUtil(holder.THUMB_PRESSED, position);
-            holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
-            holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) + 1));
+    public void onClickButton(View v, FeedbackViewHolder holder, int position) {
+        int id = v.getId();
 
-        } else {
-            ThumbUtil(holder.THUMB_PRESSED, position);
-            holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
-            holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) - 1));
+        switch (id) {
+            case R.id.feed_spam:
+
+                //get instance of menu
+                holder.popup = new PopupMenu(holder.itemView.getContext(), holder.spam);
+                holder.popup.getMenuInflater().inflate(R.menu.menu_card_feedback, holder.popup.getMenu());
+                holder.popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        //TODO report spam
+                        if (item.getItemId() == R.id.action_spam) {
+                            Log.d("FEEDBACK ADAPTER --> ", "SPAM CLICKED");
+                        }
+                        return true;
+                    }
+                });
+
+                holder.popup.show();
+                break;
+
+            case R.id.feed_clear:
+
+                //get instance of menu
+                holder.popup = new PopupMenu(holder.itemView.getContext(), holder.clear);
+                holder.popup.getMenuInflater().inflate(R.menu.menu_card_clear, holder.popup.getMenu());
+                holder.popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        if (item.getItemId() == R.id.action_clear) {
+                            deleteFeedback();
+                        }
+                        return true;
+                    }
+                });
+
+                holder.popup.show();
+                break;
+
+            case R.id.feed_like:
+                switchColorAndThumb(holder, position);
         }
     }
 
-    public void ThumbUtil(final boolean THUMB_PRESSED, int position) {
+    public void switchColorAndThumb(FeedbackViewHolder holder, int position) {
+
+        if (holder.THUMB_PRESSED) {
+            //TODO start thumb animation
+            holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
+            holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) + 1));
+            ThumbUtil(holder.THUMB_PRESSED, position, holder);
+
+        } else {
+            holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
+            holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) - 1));
+            ThumbUtil(holder.THUMB_PRESSED, position, holder);
+        }
+    }
+
+    public void ThumbUtil(final boolean THUMB_PRESSED, int position, final FeedbackViewHolder holder) {
 
         final String user_email = feedbacklist.get(position).getString(USER_EMAIL);
         ParseQuery<ParseObject> feedback = ParseQuery.getQuery(FEEDBACK);
@@ -304,7 +301,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                             object.add(THUMB_LIST, EMAIL_USER_THIS);
 
                             object.increment(NUM_THUMB, 1);
-
+                            try {
+                                object.save();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
                         }
 
                         //case of thumb wasn't pressed and we need to remove object from thumb list and decrement 1 like
@@ -319,16 +320,35 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                         object.put(THUMB_LIST, thumbList);
                         object.increment(NUM_THUMB, -1);
-
+                        try {
+                            object.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
                     }
+                    holder.thumb.setClickable(true);
+                    //TODO finish thumb animation
                 }
             }
         });
     }
 
-    public void pushFeedbackChange(){
-        for (int i = 0; i < feedbacklist.size(); i++) {
-
-        }
+    public void deleteFeedback(){
+        //TODO start progress bar
+        ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
+        delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+        delete.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
+        delete.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                try {
+                    object.delete();
+                    notifyDataSetChanged();
+                    //TODO finish progress bar
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
     }
 }
