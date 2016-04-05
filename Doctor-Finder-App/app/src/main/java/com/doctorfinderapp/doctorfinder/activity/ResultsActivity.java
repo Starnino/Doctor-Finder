@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -25,7 +26,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.R;
@@ -46,6 +46,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
+import com.doctorfinderapp.doctorfinder.activity.ClaimDoctorActivity;
 
 
 public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -60,8 +61,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
-    private ImageButton trepallini;
-    private SwipeRefreshLayout swipeContainer;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
 
 
 
@@ -69,6 +70,15 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
+
+        //pull to refresh
+        /*
+        setContentView(R.layout.activity_results);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorScheme(Color.GREEN,Color.MAGENTA);
+        */
 
         //adding doctors data
         //AddDoctors.addData();
@@ -84,24 +94,17 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         //ParseUser currentUser = ParseUser.getCurrentUser();
 
-
-
         setContentView(R.layout.activity_results);
 
         //find fab buttons
         fab_location = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_location);
         fab = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+       fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
-
-                Bundle dottore = new Bundle();
-                dottore.putString("URL",
-                        GlobalVariable.URLDoctorForm );
-                intent_dottore.putExtras(dottore);
-                startActivity(intent_dottore);
+                //here
+                startActivity(new Intent(ResultsActivity.this,ClaimDoctorActivity.class));
             }
         });
 
@@ -166,6 +169,17 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
 
     }
+
+    public void onRefresh() {
+        Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 2000);
+    }
+
 
       public void setProfileInformation(ParseUser user){
         if (user != null
