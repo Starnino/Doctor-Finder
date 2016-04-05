@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.mikepenz.iconics.view.IconicsImageView;
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.Parse;
@@ -27,6 +29,7 @@ import com.parse.ParseUser;
 
 import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -38,11 +41,11 @@ import java.util.List;
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.FeedbackViewHolder> {
 
     List<ParseObject> feedbacklist;
-    String EMAIL_DOCTOR_THIS;
-    String EMAIL_USER_THIS;
-    String FEEDBACK = "Feedback";
-    String USER_EMAIL = "email_user";
-    String DOCTOR_EMAIL = "email_doctor";
+    static String EMAIL_DOCTOR_THIS;
+    static String EMAIL_USER_THIS;
+    static String FEEDBACK = "Feedback";
+    static String USER_EMAIL = "email_user";
+    static String DOCTOR_EMAIL = "email_doctor";
     String NUM_THUMB = "num_thumb";
     String THUMB_LIST = "thumb_list";
     String DATE = "date";
@@ -50,8 +53,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
         this.feedbacklist = feedbacks;
-        this.EMAIL_DOCTOR_THIS = doctor_email;
-        this.EMAIL_USER_THIS = user_email;
+        EMAIL_DOCTOR_THIS = doctor_email;
+        EMAIL_USER_THIS = user_email;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         boolean THUMB_PRESSED;
         TextView date;
         PopupMenu popup;
+        ParseObject push;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -121,9 +125,34 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            //TODO report spam
+
                             if (item.getItemId() == R.id.action_clear) {
-                                Log.d("FEEDBACK ADAPTER --> ", "CLEAR CLICKED");
+                                //start progress bar
+                                ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
+                                delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+                                delete.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
+                                delete.getFirstInBackground(new GetCallback<ParseObject>() {
+                                    @Override
+                                    public void done(ParseObject object, ParseException e) {
+                                        if (e != null) {
+                                            //errore
+                                        }
+
+                                        else object.deleteInBackground(new DeleteCallback() {
+                                            @Override
+                                            public void done(ParseException e) {
+                                                if (e != null){
+                                                    //errore
+
+                                                } else {
+                                                    //finish progress bar
+                                                    //notifydatasetchanged
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+
                             }
                             return true;
                         }
@@ -243,13 +272,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     public void switchColorAndThumb(FeedbackViewHolder holder, int position) {
 
         if (holder.THUMB_PRESSED) {
-            //TODO resolve fast tap crash
             ThumbUtil(holder.THUMB_PRESSED, position);
             holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
             holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) + 1));
 
         } else {
-            //TODO resolve fast tap crash
             ThumbUtil(holder.THUMB_PRESSED, position);
             holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
             holder.num_thumb.setText(String.valueOf(Integer.parseInt(holder.num_thumb.getText().toString()) - 1));
@@ -278,12 +305,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                             object.increment(NUM_THUMB, 1);
 
-                            try {
-                                object.save();
-
-                            } catch (ParseException e1) {
-                                e1.printStackTrace();
-                            }
                         }
 
                         //case of thumb wasn't pressed and we need to remove object from thumb list and decrement 1 like
@@ -299,14 +320,15 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         object.put(THUMB_LIST, thumbList);
                         object.increment(NUM_THUMB, -1);
 
-                        try {
-                            object.save();
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
                     }
                 }
             }
         });
+    }
+
+    public void pushFeedbackChange(){
+        for (int i = 0; i < feedbacklist.size(); i++) {
+
+        }
     }
 }
