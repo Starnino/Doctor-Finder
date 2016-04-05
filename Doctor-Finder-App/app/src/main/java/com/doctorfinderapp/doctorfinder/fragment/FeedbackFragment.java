@@ -19,6 +19,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class FeedbackFragment extends Fragment {
     private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
     int color_red, color_red_pressed;
     String EMAIL;
+    ProgressWheel progressWheel;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -65,12 +67,15 @@ public class FeedbackFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
-        EMAIL = DOCTORTHIS.getString("Email");
-
-
         View rootView = inflater.inflate(R.layout.fragment_feedback,
                 container, false);
+
+        progressWheel = (ProgressWheel) rootView.findViewById(R.id.progressBarFeedback);
+        progressWheel.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progressWheel.spin();
+
+        ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
+        EMAIL = DOCTORTHIS.getString("Email");
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recyclerview);
@@ -137,16 +142,6 @@ public class FeedbackFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
 
     public interface OnFragmentInteractionListener {
@@ -165,5 +160,7 @@ public class FeedbackFragment extends Fragment {
         feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 
         mRecyclerView.setAdapter(feedbackAdapter);
+
+        progressWheel.stopSpinning();
     }
 }

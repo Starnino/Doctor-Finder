@@ -275,7 +275,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         switch (id) {
 
             case R.id.fab_share:
-                //TODO correggere
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Prova Doctor Finder --> http://bit.do/Doctor-Finder-App ");

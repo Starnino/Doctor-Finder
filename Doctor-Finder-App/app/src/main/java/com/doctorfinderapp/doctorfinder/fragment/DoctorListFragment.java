@@ -17,6 +17,7 @@ import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.ParseObject;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class DoctorListFragment extends Fragment {
     private static ParseAdapter parseAdapter;
     private List<ParseObject> DOCTORS;
     private FloatingActionButton fab;
-    private static ProgressBar progressBar;
+    private static ProgressWheel progressBar;
 
 
     public DoctorListFragment() {
@@ -60,7 +61,10 @@ public class DoctorListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_doctorlist,
                 container, false);
 
-        progressBar= (ProgressBar) rootView.findViewById(R.id.progressBarResults);
+        progressBar = (ProgressWheel) rootView.findViewById(R.id.progressBarList);
+        progressBar.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progressBar.spin();
+
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.result_recyclerview);
 
