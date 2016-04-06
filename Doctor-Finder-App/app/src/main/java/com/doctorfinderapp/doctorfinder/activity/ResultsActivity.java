@@ -11,6 +11,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -164,9 +165,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         setupViewPager(viewPager);
         //download from db
-        showDataM();
 
 
+        showDataM(findViewById(R.id.coordinator_results));
 
     }
 
@@ -229,6 +230,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             public void onPageScrollStateChanged(int state) {
 
             }
+
+
         });
         viewPager.setAdapter(adapter);
 
@@ -284,7 +287,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
-                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                else Snackbar.make(mDrawerLayout, R.string.effettua_login, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 
@@ -339,7 +342,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     }
 
 
-    static class Adapter extends FragmentPagerAdapter {
+    static class Adapter extends FragmentStatePagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -361,6 +364,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+        }
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
 
@@ -426,7 +432,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     //download doctors from DB
 
-    public void showDataM() {
+    public void showDataM(final View v) {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -467,7 +473,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     //dialog.cancel();
                     //setupViewPager(viewPager);
 
-                    Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
+                    Snackbar.make(v, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
