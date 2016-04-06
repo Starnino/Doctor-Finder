@@ -21,6 +21,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.net.UnknownServiceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,10 @@ public class FeedbackFragment extends Fragment {
     int color_red, color_red_pressed;
     String EMAIL;
     ProgressWheel progressWheel;
+    private String EMAIL_DOCTOR = "email_doctor";
+    private String EMAIL_USER = "email_user";
+    private String FEEDBACK = "Feedback";
+    private String Email = "Email";
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -75,7 +80,7 @@ public class FeedbackFragment extends Fragment {
         progressWheel.spin();
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
-        EMAIL = DOCTORTHIS.getString("Email");
+        EMAIL = DOCTORTHIS.getString(Email);
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recyclerview);
@@ -86,13 +91,14 @@ public class FeedbackFragment extends Fragment {
 
         if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
             //If there is Internet connection
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
             //Log.d("Feedback","showing feedback of"+ EMAIL);
-            query.whereEqualTo("email_doctor", EMAIL);
+            query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
                     FeedbackArray = objects;
+                    orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
                     setRecyclerView();
                 }
             });
@@ -162,5 +168,15 @@ public class FeedbackFragment extends Fragment {
         mRecyclerView.setAdapter(feedbackAdapter);
 
         progressWheel.stopSpinning();
+    }
+
+    public void orderBy(List<ParseObject> feedbackArray, String email){
+        for (int i = 0; i < feedbackArray.size(); i++) {
+            if (feedbackArray.get(i).getString(EMAIL_USER).equals(email)) {
+                ParseObject first = feedbackArray.get(i);
+                feedbackArray.remove(i);
+                feedbackArray.add(0,first);
+            }
+        }
     }
 }

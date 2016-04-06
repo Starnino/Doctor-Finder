@@ -164,7 +164,7 @@ public class FeedbackDialogFragment extends DialogFragment {
 
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
-            public void done(ParseObject object, ParseException e) {
+            public void done(final ParseObject object, ParseException e) {
                 if (object != null) {
 
                     //case editing mode
@@ -184,6 +184,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                             if (e != null) Log.d("Push feedback", e.toString());
                             //Log.d("Push feedback", "feedback saved");
                             DoctorActivity.showToastFeedback();
+                            FeedbackFragment.feedbackAdapter.changeItem(object);
                             Util.calculateFeedback(email_doctor);
                         }
                     });
@@ -210,7 +211,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
                             DoctorActivity.showToastFeedback();
-                            FeedbackFragment.feedbackAdapter.changeItem(feedback);
+                            FeedbackFragment.feedbackAdapter.insertItem(feedback);
                             Util.calculateFeedback(email_doctor);
                             //Log.d("Push feedback", "feedback saved");
                         }

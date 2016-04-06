@@ -415,8 +415,14 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         });
     }
 
-    public void changeItem(ParseObject item){
+    public void insertItem(ParseObject item){
         feedbacklist.add(item);
+        notifyDataSetChanged();
+    }
+
+    public void changeItem(ParseObject item){
+        //feedbacklist.add(item);
+        //feedbacklist.remove(item);
         notifyDataSetChanged();
     }
 
