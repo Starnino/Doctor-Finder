@@ -172,6 +172,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             holder.spam.setClickable(false);
             holder.clear.setVisibility(View.VISIBLE);
             holder.clear.setClickable(true);
+            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.dcf_ancora_piu_clear));
         }
 
         holder.date.setText(feedbacklist.get(position).getString(DATE));

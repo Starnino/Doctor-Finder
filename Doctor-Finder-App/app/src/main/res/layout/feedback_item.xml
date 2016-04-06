@@ -140,7 +140,8 @@
                     android:id="@+id/feedback_text"
                     android:layout_marginTop="@dimen/fab_margin"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:layout_marginLeft="@dimen/fab_margin"/>
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_marginBottom="8dp"/>
             </LinearLayout>
 
         </LinearLayout>

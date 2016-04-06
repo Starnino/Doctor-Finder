@@ -26,5 +26,7 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+    <color name="dcf_clear">#80CBC4</color>
+    <color name="dcf_ancora_piu_clear">#B2DFDB</color>
 
 </resources>
