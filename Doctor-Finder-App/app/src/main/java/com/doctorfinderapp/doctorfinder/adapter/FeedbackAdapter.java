@@ -1,9 +1,11 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,6 +15,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
@@ -26,11 +32,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by fedebyes on 05/03/16.
@@ -215,7 +218,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
 
     public void onClickButton(final View v, final FeedbackViewHolder holder, final int position) {
-        int id = v.getId();
+        final int id = v.getId();
 
         switch (id) {
             case R.id.feed_spam:
@@ -226,10 +229,40 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        //TODO report spam
-                        if (item.getItemId() == R.id.action_spam) {
-                            String body = "prova pollo";
 
+                        if (item.getItemId() == R.id.action_spam) {
+
+                            new MaterialDialog.Builder(v.getContext())
+                                    .title("Report Spam")
+                                    .content("Descrivi perchè secondo te questo feedback è uno spam")
+                                    .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                                    .input("Testo", null, new MaterialDialog.InputCallback() {
+                                        @Override
+                                        public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                                            Log.d("INPUT", input.toString());
+
+                                            final String body = "Doctor ==> " + EMAIL_DOCTOR_THIS + "\n" + "\n" +
+                                                    "User Feedback ==> " + EMAIL_USER_THIS + "\n" + "\n" +
+                                                    "User Spammer ==> " + feedbacklist.get(holder.getAdapterPosition()).getString(USER_EMAIL) + "\n" + "\n" +
+                                                    "Feedback text ==> " + holder.feedback_text.getText() + "\n" +
+                                                    "User Text ==> " + input.toString();
+
+                                            BackgroundMail.newBuilder(v.getContext())
+                                                    .withUsername("report.at.dcf@gmail.com")
+                                                    .withPassword("Mianonna14")
+                                                    .withMailto("report.at.dcf@gmail.com")
+                                                    .withSubject("REPORT SPAM")
+                                                    .withBody(body)
+                                                    .send();
+
+                                            Snackbar.make(v, "Grazie per la segnalazione!", Snackbar.LENGTH_LONG)
+                                                    .show();
+                                        }
+                                    }).positiveText("Invia")
+                                    .negativeText("Annulla")
+                                    .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                                    .show();
                         }
                         return true;
                     }

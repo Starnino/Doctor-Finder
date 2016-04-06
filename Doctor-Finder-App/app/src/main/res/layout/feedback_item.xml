@@ -138,7 +138,9 @@
                     android:layout_height="wrap_content"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis fermentum neque, ac porttitor eros commodo quis. Sed sed vehicula sapien. Donec ornare felis vel risus bibendum mattis. Nam tristique ipsum tempus, bibendum erat vitae, euismod magna. Vivamus vitae hendrerit felis, vitae elementum tortor. Nullam ante orci, semper vel tellus sit amet, eleifend auctor libero. Phasellus ac neque tincidunt, consectetur quam vel, porttitor nibh. Nulla commodo sodales velit, quis semper turpis placerat ut. Phasellus eleifend enim diam, sit amet auctor orci scelerisque nec. Suspendisse potenti. Proin eget condimentum leo. Curabitur a molestie metus, at condimentum orci. Vestibulum ullamcorper, lorem in tempor aliquam, diam mi pharetra ligula, et vehicula ligula risus vitae turpis. Nam ultricies neque est. Duis id sollicitudin orci, eget rhoncus elit. In sed velit nec tellus tempus aliquam."
                     android:id="@+id/feedback_text"
-                    android:layout_margin="@dimen/fab_margin" />
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:layout_marginRight="@dimen/fab_margin"
+                    android:layout_marginLeft="@dimen/fab_margin"/>
             </LinearLayout>
 
         </LinearLayout>
