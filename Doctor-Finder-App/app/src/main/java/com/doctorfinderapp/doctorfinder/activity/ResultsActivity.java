@@ -471,6 +471,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
+
                     viewPager.getAdapter().notifyDataSetChanged();
 
 

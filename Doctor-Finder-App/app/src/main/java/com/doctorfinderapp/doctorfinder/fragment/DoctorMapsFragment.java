@@ -148,7 +148,7 @@ public class DoctorMapsFragment extends SupportMapFragment
     public void onResume() {
         super.onResume();
 
-       setUpMapIfNeeded();
+        setUpMapIfNeeded();
 
     }
 
@@ -225,7 +225,7 @@ public class DoctorMapsFragment extends SupportMapFragment
                     lon = Double.parseDouble(latLong[index][1]);
                     Marker currentMarker = gMap.addMarker(new MarkerOptions()
                             .position(new LatLng(lat, lon))
-                                    //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
+                            //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
                             .title(id)
                             .icon(BitmapDescriptorFactory.fromBitmap(markerSmall))
                             .snippet(Util.setSpecialization(spec)));
