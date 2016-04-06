@@ -13,6 +13,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -199,26 +201,26 @@ public class Util {
             public void done(ParseObject doctor, ParseException e) {
 
                 if (doctor == null) {
-                    Log.d("calculate feedback", "Error doctor not exists ");
+                    //Log.d("calculate feedback", "Error doctor not exists ");
                 } else {
                     //ACL
                     //doctor.setACL(postACL);
                     ParseQuery query2 = ParseQuery.getQuery("Feedback");
                     query2.whereEqualTo("email_doctor", doctor_email);
-                    Log.d("Feedback", doctor.toString());
+                    //Log.d("Feedback", doctor.toString());
                     try {
                         List<ParseObject> objects = (List<ParseObject>) query2.find();
                         Float somma = 0f;
                         for (int i = 0; i < objects.size(); i++) {
                             String f = objects.get(i).get("Rating").toString();
-                            Log.d("Feedback", f);
+                            //Log.d("Feedback", f);
                             somma = somma + Float.parseFloat(f);
                         }
-                        Log.d("Feedback2", doctor.toString());
+                        //Log.d("Feedback2", doctor.toString());
                         float media = somma / objects.size();
-                        Log.d("Feedback", "object.size() " + objects.size() + "");
-                        Log.d("Feedback", "somma " + somma + "");
-                        Log.d("Feedback", "media " + media + "");
+                        //Log.d("Feedback", "object.size() " + objects.size() + "");
+                        //Log.d("Feedback", "somma " + somma + "");
+                        //Log.d("Feedback", "media " + media + "");
                         //doctor.remove("Feedback");
 
                         //Log.d("Feedback", String.valueOf(doctor.getACL().getPublicReadAccess()));
@@ -228,6 +230,8 @@ public class Util {
                         doctor.save();
 
                         doctor.put("Feedback", media);
+                        DoctorFragment.changeRating(media);
+                        DoctorListFragment.refreshList();
                         doctor.save();
 
 

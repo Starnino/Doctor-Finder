@@ -1,8 +1,6 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Icon;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -15,31 +13,24 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
-import com.facebook.internal.LockOnGetVariable;
 import com.mikepenz.iconics.view.IconicsImageView;
-import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
-import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.net.PasswordAuthentication;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by fedebyes on 05/03/16.
@@ -59,6 +50,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String ANONYMUS = "Anonymus";
     String FEEDBACK_DESCRIPTION = "feedback_description";
     String RATING = "Rating";
+    String DOCTOR = "Doctor";
+    String EMAIL = "Email";
 
 
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
@@ -235,7 +228,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
                         //TODO report spam
                         if (item.getItemId() == R.id.action_spam) {
-                            Log.d("FEEDBACK ADAPTER --> ", "SPAM CLICKED");
+                            String body = "prova pollo";
+
                         }
                         return true;
                     }
@@ -255,7 +249,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                         if (item.getItemId() == R.id.action_clear) {
                             deleteFeedback(position);
-                            Snackbar.make(v, "Cancellato!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setAction("Annulla", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -299,7 +293,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     }
 
     public void switchColorAndThumb(FeedbackViewHolder holder, int position) {
-        Animation resize_big = AnimationUtils.loadAnimation(holder.itemView.getContext(),R.anim.resize_big);
+        Animation resize_big = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.resize_big);
         holder.thumb.startAnimation(resize_big);
 
         if (holder.THUMB_PRESSED) {
@@ -383,6 +377,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 } catch (ParseException e1) {
                     e1.printStackTrace();
                 }
+                rebuildFeedbackAverage();
             }
         });
     }
@@ -409,5 +404,44 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public void rebuildFeedbackAverage(){
+        ParseQuery<ParseObject> doctor = ParseQuery.getQuery(DOCTOR);
+        doctor.whereEqualTo(EMAIL, EMAIL_DOCTOR_THIS);
+        doctor.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (feedbacklist.size() == 0){
+                    object.put(FEEDBACK, 0);
+
+                } else {
+                    List<ParseObject> feedbacks = new ArrayList<>();
+                    ParseQuery<ParseObject> numFeed = ParseQuery.getQuery(FEEDBACK);
+                    numFeed.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+                    try {
+                        feedbacks = numFeed.find();
+
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                    float somma = 0;
+                    int numfeed = feedbacks.size();
+                    for (int i = 0; i < numfeed; i++) {
+                        somma += Float.parseFloat(feedbacks.get(i).get(RATING).toString());
+                    }
+
+                    float avg = somma/numfeed;
+                    DoctorFragment.changeRating(avg);
+                    object.put(FEEDBACK, avg);
+                }
+
+                try {
+                    object.save();
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
     }
 }

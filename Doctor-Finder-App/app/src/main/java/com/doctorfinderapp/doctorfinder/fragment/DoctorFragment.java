@@ -65,6 +65,8 @@ public class DoctorFragment extends Fragment {
     private ImageView facebook_tip;
     private Context c;
     private ProgressWheel progress_tip;
+    private RatingBar ratingBar;
+    private static float rightRating = 0;
 
     public DoctorFragment() {
     }
@@ -133,7 +135,7 @@ public class DoctorFragment extends Fragment {
         TextView workPlace = (TextView) rootView.findViewById(R.id.workPlace);
         TextView cityPlace = (TextView) rootView.findViewById(R.id.cityPlace);
         TextView info = (TextView) rootView.findViewById(R.id.doctor_info);
-        RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
+        ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBarDoctorProfile);
         TextView price = (TextView) rootView.findViewById(R.id.price_text);
         TextView visit = (TextView) rootView.findViewById(R.id.visit_date);
         TextView phone = (TextView) rootView.findViewById(R.id.phone_number);
@@ -206,6 +208,7 @@ public class DoctorFragment extends Fragment {
         if(DOCTOR_FEEDBACK!=null){
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
+            rightRating = Float.parseFloat(DOCTOR_FEEDBACK);
         }else{
             //Log.d("DoctorFragment","Feedback is null");
         }
@@ -283,4 +286,17 @@ public class DoctorFragment extends Fragment {
         }
     }
 
+
+    public static void changeRating(float avg){
+        rightRating = avg;
+        DoctorListFragment.refreshList();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (rightRating != 0)
+            ratingBar.setRating(rightRating);
+    }
 }

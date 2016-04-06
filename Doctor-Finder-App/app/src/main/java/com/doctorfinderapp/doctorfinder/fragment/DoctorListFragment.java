@@ -103,4 +103,7 @@ public class DoctorListFragment extends Fragment {
         progressBar.setVisibility(visibility);
     }
 
+    public static void refreshList(){
+        parseAdapter.notifyDataSetChanged();
+    }
 }
