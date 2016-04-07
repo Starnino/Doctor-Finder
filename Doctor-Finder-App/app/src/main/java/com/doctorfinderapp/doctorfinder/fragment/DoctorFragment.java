@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -99,6 +100,12 @@ public class DoctorFragment extends Fragment {
         progress_tip = (ProgressWheel) rootView.findViewById(R.id.progress_tip);
         progress_tip.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progress_tip.spin();
+
+        if (ParseUser.getCurrentUser() == null || !ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
+            progress_tip.stopSpinning();
+            CardView tip = (CardView) rootView.findViewById(R.id.card_tip);
+            tip.setVisibility(View.GONE);
+        }
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
 

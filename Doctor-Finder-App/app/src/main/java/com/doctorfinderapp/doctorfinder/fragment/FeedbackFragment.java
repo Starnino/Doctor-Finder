@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class FeedbackFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     public static FeedbackAdapter feedbackAdapter, nullAdapter;
     private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
-    int color_red, color_red_pressed;
+    int color_red, color_red_pressed, color_green, color_green_pressed;
     String EMAIL;
     ProgressWheel progressWheel;
     private String EMAIL_DOCTOR = "email_doctor";
@@ -65,6 +66,8 @@ public class FeedbackFragment extends Fragment {
         DoctorActivity.switchFAB(1);
         color_red = getResources().getColor(R.color.red_btn_bg_color);
         color_red_pressed = getResources().getColor(R.color.red_btn_bg_pressed_color);
+        color_green = getResources().getColor(R.color.docfinder);
+        color_green_pressed = getResources().getColor(R.color.colorPrimaryDark);
     }
 
     @Override
@@ -91,6 +94,9 @@ public class FeedbackFragment extends Fragment {
 
         if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
             //If there is Internet connection
+            DoctorActivity.fabfeedback.setColorNormal(color_red);
+            DoctorActivity.fabfeedback.setColorPressed(color_red_pressed);
+            DoctorActivity.fabfeedback.setClickable(false);
             ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
             //Log.d("Feedback","showing feedback of"+ EMAIL);
             query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
@@ -107,19 +113,17 @@ public class FeedbackFragment extends Fragment {
             ParseObject feedback_null = new ParseObject("NOLOGIN");
             nullArray.add(feedback_null);
             DoctorActivity.fabfeedback.setColorNormal(color_red);
-            DoctorActivity.fabfeedback.setColorPressed(color_red);
-            nullAdapter = new FeedbackAdapter(nullArray, EMAIL, ParseUser.getCurrentUser().getEmail());
-            mRecyclerView.setAdapter(nullAdapter);
+            DoctorActivity.fabfeedback.setColorPressed(color_red_pressed);
 
-        } else {
-            //if there is not Internet connection set null Array
-            ParseObject feedback_null = new ParseObject("NULL");
-            nullArray.add(feedback_null);
-            DoctorActivity.fabfeedback.setColorNormal(color_red);
-            DoctorActivity.fabfeedback.setColorPressed(color_red);
-            nullAdapter = new FeedbackAdapter(nullArray, EMAIL, ParseUser.getCurrentUser().getEmail());
+            mRecyclerView.setHasFixedSize(true);
+            mLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            nullAdapter = new FeedbackAdapter(nullArray, null, null);
             mRecyclerView.setAdapter(nullAdapter);
+            progressWheel.stopSpinning();
+
         }
+
         return rootView;
     }
 
@@ -166,6 +170,10 @@ public class FeedbackFragment extends Fragment {
         feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 
         mRecyclerView.setAdapter(feedbackAdapter);
+
+        DoctorActivity.fabfeedback.setColorNormal(color_green);
+        DoctorActivity.fabfeedback.setColorPressed(color_green_pressed);
+        DoctorActivity.fabfeedback.setClickable(true);
 
         progressWheel.stopSpinning();
     }

@@ -32,7 +32,10 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -99,22 +102,19 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     @Override
     public void onBindViewHolder(final FeedbackAdapter.FeedbackViewHolder holder, final int position) {
+        Log.d("FEED SIZE", " " + getItemCount());
 
         if (feedbacklist.get(position) != null && !feedbacklist.get(position).getClassName().equals(FEEDBACK)) {
 
-            if (feedbacklist.get(position).getClassName().equals("NULL")) {
-                holder.name.setText("Doctor Finder");
-                holder.feedback_text.setText("La tua connessione non sembra essere stabile, controlla la " +
-                        "connessione a Internet e riprova!");
-                holder.ratingBar.setRating(holder.ratingBar.getMax());
-                holder.propic.setImageResource(R.drawable.personavatar);
-
-            } else if (feedbacklist.get(position).getClassName().equals("NOLOGIN")) {
+            if (feedbacklist.get(position).getClassName().equals("NOLOGIN")) {
                 holder.name.setText("Doctor Finder");
                 holder.feedback_text.setText("Devi essere loggato per poter consultare i feedback" +
                         " lasciati a questo medico!");
                 holder.ratingBar.setRating(holder.ratingBar.getMax());
                 holder.propic.setImageResource(R.drawable.personavatar);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                holder.date.setText(simpleDateFormat.format(Calendar.getInstance().getTime()));
+                holder.num_thumb.setText("999");
             }
 
         } else {
@@ -165,50 +165,51 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             } else {
                 holder.name.setText(R.string.anonymus_name);
             }
+
+            if (EMAIL_USER_THIS.equals(feedbacklist.get(position).getString(USER_EMAIL))) {
+                holder.spam.setVisibility(View.INVISIBLE);
+                holder.spam.setClickable(false);
+                holder.clear.setVisibility(View.VISIBLE);
+                holder.clear.setClickable(true);
+                holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.dcf_ancora_piu_clear));
+            }
+
+            holder.date.setText(feedbacklist.get(position).getString(DATE));
+
+            if (ParseUser.getCurrentUser().getEmail() != null)
+                if (feedbacklist.get(position).getList(THUMB_LIST).contains(EMAIL_USER_THIS))
+                    holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
+                else holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
+
+            holder.num_thumb.setText(String.valueOf(feedbacklist.get(position).getInt(NUM_THUMB)));
+
+            holder.thumb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.thumb.setClickable(false);
+                    if (holder.THUMB_PRESSED)
+                        holder.THUMB_PRESSED = false;
+                    else holder.THUMB_PRESSED = true;
+
+                    onClickButton(v, holder, position);
+                }
+            });
+
+            holder.spam.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickButton(v, holder, position);
+                }
+            });
+
+            holder.clear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickButton(v, holder, position);
+                }
+            });
         }
 
-        if (EMAIL_USER_THIS.equals(feedbacklist.get(position).getString(USER_EMAIL))) {
-            holder.spam.setVisibility(View.INVISIBLE);
-            holder.spam.setClickable(false);
-            holder.clear.setVisibility(View.VISIBLE);
-            holder.clear.setClickable(true);
-            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.dcf_ancora_piu_clear));
-        }
-
-        holder.date.setText(feedbacklist.get(position).getString(DATE));
-
-        if (ParseUser.getCurrentUser().getEmail() != null)
-            if (feedbacklist.get(position).getList(THUMB_LIST).contains(EMAIL_USER_THIS))
-                holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.colorPrimaryDark));
-            else holder.thumb.setColor(holder.itemView.getResources().getColor(R.color.grey));
-
-        holder.num_thumb.setText(String.valueOf(feedbacklist.get(position).getInt(NUM_THUMB)));
-
-        holder.thumb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.thumb.setClickable(false);
-                if (holder.THUMB_PRESSED)
-                    holder.THUMB_PRESSED = false;
-                else holder.THUMB_PRESSED = true;
-
-                onClickButton(v, holder, position);
-            }
-        });
-
-        holder.spam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickButton(v, holder, position);
-            }
-        });
-
-        holder.clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickButton(v, holder, position);
-            }
-        });
     }
 
     @Override
@@ -417,7 +418,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     }
 
     public void insertItem(ParseObject item){
-        feedbacklist.add(item);
+        feedbacklist.add(0,item);
         notifyDataSetChanged();
     }
 
