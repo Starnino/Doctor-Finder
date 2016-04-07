@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static Context mContext;
 
     //Parameters shared by fragment goes in activity
-
     private com.melnykov.fab.FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     public static String[] citta, special;
