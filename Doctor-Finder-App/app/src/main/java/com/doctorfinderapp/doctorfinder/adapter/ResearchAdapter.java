@@ -9,7 +9,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.MainActivity;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -49,7 +52,8 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ON CLICK SEARCH --> ", " ");
+                MainActivity.research(Arrays.asList(linearLayouts.get(position)[0]),
+                        Arrays.asList(linearLayouts.get(position)[1]), v.getContext());
             }
         });
 

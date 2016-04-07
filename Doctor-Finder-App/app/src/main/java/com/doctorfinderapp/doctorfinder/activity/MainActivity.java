@@ -2,6 +2,7 @@ package com.doctorfinderapp.doctorfinder.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,9 +26,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,12 +56,15 @@ import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import me.zhanghai.android.materialprogressbar.IndeterminateHorizontalProgressDrawable;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -68,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ResearchAdapter sAdapter;
-    private List<Doctor> doctors;
+    private static List<Doctor> doctors;
     private List<String[]> research;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -82,12 +88,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private com.melnykov.fab.FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     public static String[] citta, special;
-    public static ArrayList<String> CITY, SPECIAL;
+    public static ArrayList<String> CITY, SPECIAL, CITY2, SPECIAL2;
     private TextView cityText, specialText;
     private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
             card_recent_search, card_recent_search_null;
     private NavigationView navigationView;
+    public ProgressBar progress;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -172,10 +179,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         cityText.setText("Tutte");
         specialText.setText("Tutte");
 
-
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
         citta = getResources().getStringArray(R.array.cities);
+
         CITY = new ArrayList<>();
         final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", CITY, citta);
         selcitta.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //Dialog for specialization
         selcateg = (LinearLayout) findViewById(R.id.select_special_button);
         special = getResources().getStringArray(R.array.Specializations);
+
         SPECIAL = new ArrayList<>();
         final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", SPECIAL, special);
         selcateg.setOnClickListener(new View.OnClickListener() {
@@ -215,19 +223,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             .setAction("Action", null).show();
 
                 else {
-
+                    progress.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
+                    intent.putExtra("RESEARCH", false);
                     startActivity(intent);
 
                     setLinear(specialText, cityText);
-                    Log.d("SET LINEAR --> ", CITY + "");
+                    //Log.d("SET LINEAR --> ", CITY + "");
                 }
             }
         });
-
-        //start animation
-        Timer timer = new Timer();
 
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
@@ -253,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        //add drawer listner not exists
+        //add drawer listener not exists
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -281,8 +287,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Timer timer = new Timer();
             timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
-            TextView nome= (TextView) header.findViewById(R.id.name_user);
-            String name =user.getString("fName") ;
+            TextView nome = (TextView) header.findViewById(R.id.name_user);
+            String name = user.getString("fName") ;
             nome.setText(name);
             TextView email= (TextView) header.findViewById(R.id.email_user);
 
@@ -340,9 +346,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        for (int i = 0; i < checked.size(); i++) {
-                            Log.d("List " + i + " ----> ", checked.get(i));
-                        }
+
                     }
                 }).setNeutralButton("tutte", new DialogInterface.OnClickListener() {
                     @Override
@@ -364,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
 
                         for (int i = 0; i < checked.size(); i++) {
-                            Log.d("List " + i + " ----> ", checked.get(i));
+                            //Log.d("List " + i + " ----> ", checked.get(i));
                         }
 
                     }
@@ -384,7 +388,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             FLAGCITY = false;
                         }
                         checked.clear();
-                        Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
+                        //Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
                 });
         return builder.create();
@@ -556,14 +560,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     if (objects.size() != 0) {
+
+                        if (objects.size() > 9) {
+                            try {
+                                objects.get(9).unpin();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            doctors = doctors.subList(0, 9);
+                        }
+
                         card_recent_doctor_null.setVisibility(View.INVISIBLE);
                         card_recent_doctor.setVisibility(View.VISIBLE);
                         doctors = Util.transformList(objects);
 
-                        if (objects.size() > 9) {
-                            objects.get(9).unpinInBackground();
-                            doctors = doctors.subList(0, 9);
-                        }
                         mAdapter = new DoctorAdapter(doctors);
 
                         mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
@@ -586,15 +596,22 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
+
                     if (objects.size() != 0) {
+
+                        if (objects.size() > 9) {
+                            try {
+                                objects.get(9).unpin();
+
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            research = research.subList(0, 9);
+                        }
+
                         card_recent_search_null.setVisibility(View.INVISIBLE);
                         card_recent_search.setVisibility(View.VISIBLE);
                         research = Util.transformSearch(objects);
-
-                        if (objects.size() > 9) {
-                            objects.get(9).unpinInBackground();
-                            research = research.subList(0, 9);
-                        }
 
                         //specify adapter
                         sAdapter = new ResearchAdapter(research);
@@ -611,12 +628,30 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public void setLinear(TextView s, TextView c){
         String special = s.getText().toString();
         String city = c.getText().toString();
-        ParseObject recentSearch = new ParseObject("recentSearch");
+        final ParseObject recentSearch = new ParseObject("recentSearch");
         recentSearch.put("SPEC", special);
         recentSearch.put("CITY", city);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        recentSearch.put("DATE",simpleDateFormat.format(Calendar.getInstance().getTime()));
-        recentSearch.pinInBackground();
+        recentSearch.put("DATE", simpleDateFormat.format(Calendar.getInstance().getTime()));
+        ParseQuery<ParseObject> pin = ParseQuery.getQuery("recentSearch");
+        pin.fromLocalDatastore();
+        pin.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                boolean flag = true;
+                for (int i = 0; i < objects.size(); i++) {
+                    if (objects.get(i).getString("SPEC").equals(recentSearch.getString("SPEC"))
+                            && objects.get(i).getString("CITY").equals(recentSearch.getString("CITY")))
+                                flag = false;
+                }
+                if (flag)
+                    try {
+                        recentSearch.pin();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+            }
+        });
     }
 
     public void profile_click(View v){
@@ -627,11 +662,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
     }
 
-    public static void research(ArrayList<String> special, ArrayList<String> city){
-        SPECIAL = new ArrayList<>(special);
-        CITY = new ArrayList<>(city);
-        Log.d("CITY BEFORE LAUNCH --> ", CITY + "");
+    public static void research(List<String> specialization, List<String> city, Context mContext){
+
+        if (city.size() == 1 && city.get(0).equals("Tutte"))
+            CITY2 = new ArrayList<>(Arrays.asList(citta));
+
+        else CITY2 = new ArrayList<>(city);
+
+        if (city.size() == 1 && specialization.get(0).equals("Tutte"))
+            SPECIAL2 = new ArrayList<>(Arrays.asList(special));
+
+        else SPECIAL2 = new ArrayList<>(specialization);
+
         Intent intent = new Intent(mContext, ResultsActivity.class);
+        intent.putExtra("RESEARCH", true);
         mContext.startActivity(intent);
     }
 }

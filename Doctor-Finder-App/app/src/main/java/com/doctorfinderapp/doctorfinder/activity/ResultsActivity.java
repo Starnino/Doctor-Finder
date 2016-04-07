@@ -148,8 +148,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         setupViewPager(viewPager);
         //download from db
 
+        if (getIntent().getExtras().getBoolean("RESEARCH"))
+            showDatafromAdapter(findViewById(R.id.coordinator_results));
 
-        showDataM(findViewById(R.id.coordinator_results));
+        else showDataM(findViewById(R.id.coordinator_results));
 
     }
 
@@ -438,7 +440,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                     viewPager.getAdapter().notifyDataSetChanged();
 
 
-                    Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
+                    //Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
 
                 }
@@ -511,7 +513,51 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     }
 
+    public void showDatafromAdapter(final View v) {
 
+        //get query: All doctor
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+
+        //retrieve object with multiple city
+        if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
+            doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
+
+        //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
+
+        //retrieve object with multiple city
+        if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
+            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL2);
+
+        //order by LastName
+        if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
+            doctorsQuery.orderByAscending("LastName");
+        }
+
+
+        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    GlobalVariable.DOCTORS = objects;
+                    String finded;
+                    if (objects.size() == 1)
+                        finded = " specialista trovato";
+                    else finded = " specialisti trovati";
+
+                    Snackbar.make(v, GlobalVariable.DOCTORS.size() + finded, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
+                    DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+                    DoctorListFragment.setProgressBar(View.GONE);
+
+                    viewPager.getAdapter().notifyDataSetChanged();
+                }
+            }
+        });
+
+    }
 
 }
 

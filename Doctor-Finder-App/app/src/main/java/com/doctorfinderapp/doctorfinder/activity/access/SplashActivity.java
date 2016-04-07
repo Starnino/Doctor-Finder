@@ -11,6 +11,8 @@ import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.parse.ParseUser;
+import com.pnikosis.materialishprogress.ProgressWheel;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,6 +25,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        final ProgressWheel progressWheel = (ProgressWheel) findViewById(R.id.progressSplash);
+        progressWheel.setBarColor(getResources().getColor(R.color.white));
+        progressWheel.spin();
 
         //add immersive mode
         getWindow().getDecorView().setSystemUiVisibility(
@@ -60,6 +66,7 @@ public class SplashActivity extends AppCompatActivity {
                     // Close the activity so the user won't able to go back this
                     // activity pressing Back button
                     finish();
+                    progressWheel.stopSpinning();
                 }
 
             }

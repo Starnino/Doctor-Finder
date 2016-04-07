@@ -27,6 +27,7 @@ import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // Get the view from xml
         setContentView(R.layout.activity_login);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+        final ProgressWheel progressBar = (ProgressWheel) findViewById(R.id.progressBar1);
+        progressBar.setBarColor(getResources().getColor(R.color.white));
 
         //initialize callback Manager
         callbackManager = CallbackManager.Factory.create();
@@ -119,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(final View v) {
                 // Retrieve the text entered from the EditText
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.spin();
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
 
@@ -140,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Snackbar.make(v, R.string.bad_login, Snackbar.LENGTH_SHORT)
                                         .setAction("Action", null).show();
-                                progressBar.setVisibility(View.INVISIBLE);
+                                progressBar.stopSpinning();
 
                             }
                         }
@@ -163,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(final View v) {
                 List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
-                progressBar.setVisibility(View.VISIBLE);
+                progressBar.spin();
 
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
@@ -172,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException err) {
                         if (user == null) {
                             Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
 
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
@@ -182,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
                                     .setAction("Action", null).show();
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -191,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
 
                             //facebook things
                             Log.d("login with facebook", user.toString());

@@ -154,11 +154,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom|center_horizontal">
 
-            <ProgressBar
+            <com.pnikosis.materialishprogress.ProgressWheel
                 android:id="@+id/progressBar2"
                 style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
                 android:layout_gravity="left|bottom"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />

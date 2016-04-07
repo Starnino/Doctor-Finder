@@ -403,12 +403,6 @@ public class Util {
             boolean SEX = objects.get(i).getBoolean("SEX");
             ret.add(0, new Doctor(FN, LN, SPEC, CITY, SEX, EM));
         }
-        for (int i = 0; i < ret.size(); i++) {
-            for (int j = 0; j < ret.size(); j++) {
-                if (ret.get(i).equals(ret.get(j)) && i != j)
-                    ret.remove(j);
-            }
-        }
 
         return ret;
     }
@@ -423,15 +417,6 @@ public class Util {
             String[] linear =  new String[]{SPEC, CITY};
             ret.add(0, linear);
         }
-
-        for (int i = 0; i < ret.size(); i++) {
-            for (int j = 0; j < ret.size(); j++) {
-                if (ret.get(i)[0].equals(ret.get(j)[0]) &&
-                        ret.get(i)[1].equals(ret.get(j)[1]) && i != j)
-                    ret.remove(j);
-            }
-        }
-
         return ret;
     }
 

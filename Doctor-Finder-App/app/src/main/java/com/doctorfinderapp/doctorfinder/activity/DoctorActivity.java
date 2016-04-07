@@ -29,6 +29,7 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.github.clans.fab.FloatingActionMenu;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -180,7 +181,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    public void getAndSetDoctorInformation(){
+    public void getAndSetDoctorInformation() {
 
         DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
         DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
@@ -196,7 +197,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
 
         //update recent search
-        ParseObject doctor = new ParseObject("recentDoctor");
+        final ParseObject doctor = new ParseObject("recentDoctor");
         doctor.put("FN", DOCTOR_FIRST_NAME);
         doctor.put("LN", DOCTOR_LAST_NAME);
         doctor.put("E@", DOCTOR_EMAIL);
@@ -205,10 +206,43 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         doctor.put("SEX", DOCTOR_SEX);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         doctor.put("DATE", simpleDateFormat.format(Calendar.getInstance().getTime()));
-        doctor.pinInBackground();
+
+        ParseQuery<ParseObject> recentSearch = ParseQuery.getQuery("recentDoctor");
+        recentSearch.orderByDescending("DATE");
+        recentSearch.fromLocalDatastore();
+        recentSearch.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    if (objects.size() > 9) {
+
+                        try {
+                            objects.get(9).unpin();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+
+                    boolean flag = true;
+                    for (int i = 0; i < objects.size(); i++) {
+                        if (objects.get(i).getString("FN").equals(doctor.getString("FN"))
+                                && objects.get(i).getString("LN").equals(doctor.getString("LN")))
+                            flag = false;
+                    }
+
+                    if (flag)
+                        try {
+                            doctor.pin();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                }
+            }
+        });
 
         getDoctorPhoto();
     }
+
 
     class GetSet extends AsyncTask<Void,Void, Void>{
 
