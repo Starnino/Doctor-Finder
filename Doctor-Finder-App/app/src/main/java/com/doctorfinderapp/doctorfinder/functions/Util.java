@@ -9,12 +9,14 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -27,10 +29,15 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Objects;
 
 /**
  * Created by francesco on 02/03/16.
@@ -381,6 +388,51 @@ public class Util {
         if (emailIntent.resolveActivity(a.getPackageManager()) != null) {
             //startActivity(emailIntent);
         }
+    }
+
+    public static List<Doctor> transformList(List<ParseObject> objects){
+        ArrayList<Doctor> ret = new ArrayList<>();
+        int num = objects.size();
+        for (int i = 0; i < num; i++) {
+
+            String FN = objects.get(i).getString("FN");
+            String LN = objects.get(i).getString("LN");
+            String EM = objects.get(i).getString("E@");
+            ArrayList<String> CITY = (ArrayList<String>) objects.get(i).get("CITY");
+            ArrayList<String> SPEC = (ArrayList<String>) objects.get(i).get("SPEC");
+            boolean SEX = objects.get(i).getBoolean("SEX");
+            ret.add(0, new Doctor(FN, LN, SPEC, CITY, SEX, EM));
+        }
+        for (int i = 0; i < ret.size(); i++) {
+            for (int j = 0; j < ret.size(); j++) {
+                if (ret.get(i).equals(ret.get(j)) && i != j)
+                    ret.remove(j);
+            }
+        }
+
+        return ret;
+    }
+
+    public static List<String[]> transformSearch(List<ParseObject> objects){
+        ArrayList<String[]> ret = new ArrayList<>();
+        int num = objects.size();
+        for (int i = 0; i < num; i++) {
+
+            String SPEC = objects.get(i).getString("SPEC");
+            String CITY = objects.get(i).getString("CITY");
+            String[] linear =  new String[]{SPEC, CITY};
+            ret.add(0, linear);
+        }
+
+        for (int i = 0; i < ret.size(); i++) {
+            for (int j = 0; j < ret.size(); j++) {
+                if (ret.get(i)[0].equals(ret.get(j)[0]) &&
+                        ret.get(i)[1].equals(ret.get(j)[1]) && i != j)
+                    ret.remove(j);
+            }
+        }
+
+        return ret;
     }
 
 }

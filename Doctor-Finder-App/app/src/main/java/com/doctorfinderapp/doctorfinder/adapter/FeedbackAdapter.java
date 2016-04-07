@@ -32,6 +32,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -404,7 +405,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             @Override
             public void done(ParseObject object, ParseException e) {
                 try {
-                    object.delete();
+                    object.deleteEventually();
                     object.pin();
                     feedbacklist.remove(position);
                     notifyDataSetChanged();
@@ -422,12 +423,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         notifyDataSetChanged();
     }
 
-    public void changeItem(ParseObject item){
-        //feedbacklist.add(item);
-        //feedbacklist.remove(item);
-        notifyDataSetChanged();
-    }
-
     public void safeSave(ParseObject object){
         ParseObject feedback = new ParseObject(FEEDBACK);
         feedback.put(USER_EMAIL, object.getString(USER_EMAIL));
@@ -439,12 +434,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         feedback.put(DATE, object.getString(DATE));
         feedback.put(THUMB_LIST, object.getList(THUMB_LIST));
         feedback.put(NUM_THUMB, object.getInt(NUM_THUMB));
-        try {
-            feedback.save();
-            notifyDataSetChanged();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        feedback.saveEventually(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                notifyDataSetChanged();
+            }
+        });
     }
 
     public void rebuildFeedbackAverage(){

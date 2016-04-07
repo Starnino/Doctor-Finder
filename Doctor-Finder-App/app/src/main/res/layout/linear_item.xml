@@ -59,8 +59,8 @@
             android:background="@color/white"
             android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/fab_margin"
-            tools:ignore="ContentDescription" />
-        <!--android:src="@drawable/ic_search_white_24dp"-->
+            tools:ignore="ContentDescription"
+            android:src="@drawable/ic_search_white_24dp"/>
 
     </LinearLayout>
 </RelativeLayout>

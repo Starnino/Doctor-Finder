@@ -189,6 +189,7 @@ public class SignupActivity extends AppCompatActivity {
                                                     Toast.LENGTH_LONG).show();*/
                                     Snackbar.make(v, R.string.user_exists, Snackbar.LENGTH_SHORT)
                                             .setAction("Action", null).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     //Log.d("Signup", "user exists " + email_string);
 
                                 }

@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
-
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by francesco on 04/03/16.
@@ -29,10 +30,10 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         }
     }
 
-    ArrayList<String[]> linearLayouts;
+    List<String[]> linearLayouts;
 
-    public ResearchAdapter(ArrayList<String[]> research){
-        this.linearLayouts = research;
+    public ResearchAdapter(List<String[]> research){
+        this.linearLayouts = new ArrayList<>(research);
     }
 
     @Override
@@ -45,15 +46,12 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
     public void onBindViewHolder(final ResearchViewHolder holder, final int position) {
         holder.special.setText(linearLayouts.get(position)[0]);
         holder.city.setText(linearLayouts.get(position)[1]);
-        /*TODO REMOVE holder.search.setOnClickListener(new View.OnClickListener() {
+        holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ON CLICK SEARCH --> ", GlobalVariable.research_city_parameters.get(position) + " " + position);
-                MainActivity.research(GlobalVariable.research_special_parameters.get(position),
-                        GlobalVariable.research_city_parameters.get(position));
-
+                Log.d("ON CLICK SEARCH --> ", " ");
             }
-        });*/
+        });
 
     }
 

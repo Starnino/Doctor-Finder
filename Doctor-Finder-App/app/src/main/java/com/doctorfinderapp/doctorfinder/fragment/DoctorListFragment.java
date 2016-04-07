@@ -101,6 +101,7 @@ public class DoctorListFragment extends Fragment {
 
     public static void setProgressBar(int visibility){
         progressBar.setVisibility(visibility);
+        progressBar.stopSpinning();
     }
 
     public static void refreshList(){

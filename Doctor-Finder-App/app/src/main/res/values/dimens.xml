@@ -28,5 +28,6 @@
     <dimen name="padding_recycler_top">20dp</dimen>
 
     <dimen name="progress_dim">25dp</dimen>
-
+    <dimen name="null_card">48dp</dimen>
+    <dimen name="linear_recycler">192dp</dimen>
 </resources>

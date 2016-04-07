@@ -64,28 +64,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private NavigationView navigationView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
 
-        //pull to refresh
-        /*
-        setContentView(R.layout.activity_results);
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorScheme(Color.GREEN,Color.MAGENTA);
-        */
-
-        //adding doctors data
-        //AddDoctors.addData();
-
-        //aggiungo le foto dei dottori
-       // AddDoctors.addPhoto(getResources());
 
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -93,7 +76,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        //ParseUser currentUser = ParseUser.getCurrentUser();
 
         setContentView(R.layout.activity_results);
 
@@ -171,21 +153,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     }
 
-    public void onRefresh() {
-        Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        }, 2000);
-    }
-
 
       public void setProfileInformation(ParseUser user){
-        if (user != null
-                //&& GlobalVariable.SEMAPHORE
-                ) {
+        if (user != null) {
             getUserImage(user);
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
@@ -281,9 +251,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser() != null
-                       // && GlobalVariable.SEMAPHORE
-                        ){
+                if(ParseUser.getCurrentUser() != null){
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
@@ -452,11 +420,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             doctorsQuery.orderByAscending("LastName");
         }
 
-        //progress dialog
-        /*final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setTitleText("Caricamento");
-        dialog.getProgressHelper().setBarColor(getResources().getColor(R.color.docfinder));
-        dialog.show();*/
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -465,15 +428,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    /*for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
-                        int j = i + 1;
-                        Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
-                    }*/
 
-                    //dialog.cancel();
-                    //setupViewPager(viewPager);
-
-                    //Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
                     Snackbar.make(v, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);

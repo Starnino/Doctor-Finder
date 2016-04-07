@@ -40,6 +40,7 @@ import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
@@ -50,7 +51,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private DoctorAdapter mAdapter;
     private ResearchAdapter sAdapter;
     private List<Doctor> doctors;
-    private ArrayList<String[]> research = new ArrayList<>();
+    private List<String[]> research;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
@@ -97,10 +100,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         View parentLayout = findViewById(R.id.drawer_main);
 
-        //Util.copyAll();
-        //aggiungo le foto dei dottori
-        //AddDoctors.addPhoto(getResources());
-        //AddDoctors.addFile(getResources());
         if(
                 ActivityCompat.checkSelfPermission(getApplicationContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION)
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         card_recent_search_null = (CardView) findViewById(R.id.recent_search_null);
 
         //set recycler doctors continuously
-        updateRecyclerDoctor();
+        //updateRecyclerDoctor();
 
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
@@ -220,8 +219,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
                     startActivity(intent);
-                    GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
-                    setLinear(specialText, cityText, SPECIAL, CITY);
+
+                    setLinear(specialText, cityText);
                     Log.d("SET LINEAR --> ", CITY + "");
                 }
             }
@@ -539,7 +538,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     protected void onResume() {
         //update image
         if (ParseUser.getCurrentUser() != null) {
-            getUserImage(ParseUser.getCurrentUser());
             setProfileInformation(ParseUser.getCurrentUser());
         }
         updateRecyclerDoctor();
@@ -549,106 +547,76 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     //method tu update DoctorRecycler
     public void updateRecyclerDoctor(){
-        if (GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) {
-            card_recent_doctor_null.setVisibility(View.INVISIBLE);
-            card_recent_doctor.setVisibility(View.VISIBLE);
-            GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
-        }
-        //initialize more Persons
-        doctors = GlobalVariable.recentDoctors;
 
-        /*final List<Doctor> doctors = new ArrayList<>();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
-        query.findInBackground(new FindCallback<ParseObject>() {
+        ParseQuery<ParseObject> recentSearch = ParseQuery.getQuery("recentDoctor");
+        recentSearch.orderByDescending("DATE");
+        recentSearch.fromLocalDatastore();
+        recentSearch.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    for (int i = 0; i < objects.size(); i++) {
-                        //add doctor to adapter
-                        doctors.add(new Doctor(
-                                objects.get(i).getString("FirstName"),                 //Nome
-                                objects.get(i).getString("LastName"),                 //Cognome
-                                (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
-                                (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
-                                objects.get(i).getBoolean("SEX"),               //Sesso
-                                objects.get(i).getString("E@")));               //Email
+                    if (objects.size() != 0) {
+                        card_recent_doctor_null.setVisibility(View.INVISIBLE);
+                        card_recent_doctor.setVisibility(View.VISIBLE);
+                        doctors = Util.transformList(objects);
+
+                        if (objects.size() > 9) {
+                            objects.get(9).unpinInBackground();
+                            doctors = doctors.subList(0, 9);
+                        }
+                        mAdapter = new DoctorAdapter(doctors);
+
+                        mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                        card_recent_doctor.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                        //set adapter to recycler view
+                        mRecyclerView.setAdapter(mAdapter);
                     }
-                    // specify an adapter
-                    /*mAdapter = new DoctorAdapter(doctors);
-                    if (doctors.size() != 0) {
-                        mRecyclerView.getLayoutParams().height = 300;
-                        card_recent_doctor.getLayoutParams().height = 300;
-                    }
-                    else card_recent_doctor_null.getLayoutParams().height = 30;
-                    //set adapter to recycler view
-                    mRecyclerView.setAdapter(mAdapter);
-                } else {
-                    e.printStackTrace();
                 }
             }
-        });*/
-        // specify an adapter
-        mAdapter = new DoctorAdapter(doctors);
-        if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
-            card_recent_doctor.getLayoutParams().height = 330;
-        }
-        else card_recent_doctor_null.getLayoutParams().height = 100;
-
-        //set adapter to recycler view
-        mRecyclerView.setAdapter(mAdapter);
+        });
     }
 
     //method to update Linear recycler
     public void updateRecentSearch(){
-        if (GlobalVariable.FLAG_CARD_SEARCH_VISIBLE) {
-            card_recent_search_null.setVisibility(View.INVISIBLE);
-            card_recent_search.setVisibility(View.VISIBLE);
-            GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
-        }
 
-        //specify adapter
-        sAdapter = new ResearchAdapter(research);
-        if (research.size() != 0) sRecyclerView.getLayoutParams().height = 400;
-        //set adapter to recycler view
-        sRecyclerView.setAdapter(sAdapter);
+        ParseQuery<ParseObject> recentSearch = ParseQuery.getQuery("recentSearch");
+        recentSearch.orderByDescending("DATE");
+        recentSearch.fromLocalDatastore();
+        recentSearch.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    if (objects.size() != 0) {
+                        card_recent_search_null.setVisibility(View.INVISIBLE);
+                        card_recent_search.setVisibility(View.VISIBLE);
+                        research = Util.transformSearch(objects);
+
+                        if (objects.size() > 9) {
+                            objects.get(9).unpinInBackground();
+                            research = research.subList(0, 9);
+                        }
+
+                        //specify adapter
+                        sAdapter = new ResearchAdapter(research);
+                        sRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.linear_recycler);
+                        //set adapter to recycler view
+                        sRecyclerView.setAdapter(sAdapter);
+                    }
+                }
+            }
+        });
     }
 
     //method to add Linear to recycler
-    public void setLinear(TextView s, TextView c, ArrayList<String> spec, ArrayList<String> ci){
+    public void setLinear(TextView s, TextView c){
         String special = s.getText().toString();
         String city = c.getText().toString();
-        String[] linear = {special, city};
-        boolean flag = true;
-
-        for (int i = 0; i < research.size() ; i++) {
-            if (research.get(i)[0].equals(linear[0]) && research.get(i)[1].equals(linear[1])){
-                flag = false;
-            }
-
-        }
-        //if linear not exist add it
-        if (flag){
-
-            if (research.size() < 10){
-                research.add(linear);
-                GlobalVariable.research_special_parameters.add(spec);
-                GlobalVariable.research_city_parameters.add(ci);
-            }
-
-            else {
-                research.add(0, linear);
-                research.remove(10);
-                GlobalVariable.research_special_parameters.add(0, spec);
-                GlobalVariable.research_special_parameters.remove(10);
-                GlobalVariable.research_city_parameters.add(0, ci);
-                GlobalVariable.research_city_parameters.remove(10);
-            }
-        }
-
-        for (int i = 0; i < GlobalVariable.research_city_parameters.size(); i++) {
-            Log.d("LIST RESEARCH --> ", GlobalVariable.research_city_parameters.get(i) + " " + i);
-        }
+        ParseObject recentSearch = new ParseObject("recentSearch");
+        recentSearch.put("SPEC", special);
+        recentSearch.put("CITY", city);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        recentSearch.put("DATE",simpleDateFormat.format(Calendar.getInstance().getTime()));
+        recentSearch.pinInBackground();
     }
 
     public void profile_click(View v){

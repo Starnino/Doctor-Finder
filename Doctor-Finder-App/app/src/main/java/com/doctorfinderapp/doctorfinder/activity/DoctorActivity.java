@@ -37,8 +37,11 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -50,7 +53,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static ParseObject DOCTORTHIS;
     //Doctor information
     private static int index;
-    private static boolean isFabOpen = false;
     public static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
     private static Context c;
@@ -66,7 +68,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private Bitmap DOCTOR_PHOTO;
     private List<ParseObject> doctors;
-    private Doctor currentDoctor;
     private String Title;
     private String email;
     public static SweetAlertDialog dialog;
@@ -74,13 +75,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_sended,
                 Toast.LENGTH_LONG).show();
-        /*FragmentTransaction ft = p.beginTransaction();
-        FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
-
-        ft.replace(R.id.frame_doctor, fragment);
-
-        ft.commit();*/
-    }
+        }
 
     //switch fab
     public static void switchFAB(int position) {
@@ -199,15 +194,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         else
             Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
-        //if photo exist
-        if (DOCTOR_PHOTO != null)
-            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
-                    DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
-            //if photo not exist
-        else
-            currentDoctor = new Doctor(DOCTOR_FIRST_NAME, DOCTOR_LAST_NAME,
-                    DOCTOR_SPECIALIZATION_ARRAY, DOCTOR_CITY_ARRAY, DOCTOR_SEX, DOCTOR_EMAIL);
 
+        //update recent search
         ParseObject doctor = new ParseObject("recentDoctor");
         doctor.put("FN", DOCTOR_FIRST_NAME);
         doctor.put("LN", DOCTOR_LAST_NAME);
@@ -215,10 +203,10 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         doctor.put("SPEC", DOCTOR_SPECIALIZATION_ARRAY);
         doctor.put("CITY", DOCTOR_CITY_ARRAY);
         doctor.put("SEX", DOCTOR_SEX);
-        //doctor.pinInBackground();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        doctor.put("DATE", simpleDateFormat.format(Calendar.getInstance().getTime()));
+        doctor.pinInBackground();
 
-        //refresh doctors searched
-        refreshDoctorList(currentDoctor);
         getDoctorPhoto();
     }
 
@@ -231,33 +219,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void refreshDoctorList(Doctor currentDoctor) {
-        //set flag
-        if (!GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE)
-            GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
-        boolean flag = true;
-        //if doctor not exist in list
-        for (int i = 0; i < GlobalVariable.recentDoctors.size(); i++) {
-            if ((GlobalVariable.recentDoctors.get(i).getName() + GlobalVariable.recentDoctors.get(i).getSurname())
-                    .equals(currentDoctor.getName() + currentDoctor.getSurname()))
-                flag = false;
-        }
-
-        if (flag) {
-
-            //if size of list is minor of 10
-            if (GlobalVariable.recentDoctors.size() < 10)
-                GlobalVariable.recentDoctors.add(currentDoctor);
-
-                //if size is 10 or plus
-            else {
-                GlobalVariable.recentDoctors.add(0, currentDoctor);
-                GlobalVariable.recentDoctors.remove(10);
-            }
-        }
-
-        flag = true;
-    }
 
     public void getDoctorPhoto(){
 
