@@ -17,16 +17,16 @@ public class RestorePsw extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.suggest_doctor);
+        setContentView(R.layout.restorepsw);
 
-        final Button invia_dati = (Button) findViewById(R.id.invia_dati_dottore);
-        invia_dati.setOnClickListener(new View.OnClickListener()
+        final Button recupero_mail = (Button) findViewById(R.id.invio_recupero_mail);
+        recupero_mail.setOnClickListener(new View.OnClickListener()
 
                                       {
                                           @Override
                                           public void onClick(View view) {
 
-                                              Snackbar.make(invia_dati, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                              Snackbar.make(recupero_mail, R.string.access_ok, Snackbar.LENGTH_SHORT)
                                                       .setAction("Controlla la tua posta!", null).show();
 
                                               onBackPressed();
