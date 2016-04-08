@@ -17,7 +17,7 @@ public class RestorePsw extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.restorepsw);
+        setContentView(R.layout.restore_psw);
 
         final Button recupero_mail = (Button) findViewById(R.id.invio_recupero_mail);
         recupero_mail.setOnClickListener(new View.OnClickListener()

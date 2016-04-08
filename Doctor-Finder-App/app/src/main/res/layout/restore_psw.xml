@@ -61,7 +61,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:text="@string/send_data_button"
+            android:text="Recupera password"
             android:id="@+id/invio_recupero_mail"
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"

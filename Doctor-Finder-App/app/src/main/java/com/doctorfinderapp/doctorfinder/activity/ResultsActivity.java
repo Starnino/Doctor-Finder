@@ -203,10 +203,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
 
         });
+
+        /*
         viewPager.setAdapter(adapter);
 
         tabs.setupWithViewPager(viewPager);
         fab.show();
+        */
     }
 
     @Override
