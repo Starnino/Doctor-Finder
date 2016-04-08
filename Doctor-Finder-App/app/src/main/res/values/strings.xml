@@ -8,6 +8,7 @@
     <string name="doctorfindername">Doctor Finder</string>
     <string name="action_log_in">Login </string>
     <string name="send_data_button">Invia i dati </string>
+    <string name="restore_psw">Inserisci qui la tua email. Ti contatteremo immediatamente con tutte le istruzioni per recuperare la tua password! </string>
     <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa applicazione!</string>
     <string name="casella_nome_cognome_spec">Nome e Cognome specialista</string>
     <string name="casella_contatti_spec">Suo recapito email e/o telefonico</string>

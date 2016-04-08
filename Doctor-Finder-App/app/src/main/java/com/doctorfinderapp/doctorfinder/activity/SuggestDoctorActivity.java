@@ -19,16 +19,16 @@ public class SuggestDoctorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.suggest_doctor);
+        setContentView(R.layout.restorepsw);
 
-        final Button invia_dati = (Button) findViewById(R.id.invia_dati_dottore);
-        invia_dati.setOnClickListener(new View.OnClickListener()
+        final Button recupero = (Button) findViewById(R.id.invio_recupero_mail);
+        recupero.setOnClickListener(new View.OnClickListener()
 
                                       {
                                           @Override
                                           public void onClick(View view) {
 
-                                              Snackbar.make(invia_dati, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                              Snackbar.make(recupero, R.string.access_ok, Snackbar.LENGTH_SHORT)
                                                       .setAction("Grazie per il suggerimento!", null).show();
 
                                               onBackPressed();
@@ -37,7 +37,7 @@ public class SuggestDoctorActivity extends AppCompatActivity {
                                       }
         );
 
-        Button cancella_dati = (Button) findViewById(R.id.cancella_dati);
+        Button cancella_dati = (Button) findViewById(R.id.cancella_recupero);
         cancella_dati.setOnClickListener(new View.OnClickListener()
 
                                                {

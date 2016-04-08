@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.SuggestDoctorActivity;
+import com.doctorfinderapp.doctorfinder.activity.WebViewActivity;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.RestorePsw;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -89,10 +92,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //password dimenticata
+
+
         resetpsw = (TextView)findViewById(R.id.forgot_password);
         resetpsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,RestorePsw.class));
+
+                /*
                 ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
@@ -102,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+                */
             }
         });
 
