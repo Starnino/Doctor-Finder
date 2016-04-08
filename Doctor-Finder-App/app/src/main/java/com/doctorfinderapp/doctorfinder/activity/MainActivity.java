@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             .setAction("Action", null).show();
 
                 else {
-                    progress.setVisibility(View.VISIBLE);
+                    //progress.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
                     intent.putExtra("RESEARCH", false);
