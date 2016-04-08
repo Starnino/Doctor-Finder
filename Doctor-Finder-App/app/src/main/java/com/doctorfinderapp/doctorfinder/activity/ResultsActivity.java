@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -47,7 +45,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
-import com.doctorfinderapp.doctorfinder.activity.ClaimDoctorActivity;
 
 
 public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -87,7 +84,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onClick(View v) {
                 //here
-                startActivity(new Intent(ResultsActivity.this,ClaimDoctorActivity.class));
+                startActivity(new Intent(ResultsActivity.this,SuggestDoctorActivity.class));
             }
         });
 

@@ -127,7 +127,7 @@
         <activity android:name=".activity.Informativa"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.ClaimDoctorActivity"
+        <activity android:name=".activity.SuggestDoctorActivity"
             android:screenOrientation="portrait"/>
 
 
