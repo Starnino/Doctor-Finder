@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
@@ -165,6 +166,14 @@ public class SignupActivity extends AppCompatActivity {
                                                     progressBar.stopSpinning();
                                                     Log.d("Login Activity", "signup" + progressBar.getVisibility());
 
+                                                    //mail to send on first registration
+                                                    BackgroundMail.newBuilder(v.getContext())
+                                                            .withUsername("report.at.dcf@gmail.com")
+                                                            .withPassword("Mianonna14")
+                                                            .withMailto(email_string)
+                                                            .withSubject("Benvenuto su Doctor Finder!")
+                                                            .withBody(R.string.first_access)
+                                                            .send();
 
                                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

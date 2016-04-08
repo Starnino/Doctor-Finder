@@ -56,6 +56,14 @@
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
 
+    <string name="first_access">
+        Ciao,
+        ti ringraziamo per esserti registrato su Doctor Finder. Questa applicazione
+        ti permette di scaricare uno specialista della salute! Speriamo di esserti di aiuto!
+        Per qualsiasi problema non esistare a contattarci su Facebook o mandando una mail a
+        info@doctorfinderapp.com
+    </string>
+
 
     <string-array name="Specializations">
         <item>Allergologia</item>
