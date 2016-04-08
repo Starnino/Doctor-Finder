@@ -130,6 +130,9 @@
         <activity android:name=".activity.SuggestDoctorActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".functions.RestorePsw"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

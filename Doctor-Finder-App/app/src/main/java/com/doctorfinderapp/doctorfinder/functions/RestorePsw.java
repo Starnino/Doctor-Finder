@@ -35,7 +35,7 @@ public class RestorePsw extends AppCompatActivity {
                                       }
         );
 
-        Button cancella_dati = (Button) findViewById(R.id.cancella_dati);
+        Button cancella_dati = (Button) findViewById(R.id.cancella_recupero);
         cancella_dati.setOnClickListener(new View.OnClickListener()
 
                                          {
