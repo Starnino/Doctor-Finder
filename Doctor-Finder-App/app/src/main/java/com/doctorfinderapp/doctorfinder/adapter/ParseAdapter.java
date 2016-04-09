@@ -65,16 +65,16 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
         @Override
         public void onClick(View v) {
 
-                int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
-                Context context = v.getContext();
+            int position = GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition()));
+            Context context = v.getContext();
 
-                Intent intent = new Intent(context, DoctorActivity.class);
-                //------
-                intent.putExtra("index", position);
-                //------
-                context.startActivity(intent);
+            Intent intent = new Intent(context, DoctorActivity.class);
+            //------
+            intent.putExtra("index", position);
+            //------
+            context.startActivity(intent);
 
-                //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
+            //Log.d("POSITION >> ", GlobalVariable.DOCTORS.indexOf(DOCTORS.get(getLayoutPosition())) + "");
         }
     }
 
@@ -124,7 +124,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
                         file.getDataInBackground(new GetDataCallback() {
                             @Override
-                             public void done(byte[] data, ParseException e) {
+                            public void done(byte[] data, ParseException e) {
                                 if (e == null) {
                                     holder.profile.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
                                 } else {

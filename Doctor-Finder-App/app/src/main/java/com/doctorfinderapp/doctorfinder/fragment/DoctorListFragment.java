@@ -3,6 +3,8 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +25,9 @@ import com.parse.ParseObject;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 
 /**
@@ -88,9 +93,12 @@ public class DoctorListFragment extends Fragment
 
         parseAdapter = new ParseAdapter(DOCTORS);
 
-        mRecyclerView.setAdapter(parseAdapter);
+        //mRecyclerView.setAdapter(parseAdapter);
 
+        mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(parseAdapter));
 
+        //todo remove animation
+        //mRecyclerView.setItemAnimator();
 
         //fab
         fab = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fab);
