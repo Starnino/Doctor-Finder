@@ -2,11 +2,14 @@ package com.doctorfinderapp.doctorfinder.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -27,6 +30,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -48,7 +54,7 @@ import java.util.List;
 
 
 public class ResultsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, MenuItem.OnMenuItemClickListener{
 
     private static final String TAG ="Results Activity" ;
     private DrawerLayout mDrawerLayout;
@@ -232,7 +238,7 @@ public class ResultsActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         searchItem = menu.findItem(R.id.action_search);
-        //TODO REMOVE filterItem = menu.findItem(R.id.action_filter);
+        filterItem = menu.findItem(R.id.action_filter);
 
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
@@ -251,8 +257,32 @@ public class ResultsActivity extends AppCompatActivity
                 }
             });
 
+        filterItem.setOnMenuItemClickListener(this);
         // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.action_filter){
+
+            new MaterialDialog.Builder(this)
+                    .title("Filtra Ricerca")
+                    .positiveText("Cerca")
+                    .positiveColor(getResources().getColor(R.color.docfinder))
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            Log.d("DIO --> ", "Cliccato");
+                        }
+                    })
+                    .negativeText("annulla")
+                    .negativeColor(getResources().getColor(R.color.red_btn_bg_color))
+                    .customView(R.layout.filter_view, true)
+                    .show();
+            return true;
+        }
+        return false;
     }
 
 
@@ -323,7 +353,6 @@ public class ResultsActivity extends AppCompatActivity
 
 
 
-
     static class Adapter extends FragmentStatePagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -383,12 +412,12 @@ public class ResultsActivity extends AppCompatActivity
         if (position == 1) {
             searchItem.setVisible(false);
             searchView.setVisibility(View.INVISIBLE);
-            //TODO REMOVE filterItem.setVisible(false);
+            filterItem.setVisible(false);
         }
         else {
             searchItem.setVisible(true);
             searchView.setVisibility(View.VISIBLE);
-            //TODO REMOVE filterItem.setVisible(true);
+            filterItem.setVisible(true);
         }
     }
 
