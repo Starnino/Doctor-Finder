@@ -1,3 +1,7 @@
+/app/proguard-rules.pro
+/gradle.properties
+/settings.gradle
+/gradle/wrapper/gradle-wrapper.properties
 /build.gradle
 /app/build.gradle
 
