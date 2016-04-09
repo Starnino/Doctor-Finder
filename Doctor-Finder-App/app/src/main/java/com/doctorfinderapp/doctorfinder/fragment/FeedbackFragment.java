@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
+import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
@@ -26,6 +27,8 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import java.net.UnknownServiceException;
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 
 public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener{
@@ -164,7 +167,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 refresh.setRefreshing(false);
-                if(e!=null) {
+                if(e==null) {
                     FeedbackArray = objects;
                     orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
                     setRecyclerView();
@@ -189,7 +192,10 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
         feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 
-        mRecyclerView.setAdapter(feedbackAdapter);
+
+        mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(feedbackAdapter));
+        //mRecyclerView.setAdapter(feedbackAdapter);
+
 
         DoctorActivity.fabfeedback.setColorNormal(color_green);
         DoctorActivity.fabfeedback.setColorPressed(color_green_pressed);
