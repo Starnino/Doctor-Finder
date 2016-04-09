@@ -31,4 +31,5 @@
     <dimen name="null_card">48dp</dimen>
     <dimen name="linear_recycler">192dp</dimen>
     <dimen name="progress_height">15dp</dimen>
+    <dimen name="feed_image">80dp</dimen>
 </resources>

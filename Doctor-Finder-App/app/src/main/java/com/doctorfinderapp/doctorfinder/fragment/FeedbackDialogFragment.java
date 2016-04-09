@@ -184,7 +184,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                             if (e != null) Log.d("Push feedback", e.toString());
                             //Log.d("Push feedback", "feedback saved");
                             DoctorActivity.showToastFeedback();
-                            FeedbackFragment.feedbackAdapter.notifyDataSetChanged();
+                            FeedbackFragment.feedbackAdapter.changeMyFeedback();
                             Util.calculateFeedback(email_doctor);
                         }
                     });

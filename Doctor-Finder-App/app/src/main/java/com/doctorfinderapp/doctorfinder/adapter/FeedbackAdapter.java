@@ -22,6 +22,7 @@ import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
+import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.FindCallback;
@@ -65,6 +66,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         this.feedbacklist = feedbacks;
         EMAIL_DOCTOR_THIS = doctor_email;
         EMAIL_USER_THIS = user_email;
+
     }
 
     @Override
@@ -172,7 +174,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.spam.setClickable(false);
                 holder.clear.setVisibility(View.VISIBLE);
                 holder.clear.setClickable(true);
-                holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.dcf_ancora_piu_clear));
+                holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
+                holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
             }
 
             holder.date.setText(feedbacklist.get(position).getString(DATE));
@@ -219,7 +222,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         return feedbacklist.size();
     }
 
-
     public void onClickButton(final View v, final FeedbackViewHolder holder, final int position) {
         final int id = v.getId();
 
@@ -254,7 +256,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             BackgroundMail.newBuilder(v.getContext())
                                                     .withUsername("report.at.dcf@gmail.com")
                                                     .withPassword("Mianonna14")
-                                                    .withMailto("report.at.dcf@gmail.com")
+                                                    .withMailto("doctor.finder.dcf@gmail.com")
                                                     .withSubject("REPORT SPAM")
                                                     .withBody(body)
                                                     .send();
@@ -408,7 +410,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     object.deleteEventually();
                     object.pin();
                     feedbacklist.remove(position);
-                    notifyDataSetChanged();
+                    notifyItemRemoved(position);
                     //TODO finish progress bar
                 } catch (ParseException e1) {
                     e1.printStackTrace();
@@ -420,8 +422,14 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     public void insertItem(ParseObject item){
         feedbacklist.add(0,item);
-        notifyDataSetChanged();
+        notifyItemInserted(0);
+        FeedbackFragment.scroolTo(0);
     }
+
+    public void changeMyFeedback(){
+        notifyItemChanged(0);
+    }
+
 
     public void safeSave(ParseObject object){
         ParseObject feedback = new ParseObject(FEEDBACK);

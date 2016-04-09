@@ -314,20 +314,24 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         friendQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                for (int i = 0; i < objects.size(); i++)
-                    ArrayAdapterFriends.add(objects.get(i));
+                if (e == null) {
 
-                progress.setVisibility(View.GONE);
 
-                //if friends.size() is not empty set height to dimen dp
-                if (mAdapter.getItemCount() != 0) {
+                    for (int i = 0; i < objects.size(); i++)
+                        ArrayAdapterFriends.add(objects.get(i));
 
-                    friend_null.setVisibility(View.GONE);
-                    mRecyclerView.getLayoutParams().height =
-                            (int) getResources().getDimension(R.dimen.doctor_item_height);
+                    progress.setVisibility(View.GONE);
+
+                    //if friends.size() is not empty set height to dimen dp
+                    if (mAdapter.getItemCount() != 0) {
+
+                        friend_null.setVisibility(View.GONE);
+                        mRecyclerView.getLayoutParams().height =
+                                (int) getResources().getDimension(R.dimen.doctor_item_height);
+                    }
+
+                    mRecyclerView.setAdapter(mAdapter);
                 }
-
-                mRecyclerView.setAdapter(mAdapter);
             }
         });
     }

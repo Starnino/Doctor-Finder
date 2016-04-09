@@ -35,58 +35,26 @@
         android:gravity="start|center_horizontal"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/feed_spam"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:visibility="visible"
-                app:iiv_color="@color/grey"
-                app:iiv_icon="gmd-more_vert"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/feed_clear"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:clickable="false"
-                android:scaleX="0.35"
-                android:scaleY="0.35"
-                android:visibility="invisible"
-                app:iiv_color="@color/grey"
-                app:iiv_icon="gmd-clear"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-
-        </RelativeLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:id="@+id/user_image_feed"
-                    android:src="@drawable/personavatar" />
-            </LinearLayout>
+            <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/user_image_feed"
+                android:src="@drawable/personavatar"
+                android:layout_gravity="center" />
+
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="left"
                 android:layout_toEndOf="@id/profile_image"
                 android:layout_toRightOf="@id/profile_image"
@@ -108,18 +76,45 @@
 
                     android:clickable="false"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:id="@+id/ratingBar"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-                    android:scaleX="0.55"
-                    android:scaleY="0.55"
+                    android:scaleX="0.3"
+                    android:scaleY="0.3"
                     android:layout_gravity="start|bottom"
-                    android:layout_marginStart="-50dp"
-                    android:layout_marginLeft="-50dp"/>
+                    android:layout_marginStart="-80dp"
+                    android:layout_marginLeft="-80dp"/>
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/feed_spam"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:visibility="visible"
+                app:iiv_color="@color/grey"
+                app:iiv_icon="gmd-more_vert"
+                android:layout_gravity="end"/>
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/feed_clear"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="false"
+                android:scaleX="0.35"
+                android:scaleY="0.35"
+                android:visibility="invisible"
+                app:iiv_color="@color/grey"
+                app:iiv_icon="gmd-clear"
+                android:layout_gravity="end" />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -131,17 +126,16 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis fermentum neque, ac porttitor eros commodo quis. Sed sed vehicula sapien. Donec ornare felis vel risus bibendum mattis. Nam tristique ipsum tempus, bibendum erat vitae, euismod magna. Vivamus vitae hendrerit felis, vitae elementum tortor. Nullam ante orci, semper vel tellus sit amet, eleifend auctor libero. Phasellus ac neque tincidunt, consectetur quam vel, porttitor nibh. Nulla commodo sodales velit, quis semper turpis placerat ut. Phasellus eleifend enim diam, sit amet auctor orci scelerisque nec. Suspendisse potenti. Proin eget condimentum leo. Curabitur a molestie metus, at condimentum orci. Vestibulum ullamcorper, lorem in tempor aliquam, diam mi pharetra ligula, et vehicula ligula risus vitae turpis. Nam ultricies neque est. Duis id sollicitudin orci, eget rhoncus elit. In sed velit nec tellus tempus aliquam."
                     android:id="@+id/feedback_text"
-                    android:layout_marginTop="@dimen/fab_margin"
                     android:layout_marginRight="@dimen/fab_margin"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginLeft="@dimen/fab_margin" />
             </LinearLayout>
 
         </LinearLayout>
@@ -150,7 +144,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="end">
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_marginEnd="8dp"

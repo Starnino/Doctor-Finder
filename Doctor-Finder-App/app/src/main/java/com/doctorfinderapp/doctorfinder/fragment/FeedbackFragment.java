@@ -31,7 +31,7 @@ public class FeedbackFragment extends Fragment {
     private int index;
 
     private OnFragmentInteractionListener mListener;
-    private RecyclerView mRecyclerView;
+    static private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     public static FeedbackAdapter feedbackAdapter, nullAdapter;
     private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
@@ -186,5 +186,9 @@ public class FeedbackFragment extends Fragment {
                 feedbackArray.add(0,first);
             }
         }
+    }
+
+    public static void scroolTo(int position){
+        mRecyclerView.scrollToPosition(position);
     }
 }

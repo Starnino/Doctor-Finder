@@ -117,7 +117,8 @@ public class DoctorListFragment extends Fragment
     }
 
     public static void refreshList(){
-        parseAdapter.notifyDataSetChanged();
+        if (parseAdapter != null)
+            parseAdapter.notifyDataSetChanged();
     }
 
     /*@Override
