@@ -545,8 +545,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:orientation="vertical">
 
                 <TextView
                 android:layout_width="match_parent"
@@ -556,10 +555,10 @@
                 android:textAlignment="center"
                 android:paddingBottom="@dimen/fab_margin"
                 android:textColor="@color/docfinder"
-                android:textSize="20sp" />
+                android:textSize="20sp" android:layout_margin="10dp"/>
 
             <android.support.v7.widget.RecyclerView
-                android:paddingTop="20dp"
+                android:paddingTop="10dp"
                 android:id="@+id/my_recycler_friends2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

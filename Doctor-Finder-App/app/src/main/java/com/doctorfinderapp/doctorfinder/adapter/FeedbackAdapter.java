@@ -1,5 +1,6 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -60,7 +61,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String RATING = "Rating";
     String DOCTOR = "Doctor";
     String EMAIL = "Email";
-
+    ParseObject annulla;
 
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
         this.feedbacklist = feedbacks;
@@ -287,35 +288,21 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                         if (item.getItemId() == R.id.action_clear) {
                             deleteFeedback(position);
-                            Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setAction("Annulla", new View.OnClickListener() {
+
                                         @Override
                                         public void onClick(View v) {
                                             holder.clear.setClickable(false);
-                                            ParseQuery<ParseObject> pin = ParseQuery.getQuery(FEEDBACK);
-                                            pin.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
-                                            pin.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
-                                            pin.fromLocalDatastore();
-                                            pin.getFirstInBackground(new GetCallback<ParseObject>() {
-                                                @Override
-                                                public void done(ParseObject object, ParseException e) {
-                                                    if (e != null) {
-                                                        //error
-                                                    } else try {
-                                                        object.unpin();
-                                                        feedbacklist.add(object);
-                                                        safeSave(object);
-                                                        holder.clear.setClickable(true);
+                                            safeSave(annulla);
+                                            annulla = null;
+                                            holder.clear.setClickable(true);
 
-                                                    } catch (ParseException e1) {
-                                                        e1.printStackTrace();
-                                                    }
-                                                }
-                                            });
                                         }
                                     })
                                     .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .show();
+
                         }
                         return true;
                     }
@@ -400,22 +387,19 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     public void deleteFeedback(final int position){
         //TODO start progress bar
+        annulla = feedbacklist.get(position);
         ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
         delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
         delete.whereEqualTo(USER_EMAIL, EMAIL_USER_THIS);
         delete.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                try {
+
                     object.deleteEventually();
-                    object.pin();
                     feedbacklist.remove(position);
                     notifyItemRemoved(position);
                     //TODO finish progress bar
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-                rebuildFeedbackAverage();
+                    rebuildFeedbackAverage();
             }
         });
     }
@@ -431,7 +415,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     }
 
 
-    public void safeSave(ParseObject object){
+    public void safeSave(final ParseObject object){
         ParseObject feedback = new ParseObject(FEEDBACK);
         feedback.put(USER_EMAIL, object.getString(USER_EMAIL));
         feedback.put(DOCTOR_EMAIL, object.getString(DOCTOR_EMAIL));
@@ -445,7 +429,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         feedback.saveEventually(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                notifyDataSetChanged();
+                insertItem(object);
             }
         });
     }

@@ -8,7 +8,6 @@
     android:paddingLeft="6dp"
     android:paddingTop="6dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling_user"
     android:background="@color/google_grey">
 
@@ -128,7 +127,6 @@
                 android:id="@+id/card2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <TextView

@@ -94,12 +94,9 @@ public class DoctorListFragment extends Fragment
 
         parseAdapter = new ParseAdapter(DOCTORS);
 
-        //mRecyclerView.setAdapter(parseAdapter);
 
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(parseAdapter));
 
-        //todo remove animation
-        //mRecyclerView.setItemAnimator();
 
         //fab
         fab = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fab);

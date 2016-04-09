@@ -199,9 +199,7 @@ public class Util {
 
     public static void calculateFeedback(final String doctor_email) {
 
-        /*final ParseACL postACL = new ParseACL(ParseUser.getCurrentUser());
-        postACL.setPublicReadAccess(true);
-        postACL.setPublicWriteAccess(true);*/
+
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
         query.whereEqualTo("Email", doctor_email);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -210,8 +208,7 @@ public class Util {
                 if (doctor == null) {
                     //Log.d("calculate feedback", "Error doctor not exists ");
                 } else {
-                    //ACL
-                    //doctor.setACL(postACL);
+
                     ParseQuery query2 = ParseQuery.getQuery("Feedback");
                     query2.whereEqualTo("email_doctor", doctor_email);
                     //Log.d("Feedback", doctor.toString());
@@ -223,17 +220,8 @@ public class Util {
                             //Log.d("Feedback", f);
                             somma = somma + Float.parseFloat(f);
                         }
-                        //Log.d("Feedback2", doctor.toString());
+
                         float media = somma / objects.size();
-                        //Log.d("Feedback", "object.size() " + objects.size() + "");
-                        //Log.d("Feedback", "somma " + somma + "");
-                        //Log.d("Feedback", "media " + media + "");
-                        //doctor.remove("Feedback");
-
-                        //Log.d("Feedback", String.valueOf(doctor.getACL().getPublicReadAccess()));
-                        //Log.d("Feedback", String.valueOf(doctor.getACL().getPublicWriteAccess()));
-
-                        //Log.d("Feedback3", doctor.toString());
                         doctor.save();
 
                         doctor.put("Feedback", media);

@@ -50,7 +50,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
     public FeedbackFragment() {
         // Required empty public constructor
-
     }
 
 
@@ -178,7 +177,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -194,8 +192,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
 
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(feedbackAdapter));
-        //mRecyclerView.setAdapter(feedbackAdapter);
-
 
         DoctorActivity.fabfeedback.setColorNormal(color_green);
         DoctorActivity.fabfeedback.setColorPressed(color_green_pressed);

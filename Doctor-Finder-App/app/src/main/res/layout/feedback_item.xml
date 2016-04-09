@@ -6,10 +6,8 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="0dp"
-    android:layout_marginRight="0dp"
-    android:layout_marginBottom="8dp"
-    card_view:cardElevation="20dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardElevation="5dp"
     android:foreground="?attr/selectableItemBackground"
     android:transitionGroup="false"
     android:longClickable="true"
@@ -26,8 +24,7 @@
         android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingRight="8dp"
         android:paddingEnd="8dp"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:background="?android:attr/selectableItemBackground"
         android:transitionGroup="false"
         android:touchscreenBlocksFocus="false"
@@ -84,33 +81,33 @@
                     android:scaleX="0.3"
                     android:scaleY="0.3"
                     android:layout_gravity="start|bottom"
-                    android:layout_marginStart="-80dp"
-                    android:layout_marginLeft="-80dp"/>
+                    android:layout_marginStart="-85dp"
+                    android:layout_marginLeft="-85dp"/>
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/feed_spam"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
-                android:visibility="visible"
                 app:iiv_color="@color/grey"
                 app:iiv_icon="gmd-more_vert"
                 android:layout_gravity="end"/>
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/feed_clear"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:clickable="false"
-                android:scaleX="0.35"
-                android:scaleY="0.35"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleY="0.5"
+                android:scaleX="0.5"
                 android:visibility="invisible"
+                android:clickable="false"
                 app:iiv_color="@color/grey"
                 app:iiv_icon="gmd-clear"
                 android:layout_gravity="end" />
@@ -160,8 +157,6 @@
                 android:layout_weight="1"/>
 
         <TextView
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:id="@+id/num_thumb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,7 +174,7 @@
             android:layout_gravity="end"
             android:visibility="visible"
             app:iiv_color="@color/grey"
-            app:iiv_icon="gmd-thumb_up"/>
+            app:iiv_icon="gmd-thumb_up" />
 
         </LinearLayout>
 

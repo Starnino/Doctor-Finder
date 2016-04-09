@@ -121,7 +121,7 @@
             android:layout_below="@id/recent_doctors"
             android:id="@+id/card_doctors"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_margin="@dimen/fab_margin"
             android:visibility="visible">
 
@@ -131,8 +131,6 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/fab_margin"
-                android:layout_marginEnd="@dimen/fab_margin"
                 android:layout_marginTop="16dp">
             </android.support.v7.widget.RecyclerView>
 
