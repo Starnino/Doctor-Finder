@@ -35,7 +35,7 @@ import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
  */
 
 public class DoctorListFragment extends Fragment
-        /*implements  SwipeRefreshLayout.OnRefreshListener*/
+        implements  SwipeRefreshLayout.OnRefreshListener
 {
 
     private static RecyclerView mRecyclerView;
@@ -44,7 +44,8 @@ public class DoctorListFragment extends Fragment
     private List<ParseObject> DOCTORS;
     private FloatingActionButton fab;
     private static ProgressWheel progressBar;
-    private SwipeRefreshLayout refresh;
+    private static SwipeRefreshLayout refresh;
+    private static View rootView;
 
 
     public DoctorListFragment() {
@@ -71,13 +72,13 @@ public class DoctorListFragment extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctorlist,
                 container, false);
-
+        this.rootView=rootView;
         progressBar = (ProgressWheel) rootView.findViewById(R.id.progressBarList);
         progressBar.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progressBar.spin();
 
-        /*refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
-        refresh.setOnRefreshListener(this);*/
+        refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
+        refresh.setOnRefreshListener(this);
 
 
 
@@ -129,10 +130,17 @@ public class DoctorListFragment extends Fragment
             parseAdapter.notifyDataSetChanged();
     }
 
-    /*@Override
+    @Override
     public void onRefresh() {
         Log.d("DoctorListFragment","OnRefresh called");
+        refresh.setRefreshing(true);
+        ResultsActivity.showDataM();
+
+    }
+
+
+    public static void stopRefresh(){
         refresh.setRefreshing(false);
-        //(ResultsActivity) getActivity().showDataM();
-    }*/
+    }
+
 }

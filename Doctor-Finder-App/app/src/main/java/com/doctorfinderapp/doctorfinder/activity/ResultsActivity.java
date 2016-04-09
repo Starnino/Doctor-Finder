@@ -48,8 +48,7 @@ import java.util.List;
 
 
 public class ResultsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        SwipeRefreshLayout.OnRefreshListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG ="Results Activity" ;
     private DrawerLayout mDrawerLayout;
@@ -62,6 +61,8 @@ public class ResultsActivity extends AppCompatActivity
     private static Context c;
     private NavigationView navigationView;
     private SwipeRefreshLayout refresh;
+    private static View coordinator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class ResultsActivity extends AppCompatActivity
         setContentView(R.layout.activity_results);
 
 
-
+        coordinator=findViewById(R.id.coordinator_results);
 
 
 
@@ -152,13 +153,13 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-        refresh= (SwipeRefreshLayout) findViewById(R.id.refresh);
+       /* refresh= (SwipeRefreshLayout) findViewById(R.id.refresh);
         refresh.setOnRefreshListener(this);
-
+*/
         if (getIntent().getExtras().getBoolean("RESEARCH"))
-            showDatafromAdapter(findViewById(R.id.coordinator_results));
+            showDatafromAdapter();
 
-        else showDataM(findViewById(R.id.coordinator_results));
+        else showDataM();
 
     }
 
@@ -320,12 +321,7 @@ public class ResultsActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onRefresh() {
-        Log.d("DoctorListFragment","OnRefresh called");
-        refresh.setRefreshing(true);
-        showDataM(findViewById(R.id.coordinator_results));
-    }
+
 
 
     static class Adapter extends FragmentStatePagerAdapter {
@@ -420,7 +416,14 @@ public class ResultsActivity extends AppCompatActivity
 
     //download doctors from DB
 
-    public void showDataM(final View v) {
+    public static void SnackbarYumm(){
+
+        Snackbar.make(coordinator, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+
+    public static void showDataM() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -439,18 +442,17 @@ public class ResultsActivity extends AppCompatActivity
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
         }
-        refresh.setRefreshing(true);
+        //refresh.setRefreshing(true);
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                refresh.setRefreshing(false);
+                //refresh.setRefreshing(false);
+                DoctorListFragment.stopRefresh();
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-
-                    Snackbar.make(v, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    SnackbarYumm();
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
@@ -506,6 +508,8 @@ public class ResultsActivity extends AppCompatActivity
                         ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
                         file.getDataInBackground(new GetDataCallback() {
                             public void done(byte[] data, ParseException e) {
+
+
                                 if (e == null) {
                                     // data has the bytes for the resume
                                     //data is the image in array byte
@@ -515,6 +519,8 @@ public class ResultsActivity extends AppCompatActivity
 
                                     RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
                                     mImg.setImageBitmap(GlobalVariable.UserPropic);
+
+
                                     //iv.setImageBitmap(bitmap );
 
 
@@ -531,7 +537,7 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public void showDatafromAdapter(final View v) {
+    public void showDatafromAdapter() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -564,8 +570,12 @@ public class ResultsActivity extends AppCompatActivity
                         finded = " specialista trovato";
                     else finded = " specialisti trovati";
 
-                    Snackbar.make(v, GlobalVariable.DOCTORS.size() + finded, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    //@starnino ma seriamente hai chiamato finded al posto di found?
+                    // ahahahahah
+                    SnackbarYumm();
+
+
+
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
