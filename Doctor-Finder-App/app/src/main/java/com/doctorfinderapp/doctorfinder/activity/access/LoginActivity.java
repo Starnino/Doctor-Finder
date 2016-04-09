@@ -3,8 +3,10 @@ package com.doctorfinderapp.doctorfinder.activity.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,17 +14,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.activity.SuggestDoctorActivity;
-import com.doctorfinderapp.doctorfinder.activity.WebViewActivity;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
-import com.doctorfinderapp.doctorfinder.functions.RestorePsw;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -91,15 +91,39 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //password dimenticata
-
-
         resetpsw = (TextView)findViewById(R.id.forgot_password);
         resetpsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RestorePsw.class));
+                new MaterialDialog.Builder(v.getContext())
+                        .title("Recupera password")
+                        .content("Inserisci qui la tua mail e ti invieremo tutti i dettagli per recuperare la password!")
+                        .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .input("La tua email!", null, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
+                                Log.d("INPUT", input.toString());
+
+                                final String body = "Ho perso la password per accedere a Doctor Finder questa è la mia mail ==> " + input.toString();
+
+                                // TODO: 4/9/16 bisogna organizzare tutto cià da lato server
+
+                                BackgroundMail.newBuilder(resetpsw.getContext())
+                                        .withUsername("report.at.dcf@gmail.com")
+                                        .withPassword("Mianonna14")
+                                        .withMailto("info@doctorfinderapp.com")
+                                        .withSubject("Reset psw da impostare")
+                                        .withBody(body)
+                                        .send();
+
+                                Snackbar.make(resetpsw, "Controlla la posta!", Snackbar.LENGTH_LONG)
+                                        .show();
+                            }
+                        }).positiveText("Recupera")
+                        .negativeText("Annulla")
+                        .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                        .show();
                 /*
                 ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
                     public void done(ParseException e) {

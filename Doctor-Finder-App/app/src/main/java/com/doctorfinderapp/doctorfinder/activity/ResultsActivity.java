@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -97,8 +99,34 @@ public class ResultsActivity extends AppCompatActivity
        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //here
-                startActivity(new Intent(ResultsActivity.this,SuggestDoctorActivity.class));
+                new MaterialDialog.Builder(v.getContext())
+                        .title("Suggerisci uno specialitsta")
+                        .content("Consigliaci uno specialista " +
+                                "che vorresti fosse su questa applicazione!" + " Scrivici Nome, Cognome ed un modo per contattarlo (es. contatto mail e/o telefonico")
+                        .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .input("Al resto penseremo noi!", null, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                                Log.d("INPUT", input.toString());
+
+                                final String body = "Dottore suggerito ==> " + input.toString();
+
+                                BackgroundMail.newBuilder(fab.getContext())
+                                        .withUsername("report.at.dcf@gmail.com")
+                                        .withPassword("Mianonna14")
+                                        .withMailto("info@doctorfinderapp.com")
+                                        .withSubject("SUGGERIMENTO DOTTORE")
+                                        .withBody(body)
+                                        .send();
+
+                                Snackbar.make(fab, "Grazie per il suggerimento!", Snackbar.LENGTH_LONG)
+                                        .show();
+                            }
+                        }).positiveText("Invia")
+                        .negativeText("Annulla")
+                        .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                        .show();
             }
         });
 
@@ -149,6 +177,7 @@ public class ResultsActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view_results);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting header
@@ -273,7 +302,7 @@ public class ResultsActivity extends AppCompatActivity
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            Log.d("DIO --> ", "Cliccato");
+                            Log.d("Sbattimeloinfaccia --> ", "Cliccato");
                         }
                     })
                     .negativeText("annulla")
@@ -347,6 +376,7 @@ public class ResultsActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

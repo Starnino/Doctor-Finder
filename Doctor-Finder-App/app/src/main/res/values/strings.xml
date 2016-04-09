@@ -10,8 +10,6 @@
     <string name="send_data_button">Invia i dati </string>
     <string name="restore_psw">Inserisci qui la tua email. Ti contatteremo immediatamente con tutte le istruzioni per recuperare la tua password! </string>
     <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa applicazione!</string>
-    <string name="casella_nome_cognome_spec">Nome e Cognome specialista</string>
-    <string name="casella_contatti_spec">Suo recapito email e/o telefonico</string>
     <string name="action_sign2_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
@@ -31,7 +29,7 @@
     <string name="text_useyourEmail">Altrimenti usa la tua email</string>
     <string name="text_useyourAccount">Altrimenti usa il tuo account</string>
     <string name="text_username">Email</string>
-    <string name="text_forgotPassword">Passoword dimenticata?</string>
+    <string name="text_forgotPassword">Password dimenticata?</string>
     <string name="text_rememberMe">Ricordami</string>
     <string name="text_signupNow">Registrati ora!</string>
     <string name="namy">Non ne fai ancora parte? </string>
@@ -49,10 +47,8 @@
     <string name="action_example">Example action</string>
 
     <string name="profile">Il tuo Profilo</string>
-    <string name="gestisci">Qurami è nostra amica!</string>
     <string name="inserisci_dottore">Registrati come specialista</string>
     <string name="logout">Logout</string>
-    <string name="about">Riguardo Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
