@@ -20,14 +20,15 @@ public class RestorePsw extends AppCompatActivity {
         setContentView(R.layout.restore_psw);
 
         final Button recupero_mail = (Button) findViewById(R.id.invio_recupero_mail);
+        assert recupero_mail != null;
         recupero_mail.setOnClickListener(new View.OnClickListener()
 
                                       {
                                           @Override
                                           public void onClick(View view) {
 
-                                              Snackbar.make(recupero_mail, R.string.access_ok, Snackbar.LENGTH_SHORT)
-                                                      .setAction("Controlla la tua posta!", null).show();
+                                              Snackbar.make(recupero_mail, R.string.recupero_mail, Snackbar.LENGTH_LONG)
+                                                      .setAction("Action", null).show();
 
                                               onBackPressed();
 
@@ -36,6 +37,7 @@ public class RestorePsw extends AppCompatActivity {
         );
 
         Button cancella_dati = (Button) findViewById(R.id.cancella_recupero);
+        assert cancella_dati != null;
         cancella_dati.setOnClickListener(new View.OnClickListener()
 
                                          {

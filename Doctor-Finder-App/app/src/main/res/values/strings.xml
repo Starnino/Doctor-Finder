@@ -304,6 +304,7 @@
     <string name="complete_form">Completa tutti i campi!</string>
     <string name="user_exists">L\'utente esiste già</string>
     <string name="access_ok">Accesso Effettuato</string>
+    <string name="recupero_mail">Controlla la tua posta!</string>
     <string name="bad_login">Email o password errati</string>
     <string name="signup_completed">Registrato correttamente!</string>
     <string name="good_login">Login effettuato</string>

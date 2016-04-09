@@ -27,6 +27,7 @@ public class SuggestDoctorActivity extends AppCompatActivity {
         setContentView(R.layout.suggest_doctor);
 
         final Button invia_dati = (Button) findViewById(R.id.invia_dati_dottore);
+        assert invia_dati != null;
         invia_dati.setOnClickListener(new View.OnClickListener()
 
                                       {
@@ -41,7 +42,7 @@ public class SuggestDoctorActivity extends AppCompatActivity {
                                                       .withBody("Contatti del dottore")
                                                       .send();
 
-                                              Snackbar.make(invia_dati, R.string.access_ok, Snackbar.LENGTH_SHORT)
+                                              Snackbar.make(invia_dati, R.string.access_ok, Snackbar.LENGTH_LONG)
                                                       .setAction("Grazie per il suggerimento!", null).show();
 
                                               onBackPressed();
@@ -50,7 +51,8 @@ public class SuggestDoctorActivity extends AppCompatActivity {
                                       }
         );
 
-        Button cancella_dati = (Button) findViewById(R.id.cancella_recupero);
+        Button cancella_dati = (Button) findViewById(R.id.cancella_dati);
+        assert cancella_dati != null;
         cancella_dati.setOnClickListener(new View.OnClickListener()
 
                                                {
