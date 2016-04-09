@@ -47,7 +47,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ResultsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        SwipeRefreshLayout.OnRefreshListener{
 
     private static final String TAG ="Results Activity" ;
     private DrawerLayout mDrawerLayout;
@@ -59,6 +61,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
+    private SwipeRefreshLayout refresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
 
         setContentView(R.layout.activity_results);
+
+
+
+
+
 
         //find fab buttons
         fab_location = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_location);
@@ -143,6 +151,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         setupViewPager(viewPager);
         //download from db
+
+        refresh= (SwipeRefreshLayout) findViewById(R.id.refresh);
+        refresh.setOnRefreshListener(this);
 
         if (getIntent().getExtras().getBoolean("RESEARCH"))
             showDatafromAdapter(findViewById(R.id.coordinator_results));
@@ -309,6 +320,13 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    @Override
+    public void onRefresh() {
+        Log.d("DoctorListFragment","OnRefresh called");
+        refresh.setRefreshing(true);
+        showDataM(findViewById(R.id.coordinator_results));
+    }
+
 
     static class Adapter extends FragmentStatePagerAdapter {
 
@@ -421,12 +439,12 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
         }
-
+        refresh.setRefreshing(true);
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-
+                refresh.setRefreshing(false);
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;

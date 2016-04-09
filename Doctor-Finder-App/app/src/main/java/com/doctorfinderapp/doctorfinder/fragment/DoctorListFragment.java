@@ -8,12 +8,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.melnykov.fab.FloatingActionButton;
@@ -27,7 +29,9 @@ import java.util.List;
  * Created by francesco on 03/02/16.
  */
 
-public class DoctorListFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener {
+public class DoctorListFragment extends Fragment
+        /*implements  SwipeRefreshLayout.OnRefreshListener*/
+{
 
     private static RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -67,7 +71,11 @@ public class DoctorListFragment extends Fragment implements  SwipeRefreshLayout.
         progressBar.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progressBar.spin();
 
-        refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
+        /*refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
+        refresh.setOnRefreshListener(this);*/
+
+
+
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.result_recyclerview);
 
         mRecyclerView.setHasFixedSize(true);
@@ -112,9 +120,10 @@ public class DoctorListFragment extends Fragment implements  SwipeRefreshLayout.
         parseAdapter.notifyDataSetChanged();
     }
 
-    @Override
+    /*@Override
     public void onRefresh() {
-
+        Log.d("DoctorListFragment","OnRefresh called");
         refresh.setRefreshing(false);
-    }
+        //(ResultsActivity) getActivity().showDataM();
+    }*/
 }
