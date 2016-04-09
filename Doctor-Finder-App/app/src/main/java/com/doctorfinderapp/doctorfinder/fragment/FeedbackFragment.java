@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FeedbackFragment extends Fragment {
+public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener{
     private int index;
 
     private OnFragmentInteractionListener mListener;
@@ -42,6 +43,7 @@ public class FeedbackFragment extends Fragment {
     private String EMAIL_USER = "email_user";
     private String FEEDBACK = "Feedback";
     private String Email = "Email";
+    private SwipeRefreshLayout refresh;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -82,6 +84,10 @@ public class FeedbackFragment extends Fragment {
         progressWheel.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progressWheel.spin();
 
+
+        refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_feedback);
+        refresh.setOnRefreshListener(this);
+
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
         EMAIL = DOCTORTHIS.getString(Email);
 
@@ -97,17 +103,9 @@ public class FeedbackFragment extends Fragment {
             DoctorActivity.fabfeedback.setColorNormal(color_red);
             DoctorActivity.fabfeedback.setColorPressed(color_red_pressed);
             DoctorActivity.fabfeedback.setClickable(false);
-            ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
-            //Log.d("Feedback","showing feedback of"+ EMAIL);
-            query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> objects, ParseException e) {
-                    FeedbackArray = objects;
-                    orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
-                    setRecyclerView();
-                }
-            });
+            //removed query
+
+            downloadFeedback();
 
         } else if(Util.isOnline(getActivity()) && ParseUser.getCurrentUser() == null){
             ParseObject feedback_null = new ParseObject("NOLOGIN");
@@ -152,6 +150,28 @@ public class FeedbackFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onRefresh() {
+        downloadFeedback();
+        //refresh.setRefreshing(false);
+    }
+
+    public void downloadFeedback(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
+        //Log.d("Feedback","showing feedback of"+ EMAIL);
+        query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                refresh.setRefreshing(false);
+                if(e!=null) {
+                    FeedbackArray = objects;
+                    orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
+                    setRecyclerView();
+                }
+            }
+        });
+    }
 
 
     public interface OnFragmentInteractionListener {
