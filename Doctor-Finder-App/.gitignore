@@ -1,8 +1,6 @@
 /build.gradle
 /app/build.gradle
 
-
-
 /.idea/gradle.xml
 /.idea/misc.xml
 *.iml
@@ -12,4 +10,5 @@
 /.idea/libraries
 .DS_Store
 /build
+
 /captures

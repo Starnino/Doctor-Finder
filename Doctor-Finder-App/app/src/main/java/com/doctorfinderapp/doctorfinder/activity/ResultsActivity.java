@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -60,7 +59,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,12 +202,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         });
 
-        /*
         viewPager.setAdapter(adapter);
 
         tabs.setupWithViewPager(viewPager);
         fab.show();
-        */
+
     }
 
     @Override
@@ -381,12 +378,10 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         }
     }
 
-    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     public void onBackPressed() {
 
-        boolean doubleBackToExitPressedOnce = false;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
 
@@ -396,16 +391,6 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             GlobalVariable.DOCTORS=new ArrayList<>();
             super.onBackPressed();
         }
-         //pres again to exit
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Premi un'altra volta per uscire", Toast.LENGTH_SHORT).show();
-
 
         this.finish();
     }
