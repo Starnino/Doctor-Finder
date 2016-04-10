@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,9 @@ import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
+import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -158,6 +161,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         //refresh.setRefreshing(false);
     }
 
+
     public void downloadFeedback(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
         //Log.d("Feedback","showing feedback of"+ EMAIL);
@@ -167,6 +171,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
             public void done(List<ParseObject> objects, ParseException e) {
                 refresh.setRefreshing(false);
                 if(e==null) {
+                    Util.SnackbarYumm(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
+                            "Trovati "+objects.size()+" feedback" );
                     FeedbackArray = objects;
                     orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
                     setRecyclerView();

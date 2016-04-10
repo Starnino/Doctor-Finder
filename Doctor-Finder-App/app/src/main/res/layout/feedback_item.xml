@@ -6,19 +6,16 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardElevation="5dp"
     android:layout_marginTop="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginLeft="5dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="5dp"
     android:foreground="?attr/selectableItemBackground"
     android:transitionGroup="false"
     android:longClickable="true"
     android:focusable="false"
     android:clickable="false"
-    android:paddingLeft="16dp"
-
-    android:paddingRight="16dp">
+    >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -94,27 +91,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/feed_spam"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                app:iiv_color="@color/grey"
-                app:iiv_icon="gmd-more_vert"
-                android:layout_gravity="end"/>
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:id="@+id/feed_spam"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:iiv_color="@color/grey"
+                    app:iiv_icon="gmd-more_vert"
+                    android:layout_gravity="end"
+                    android:padding="10dp" />
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/feed_clear"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:scaleY="0.5"
-                android:scaleX="0.5"
-                android:visibility="invisible"
-                android:clickable="false"
-                app:iiv_color="@color/grey"
-                app:iiv_icon="gmd-clear"
-                android:layout_gravity="end" />
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:id="@+id/feed_clear"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:visibility="invisible"
+                    android:clickable="false"
+                    app:iiv_color="@color/grey"
+                    app:iiv_icon="gmd-clear"
+                    android:layout_gravity="end"
+                    android:padding="10dp" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -146,7 +141,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp">
 
             <TextView
                 android:layout_marginEnd="8dp"
@@ -160,25 +156,24 @@
                 android:textSize="14sp"
                 android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/num_thumb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/num_thumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:textSize="16sp" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/feed_like"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
-            android:layout_gravity="end"
-            android:visibility="visible"
-            app:iiv_color="@color/grey"
-            app:iiv_icon="gmd-thumb_up" />
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/feed_like"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:visibility="visible"
+                app:iiv_color="@color/grey"
+                app:iiv_icon="gmd-thumb_up"
+                android:padding="10dp" />
 
         </LinearLayout>
 

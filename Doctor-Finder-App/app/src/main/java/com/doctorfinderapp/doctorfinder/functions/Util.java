@@ -10,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
@@ -406,6 +408,24 @@ public class Util {
             ret.add(0, linear);
         }
         return ret;
+    }
+
+    public static void SnackbarYumm(final com.melnykov.fab.FloatingActionButton fab, CoordinatorLayout layout, String text){
+
+        Snackbar a=Snackbar.make(layout, text, Snackbar.LENGTH_LONG)
+                .setAction("Action", null);
+
+        fab.setTranslationY(-96);
+        a.setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                super.onDismissed(snackbar, event);
+                Log.d("Snackbar","dismissed");
+                fab.setTranslationY(0);
+            }
+        });
+        a.show();
+
     }
 
 }

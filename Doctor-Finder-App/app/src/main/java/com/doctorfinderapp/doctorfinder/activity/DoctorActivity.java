@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -72,11 +73,14 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String Title;
     private String email;
     public static SweetAlertDialog dialog;
+    public static CoordinatorLayout coordinator_layout;
 
     public static void showToastFeedback() {
         Toast.makeText(c, R.string.feedback_sended,
                 Toast.LENGTH_LONG).show();
         }
+
+
 
     //switch fab
     public static void switchFAB(int position) {
@@ -105,6 +109,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         c = getApplicationContext();
         setContentView(R.layout.activity_doctor);
+        coordinator_layout=(CoordinatorLayout) findViewById(R.id.coordinator_doctor_activity);
         //take index
         Bundle extras = getIntent().getExtras();
 
@@ -421,5 +426,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
+
+
+
+
 
 }
