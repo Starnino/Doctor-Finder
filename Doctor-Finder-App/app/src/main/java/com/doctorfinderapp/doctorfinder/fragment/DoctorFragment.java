@@ -283,9 +283,9 @@ public class DoctorFragment extends Fragment {
             mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
 
             if (adapter_count > 1)
-                suggest_null.setText(adapter_count + " amici trovati!");
+                suggest_null.setText(adapter_count + " amici consigliano questo dottore!");
             else
-                suggest_null.setText(adapter_count + " amico trovato!");
+                suggest_null.setText(adapter_count + " amico consiglia questo dottore");
         }
         else {
             suggest_null.setVisibility(View.VISIBLE);

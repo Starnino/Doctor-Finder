@@ -415,13 +415,14 @@ public class Util {
         Snackbar a=Snackbar.make(layout, text, Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
 
-        fab.setTranslationY(-96);
+        if(fab.isVisible())fab.setTranslationY(-96);
         a.setCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 super.onDismissed(snackbar, event);
                 Log.d("Snackbar","dismissed");
-                fab.setTranslationY(0);
+                if(fab.isVisible())fab.setTranslationY(0);
+
             }
         });
         a.show();
