@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.doctorfinderapp.doctorfinder.activity.intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
@@ -27,7 +28,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         final ProgressWheel progressWheel = (ProgressWheel) findViewById(R.id.progressSplash);
-        progressWheel.setBarColor(getResources().getColor(R.color.white));
+        progressWheel.setBarColor(getResources().getColor(R.color.lightdf));
+
         progressWheel.spin();
 
         //add immersive mode
@@ -67,6 +69,7 @@ public class SplashActivity extends AppCompatActivity {
                     // activity pressing Back button
                     finish();
                     progressWheel.stopSpinning();
+                    //progressWheel.setVisibility(View.INVISIBLE);
                 }
 
             }

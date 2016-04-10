@@ -66,8 +66,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-import me.zhanghai.android.materialprogressbar.IndeterminateHorizontalProgressDrawable;
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
