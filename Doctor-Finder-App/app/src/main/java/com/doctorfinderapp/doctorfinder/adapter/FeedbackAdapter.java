@@ -277,8 +277,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         if (item.getItemId() == R.id.action_clear) {
 
                             deleteFeedback(position);
-                            
-                            /*Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
+
+
+                            Snackbar a=Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .setAction("Annulla", new View.OnClickListener() {
 
                                         @Override
@@ -288,26 +290,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             annulla = null;
                                             holder.clear.setClickable(true);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
-
-                                        }
-                                    })
-                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
-                                    .show();
-                        */
-
-                            Snackbar a=Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
-                                    .setAction("Annulla", new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            holder.clear.setClickable(false);
-                                            safeSave(annulla);
-                                            annulla = null;
-                                            holder.clear.setClickable(true);
-
                                         }});
 
-                            if(DoctorActivity.fabfeedback.isVisible()){
+                            if (DoctorActivity.fabfeedback.isVisible()){
                                             DoctorActivity.fabfeedback.setTranslationY(-96);
                                         }
                             a.setCallback(new Snackbar.Callback() {

@@ -193,9 +193,6 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-       /* refresh= (SwipeRefreshLayout) findViewById(R.id.refresh);
-        refresh.setOnRefreshListener(this);
-*/
         if (getIntent().getExtras().getBoolean("RESEARCH"))
             showDatafromAdapter();
 
