@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -92,8 +93,9 @@ public class FeedbackDialogFragment extends DialogFragment {
 
 
                 else if (!Util.isOnline(getActivity()))
-                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                   /* Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();*/
+                    Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
                 else {
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
@@ -183,7 +185,11 @@ public class FeedbackDialogFragment extends DialogFragment {
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
                             //Log.d("Push feedback", "feedback saved");
-                            DoctorActivity.showToastFeedback();
+                            //DoctorActivity.showToastFeedback();
+                            Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                                    "Feedback Inviato, Grazie!");
+
+
                             FeedbackFragment.feedbackAdapter.changeMyFeedback();
                             Util.calculateFeedback(email_doctor);
                         }
@@ -210,7 +216,9 @@ public class FeedbackDialogFragment extends DialogFragment {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            DoctorActivity.showToastFeedback();
+                            Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                                    "Feedback Inviato, Grazie!");
+
                             FeedbackFragment.feedbackAdapter.insertItem(feedback);
                             Util.calculateFeedback(email_doctor);
                             //Log.d("Push feedback", "feedback saved");

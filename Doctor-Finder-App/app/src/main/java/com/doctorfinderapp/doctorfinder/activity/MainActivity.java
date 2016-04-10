@@ -549,7 +549,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         recentSearch.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
+                if (e == null && objects!=null) {
                     if (objects.size() != 0) {
 
                         if (objects.size() > 9) {
@@ -558,7 +558,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             } catch (ParseException e1) {
                                 e1.printStackTrace();
                             }
-                            doctors = doctors.subList(0, 9);
+                            if(doctors!=null)doctors = doctors.subList(0, 9);
                         }
 
                         card_recent_doctor_null.setVisibility(View.INVISIBLE);

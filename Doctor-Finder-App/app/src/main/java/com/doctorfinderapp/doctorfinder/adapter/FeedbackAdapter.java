@@ -227,7 +227,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                             new MaterialDialog.Builder(v.getContext())
                                     .title("Report Spam")
-                                    .content("Descrivi perchè secondo te questo feedback è uno spam")
+                                    .content("Descrivi perchè secondo te questo feedback deve essere eliminato")
                                     .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
                                     .input("Testo", null, new MaterialDialog.InputCallback() {
                                         @Override
@@ -277,7 +277,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                             deleteFeedback(position);
                             
-                            Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
+                            /*Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setAction("Annulla", new View.OnClickListener() {
 
                                         @Override
@@ -291,7 +291,33 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                     })
                                     .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .show();
+                        */
 
+                            Snackbar a=Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                                    .setAction("Annulla", new View.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(View v) {
+                                            holder.clear.setClickable(false);
+                                            safeSave(annulla);
+                                            annulla = null;
+                                            holder.clear.setClickable(true);
+
+                                        }});
+
+                            if(DoctorActivity.fabfeedback.isVisible()){
+                                            DoctorActivity.fabfeedback.setTranslationY(-96);
+                                        }
+                            a.setCallback(new Snackbar.Callback() {
+                                @Override
+                                public void onDismissed(Snackbar snackbar, int event) {
+                                    super.onDismissed(snackbar, event);
+                                    Log.d("Snackbar","dismissed");
+                                    if(DoctorActivity.fabfeedback.isVisible())DoctorActivity.fabfeedback.setTranslationY(0);
+
+                                }
+                            });
+                            a.show();
                         }
                         return true;
                     }

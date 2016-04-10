@@ -102,6 +102,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         //problema con sta riga
         //holder.setIsRecyclable(false);
+
         holder.ratingBar.setRating(Float.parseFloat(DOCTORS.get(position).get(FEEDBACK).toString()));
 
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
