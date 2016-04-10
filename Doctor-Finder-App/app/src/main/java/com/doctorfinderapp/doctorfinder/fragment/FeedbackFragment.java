@@ -41,9 +41,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
     private OnFragmentInteractionListener mListener;
     static private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    public static FeedbackAdapter feedbackAdapter, nullAdapter;
-    private List<ParseObject> FeedbackArray, nullArray = new ArrayList<>();
-    int color_red, color_red_pressed, color_green, color_green_pressed;
+    public static FeedbackAdapter feedbackAdapter;
+    private List<ParseObject> FeedbackArray;
     String EMAIL;
     ProgressWheel progressWheel;
     private String EMAIL_DOCTOR = "email_doctor";
@@ -73,8 +72,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         this.index=indexFragment;
         DoctorActivity.switchFAB(1);
 
-        color_green = getResources().getColor(R.color.docfinder);
-        color_green_pressed = getResources().getColor(R.color.colorPrimaryDark);
     }
 
     @Override
@@ -105,26 +102,9 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
         if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
             //If there is Internet connection
-            DoctorActivity.fabfeedback.setColorNormal(color_red);
-            DoctorActivity.fabfeedback.setColorPressed(color_red_pressed);
             DoctorActivity.fabfeedback.setClickable(false);
-            //removed query
 
             downloadFeedback();
-
-        } else if(Util.isOnline(getActivity()) && ParseUser.getCurrentUser() == null){
-            ParseObject feedback_null = new ParseObject("NOLOGIN");
-            nullArray.add(feedback_null);
-            DoctorActivity.fabfeedback.setColorNormal(color_red);
-            DoctorActivity.fabfeedback.setColorPressed(color_red_pressed);
-
-            mRecyclerView.setHasFixedSize(true);
-            mLayoutManager = new LinearLayoutManager(getActivity());
-            mRecyclerView.setLayoutManager(mLayoutManager);
-            nullAdapter = new FeedbackAdapter(nullArray, null, null);
-            mRecyclerView.setAdapter(nullAdapter);
-            progressWheel.stopSpinning();
-
         }
 
         return rootView;
@@ -198,10 +178,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
 
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(feedbackAdapter));
-
-
-        DoctorActivity.fabfeedback.setColorNormal(color_green);
-        DoctorActivity.fabfeedback.setColorPressed(color_green_pressed);
 
         DoctorActivity.fabfeedback.setClickable(true);
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RatingBar;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -29,6 +30,7 @@ import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -40,6 +42,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by fedebyes on 05/03/16.
@@ -106,22 +110,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
     @Override
     public void onBindViewHolder(final FeedbackAdapter.FeedbackViewHolder holder, final int position) {
-        Log.d("FEED SIZE", " " + getItemCount());
-
-        if (feedbacklist.get(position) != null && !feedbacklist.get(position).getClassName().equals(FEEDBACK)) {
-
-            if (feedbacklist.get(position).getClassName().equals("NOLOGIN")) {
-                holder.name.setText("Doctor Finder");
-                holder.feedback_text.setText("Devi essere loggato per poter consultare i feedback" +
-                        " lasciati a questo medico!");
-                holder.ratingBar.setRating(holder.ratingBar.getMax());
-                holder.propic.setImageResource(R.drawable.personavatar);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                holder.date.setText(simpleDateFormat.format(Calendar.getInstance().getTime()));
-                holder.num_thumb.setText("999");
-            }
-
-        } else {
 
             holder.THUMB_PRESSED = feedbacklist.get(position).getList(THUMB_LIST).contains(EMAIL_USER_THIS);
 
@@ -213,7 +201,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     onClickButton(v, holder, position);
                 }
             });
-        }
 
     }
 
@@ -287,7 +274,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
+
                             deleteFeedback(position);
+                            
                             Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setAction("Annulla", new View.OnClickListener() {
 
@@ -394,12 +383,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         delete.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-
-                    object.deleteEventually();
-                    feedbacklist.remove(position);
-                    notifyItemRemoved(position);
-                    //TODO finish progress bar
-                    rebuildFeedbackAverage();
+                    if (e == null) {
+                        object.deleteEventually();
+                        feedbacklist.remove(position);
+                        notifyItemRemoved(position);
+                        rebuildFeedbackAverage();
+                        //TODO finish progress bar
+                    }
             }
         });
     }
@@ -440,34 +430,36 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         doctor.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                if (feedbacklist.size() == 0){
-                    object.put(FEEDBACK, 0);
+                if (e == null) {
+                    if (feedbacklist.size() == 0) {
+                        object.put(FEEDBACK, 0);
 
-                } else {
-                    List<ParseObject> feedbacks = new ArrayList<>();
-                    ParseQuery<ParseObject> numFeed = ParseQuery.getQuery(FEEDBACK);
-                    numFeed.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+                    } else {
+                        List<ParseObject> feedbacks = new ArrayList<>();
+                        ParseQuery<ParseObject> numFeed = ParseQuery.getQuery(FEEDBACK);
+                        numFeed.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
+                        try {
+                            feedbacks = numFeed.find();
+
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                        float somma = 0;
+                        int numfeed = feedbacks.size();
+                        for (int i = 0; i < numfeed; i++) {
+                            somma += Float.parseFloat(feedbacks.get(i).get(RATING).toString());
+                        }
+
+                        float avg = somma / numfeed;
+                        DoctorFragment.changeRating(avg);
+                        object.put(FEEDBACK, avg);
+                    }
+
                     try {
-                        feedbacks = numFeed.find();
-
+                        object.save();
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
-                    float somma = 0;
-                    int numfeed = feedbacks.size();
-                    for (int i = 0; i < numfeed; i++) {
-                        somma += Float.parseFloat(feedbacks.get(i).get(RATING).toString());
-                    }
-
-                    float avg = somma/numfeed;
-                    DoctorFragment.changeRating(avg);
-                    object.put(FEEDBACK, avg);
-                }
-
-                try {
-                    object.save();
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
                 }
             }
         });
