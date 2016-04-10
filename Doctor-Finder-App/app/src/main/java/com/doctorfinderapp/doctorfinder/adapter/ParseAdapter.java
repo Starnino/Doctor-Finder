@@ -99,7 +99,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         ArrayList<String> spec = (ArrayList<String>) DOCTORS.get(position).get(SPECIALIZATION);
         holder.special.setText(Util.setSpecialization(spec));
-
+        holder.setIsRecyclable(false);
         holder.ratingBar.setRating(Float.parseFloat(DOCTORS.get(position).get(FEEDBACK).toString()));
 
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
