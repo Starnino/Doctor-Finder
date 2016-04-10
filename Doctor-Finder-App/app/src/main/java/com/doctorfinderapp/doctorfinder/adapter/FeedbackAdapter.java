@@ -248,15 +248,15 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                                             Log.d("INPUT", input.toString());
 
-                                            final String body = "Doctor ==> " + EMAIL_DOCTOR_THIS + "\n" + "\n" +
-                                                    "User Feedback ==> " + EMAIL_USER_THIS + "\n" + "\n" +
-                                                    "User Spammer ==> " + feedbacklist.get(holder.getAdapterPosition()).getString(USER_EMAIL) + "\n" + "\n" +
-                                                    "Feedback text ==> " + holder.feedback_text.getText() + "\n" +
-                                                    "User Text ==> " + input.toString();
+                                            final String body = "Doctor: " + EMAIL_DOCTOR_THIS + "\n" + "\n" +
+                                                    "User Feedback: " + EMAIL_USER_THIS + "\n" + "\n" +
+                                                    "User Spammer: " + feedbacklist.get(holder.getAdapterPosition()).getString(USER_EMAIL) + "\n" + "\n" +
+                                                    "Feedback text: " + holder.feedback_text.getText() + "\n" +
+                                                    "User Text: " + input.toString();
 
                                             BackgroundMail.newBuilder(v.getContext())
-                                                    .withUsername("report.at.dcf@gmail.com")
-                                                    .withPassword("Mianonna14")
+                                                    .withUsername("doctor.finder.dcf@gmail.com")
+                                                    .withPassword("quantomacina")
                                                     .withMailto("doctor.finder.dcf@gmail.com")
                                                     .withSubject("REPORT SPAM")
                                                     .withBody(body)
@@ -268,6 +268,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                     }).positiveText("Invia")
                                     .negativeText("Annulla")
                                     .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                                    .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
                                     .show();
                         }
                         return true;

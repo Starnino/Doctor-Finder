@@ -101,20 +101,22 @@ public class ResultsActivity extends AppCompatActivity
             public void onClick(View v) {
                 new MaterialDialog.Builder(v.getContext())
                         .title("Suggerisci uno specialitsta")
-                        .content("Consigliaci uno specialista " +
-                                "che vorresti fosse su questa applicazione!" + " Scrivici Nome, Cognome ed un modo per contattarlo (es. contatto mail e/o telefonico")
-                        .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
-                        .input("Al resto penseremo noi!", null, new MaterialDialog.InputCallback() {
+                        .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
+                        .inputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .input("Nome, Cognome, Email, Numero, \nSpecialistica", null, new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
                                 Log.d("INPUT", input.toString());
+                                String body = "";
+                                if (ParseUser.getCurrentUser() != null)
+                                     body += "Email Utente: " + ParseUser.getCurrentUser().getEmail() + "\n";
 
-                                final String body = "Dottore suggerito ==> " + input.toString();
+                                body += "Dottore Suggerito: " + input.toString();
 
                                 BackgroundMail.newBuilder(fab.getContext())
-                                        .withUsername("report.at.dcf@gmail.com")
-                                        .withPassword("Mianonna14")
+                                        .withUsername("doctor.finder.dcf@gmail.com")
+                                        .withPassword("quantomacina")
                                         .withMailto("info@doctorfinderapp.com")
                                         .withSubject("SUGGERIMENTO DOTTORE")
                                         .withBody(body)
@@ -123,9 +125,14 @@ public class ResultsActivity extends AppCompatActivity
                                 Snackbar.make(fab, "Grazie per il suggerimento!", Snackbar.LENGTH_LONG)
                                         .show();
                             }
-                        }).positiveText("Invia")
+                        })
+                        .iconRes(R.drawable.doctor_avatar)
+                        .maxIconSizeRes(R.dimen.null_card)
+                        .positiveText("Invia")
                         .negativeText("Annulla")
                         .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                        .positiveColor(v.getResources().getColor(R.color.colorPrimaryDark))
+                        .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
                         .show();
             }
         });

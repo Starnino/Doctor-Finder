@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         TextView forgot_password=(TextView) findViewById(R.id.forgot_password);
 
+        assert forgot_password != null;
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,10 +97,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new MaterialDialog.Builder(v.getContext())
-                        .title("Recupera password")
+                        .title("Reset password")
                         .content("Inserisci qui la tua mail e ti invieremo tutti i dettagli per recuperare la password!")
                         .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
-                        .input("La tua email!", null, new MaterialDialog.InputCallback() {
+                        .input("La tua Email", null, new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
@@ -110,10 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                                 // TODO: 4/9/16 bisogna organizzare tutto cià da lato server
 
                                 BackgroundMail.newBuilder(resetpsw.getContext())
-                                        .withUsername("report.at.dcf@gmail.com")
-                                        .withPassword("Mianonna14")
+                                        .withUsername("doctor.finder.dcf@gmail.com")
+                                        .withPassword("quantomacina")
                                         .withMailto("info@doctorfinderapp.com")
-                                        .withSubject("Reset psw da impostare")
+                                        .withSubject("RESET PASSWORD")
                                         .withBody(body)
                                         .send();
 
@@ -123,6 +124,8 @@ public class LoginActivity extends AppCompatActivity {
                         }).positiveText("Recupera")
                         .negativeText("Annulla")
                         .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
+                        .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
+                        .positiveColor(v.getResources().getColor(R.color.colorPrimaryDark))
                         .show();
                 /*
                 ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
@@ -150,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // Login Button Click Listener
+        assert loginButton != null;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -193,6 +197,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //loginWithFacebook.
         Button FLogin = (Button) findViewById(R.id.flogin);
+        assert FLogin != null;
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
