@@ -94,8 +94,11 @@ public class DoctorListFragment extends Fragment
 
         parseAdapter = new ParseAdapter(DOCTORS);
 
+        //animation
+        SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(parseAdapter);
 
-        mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(parseAdapter));
+       mRecyclerView.setAdapter(slide_adapter);
+        //mRecyclerView.setAdapter(parseAdapter);
 
 
         //fab

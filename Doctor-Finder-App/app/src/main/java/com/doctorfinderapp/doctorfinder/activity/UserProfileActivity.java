@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
@@ -38,8 +41,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -74,14 +75,38 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
 
         if (!ParseFacebookUtils.isLinked(ParseUser.getCurrentUser()) && !GlobalVariable.FLAG_DIALOG) {
-            SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("Doctor Finder & Facebook")
-                    .setContentText(getString(R.string.tip_dcf_user))
-                    .setCustomImage(R.drawable.facebook_doctor_finder_icon);
 
-            dialog.getProgressHelper().setRimColor(R.color.facebook_color);
-            dialog.show();
-            GlobalVariable.FLAG_DIALOG = true;
+
+
+            new MaterialDialog.Builder(this)
+                    .title("Connettiti con Facebook")
+                    .content(getString(R.string.tip_dcf_user))
+                    .positiveText("Ok")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            ParseFacebookUtils.linkWithReadPermissionsInBackground(user, UserProfileActivity.this,
+                                    (Collection<String>) GlobalVariable.permissions,
+                                    new SaveCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
+                                            Log.d("Facebook link", e + "EXCEPTION");
+                                            if (ParseFacebookUtils.isLinked(user)) {
+
+
+                                                FacebookProfile.getGraphRequest(user);
+
+                                                Log.d("MyApp", "Woohoo, user logged in with Facebook!");
+                                            } else {
+
+                                            }
+                                        }
+                                    });
+
+                        }
+                    })
+
+                    .show();
         }
 
 

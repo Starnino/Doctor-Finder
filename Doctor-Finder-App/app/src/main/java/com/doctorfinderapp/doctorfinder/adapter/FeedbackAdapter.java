@@ -267,8 +267,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                         }
                                     }).positiveText("Invia")
                                     .negativeText("Annulla")
-                                    .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
-                                    .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
+
                                     .show();
                         }
                         return true;

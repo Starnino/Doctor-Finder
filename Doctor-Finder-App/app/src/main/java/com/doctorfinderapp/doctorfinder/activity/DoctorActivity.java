@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +47,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
-
 public class DoctorActivity extends AppCompatActivity implements View.OnClickListener, FeedbackFragment.OnFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
 
 
@@ -72,7 +70,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private List<ParseObject> doctors;
     private String Title;
     private String email;
-    public static SweetAlertDialog dialog;
+
     public static CoordinatorLayout coordinator_layout;
 
     public static void showToastFeedback() {
@@ -315,15 +313,11 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fabfeedback:
 
                 if (ParseUser.getCurrentUser() != null) {
-                    //Log.d("dio", "cane");
+
                     openFeedbackDialog();
 
                 } else {
-                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Feedback")
-                            .setContentText("Devi registrarti per lasciare un feedback")
-                            .setConfirmText("OK")
-                            .show();
+
                 }
                 break;
 
@@ -332,10 +326,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto",DOCTORTHIS.get("Email").toString(), null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Richiesta informazioni");
+                //emailIntent.putExtra(Intent.EXTRA_BCC, "info@doctorfinderapp.com");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
                         " \n " +
                         " \n " +
-                        " \n " +" \n " +
+                        " \n " +
+                        " \n " +
                         " \n " +
 
                         " \n " +
@@ -352,9 +348,11 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fab_phone:
 
                     final String no = DOCTORTHIS.getString("Cellphone");
+                TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+                if( tm != null && tm.getSimState()==TelephonyManager.SIM_STATE_READY){
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:"+no));
-                    startActivity(intent);
+                    startActivity(intent);}
 
 
                 break;

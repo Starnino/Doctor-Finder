@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -17,8 +18,13 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.MainActivity;
+import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
@@ -243,13 +249,29 @@ public class DoctorFragment extends Fragment {
                 ft2.replace(R.id.frame_doctor, f2);
 
                 ft2.commit();*/
-
+                if(ParseUser.getCurrentUser()!=null){
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
 
                 ft.replace(R.id.frame_doctor,fragment);
                 ft.addToBackStack(null);
                 ft.commit();
+                }else{
+                    new MaterialDialog.Builder(c)
+                            .title("Login")
+                            .content("Per vedere i feedback è richiesto il login")
+                            .positiveText("Login")
+                            .negativeText("Annulla")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    Intent intent = new Intent(c, FirstActivity.class);
+                                    startActivity(intent);
+                                }
+
+                            })
+                            .show();
+                }
             }
         });
 

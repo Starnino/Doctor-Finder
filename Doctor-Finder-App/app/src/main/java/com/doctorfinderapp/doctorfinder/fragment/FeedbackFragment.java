@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
 
 public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener{
@@ -71,8 +72,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         int indexFragment = getArguments().getInt("index", 0);
         this.index=indexFragment;
         DoctorActivity.switchFAB(1);
-        color_red = getResources().getColor(R.color.red_btn_bg_color);
-        color_red_pressed = getResources().getColor(R.color.red_btn_bg_pressed_color);
+
         color_green = getResources().getColor(R.color.docfinder);
         color_green_pressed = getResources().getColor(R.color.colorPrimaryDark);
     }
@@ -193,14 +193,16 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        mRecyclerView.setItemAnimator(new SlideInDownAnimator());
         feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 
 
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(feedbackAdapter));
 
+
         DoctorActivity.fabfeedback.setColorNormal(color_green);
         DoctorActivity.fabfeedback.setColorPressed(color_green_pressed);
+
         DoctorActivity.fabfeedback.setClickable(true);
 
         progressWheel.stopSpinning();

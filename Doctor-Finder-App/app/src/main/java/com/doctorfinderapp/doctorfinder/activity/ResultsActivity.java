@@ -130,9 +130,7 @@ public class ResultsActivity extends AppCompatActivity
                         .maxIconSizeRes(R.dimen.null_card)
                         .positiveText("Invia")
                         .negativeText("Annulla")
-                        .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
-                        .positiveColor(v.getResources().getColor(R.color.colorPrimaryDark))
-                        .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
+
                         .show();
             }
         });
@@ -313,7 +311,7 @@ public class ResultsActivity extends AppCompatActivity
                         }
                     })
                     .negativeText("annulla")
-                    .negativeColor(getResources().getColor(R.color.red_btn_bg_color))
+
                     .customView(R.layout.filter_view, true)
                     .show();
             return true;

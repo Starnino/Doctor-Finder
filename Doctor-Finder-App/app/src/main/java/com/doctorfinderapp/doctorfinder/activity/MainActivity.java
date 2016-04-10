@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -34,6 +35,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
@@ -62,7 +65,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+
 import me.zhanghai.android.materialprogressbar.IndeterminateHorizontalProgressDrawable;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
@@ -123,23 +126,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
 
         if (ParseUser.getCurrentUser() == null) {
+            new MaterialDialog.Builder(this)
+                    .title("Avviso importante")
+                    .content("Non usare questa applicazione in caso di emergenza!")
+                    .positiveText("Ho capito")
 
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Avviso importante")
-                    .setContentText("Non usare questa applicazione in caso di emergenza!")
-                    .setConfirmText("OK, ho capito")
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog
-                                    .setTitleText("Confermato")
-                                    .setContentText("In caso di emergenza chiama sempre prima i soccorsi!")
-                                    .setConfirmText("OK")
-                                    .setConfirmClickListener(null)
-                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        }
-                    })
+
                     .show();
+
         }else{
 
             Snackbar.make(parentLayout, R.string.good_login, Snackbar.LENGTH_SHORT)

@@ -123,9 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }).positiveText("Recupera")
                         .negativeText("Annulla")
-                        .negativeColor(v.getResources().getColor(R.color.red_btn_bg_color))
-                        .widgetColor(v.getResources().getColor(R.color.colorPrimaryDark))
-                        .positiveColor(v.getResources().getColor(R.color.colorPrimaryDark))
+
                         .show();
                 /*
                 ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {

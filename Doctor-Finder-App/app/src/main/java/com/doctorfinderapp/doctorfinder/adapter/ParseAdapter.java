@@ -24,7 +24,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 import static com.doctorfinderapp.doctorfinder.R.drawable.doctor_avatar;
 
@@ -41,7 +41,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public final String FEEDBACK = "Feedback";
     public final String CITY = "Province";
     public final String EMAIL = "Email";
-    public static SweetAlertDialog dialog = null;
+
 
     public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -99,7 +99,9 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
 
         ArrayList<String> spec = (ArrayList<String>) DOCTORS.get(position).get(SPECIALIZATION);
         holder.special.setText(Util.setSpecialization(spec));
-        holder.setIsRecyclable(false);
+
+        //problema con sta riga
+        //holder.setIsRecyclable(false);
         holder.ratingBar.setRating(Float.parseFloat(DOCTORS.get(position).get(FEEDBACK).toString()));
 
         ArrayList<String> city = (ArrayList<String>) DOCTORS.get(position).get(CITY);
