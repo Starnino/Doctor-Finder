@@ -165,6 +165,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.clear.setClickable(true);
                 holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
+                FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
             }
 
             holder.date.setText(feedbacklist.get(position).getString(DATE));
@@ -286,6 +287,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             safeSave(annulla);
                                             annulla = null;
                                             holder.clear.setClickable(true);
+                                            FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
 
                                         }
                                     })
@@ -413,6 +415,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         object.deleteEventually();
                         feedbacklist.remove(position);
                         notifyItemRemoved(position);
+                        FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_add_white_24dp);
                         rebuildFeedbackAverage();
                         //TODO finish progress bar
                     }

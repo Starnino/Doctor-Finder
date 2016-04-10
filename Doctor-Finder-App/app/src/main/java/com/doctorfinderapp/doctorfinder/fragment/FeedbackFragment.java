@@ -3,22 +3,17 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
-import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
-import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,9 +21,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
-
-import java.net.UnknownServiceException;
-import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
@@ -50,6 +42,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
     private String FEEDBACK = "Feedback";
     private String Email = "Email";
     private SwipeRefreshLayout refresh;
+    public static FloatingActionButton fabfeedback;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -96,7 +89,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recyclerview);
 
-        FloatingActionButton fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
+        fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
         fabfeedback.attachToRecyclerView(mRecyclerView);
 
 
