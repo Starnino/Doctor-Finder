@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingRight="6dp"
+    android:paddingLeft="6dp"
+    android:paddingTop="6dp"
     android:background="@color/google_grey"
     android:theme="@style/AppTheme"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -17,9 +20,11 @@
         <android.support.v7.widget.CardView
 
             android:id="@+id/card1"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_margin="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -462,7 +467,8 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_marginTop="6dp"
+
+            android:layout_margin="10dp"
             android:id="@+id/feedback_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -539,8 +545,8 @@
             android:id="@+id/card_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_margin="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:id="@+id/result_recyclerview_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/google_grey">
 
     <com.pnikosis.materialishprogress.ProgressWheel
         android:layout_width="50dp"

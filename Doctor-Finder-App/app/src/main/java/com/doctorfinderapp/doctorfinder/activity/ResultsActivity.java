@@ -62,7 +62,7 @@ public class ResultsActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
-    private com.melnykov.fab.FloatingActionButton fab, fab_location;
+    private static com.melnykov.fab.FloatingActionButton fab, fab_location;
     private MenuItem searchItem;
     private MenuItem filterItem;
     private SearchView searchView;
@@ -484,8 +484,20 @@ public class ResultsActivity extends AppCompatActivity
 
     public static void SnackbarYumm(){
 
-        Snackbar.make(coordinator, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Snackbar a=Snackbar.make(coordinator, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
+                .setAction("Action", null);
+
+        fab.setTranslationY(-80);
+        a.setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                super.onDismissed(snackbar, event);
+                Log.d("Snackbar","dismissed");
+                fab.setTranslationY(0);
+            }
+        });
+        a.show();
+
     }
 
 
