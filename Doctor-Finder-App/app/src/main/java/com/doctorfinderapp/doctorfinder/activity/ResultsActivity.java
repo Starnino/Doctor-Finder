@@ -304,6 +304,8 @@ public class ResultsActivity extends AppCompatActivity
                     .title("Filtra Ricerca")
                     .positiveText("Cerca")
                     .positiveColor(getResources().getColor(R.color.docfinder))
+                    .negativeColor(getResources().getColor(R.color.docfinder))
+                    .widgetColor(getResources().getColor(R.color.docfinder))
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
