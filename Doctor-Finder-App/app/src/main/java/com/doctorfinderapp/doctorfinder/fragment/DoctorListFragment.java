@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.TextViewCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.ResultsActivity;
@@ -45,7 +48,12 @@ public class DoctorListFragment extends Fragment
     private FloatingActionButton fab;
     private static ProgressWheel progressBar;
     private static SwipeRefreshLayout refresh;
+    private static CardView cardNothing;
     private static View rootView;
+    private String nienteTesto="Nessun dottore corrispondente alla " +
+            "ricerca, ne conosci uno? Usa il bottone in basso per suggerircelo";
+
+    private TextView niente;
 
 
     public DoctorListFragment() {
@@ -79,6 +87,12 @@ public class DoctorListFragment extends Fragment
 
         refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
         refresh.setOnRefreshListener(this);
+
+
+        cardNothing= (CardView) rootView.findViewById(R.id.card_nothing);
+        niente= (TextView) rootView.findViewById(R.id.niente);
+        niente.setText(nienteTesto);
+        //cardNothing.setVisibility(View.VISIBLE);
 
 
 
@@ -133,13 +147,26 @@ public class DoctorListFragment extends Fragment
     @Override
     public void onRefresh() {
         Log.d("DoctorListFragment","OnRefresh called");
+
         refresh.setRefreshing(true);
         ResultsActivity.showDataM();
 
+
+    }
+
+    public static void CardNothingVisible(){
+        cardNothing.setVisibility(View.VISIBLE);
+        //mRecyclerView.setVisibility(View.GONE);
+        //refresh.setVisibility(View.GONE);
+
+        Log.d("card nothing visibility", cardNothing.getVisibility()+"");
+        //Log.d("refresh visibility", refresh.getVisibility()+"");
+        //Log.d("recycler visibility", mRecyclerView.getVisibility()+"");
     }
 
 
     public static void stopRefresh(){
+
         refresh.setRefreshing(false);
     }
 
