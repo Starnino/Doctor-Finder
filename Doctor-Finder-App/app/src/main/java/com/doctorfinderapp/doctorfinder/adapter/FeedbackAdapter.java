@@ -280,11 +280,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
-
                             deleteFeedback(position);
+                            final float fab_up = holder.itemView.getResources().getDimension(R.dimen.fab_up);
+                            final float fab_down = holder.itemView.getResources().getDimension(R.dimen.fab_down);
 
-
-                           Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .setAction("Annulla", new View.OnClickListener() {
 
@@ -300,11 +300,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                        @Override
                                        public void onDismissed(Snackbar snackbar, int event) {
                                            super.onDismissed(snackbar, event);
-                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                                        }
                                    })
                                    .show();
-                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(-90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                         return true;
                     }

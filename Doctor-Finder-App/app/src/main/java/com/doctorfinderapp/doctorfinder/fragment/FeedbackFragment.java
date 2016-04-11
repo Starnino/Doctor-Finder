@@ -160,6 +160,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
             @Override
             public void done(final List<ParseObject> objects, ParseException e) {
                 refresh.setRefreshing(false);
+                final float fab_up = getActivity().getResources().getDimension(R.dimen.fab_up);
+                final float fab_down = getActivity().getResources().getDimension(R.dimen.fab_down);
                 if(e==null) {
 
                     TimerTask timerTask = new TimerTask() {
@@ -170,14 +172,14 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                                     .setCallback(new Snackbar.Callback() {
                                         @Override
                                         public void onDismissed(Snackbar snackbar, int event) {
-                                            ViewCompat.animate(fabfeedback).translationYBy(90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                            ViewCompat.animate(fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                                             fabfeedback.attachToRecyclerView(mRecyclerView);
                                             super.onDismissed(snackbar, event);
 
                                         }
                                     })
                                     .show();
-                            ViewCompat.animate(fabfeedback).translationYBy(-90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            ViewCompat.animate(fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                     }; new Timer().schedule(timerTask, 1000);
 
