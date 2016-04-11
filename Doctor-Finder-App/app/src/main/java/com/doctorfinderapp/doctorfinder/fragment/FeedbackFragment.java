@@ -3,7 +3,10 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +24,11 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -88,9 +95,19 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feedback_recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new SlideInDownAnimator());
+
+        FeedbackArray = new ArrayList<>();
+
+        feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
+        mRecyclerView.setAdapter(feedbackAdapter);
 
         fabfeedback = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fabfeedback);
-        fabfeedback.attachToRecyclerView(mRecyclerView);
 
 
         if (Util.isOnline(getActivity()) && ParseUser.getCurrentUser() != null) {
@@ -141,11 +158,29 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
+            public void done(final List<ParseObject> objects, ParseException e) {
                 refresh.setRefreshing(false);
                 if(e==null) {
-                    Util.SnackbarYumm(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
-                            "Trovati "+objects.size()+" feedback" );
+
+                    TimerTask timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            Snackbar.make(DoctorActivity.coordinator_layout, objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null)
+                                    .setCallback(new Snackbar.Callback() {
+                                        @Override
+                                        public void onDismissed(Snackbar snackbar, int event) {
+                                            ViewCompat.animate(fabfeedback).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                            fabfeedback.attachToRecyclerView(mRecyclerView);
+                                            super.onDismissed(snackbar, event);
+
+                                        }
+                                    })
+                                    .show();
+                            ViewCompat.animate(fabfeedback).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                        }
+                    }; new Timer().schedule(timerTask, 1000);
+
                     FeedbackArray = objects;
                     orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
                     setRecyclerView();
@@ -161,11 +196,6 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
     public void setRecyclerView(){
 
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new SlideInDownAnimator());
         feedbackAdapter = new FeedbackAdapter(FeedbackArray, EMAIL, ParseUser.getCurrentUser().getEmail());
 

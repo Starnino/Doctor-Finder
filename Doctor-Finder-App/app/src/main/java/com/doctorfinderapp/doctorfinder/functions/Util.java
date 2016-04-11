@@ -13,7 +13,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.Log;
+import android.view.View;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
@@ -32,6 +35,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -410,23 +414,19 @@ public class Util {
         return ret;
     }
 
-    public static void SnackbarYumm(final com.melnykov.fab.FloatingActionButton fab, CoordinatorLayout layout, String text){
+    public static void SnackBarFiga(final com.melnykov.fab.FloatingActionButton fab, View v, String text){
 
-        Snackbar a=Snackbar.make(layout, text, Snackbar.LENGTH_LONG)
-                .setAction("Action", null);
-
-        if(fab.isVisible())fab.setTranslationY(-96);
-        a.setCallback(new Snackbar.Callback() {
-            @Override
-            public void onDismissed(Snackbar snackbar, int event) {
-                super.onDismissed(snackbar, event);
-                Log.d("Snackbar","dismissed");
-                if(fab.isVisible())fab.setTranslationY(0);
+        Snackbar.make(v, text, Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .setCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        ViewCompat.animate(fab).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                        super.onDismissed(snackbar, event);
 
             }
-        });
-        a.show();
-
+        })
+        .show();
+        ViewCompat.animate(fab).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
     }
-
 }

@@ -93,9 +93,8 @@ public class FeedbackDialogFragment extends DialogFragment {
 
 
                 else if (!Util.isOnline(getActivity()))
-                   /* Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();*/
-                    Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
+
+                    Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
                 else {
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
@@ -186,7 +185,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                             if (e != null) Log.d("Push feedback", e.toString());
                             //Log.d("Push feedback", "feedback saved");
                             //DoctorActivity.showToastFeedback();
-                            Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
 
 
@@ -216,7 +215,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            Util.SnackbarYumm(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
 
                             FeedbackFragment.feedbackAdapter.insertItem(feedback);

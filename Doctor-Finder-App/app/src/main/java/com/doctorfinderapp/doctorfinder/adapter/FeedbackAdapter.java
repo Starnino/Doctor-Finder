@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -230,6 +232,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                     .title("Report Spam")
                                     .content("Descrivi perchè secondo te questo feedback deve essere eliminato")
                                     .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                                    .widgetColor(holder.itemView.getResources().getColor(R.color.docfinder))
+                                    .negativeColor(holder.itemView.getResources().getColor(R.color.docfinder))
+                                    .positiveColor(holder.itemView.getResources().getColor(R.color.docfinder))
                                     .input("Testo", null, new MaterialDialog.InputCallback() {
                                         @Override
                                         public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
@@ -279,7 +284,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                             deleteFeedback(position);
 
 
-                            Snackbar a=Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                           Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
                                     .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .setAction("Annulla", new View.OnClickListener() {
 
@@ -290,21 +295,16 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             annulla = null;
                                             holder.clear.setClickable(true);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
-                                        }});
-
-                            if (DoctorActivity.fabfeedback.isVisible()){
-                                            DoctorActivity.fabfeedback.setTranslationY(-96);
-                                        }
-                            a.setCallback(new Snackbar.Callback() {
-                                @Override
-                                public void onDismissed(Snackbar snackbar, int event) {
-                                    super.onDismissed(snackbar, event);
-                                    Log.d("Snackbar","dismissed");
-                                    if(DoctorActivity.fabfeedback.isVisible())DoctorActivity.fabfeedback.setTranslationY(0);
-
-                                }
-                            });
-                            a.show();
+                                        }})
+                                   .setCallback(new Snackbar.Callback() {
+                                       @Override
+                                       public void onDismissed(Snackbar snackbar, int event) {
+                                           super.onDismissed(snackbar, event);
+                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                       }
+                                   })
+                                   .show();
+                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                         return true;
                     }
