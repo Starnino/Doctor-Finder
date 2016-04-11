@@ -168,8 +168,8 @@ public class SignupActivity extends AppCompatActivity {
 
                                                     //mail to send on first registration
                                                     BackgroundMail.newBuilder(v.getContext())
-                                                            .withUsername("report.at.dcf@gmail.com")
-                                                            .withPassword("Mianonna14")
+                                                            .withUsername("doctor.finder.dcf@gmail.com")
+                                                            .withPassword("quantomacina")
                                                             .withMailto(email_string)
                                                             .withSubject("Benvenuto su Doctor Finder!")
                                                             .withBody(R.string.first_access)
