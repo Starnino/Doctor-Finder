@@ -57,7 +57,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="left"
                 android:layout_toEndOf="@id/profile_image"
                 android:layout_toRightOf="@id/profile_image"
@@ -80,16 +79,16 @@
 
                     android:clickable="false"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/ratingBar"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-                    android:scaleX="0.3"
-                    android:scaleY="0.3"
-                    android:layout_gravity="start|bottom"
-                    android:layout_marginStart="-85dp"
-                    android:layout_marginLeft="-85dp"/>
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+
+                    android:transformPivotX="0dp"
+                    android:layout_marginTop="5dp" />
 
             </LinearLayout>
 
