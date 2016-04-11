@@ -15,7 +15,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -99,7 +101,7 @@ public class ResultsActivity extends AppCompatActivity
 
        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 new MaterialDialog.Builder(v.getContext())
                         .title("Suggerisci uno specialitsta")
                         .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
@@ -123,15 +125,16 @@ public class ResultsActivity extends AppCompatActivity
                                         .withBody(body)
                                         .send();
 
-                                Snackbar.make(fab, "Grazie per il suggerimento!", Snackbar.LENGTH_LONG)
-                                        .show();
+                                Util.SnackBarFiga(fab, v, "Grazie per il suggerimento!");
                             }
                         })
                         .iconRes(R.drawable.doctor_avatar)
                         .maxIconSizeRes(R.dimen.null_card)
                         .positiveText("Invia")
                         .negativeText("Annulla")
-
+                        .widgetColor(getResources().getColor(R.color.docfinder))
+                        .positiveColor(getResources().getColor(R.color.docfinder))
+                        .negativeColor(getResources().getColor(R.color.docfinder))
                         .show();
             }
         });
@@ -194,9 +197,6 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-       /* refresh= (SwipeRefreshLayout) findViewById(R.id.refresh);
-        refresh.setOnRefreshListener(this);
-*/
         if (getIntent().getExtras().getBoolean("RESEARCH"))
             showDatafromAdapter();
 
@@ -481,24 +481,6 @@ public class ResultsActivity extends AppCompatActivity
 
     //download doctors from DB
 
-    public static void SnackbarYumm(){
-
-        Snackbar a=Snackbar.make(coordinator, GlobalVariable.DOCTORS.size() + " specialisti trovati", Snackbar.LENGTH_LONG)
-                .setAction("Action", null);
-
-        fab.setTranslationY(-80);
-        a.setCallback(new Snackbar.Callback() {
-            @Override
-            public void onDismissed(Snackbar snackbar, int event) {
-                super.onDismissed(snackbar, event);
-                Log.d("Snackbar","dismissed");
-                fab.setTranslationY(0);
-            }
-        });
-        a.show();
-
-    }
-
 
     public static void showDataM() {
 
@@ -532,7 +514,16 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    SnackbarYumm();
+
+                    GlobalVariable.DOCTORS = objects;
+                    String found = GlobalVariable.DOCTORS.size() + "";
+                    if (objects.size() == 1)
+                        found += " specialista trovato";
+                    else found += " specialisti trovati";
+
+                    Util.SnackBarFiga(fab, coordinator, found);
+
+
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
                     DoctorListFragment.setProgressBar(View.GONE);
@@ -646,17 +637,12 @@ public class ResultsActivity extends AppCompatActivity
 
                 if (e == null) {
 
-                    GlobalVariable.DOCTORS = objects;
-                    String finded;
+                    String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
-                        finded = " specialista trovato";
-                    else finded = " specialisti trovati";
+                        found += " specialista trovato";
+                    else found += " specialisti trovati";
 
-                    //@starnino ma seriamente hai chiamato finded al posto di found?
-                    // ahahahahah
-                    SnackbarYumm();
-
-
+                    Util.SnackBarFiga(fab, coordinator, found);
 
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);

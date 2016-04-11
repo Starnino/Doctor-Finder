@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -26,6 +28,7 @@ import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -230,6 +233,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                     .title("Report Spam")
                                     .content("Descrivi perchè secondo te questo feedback deve essere eliminato")
                                     .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                                    .widgetColor(holder.itemView.getResources().getColor(R.color.docfinder))
+                                    .negativeColor(holder.itemView.getResources().getColor(R.color.docfinder))
+                                    .positiveColor(holder.itemView.getResources().getColor(R.color.docfinder))
                                     .input("Testo", null, new MaterialDialog.InputCallback() {
                                         @Override
                                         public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
@@ -250,12 +256,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                                     .withBody(body)
                                                     .send();
 
-                                            Snackbar.make(v, "Grazie per la segnalazione!", Snackbar.LENGTH_LONG)
-                                                    .show();
+                                            Util.SnackBarFiga(FeedbackFragment.fabfeedback, v, "Grazie per la segnalazione!");
+
                                         }
                                     }).positiveText("Invia")
                                     .negativeText("Annulla")
-
                                     .show();
                         }
                         return true;
@@ -275,10 +280,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
-
                             deleteFeedback(position);
-                            
-                            /*Snackbar.make(v , "Eliminato!", Snackbar.LENGTH_LONG)
+                            final float fab_up = holder.itemView.getResources().getDimension(R.dimen.fab_up);
+                            final float fab_down = holder.itemView.getResources().getDimension(R.dimen.fab_down);
+
+                            Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
                                     .setAction("Annulla", new View.OnClickListener() {
 
                                         @Override
@@ -288,38 +295,16 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             annulla = null;
                                             holder.clear.setClickable(true);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
-
-                                        }
-                                    })
-                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
-                                    .show();
-                        */
-
-                            Snackbar a=Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
-                                    .setAction("Annulla", new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            holder.clear.setClickable(false);
-                                            safeSave(annulla);
-                                            annulla = null;
-                                            holder.clear.setClickable(true);
-
-                                        }});
-
-                            if(DoctorActivity.fabfeedback.isVisible()){
-                                            DoctorActivity.fabfeedback.setTranslationY(-96);
-                                        }
-                            a.setCallback(new Snackbar.Callback() {
-                                @Override
-                                public void onDismissed(Snackbar snackbar, int event) {
-                                    super.onDismissed(snackbar, event);
-                                    Log.d("Snackbar","dismissed");
-                                    if(DoctorActivity.fabfeedback.isVisible())DoctorActivity.fabfeedback.setTranslationY(0);
-
-                                }
-                            });
-                            a.show();
+                                        }})
+                                   .setCallback(new Snackbar.Callback() {
+                                       @Override
+                                       public void onDismissed(Snackbar snackbar, int event) {
+                                           super.onDismissed(snackbar, event);
+                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                       }
+                                   })
+                                   .show();
+                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                         return true;
                     }
