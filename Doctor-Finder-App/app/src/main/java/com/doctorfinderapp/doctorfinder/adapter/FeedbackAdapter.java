@@ -28,6 +28,7 @@ import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -255,12 +256,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                                     .withBody(body)
                                                     .send();
 
-                                            Snackbar.make(v, "Grazie per la segnalazione!", Snackbar.LENGTH_LONG)
-                                                    .show();
+                                            Util.SnackBarFiga(FeedbackFragment.fabfeedback, v, "Grazie per la segnalazione!");
+
                                         }
                                     }).positiveText("Invia")
                                     .negativeText("Annulla")
-
                                     .show();
                         }
                         return true;

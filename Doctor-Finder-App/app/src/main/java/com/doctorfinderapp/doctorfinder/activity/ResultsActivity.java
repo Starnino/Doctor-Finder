@@ -100,7 +100,7 @@ public class ResultsActivity extends AppCompatActivity
 
        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 new MaterialDialog.Builder(v.getContext())
                         .title("Suggerisci uno specialitsta")
                         .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
@@ -124,15 +124,16 @@ public class ResultsActivity extends AppCompatActivity
                                         .withBody(body)
                                         .send();
 
-                                Snackbar.make(fab, "Grazie per il suggerimento!", Snackbar.LENGTH_LONG)
-                                        .show();
+                                Util.SnackBarFiga(fab, v, "Grazie per il suggerimento!");
                             }
                         })
                         .iconRes(R.drawable.doctor_avatar)
                         .maxIconSizeRes(R.dimen.null_card)
                         .positiveText("Invia")
                         .negativeText("Annulla")
-
+                        .widgetColor(getResources().getColor(R.color.docfinder))
+                        .positiveColor(getResources().getColor(R.color.docfinder))
+                        .negativeColor(getResources().getColor(R.color.docfinder))
                         .show();
             }
         });
