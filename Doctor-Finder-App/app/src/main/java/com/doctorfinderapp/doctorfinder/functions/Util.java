@@ -425,7 +425,6 @@ public class Util {
                     public void onDismissed(Snackbar snackbar, int event) {
                         ViewCompat.animate(fab).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         super.onDismissed(snackbar, event);
-
             }
         })
         .show();
