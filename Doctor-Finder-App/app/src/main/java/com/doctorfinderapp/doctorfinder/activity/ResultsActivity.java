@@ -488,6 +488,7 @@ public class ResultsActivity extends AppCompatActivity
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
         //retrieve object with multiple city
+
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
