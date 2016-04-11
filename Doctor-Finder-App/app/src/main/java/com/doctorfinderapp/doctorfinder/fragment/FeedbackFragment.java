@@ -172,6 +172,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
         //Log.d("Feedback","showing feedback of"+ EMAIL);
         query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
+        query.orderByDescending("date");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(final List<ParseObject> objects, ParseException e) {
@@ -183,7 +184,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                     TimerTask timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Snackbar.make(DoctorActivity.coordinator_layout, objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
+                            Snackbar.make(DoctorActivity.coordinator_layout,
+                                    objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
                                     .setAction("Action", null)
                                     .setCallback(new Snackbar.Callback() {
                                         @Override
@@ -200,7 +202,9 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                     }; new Timer().schedule(timerTask, 1000);
 
                     FeedbackArray = objects;
+
                     orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
+
                     setRecyclerView();
                     if(objects.size()==0){
                         CardNothingVisible();

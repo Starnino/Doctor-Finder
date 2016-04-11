@@ -315,6 +315,7 @@
     <string name="feedback_null">Nessun amico ha ancora rilasciato\n feedback per questo dottore</string>
     <string name="report_spam">Report Spam</string>
     <string name="clear">Elimina</string>
+    <string name="tu">(Tu)</string>
 
 
 </resources>
