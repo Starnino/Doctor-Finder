@@ -11,6 +11,7 @@
         android:layout_height="50dp"
         android:id="@+id/progressBarFeedback"
         android:layout_gravity="center" />
+    <include layout="@layout/nothing_item"></include>
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,7 +19,7 @@
         android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"
-        > <include layout="@layout/nothing_item"></include>
+        >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/feedback_recyclerview"
