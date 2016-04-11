@@ -23,7 +23,7 @@
             android:textColor="#ffffff"
             android:layout_margin="16dp" />
     </FrameLayout>
-<include android:layout="@layout/scrollview_fragment_dialog"></include>
+<include layout="@layout/scrollview_fragment_dialog"></include>
 
     <RelativeLayout
         android:orientation="horizontal"
