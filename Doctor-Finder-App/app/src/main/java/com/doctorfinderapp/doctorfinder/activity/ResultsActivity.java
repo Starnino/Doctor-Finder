@@ -2,22 +2,18 @@ package com.doctorfinderapp.doctorfinder.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -34,7 +30,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
@@ -92,7 +87,6 @@ public class ResultsActivity extends AppCompatActivity
 
 
         coordinator=findViewById(R.id.coordinator_results);
-
 
 
         //find fab buttons
@@ -318,6 +312,8 @@ public class ResultsActivity extends AppCompatActivity
                     .customView(R.layout.filter_view, true)
                     .show();
             return true;
+
+
         }
         return false;
     }
