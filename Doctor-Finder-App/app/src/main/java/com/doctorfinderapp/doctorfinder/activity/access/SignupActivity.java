@@ -165,7 +165,7 @@ public class SignupActivity extends AppCompatActivity {
                                                             .setAction("Action", null).show();
                                                     progressBar.stopSpinning();
                                                     Log.d("Login Activity", "signup" + progressBar.getVisibility());
-
+/*
                                                     //mail to send on first registration
                                                     BackgroundMail.newBuilder(v.getContext())
                                                             .withUsername("doctor.finder.dcf@gmail.com")
@@ -174,7 +174,7 @@ public class SignupActivity extends AppCompatActivity {
                                                             .withSubject("Benvenuto su Doctor Finder!")
                                                             .withBody(R.string.first_access)
                                                             .send();
-
+*/
                                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                     startActivity(intent);
