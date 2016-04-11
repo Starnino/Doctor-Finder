@@ -8,11 +8,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FeedbackAdapter;
@@ -50,6 +54,14 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
     private String Email = "Email";
     private SwipeRefreshLayout refresh;
     public static FloatingActionButton fabfeedback;
+
+    private static CardView cardNothing;
+
+    private String nienteTesto="Questo dottore non ha ancora nessun feedback. \n " +
+            "Sei stato un suo paziente? Usa il pulsante qui sotto per rilasciare un feedback, altri utenti lo" +
+            "troveranno molto utile";
+
+    private TextView niente;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -89,6 +101,10 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
         refresh= (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_feedback);
         refresh.setOnRefreshListener(this);
+
+        cardNothing= (CardView) rootView.findViewById(R.id.card_nothing);
+        niente= (TextView) rootView.findViewById(R.id.niente);
+        niente.setText(nienteTesto);
 
         ParseObject DOCTORTHIS = DoctorActivity.DOCTORTHIS;
         EMAIL = DOCTORTHIS.getString(Email);
@@ -156,6 +172,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
         ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
         //Log.d("Feedback","showing feedback of"+ EMAIL);
         query.whereEqualTo(EMAIL_DOCTOR, EMAIL);
+        query.orderByDescending("date");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(final List<ParseObject> objects, ParseException e) {
@@ -167,7 +184,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                     TimerTask timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            Snackbar.make(DoctorActivity.coordinator_layout, objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
+                            Snackbar.make(DoctorActivity.coordinator_layout,
+                                    objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
                                     .setAction("Action", null)
                                     .setCallback(new Snackbar.Callback() {
                                         @Override
@@ -184,8 +202,13 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                     }; new Timer().schedule(timerTask, 1000);
 
                     FeedbackArray = objects;
+
                     orderBy(FeedbackArray, ParseUser.getCurrentUser().getEmail());
+
                     setRecyclerView();
+                    if(objects.size()==0){
+                        CardNothingVisible();
+                    }
                 }
             }
         });
@@ -217,6 +240,15 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                 feedbackArray.add(0,first);
             }
         }
+    }
+    public static void CardNothingVisible(){
+        cardNothing.setVisibility(View.VISIBLE);
+        //mRecyclerView.setVisibility(View.GONE);
+        //refresh.setVisibility(View.GONE);
+
+        Log.d("card nothing visibility", cardNothing.getVisibility()+"");
+        //Log.d("refresh visibility", refresh.getVisibility()+"");
+        //Log.d("recycler visibility", mRecyclerView.getVisibility()+"");
     }
 
     public static void scroolTo(int position){

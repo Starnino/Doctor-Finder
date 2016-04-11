@@ -13,6 +13,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
@@ -73,6 +74,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private List<ParseObject> doctors;
     private String Title;
     private String email;
+    public static FragmentManager fragmentActivity;
+
 
     public static CoordinatorLayout coordinator_layout;
 
@@ -107,8 +110,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        c = getApplicationContext();
+        fragmentActivity=getSupportFragmentManager();
         setContentView(R.layout.activity_doctor);
         coordinator_layout=(CoordinatorLayout) findViewById(R.id.coordinator_doctor_activity);
         //take index

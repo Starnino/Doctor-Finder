@@ -70,6 +70,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String EMAIL = "Email";
     ParseObject annulla;
 
+
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
         this.feedbacklist = feedbacks;
         EMAIL_DOCTOR_THIS = doctor_email;
@@ -96,6 +97,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         boolean THUMB_PRESSED;
         TextView date;
         PopupMenu popup;
+        View divider;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +110,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             thumb = (IconicsImageView) itemView.findViewById(R.id.feed_like);
             num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
             date = (TextView) itemView.findViewById(R.id.feed_date);
+            divider=(View) itemView.findViewById(R.id.divider_feedback);
         }
     }
 
@@ -123,14 +126,19 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             holder.feedback_text.setText(text);
             holder.ratingBar.setRating(Float.parseFloat(rating));
             if (!anonymus) {
-                String name = feedbacklist.get(position).get("Name").toString();
-                holder.name.setText(name);
+                String name ;
+
 
                 String email = feedbacklist.get(position).get("email_user").toString();
                 //Log.d("email", email.toString());
                 final ParseQuery<ParseObject> userPhoto = ParseQuery.getQuery("UserPhoto");
                 userPhoto.whereEqualTo("username", email);
-
+                if (EMAIL_USER_THIS.equals(feedbacklist.get(position).getString(USER_EMAIL))) {
+                    name = feedbacklist.get(position).get("Name").toString()+" (Tu) ";
+                }else{
+                    name = feedbacklist.get(position).get("Name").toString();
+                }
+                holder.name.setText(name);
                 userPhoto.getFirstInBackground(new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject userPhoto, ParseException e) {
@@ -162,10 +170,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             }
 
             if (EMAIL_USER_THIS.equals(feedbacklist.get(position).getString(USER_EMAIL))) {
+                holder.divider.setVisibility(View.VISIBLE);
                 holder.spam.setVisibility(View.INVISIBLE);
                 holder.spam.setClickable(false);
                 holder.clear.setVisibility(View.VISIBLE);
                 holder.clear.setClickable(true);
+
                 holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);

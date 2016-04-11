@@ -23,6 +23,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -489,6 +490,7 @@ public class ResultsActivity extends AppCompatActivity
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
         //retrieve object with multiple city
+
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
@@ -509,6 +511,9 @@ public class ResultsActivity extends AppCompatActivity
             public void done(List<ParseObject> objects, ParseException e) {
                 //refresh.setRefreshing(false);
                 DoctorListFragment.stopRefresh();
+
+
+
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
@@ -527,7 +532,9 @@ public class ResultsActivity extends AppCompatActivity
                     DoctorListFragment.setProgressBar(View.GONE);
 
                     viewPager.getAdapter().notifyDataSetChanged();
-
+                    if (objects.size()==0){
+                        DoctorListFragment.CardNothingVisible();
+                    }
 
                     //Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
@@ -645,6 +652,10 @@ public class ResultsActivity extends AppCompatActivity
                     DoctorListFragment.setProgressBar(View.GONE);
 
                     viewPager.getAdapter().notifyDataSetChanged();
+                    if (objects.size()==0){
+                        DoctorListFragment.CardNothingVisible();
+                    }
+
                 }
             }
         });

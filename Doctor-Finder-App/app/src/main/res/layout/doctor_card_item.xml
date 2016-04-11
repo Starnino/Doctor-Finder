@@ -68,18 +68,17 @@
                 android:textColor="@color/grey" />
 
             <RatingBar
-                android:layout_marginTop="-5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ratingBar"
                 android:isIndicator="true"
                 android:numStars="5"
                 android:rating="4"
-                android:scaleX="0.55"
-                android:scaleY="0.55"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
                 android:layout_gravity="start|bottom"
-                android:layout_marginStart="-50dp"
-                android:layout_marginLeft="-50dp" />
+                android:transformPivotX="0dp"
+                android:layout_marginTop="5dp" />
 
         </LinearLayout>
 

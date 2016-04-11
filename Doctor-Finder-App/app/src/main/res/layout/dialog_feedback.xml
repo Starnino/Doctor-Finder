@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_height="wrap_content"
+    android:scrollIndicators="left">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,18 +27,27 @@
             android:layout_margin="16dp" />
     </FrameLayout>
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/giudizio"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:text="Cordialità"
+    android:id="@+id/textViewCord"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp" />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:id="@+id/text_guide_cordialita"
+    android:layout_gravity="center"
+    android:textColor="@color/background_material_dark"
+    android:text="@string/cordialita_guide"
+    android:textSize="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -39,12 +55,176 @@
         android:layout_gravity="center_horizontal"
         android:numStars="5"
         android:stepSize="0.5"
-        android:id="@+id/ratingbar_feedback" />
-
-    <Space
+        android:id="@+id/ratingbar_cordialita"
+        android:layout_margin="5dp" />
+    <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="1dp"
+        android:id="@+id/divider2"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Soddisfazione Prestazione"
+        android:id="@+id/textViewSodd"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/text_guide_sodd"
+        android:layout_gravity="center"
+        android:textColor="@color/background_material_dark"
+        android:text="@string/soddisfazione_guide"
+        android:textSize="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:id="@+id/ratingbar_soddisfazione"
+        android:layout_margin="5dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/divider3"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="16dp"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/giudizio"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/text_guide_complessivo"
+        android:layout_gravity="center"
+        android:textColor="@color/background_material_dark"
+        android:text="@string/complessivo_guide"
+        android:textSize="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:id="@+id/ratingbar_feedback"
+        android:layout_margin="5dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/divider4"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="16dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Luogo"
+        android:id="@+id/textViewDove"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/text_guide_data"
+        android:layout_gravity="center"
+        android:textColor="@color/background_material_dark"
+        android:text="Dove è stata fatta la visita?"
+        android:textSize="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editTextDove"
+        android:lines="1"
+
+        android:hint="..."
+        android:layout_margin="16dp"
+        android:inputType="textMultiLine"
+        android:layout_gravity="center_horizontal"
+        android:gravity="top" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Data"
+        android:id="@+id/textViewQuando"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/text_guide_quando"
+        android:layout_gravity="center"
+        android:textColor="@color/background_material_dark"
+        android:text="Quando è stata fatta la visita?"
+        android:textSize="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="11/01/1950"
+        android:id="@+id/dateTextView"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/divide5"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/text_guide"
+        android:layout_gravity="center"
+        android:textColor="@color/background_material_dark"
+        android:text="@string/responsabilita"
+        android:textSize="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,11 +232,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/descrizione"
         android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -94,7 +272,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp">
+        android:paddingBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -123,4 +301,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</LinearLayout></ScrollView>

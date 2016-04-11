@@ -282,7 +282,7 @@
     <string name="feedback_dialog_name">Il tuo feedback</string>
     <string name="feedback_send">Invia</string>
     <string name="cancel">Annulla</string>
-    <string name="giudizio">Il tuo giudizio</string>
+    <string name="giudizio">Giudizio complessivo</string>
     <string name="descrizione">La tua descrizione</string>
     <string name="descrizione_visita">Descrivi la visita...</string>
     <string name="respons">Dichiaro che questo feedback è frutto di un\'esperienza reale</string>
@@ -315,6 +315,11 @@
     <string name="feedback_null">Nessun amico ha ancora rilasciato\n feedback per questo dottore</string>
     <string name="report_spam">Report Spam</string>
     <string name="clear">Elimina</string>
+    <string name="tu">(Tu)</string>
+    <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
+    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?</string>
+    <string name="complessivo_guide">Questo campo non è modificabile, è la somma degli altri voti</string>
+    <string name="cordialita_guide">Il dottore è stato cordiale?</string>
 
 
 </resources>
