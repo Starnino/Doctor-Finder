@@ -170,14 +170,14 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                                     .setCallback(new Snackbar.Callback() {
                                         @Override
                                         public void onDismissed(Snackbar snackbar, int event) {
-                                            ViewCompat.animate(fabfeedback).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                            ViewCompat.animate(fabfeedback).translationYBy(90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                                             fabfeedback.attachToRecyclerView(mRecyclerView);
                                             super.onDismissed(snackbar, event);
 
                                         }
                                     })
                                     .show();
-                            ViewCompat.animate(fabfeedback).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            ViewCompat.animate(fabfeedback).translationYBy(-90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                     }; new Timer().schedule(timerTask, 1000);
 

@@ -421,12 +421,12 @@ public class Util {
                 .setCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar snackbar, int event) {
-                        ViewCompat.animate(fab).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                        ViewCompat.animate(fab).translationYBy(90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         super.onDismissed(snackbar, event);
 
             }
         })
         .show();
-        ViewCompat.animate(fab).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+        ViewCompat.animate(fab).translationYBy(-90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
     }
 }

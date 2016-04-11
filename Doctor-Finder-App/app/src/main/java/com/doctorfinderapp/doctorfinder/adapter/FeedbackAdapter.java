@@ -300,11 +300,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                        @Override
                                        public void onDismissed(Snackbar snackbar, int event) {
                                            super.onDismissed(snackbar, event);
-                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                                        }
                                    })
                                    .show();
-                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(-85).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(-90).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                         return true;
                     }
