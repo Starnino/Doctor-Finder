@@ -96,8 +96,8 @@ public class DoctorListFragment extends Fragment
 
         //animation
         SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(parseAdapter);
-
-       mRecyclerView.setAdapter(slide_adapter);
+        orderList("feedback", false);
+        mRecyclerView.setAdapter(slide_adapter);
         //mRecyclerView.setAdapter(parseAdapter);
 
 
@@ -136,6 +136,7 @@ public class DoctorListFragment extends Fragment
         refresh.setRefreshing(true);
         ResultsActivity.showDataM();
 
+
     }
 
     public static void orderList(String mode, boolean grow){
@@ -146,4 +147,7 @@ public class DoctorListFragment extends Fragment
         refresh.setRefreshing(false);
     }
 
+    public static boolean ifNullAdapter(){
+        return parseAdapter == null;
+    }
 }
