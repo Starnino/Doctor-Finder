@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.media.RatingCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,9 +37,27 @@ import java.util.Calendar;
  * Created by fedebyes on 08/03/16.
  */
 
-public class FeedbackDialogFragment extends DialogFragment {
+public class FeedbackDialogFragment extends DialogFragment implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
 
     public View rootView;
+    float disponibilita_float;
+    float cordialita_float;
+    float soddisfazione_float;
+    float general_float;
+    RatingBar disponibilita;
+    RatingBar cordialita;
+    RatingBar soddisfazione;
+    RatingBar general_ratingbar;
+    EditText text;
+    static TextView date;
+    CheckBox checkBox;
+    CheckBox checkBoxAnonymus;
+    String email_user;
+    String email_doctor;
+    TextView send;
+    EditText dove;
+    EditText tipo;
+
 
     public static FeedbackDialogFragment newInstance(String email_doctor) {
         FeedbackDialogFragment dialog = new FeedbackDialogFragment();
@@ -52,9 +71,9 @@ public class FeedbackDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final String email_doctor = getArguments().getString("email_doctor");
-        final float rating = 0;
-        final String email_user = ParseUser.getCurrentUser().getEmail();
+        email_doctor = getArguments().getString("email_doctor");
+        //final float rating = 0;
+        email_user = ParseUser.getCurrentUser().getEmail();
 
         //builder.setView(inflater.inflate(R.layout.dialog_feedback, null));
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -68,59 +87,37 @@ public class FeedbackDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(rootView);
 
-        TextView date =(TextView) rootView.findViewById(R.id.dateTextView) ;
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
 
-        TextView send = (TextView) rootView.findViewById(R.id.invia);
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final CheckBox checkBox = (CheckBox) rootView.findViewById(R.id.checkBox_respons);
-                final CheckBox checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
+        //RatingCompat
+        disponibilita = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback_disponibilita);
+        cordialita = (RatingBar) rootView.findViewById(R.id.ratingbar_cordialita);
+        soddisfazione = (RatingBar) rootView.findViewById(R.id.ratingbar_soddisfazione);
+        general_ratingbar = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback);
+        text = (EditText) rootView.findViewById(R.id.editText);
+        date = (TextView) rootView.findViewById(R.id.dateTextView);
+        checkBox = (CheckBox) rootView.findViewById(R.id.checkBox_respons);
+        checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
+        text = (EditText) rootView.findViewById(R.id.editText);
+        dove= (EditText) rootView.findViewById(R.id.editTextDove);
+        tipo= (EditText) rootView.findViewById(R.id.editTextTipo);
 
-                EditText text = (EditText) rootView.findViewById(R.id.editText);
-                RatingBar ratingbar = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback);
-                Log.d("FeedbackDialog", "send clicked");
+        general_ratingbar.setIsIndicator(true);
+        disponibilita.setOnRatingBarChangeListener(this);
+        cordialita.setOnRatingBarChangeListener(this);
+        soddisfazione.setOnRatingBarChangeListener(this);
+        date.setOnClickListener(this);
 
-                if (ratingbar.getRating() == 0)
-                    Toast.makeText(getContext(),"Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
-
-                else if (text.getText().length() == 0)
-                    Toast.makeText(getContext(),"Scrivi un feedback!", Toast.LENGTH_SHORT).show();
-
-                else if(text.getText().toString().split(" ").length < 10)
-                    Toast.makeText(getContext(),"Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
-
-                else if (!checkBox.isChecked())
-                    Toast.makeText(getContext(),"Dichiara che la tua visita è stata veramente effettuata. " +
-                            "Attenzione! Verranno effettuati severi controlli per la sua veririca", Toast.LENGTH_SHORT).show();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat.format(Calendar.getInstance().getTime());
+        date.setText ( simpleDateFormat.format(Calendar.getInstance().getTime()));
 
 
-                else if (!Util.isOnline(getActivity()))
 
-                    Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
-                else {
-                    pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
-                    dismiss();
-                }
-
-            }
-        });
+        send = (TextView) rootView.findViewById(R.id.invia);
+        send.setOnClickListener(this);
         TextView cancel = (TextView) rootView.findViewById(R.id.annulla);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Log.d("FeedbackDialog", "cancel clicked");
-                FeedbackDialogFragment.this.dismiss();
+        cancel.setOnClickListener(this);
 
-
-            }
-        });
 
 
         // Create the AlertDialog object and return it
@@ -128,13 +125,56 @@ public class FeedbackDialogFragment extends DialogFragment {
     }
 
 
+    public void controlToSend() {
+        if (general_ratingbar.getRating() == 0)
+            Toast.makeText(getContext(),"Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
+
+        else if (text.getText().length() == 0)
+            Toast.makeText(getContext(),"Scrivi un feedback!", Toast.LENGTH_SHORT).show();
+
+        else if(text.getText().toString().split(" ").length < 10)
+            Toast.makeText(getContext(),"Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
+
+        else if (!checkBox.isChecked())
+            Toast.makeText(getContext(),"Dichiara che la tua visita è stata veramente effettuata. " +
+                    "Attenzione! Verranno effettuati severi controlli per la sua veririca", Toast.LENGTH_SHORT).show();
+
+
+        else if (!Util.isOnline(getActivity()))
+
+            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
+        else {
+            pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
+
+    }
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.annulla:
+                FeedbackDialogFragment.this.dismiss();
+                break;
+            case R.id.invia:
+                controlToSend();
+                FeedbackDialogFragment.this.dismiss();
+
+                break;
+            case R.id.dateTextView:
+                showDatePickerDialog(v);
+                break;
+            default:
+                break;
+        }
+
+    }
 
 
     private void controlFeedback(View rootView, String email_user, String email_doctor) {
 
-        final EditText feedback_description_editText = (EditText) rootView.findViewById(R.id.editText);
-        final RatingBar ratingbar = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback);
-        final CheckBox checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
+
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
         query.whereEqualTo("email_user", email_user);
@@ -153,8 +193,8 @@ public class FeedbackDialogFragment extends DialogFragment {
                         //Log.d("Feedback", feedback_description.toString());
                         //Log.d("Feedback", (object.get("Anonymus")).toString());
                         checkBoxAnonymus.setChecked(object.getBoolean("Anonymus"));
-                        feedback_description_editText.setText(feedback_description);
-                        ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
+                        text.setText(feedback_description);
+                        general_ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
                     }
                 }
             }
@@ -197,7 +237,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                             if (e != null) Log.d("Push feedback", e.toString());
                             //Log.d("Push feedback", "feedback saved");
                             //DoctorActivity.showToastFeedback();
-                            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                            Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
 
 
@@ -205,9 +245,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                             Util.calculateFeedback(email_doctor);
                         }
                     });
-                }
-
-                else {
+                } else {
 
 
                     //case never inserted feedback
@@ -227,7 +265,7 @@ public class FeedbackDialogFragment extends DialogFragment {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,
+                            Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
 
                             FeedbackFragment.feedbackAdapter.insertItem(feedback);
@@ -244,9 +282,27 @@ public class FeedbackDialogFragment extends DialogFragment {
     }
 
 
-    public  void showDatePickerDialog(View v) {
+    private float calculatefeedback(float f1, float f2, float f3) {
+        return (f1 + f2 + f3) / 3;
+    }
+
+    public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(DoctorActivity.fragmentActivity, "datePicker");
+    }
+
+
+
+
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+        disponibilita_float=disponibilita.getRating();
+        cordialita_float=cordialita.getRating();
+        soddisfazione_float=soddisfazione.getRating();
+        general_float=calculatefeedback(disponibilita_float,cordialita_float,soddisfazione_float);
+        general_ratingbar.setRating(general_float);
+
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -266,9 +322,9 @@ public class FeedbackDialogFragment extends DialogFragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
+            date.setText(""+day+"/"+month+"/"+year);
         }
     }
-
 
 
 }

@@ -317,7 +317,8 @@
     <string name="clear">Elimina</string>
     <string name="tu">(Tu)</string>
     <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
-    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico? Ti fidi delle sue scelte?</string>
+    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?
+           Ti fidi delle sue scelte?</string>
     <string name="complessivo_guide">Questo campo non è modificabile, è la somma degli altri voti</string>
     <string name="cordialita_guide">Il dottore è stato gentile?</string>
 

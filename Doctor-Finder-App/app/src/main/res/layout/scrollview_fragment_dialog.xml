@@ -43,7 +43,7 @@
             android:layout_gravity="center_horizontal"
             android:numStars="5"
             android:stepSize="0.5"
-            android:id="@+id/ratingbar_feedback_c"
+            android:id="@+id/ratingbar_feedback_disponibilita"
             android:layout_margin="5dp" />
         <View
             android:layout_width="match_parent"
@@ -81,6 +81,7 @@
             android:stepSize="0.5"
             android:id="@+id/ratingbar_cordialita"
             android:layout_margin="5dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -190,7 +191,7 @@
             android:id="@+id/editTextDove"
             android:lines="1"
 
-            android:hint="..."
+            android:hint="Scrivi dove è stata fatta la visita (Studio, ambulatorio, a domicilio).."
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
@@ -218,17 +219,19 @@
             android:text="Quando è stata fatta la visita?"
             android:textSize="10dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="5dp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="11/01/1950"
             android:id="@+id/dateTextView"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp" />
+            android:layout_margin="16dp"
+            android:textColor="@color/background_material_dark" />
 
 
         <View
@@ -267,7 +270,7 @@
             android:id="@+id/editTextTipo"
             android:lines="1"
 
-            android:hint="..."
+            android:hint="Scrivi il tipo di visita..."
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
