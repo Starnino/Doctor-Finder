@@ -2,11 +2,13 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.media.RatingCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ import com.parse.SaveCallback;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by fedebyes on 08/03/16.
@@ -57,8 +60,9 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     TextView send;
     EditText dove;
     EditText tipo;
-
-
+    Context c;
+    SimpleDateFormat today;
+    String today_string;
     public static FeedbackDialogFragment newInstance(String email_doctor) {
         FeedbackDialogFragment dialog = new FeedbackDialogFragment();
         Bundle args = new Bundle();
@@ -74,7 +78,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         email_doctor = getArguments().getString("email_doctor");
         //final float rating = 0;
         email_user = ParseUser.getCurrentUser().getEmail();
-
+        c = getActivity().getApplicationContext();
         //builder.setView(inflater.inflate(R.layout.dialog_feedback, null));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         rootView = inflater.inflate(R.layout.dialog_feedback, null);
@@ -98,8 +102,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         checkBox = (CheckBox) rootView.findViewById(R.id.checkBox_respons);
         checkBoxAnonymus = (CheckBox) rootView.findViewById(R.id.checkBox_anonymus);
         text = (EditText) rootView.findViewById(R.id.editText);
-        dove= (EditText) rootView.findViewById(R.id.editTextDove);
-        tipo= (EditText) rootView.findViewById(R.id.editTextTipo);
+        dove = (EditText) rootView.findViewById(R.id.editTextDove);
+        tipo = (EditText) rootView.findViewById(R.id.editTextTipo);
 
         general_ratingbar.setIsIndicator(true);
         disponibilita.setOnRatingBarChangeListener(this);
@@ -107,10 +111,9 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         soddisfazione.setOnRatingBarChangeListener(this);
         date.setOnClickListener(this);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        simpleDateFormat.format(Calendar.getInstance().getTime());
-        date.setText ( simpleDateFormat.format(Calendar.getInstance().getTime()));
-
+        today = new SimpleDateFormat("dd/MM/yyyy");
+        today_string=today.format(Calendar.getInstance().getTime());
+        date.setText(today_string);
 
 
         send = (TextView) rootView.findViewById(R.id.invia);
@@ -119,36 +122,41 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         cancel.setOnClickListener(this);
 
 
-
         // Create the AlertDialog object and return it
         return builder.create();
     }
 
 
     public void controlToSend() {
-        if (general_ratingbar.getRating() == 0)
-            Toast.makeText(getContext(),"Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
+        if (general_float == 0
+                || disponibilita_float == 0
+                || cordialita_float == 0
+                || soddisfazione_float == 0)
+            Toast.makeText(c, "Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
 
         else if (text.getText().length() == 0)
-            Toast.makeText(getContext(),"Scrivi un feedback!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
+        else if (dove.getText().length() == 0)
+            Toast.makeText(c, "Scrivi il luogo della visita!", Toast.LENGTH_SHORT).show();
+        else if (tipo.getText().length() == 0)
+            Toast.makeText(c, "Scrivi il tipo della visita!", Toast.LENGTH_SHORT).show();
+        else if (text.getText().toString().split(" ").length < 10)
+            Toast.makeText(c, "Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
+        //else if ();
 
-        else if(text.getText().toString().split(" ").length < 10)
-            Toast.makeText(getContext(),"Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
-
-        else if (!checkBox.isChecked())
-            Toast.makeText(getContext(),"Dichiara che la tua visita è stata veramente effettuata. " +
-                    "Attenzione! Verranno effettuati severi controlli per la sua veririca", Toast.LENGTH_SHORT).show();
-
+        /*else if (!checkBox.isChecked())
+            Toast.makeText(c,"Dichiara che la tua visita è stata veramente effettuata. " +
+                    "Attenzione! Verranno effettuati controlli", Toast.LENGTH_SHORT).show();
+        */
 
         else if (!Util.isOnline(getActivity()))
-
-            Util.SnackBarFiga(DoctorActivity.fabfeedback,DoctorActivity.coordinator_layout,"Controlla la tua connessione a Internet!");
+            Util.SnackBarFiga(DoctorActivity.fabfeedback,
+                    DoctorActivity.coordinator_layout, "Controlla la tua connessione a Internet!");
         else {
             pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
 
+        }
     }
-    }
-
 
 
     @Override
@@ -173,7 +181,6 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
 
 
     private void controlFeedback(View rootView, String email_user, String email_doctor) {
-
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
@@ -292,15 +299,13 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     }
 
 
-
-
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 
-        disponibilita_float=disponibilita.getRating();
-        cordialita_float=cordialita.getRating();
-        soddisfazione_float=soddisfazione.getRating();
-        general_float=calculatefeedback(disponibilita_float,cordialita_float,soddisfazione_float);
+        disponibilita_float = disponibilita.getRating();
+        cordialita_float = cordialita.getRating();
+        soddisfazione_float = soddisfazione.getRating();
+        general_float = calculatefeedback(disponibilita_float, cordialita_float, soddisfazione_float);
         general_ratingbar.setRating(general_float);
 
     }
@@ -317,12 +322,28 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+            DatePickerDialog dp=new DatePickerDialog(getActivity(), this, year, month, day);
+            return dp;
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
-            date.setText(""+day+"/"+month+"/"+year);
+
+            DatePicker dp=(DatePicker) view;
+            Date today= Calendar.getInstance().getTime();
+            Calendar c= Calendar.getInstance();
+            c.set(year, month, day);
+
+            Date date_visit=  c.getTime() ;
+            Date a=new Date(year,month,day);
+            Log.d("Date visit",a.toString());
+            Log.d("Today", today.toString());
+
+
+            date.setText("" + day + "/" + month + "/" + year);
+
+           // today = new SimpleDateFormat("dd/MM/yyyy");
+            //today_string=today.format(Calendar.getInstance().getTime());
         }
     }
 

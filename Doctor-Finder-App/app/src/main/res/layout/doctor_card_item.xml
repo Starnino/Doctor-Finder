@@ -74,11 +74,8 @@
                 android:isIndicator="true"
                 android:numStars="5"
                 android:rating="4"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:layout_gravity="start|bottom"
                 android:transformPivotX="0dp"
-                android:layout_marginTop="5dp" />
+                style="?android:attr/ratingBarStyleSmall"/>
 
         </LinearLayout>
 
