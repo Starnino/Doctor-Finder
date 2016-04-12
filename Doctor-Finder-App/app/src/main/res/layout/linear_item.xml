@@ -18,7 +18,8 @@
             android:tint="@color/docfinder"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/fab_margin"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            android:layout_marginLeft="@dimen/fab_margin" />
 
         <TextView
             android:id="@+id/categ"
@@ -29,7 +30,8 @@
             android:text="Categoria\ne altre 2"
             android:textColor="@color/grey"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/fab_margin"/>
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -37,7 +39,8 @@
             android:src="@drawable/ic_location_city_white_24dp"
             android:tint="@color/docfinder"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/fab_margin" />
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin" />
 
         <TextView
             android:id="@+id/city"
@@ -48,7 +51,8 @@
             android:textColor="@color/grey"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/fab_margin"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/fab_margin" />
 
         <ImageButton
 
@@ -60,7 +64,9 @@
             android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/fab_margin"
             tools:ignore="ContentDescription"
-            android:src="@drawable/ic_search_white_24dp"/>
+            android:src="@drawable/ic_search_white_24dp"
+            android:layout_marginRight="@dimen/fab_margin" />
 
     </LinearLayout>
+
 </RelativeLayout>

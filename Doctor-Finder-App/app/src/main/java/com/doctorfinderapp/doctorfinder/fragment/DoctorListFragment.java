@@ -138,6 +138,9 @@ public class DoctorListFragment extends Fragment
 
     }
 
+    public static void orderList(String mode, boolean grow){
+        parseAdapter.orderBy(mode, grow);
+    }
 
     public static void stopRefresh(){
         refresh.setRefreshing(false);

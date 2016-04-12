@@ -181,8 +181,10 @@ public class DoctorFragment extends Fragment {
                     friendQuery.findInBackground(new FindCallback<ParseObject>() {
                         @Override
                         public void done(List<ParseObject> objects, ParseException e) {
-                            friends_tip = Util.getUserFacebookFriendsAndFeedback(DOCTOR_EMAIL, objects);
-                            setAdapter();
+                            if (e == null) {
+                                friends_tip = Util.getUserFacebookFriendsAndFeedback(DOCTOR_EMAIL, objects);
+                                setAdapter();
+                            }
                         }
                     });
 

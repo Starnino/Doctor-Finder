@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,13 +50,19 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
         @Override
         public void onClick(View v) {
-
             Context context = v.getContext();
-            Intent intent = new Intent(context, DoctorActivity.class);
-            //------
-            intent.putExtra("email", email);
-            //------
-            context.startActivity(intent);
+
+            if(!Util.isOnline(context)) {
+                Snackbar.make(v, R.string.connection_control, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            } else {
+
+                Intent intent = new Intent(context, DoctorActivity.class);
+                //------
+                intent.putExtra("email", email);
+                //------
+                context.startActivity(intent);
+            }
         }
     }
 

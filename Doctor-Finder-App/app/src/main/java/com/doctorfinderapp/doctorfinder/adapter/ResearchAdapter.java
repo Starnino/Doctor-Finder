@@ -1,5 +1,7 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,8 +55,14 @@ public class ResearchAdapter extends RecyclerView.Adapter<ResearchAdapter.Resear
         holder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.research(Arrays.asList(linearLayouts.get(position)[0]),
-                        Arrays.asList(linearLayouts.get(position)[1]), v.getContext());
+                Context context = v.getContext();
+                if(!Util.isOnline(context)) {
+                    Snackbar.make(v, R.string.connection_control, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                } else {
+                    MainActivity.research(Arrays.asList(linearLayouts.get(position)[0]),
+                            Arrays.asList(linearLayouts.get(position)[1]), v.getContext());
+                }
             }
         });
 

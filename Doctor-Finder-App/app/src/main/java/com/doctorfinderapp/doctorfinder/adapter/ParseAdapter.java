@@ -22,6 +22,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -41,6 +44,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
     public final String FEEDBACK = "Feedback";
     public final String CITY = "Province";
     public final String EMAIL = "Email";
+    final String PRICE  = "Price";
 
 
     public class ParseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -204,6 +208,61 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ParseViewHol
                 moveItem(fromPosition, toPosition);
             }
         }
+    }
+
+    public void orderBy(String mode, boolean grow){
+
+        switch (mode){
+            case "cognome":
+                sortSurname(grow);
+                break;
+
+            case "feedback":
+                sortFeedback(grow);
+                break;
+
+            case "prezzo":
+                sortPrice(grow);
+                break;
+        }
+        notifyDataSetChanged();
+    }
+
+
+    public void sortSurname(final boolean grow){
+        Collections.sort(DOCTORS, new Comparator<ParseObject>() {
+            @Override
+            public int compare(ParseObject doctor1, ParseObject doctor2) {
+                if (grow)
+                    return doctor1.getString(SURNAME).compareTo(doctor2.getString(SURNAME));
+                else
+                    return doctor2.getString(SURNAME).compareTo(doctor1.getString(SURNAME));
+            }
+        });
+    }
+
+    public void sortFeedback(final boolean grow){
+        Collections.sort(DOCTORS, new Comparator<ParseObject>() {
+            @Override
+            public int compare(ParseObject doctor1, ParseObject doctor2) {
+                if (grow)
+                    return doctor1.get(FEEDBACK).toString().compareTo(doctor2.get(FEEDBACK).toString());
+                else
+                    return doctor2.get(FEEDBACK).toString().compareTo(doctor1.get(FEEDBACK).toString());
+            }
+        });
+    }
+
+    public void sortPrice(final boolean grow){
+        Collections.sort(DOCTORS, new Comparator<ParseObject>() {
+            @Override
+            public int compare(ParseObject doctor2, ParseObject doctor1) {
+                if (grow)
+                    return doctor1.getString(PRICE).compareTo(doctor2.getString(PRICE));
+                else
+                    return doctor2.getString(PRICE).compareTo(doctor1.getString(PRICE));
+            }
+        });
     }
 
 }

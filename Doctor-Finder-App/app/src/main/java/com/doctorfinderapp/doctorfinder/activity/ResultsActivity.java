@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
@@ -31,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -300,20 +303,54 @@ public class ResultsActivity extends AppCompatActivity
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.action_filter){
 
+
+
+
             new MaterialDialog.Builder(this)
-                    .title("Filtra Ricerca")
+                    .title("Ordina Ricerca")
                     .positiveText("Cerca")
-                    .positiveColor(getResources().getColor(R.color.docfinder))
-                    .negativeColor(getResources().getColor(R.color.docfinder))
-                    .widgetColor(getResources().getColor(R.color.docfinder))
+                    .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                    .negativeColor(getResources().getColor(R.color.colorPrimaryDark))
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            Log.d("Sbattimeloinfaccia --> ", "Cliccato");
+
+                            boolean grow;
+                            String mode = "";
+
+                            RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.group_order);
+                            assert radioGroup != null;
+
+                            switch(radioGroup.getCheckedRadioButtonId()){
+                                case R.id.feedback:
+                                    mode += "feedback";
+                                    break;
+
+                                case R.id.prezzo:
+                                    mode += "prezzo";
+                                    break;
+
+                                case R.id.cognome:
+                                    mode += "cognome";
+                                    break;
+                            }
+
+                            RadioGroup group_mode = (RadioGroup) dialog.findViewById(R.id.order_mode);
+                            assert group_mode != null;
+
+                            if (group_mode.getCheckedRadioButtonId() == R.id.crescente)
+                                grow = true;
+                            else
+                                grow = false;
+
+                            if (mode != "") {
+                                Log.d("MODO --> " + mode + " E ", "TIPO --> " + grow);
+                                DoctorListFragment.orderList(mode, grow);
+                            }
+
                         }
                     })
                     .negativeText("annulla")
-
                     .customView(R.layout.filter_view, true)
                     .show();
             return true;
