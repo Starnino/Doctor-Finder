@@ -211,7 +211,6 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     }
 
     private void pushFeedback(View rootView, final String email_user, final String email_doctor, final boolean anonymus) {
-        //todo checked
 
         final String name = ParseUser.getCurrentUser().get("fName").toString();
         final EditText feedback_description_editText =
@@ -277,6 +276,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
 
                             FeedbackFragment.feedbackAdapter.insertItem(feedback);
                             Util.calculateFeedback(email_doctor);
+                            DoctorFragment.plus1();
                             //Log.d("Push feedback", "feedback saved");
                         }
                     });

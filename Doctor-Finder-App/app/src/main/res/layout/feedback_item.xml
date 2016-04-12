@@ -57,6 +57,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="left"
                 android:layout_toEndOf="@id/profile_image"
                 android:layout_toRightOf="@id/profile_image"
@@ -84,16 +85,17 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-
                     style="?android:attr/ratingBarStyle"
                     android:transformPivotX="0dp"
                     android:layout_marginTop="5dp" />
+
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:id="@+id/feed_spam"
@@ -101,7 +103,7 @@
                     android:layout_height="36dp"
                     app:iiv_color="@color/grey"
                     app:iiv_icon="gmd-more_vert"
-                    android:layout_gravity="end"
+                    android:layout_gravity="end|top"
                     android:padding="10dp" />
 
                 <com.mikepenz.iconics.view.IconicsImageView

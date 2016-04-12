@@ -305,6 +305,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             annulla = null;
                                             holder.clear.setClickable(true);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
+                                            DoctorFragment.plus1();
                                         }})
                                    .setCallback(new Snackbar.Callback() {
                                        @Override
@@ -412,6 +413,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         notifyItemRemoved(position);
                         FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_add_white_24dp);
                         rebuildFeedbackAverage();
+                        DoctorFragment.minus1();
                         //TODO finish progress bar
                     }
             }

@@ -28,12 +28,16 @@ import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -74,6 +78,9 @@ public class DoctorFragment extends Fragment {
     private ProgressWheel progress_tip;
     private RatingBar ratingBar;
     private static float rightRating = 0;
+    private static TextView floatFeed;
+    private  static TextView numFeed;
+    static int nf = 0;
 
     public DoctorFragment() {
     }
@@ -154,6 +161,8 @@ public class DoctorFragment extends Fragment {
         TextView phone = (TextView) rootView.findViewById(R.id.phone_number);
         suggest_null = (TextView) rootView.findViewById(R.id.suggest_null);
         facebook_tip = (ImageView) rootView.findViewById(R.id.icon_facebook_tip);
+        floatFeed = (TextView) rootView.findViewById(R.id.float_feedback);
+        numFeed = (TextView) rootView.findViewById(R.id.num_feedback);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_friends2);
 
@@ -184,6 +193,20 @@ public class DoctorFragment extends Fragment {
                             if (e == null) {
                                 friends_tip = Util.getUserFacebookFriendsAndFeedback(DOCTOR_EMAIL, objects);
                                 setAdapter();
+
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+                                //Log.d("Feedback","showing feedback of"+ EMAIL);
+                                query.whereEqualTo("email_doctor", DOCTOR_EMAIL);
+                                query.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (e == null && objects != null) {
+                                            nf = objects.size();
+                                            numFeed.setText(String.valueOf(nf));
+
+                                        }
+                                    }
+                                });
                             }
                         }
                     });
@@ -211,6 +234,8 @@ public class DoctorFragment extends Fragment {
         phone.setText(DOCTOR_PHONE);
         visit.setText(DOCTOR_DATE);
         info.setText(DOCTOR_DESCRIPTION);
+        floatFeed.setText(DOCTOR_FEEDBACK.substring(0,3));
+
 
         String text = "";
 
@@ -321,13 +346,24 @@ public class DoctorFragment extends Fragment {
     public static void changeRating(float avg){
         rightRating = avg;
         DoctorListFragment.refreshList();
+    }
 
+    public static void plus1(){
+        nf++;
+        numFeed.setText(String.valueOf(nf));
+    }
+
+    public static void minus1(){
+        nf--;
+        numFeed.setText(String.valueOf(nf));
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (rightRating != 0)
+        if (rightRating != 0) {
             ratingBar.setRating(rightRating);
+            floatFeed.setText(String.valueOf(rightRating).substring(0,3));
+        }
     }
 }
