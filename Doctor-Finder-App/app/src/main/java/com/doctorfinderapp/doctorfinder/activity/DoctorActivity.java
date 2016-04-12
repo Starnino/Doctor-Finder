@@ -60,7 +60,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
     private static Context c;
-    private static FragmentManager p;
     public final String EMAIL = "Email";
     private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
@@ -76,14 +75,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String email;
     public static FragmentManager fragmentActivity;
 
-
     public static CoordinatorLayout coordinator_layout;
-
-    public static void showToastFeedback() {
-        Toast.makeText(c, R.string.feedback_sended,
-                Toast.LENGTH_LONG).show();
-        }
-
 
 
     //switch fab
@@ -131,33 +123,45 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         } else {
 
-            //TODO query in background
             ParseQuery<ParseObject> doctorQuery = ParseQuery.getQuery("Doctor");
             doctorQuery.whereEqualTo(EMAIL, email);
-            try {
-                DOCTORTHIS = doctorQuery.getFirst();
-                Log.d("DOCTORTHIS", "received by email");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
+            doctorQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    if (e == null) {
+                        DOCTORTHIS = object;
+
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
+                        ft.replace(R.id.frame_doctor, doctorFragment);
+
+                        ft.commit();
+                        new GetSet().execute();
+                        Log.d("IN BACKGROUND", "OK");
+                    }
+                }
+            });
         }
 
         // Begin the transaction
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (email == null && DOCTORTHIS != null) {
+            Log.d("NON IN BACKROUND", "OK");
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-        DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
-        ft.replace(R.id.frame_doctor, doctorFragment);
+            DoctorFragment doctorFragment = DoctorFragment.newInstance(index);
+            ft.replace(R.id.frame_doctor, doctorFragment);
 
-        ft.commit();
-
-        p = getSupportFragmentManager();
+            ft.commit();
+        }
 
         doctors = GlobalVariable.DOCTORS;
 
         //get and set
         photoProfile = (RoundedImageView) findViewById(R.id.doctor_propic);
-        new GetSet().execute();
+        if (email == null && DOCTORTHIS != null)
+            new GetSet().execute();
 
         //find fab buttons
         fabfeedback = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fabfeedback);
