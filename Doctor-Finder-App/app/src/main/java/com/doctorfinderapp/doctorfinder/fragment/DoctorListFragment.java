@@ -110,8 +110,8 @@ public class DoctorListFragment extends Fragment
 
         //animation
         SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(parseAdapter);
-
-       mRecyclerView.setAdapter(slide_adapter);
+        orderList("feedback", false);
+        mRecyclerView.setAdapter(slide_adapter);
         //mRecyclerView.setAdapter(parseAdapter);
 
 
@@ -164,10 +164,17 @@ public class DoctorListFragment extends Fragment
         //Log.d("recycler visibility", mRecyclerView.getVisibility()+"");
     }
 
+    public static void orderList(String mode, boolean grow){
+        parseAdapter.orderBy(mode, grow);
+        mRecyclerView.scrollToPosition(0);
+    }
 
     public static void stopRefresh(){
 
         refresh.setRefreshing(false);
     }
 
+    public static boolean ifNullAdapter(){
+        return parseAdapter == null;
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -28,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
@@ -66,8 +69,10 @@ public class ResultsActivity extends AppCompatActivity
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
-    private SwipeRefreshLayout refresh;
     private static View coordinator;
+    MaterialDialog dialog;
+    RadioGroup radioGroup;
+    RadioGroup group_mode;
 
 
     @Override
@@ -86,14 +91,14 @@ public class ResultsActivity extends AppCompatActivity
         setContentView(R.layout.activity_results);
 
 
-        coordinator=findViewById(R.id.coordinator_results);
+        coordinator = findViewById(R.id.coordinator_results);
 
 
         //find fab buttons
         fab_location = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_location);
         fab = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab);
 
-       fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 new MaterialDialog.Builder(v.getContext())
@@ -243,11 +248,23 @@ public class ResultsActivity extends AppCompatActivity
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
 
 
         });
+
+        dialog = new MaterialDialog.Builder(this)
+                .title("Ordina Ricerca")
+                .positiveText("Cerca")
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .negativeColor(getResources().getColor(R.color.colorPrimaryDark))
+                .negativeText("annulla")
+                .customView(R.layout.filter_view, true)
+                .build();
+
+        //DoctorListFragment.orderList(mode, grow);
+        radioGroup = (RadioGroup) dialog.findViewById(R.id.group_order);
+        group_mode = (RadioGroup) dialog.findViewById(R.id.order_mode);
 
         viewPager.setAdapter(adapter);
 
@@ -287,7 +304,6 @@ public class ResultsActivity extends AppCompatActivity
             });
 
         filterItem.setOnMenuItemClickListener(this);
-        // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -295,22 +311,43 @@ public class ResultsActivity extends AppCompatActivity
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.action_filter){
 
-            new MaterialDialog.Builder(this)
-                    .title("Filtra Ricerca")
-                    .positiveText("Cerca")
-                    .positiveColor(getResources().getColor(R.color.docfinder))
-                    .negativeColor(getResources().getColor(R.color.docfinder))
-                    .widgetColor(getResources().getColor(R.color.docfinder))
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            Log.d("Sbattimeloinfaccia --> ", "Cliccato");
-                        }
-                    })
-                    .negativeText("annulla")
+            dialog.getBuilder().onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    String mode = "feedback";
+                    boolean grow = false;
+                    if (!DoctorListFragment.ifNullAdapter()) {
+                        switch (radioGroup.getCheckedRadioButtonId()) {
 
-                    .customView(R.layout.filter_view, true)
-                    .show();
+                            case R.id.feedback:
+                                mode = "feedback";
+                                break;
+
+                            case R.id.prezzo:
+                                mode = "prezzo";
+                                break;
+
+                            case R.id.cognome:
+                                mode = "cognome";
+                                break;
+                        }
+
+                        switch (group_mode.getCheckedRadioButtonId()) {
+
+                            case R.id.crescente:
+                                grow = true;
+                                break;
+
+                            case R.id.decrescente:
+                                grow = false;
+                                break;
+                        }
+
+                        DoctorListFragment.orderList(mode, grow);
+                    }
+                }
+            }).show();
+
             return true;
 
 
@@ -628,7 +665,6 @@ public class ResultsActivity extends AppCompatActivity
         if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
         }
-
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override

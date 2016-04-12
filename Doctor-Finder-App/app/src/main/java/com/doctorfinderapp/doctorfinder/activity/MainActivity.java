@@ -55,6 +55,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
 
@@ -553,11 +555,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         doctors = Util.transformList(objects);
 
                         mAdapter = new DoctorAdapter(doctors);
+                        SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(mAdapter);
 
                         mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
                         card_recent_doctor.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
                         //set adapter to recycler view
-                        mRecyclerView.setAdapter(mAdapter);
+                        mRecyclerView.setAdapter(slide_adapter);
                     }
                 }
             }

@@ -315,6 +315,8 @@
     <string name="feedback_null">Nessun amico ha ancora rilasciato\n feedback per questo dottore</string>
     <string name="report_spam">Report Spam</string>
     <string name="clear">Elimina</string>
+    <string name="crescente">Crescente</string>
+    <string name="decrescente">Decrescente</string>
     <string name="tu">(Tu)</string>
     <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
     <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?
