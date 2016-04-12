@@ -20,7 +20,7 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -46,7 +46,7 @@
                     app:layout_collapseParallaxMultiplier="0.7"
                     android:cropToPadding="false"
                     android:src="@drawable/logo_testo_e_icona"
-                    android:padding="40dp" />
+                    android:padding="30dp" />
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/my_toolbar"
