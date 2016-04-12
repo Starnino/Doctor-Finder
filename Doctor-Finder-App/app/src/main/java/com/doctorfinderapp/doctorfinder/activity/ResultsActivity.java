@@ -321,34 +321,35 @@ public class ResultsActivity extends AppCompatActivity
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                     String mode = "feedback";
                     boolean grow = false;
+                    if (!DoctorListFragment.ifNullAdapter()) {
+                        switch (radioGroup.getCheckedRadioButtonId()) {
 
-                    switch (radioGroup.getCheckedRadioButtonId()) {
+                            case R.id.feedback:
+                                mode = "feedback";
+                                break;
 
-                        case R.id.feedback:
-                            mode = "feedback";
-                            break;
+                            case R.id.prezzo:
+                                mode = "prezzo";
+                                break;
 
-                        case R.id.prezzo:
-                            mode = "prezzo";
-                            break;
+                            case R.id.cognome:
+                                mode = "cognome";
+                                break;
+                        }
 
-                        case R.id.cognome:
-                            mode = "cognome";
-                            break;
+                        switch (group_mode.getCheckedRadioButtonId()) {
+
+                            case R.id.crescente:
+                                grow = true;
+                                break;
+
+                            case R.id.decrescente:
+                                grow = false;
+                                break;
+                        }
+
+                        DoctorListFragment.orderList(mode, grow);
                     }
-
-                    switch (group_mode.getCheckedRadioButtonId()){
-
-                        case R.id.crescente:
-                            grow = true;
-                            break;
-
-                        case R.id.decrescente:
-                            grow = false;
-                            break;
-                    }
-
-                    DoctorListFragment.orderList(mode, grow);
                 }
             }).show();
 
