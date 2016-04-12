@@ -75,8 +75,8 @@ public class ResultsActivity extends AppCompatActivity
     private NavigationView navigationView;
     private static View coordinator;
     MaterialDialog dialog;
-    String mode;
-    boolean grow;
+    RadioGroup radioGroup;
+    RadioGroup group_mode;
 
 
     @Override
@@ -258,9 +258,6 @@ public class ResultsActivity extends AppCompatActivity
 
         });
 
-        RadioGroup radioGroup;
-        RadioGroup group_mode;
-
         dialog = new MaterialDialog.Builder(this)
                 .title("Ordina Ricerca")
                 .positiveText("Cerca")
@@ -273,46 +270,6 @@ public class ResultsActivity extends AppCompatActivity
         //DoctorListFragment.orderList(mode, grow);
         radioGroup = (RadioGroup) dialog.findViewById(R.id.group_order);
         group_mode = (RadioGroup) dialog.findViewById(R.id.order_mode);
-
-        mode = "feedback";
-        grow = false;
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-
-                    case R.id.feedback:
-                        mode = "feedback";
-                        Log.d("FEEDNACK",mode + " SELECTED");
-                        break;
-
-                    case R.id.prezzo:
-                        mode = "prezzo";
-                        Log.d("PREZZO", mode + " SELECTED");
-                        break;
-
-                    case R.id.cognome:
-                        mode = "cognome";
-                        Log.d("COGNOME", mode + " SELECTED");
-                        break;
-                }
-            }
-        });
-
-        group_mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId){
-
-                    case R.id.crescente:
-                        grow = true;
-
-                    case R.id.decrescente:
-                        grow = false;
-                }
-            }
-        });
 
         viewPager.setAdapter(adapter);
 
@@ -352,7 +309,6 @@ public class ResultsActivity extends AppCompatActivity
             });
 
         filterItem.setOnMenuItemClickListener(this);
-        // Configure the search info and add any event listeners...
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -363,9 +319,35 @@ public class ResultsActivity extends AppCompatActivity
             dialog.getBuilder().onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    Log.d("MODE --> ", mode + "");
-                    Log.d("GROW --> ", grow + "");
-                    //todo resolve problem with variable
+                    String mode = "feedback";
+                    boolean grow = false;
+
+                    switch (radioGroup.getCheckedRadioButtonId()) {
+
+                        case R.id.feedback:
+                            mode = "feedback";
+                            break;
+
+                        case R.id.prezzo:
+                            mode = "prezzo";
+                            break;
+
+                        case R.id.cognome:
+                            mode = "cognome";
+                            break;
+                    }
+
+                    switch (group_mode.getCheckedRadioButtonId()){
+
+                        case R.id.crescente:
+                            grow = true;
+                            break;
+
+                        case R.id.decrescente:
+                            grow = false;
+                            break;
+                    }
+
                     DoctorListFragment.orderList(mode, grow);
                 }
             }).show();
