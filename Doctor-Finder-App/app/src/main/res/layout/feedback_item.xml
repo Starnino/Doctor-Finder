@@ -85,17 +85,17 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-                    style="?android:attr/ratingBarStyle"
-                    android:transformPivotX="0dp"
-                    android:layout_marginTop="5dp" />
 
+
+                    android:transformPivotX="0dp"
+                    android:layout_marginTop="5dp"
+                    style="?android:attr/ratingBarStyleSmall"/>
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end">
+                android:layout_height="wrap_content">
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:id="@+id/feed_spam"
@@ -103,7 +103,7 @@
                     android:layout_height="36dp"
                     app:iiv_color="@color/grey"
                     app:iiv_icon="gmd-more_vert"
-                    android:layout_gravity="end|top"
+                    android:layout_gravity="end"
                     android:padding="10dp" />
 
                 <com.mikepenz.iconics.view.IconicsImageView

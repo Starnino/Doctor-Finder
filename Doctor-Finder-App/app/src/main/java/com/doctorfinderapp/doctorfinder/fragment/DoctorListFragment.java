@@ -97,7 +97,7 @@ public class DoctorListFragment extends Fragment
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.result_recyclerview);
-
+        mRecyclerView.getMaxFlingVelocity();
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

@@ -120,6 +120,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             holder.THUMB_PRESSED = feedbacklist.get(position).getList(THUMB_LIST).contains(EMAIL_USER_THIS);
 
             String text = feedbacklist.get(position).get("feedback_description").toString();
+            if(text.length()>151){
+                text=text.substring(0,150)+"...";
+            }
             String rating = feedbacklist.get(position).get("Rating").toString();
             boolean anonymus = (boolean) feedbacklist.get(position).get("Anonymus");
             holder.propic.setImageResource(R.drawable.mario);

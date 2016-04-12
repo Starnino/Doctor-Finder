@@ -63,6 +63,10 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     Context c;
     SimpleDateFormat today;
     String today_string;
+    static Date date_visit;
+    static Date now;
+
+
     public static FeedbackDialogFragment newInstance(String email_doctor) {
         FeedbackDialogFragment dialog = new FeedbackDialogFragment();
         Bundle args = new Bundle();
@@ -78,7 +82,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         email_doctor = getArguments().getString("email_doctor");
         //final float rating = 0;
         email_user = ParseUser.getCurrentUser().getEmail();
-        c = getActivity().getApplicationContext();
+        c = getActivity();
         //builder.setView(inflater.inflate(R.layout.dialog_feedback, null));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         rootView = inflater.inflate(R.layout.dialog_feedback, null);
@@ -92,7 +96,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         builder.setView(rootView);
 
 
-        //RatingCompat
+
         disponibilita = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback_disponibilita);
         cordialita = (RatingBar) rootView.findViewById(R.id.ratingbar_cordialita);
         soddisfazione = (RatingBar) rootView.findViewById(R.id.ratingbar_soddisfazione);
@@ -114,48 +118,58 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         today = new SimpleDateFormat("dd/MM/yyyy");
         today_string=today.format(Calendar.getInstance().getTime());
         date.setText(today_string);
-
+        Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
 
         send = (TextView) rootView.findViewById(R.id.invia);
-        send.setOnClickListener(this);
+
         TextView cancel = (TextView) rootView.findViewById(R.id.annulla);
         cancel.setOnClickListener(this);
 
 
         // Create the AlertDialog object and return it
-        return builder.create();
-    }
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (general_float == 0
+                        || disponibilita_float == 0
+                        || cordialita_float == 0
+                        || soddisfazione_float == 0)
+                    Toast.makeText(c, "Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
 
-
-    public void controlToSend() {
-        if (general_float == 0
-                || disponibilita_float == 0
-                || cordialita_float == 0
-                || soddisfazione_float == 0)
-            Toast.makeText(c, "Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
-
-        else if (text.getText().length() == 0)
-            Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
-        else if (dove.getText().length() == 0)
-            Toast.makeText(c, "Scrivi il luogo della visita!", Toast.LENGTH_SHORT).show();
-        else if (tipo.getText().length() == 0)
-            Toast.makeText(c, "Scrivi il tipo della visita!", Toast.LENGTH_SHORT).show();
-        else if (text.getText().toString().split(" ").length < 10)
-            Toast.makeText(c, "Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
-        //else if ();
+                else if (text.getText().length() == 0)
+                    Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
+                else if (dove.getText().length() == 0)
+                    Toast.makeText(c, "Scrivi il luogo della visita!", Toast.LENGTH_SHORT).show();
+                else if (tipo.getText().length() == 0)
+                    Toast.makeText(c, "Scrivi il tipo della visita!", Toast.LENGTH_SHORT).show();
+                else if (text.getText().toString().split(" ").length < 10)
+                    Toast.makeText(c, "Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
+                else if (date_visit.after(now))
+                    Toast.makeText(c, "Scegli la data corretta", Toast.LENGTH_SHORT).show();
 
         /*else if (!checkBox.isChecked())
             Toast.makeText(c,"Dichiara che la tua visita è stata veramente effettuata. " +
                     "Attenzione! Verranno effettuati controlli", Toast.LENGTH_SHORT).show();
         */
 
-        else if (!Util.isOnline(getActivity()))
-            Util.SnackBarFiga(DoctorActivity.fabfeedback,
-                    DoctorActivity.coordinator_layout, "Controlla la tua connessione a Internet!");
-        else {
-            pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
+                else if (!Util.isOnline(getActivity()))
+                    Util.SnackBarFiga(DoctorActivity.fabfeedback,
+                            DoctorActivity.coordinator_layout, "Controlla la tua connessione a Internet!");
+                else {
+                    pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
 
-        }
+                }
+            }
+        });
+
+
+
+        return builder.create();
+    }
+
+
+    public void controlToSend() {
+
     }
 
 
@@ -167,7 +181,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                 break;
             case R.id.invia:
                 controlToSend();
-                FeedbackDialogFragment.this.dismiss();
+                //FeedbackDialogFragment.this.dismiss();
 
                 break;
             case R.id.dateTextView:
@@ -202,6 +216,31 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                         checkBoxAnonymus.setChecked(object.getBoolean("Anonymus"));
                         text.setText(feedback_description);
                         general_ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
+
+                        Object o;
+                        o= object.get("disponibilita_rating");
+                        if(o!=null){
+                        Float d = Float.parseFloat(o.toString());
+                        disponibilita.setRating(d);
+                        }
+                        o= object.get("cordialita_rating");
+                        if(o!=null){
+                            Float d = Float.parseFloat(o.toString());
+                            cordialita.setRating(d);
+                        }
+                        o= object.get("soddisfazione_rating");
+                        if(o!=null){
+                            Float d = Float.parseFloat(o.toString());
+                            soddisfazione.setRating(d);
+                        }
+                        //cordialita.setRating(Float.parseFloat(object.get("cordialita_rating").toString()));
+                        //soddisfazione.setRating(Float.parseFloat(object.get("soddisfazione_rating").toString()));
+
+
+
+
+
+
                     }
                 }
             }
@@ -230,9 +269,21 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     //Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
                     object.put("email_user", email_user);
                     object.put("email_doctor", email_doctor);
-                    object.put("Rating", new Float(ratingbar.getRating()));
+                    object.put("Rating", general_float);
                     object.put("Anonymus", anonymus);
                     object.put("feedback_description", feedback_description);
+
+                    object.put("type",tipo);
+                    object.put("place", dove);
+                    object.put("cordialita_rating",cordialita_float);
+                    object.put("disponibilita_rating",disponibilita_float);
+                    object.put("soddisfazione_rating",soddisfazione_float);
+                    String date_visit_string="";
+                    date_visit_string+=date_visit.getDay()+"/";
+                    date_visit_string+= date_visit.getMonth()+"/";
+                    date_visit_string+=date_visit.getYear();
+                    object.put("date_visit",date_visit_string);
+
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     object.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
@@ -266,6 +317,19 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     feedback.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
                     feedback.put("thumb_list", new ArrayList<String>());
                     feedback.put("num_thumb", 0);
+
+                    feedback.put("type",tipo);
+                    feedback.put("place", dove);
+                    feedback.put("cordialita_rating",cordialita_float);
+                    feedback.put("disponibilita_rating",disponibilita_float);
+                    feedback.put("soddisfazione_rating",soddisfazione_float);
+                    String date_visit_string="";
+                    date_visit_string+=date_visit.getDay()+"/";
+                    date_visit_string+= date_visit.getMonth()+"/";
+                    date_visit_string+=date_visit.getYear();
+                    assert object != null;
+                    feedback.put("date_visit",date_visit_string);
+
 
                     feedback.saveInBackground(new SaveCallback() {
                         @Override
@@ -334,9 +398,9 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             Calendar c= Calendar.getInstance();
             c.set(year, month, day);
 
-            Date date_visit=  c.getTime() ;
-            Date a=new Date(year,month,day);
-            Log.d("Date visit",a.toString());
+            date_visit=  c.getTime() ;
+            now=new Date(year,month,day);
+            Log.d("Date visit", now.toString());
             Log.d("Today", today.toString());
 
 

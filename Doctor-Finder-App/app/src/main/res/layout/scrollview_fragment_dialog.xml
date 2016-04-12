@@ -180,7 +180,7 @@
             android:id="@+id/text_guide_data"
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
-            android:text="Dove è stata fatta la visita?"
+            android:text="Dove è stata fatta la visita? (Studio, ambulatorio, a domicilio)"
             android:textSize="10dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp" />
@@ -192,7 +192,7 @@
             android:id="@+id/editTextDove"
             android:lines="1"
 
-            android:hint="Scrivi dove è stata fatta la visita (Studio, ambulatorio, a domicilio).."
+            android:hint="Scrivi il luogo della visita..."
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
