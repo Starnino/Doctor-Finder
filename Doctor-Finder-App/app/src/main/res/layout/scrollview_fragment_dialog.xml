@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider5"
-            android:background="@android:color/darker_gray"
+            android:background="@color/google_grey"
             android:layout_margin="16dp"
             />
         <TextView
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider2"
-            android:background="@android:color/darker_gray"
+            android:background="@color/google_grey"
             android:layout_margin="16dp" />
         <TextView
             android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider3"
-            android:background="@android:color/darker_gray"
+            android:background="@color/google_grey"
             android:layout_margin="16dp"
             />
 
@@ -159,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider4"
-            android:background="@android:color/darker_gray"
+            android:background="@color/google_grey"
             android:layout_margin="16dp"
             />
         <TextView
@@ -235,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divide5"
-            android:background="@android:color/darker_gray"
+            android:background="@color/google_grey"
             android:layout_margin="16dp"
             />
 
