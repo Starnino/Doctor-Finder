@@ -128,11 +128,13 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (general_float == 0
                         || disponibilita_float == 0
                         || cordialita_float == 0
                         || soddisfazione_float == 0)
                     Util.SnackBarFiga(null, v, "Assegna le stelle al feedback!");
+
 
                 else if (text.getText().length() == 0)
                     Util.SnackBarFiga(DoctorActivity.fabfeedback,
@@ -144,19 +146,25 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                 else if (tipo.getText().length() == 0)
                     Util.SnackBarFiga(null, v, "Scrivi il tipo di visita!");
 
+                else if (text.getText().length() == 0)
+                    Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
                 else if (text.getText().toString().split(" ").length < 10)
-                    Util.SnackBarFiga(null, v, "1 Feedback deve contenere almeno 10 parole!");
-
+                    Util.SnackBarFiga(null, v, "I1 Feedback deve contenere almeno 10 parole!");
+                else if(date_visit==null)
+                    Util.SnackBarFiga(null, v, "Scegli la data");
                 else if (date_visit.after(now))
                     Util.SnackBarFiga(null, v, "Scegli la data corretta!");
 
                 else if (!checkBox.isChecked())
                     Util.SnackBarFiga(null, v, "Dichiara che la tua visita è stata veramente effettuata. " +
-                                    "Attenzione! Verranno effettuati severi controlli");
-
+                            "Attenzione! Verranno effettuati controlli");
                 else if (!Util.isOnline(getActivity()))
                     Util.SnackBarFiga(null, v, "Controlla la tua connessione a Internet!");
                 else {
+                    if(date_visit!=null)Log.d("Date visit",date_visit.toString());
+                    Log.d("Now",now.toString());
+                    boolean after=date_visit.after(now);
+                    Log.d("Date visit after", after + "");
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
 
                 }
@@ -252,6 +260,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             });
         }catch (NullPointerException e){
             e.printStackTrace();
+        }catch( IllegalStateException i){
+            i.printStackTrace();
         }
 
 
@@ -281,8 +291,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     object.put("Anonymus", anonymus);
                     object.put("feedback_description", feedback_description);
 
-                    object.put("type",tipo);
-                    object.put("place", dove);
+                    object.put("type",tipo.getText().toString());
+                    object.put("place", dove.getText().toString());
                     object.put("cordialita_rating",cordialita_float);
                     object.put("disponibilita_rating",disponibilita_float);
                     object.put("soddisfazione_rating",soddisfazione_float);
@@ -402,14 +412,12 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             // Do something with the date chosen by the user
 
             DatePicker dp=(DatePicker) view;
-            Date today= Calendar.getInstance().getTime();
             Calendar c= Calendar.getInstance();
             c.set(year, month, day);
-
             date_visit=  c.getTime() ;
-            now=new Date(year,month,day);
-            Log.d("Date visit", now.toString());
-            Log.d("Today", today.toString());
+            //date_visit=new Date(year,month,day);
+            Log.d("Date visit", date_visit.toString());
+            Log.d("Today", now.toString());
 
 
             date.setText("" + day + "/" + month + "/" + year);
