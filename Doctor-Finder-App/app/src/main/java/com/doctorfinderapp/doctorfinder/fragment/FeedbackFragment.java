@@ -59,7 +59,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
     private String nienteTesto="Questo dottore non ha ancora nessun feedback. \n " +
             "Sei stato un suo paziente? Usa il pulsante qui sotto per rilasciare un feedback, altri utenti lo" +
-            "troveranno molto utile";
+            " troveranno molto utile";
 
     private TextView niente;
 

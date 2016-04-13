@@ -138,6 +138,12 @@
                     android:id="@+id/feedback_text"
                     android:layout_marginRight="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/fab_margin" />
+
+                <com.pnikosis.materialishprogress.ProgressWheel
+                    android:id="@+id/delete_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
             </LinearLayout>
 
         </LinearLayout>

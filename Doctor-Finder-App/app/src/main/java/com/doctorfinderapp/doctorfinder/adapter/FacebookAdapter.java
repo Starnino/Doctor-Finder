@@ -42,17 +42,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
     List<ParseObject> friends;
 
     public FacebookAdapter(List<ParseObject> persons) {
-
-
         this.friends = persons;
-
-        //Log.d("FacebookAdapter",persons.size()+"numero persone passate adapter");
-
-        for(int i=0;i<friends.size();i++){
-            //Log.d("FacebookAdapter","name number "+i+": "+friends.get(i).get(NAME));
-        }
-
-
     }
 
     @Override

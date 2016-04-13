@@ -234,7 +234,12 @@ public class DoctorFragment extends Fragment {
         phone.setText(DOCTOR_PHONE);
         visit.setText(DOCTOR_DATE);
         info.setText(DOCTOR_DESCRIPTION);
-        floatFeed.setText(DOCTOR_FEEDBACK.substring(0,3));
+
+        if (DOCTOR_FEEDBACK.length() < 2) floatFeed.setText(DOCTOR_FEEDBACK + ",0");
+        else if (DOCTOR_FEEDBACK.length() == 3)
+            floatFeed.setText(DOCTOR_FEEDBACK);
+        else if (DOCTOR_FEEDBACK.length() > 3)
+            floatFeed.setText(DOCTOR_FEEDBACK.substring(0,3));
 
 
         String text = "";

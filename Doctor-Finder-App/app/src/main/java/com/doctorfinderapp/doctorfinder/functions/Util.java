@@ -416,18 +416,24 @@ public class Util {
 
     public static void SnackBarFiga(final com.melnykov.fab.FloatingActionButton fab, View v, String text){
 
-        final float fab_up = v.getResources().getDimension(R.dimen.fab_up);
-        final float fab_down = v.getResources().getDimension(R.dimen.fab_down);
-        Snackbar.make(v, text, Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setCallback(new Snackbar.Callback() {
-                    @Override
-                    public void onDismissed(Snackbar snackbar, int event) {
-                        ViewCompat.animate(fab).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
-                        super.onDismissed(snackbar, event);
-            }
-        })
-        .show();
-        ViewCompat.animate(fab).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+        if (fab == null){
+            Snackbar.make(v, text, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+        } else {
+            final float fab_up = v.getResources().getDimension(R.dimen.fab_up);
+            final float fab_down = v.getResources().getDimension(R.dimen.fab_down);
+            Snackbar.make(v, text, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .setCallback(new Snackbar.Callback() {
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            ViewCompat.animate(fab).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            super.onDismissed(snackbar, event);
+                        }
+                    })
+                    .show();
+            ViewCompat.animate(fab).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+        }
     }
 }

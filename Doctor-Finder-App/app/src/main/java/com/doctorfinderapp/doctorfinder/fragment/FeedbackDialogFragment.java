@@ -87,15 +87,11 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         LayoutInflater inflater = getActivity().getLayoutInflater();
         rootView = inflater.inflate(R.layout.dialog_feedback, null);
 
-
         controlFeedback(rootView, email_user, email_doctor);
-
 
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(rootView);
-
-
 
         disponibilita = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback_disponibilita);
         cordialita = (RatingBar) rootView.findViewById(R.id.ratingbar_cordialita);
@@ -118,13 +114,15 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         today = new SimpleDateFormat("dd/MM/yyyy");
         today_string=today.format(Calendar.getInstance().getTime());
         date.setText(today_string);
-        Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this.getContext() , "Descrivi la visita!", Toast.LENGTH_SHORT).show();
 
         send = (TextView) rootView.findViewById(R.id.invia);
 
         TextView cancel = (TextView) rootView.findViewById(R.id.annulla);
         cancel.setOnClickListener(this);
 
+        now = Calendar.getInstance().getTime();
 
         // Create the AlertDialog object and return it
         send.setOnClickListener(new View.OnClickListener() {
@@ -134,27 +132,30 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                         || disponibilita_float == 0
                         || cordialita_float == 0
                         || soddisfazione_float == 0)
-                    Toast.makeText(c, "Assegna le stelle al feedback!", Toast.LENGTH_SHORT).show();
+                    Util.SnackBarFiga(null, v, "Assegna le stelle al feedback!");
 
                 else if (text.getText().length() == 0)
-                    Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
-                else if (dove.getText().length() == 0)
-                    Toast.makeText(c, "Scrivi il luogo della visita!", Toast.LENGTH_SHORT).show();
-                else if (tipo.getText().length() == 0)
-                    Toast.makeText(c, "Scrivi il tipo della visita!", Toast.LENGTH_SHORT).show();
-                else if (text.getText().toString().split(" ").length < 10)
-                    Toast.makeText(c, "Un feedback deve contenere almeno 10 parole!", Toast.LENGTH_SHORT).show();
-                else if (date_visit.after(now))
-                    Toast.makeText(c, "Scegli la data corretta", Toast.LENGTH_SHORT).show();
+                    Util.SnackBarFiga(DoctorActivity.fabfeedback,
+                            v, "Descrivi la visita!");
 
-        /*else if (!checkBox.isChecked())
-            Toast.makeText(c,"Dichiara che la tua visita è stata veramente effettuata. " +
-                    "Attenzione! Verranno effettuati controlli", Toast.LENGTH_SHORT).show();
-        */
+                else if (dove.getText().length() == 0)
+                    Util.SnackBarFiga(null, v, "Scrivi il luogo della visita!");
+
+                else if (tipo.getText().length() == 0)
+                    Util.SnackBarFiga(null, v, "Scrivi il tipo di visita!");
+
+                else if (text.getText().toString().split(" ").length < 10)
+                    Util.SnackBarFiga(null, v, "1 Feedback deve contenere almeno 10 parole!");
+
+                else if (date_visit.after(now))
+                    Util.SnackBarFiga(null, v, "Scegli la data corretta!");
+
+                else if (!checkBox.isChecked())
+                    Util.SnackBarFiga(null, v, "Dichiara che la tua visita è stata veramente effettuata. " +
+                                    "Attenzione! Verranno effettuati severi controlli");
 
                 else if (!Util.isOnline(getActivity()))
-                    Util.SnackBarFiga(DoctorActivity.fabfeedback,
-                            DoctorActivity.coordinator_layout, "Controlla la tua connessione a Internet!");
+                    Util.SnackBarFiga(null, v, "Controlla la tua connessione a Internet!");
                 else {
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
 
@@ -325,8 +326,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     feedback.put("thumb_list", new ArrayList<String>());
                     feedback.put("num_thumb", 0);
 
-                    feedback.put("type",tipo.getText());
-                    feedback.put("place", dove.getText());
+                    feedback.put("type",tipo.getText().toString());
+                    feedback.put("place", dove.getText().toString());
                     feedback.put("cordialita_rating",cordialita_float);
                     feedback.put("disponibilita_rating",disponibilita_float);
                     feedback.put("soddisfazione_rating",soddisfazione_float);

@@ -40,6 +40,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         IconicsImageView spam;
         IconicsImageView clear;
         IconicsImageView thumb;
+        ProgressWheel delete_progress;
         TextView num_thumb;
         boolean THUMB_PRESSED;
         TextView date;
@@ -111,6 +113,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
             date = (TextView) itemView.findViewById(R.id.feed_date);
             divider=(View) itemView.findViewById(R.id.divider_feedback);
+            delete_progress = (ProgressWheel) itemView.findViewById(R.id.delete_progress);
         }
     }
 
@@ -293,7 +296,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
-                            deleteFeedback(position);
+                            holder.delete_progress.spin();
+                            deleteFeedback(position, holder);
                             final float fab_up = holder.itemView.getResources().getDimension(R.dimen.fab_up);
                             final float fab_down = holder.itemView.getResources().getDimension(R.dimen.fab_down);
 
@@ -363,7 +367,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     //error
 
                 } else {
-                    //Log.d("THUMB LIST --> ", object.getString(USER_EMAIL) + " & " + object.getString(DOCTOR_EMAIL) + " AGGIUNTO");
+
                     //case of thumb was pressed and we need to put object and increment 1 like
                     if (THUMB_PRESSED) {
 
@@ -401,8 +405,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         });
     }
 
-    public void deleteFeedback(final int position){
-        //TODO start progress bar
+    public void deleteFeedback(final int position, final FeedbackViewHolder holder){
+
         annulla = feedbacklist.get(position);
         ParseQuery<ParseObject> delete = ParseQuery.getQuery(FEEDBACK);
         delete.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
@@ -417,7 +421,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_add_white_24dp);
                         rebuildFeedbackAverage();
                         DoctorFragment.minus1();
-                        //TODO finish progress bar
+                        holder.delete_progress.stopSpinning();
                     }
             }
         });
