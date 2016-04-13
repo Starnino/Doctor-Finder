@@ -250,12 +250,10 @@ public class DoctorFragment extends Fragment {
 
         special.setText(text);
 
-        if(DOCTOR_FEEDBACK!=null){
+        if(DOCTOR_FEEDBACK!=null) {
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
             rightRating = Float.parseFloat(DOCTOR_FEEDBACK);
-        }else{
-            //Log.d("DoctorFragment","Feedback is null");
         }
 
         RelativeLayout call_button = (RelativeLayout) rootView.findViewById(R.id.telefono);
@@ -276,11 +274,6 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                /*FragmentTransaction ft2 = getActivity().getSupportFragmentManager().beginTransaction();
-                ProgressFragment f2=ProgressFragment.newInstance("","");
-                ft2.replace(R.id.frame_doctor, f2);
-
-                ft2.commit();*/
                 if(ParseUser.getCurrentUser()!=null){
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 FeedbackFragment fragment = new FeedbackFragment().newInstance(index);
@@ -368,7 +361,7 @@ public class DoctorFragment extends Fragment {
         super.onStart();
         if (rightRating != 0) {
             ratingBar.setRating(rightRating);
-            floatFeed.setText(String.valueOf(rightRating).substring(0,3));
+            floatFeed.setText(String.format("%.1f", rightRating));
         }
     }
 }

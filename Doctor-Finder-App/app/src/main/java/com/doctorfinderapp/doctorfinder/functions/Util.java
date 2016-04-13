@@ -227,10 +227,14 @@ public class Util {
                             somma = somma + Float.parseFloat(f);
                         }
 
-                        float media = somma / objects.size();
-                        doctor.save();
+                        float media = 0;
+                        if (objects.size() != 0) {
+                            media = somma / objects.size();
+                            doctor.put("Feedback", media);
 
-                        doctor.put("Feedback", media);
+                        } else
+                            doctor.put("Feedback", 0.0f);
+
                         DoctorFragment.changeRating(media);
                         DoctorListFragment.refreshList();
                         doctor.save();
@@ -242,7 +246,6 @@ public class Util {
                 }
             }
         });
-
     }
 
     public static boolean isOnline(Context context) {

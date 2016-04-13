@@ -122,7 +122,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         TextView cancel = (TextView) rootView.findViewById(R.id.annulla);
         cancel.setOnClickListener(this);
 
-        now = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
+        now = calendar.getTime();
 
         // Create the AlertDialog object and return it
         send.setOnClickListener(new View.OnClickListener() {
@@ -135,47 +136,44 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                         || soddisfazione_float == 0)
                     Util.SnackBarFiga(null, v, "Assegna le stelle al feedback!");
 
-
-                else if (text.getText().length() == 0)
-                    Util.SnackBarFiga(DoctorActivity.fabfeedback,
-                            v, "Descrivi la visita!");
-
                 else if (dove.getText().length() == 0)
                     Util.SnackBarFiga(null, v, "Scrivi il luogo della visita!");
+
+                else if (date_visit == null)
+                    Util.SnackBarFiga(null, v, "Scegli la data");
+
+                else if (date_visit.compareTo(now) < 0){
+                    Util.SnackBarFiga(null, v, "Scegli la data corretta!");
+                    Log.d("DATE VISIT --> ", date_visit.toString());
+                    Log.d("DATE NOW --> ", now.toString());
+                }
 
                 else if (tipo.getText().length() == 0)
                     Util.SnackBarFiga(null, v, "Scrivi il tipo di visita!");
 
                 else if (text.getText().length() == 0)
-                    Toast.makeText(c, "Descrivi la visita!", Toast.LENGTH_SHORT).show();
+                    Util.SnackBarFiga(null, v, "Descrivi la visita!");
+
                 else if (text.getText().toString().split(" ").length < 10)
                     Util.SnackBarFiga(null, v, "I1 Feedback deve contenere almeno 10 parole!");
-                else if(date_visit==null)
-                    Util.SnackBarFiga(null, v, "Scegli la data");
-                else if (date_visit.after(now))
-                    Util.SnackBarFiga(null, v, "Scegli la data corretta!");
 
                 else if (!checkBox.isChecked())
-                    Util.SnackBarFiga(null, v, "Dichiara che la tua visita è stata veramente effettuata. " +
+                    Util.SnackBarFiga(null, v, "Dichiara che la visita è stata veramente effettuata. " +
                             "Attenzione! Verranno effettuati controlli");
+
                 else if (!Util.isOnline(getActivity()))
                     Util.SnackBarFiga(null, v, "Controlla la tua connessione a Internet!");
-                else {
-                    if(date_visit!=null)Log.d("Date visit",date_visit.toString());
-                    Log.d("Now",now.toString());
-                    boolean after=date_visit.after(now);
-                    Log.d("Date visit after", after + "");
-                    pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
 
+                else {
+
+                    pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
+                    dismiss();
                 }
             }
         });
 
-
-
         return builder.create();
     }
-
 
     public void controlToSend() {
 
@@ -185,9 +183,11 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.annulla:
                 FeedbackDialogFragment.this.dismiss();
                 break;
+
             case R.id.invia:
                 controlToSend();
                 //FeedbackDialogFragment.this.dismiss();
@@ -196,6 +196,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             case R.id.dateTextView:
                 showDatePickerDialog(v);
                 break;
+
             default:
                 break;
         }
@@ -248,16 +249,11 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
 
                             tipo.setText(object.get("type").toString());
                             dove.setText(object.get("place").toString());
-
-
-                            //cordialita.setRating(Float.parseFloat(object.get("cordialita_rating").toString()));
-                            //soddisfazione.setRating(Float.parseFloat(object.get("soddisfazione_rating").toString()));
-
-
                         }
                     }
                 }
             });
+
         }catch (NullPointerException e){
             e.printStackTrace();
         }catch( IllegalStateException i){
@@ -302,7 +298,6 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     date_visit_string+=date_visit.getYear();
                     object.put("date_visit",date_visit_string);
 
-
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     object.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
 
@@ -320,6 +315,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                             Util.calculateFeedback(email_doctor);
                         }
                     });
+
                 } else {
 
 
@@ -367,7 +363,6 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             }
         });
 
-
     }
 
 
@@ -404,7 +399,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            DatePickerDialog dp=new DatePickerDialog(getActivity(), this, year, month, day);
+            DatePickerDialog dp = new DatePickerDialog(getActivity(), this, year, month, day);
             return dp;
         }
 
@@ -418,14 +413,10 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
             //date_visit=new Date(year,month,day);
             Log.d("Date visit", date_visit.toString());
             Log.d("Today", now.toString());
-
-
             date.setText("" + day + "/" + month + "/" + year);
 
            // today = new SimpleDateFormat("dd/MM/yyyy");
             //today_string=today.format(Calendar.getInstance().getTime());
         }
     }
-
-
 }

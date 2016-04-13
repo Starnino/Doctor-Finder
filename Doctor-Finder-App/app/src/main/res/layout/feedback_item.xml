@@ -139,22 +139,26 @@
                     android:layout_marginRight="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/fab_margin" />
 
-                <com.pnikosis.materialishprogress.ProgressWheel
-                    android:id="@+id/delete_progress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
+
             </LinearLayout>
 
         </LinearLayout>
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/delete_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="10dp">
+
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:layout_marginEnd="8dp"

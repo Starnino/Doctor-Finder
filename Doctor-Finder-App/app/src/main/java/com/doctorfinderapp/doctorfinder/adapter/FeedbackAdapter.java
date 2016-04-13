@@ -112,7 +112,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             thumb = (IconicsImageView) itemView.findViewById(R.id.feed_like);
             num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
             date = (TextView) itemView.findViewById(R.id.feed_date);
-            divider=(View) itemView.findViewById(R.id.divider_feedback);
+            divider = (View) itemView.findViewById(R.id.divider_feedback);
             delete_progress = (ProgressWheel) itemView.findViewById(R.id.delete_progress);
         }
     }
@@ -296,6 +296,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getItemId() == R.id.action_clear) {
+                            holder.delete_progress.setVisibility(View.VISIBLE);
                             holder.delete_progress.spin();
                             deleteFeedback(position, holder);
                             final float fab_up = holder.itemView.getResources().getDimension(R.dimen.fab_up);
@@ -311,6 +312,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             safeSave(annulla);
                                             annulla = null;
                                             holder.clear.setClickable(true);
+                                            holder.delete_progress.setVisibility(View.GONE);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
                                             DoctorFragment.plus1();
                                         }})
