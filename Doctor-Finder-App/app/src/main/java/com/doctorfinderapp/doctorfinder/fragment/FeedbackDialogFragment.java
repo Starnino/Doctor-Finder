@@ -200,51 +200,58 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
         query.whereEqualTo("email_user", email_user);
         query.whereEqualTo("email_doctor", email_doctor);
+        try {
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    if (object != null) {
 
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (object != null) {
+                        //Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
 
-                    //Log.d("controFeedback", "User feedback alredy given for this doctor, editing mode");
+                        String feedback_description = object.getString("feedback_description");
 
-                    String feedback_description = object.getString("feedback_description");
+                        if (feedback_description != null) {
+                            //Log.d("Feedback", feedback_description.toString());
+                            //Log.d("Feedback", (object.get("Anonymus")).toString());
+                            checkBoxAnonymus.setChecked(object.getBoolean("Anonymus"));
+                            text.setText(feedback_description);
+                            general_ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
 
-                    if (feedback_description != null) {
-                        //Log.d("Feedback", feedback_description.toString());
-                        //Log.d("Feedback", (object.get("Anonymus")).toString());
-                        checkBoxAnonymus.setChecked(object.getBoolean("Anonymus"));
-                        text.setText(feedback_description);
-                        general_ratingbar.setRating(Float.parseFloat(object.get("Rating").toString()));
+                            Object o;
+                            o = object.get("disponibilita_rating");
+                            if (o != null) {
+                                Float d = Float.parseFloat(o.toString());
+                                disponibilita.setRating(d);
+                            }
+                            o = object.get("cordialita_rating");
+                            if (o != null) {
+                                Float d = Float.parseFloat(o.toString());
+                                cordialita.setRating(d);
+                            }
+                            o = object.get("soddisfazione_rating");
+                            if (o != null) {
+                                Float d = Float.parseFloat(o.toString());
+                                soddisfazione.setRating(d);
+                            }
+                            String date_visit = object.get("date_visit").toString();
 
-                        Object o;
-                        o= object.get("disponibilita_rating");
-                        if(o!=null){
-                        Float d = Float.parseFloat(o.toString());
-                        disponibilita.setRating(d);
+                            date.setText(date_visit);
+
+                            tipo.setText(object.get("type").toString());
+                            dove.setText(object.get("place").toString());
+
+
+                            //cordialita.setRating(Float.parseFloat(object.get("cordialita_rating").toString()));
+                            //soddisfazione.setRating(Float.parseFloat(object.get("soddisfazione_rating").toString()));
+
+
                         }
-                        o= object.get("cordialita_rating");
-                        if(o!=null){
-                            Float d = Float.parseFloat(o.toString());
-                            cordialita.setRating(d);
-                        }
-                        o= object.get("soddisfazione_rating");
-                        if(o!=null){
-                            Float d = Float.parseFloat(o.toString());
-                            soddisfazione.setRating(d);
-                        }
-                        //cordialita.setRating(Float.parseFloat(object.get("cordialita_rating").toString()));
-                        //soddisfazione.setRating(Float.parseFloat(object.get("soddisfazione_rating").toString()));
-
-
-
-
-
-
                     }
                 }
-            }
-        });
+            });
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
 
     }
@@ -318,8 +325,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     feedback.put("thumb_list", new ArrayList<String>());
                     feedback.put("num_thumb", 0);
 
-                    feedback.put("type",tipo);
-                    feedback.put("place", dove);
+                    feedback.put("type",tipo.getText());
+                    feedback.put("place", dove.getText());
                     feedback.put("cordialita_rating",cordialita_float);
                     feedback.put("disponibilita_rating",disponibilita_float);
                     feedback.put("soddisfazione_rating",soddisfazione_float);

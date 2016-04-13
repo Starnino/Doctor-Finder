@@ -181,25 +181,30 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
                 final float fab_down = getActivity().getResources().getDimension(R.dimen.fab_down);
                 if(e==null) {
 
-                    TimerTask timerTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Snackbar.make(DoctorActivity.coordinator_layout,
-                                    objects.size() != 0 ? ("Trovati " + objects.size() + " feedback"):"Nessun feedback"  , Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null)
-                                    .setCallback(new Snackbar.Callback() {
-                                        @Override
-                                        public void onDismissed(Snackbar snackbar, int event) {
-                                            ViewCompat.animate(fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
-                                            fabfeedback.attachToRecyclerView(mRecyclerView);
-                                            super.onDismissed(snackbar, event);
+                    try {
+                        TimerTask timerTask = new TimerTask() {
+                            @Override
+                            public void run() {
+                                Snackbar.make(DoctorActivity.coordinator_layout,
+                                        objects.size() != 0 ? ("Trovati " + objects.size() + " feedback") : "Nessun feedback", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null)
+                                        .setCallback(new Snackbar.Callback() {
+                                            @Override
+                                            public void onDismissed(Snackbar snackbar, int event) {
+                                                ViewCompat.animate(fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                                fabfeedback.attachToRecyclerView(mRecyclerView);
+                                                super.onDismissed(snackbar, event);
 
-                                        }
-                                    })
-                                    .show();
-                            ViewCompat.animate(fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
-                        }
-                    }; new Timer().schedule(timerTask, 1000);
+                                            }
+                                        })
+                                        .show();
+                                ViewCompat.animate(fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            }
+                        };
+                     new Timer().schedule(timerTask, 1000);
+                }catch(  IllegalStateException i){
+                    i.printStackTrace();
+                }
 
                     FeedbackArray = objects;
 
