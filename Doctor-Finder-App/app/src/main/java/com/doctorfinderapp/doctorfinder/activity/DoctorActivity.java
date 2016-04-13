@@ -74,6 +74,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String Title;
     private String email;
     public static FragmentManager fragmentActivity;
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     public static CoordinatorLayout coordinator_layout;
 
@@ -185,7 +186,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_doc);
         collapsingToolbarLayout.setTitle(Title);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
 
@@ -207,6 +208,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         else
             Title = "Dott.ssa " + DOCTOR_FIRST_NAME + " " + DOCTOR_LAST_NAME;
 
+        if (email != null)
+            collapsingToolbarLayout.setTitle(Title);
 
         //update recent search
         final ParseObject doctor = new ParseObject("recentDoctor");
