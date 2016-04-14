@@ -374,9 +374,9 @@ public class Util {
         emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
                 " \n " +
                 " \n " +
-                " \n " + " \n " +
                 " \n " +
-
+                " \n " +
+                " \n " +
                 " \n " +
                 " \n " +
                 "Messaggio inviato tramite Doctor Finder ");

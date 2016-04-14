@@ -23,7 +23,6 @@
             android:textSize="50sp"
             android:layout_gravity="bottom"/>
 
-
         <RatingBar
             android:id="@+id/rating_bar_feedback_custom"
             android:layout_width="wrap_content"
@@ -75,6 +74,7 @@
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
+
     </LinearLayout>
 
     <View xmlns:android="http://schemas.android.com/apk/res/android"
@@ -124,6 +124,7 @@
                 android:textStyle="bold"
                 android:layout_toRightOf="@id/user_image_feed" />
         </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -157,6 +158,7 @@
                 android:gravity="center"
                 android:layout_toRightOf="@id/doctor_image_feed" />
         </RelativeLayout>
+
     </LinearLayout>
 
     <View xmlns:android="http://schemas.android.com/apk/res/android"
@@ -238,6 +240,7 @@
             android:transformPivotY="15dp"/>
 
      </RelativeLayout>
+
     </LinearLayout>
 
     <View xmlns:android="http://schemas.android.com/apk/res/android"
@@ -372,6 +375,7 @@
     </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

@@ -47,13 +47,11 @@ public class DoctorMapsFragment extends SupportMapFragment
 {
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
-    public static Resources mResources;
     public static GoogleMap googleMap;
     private static List<ParseObject> doctors;
     private final String TAG = "Doctor Maps";
     private String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
-    private Bitmap MarkerSmall;
 
 
     @Override

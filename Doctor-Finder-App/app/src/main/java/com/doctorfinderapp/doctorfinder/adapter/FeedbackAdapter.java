@@ -1,7 +1,5 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -18,12 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
@@ -33,10 +28,8 @@ import com.doctorfinderapp.doctorfinder.fragment.FeedbackFragment;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.mikepenz.iconics.view.IconicsImageView;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -45,14 +38,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by fedebyes on 05/03/16.
@@ -140,7 +127,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             thumb = (IconicsImageView) itemView.findViewById(R.id.feed_like);
             num_thumb = (TextView) itemView.findViewById(R.id.num_thumb);
             date = (TextView) itemView.findViewById(R.id.feed_date);
-            divider = (View) itemView.findViewById(R.id.divider_feedback);
+            divider = itemView.findViewById(R.id.divider_feedback);
             delete_progress = (ProgressWheel) itemView.findViewById(R.id.delete_progress);
             feedback_details = (CardView) itemView.findViewById(R.id.card_view_feedback);
 
@@ -251,9 +238,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 @Override
                 public void onClick(View v) {
                     holder.thumb.setClickable(false);
-                    if (holder.THUMB_PRESSED)
-                        holder.THUMB_PRESSED = false;
-                    else holder.THUMB_PRESSED = true;
+                    holder.THUMB_PRESSED = !holder.THUMB_PRESSED;
 
                     onClickButton(v, holder, position);
                 }

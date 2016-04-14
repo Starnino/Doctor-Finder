@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,6 +35,7 @@
             android:paddingRight="16dp"
             android:src="@drawable/s3"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -45,8 +47,10 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="Usa la mappa per trovare lo specialista più vicino a te"/>
+        android:text="@string/intro_3"/>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
+
 </LinearLayout>

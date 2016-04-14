@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -43,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     private String passwordtxt;
     private EditText password;
     private EditText username;
-    private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
     private GoogleApiClient client;
     private ImageButton close;
