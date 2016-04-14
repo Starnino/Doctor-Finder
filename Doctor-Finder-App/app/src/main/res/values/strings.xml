@@ -323,6 +323,7 @@
            Ti fidi delle sue scelte?</string>
     <string name="complessivo_guide">Questo campo non è modificabile, è la media degli altri voti!</string>
     <string name="cordialita_guide">Il dottore è stato gentile?</string>
+    <string name="persi">Attenzione, i dati inseriti andranno persi!</string>
 
 
 </resources>

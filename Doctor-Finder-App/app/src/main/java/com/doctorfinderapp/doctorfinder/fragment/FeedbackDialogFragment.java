@@ -72,13 +72,14 @@ public class FeedbackDialogFragment
     String today_string;
     static Date date_visit;
     static Date now;
+    LayoutInflater inflater;
+    AlertDialog.Builder builder;
 
 
     public static FeedbackDialogFragment newInstance(String email_doctor) {
         FeedbackDialogFragment dialog = new FeedbackDialogFragment();
         Bundle args = new Bundle();
         args.putString("email_doctor", email_doctor);
-
         dialog.setArguments(args);
         return dialog;
     }
@@ -91,13 +92,13 @@ public class FeedbackDialogFragment
         email_user = ParseUser.getCurrentUser().getEmail();
         c = getActivity();
         //builder.setView(inflater.inflate(R.layout.dialog_feedback, null));
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        inflater = getActivity().getLayoutInflater();
         rootView = inflater.inflate(R.layout.dialog_feedback, null);
 
         controlFeedback(rootView, email_user, email_doctor);
 
         // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder = new AlertDialog.Builder(getActivity());
         builder.setView(rootView);
 
         disponibilita = (RatingBar) rootView.findViewById(R.id.ratingbar_feedback_disponibilita);
@@ -182,37 +183,40 @@ public class FeedbackDialogFragment
     public void controlToSend() {
 
     }
+
+    public void setOldFeedback(){
+
+    }
+
     @Override
     public void onDismiss(final DialogInterface dialog) {
         new MaterialDialog.Builder(c)
                 .title("Sei sicuro?")
-                .content("Non verranno salvati i dati inseriti")
+                .content(R.string.persi)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
+                        dismiss();
                     }
                 })
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        // TODO
+                        dialog.dismiss();
+                        dismiss();
+                        DialogFragment newFragment = newInstance(email_doctor);
+                        setOldFeedback();
+                        newFragment.show(DoctorActivity.fragmentActivity, "feedback");
 
                     }
                 })
-                .positiveText("Ho capito")
+                .positiveText("Si")
                 .negativeText("Annulla")
                 .show();
 
-
         Log.d("Dialog fragment","On dismiss");
 
-
-        /*
-        final Activity activity = getActivity();
-        if (activity instanceof DialogInterface.OnDismissListener) {
-            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
-        }*/
     }
 
 
@@ -241,7 +245,6 @@ public class FeedbackDialogFragment
 
 
     private void controlFeedback(View rootView, String email_user, String email_doctor) {
-
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
         query.whereEqualTo("email_user", email_user);
@@ -439,4 +442,6 @@ public class FeedbackDialogFragment
             date.setText(simpleDateFormat.format(date_visit));
         }
     }
+
+
 }
