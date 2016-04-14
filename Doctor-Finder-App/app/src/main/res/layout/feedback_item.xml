@@ -139,7 +139,6 @@
                     android:layout_marginRight="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/fab_margin" />
 
-
             </LinearLayout>
 
         </LinearLayout>

@@ -69,6 +69,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String RATING = "Rating";
     String DOCTOR = "Doctor";
     String EMAIL = "Email";
+    String TYPE = "type";
+    String PLACE = "place";
+    String CORDIALITA = "cordialita_rating";
+    String DISPONIBILITA = "disponibilita_rating";
+    String SODDISFAZIONE = "soddisfazione_rating";
+    String DATE_VISIT = "date_visit";
     ParseObject annulla;
 
 
@@ -424,6 +430,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         rebuildFeedbackAverage();
                         DoctorFragment.minus1();
                         holder.delete_progress.stopSpinning();
+                        holder.delete_progress.setVisibility(View.GONE);
                     }
             }
         });
@@ -451,6 +458,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         feedback.put(DATE, object.getString(DATE));
         feedback.put(THUMB_LIST, object.getList(THUMB_LIST));
         feedback.put(NUM_THUMB, object.getInt(NUM_THUMB));
+        feedback.put(TYPE, object.getString(TYPE));
+        feedback.put(PLACE, object.getString(PLACE));
+        feedback.put(CORDIALITA, Float.parseFloat(object.get(CORDIALITA).toString()));
+        feedback.put(DISPONIBILITA, Float.parseFloat(object.get(DISPONIBILITA).toString()));
+        feedback.put(SODDISFAZIONE, Float.parseFloat(object.get(SODDISFAZIONE).toString()));
+        feedback.put(DATE_VISIT, object.getString(DATE_VISIT));
         feedback.saveEventually(new SaveCallback() {
             @Override
             public void done(ParseException e) {

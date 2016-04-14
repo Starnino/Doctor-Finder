@@ -212,7 +212,7 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
 
                     setRecyclerView();
                     if(objects.size()==0){
-                        CardNothingVisible();
+                        CardNothingVisible(true);
                     }
                 }
             }
@@ -246,8 +246,11 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
             }
         }
     }
-    public static void CardNothingVisible(){
-        cardNothing.setVisibility(View.VISIBLE);
+    public static void CardNothingVisible(boolean visible){
+        if (visible)
+            cardNothing.setVisibility(View.VISIBLE);
+        else
+            cardNothing.setVisibility(View.GONE);
         //mRecyclerView.setVisibility(View.GONE);
         //refresh.setVisibility(View.GONE);
 

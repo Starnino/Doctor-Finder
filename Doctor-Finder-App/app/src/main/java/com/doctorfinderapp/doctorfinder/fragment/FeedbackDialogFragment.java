@@ -112,7 +112,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         date.setOnClickListener(this);
 
         today = new SimpleDateFormat("dd/MM/yyyy");
-        today_string=today.format(Calendar.getInstance().getTime());
+        today_string = today.format(Calendar.getInstance().getTime());
         date.setText(today_string);
 
         Toast.makeText(this.getContext() , "Descrivi la visita!", Toast.LENGTH_SHORT).show();
@@ -142,11 +142,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                 else if (date_visit == null)
                     Util.SnackBarFiga(null, v, "Scegli la data");
 
-                else if (date_visit.compareTo(now) < 0){
+                else if (!today.format(date_visit).equals(today.format(now)) && date_visit.compareTo(now) > 0)
                     Util.SnackBarFiga(null, v, "Scegli la data corretta!");
-                    Log.d("DATE VISIT --> ", date_visit.toString());
-                    Log.d("DATE NOW --> ", now.toString());
-                }
 
                 else if (tipo.getText().length() == 0)
                     Util.SnackBarFiga(null, v, "Scrivi il tipo di visita!");
@@ -243,8 +240,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                                 Float d = Float.parseFloat(o.toString());
                                 soddisfazione.setRating(d);
                             }
-                            String date_visit = object.get("date_visit").toString();
-
+                            String date_visit = object.getString("date_visit");
+                            Log.d("DATE", "--> " + date_visit);
                             date.setText(date_visit);
 
                             tipo.setText(object.get("type").toString());
@@ -292,13 +289,9 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     object.put("cordialita_rating",cordialita_float);
                     object.put("disponibilita_rating",disponibilita_float);
                     object.put("soddisfazione_rating",soddisfazione_float);
-                    String date_visit_string="";
-                    date_visit_string+=date_visit.getDay()+"/";
-                    date_visit_string+= date_visit.getMonth()+"/";
-                    date_visit_string+=date_visit.getYear();
-                    object.put("date_visit",date_visit_string);
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    object.put("date_visit", simpleDateFormat.format(date_visit));
                     object.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
 
                     object.saveInBackground(new SaveCallback() {
@@ -309,7 +302,6 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                             //DoctorActivity.showToastFeedback();
                             Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
-
 
                             FeedbackFragment.feedbackAdapter.changeMyFeedback();
                             Util.calculateFeedback(email_doctor);
@@ -331,19 +323,12 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                     feedback.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
                     feedback.put("thumb_list", new ArrayList<String>());
                     feedback.put("num_thumb", 0);
-
                     feedback.put("type",tipo.getText().toString());
                     feedback.put("place", dove.getText().toString());
                     feedback.put("cordialita_rating",cordialita_float);
                     feedback.put("disponibilita_rating",disponibilita_float);
                     feedback.put("soddisfazione_rating",soddisfazione_float);
-                    String date_visit_string="";
-                    date_visit_string+=date_visit.getDay()+"/";
-                    date_visit_string+= date_visit.getMonth()+"/";
-                    date_visit_string+=date_visit.getYear();
-                    assert object != null;
-                    feedback.put("date_visit",date_visit_string);
-
+                    feedback.put("date_visit", simpleDateFormat.format(date_visit));
 
                     feedback.saveInBackground(new SaveCallback() {
                         @Override
@@ -352,6 +337,8 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
                             Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
                                     "Feedback Inviato, Grazie!");
 
+                            if (FeedbackFragment.feedbackAdapter.getItemCount() == 0)
+                                FeedbackFragment.CardNothingVisible(false);
                             FeedbackFragment.feedbackAdapter.insertItem(feedback);
                             Util.calculateFeedback(email_doctor);
                             DoctorFragment.plus1();
@@ -406,17 +393,11 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
 
-            DatePicker dp=(DatePicker) view;
-            Calendar c= Calendar.getInstance();
+            Calendar c = Calendar.getInstance();
             c.set(year, month, day);
-            date_visit=  c.getTime() ;
-            //date_visit=new Date(year,month,day);
-            Log.d("Date visit", date_visit.toString());
-            Log.d("Today", now.toString());
-            date.setText("" + day + "/" + month + "/" + year);
-
-           // today = new SimpleDateFormat("dd/MM/yyyy");
-            //today_string=today.format(Calendar.getInstance().getTime());
+            date_visit =  c.getTime() ;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            date.setText(simpleDateFormat.format(date_visit));
         }
     }
 }
