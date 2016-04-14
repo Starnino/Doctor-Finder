@@ -180,11 +180,6 @@ public class FeedbackDialogFragment
         return builder.create();
     }
 
-    public void controlToSend() {
-
-    }
-
-
 
     @Override
     public void onClick(View v) {
@@ -213,14 +208,8 @@ public class FeedbackDialogFragment
                         .positiveText("Si")
                         .negativeText("Annulla")
                         .show();
-
                 break;
 
-            case R.id.invia:
-                controlToSend();
-                //FeedbackDialogFragment.this.dismiss();
-
-                break;
             case R.id.dateTextView:
                 showDatePickerDialog(v);
                 break;
