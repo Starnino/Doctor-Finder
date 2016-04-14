@@ -1,6 +1,8 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -38,7 +40,8 @@ import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
 
-public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener{
+public class FeedbackFragment extends Fragment
+        implements  SwipeRefreshLayout.OnRefreshListener{
     private int index;
 
     private OnFragmentInteractionListener mListener;
@@ -168,6 +171,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
     }
 
 
+
+
     public void downloadFeedback(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery(FEEDBACK);
         //Log.d("Feedback","showing feedback of"+ EMAIL);
@@ -218,6 +223,8 @@ public class FeedbackFragment extends Fragment implements  SwipeRefreshLayout.On
             }
         });
     }
+
+
 
 
     public interface OnFragmentInteractionListener {

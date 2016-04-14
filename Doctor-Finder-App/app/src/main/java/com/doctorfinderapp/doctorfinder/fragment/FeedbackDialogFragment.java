@@ -1,9 +1,12 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.media.RatingCompat;
@@ -19,6 +22,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.Util;
@@ -40,7 +45,9 @@ import java.util.Date;
  * Created by fedebyes on 08/03/16.
  */
 
-public class FeedbackDialogFragment extends DialogFragment implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
+public class FeedbackDialogFragment
+        extends DialogFragment
+        implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
 
     public View rootView;
     float disponibilita_float;
@@ -174,6 +181,38 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
 
     public void controlToSend() {
 
+    }
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        new MaterialDialog.Builder(c)
+                .title("Sei sicuro?")
+                .content("Non verranno salvati i dati inseriti")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // TODO
+
+                    }
+                })
+                .positiveText("Ho capito")
+                .negativeText("Annulla")
+                .show();
+
+
+        Log.d("Dialog fragment","On dismiss");
+
+
+        /*
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        }*/
     }
 
 
