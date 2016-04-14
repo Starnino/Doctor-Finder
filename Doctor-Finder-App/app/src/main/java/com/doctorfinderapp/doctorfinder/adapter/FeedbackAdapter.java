@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -106,6 +108,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         TextView date;
         PopupMenu popup;
         View divider;
+        CardView feedback_details;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -120,6 +123,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             date = (TextView) itemView.findViewById(R.id.feed_date);
             divider = (View) itemView.findViewById(R.id.divider_feedback);
             delete_progress = (ProgressWheel) itemView.findViewById(R.id.delete_progress);
+            feedback_details = (CardView) itemView.findViewById(R.id.card_view_feedback);
         }
     }
 
@@ -228,6 +232,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 }
             });
 
+            holder.feedback_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickButton(v, holder, position);
+                }
+            });
     }
 
     @Override
@@ -342,6 +352,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             case R.id.feed_like:
                 holder.thumb.setClickable(false);
                 switchColorAndThumb(holder, position);
+                break;
+
+            case R.id.card_view_feedback:
+                MaterialDialog dialog = new MaterialDialog.Builder(holder.itemView.getContext())
+                        .customView(R.layout.feedback_details, false)
+                        .show();
+
         }
     }
 
