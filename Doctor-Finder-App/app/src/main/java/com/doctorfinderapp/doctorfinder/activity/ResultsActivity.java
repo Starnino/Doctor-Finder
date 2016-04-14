@@ -4,29 +4,38 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
@@ -46,32 +55,31 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
-
-public class ResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ResultsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, MenuItem.OnMenuItemClickListener{
 
     private static final String TAG ="Results Activity" ;
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
-    private com.melnykov.fab.FloatingActionButton fab, fab_location;
+    private static com.melnykov.fab.FloatingActionButton fab, fab_location;
     private MenuItem searchItem;
     private MenuItem filterItem;
     private SearchView searchView;
     private static Context c;
     private NavigationView navigationView;
+    private static View coordinator;
+    MaterialDialog dialog;
+    RadioGroup radioGroup;
+    RadioGroup group_mode;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         c=getApplicationContext();
-        //adding doctors data
-        //AddDoctors.addData();
 
-        //aggiungo le foto dei dottori
-       // AddDoctors.addPhoto(getResources());
 
         //set status bar color because in xml don't work
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -79,12 +87,12 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
-        //ParseUser currentUser = ParseUser.getCurrentUser();
-
-        //download from db
-        showDataM();
 
         setContentView(R.layout.activity_results);
+
+
+        coordinator = findViewById(R.id.coordinator_results);
+
 
         //find fab buttons
         fab_location = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_location);
@@ -92,14 +100,41 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent_dottore = new Intent(ResultsActivity.this, WebViewActivity.class);
+            public void onClick(final View v) {
+                new MaterialDialog.Builder(v.getContext())
+                        .title("Suggerisci uno specialitsta")
+                        .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
+                        .inputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .input("Nome, Cognome, Email, Numero, \nSpecialistica", null, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
-                Bundle dottore = new Bundle();
-                dottore.putString("URL",
-                        GlobalVariable.URLDoctorForm );
-                intent_dottore.putExtras(dottore);
-                startActivity(intent_dottore);
+                                Log.d("INPUT", input.toString());
+                                String body = "";
+                                if (ParseUser.getCurrentUser() != null)
+                                     body += "Email Utente: " + ParseUser.getCurrentUser().getEmail() + "\n";
+
+                                body += "Dottore Suggerito: " + input.toString();
+
+                                BackgroundMail.newBuilder(fab.getContext())
+                                        .withUsername("doctor.finder.dcf@gmail.com")
+                                        .withPassword("quantomacina")
+                                        .withMailto("info@doctorfinderapp.com")
+                                        .withSubject("SUGGERIMENTO DOTTORE")
+                                        .withBody(body)
+                                        .send();
+
+                                Util.SnackBarFiga(fab, v, "Grazie per il suggerimento!");
+                            }
+                        })
+                        .iconRes(R.drawable.doctor_avatar)
+                        .maxIconSizeRes(R.dimen.null_card)
+                        .positiveText("Invia")
+                        .negativeText("Annulla")
+                        .widgetColor(getResources().getColor(R.color.docfinder))
+                        .positiveColor(getResources().getColor(R.color.docfinder))
+                        .negativeColor(getResources().getColor(R.color.docfinder))
+                        .show();
             }
         });
 
@@ -114,7 +149,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         Snackbar snackbar = Snackbar
                                 .make(v, "Cercando la tua posizione", Snackbar.LENGTH_LONG);
 
-                        snackbar.show();
+                        snackbar.show();s
                         LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                         if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                            // Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
@@ -150,6 +185,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view_results);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting header
@@ -157,12 +193,19 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         ParseUser user = ParseUser.getCurrentUser();
         setProfileInformation(user);
 
+        setupViewPager(viewPager);
+        //download from db
+
+        if (getIntent().getExtras().getBoolean("RESEARCH"))
+            showDatafromAdapter();
+
+        else showDataM();
+
     }
 
-    public void setProfileInformation(ParseUser user){
-        if (user != null
-                //&& GlobalVariable.SEMAPHORE
-                ) {
+
+      public void setProfileInformation(ParseUser user){
+        if (user != null) {
             getUserImage(user);
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
@@ -190,6 +233,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         adapter.addFragment(new DoctorListFragment(), "Lista");
         adapter.addFragment(new DoctorMapsFragment(), "Mappa");
 
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -204,12 +248,29 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
+
+
         });
+
+        dialog = new MaterialDialog.Builder(this)
+                .title("Ordina Ricerca")
+                .positiveText("Cerca")
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .negativeColor(getResources().getColor(R.color.colorPrimaryDark))
+                .negativeText("annulla")
+                .customView(R.layout.filter_view, true)
+                .build();
+
+        //DoctorListFragment.orderList(mode, grow);
+        radioGroup = (RadioGroup) dialog.findViewById(R.id.group_order);
+        group_mode = (RadioGroup) dialog.findViewById(R.id.order_mode);
+
         viewPager.setAdapter(adapter);
+
         tabs.setupWithViewPager(viewPager);
         fab.show();
+
     }
 
     @Override
@@ -223,7 +284,7 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         searchItem = menu.findItem(R.id.action_search);
-        //TODO REMOVE filterItem = menu.findItem(R.id.action_filter);
+        filterItem = menu.findItem(R.id.action_filter);
 
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
@@ -231,8 +292,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                return true;
-            }
+                    return true;
+                }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
@@ -242,8 +303,56 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                 }
             });
 
-        // Configure the search info and add any event listeners...
+        filterItem.setOnMenuItemClickListener(this);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.action_filter){
+
+            dialog.getBuilder().onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    String mode = "feedback";
+                    boolean grow = false;
+                    if (!DoctorListFragment.ifNullAdapter()) {
+                        switch (radioGroup.getCheckedRadioButtonId()) {
+
+                            case R.id.feedback:
+                                mode = "feedback";
+                                break;
+
+                            case R.id.prezzo:
+                                mode = "prezzo";
+                                break;
+
+                            case R.id.cognome:
+                                mode = "cognome";
+                                break;
+                        }
+
+                        switch (group_mode.getCheckedRadioButtonId()) {
+
+                            case R.id.crescente:
+                                grow = true;
+                                break;
+
+                            case R.id.decrescente:
+                                grow = false;
+                                break;
+                        }
+
+                        DoctorListFragment.orderList(mode, grow);
+                    }
+                }
+            }).show();
+
+            return true;
+
+
+        }
+        return false;
     }
 
 
@@ -254,13 +363,11 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
 
             case R.id.profile:
-                if(ParseUser.getCurrentUser() != null
-                       // && GlobalVariable.SEMAPHORE
-                        ){
+                if(ParseUser.getCurrentUser() != null){
                     Intent intent_user = new Intent(this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
-                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                else Snackbar.make(mDrawerLayout, R.string.effettua_login, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 
@@ -310,12 +417,14 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
 
-    static class Adapter extends FragmentPagerAdapter {
+
+    static class Adapter extends FragmentStatePagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -337,6 +446,9 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+        }
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
 
@@ -371,21 +483,26 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (position == 1) {
             searchItem.setVisible(false);
             searchView.setVisibility(View.INVISIBLE);
-            //TODO REMOVE filterItem.setVisible(false);
+            filterItem.setVisible(false);
         }
         else {
             searchItem.setVisible(true);
             searchView.setVisibility(View.VISIBLE);
-            //TODO REMOVE filterItem.setVisible(true);
+            filterItem.setVisible(true);
         }
     }
 
+
     @Override
     public void onBackPressed() {
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_results);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            GlobalVariable.DOCTORS=new ArrayList<>();
             super.onBackPressed();
         }
 
@@ -399,12 +516,14 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     //download doctors from DB
 
-    public void showDataM() {
+
+    public static void showDataM() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
 
         //retrieve object with multiple city
+
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
 
@@ -418,37 +537,41 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
         }
-
-        //progress dialog
-        final SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setTitleText("Caricamento");
-        dialog.getProgressHelper().setBarColor(getResources().getColor(R.color.docfinder));
-        dialog.show();
+        //refresh.setRefreshing(true);
 
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
+                //refresh.setRefreshing(false);
+                DoctorListFragment.stopRefresh();
+
+
 
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    /*for (int i = 0; i < GlobalVariable.DOCTORS.size(); i++) {
-                        int j = i + 1;
-                        Log.d("DOCTOR " + j, " --> " + objects.get(i).get("FirstName") + " " + objects.get(i).get("LastName"));
-                    }*/
 
-                    dialog.cancel();
-                    setupViewPager(viewPager);
+                    GlobalVariable.DOCTORS = objects;
+                    String found = GlobalVariable.DOCTORS.size() + "";
+                    if (objects.size() == 1)
+                        found += " specialista trovato";
+                    else found += " specialisti trovati";
 
-                    Toast.makeText(getApplicationContext(), GlobalVariable.DOCTORS.size() + " specialisti trovati", Toast.LENGTH_LONG).show();
+                    Util.SnackBarFiga(fab, coordinator, found);
+
+
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
-                    Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
+                    DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+                    DoctorListFragment.setProgressBar(View.GONE);
+
+                    viewPager.getAdapter().notifyDataSetChanged();
+                    if (objects.size()==0){
+                        DoctorListFragment.CardNothingVisible();
+                    }
+
+                    //Log.d(TAG,"DOCTORS.size() "+GlobalVariable.DOCTORS.size());
                 } else {
-                    dialog.cancel();
-                    new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Oops...")
-                            .setContentText("Qualcosa è andato storto!")
-                            .show();
+
                 }
             }
         });
@@ -494,6 +617,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
                         ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
                         file.getDataInBackground(new GetDataCallback() {
                             public void done(byte[] data, ParseException e) {
+
+
                                 if (e == null) {
                                     // data has the bytes for the resume
                                     //data is the image in array byte
@@ -503,6 +628,8 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
                                     RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
                                     mImg.setImageBitmap(GlobalVariable.UserPropic);
+
+
                                     //iv.setImageBitmap(bitmap );
 
 
@@ -519,7 +646,53 @@ public class ResultsActivity extends AppCompatActivity implements NavigationView
 
     }
 
+    public void showDatafromAdapter() {
 
+        //get query: All doctor
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+
+        //retrieve object with multiple city
+        if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
+            doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
+
+        //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
+
+        //retrieve object with multiple city
+        if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
+            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL2);
+
+        //order by LastName
+        if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
+            doctorsQuery.orderByAscending("LastName");
+        }
+
+        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    String found = GlobalVariable.DOCTORS.size() + "";
+                    if (objects.size() == 1)
+                        found += " specialista trovato";
+                    else found += " specialisti trovati";
+
+                    Util.SnackBarFiga(fab, coordinator, found);
+
+                    Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
+                    DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+                    DoctorListFragment.setProgressBar(View.GONE);
+
+                    viewPager.getAdapter().notifyDataSetChanged();
+                    if (objects.size()==0){
+                        DoctorListFragment.CardNothingVisible();
+                    }
+
+                }
+            }
+        });
+
+    }
 
 }
 

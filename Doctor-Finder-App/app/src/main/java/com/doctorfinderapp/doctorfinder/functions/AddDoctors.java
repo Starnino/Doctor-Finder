@@ -158,7 +158,6 @@ public class AddDoctors {
                         R.drawable.sarah_pederboni_gmail_com,
                         R.drawable.valeriagemmiti_gmail_com,
                         R.drawable.nicolina_capuano,
-                        R.drawable.lucio_mucci_libero_it,
                         R.drawable.silviapiro_alice_it};
         final String emaildoc[] = {
                 "antonio.renna11@gmail.com",

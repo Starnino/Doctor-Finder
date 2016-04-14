@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="6dp"
-    android:paddingLeft="6dp"
-    android:paddingTop="6dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.letsnurture.ln_202.coordinatorlayoutpart1.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling_user"
     android:background="@color/google_grey">
 
@@ -16,16 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="30dp"
-        android:paddingTop="16dp">
+
+        android:paddingTop="5dp"
+        android:paddingBottom="32dp">
 
         <android.support.v7.widget.CardView
 
             android:id="@+id/card1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,12 +61,21 @@
                         android:textColor="#212121"
                         android:id="@+id/txt_users"
                         android:layout_alignParentBottom="false"
-                        android:layout_toEndOf="@+id/ivContactItem1" />
+                        android:layout_toEndOf="@+id/ivContactItem1"
+                        android:layout_toRightOf="@+id/ivContactItem1"/>
 
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
 
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,89 +121,52 @@
         </RelativeLayout>
 
 
-        <!--
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/feedback_lasciati"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:visibility="visible">
-
-                    <ImageView
-                        android:id="@+id/feedbackk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_info_black_24dp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/feed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_centerInParent="true"
-                        android:text="Ultimi feedback lasciati"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#212121"
-                        android:layout_alignBottom="@+id/feedbackk"
-                        android:layout_toEndOf="@+id/feedbackk" />
-                    <ImageButton
-                        android:id="@+id/bottonedio"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                        android:checked="true"
-                        android:scaleX="0.6"
-                        android:scaleY="0.6"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:padding="6dp" />
-
-                </RelativeLayout>-->
-
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="8dp">
             <LinearLayout
                 android:id="@+id/card2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="@dimen/fab_margin"
+                    android:padding="@dimen/fab_margin"
                     android:text="Amici che usano Doctor Finder"
                     android:textAlignment="center"
                     android:textColor="@color/docfinder"
                     android:textSize="20sp" />
+
+                <com.pnikosis.materialishprogress.ProgressWheel
+                    android:id="@+id/progress_friends"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nessun amico trovato"
                     android:layout_gravity="center"
+                    android:visibility="gone"
                     android:id="@+id/friend_null"/>
 
                 <android.support.v7.widget.RecyclerView
+                    android:paddingTop="20dp"
                     android:id="@+id/my_recycler_friends"
                     android:scrollbars="horizontal"
                     android:layout_width="match_parent"
@@ -207,8 +180,12 @@
             android:id="@+id/cardio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -259,11 +236,21 @@
                         android:scaleX="0.6"
                         android:scaleY="0.6"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:padding="6dp" />
+                        android:padding="6dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
 
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -307,10 +294,20 @@
                         android:scaleX="0.6"
                         android:scaleY="0.6"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:padding="6dp" />
+                        android:padding="6dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
 
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -355,9 +352,20 @@
                         android:scaleX="0.6"
                         android:scaleY="0.6"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:padding="6dp" />
+                        android:padding="6dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
                 </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -400,7 +408,9 @@
                 android:scaleX="0.6"
                 android:scaleY="0.6"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:padding="6dp" />
+                android:padding="6dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
                 </RelativeLayout>
 

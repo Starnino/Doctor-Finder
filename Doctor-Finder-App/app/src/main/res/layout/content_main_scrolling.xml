@@ -113,7 +113,7 @@
             android:layout_below="@id/card1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dottori Visualizzari di Recente"
+            android:text="Dottori Visualizzati di Recente"
             android:layout_marginStart="@dimen/fab_margin"
             android:textColor="@color/grey"/>
 
@@ -131,8 +131,6 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/fab_margin"
-                android:layout_marginEnd="@dimen/fab_margin"
                 android:layout_marginTop="16dp">
             </android.support.v7.widget.RecyclerView>
 
@@ -171,8 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="@dimen/fab_margin"
-            android:background="@color/white"
-            >
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="match_parent"

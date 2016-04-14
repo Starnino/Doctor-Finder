@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/docfinder">
+        android:background="@color/docfinder"
+        android:id="@+id/frame_title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -19,82 +23,16 @@
             android:textColor="#ffffff"
             android:layout_margin="16dp" />
     </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/giudizio"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:id="@+id/ratingbar_feedback" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/descrizione"
-        android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:lines="5"
-        android:autoText="false"
-        android:editable="true"
-        android:hint="@string/descrizione_visita"
-        android:layout_margin="16dp"
-        android:inputType="textMultiLine"
-        android:layout_gravity="center_horizontal"
-        android:gravity="top" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/anonymus"
-        android:id="@+id/checkBox_anonymus"
-        android:checked="false"
-        android:textSize="11dp"
-        android:layout_marginLeft="16dp" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/respons"
-        android:id="@+id/checkBox_respons"
-        android:checked="false"
-        android:textSize="11dp"
-        android:layout_marginLeft="16dp"
-        android:lines="2" />
+<include layout="@layout/scrollview_fragment_dialog"></include>
 
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp">
+        android:paddingBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -123,4 +61,5 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

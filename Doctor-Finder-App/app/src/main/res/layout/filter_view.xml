@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/fab_margin">
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-star"
+                    android:layout_marginBottom="@dimen/fab_margin"/>
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-sort_by_alpha"
+                    android:layout_marginBottom="@dimen/fab_margin"/>
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-euro_symbol" />
+
+            </LinearLayout>
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/group_order">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feedback"
+                    android:checked="true"
+                    android:id="@+id/feedback"
+                    android:buttonTint="@color/colorPrimaryDark"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cognome"
+                    android:text="Cognome"
+                    android:buttonTint="@color/colorPrimaryDark"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prezzo"
+                android:text="Prezzo"
+                android:buttonTint="@color/colorPrimaryDark"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/fab_margin">
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-keyboard_arrow_right"
+                    android:layout_marginBottom="@dimen/fab_margin"/>
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:iiv_color="@color/colorPrimaryDark"
+                    app:iiv_icon="gmd-keyboard_arrow_left" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/order_mode">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/decrescente"
+                    android:id="@+id/decrescente"
+                    android:checked="true"
+                    android:buttonTint="@color/colorPrimaryDark"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crescente"
+                    android:id="@+id/crescente"
+                    android:buttonTint="@color/colorPrimaryDark"/>
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
@@ -148,11 +150,11 @@ public class DoctorMapsFragment extends SupportMapFragment
     public void onResume() {
         super.onResume();
 
-       setUpMapIfNeeded();
+        setUpMapIfNeeded();
 
     }
 
-    private void setUpMapIfNeeded() {
+    private  void setUpMapIfNeeded() {
         if (googleMap == null) {
             getMapAsync(new OnMapReadyCallback() {
                 @Override
@@ -180,7 +182,7 @@ public class DoctorMapsFragment extends SupportMapFragment
 
 
         //rimpicciolisco il marker
-        Bitmap markerSmall = resizeMarker(R.drawable.markermini, 100);
+        Bitmap markerSmall = resizeMarker(R.drawable.markermini, 40);
 
         ArrayList<String> spec;
         ArrayList<HashMap> position;
@@ -225,7 +227,7 @@ public class DoctorMapsFragment extends SupportMapFragment
                     lon = Double.parseDouble(latLong[index][1]);
                     Marker currentMarker = gMap.addMarker(new MarkerOptions()
                             .position(new LatLng(lat, lon))
-                                    //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
+                            //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
                             .title(id)
                             .icon(BitmapDescriptorFactory.fromBitmap(markerSmall))
                             .snippet(Util.setSpecialization(spec)));
@@ -262,31 +264,36 @@ public class DoctorMapsFragment extends SupportMapFragment
 
     }
 
+    public float convertDpToPixel(float dp, Activity context)
+    {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return px;
+    }
+
     public Bitmap resizeMarker(int id, int width) {
 
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), id);
         if (imageBitmap == null) {
-            Log.d("mappa", "imagebitmapis null");
+            //Log.d("mappa", "imagebitmapis null");
         }
         float aspectRatio = imageBitmap.getWidth() /
                 (float) imageBitmap.getHeight();
 
         int height = Math.round(width / aspectRatio);
 
-        imageBitmap = Bitmap.createScaledBitmap(
-                imageBitmap, width, height, false);
+        /*imageBitmap = Bitmap.createScaledBitmap(
+                imageBitmap, width, height, false);*/
 
 
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        //Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, ((int) convertDpToPixel(width,getActivity())), ((int) convertDpToPixel(height,getActivity())), false);
+       // ((int) convertDpToPixel(75))
+
+
         return resizedBitmap;
     }
-
-    /*@Override
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this.getContext(), "Info window clicked",
-                Toast.LENGTH_SHORT).show();
-        Log.d("mappa", "infowindow clicked");
-    }*/
 
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {

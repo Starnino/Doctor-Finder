@@ -1,7 +1,9 @@
+/app/proguard-rules.pro
+/gradle.properties
+/settings.gradle
+/gradle/wrapper/gradle-wrapper.properties
 /build.gradle
 /app/build.gradle
-
-
 
 /.idea/gradle.xml
 /.idea/misc.xml
@@ -12,4 +14,5 @@
 /.idea/libraries
 .DS_Store
 /build
+
 /captures

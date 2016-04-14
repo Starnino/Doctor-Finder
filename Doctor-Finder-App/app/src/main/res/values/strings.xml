@@ -7,6 +7,9 @@
 
     <string name="doctorfindername">Doctor Finder</string>
     <string name="action_log_in">Login </string>
+    <string name="send_data_button">Invia i dati </string>
+    <string name="restore_psw">Inserisci qui la tua email. Ti contatteremo immediatamente con tutte le istruzioni per recuperare la tua password! </string>
+    <string name="intro_claim">Compilando i campi indicati qui in basso potrai consigliarci uno specialista che vorresti fosse su questa applicazione!</string>
     <string name="action_sign2_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Questa email non è valida!</string>
@@ -15,7 +18,7 @@
     <string name="error_field_required">Questo campo è obbligatorio</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="action_search">"Ricerca rapida"</string>
-
+    <string name="button_reset">Cancella </string>
     <string name="action_login_with_facebook">"Login con facebook"</string>
     <string name="action_login_with_google">"Login con Google+"</string>
     <string name="text_firstName">Nome</string>
@@ -26,7 +29,7 @@
     <string name="text_useyourEmail">Altrimenti usa la tua email</string>
     <string name="text_useyourAccount">Altrimenti usa il tuo account</string>
     <string name="text_username">Email</string>
-    <string name="text_forgotPassword">Passoword dimenticata?</string>
+    <string name="text_forgotPassword">Password dimenticata?</string>
     <string name="text_rememberMe">Ricordami</string>
     <string name="text_signupNow">Registrati ora!</string>
     <string name="namy">Non ne fai ancora parte? </string>
@@ -44,13 +47,19 @@
     <string name="action_example">Example action</string>
 
     <string name="profile">Il tuo Profilo</string>
-    <string name="gestisci">Qurami è nostra amica!</string>
     <string name="inserisci_dottore">Registrati come specialista</string>
     <string name="logout">Logout</string>
-    <string name="about">Riguardo Doctor Finder</string>
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
+
+    <string name="first_access">
+        Ciao,
+        ti ringraziamo per esserti registrato su Doctor Finder. Questa applicazione
+        ti permette di trovare con facilità uno specialista della salute! Speriamo di esserti di aiuto!
+        Per qualsiasi problema non esistare a contattarci su Facebook o mandando una mail a
+        info@doctorfinderapp.com
+    </string>
 
 
     <string-array name="Specializations">
@@ -87,6 +96,7 @@
         <item>Medicina dello Sport</item>
         <item>Medicina Estetica</item>
         <item>Medicina Interna</item>
+        <item>Medicina del Lavoro</item>
         <item>Medicina Legale</item>
         <item>Medicina Nucleare</item>
         <item>Medicina Veterinaria</item>
@@ -97,7 +107,6 @@
         <item>Neuropsichiatria Infantile</item>
         <item>Oculistica</item>
         <item>Odontoiatria</item>
-        <item>Omeopatia e Agopuntura</item>
         <item>Oncologia</item>
         <item>Ortopedia e Traumatologia</item>
         <item>Otorinolaringoiatria</item>
@@ -228,29 +237,6 @@
 
     <string name="facebook_app_id">235657870105831</string>
 
-
-    <string-array name="years">
-        <item>Meno di 5</item>
-        <item>Tra 5 e 10</item>
-        <item>Più di 10</item>
-    </string-array>
-
-    <string-array name="prezzi">
-        <item>Meno di 100</item>
-        <item>101-150</item>
-        <item>151-200</item>
-        <item>201-250</item>
-    </string-array>
-
-    <string-array name="feedback">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-    </string-array>
-
-
     <string name="title_activity_doctor_maps_fragment">Map</string>
     <string name="title_activity_maps">Map</string>
 
@@ -278,9 +264,6 @@
 
     <string name="doctor_map">Visualizza Profilo</string>
 
-    <!--forse stavolta ce la faccio-->
-    <string name="title_share_text">Share Text</string>
-
     <!--Informativa-->
 
     <string name="Informativa1">
@@ -299,7 +282,7 @@
     <string name="feedback_dialog_name">Il tuo feedback</string>
     <string name="feedback_send">Invia</string>
     <string name="cancel">Annulla</string>
-    <string name="giudizio">Il tuo giudizio</string>
+    <string name="giudizio">Giudizio complessivo</string>
     <string name="descrizione">La tua descrizione</string>
     <string name="descrizione_visita">Descrivi la visita...</string>
     <string name="respons">Dichiaro che questo feedback è frutto di un\'esperienza reale</string>
@@ -317,11 +300,30 @@
     <string name="complete_form">Completa tutti i campi!</string>
     <string name="user_exists">L\'utente esiste già</string>
     <string name="access_ok">Accesso Effettuato</string>
+    <string name="recupero_mail">Controlla la tua posta!</string>
     <string name="bad_login">Email o password errati</string>
     <string name="signup_completed">Registrato correttamente!</string>
     <string name="good_login">Login effettuato</string>
     <string name="facebook_linked">Il tuo profilo di Facebook è stato associato al tuo utente</string>
     <string name="error_facebook">Qualcosa non va..</string>
+    <string name="no_connection_friend">C\'è qualche problema. Assicurati che la tua connessione a Internet funzioni!</string>
+    <string name="effettua_login">Fai il login per visulizzare il tuo profilo!</string>
+    <string name="effettua_login_facebook">Effettua il login con Facebook</string>
+    <string name="friends_tip">Amici che consigliano questo medico</string>
+    <string name="connection_control">Controlla la tua connessione a Internet!</string>
+    <string name="tip_dcf_user">Connettiti a Facebook per una migliore esperienza di navigazione su Doctor Finder e per conoscere i feedback e i pareri dei tuoi amici</string>
+    <string name="feedback_null">Nessun amico ha ancora rilasciato\n feedback per questo dottore</string>
+    <string name="report_spam">Report Spam</string>
+    <string name="clear">Elimina</string>
+    <string name="crescente">Crescente</string>
+    <string name="decrescente">Decrescente</string>
+    <string name="tu">(Tu)</string>
+    <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
+    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?
+           Ti fidi delle sue scelte?</string>
+    <string name="complessivo_guide">Questo campo non è modificabile, è la media degli altri voti!</string>
+    <string name="cordialita_guide">Il dottore è stato gentile?</string>
+    <string name="persi">Attenzione, i dati inseriti andranno persi!</string>
 
 
 </resources>

@@ -50,6 +50,8 @@ public class WebViewActivity extends AppCompatActivity {
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
+                // TODO: 4/13/16 fatto giusto il rigo seguente? si è aggiunto con alt+enter però il warnings è sparito
+                assert rel1 != null;
                 rel1.setVisibility(View.VISIBLE);
             }
         });
