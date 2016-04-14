@@ -9,10 +9,19 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.Log;
+import android.view.View;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
+import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
+import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -25,10 +34,16 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Objects;
 
 /**
  * Created by francesco on 02/03/16.
@@ -114,16 +129,12 @@ public class Util {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (user.getString(FACEBOOK)!=null){
-            //user getstring puo essere null @starnino
+        if (user.getString(FACEBOOK)!=null)
             if(!user.getString(FACEBOOK).equals("true")) return friends;
 
-        }
-
         if (user.getString(FRIENDS)==null) return friends;
-        if (user.getString(FACEBOOK).equals("true")) {
+        if (user.getString(FACEBOOK).equals("true"))
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
-        }
 
          for (int i = 0; i < id.size(); i++) {
           // Log.d("AMICO --> ", id.get(i));
@@ -135,7 +146,6 @@ public class Util {
 
         friendQuery.whereContainedIn(ID, id);
 
-        // todo get query non in background
         try {
             friends = friendQuery.find();
         } catch (ParseException e) {
@@ -145,11 +155,11 @@ public class Util {
         return friends;
     }
 
-    public static List<ParseObject> getUserFacebookFriendsAndFeedback(ParseUser user, String doctor_email) {
+    public static List<ParseObject> getUserFacebookFriendsAndFeedback(String doctor_email, List<ParseObject> friends_objects) {
 
         //Log.d("EMAIL DOCTOR --> ", doctor_email);
 
-        List<ParseObject> friends = getUserFacebookFriends(user);
+        List<ParseObject> friends = friends_objects;
 
         ArrayList<String> friends_email = new ArrayList<>();
 
@@ -195,44 +205,39 @@ public class Util {
 
     public static void calculateFeedback(final String doctor_email) {
 
-        /*final ParseACL postACL = new ParseACL(ParseUser.getCurrentUser());
-        postACL.setPublicReadAccess(true);
-        postACL.setPublicWriteAccess(true);*/
+
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
         query.whereEqualTo("Email", doctor_email);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject doctor, ParseException e) {
 
                 if (doctor == null) {
-                    Log.d("calculate feedback", "Error doctor not exists ");
+                    //Log.d("calculate feedback", "Error doctor not exists ");
                 } else {
-                    //ACL
-                    //doctor.setACL(postACL);
+
                     ParseQuery query2 = ParseQuery.getQuery("Feedback");
                     query2.whereEqualTo("email_doctor", doctor_email);
-                    Log.d("Feedback", doctor.toString());
+                    //Log.d("Feedback", doctor.toString());
                     try {
                         List<ParseObject> objects = (List<ParseObject>) query2.find();
                         Float somma = 0f;
                         for (int i = 0; i < objects.size(); i++) {
                             String f = objects.get(i).get("Rating").toString();
-                            Log.d("Feedback", f);
+                            //Log.d("Feedback", f);
                             somma = somma + Float.parseFloat(f);
                         }
-                        Log.d("Feedback2", doctor.toString());
-                        float media = somma / objects.size();
-                        Log.d("Feedback", "object.size() " + objects.size() + "");
-                        Log.d("Feedback", "somma " + somma + "");
-                        Log.d("Feedback", "media " + media + "");
-                        //doctor.remove("Feedback");
 
-                        //Log.d("Feedback", String.valueOf(doctor.getACL().getPublicReadAccess()));
-                        //Log.d("Feedback", String.valueOf(doctor.getACL().getPublicWriteAccess()));
+                        float media = 0;
+                        if (objects.size() != 0) {
+                            media = somma / objects.size();
+                            doctor.put("Feedback", media);
 
-                        //Log.d("Feedback3", doctor.toString());
-                        doctor.save();
+                        } else
+                            doctor.put("Feedback", 0.0f);
 
-                        doctor.put("Feedback", media);
+                        Log.d("PUTTO --> ", media + "");
+                        DoctorFragment.changeRating(media);
+                        DoctorListFragment.refreshList();
                         doctor.save();
 
 
@@ -242,7 +247,6 @@ public class Util {
                 }
             }
         });
-
     }
 
     public static boolean isOnline(Context context) {
@@ -370,9 +374,9 @@ public class Util {
         emailIntent.putExtra(Intent.EXTRA_TEXT, "" +
                 " \n " +
                 " \n " +
-                " \n " + " \n " +
                 " \n " +
-
+                " \n " +
+                " \n " +
                 " \n " +
                 " \n " +
                 "Messaggio inviato tramite Doctor Finder ");
@@ -384,4 +388,56 @@ public class Util {
         }
     }
 
+    public static List<Doctor> transformList(List<ParseObject> objects){
+        ArrayList<Doctor> ret = new ArrayList<>();
+        int num = objects.size();
+        for (int i = 0; i < num; i++) {
+
+            String FN = objects.get(i).getString("FN");
+            String LN = objects.get(i).getString("LN");
+            String EM = objects.get(i).getString("E@");
+            ArrayList<String> CITY = (ArrayList<String>) objects.get(i).get("CITY");
+            ArrayList<String> SPEC = (ArrayList<String>) objects.get(i).get("SPEC");
+            boolean SEX = objects.get(i).getBoolean("SEX");
+            ret.add(0, new Doctor(FN, LN, SPEC, CITY, SEX, EM));
+        }
+
+        return ret;
+    }
+
+    public static List<String[]> transformSearch(List<ParseObject> objects){
+        ArrayList<String[]> ret = new ArrayList<>();
+        int num = objects.size();
+        for (int i = 0; i < num; i++) {
+
+            String SPEC = objects.get(i).getString("SPEC");
+            String CITY = objects.get(i).getString("CITY");
+            String[] linear =  new String[]{SPEC, CITY};
+            ret.add(0, linear);
+        }
+        return ret;
+    }
+
+    public static void SnackBarFiga(final com.melnykov.fab.FloatingActionButton fab, View v, String text){
+
+        if (fab == null){
+            Snackbar.make(v, text, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+        } else {
+            final float fab_up = v.getResources().getDimension(R.dimen.fab_up);
+            final float fab_down = v.getResources().getDimension(R.dimen.fab_down);
+            Snackbar.make(v, text, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .setCallback(new Snackbar.Callback() {
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            ViewCompat.animate(fab).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                            super.onDismissed(snackbar, event);
+                        }
+                    })
+                    .show();
+            ViewCompat.animate(fab).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+        }
+    }
 }

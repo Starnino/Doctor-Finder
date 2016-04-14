@@ -23,7 +23,16 @@
     <dimen name="dialog_padding">24dp</dimen>
     <dimen name="dialog_button_padding">8dp</dimen>
 
-    <dimen name="doctor_item_height">130dp</dimen>
-    <dimen name="doctor_item_width">130dp</dimen>
+    <dimen name="doctor_item_height">140dp</dimen>
+    <dimen name="doctor_item_width">140dp</dimen>
+    <dimen name="padding_recycler_top">20dp</dimen>
+
+    <dimen name="progress_dim">25dp</dimen>
+    <dimen name="null_card">48dp</dimen>
+    <dimen name="linear_recycler">192dp</dimen>
+    <dimen name="progress_height">15dp</dimen>
+    <dimen name="feed_image">80dp</dimen>
+    <dimen name="fab_up">48dp</dimen>
+    <dimen name="fab_down">-48dp</dimen>
 
 </resources>

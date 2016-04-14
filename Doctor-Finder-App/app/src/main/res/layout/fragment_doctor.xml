@@ -1,8 +1,9 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/google_grey"
     android:theme="@style/AppTheme"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -11,14 +12,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="32dp">
 
         <android.support.v7.widget.CardView
 
             android:id="@+id/card1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,6 +55,7 @@
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="Nessun nome dichiarato"
+                        android:textStyle="bold"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="#212121"
                         android:layout_alignTop="@+id/ivContactItem1"
@@ -59,6 +64,16 @@
 
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:id="@+id/Spec"
@@ -108,6 +123,14 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -164,6 +187,14 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:id="@+id/telefono"
@@ -233,6 +264,15 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/Exp"
                     android:layout_width="match_parent"
@@ -282,6 +322,16 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -330,9 +380,10 @@
                         android:backgroundTint="@color/colorPrimaryDark"
                         android:onClick="onClick"
                         android:padding="6dp" />
+
                     <TextView
                         android:id="@+id/cityPlace"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvNumber4"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -342,7 +393,9 @@
                         android:layout_toRightOf="@id/ivContactItem4"
                         android:text="Città"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="#727272" />
+                        android:textColor="#727272"
+                        android:layout_toStartOf="@id/maps_button"
+                        android:layout_toLeftOf="@id/maps_button"/>
 
 
                     <TextView
@@ -356,9 +409,16 @@
                         android:layout_alignStart="@+id/cityPlace"
                         android:layout_alignLeft="@+id/cityPlace"/>
 
-
-
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
 
                 <RelativeLayout
                     android:id="@+id/visit"
@@ -407,13 +467,23 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/Price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="16dp">
 
                     <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem7"
@@ -455,112 +525,145 @@
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/google_grey"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <RelativeLayout
+                    android:id="@+id/feedback_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/ivContactItem5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        app:iiv_color="@color/colorPrimaryDark"
+                        app:iiv_icon="gmd-supervisor_account"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:id="@+id/tvNumber5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_toEndOf="@id/ivContactItem5"
+                        android:layout_toRightOf="@id/ivContactItem5"
+                        android:text="Feedback:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#212121" />
+
+                    <TextView
+                        android:id="@+id/float_feedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:text="4.9"
+                        android:layout_below="@id/tvNumber5"
+                        android:layout_toEndOf="@id/ivContactItem5"
+                        android:layout_toRightOf="@id/ivContactItem5"
+                        android:textSize="50sp"
+                        android:layout_gravity="bottom"/>
+
+                    <ImageView
+                        android:id="@+id/feedback_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:checked="true"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:onClick="onClick"
+                        android:padding="6dp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBarDoctorProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:isIndicator="true"
+                        android:layout_below="@+id/tvNumber5"
+                        android:layout_alignStart="@id/float_feedback"
+                        android:layout_alignLeft="@id/float_feedback"
+                        android:scaleX="0.3"
+                        android:scaleY="0.3"
+                        android:transformPivotX="110dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentBottom="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/num_feedback"
+                        android:text="0"
+                        android:layout_below="@+id/tvNumber5"
+                        android:layout_toEndOf="@id/float_feedback"
+                        android:layout_toRightOf="@id/float_feedback"
+                        android:layout_marginLeft="9dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="35dp"/>
+
+                </RelativeLayout>
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_marginTop="6dp"
-            android:id="@+id/feedback_card"
+            android:id="@+id/card_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
-
-
-            <RelativeLayout
-                android:id="@+id/feedback_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:padding="@dimen/activity_horizontal_margin">
-
-
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:id="@+id/ivContactItem5"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_centerVertical="true"
-                    android:visibility="visible"
-                    app:iiv_color="@color/colorPrimaryDark"
-                    app:iiv_icon="gmd-supervisor_account"/>
-
-                <TextView
-                    android:id="@+id/tvNumber5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_toEndOf="@id/ivContactItem5"
-                    android:layout_toRightOf="@id/ivContactItem5"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Feedback:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#212121"  />
-
-                <ImageView
-                    android:id="@+id/feedback_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
-                    android:checked="true"
-                    android:scaleX="0.6"
-                    android:scaleY="0.6"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:onClick="onClick"
-                    android:padding="6dp" />
-
-                <RatingBar
-                    android:id="@+id/ratingBarDoctorProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:isIndicator="true"
-                    android:layout_below="@+id/tvNumber5"
-                    android:layout_alignStart="@+id/tvNumber5"
-                    android:layout_alignLeft="@+id/tvNumber5"
-                    android:layout_marginLeft="-10dp"
-                    android:layout_marginStart="-10dp"/>
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_margin="8dp"
+            android:layout_marginStart="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:orientation="vertical">
 
                 <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Amici che consigliano questo medico"
+                android:text="@string/friends_tip"
                 android:textAlignment="center"
                 android:paddingBottom="@dimen/fab_margin"
                 android:textColor="@color/docfinder"
-                android:textSize="20sp" />
+                android:textSize="20sp" android:layout_margin="10dp"/>
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
                 android:id="@+id/my_recycler_friends2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+                <com.pnikosis.materialishprogress.ProgressWheel
+                    android:id="@+id/progress_tip"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_gravity="center"
@@ -570,20 +673,26 @@
 
                 <ImageView
                     android:id="@+id/icon_facebook_tip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/com_facebook_button_icon_blue"/>
+                    android:src="@drawable/com_facebook_favicon_white"
+                    android:tint="@color/colorPrimaryDark"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_margin="@dimen/fab_margin"
                     android:id="@+id/suggest_null"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ancora nessun amico ha lasciato\n feedback per questo medico"
+                    android:text="@string/effettua_login_facebook"
                     android:layout_gravity="center"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
                 </LinearLayout>
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#009688</color>
-
     <color name="colorPrimaryDark">#00695c</color>
     <color name="docfinder">#009688</color>
     <color name="darkdf">#004D40</color>
@@ -17,14 +16,16 @@
     <color name="green_pressed">#4DB6AC</color>
     <color name="transparent">#00000000</color>
 
-    <!--New Social Share-->
+    <!--Altri-->
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#00BCD4</color>
+    <color name="accent">#00bcd4</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+    <color name="dcf_clear">#80CBC4</color>
+    <color name="dcf_ancora_piu_clear">#B2DFDB</color>
 
 </resources>

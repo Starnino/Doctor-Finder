@@ -3,19 +3,21 @@ package com.doctorfinderapp.doctorfinder.activity.access;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
@@ -27,6 +29,7 @@ import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     private String passwordtxt;
     private EditText password;
     private EditText username;
-    private CheckBox remeberMe; //da implementare codice gestione rememberMe
     private CallbackManager callbackManager;
     private GoogleApiClient client;
     private ImageButton close;
@@ -68,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // Get the view from xml
         setContentView(R.layout.activity_login);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+        final ProgressWheel progressBar = (ProgressWheel) findViewById(R.id.progressBar1);
+        progressBar.setBarColor(getResources().getColor(R.color.white));
 
         //initialize callback Manager
         callbackManager = CallbackManager.Factory.create();
@@ -78,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         TextView forgot_password=(TextView) findViewById(R.id.forgot_password);
 
+        assert forgot_password != null;
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,11 +90,40 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //password dimenticata
         resetpsw = (TextView)findViewById(R.id.forgot_password);
         resetpsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new MaterialDialog.Builder(v.getContext())
+                        .title("Reset password")
+                        .content("Inserisci qui la tua mail e ti invieremo tutti i dettagli per recuperare la password!")
+                        .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .input("La tua Email", null, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                                Log.d("INPUT", input.toString());
+
+                                final String body = "Ho perso la password per accedere a Doctor Finder questa è la mia mail ==> " + input.toString();
+
+                                // TODO: 4/9/16 bisogna organizzare tutto cià da lato server
+
+                                BackgroundMail.newBuilder(resetpsw.getContext())
+                                        .withUsername("doctor.finder.dcf@gmail.com")
+                                        .withPassword("quantomacina")
+                                        .withMailto("info@doctorfinderapp.com")
+                                        .withSubject("RESET PASSWORD")
+                                        .withBody(body)
+                                        .send();
+
+                                Snackbar.make(resetpsw, "Controlla la posta!", Snackbar.LENGTH_LONG)
+                                        .show();
+                            }
+                        }).positiveText("Recupera")
+                        .negativeText("Annulla")
+
+                        .show();
+                /*
                 ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
@@ -100,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+                */
             }
         });
 
@@ -115,11 +149,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // Login Button Click Listener
+        assert loginButton != null;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 // Retrieve the text entered from the EditText
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.spin();
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
 
@@ -140,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Snackbar.make(v, R.string.bad_login, Snackbar.LENGTH_SHORT)
                                         .setAction("Action", null).show();
-                                progressBar.setVisibility(View.INVISIBLE);
+                                progressBar.stopSpinning();
 
                             }
                         }
@@ -158,12 +193,13 @@ public class LoginActivity extends AppCompatActivity {
 
         //loginWithFacebook.
         Button FLogin = (Button) findViewById(R.id.flogin);
+        assert FLogin != null;
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
                 List<String> permissions = Arrays.asList("email", "public_profile","user_friends");
-                progressBar.setVisibility(View.VISIBLE);
+                progressBar.spin();
 
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
@@ -172,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException err) {
                         if (user == null) {
                             Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
 
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
@@ -182,7 +218,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)
                                     .setAction("Action", null).show();
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -191,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
 
                             //facebook things
                             Log.d("login with facebook", user.toString());

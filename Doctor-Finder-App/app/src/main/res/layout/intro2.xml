@@ -34,6 +34,7 @@
             android:paddingRight="16dp"
             android:src="@drawable/s2"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -45,8 +46,10 @@
         android:paddingRight="64dp"
         android:fontFamily="sans-serif-thin"
         android:textSize="16sp"
-        android:text="Cerca il dottore per nome o  specializzazione"/>
+        android:text="@string/intro_2"/>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
+
 </LinearLayout>

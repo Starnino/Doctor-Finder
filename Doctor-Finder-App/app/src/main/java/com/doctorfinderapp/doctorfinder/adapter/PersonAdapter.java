@@ -44,6 +44,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     public void onBindViewHolder(PersonViewHolder holder, int position) {
         holder.personName.setText(friends.get(position).getName());
         holder.personPhoto.setImageResource(friends.get(position).getPhotoId());
+
+        holder.setIsRecyclable(false);
     }
 
     @Override

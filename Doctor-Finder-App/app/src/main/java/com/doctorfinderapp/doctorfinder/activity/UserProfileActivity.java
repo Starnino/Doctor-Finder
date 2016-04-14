@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,26 +19,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String NAME = "fName";
-    public static final String SURNAME = "lName";
+    public final String NAME = "fName";
+    public final String SURNAME = "lName";
+    public final String FRIENDS = "friends";
+    public final String FACEBOOK = "Facebook";
+    public final String USER = "_User";
+    public final String ID = "facebookId";
     private static Context c;
     private static com.melnykov.fab.FloatingActionButton fab_share;
     public final String USER_EMAIL = "email";
@@ -50,15 +65,49 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private TextView email;
     private TextView friend_null;
     private String email_users;
-
-    public static void showToastFeedback() {
-        Toast.makeText(c, R.string.feedback_visual,
-                Toast.LENGTH_LONG).show();
-    }
+    private CardView card_friend;
+    private List<ParseObject> friends;
+    private ProgressWheel progress;
+    private ParseUser user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!ParseFacebookUtils.isLinked(ParseUser.getCurrentUser()) && !GlobalVariable.FLAG_DIALOG) {
+
+
+
+            new MaterialDialog.Builder(this)
+                    .title("Connettiti con Facebook")
+                    .content(getString(R.string.tip_dcf_user))
+                    .positiveText("Ok")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            ParseFacebookUtils.linkWithReadPermissionsInBackground(user, UserProfileActivity.this,
+                                    (Collection<String>) GlobalVariable.permissions,
+                                    new SaveCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
+                                            Log.d("Facebook link", e + "EXCEPTION");
+                                            if (ParseFacebookUtils.isLinked(user)) {
+
+
+                                                FacebookProfile.getGraphRequest(user);
+
+                                                Log.d("MyApp", "Woohoo, user logged in with Facebook!");
+                                            } else {
+
+                                            }
+                                        }
+                                    });
+
+                        }
+                    })
+
+                    .show();
+        }
 
 
         //scrolling
@@ -66,13 +115,17 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
 
-        final ParseUser user = ParseUser.getCurrentUser();
-
+        user = ParseUser.getCurrentUser();
 
         fab_share = (com.melnykov.fab.FloatingActionButton) findViewById(R.id.fab_share);
         fab_share.setOnClickListener(this);
 
         friend_null = (TextView) findViewById(R.id.friend_null);
+        card_friend = (CardView) findViewById(R.id.card_friends);
+
+        progress = (ProgressWheel) findViewById(R.id.progress_friends);
+        progress.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progress.spin();
 
         if (user != null) {
 
@@ -100,35 +153,30 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             Log.d("UTENTE --> ", firstName + ", " + lastName + ", " + email_users);
         }
 
-        if (Util.isOnline(getApplicationContext())) {
-            //recycler view
-            mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
+            if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
 
-            mRecyclerView.setHasFixedSize(true);
+                //recycler view
+                mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);
 
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                mRecyclerView.setHasFixedSize(true);
 
-            mRecyclerView.setLayoutManager(mLayoutManager);
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-            //set adapter to recycler
+                mRecyclerView.setLayoutManager(mLayoutManager);
 
-            mAdapter = new FacebookAdapter(Util.getUserFacebookFriends(user));
+                //set adapter to recycler
+                friends = new ArrayList<>();
 
-            if (mAdapter.getItemCount() != 0) friend_null.setVisibility(View.INVISIBLE);
+                mAdapter = new FacebookAdapter(friends);
 
-            //if friends.size() is not empty set height to 100dp
-            if (mAdapter.getItemCount() != 0) mRecyclerView.getLayoutParams().height = 300;
+                /**update dinamically recycler view @fedebyes this is TOP*/
+                new AsyncGetUserFriends().execute();
 
-            mRecyclerView.setAdapter(mAdapter);
+            } else  card_friend.setVisibility(View.GONE);
 
-        } else {
-            friend_null.setText("C'è qualche problema. Assicurati che la tua connessione a Internet funzioni!");
-            friend_null.setGravity(View.TEXT_ALIGNMENT_CENTER);
-        }
 
-        //nameProfile.setText(Title);
+
         if (getSupportActionBar() != null) {
-            //getSupportActionBar().setTitle(Title);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -149,7 +197,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_email);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Prova Doctor Finder --> http://bit.do/Doctor-Finder-App ");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
@@ -204,6 +252,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                                                 .setAction("Action", null).show();
 
                                         FacebookProfile.getGraphRequest(user);
+
                                         Log.d("MyApp", "Woohoo, user logged in with Facebook!");
                                     } else {
                                         Snackbar.make(v, R.string.error_facebook, Snackbar.LENGTH_SHORT)
@@ -251,10 +300,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         switch (id) {
 
             case R.id.fab_share:
-
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_email);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Prova Doctor Finder --> http://bit.do/Doctor-Finder-App ");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
                 break;
@@ -269,5 +317,57 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
 
+
+    public void getUserFacebookFriends(ParseUser user, final List<ParseObject> ArrayAdapterFriends) {
+        List<String> id = new ArrayList<>();
+
+        if (user == null) return;
+        if (user.getString(FACEBOOK) != null)
+            if (!user.getString(FACEBOOK).equals("true")) return;
+
+        if (user.getString(FRIENDS) == null) return;
+        if (user.getString(FACEBOOK).equals("true"))
+            id = Arrays.asList(user.get(FRIENDS).toString().split(","));
+
+        /*for (int i = 0; i < id.size(); i++) {
+            Log.d("AMICO --> ", id.get(i));
+        }*/
+
+        ParseQuery<ParseObject> friendQuery = ParseQuery.getQuery(USER);
+
+        friendQuery.whereContainedIn(ID, id);
+        friendQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+
+
+                    for (int i = 0; i < objects.size(); i++)
+                        ArrayAdapterFriends.add(objects.get(i));
+
+                    progress.setVisibility(View.GONE);
+
+                    //if friends.size() is not empty set height to dimen dp
+                    if (mAdapter.getItemCount() != 0) {
+
+                        friend_null.setVisibility(View.GONE);
+                        mRecyclerView.getLayoutParams().height =
+                                (int) getResources().getDimension(R.dimen.doctor_item_height);
+                    }
+
+                    mRecyclerView.setAdapter(mAdapter);
+                }
+            }
+        });
+    }
+
+    class AsyncGetUserFriends extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            getUserFacebookFriends(user, friends);
+            return null;
+        }
+    }
 }
 

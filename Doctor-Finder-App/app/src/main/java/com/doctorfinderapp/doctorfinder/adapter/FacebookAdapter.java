@@ -1,8 +1,6 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
-/**
- * Created by francesco on 09/03/16.
- */
+
 
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
@@ -22,9 +20,7 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
-/**
- * Created by francesco on 18/02/16.
- */
+
 public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.FacebookViewHolder> {
 
     public static final String NAME = "fName";
@@ -46,17 +42,7 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.Facebo
     List<ParseObject> friends;
 
     public FacebookAdapter(List<ParseObject> persons) {
-
-
         this.friends = persons;
-
-        //Log.d("FacebookAdapter",persons.size()+"numero persone passate adapter");
-
-        for(int i=0;i<friends.size();i++){
-            //Log.d("FacebookAdapter","name number "+i+": "+friends.get(i).get(NAME));
-        }
-
-
     }
 
     @Override

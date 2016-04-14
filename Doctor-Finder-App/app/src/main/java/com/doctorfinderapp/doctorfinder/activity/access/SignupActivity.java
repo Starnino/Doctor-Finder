@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
@@ -26,6 +27,7 @@ import com.parse.ParseFacebookUtils;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
 
@@ -59,8 +61,9 @@ public class SignupActivity extends AppCompatActivity {
 
         //get the view from xml
         setContentView(R.layout.activity_signup);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-        progressBar.setVisibility(View.INVISIBLE);
+        final ProgressWheel progressBar = (ProgressWheel) findViewById(R.id.progressBar2);
+        progressBar.setBarColor(getResources().getColor(R.color.white));
+
         //locate button in xml
         signUp = (Button) findViewById(R.id.buttonSignUp);
 
@@ -99,31 +102,23 @@ public class SignupActivity extends AppCompatActivity {
                 // Force user to fill up the form
                 if (password_string.equals("") || fName.equals("") || lName.equals("")
                         || email_string.equals("") || repeatPassword_string.equals("")) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Please complete the sign up form",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.complete_form, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
                 //password equals to repeatPassword
                 else if (!password_string.equals(repeatPassword_string)) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Passwords don't match!",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.password_match_no, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
                 //abort short Passwords
                 else if (password_string.length() < 6) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Please digit 6 or more characters",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.password_longer, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
+
                 } else {
 
+                    progressBar.spin();
                     Log.d("Login Activity", "progress bar pre onclick" + progressBar.getVisibility());
-                    progressBar.setVisibility(View.VISIBLE);
                     Log.d("Login Activity", "progress bar afetr onclick" + progressBar.getVisibility());
 
                     final ParseUser user = new ParseUser();
@@ -159,10 +154,12 @@ public class SignupActivity extends AppCompatActivity {
                                                     //create a toast
                                                     Snackbar.make(v, R.string.signup_completed, Snackbar.LENGTH_SHORT)
                                                             .setAction("Action", null).show();
-                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                    progressBar.stopSpinning();
                                                     Log.d("Login Activity", "signup" + progressBar.getVisibility());
+/*
+                                                    //TODO Send welcome email
 
-
+*/
                                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                     startActivity(intent);
@@ -170,7 +167,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                                 } else {
                                                     //
-                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                    progressBar.stopSpinning();
                                                     clicked = false;
                                                     Log.v(TAG, "errore");
                                                     Log.v(TAG, e.toString());
@@ -183,12 +180,9 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     //user exists
 
-                                    /*Toast
-                                            .makeText(getApplicationContext(),
-                                                    "This user alredy exists on database",
-                                                    Toast.LENGTH_LONG).show();*/
                                     Snackbar.make(v, R.string.user_exists, Snackbar.LENGTH_SHORT)
                                             .setAction("Action", null).show();
+                                    progressBar.stopSpinning();
                                     //Log.d("Signup", "user exists " + email_string);
 
                                 }
@@ -226,6 +220,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                 progressBar.setVisibility(View.VISIBLE);
+                progressBar.spin();
                 ParseFacebookUtils.logInWithReadPermissionsInBackground(SignupActivity.this, GlobalVariable.permissions, new LogInCallback() {
 
 
@@ -234,7 +229,7 @@ public class SignupActivity extends AppCompatActivity {
                         if (user == null) {
                             Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
                             Log.d("MyApp", "errore parse" + err.toString());
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
 
                         } else if (user.isNew()) {
                             Log.d("MyApp", "User signed up and logged in through Facebook!");
@@ -244,7 +239,7 @@ public class SignupActivity extends AppCompatActivity {
                             //facebook request
                             FacebookProfile.getGraphRequest(user);
 
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -252,7 +247,7 @@ public class SignupActivity extends AppCompatActivity {
 
                         } else {
                             Log.d("MyApp", "User logged in through Facebook!");
-                            progressBar.setVisibility(View.INVISIBLE);
+                            progressBar.stopSpinning();
                             //new LongOperation().execute();
                             Snackbar.make(v, R.string.signup_completed, Snackbar.LENGTH_SHORT)
                                     .setAction("Action", null).show();

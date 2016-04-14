@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/docfinder"
-    tools:context="com.example.francesco.docfinder.FirstActivity">
+    >
 
     <ImageButton
         android:id="@+id/search_button"
@@ -28,18 +28,18 @@
         android:textColor="@color/white" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dcf_screen"
 
 
         tools:ignore="ContentDescription"
-        android:cropToPadding="false"
-        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:adjustViewBounds="false"
 
         android:layout_gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="false"
+        android:src="@drawable/dcf_screen"
+        android:layout_margin="30dp" />
 
 
     <LinearLayout

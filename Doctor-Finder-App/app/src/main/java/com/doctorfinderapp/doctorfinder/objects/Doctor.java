@@ -40,4 +40,18 @@ public class Doctor {
     public String getSurname() {return surname;}
 
     public String getEmail(){return email;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass().equals(getClass())) {
+            Doctor doctor = (Doctor) o;
+            if (getName().equals(doctor.getName())
+                && getSurname().equals(doctor.getSurname())
+                && getEmail().equals(doctor.getEmail())
+                && havePisello() == doctor.havePisello()
+                && getProfession().equals(doctor.getProfession()))
+                return true;
+
+        } return false;
+    }
 }

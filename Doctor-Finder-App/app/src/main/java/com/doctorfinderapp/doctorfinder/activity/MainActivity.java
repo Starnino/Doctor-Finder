@@ -29,7 +29,7 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
@@ -38,6 +38,7 @@ import com.doctorfinderapp.doctorfinder.adapter.ResearchAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
@@ -46,13 +47,15 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -62,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private DrawerLayout mDrawerLayout;
     private DoctorAdapter mAdapter;
     private ResearchAdapter sAdapter;
-    private List<Doctor> doctors;
-    private ArrayList<String[]> research = new ArrayList<>();
+    private static List<Doctor> doctors;
+    private List<String[]> research;
     private String[] PERMISSIONS=new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 122;
@@ -72,11 +75,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static Context mContext;
 
     //Parameters shared by fragment goes in activity
-
     private com.melnykov.fab.FloatingActionButton fab;
     private LinearLayout selcitta, selcateg;
     public static String[] citta, special;
-    public static ArrayList<String> CITY, SPECIAL;
+    public static ArrayList<String> CITY, SPECIAL, CITY2, SPECIAL2;
     private TextView cityText, specialText;
     private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
@@ -92,10 +94,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         mContext = this;
 
-        //Util.copyAll();
-        //aggiungo le foto dei dottori
-        //AddDoctors.addPhoto(getResources());
-        //AddDoctors.addFile(getResources());
+        View parentLayout = findViewById(R.id.drawer_main);
+
         if(
                 ActivityCompat.checkSelfPermission(getApplicationContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION)
@@ -113,26 +113,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
 
         if (ParseUser.getCurrentUser() == null) {
+            new MaterialDialog.Builder(this)
+                    .title("Avviso importante")
+                    .content("Non usare questa applicazione in caso di emergenza!")
+                    .positiveText("Ho capito")
 
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Avviso importante")
-                    .setContentText("Non usare questa applicazione in caso di emergenza!")
-                    .setConfirmText("OK, ho capito")
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog
-                                    .setTitleText("Confermato")
-                                    .setContentText("In caso di emergenza chiama sempre prima i soccorsi!")
-                                    .setConfirmText("OK")
-                                    .setConfirmClickListener(null)
-                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        }
-                    })
+
                     .show();
+
         }else{
 
-            Snackbar.make(this.getWindow().getDecorView().getRootView(), R.string.good_login, Snackbar.LENGTH_SHORT)
+            Snackbar.make(parentLayout, R.string.good_login, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
         }
 
@@ -158,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         card_recent_search_null = (CardView) findViewById(R.id.recent_search_null);
 
         //set recycler doctors continuously
-        updateRecyclerDoctor();
+        //updateRecyclerDoctor();
 
         //find Text selected
         cityText = (TextView) findViewById(R.id.cities_text_selected);
@@ -168,10 +159,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         cityText.setText("Tutte");
         specialText.setText("Tutte");
 
-
         //Dialog for cities
         selcitta = (LinearLayout) findViewById(R.id.select_city_button);
         citta = getResources().getStringArray(R.array.cities);
+
         CITY = new ArrayList<>();
         final AlertDialog dialogCity = OnCreateDialog("Seleziona Provincia", CITY, citta);
         selcitta.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         //Dialog for specialization
         selcateg = (LinearLayout) findViewById(R.id.select_special_button);
         special = getResources().getStringArray(R.array.Specializations);
+
         SPECIAL = new ArrayList<>();
         final AlertDialog dialogSpecial = OnCreateDialog("Seleziona Categoria", SPECIAL, special);
         selcateg.setOnClickListener(new View.OnClickListener() {
@@ -207,23 +199,21 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         .setAction("Action", null).show();
 
                 else if(!Util.isOnline(getApplicationContext()))
-                    Snackbar.make(v, "Controlla la tua connessione a Internet!", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(v, R.string.connection_control, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
 
                 else {
-
+                    //progress.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(MainActivity.this,
                             ResultsActivity.class);
+                    intent.putExtra("RESEARCH", false);
                     startActivity(intent);
-                    GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
-                    setLinear(specialText, cityText, SPECIAL, CITY);
-                    Log.d("SET LINEAR --> ", CITY + "");
+
+                    setLinear(specialText, cityText);
+                    //Log.d("SET LINEAR --> ", CITY + "");
                 }
             }
         });
-
-        //start animation
-        Timer timer = new Timer();
 
         //Drawer settings
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
@@ -236,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         final CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("Doctor Finder");
+        //collapsingToolbarLayout.setTitle("Doctor Finder");
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.transparent));
         // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,255, 255)); //Color of your title
@@ -249,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout , toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        //add drawer listner not exists
+        //add drawer listener not exists
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -277,8 +267,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Timer timer = new Timer();
             timer.schedule(task, 2000);
             View header = navigationView.getHeaderView(0);
-            TextView nome= (TextView) header.findViewById(R.id.name_user);
-            String name =user.getString("fName") ;
+            TextView nome = (TextView) header.findViewById(R.id.name_user);
+            String name = user.getString("fName") ;
             nome.setText(name);
             TextView email= (TextView) header.findViewById(R.id.email_user);
 
@@ -336,9 +326,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        for (int i = 0; i < checked.size(); i++) {
-                            Log.d("List " + i + " ----> ", checked.get(i));
-                        }
+
                     }
                 }).setNeutralButton("tutte", new DialogInterface.OnClickListener() {
                     @Override
@@ -360,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         }
 
                         for (int i = 0; i < checked.size(); i++) {
-                            Log.d("List " + i + " ----> ", checked.get(i));
+                            //Log.d("List " + i + " ----> ", checked.get(i));
                         }
 
                     }
@@ -380,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                             FLAGCITY = false;
                         }
                         checked.clear();
-                        Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
+                        //Log.d("List isEmpty? --> ", "is " + checked.isEmpty());
                     }
                 });
         return builder.create();
@@ -397,6 +385,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 
     //code added to save activity states
@@ -422,7 +411,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     Intent intent_user = new Intent(MainActivity.this, UserProfileActivity.class);
                     startActivity(intent_user);
                 }
-                else Snackbar.make(mDrawerLayout, "Connetti il tuo profilo a Facebook!", Snackbar.LENGTH_SHORT)
+                else Snackbar.make(mDrawerLayout, R.string.effettua_login, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 break;
 
@@ -533,7 +522,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     protected void onResume() {
         //update image
         if (ParseUser.getCurrentUser() != null) {
-            getUserImage(ParseUser.getCurrentUser());
             setProfileInformation(ParseUser.getCurrentUser());
         }
         updateRecyclerDoctor();
@@ -543,106 +531,108 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     //method tu update DoctorRecycler
     public void updateRecyclerDoctor(){
-        if (GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE) {
-            card_recent_doctor_null.setVisibility(View.INVISIBLE);
-            card_recent_doctor.setVisibility(View.VISIBLE);
-            GlobalVariable.FLAG_CARD_DOCTOR_VISIBLE = true;
-        }
-        //initialize more Persons
-        doctors = GlobalVariable.recentDoctors;
 
-        /*final List<Doctor> doctors = new ArrayList<>();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("recentDoctor");
-        query.findInBackground(new FindCallback<ParseObject>() {
+        ParseQuery<ParseObject> recentSearch = ParseQuery.getQuery("recentDoctor");
+        recentSearch.orderByDescending("DATE");
+        recentSearch.fromLocalDatastore();
+        recentSearch.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for (int i = 0; i < objects.size(); i++) {
-                        //add doctor to adapter
-                        doctors.add(new Doctor(
-                                objects.get(i).getString("FirstName"),                 //Nome
-                                objects.get(i).getString("LastName"),                 //Cognome
-                                (ArrayList<String>) objects.get(i).get("SPEC"),  //Specializzazioni
-                                (ArrayList<String>) objects.get(i).get("CITY"),  //Citta
-                                objects.get(i).getBoolean("SEX"),               //Sesso
-                                objects.get(i).getString("E@")));               //Email
+                if (e == null && objects!=null) {
+                    if (objects.size() != 0) {
+
+                        if (objects.size() > 9) {
+                            try {
+                                objects.get(9).unpin();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            if(doctors!=null)doctors = doctors.subList(0, 9);
+                        }
+
+                        card_recent_doctor_null.setVisibility(View.INVISIBLE);
+                        card_recent_doctor.setVisibility(View.VISIBLE);
+                        doctors = Util.transformList(objects);
+
+                        mAdapter = new DoctorAdapter(doctors);
+                        SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(mAdapter);
+
+                        mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                        card_recent_doctor.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
+                        //set adapter to recycler view
+                        mRecyclerView.setAdapter(slide_adapter);
                     }
-                    // specify an adapter
-                    /*mAdapter = new DoctorAdapter(doctors);
-                    if (doctors.size() != 0) {
-                        mRecyclerView.getLayoutParams().height = 300;
-                        card_recent_doctor.getLayoutParams().height = 300;
-                    }
-                    else card_recent_doctor_null.getLayoutParams().height = 30;
-                    //set adapter to recycler view
-                    mRecyclerView.setAdapter(mAdapter);
-                } else {
-                    e.printStackTrace();
                 }
             }
-        });*/
-        // specify an adapter
-        mAdapter = new DoctorAdapter(doctors);
-        if (doctors.size() != 0) {
-            mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
-            card_recent_doctor.getLayoutParams().height = 330;
-        }
-        else card_recent_doctor_null.getLayoutParams().height = 100;
-
-        //set adapter to recycler view
-        mRecyclerView.setAdapter(mAdapter);
+        });
     }
 
     //method to update Linear recycler
     public void updateRecentSearch(){
-        if (GlobalVariable.FLAG_CARD_SEARCH_VISIBLE) {
-            card_recent_search_null.setVisibility(View.INVISIBLE);
-            card_recent_search.setVisibility(View.VISIBLE);
-            GlobalVariable.FLAG_CARD_SEARCH_VISIBLE = true;
-        }
 
-        //specify adapter
-        sAdapter = new ResearchAdapter(research);
-        if (research.size() != 0) sRecyclerView.getLayoutParams().height = 400;
-        //set adapter to recycler view
-        sRecyclerView.setAdapter(sAdapter);
+        ParseQuery<ParseObject> recentSearch = ParseQuery.getQuery("recentSearch");
+        recentSearch.orderByDescending("DATE");
+        recentSearch.fromLocalDatastore();
+        recentSearch.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+
+                    if (objects.size() != 0) {
+
+                        if (objects.size() > 9) {
+                            try {
+                                objects.get(9).unpin();
+
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            research = research.subList(0, 9);
+                        }
+
+                        card_recent_search_null.setVisibility(View.INVISIBLE);
+                        card_recent_search.setVisibility(View.VISIBLE);
+                        research = Util.transformSearch(objects);
+
+                        //specify adapter
+                        sAdapter = new ResearchAdapter(research);
+                        sRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.linear_recycler);
+                        //set adapter to recycler view
+                        sRecyclerView.setAdapter(sAdapter);
+                    }
+                }
+            }
+        });
     }
 
     //method to add Linear to recycler
-    public void setLinear(TextView s, TextView c, ArrayList<String> spec, ArrayList<String> ci){
+    public void setLinear(TextView s, TextView c){
         String special = s.getText().toString();
         String city = c.getText().toString();
-        String[] linear = {special, city};
-        boolean flag = true;
-
-        for (int i = 0; i < research.size() ; i++) {
-            if (research.get(i)[0].equals(linear[0]) && research.get(i)[1].equals(linear[1])){
-                flag = false;
+        final ParseObject recentSearch = new ParseObject("recentSearch");
+        recentSearch.put("SPEC", special);
+        recentSearch.put("CITY", city);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        recentSearch.put("DATE", simpleDateFormat.format(Calendar.getInstance().getTime()));
+        ParseQuery<ParseObject> pin = ParseQuery.getQuery("recentSearch");
+        pin.fromLocalDatastore();
+        pin.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                boolean flag = true;
+                for (int i = 0; i < objects.size(); i++) {
+                    if (objects.get(i).getString("SPEC").equals(recentSearch.getString("SPEC"))
+                            && objects.get(i).getString("CITY").equals(recentSearch.getString("CITY")))
+                                flag = false;
+                }
+                if (flag)
+                    try {
+                        recentSearch.pin();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
             }
-
-        }
-        //if linear not exist add it
-        if (flag){
-
-            if (research.size() < 10){
-                research.add(linear);
-                GlobalVariable.research_special_parameters.add(spec);
-                GlobalVariable.research_city_parameters.add(ci);
-            }
-
-            else {
-                research.add(0, linear);
-                research.remove(10);
-                GlobalVariable.research_special_parameters.add(0, spec);
-                GlobalVariable.research_special_parameters.remove(10);
-                GlobalVariable.research_city_parameters.add(0, ci);
-                GlobalVariable.research_city_parameters.remove(10);
-            }
-        }
-
-        for (int i = 0; i < GlobalVariable.research_city_parameters.size(); i++) {
-            Log.d("LIST RESEARCH --> ", GlobalVariable.research_city_parameters.get(i) + " " + i);
-        }
+        });
     }
 
     public void profile_click(View v){
@@ -653,11 +643,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
     }
 
-    public static void research(ArrayList<String> special, ArrayList<String> city){
-        SPECIAL = new ArrayList<>(special);
-        CITY = new ArrayList<>(city);
-        Log.d("CITY BEFORE LAUNCH --> ", CITY + "");
+    public static void research(List<String> specialization, List<String> city, Context mContext){
+
+        if (city.size() == 1 && city.get(0).equals("Tutte"))
+            CITY2 = new ArrayList<>(Arrays.asList(citta));
+
+        else CITY2 = new ArrayList<>(city);
+
+        if (city.size() == 1 && specialization.get(0).equals("Tutte"))
+            SPECIAL2 = new ArrayList<>(Arrays.asList(special));
+
+        else SPECIAL2 = new ArrayList<>(specialization);
+
         Intent intent = new Intent(mContext, ResultsActivity.class);
+        intent.putExtra("RESEARCH", true);
         mContext.startActivity(intent);
     }
 }

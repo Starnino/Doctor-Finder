@@ -34,6 +34,7 @@
             android:src="@drawable/s1"/>
 
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -45,8 +46,9 @@
         android:paddingRight="64dp"
         android:textSize="16sp"
         android:fontFamily="sans-serif-thin"
-        android:text="Doctor Finder ti permette di trovare il dottore perfett per te utilizzando i parametri che ritieni più giusti"/>
+        android:text="@string/intro_1"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
+
 </LinearLayout>
