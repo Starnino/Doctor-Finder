@@ -362,6 +362,9 @@ public class DoctorFragment extends Fragment {
         if (rightRating != 0) {
             ratingBar.setRating(rightRating);
             floatFeed.setText(String.format("%.1f", rightRating));
+        } else {
+            ratingBar.setRating(0);
+            floatFeed.setText(String.format("%.1f", 0.0f));
         }
     }
 

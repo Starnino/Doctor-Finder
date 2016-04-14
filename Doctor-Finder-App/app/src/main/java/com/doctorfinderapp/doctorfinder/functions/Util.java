@@ -235,6 +235,7 @@ public class Util {
                         } else
                             doctor.put("Feedback", 0.0f);
 
+                        Log.d("PUTTO --> ", media + "");
                         DoctorFragment.changeRating(media);
                         DoctorListFragment.refreshList();
                         doctor.save();

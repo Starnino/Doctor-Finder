@@ -371,6 +371,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                                             holder.clear.setClickable(true);
                                             holder.delete_progress.setVisibility(View.GONE);
                                             FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
+                                            Util.calculateFeedback(EMAIL_DOCTOR_THIS);
                                             DoctorFragment.plus1();
                                         }})
                                    .setCallback(new Snackbar.Callback() {
@@ -505,6 +506,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         DoctorFragment.minus1();
                         holder.delete_progress.stopSpinning();
                         holder.delete_progress.setVisibility(View.GONE);
+                        Util.calculateFeedback(EMAIL_DOCTOR_THIS);
                     }
             }
         });
