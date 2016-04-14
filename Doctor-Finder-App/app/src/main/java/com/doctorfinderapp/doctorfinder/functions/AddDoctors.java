@@ -10,7 +10,6 @@ import com.doctorfinderapp.doctorfinder.R;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -18,11 +17,9 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-//import java.lang.reflect.Array;
 
 
 public class AddDoctors {

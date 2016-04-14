@@ -11,6 +11,7 @@ import com.parse.ParseInstallation;
 /**
  * Created by fedebyes on 11/02/16.
  */
+
 public class App extends Application{
 
     private static final String TAG = "StartParse" ;

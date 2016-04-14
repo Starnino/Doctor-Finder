@@ -23,20 +23,16 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.activity.access.FirstActivity;
 import com.doctorfinderapp.doctorfinder.adapter.FacebookAdapter;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,6 +82,7 @@ public class DoctorFragment extends Fragment {
     }
 
     public static DoctorFragment newInstance(int index) {
+
         DoctorFragment doc = new DoctorFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
@@ -96,6 +93,7 @@ public class DoctorFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         int indexFragment = getArguments().getInt("index", 0);
         index = indexFragment;
@@ -105,6 +103,7 @@ public class DoctorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctor,
                 container, false);
@@ -251,9 +250,11 @@ public class DoctorFragment extends Fragment {
         special.setText(text);
 
         if(DOCTOR_FEEDBACK!=null) {
+
             //Log.d("DoctorFragment","Feedback is "+DOCTOR_FEEDBACK.toString());
             ratingBar.setRating(Float.parseFloat(DOCTOR_FEEDBACK));
             rightRating = Float.parseFloat(DOCTOR_FEEDBACK);
+
         }
 
         RelativeLayout call_button = (RelativeLayout) rootView.findViewById(R.id.telefono);

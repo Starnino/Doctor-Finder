@@ -42,15 +42,6 @@ public class DefaultIntro extends AppIntro {
             loadMainActivity();
         }
 
-        //pop up
-        /*if (ParseUser.getCurrentUser() == null) {
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("Benvenuto su Doctor Finder")
-                    .setContentText("Con il nostro aiuto troverai facilmente lo specialista che stai cercando")
-                    .setCustomImage(R.drawable.logoverde)
-                    .show();
-        }*/
-
         addSlide(SampleSlide.newInstance(R.layout.intro));
         addSlide(SampleSlide.newInstance(R.layout.intro2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));

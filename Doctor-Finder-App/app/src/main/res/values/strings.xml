@@ -1,10 +1,18 @@
 <resources>
-    <string name="action_settings">Impostazioni</string>
+
+    <!-- TODO Regole aggiunta stringhe:
+
+            1) cercare la tua cartegoria
+            2) Aggiungere in basso dopo le altre
+            3) Se la categoria non esiste, creala come le altre.
+            4) Grazie
+
+    -->
+
+    <!--Primi aggiunti ed ora poco spesso toccati-->
 
     <string name="title_activity_splash">SplashActivity</string>
-
     <string name="title_activity_login">Sign in</string>
-
     <string name="doctorfindername">Doctor Finder</string>
     <string name="action_log_in">Login </string>
     <string name="send_data_button">Invia i dati </string>
@@ -33,18 +41,19 @@
     <string name="text_rememberMe">Ricordami</string>
     <string name="text_signupNow">Registrati ora!</string>
     <string name="namy">Non ne fai ancora parte? </string>
-
-
     <string name="namelabel">"Nome : "</string>
     <string name="speciallabel">"Specializzazione : "</string>
     <string name="feedbacklabel">"Feedback : "</string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <!--Intro-->
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="intro_1">Doctor Finder ti permette di trovare il dottore perfetto per te utilizzando i parametri che ritieni più giusti</string>
+    <string name="intro_2">Cerca il dottore per nome o  specializzazione</string>
+    <string name="intro_3">Usa la mappa per trovare lo specialista più vicino a te</string>
+    <string name="intro_4">Infine, visualizza il profilo del dottore e lascia un feedback per aiutare gli altri utenti come te!</string>
 
-    <string name="action_example">Example action</string>
+    <!--Drawer-->
 
     <string name="profile">Il tuo Profilo</string>
     <string name="inserisci_dottore">Registrati come specialista</string>
@@ -52,17 +61,12 @@
     <string name="docfinder">Doctor Finder</string>
     <string name="support">Supporto</string>
     <string name="like"> Facebook</string>
-
-    <string name="first_access">
-        Ciao,
-        ti ringraziamo per esserti registrato su Doctor Finder. Questa applicazione
-        ti permette di trovare con facilità uno specialista della salute! Speriamo di esserti di aiuto!
-        Per qualsiasi problema non esistare a contattarci su Facebook o mandando una mail a
-        info@doctorfinderapp.com
-    </string>
-
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
 
     <string-array name="Specializations">
+
         <item>Allergologia</item>
         <item>Anatomia Patologica</item>
         <item>Andrologia</item>
@@ -125,6 +129,7 @@
     </string-array>
 
     <string-array name="cities">
+
         <item>Agrigento</item>
         <item>Alessandria</item>
         <item>Ancona</item>
@@ -235,27 +240,26 @@
 
     </string-array>
 
+    <!--FACEBOOK-->
     <string name="facebook_app_id">235657870105831</string>
-
-    <string name="title_activity_doctor_maps_fragment">Map</string>
-    <string name="title_activity_maps">Map</string>
 
     <!--GOOGLE SERVICES-->
     <string name="google_app_id">309143604100</string>
 
-    <string name="title_activity_main">MainActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
-
+    <!-- Frag various-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="exit">Esci</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_doctors_profile"></string>
-
     <string name="title_activity_buttare">ButtareActivity</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_doctor">DoctorActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_doctor_maps_fragment">Map</string>
+    <string name="title_activity_maps">Map</string>
 
     <!--INTRO-->
     <string name="skip">Benvenuto su Doctor Finder!</string>
@@ -278,7 +282,7 @@
     "Art. 1229 c.c. disciplina le clausole di esonero della responsabilità stabilendo la nullità delle stesse ove siano dirette ad esonerare il debitore dalla responsabilità conseguente all'inadempimento doloso o per colpa grave ovvero, anche per colpa lieve, qualora il fatto del debitore o dei suoi ausiliari costituisca violazione di obblighi derivanti da norme di ordine publico. A tale proposito: Si dichiara: Di sollevare Doctor Finder da ogni responsabilità connessa all'utilizzo della suddetta applicazione e dei servizi forniti, nel modo più ampio per se, ed aventi causa a qualsiasi titolo, da ogni e qualsiasi obbligazione di corrispondere compensi di alcun genere a titolo di risarcimento danni, indennizzi, rimborsi , ecc. nell’eventualità di problemi fisici, sia a breve che a lungo termine, di qualsiasi entità essi siano, riscontrati nell'utilizzo Doctor Finder."
     </string>
 
-
+    <!-- Feedback -->
     <string name="feedback_dialog_name">Il tuo feedback</string>
     <string name="feedback_send">Invia</string>
     <string name="cancel">Annulla</string>
@@ -294,6 +298,14 @@
     <string name="fatto">Operazione eseguita</string>
     <string name="share_email">Ciao, prova questa nuova applicazione che ti permette di trovare il dottore perfetto per te</string>
     <string name="feedback_warning">Feedback</string>
+    <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
+    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?
+           Ti fidi delle sue scelte?</string>
+    <string name="complessivo_guide">Questo campo non è modificabile, è la media degli altri voti!</string>
+    <string name="cordialita_guide">Il dottore è stato gentile?</string>
+    <string name="persi">Attenzione, i dati inseriti andranno persi!</string>
+
+    <!-- Login/Sign up -->
     <string name="feedback_warting_message">Devi essere registrato per lasciare il feedback</string>
     <string name="password_longer">La password deve essere di almeno 6 caratteri</string>
     <string name="password_match_no">Le password sono diverse</string>
@@ -310,6 +322,8 @@
     <string name="effettua_login">Fai il login per visulizzare il tuo profilo!</string>
     <string name="effettua_login_facebook">Effettua il login con Facebook</string>
     <string name="friends_tip">Amici che consigliano questo medico</string>
+
+    <!-- Vari -->
     <string name="connection_control">Controlla la tua connessione a Internet!</string>
     <string name="tip_dcf_user">Connettiti a Facebook per una migliore esperienza di navigazione su Doctor Finder e per conoscere i feedback e i pareri dei tuoi amici</string>
     <string name="feedback_null">Nessun amico ha ancora rilasciato\n feedback per questo dottore</string>
@@ -318,12 +332,8 @@
     <string name="crescente">Crescente</string>
     <string name="decrescente">Decrescente</string>
     <string name="tu">(Tu)</string>
-    <string name="responsabilita">Cerca di essere il più oggettivo possibile, non valutare il dottore come persona ma come professionista sanitario</string>
-    <string name="soddisfazione_guide">Quanto sei soddisfatto dalla visita effettuata da questo medico?
-           Ti fidi delle sue scelte?</string>
-    <string name="complessivo_guide">Questo campo non è modificabile, è la media degli altri voti!</string>
-    <string name="cordialita_guide">Il dottore è stato gentile?</string>
-    <string name="persi">Attenzione, i dati inseriti andranno persi!</string>
+
+
 
 
 </resources>

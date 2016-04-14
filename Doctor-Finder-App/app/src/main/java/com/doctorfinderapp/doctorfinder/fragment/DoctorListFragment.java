@@ -3,11 +3,8 @@ package com.doctorfinderapp.doctorfinder.fragment;
 
 import android.os.Bundle;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
@@ -29,7 +25,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 
@@ -80,7 +75,7 @@ public class DoctorListFragment extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_doctorlist,
                 container, false);
-        this.rootView=rootView;
+        DoctorListFragment.rootView =rootView;
         progressBar = (ProgressWheel) rootView.findViewById(R.id.progressBarList);
         progressBar.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progressBar.spin();
@@ -117,6 +112,7 @@ public class DoctorListFragment extends Fragment
 
         //fab
         fab = (com.melnykov.fab.FloatingActionButton) getActivity().findViewById(R.id.fab);
+
         //attach fab to recycler view on scroll
         fab.attachToRecyclerView(mRecyclerView);
 
@@ -155,6 +151,7 @@ public class DoctorListFragment extends Fragment
     }
 
     public static void CardNothingVisible(){
+
         cardNothing.setVisibility(View.VISIBLE);
         //mRecyclerView.setVisibility(View.GONE);
         //refresh.setVisibility(View.GONE);
@@ -165,6 +162,7 @@ public class DoctorListFragment extends Fragment
     }
 
     public static void orderList(String mode, boolean grow){
+
         parseAdapter.orderBy(mode, grow);
         mRecyclerView.scrollToPosition(0);
     }

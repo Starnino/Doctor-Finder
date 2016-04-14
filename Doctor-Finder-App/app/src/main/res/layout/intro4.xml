@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00796B"
     android:layout_weight="10"
@@ -34,6 +35,7 @@
             android:paddingRight="16dp"
             android:src="@drawable/s4"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -46,8 +48,10 @@
         android:textSize="16sp"
         android:fontFamily="sans-serif-thin"
         android:onClick="getStarted"
-        android:text=" Infine, visualizza il profilo del dottore e lascia un feedback per aiutare gli altri utenti come te!"/>
+        android:text="@string/intro_4"/>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />
+
 </LinearLayout>

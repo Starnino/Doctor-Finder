@@ -102,25 +102,16 @@ public class SignupActivity extends AppCompatActivity {
                 // Force user to fill up the form
                 if (password_string.equals("") || fName.equals("") || lName.equals("")
                         || email_string.equals("") || repeatPassword_string.equals("")) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Please complete the sign up form",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.complete_form, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
                 //password equals to repeatPassword
                 else if (!password_string.equals(repeatPassword_string)) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Passwords don't match!",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.password_match_no, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
                 //abort short Passwords
                 else if (password_string.length() < 6) {
-                    /*Toast.makeText(getApplicationContext(),
-                            "Please digit 6 or more characters",
-                            Toast.LENGTH_LONG).show();*/
                     Snackbar.make(v, R.string.password_longer, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
 
@@ -166,14 +157,8 @@ public class SignupActivity extends AppCompatActivity {
                                                     progressBar.stopSpinning();
                                                     Log.d("Login Activity", "signup" + progressBar.getVisibility());
 /*
-                                                    //mail to send on first registration
-                                                    BackgroundMail.newBuilder(v.getContext())
-                                                            .withUsername("doctor.finder.dcf@gmail.com")
-                                                            .withPassword("quantomacina")
-                                                            .withMailto(email_string)
-                                                            .withSubject("Benvenuto su Doctor Finder!")
-                                                            .withBody(R.string.first_access)
-                                                            .send();
+                                                    //TODO Send welcome email
+
 */
                                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -195,10 +180,6 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     //user exists
 
-                                    /*Toast
-                                            .makeText(getApplicationContext(),
-                                                    "This user alredy exists on database",
-                                                    Toast.LENGTH_LONG).show();*/
                                     Snackbar.make(v, R.string.user_exists, Snackbar.LENGTH_SHORT)
                                             .setAction("Action", null).show();
                                     progressBar.stopSpinning();

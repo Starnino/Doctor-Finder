@@ -19,7 +19,6 @@
         <android.support.v7.widget.CardView
 
             android:id="@+id/card1"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -65,6 +64,7 @@
 
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -74,6 +74,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/Spec"
                     android:layout_width="match_parent"
@@ -125,12 +126,12 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:background="@color/google_grey"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,12 +190,12 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:background="@color/google_grey"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/telefono"
                     android:layout_width="match_parent"
@@ -262,15 +263,16 @@
 
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:background="@color/google_grey"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/Exp"
                     android:layout_width="match_parent"
@@ -319,6 +321,7 @@
 
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -328,6 +331,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -406,15 +410,16 @@
                         android:layout_alignLeft="@+id/cityPlace"/>
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:background="@color/google_grey"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/visit"
                     android:layout_width="match_parent"
@@ -461,6 +466,7 @@
                         android:textColor="#727272" />
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -469,6 +475,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp" />
+
                 <RelativeLayout
                     android:id="@+id/Price"
                     android:layout_width="match_parent"
@@ -535,7 +542,6 @@
                     android:clickable="true"
                     android:padding="@dimen/activity_horizontal_margin">
 
-
                     <com.mikepenz.iconics.view.IconicsImageView
                         android:id="@+id/ivContactItem5"
                         android:layout_width="24dp"
@@ -548,7 +554,6 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
-
 
                     <TextView
                         android:id="@+id/tvNumber5"
@@ -687,6 +692,7 @@
                     android:visibility="gone"/>
 
                 </LinearLayout>
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>

@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/frame_title"
     android:layout_above="@+id/relativeLayout">
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -118,13 +119,13 @@
             android:stepSize="0.5"
             android:id="@+id/ratingbar_soddisfazione"
             android:layout_margin="5dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider3"
             android:background="@color/google_grey"
-            android:layout_margin="16dp"
-            />
+            android:layout_margin="16dp"/>
 
 
         <TextView
@@ -157,13 +158,14 @@
             android:stepSize="0.5"
             android:id="@+id/ratingbar_feedback"
             android:layout_margin="5dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/divider4"
             android:background="@color/google_grey"
-            android:layout_margin="16dp"
-            />
+            android:layout_margin="16dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -172,7 +174,8 @@
             android:id="@+id/textViewDove"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,12 +194,11 @@
             android:ems="10"
             android:id="@+id/editTextDove"
             android:lines="1"
-
             android:hint="Scrivi il luogo della visita..."
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
-            android:gravity="top" />
+            android:gravity="top"/>
 
 
 
@@ -208,7 +210,7 @@
             android:id="@+id/textViewQuando"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -221,7 +223,7 @@
             android:textSize="10dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"/>
 
 
         <TextView
@@ -232,7 +234,7 @@
             android:id="@+id/dateTextView"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            android:textColor="@color/background_material_dark" />
+            android:textColor="@color/background_material_dark"/>
 
 
         <View
@@ -240,8 +242,7 @@
             android:layout_height="1dp"
             android:id="@+id/divide5"
             android:background="@color/google_grey"
-            android:layout_margin="16dp"
-            />
+            android:layout_margin="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -251,7 +252,8 @@
             android:id="@+id/textViewTipo"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -262,7 +264,7 @@
             android:text="Descrivi il tipo di visita"
             android:textSize="10dp"
             android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -270,12 +272,11 @@
             android:ems="10"
             android:id="@+id/editTextTipo"
             android:lines="1"
-
             android:hint="Scrivi il tipo di visita..."
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
-            android:gravity="top" />
+            android:gravity="top"/>
 
 
         <TextView
@@ -313,7 +314,7 @@
             android:layout_margin="16dp"
             android:inputType="textMultiLine"
             android:layout_gravity="center_horizontal"
-            android:gravity="top" />
+            android:gravity="top"/>
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -322,7 +323,7 @@
             android:id="@+id/checkBox_anonymus"
             android:checked="false"
             android:textSize="11dp"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"/>
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -331,7 +332,7 @@
             android:checked="false"
             android:textSize="11dp"
             android:layout_marginLeft="16dp"
-            android:lines="2" />
+            android:lines="2"/>
 
 
     </LinearLayout></ScrollView>

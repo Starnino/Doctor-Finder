@@ -1,8 +1,6 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;

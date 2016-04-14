@@ -73,6 +73,7 @@
                 android:buttonTint="@color/colorPrimaryDark"/>
 
             </RadioGroup>
+
         </LinearLayout>
 
         <include layout="@layout/item_divider" />

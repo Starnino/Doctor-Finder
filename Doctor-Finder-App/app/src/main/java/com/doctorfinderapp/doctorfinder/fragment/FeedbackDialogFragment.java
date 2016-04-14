@@ -1,17 +1,12 @@
 package com.doctorfinderapp.doctorfinder.fragment;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.media.RatingCompat;
 import android.support.v7.app.AlertDialog;
-import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +22,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.Util;
-import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseSession;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
