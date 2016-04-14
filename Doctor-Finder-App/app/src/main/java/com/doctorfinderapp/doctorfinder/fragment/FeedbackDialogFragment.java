@@ -184,40 +184,6 @@ public class FeedbackDialogFragment
 
     }
 
-    public void setOldFeedback(){
-
-    }
-
-    @Override
-    public void onDismiss(final DialogInterface dialog) {
-        new MaterialDialog.Builder(c)
-                .title("Sei sicuro?")
-                .content(R.string.persi)
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        dialog.dismiss();
-                        dismiss();
-                    }
-                })
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        dialog.dismiss();
-                        dismiss();
-                        DialogFragment newFragment = newInstance(email_doctor);
-                        setOldFeedback();
-                        newFragment.show(DoctorActivity.fragmentActivity, "feedback");
-
-                    }
-                })
-                .positiveText("Si")
-                .negativeText("Annulla")
-                .show();
-
-        Log.d("Dialog fragment","On dismiss");
-
-    }
 
 
     @Override
@@ -225,7 +191,29 @@ public class FeedbackDialogFragment
         switch (v.getId()) {
 
             case R.id.annulla:
-                FeedbackDialogFragment.this.dismiss();
+                FeedbackDialogFragment.this.getDialog().hide();
+                new MaterialDialog.Builder(c)
+                        .title("Sei sicuro?")
+                        .content(R.string.persi)
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                                FeedbackDialogFragment.this.getDialog().show();
+
+                            }
+                        })
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                                FeedbackDialogFragment.this.dismiss();
+                            }
+                        })
+                        .positiveText("Si")
+                        .negativeText("Annulla")
+                        .show();
+
                 break;
 
             case R.id.invia:
