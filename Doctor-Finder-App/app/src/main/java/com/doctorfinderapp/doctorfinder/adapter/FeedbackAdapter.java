@@ -1,6 +1,7 @@
 package com.doctorfinderapp.doctorfinder.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -44,6 +45,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -84,7 +87,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         this.feedbacklist = feedbacks;
         EMAIL_DOCTOR_THIS = doctor_email;
         EMAIL_USER_THIS = user_email;
-
     }
 
     @Override
@@ -109,6 +111,23 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         PopupMenu popup;
         View divider;
         CardView feedback_details;
+        MaterialDialog dialog;
+        TextView custom_feedback;
+        RatingBar rating_custom;
+        RatingBar rating_disp_custom;
+        RatingBar rating_cord_custom;
+        RatingBar rating_sodd_custom;
+        TextView num_feed_custom;
+        TextView num_thumb_custom;
+        RoundedImageView user_custom;
+        RoundedImageView doctor_custom;
+        TextView doctor_name_custom;
+        TextView user_name_custom;
+        TextView type_custom;
+        TextView place_custom;
+        TextView date_custom;
+        TextView feedback_text_custom;
+        String text;
 
         FeedbackViewHolder(View itemView) {
             super(itemView);
@@ -124,6 +143,26 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             divider = (View) itemView.findViewById(R.id.divider_feedback);
             delete_progress = (ProgressWheel) itemView.findViewById(R.id.delete_progress);
             feedback_details = (CardView) itemView.findViewById(R.id.card_view_feedback);
+
+            /**dialog view*/
+            dialog = new MaterialDialog.Builder(itemView.getContext())
+                    .customView(R.layout.feedback_details, false).build();
+
+            custom_feedback = (TextView) dialog.findViewById(R.id.float_feedback_custom);
+            rating_custom = (RatingBar) dialog.findViewById(R.id.rating_bar_feedback_custom);
+            num_feed_custom = (TextView) dialog.findViewById(R.id.num_feedback_custom);
+            num_thumb_custom = (TextView) dialog.findViewById(R.id.num_thumb_custom);
+            user_name_custom = (TextView) dialog.findViewById(R.id.user_name_custom);
+            doctor_name_custom = (TextView) dialog.findViewById(R.id.doctor_name_custom);
+            user_custom = (RoundedImageView) dialog.findViewById(R.id.user_image_feed);
+            doctor_custom = (RoundedImageView) dialog.findViewById(R.id.doctor_image_feed);
+            rating_disp_custom = (RatingBar) dialog.findViewById(R.id.rating_bar_disp_custom);
+            rating_cord_custom = (RatingBar) dialog.findViewById(R.id.rating_bar_cordi_custom);
+            rating_sodd_custom = (RatingBar) dialog.findViewById(R.id.rating_bar_sodd_custom);
+            date_custom = (TextView) dialog.findViewById(R.id.date_custom);
+            type_custom = (TextView) dialog.findViewById(R.id.type_custom);
+            place_custom = (TextView) dialog.findViewById(R.id.place_custom);
+            feedback_text_custom = (TextView) dialog.findViewById(R.id.feedback_text_custom);
         }
     }
 
@@ -132,14 +171,16 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
             holder.THUMB_PRESSED = feedbacklist.get(position).getList(THUMB_LIST).contains(EMAIL_USER_THIS);
 
-            String text = feedbacklist.get(position).get("feedback_description").toString();
-            if(text.length()>151){
-                text=text.substring(0,150)+"...";
+            holder.text = feedbacklist.get(position).get("feedback_description").toString();
+            String text_smorx = holder.text;
+
+            if(holder.text.length()>151){
+                text_smorx = text_smorx.substring(0,150)+"...";
             }
             String rating = feedbacklist.get(position).get("Rating").toString();
             boolean anonymus = (boolean) feedbacklist.get(position).get("Anonymus");
             holder.propic.setImageResource(R.drawable.mario);
-            holder.feedback_text.setText(text);
+            holder.feedback_text.setText(text_smorx);
             holder.ratingBar.setRating(Float.parseFloat(rating));
             if (!anonymus) {
                 String name ;
@@ -355,8 +396,24 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 break;
 
             case R.id.card_view_feedback:
-                MaterialDialog dialog = new MaterialDialog.Builder(holder.itemView.getContext())
-                        .customView(R.layout.feedback_details, false)
+                holder.user_custom.setImageDrawable(holder.propic.getDrawable());
+                holder.user_name_custom.setText(holder.name.getText().toString());
+                holder.doctor_custom.setImageDrawable(DoctorActivity.getDocPhoto());
+                holder.doctor_name_custom.setText(DoctorActivity.getDocName());
+                holder.num_thumb_custom.setText(holder.num_thumb.getText().toString());
+                holder.num_feed_custom.setText(DoctorFragment.getNumFeed());
+                holder.custom_feedback.setText(String.format("%.1f", holder.ratingBar.getRating()));
+                holder.rating_custom.setRating(holder.ratingBar.getRating());
+                holder.rating_disp_custom.setRating(Float.parseFloat(feedbacklist.get(position).get(DISPONIBILITA).toString()));
+                holder.rating_cord_custom.setRating(Float.parseFloat(feedbacklist.get(position).get(CORDIALITA).toString()));
+                holder.rating_sodd_custom.setRating(Float.parseFloat(feedbacklist.get(position).get(SODDISFAZIONE).toString()));
+                holder.place_custom.setText(feedbacklist.get(position).getString(PLACE));
+                holder.type_custom.setText(feedbacklist.get(position).getString(TYPE));
+                holder.date_custom.setText(feedbacklist.get(position).getString(DATE));
+                holder.feedback_text_custom.setText(holder.text);
+                holder.dialog
+                        .getBuilder()
+                        .positiveText("chiudi")
                         .show();
 
         }

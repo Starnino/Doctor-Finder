@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Interpolator;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     public final String EMAIL = "Email";
     private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
-    RoundedImageView photoProfile;
+    private static RoundedImageView photoProfile;
     private boolean DOCTOR_SEX;
     private String DOCTOR_FIRST_NAME;
     private String DOCTOR_LAST_NAME;
@@ -71,7 +72,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY;
     private Bitmap DOCTOR_PHOTO;
     private List<ParseObject> doctors;
-    private String Title;
+    private static String Title;
     private String email;
     public static FragmentManager fragmentActivity;
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -436,8 +437,12 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         return true;
     }
 
+    public static Drawable getDocPhoto(){
+        return photoProfile.getDrawable();
+    }
 
-
-
+    public static String getDocName(){
+        return Title;
+    }
 
 }

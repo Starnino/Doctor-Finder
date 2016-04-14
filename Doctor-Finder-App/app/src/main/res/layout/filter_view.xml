@@ -33,7 +33,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     app:iiv_color="@color/colorPrimaryDark"
-                    app:iiv_icon="gmd-text_format"
+                    app:iiv_icon="gmd-sort_by_alpha"
                     android:layout_marginBottom="@dimen/fab_margin"/>
 
                 <com.mikepenz.iconics.view.IconicsImageView

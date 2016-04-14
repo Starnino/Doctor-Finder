@@ -364,4 +364,12 @@ public class DoctorFragment extends Fragment {
             floatFeed.setText(String.format("%.1f", rightRating));
         }
     }
+
+    public static String getNumFeed(){
+        return String.valueOf(nf);
+    }
+
+    public static String getRating(){
+        return String.format("%.1f",rightRating);
+    }
 }

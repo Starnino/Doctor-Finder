@@ -14,34 +14,22 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvNumber5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="Feedback"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#212121" />
-
-        <TextView
             android:id="@+id/float_feedback_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="4.9"
-            android:layout_below="@id/tvNumber5"
             android:textSize="50sp"
             android:layout_gravity="bottom"/>
 
 
         <RatingBar
-            android:id="@+id/ratingBarFeedback_custom"
+            android:id="@+id/rating_bar_feedback_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
             android:isIndicator="true"
-            android:layout_below="@+id/tvNumber5"
             android:layout_alignStart="@id/float_feedback_custom"
             android:layout_alignLeft="@id/float_feedback_custom"
             android:scaleX="0.3"
@@ -54,14 +42,121 @@
             android:layout_height="wrap_content"
             android:id="@+id/num_feedback_custom"
             android:text="13"
-            android:layout_below="@+id/tvNumber5"
             android:layout_toEndOf="@id/float_feedback_custom"
             android:layout_toRightOf="@id/float_feedback_custom"
             android:layout_marginLeft="9dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="35dp"/>
 
+        <TextView
+            android:id="@+id/num_thumb_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginLeft="-50dp"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:textSize="16sp"
+            android:layout_toEndOf="@id/rating_bar_feedback_custom"
+            android:layout_toRightOf="@id/rating_bar_feedback_custom"
+            android:layout_centerVertical="true"/>
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/feed_like_custom"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:visibility="visible"
+            app:iiv_color="@color/colorPrimaryDark"
+            app:iiv_icon="gmd-thumb_up"
+            android:padding="10dp"
+            android:layout_toEndOf="@id/num_thumb_custom"
+            android:layout_toRightOf="@id/num_thumb_custom"
+            android:layout_centerVertical="true"/>
+
     </RelativeLayout>
+    </LinearLayout>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B6B6B6" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:paddingTop="@dimen/fab_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fab_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fab_margin">
+
+        <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/user_image_feed"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:src="@drawable/personavatar"
+            android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/user_name_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="nome utente"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/user_image_feed"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/user_image_feed" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fab_margin">
+
+            <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/doctor_image_feed"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/personavatar"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/doctor_name_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="nome dottore"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/doctor_image_feed"
+                android:gravity="center"
+                android:layout_toRightOf="@id/doctor_image_feed" />
+        </RelativeLayout>
     </LinearLayout>
 
     <View xmlns:android="http://schemas.android.com/apk/res/android"
@@ -71,34 +166,212 @@
         android:background="#B6B6B6" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
 
-        <TextView
+            <TextView
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disponibilità"
+                android:layout_marginTop="5dp"
+                android:id="@+id/text1"/>
+
+            <RatingBar android:layout_below="@id/text1"
+            android:id="@+id/rating_bar_disp_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="Utente"
-            android:id="@+id/text_utente"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#212121" />
+            android:numStars="5"
+            android:isIndicator="true"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:transformPivotX="25dp"
+                android:transformPivotY="15dp"/>
 
-        <com.doctorfinderapp.doctorfinder.functions.RoundedImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:id="@+id/user_image_feed"
+            <TextView
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/text_2"
+                android:layout_below="@id/rating_bar_disp_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cordialità"
+                android:layout_marginTop="-10dp" />
+
+        <RatingBar android:layout_below="@id/text_2"
+            android:id="@+id/rating_bar_cordi_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:isIndicator="true"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:transformPivotX="25dp"
+            android:transformPivotY="15dp"/>
+
+            <TextView
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/text3"
+                android:layout_below="@id/rating_bar_cordi_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soddisfazione"
+                android:layout_marginTop="-10dp"/>
+
+        <RatingBar
+            android:id="@+id/rating_bar_sodd_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:isIndicator="true"
+            android:layout_below="@id/text3"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:transformPivotX="25dp"
+            android:transformPivotY="15dp"/>
+
+     </RelativeLayout>
+    </LinearLayout>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B6B6B6" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:src="@drawable/personavatar"
-            android:layout_gravity="center"
-            android:layout_below="@id/text_utente"/>
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:iiv_color="@color/colorPrimaryDark"
+                app:iiv_icon="gmd-date_range"
+                android:id="@+id/icon2"/>
+
+            <TextView
+                android:id="@+id/date_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="data della visita"
+                android:gravity="center"
+                android:layout_toEndOf="@id/icon2"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/icon2" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+        
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:iiv_color="@color/colorPrimaryDark"
+            app:iiv_icon="gmd-place"
+            android:id="@+id/icon1"/>
+
+        <TextView
+            android:id="@+id/place_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="luogo della visita"
+            android:gravity="center"
+            android:layout_toEndOf="@id/icon1"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/icon1" />
+        
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:iiv_color="@color/colorPrimaryDark"
+                app:iiv_icon="gmd-healing"
+                android:id="@+id/icon3"/>
+
+            <TextView
+                android:id="@+id/type_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="tipo della visita"
+                android:gravity="center"
+                android:layout_toEndOf="@id/icon3"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/icon3" />
+
+        </RelativeLayout>
+
     </LinearLayout>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B6B6B6"
+        android:layout_marginTop="@dimen/fab_margin"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descrizione"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis fermentum neque, ac porttitor eros commodo quis. Sed sed vehicula sapien. Donec ornare felis vel risus bibendum mattis. Nam tristique ipsum tempus, bibendum erat vitae, euismod magna. Vivamus vitae hendrerit felis, vitae elementum tortor. Nullam ante orci, semper vel tellus sit amet, eleifend auctor libero. Phasellus ac neque tincidunt, consectetur quam vel, porttitor nibh. Nulla commodo sodales velit, quis semper turpis placerat ut. Phasellus eleifend enim diam, sit amet auctor orci scelerisque nec. Suspendisse potenti. Proin eget condimentum leo. Curabitur a molestie metus, at condimentum orci. Vestibulum ullamcorper, lorem in tempor aliquam, diam mi pharetra ligula, et vehicula ligula risus vitae turpis. Nam ultricies neque est. Duis id sollicitudin orci, eget rhoncus elit. In sed velit nec tellus tempus aliquam."
+                android:id="@+id/feedback_text_custom"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:layout_marginLeft="@dimen/fab_margin" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -611,7 +611,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/num_feedback"
-                        android:text="13"
+                        android:text="0"
                         android:layout_below="@+id/tvNumber5"
                         android:layout_toEndOf="@id/float_feedback"
                         android:layout_toRightOf="@id/float_feedback"
