@@ -31,7 +31,7 @@
     <application
         android:name=".functions.App"
         android:allowBackup="true"
-        tools:replace="android:label,icon"
+        tools:replace="android:label"
         android:icon="@drawable/icon_app"
         android:label="@string/doctorfindername"
         android:supportsRtl="true"

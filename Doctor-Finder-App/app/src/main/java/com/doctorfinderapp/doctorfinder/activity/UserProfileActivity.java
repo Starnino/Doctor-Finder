@@ -123,6 +123,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         friend_null = (TextView) findViewById(R.id.friend_null);
         card_friend = (CardView) findViewById(R.id.card_friends);
 
+        View divider = (View) findViewById(R.id.divider_user_facebook);
+
         progress = (ProgressWheel) findViewById(R.id.progress_friends);
         progress.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progress.spin();
@@ -154,6 +156,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
 
             if (ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
+
+                assert divider != null;
+                divider.setVisibility(View.GONE);
 
                 //recycler view
                 mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_friends);

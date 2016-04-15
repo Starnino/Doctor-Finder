@@ -102,7 +102,7 @@ public class ResultsActivity extends AppCompatActivity
                         .title("Suggerisci uno specialitsta")
                         .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
                         .inputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
-                        .input("Nome, Cognome, Email, Numero, \nSpecialistica", null, new MaterialDialog.InputCallback() {
+                        .input("Nome, Cognome, Email, Numero, \nSpecializzazione", null, new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
@@ -128,9 +128,9 @@ public class ResultsActivity extends AppCompatActivity
                         .maxIconSizeRes(R.dimen.null_card)
                         .positiveText("Invia")
                         .negativeText("Annulla")
-                        .widgetColor(getResources().getColor(R.color.docfinder))
-                        .positiveColor(getResources().getColor(R.color.docfinder))
-                        .negativeColor(getResources().getColor(R.color.docfinder))
+                        .widgetColor(getResources().getColor(R.color.colorPrimaryDark))
+                        .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                        .negativeColor(getResources().getColor(R.color.colorPrimaryDark))
                         .show();
             }
         });
