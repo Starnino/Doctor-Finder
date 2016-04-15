@@ -328,6 +328,7 @@ public class DoctorFragment extends Fragment {
         facebook_tip.setVisibility(View.GONE);
         progress_tip.setVisibility(View.GONE);
 
+        try{
         if (adapter_count != 0) {
             mRecyclerView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.doctor_item_height);
 
@@ -339,6 +340,9 @@ public class DoctorFragment extends Fragment {
         else {
             suggest_null.setVisibility(View.VISIBLE);
             suggest_null.setText(R.string.feedback_null);
+        }}
+        catch(IllegalStateException a){
+            a.printStackTrace();
         }
     }
 
