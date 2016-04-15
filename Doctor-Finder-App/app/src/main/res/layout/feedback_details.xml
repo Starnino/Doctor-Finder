@@ -164,19 +164,11 @@
     <View xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/fab_margin"
         android:background="#B6B6B6" />
 
-            <TextView
-                android:layout_margin="@dimen/fab_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Feedback"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -256,24 +248,24 @@
         android:layout_height="1dp"
         android:background="#B6B6B6" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+            <TextView
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dettagli visita"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_margin="@dimen/fab_margin"
+                <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dati Visita"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"/>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
@@ -367,7 +359,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_margin="@dimen/fab_margin"
