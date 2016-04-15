@@ -198,7 +198,7 @@ public class FeedbackDialogFragment
                                 FeedbackDialogFragment.this.dismiss();
                             }
                         })
-                        .positiveText("Si")
+                        .positiveText("Ho capito")
                         .negativeText("Annulla")
                         .show();
                 break;
