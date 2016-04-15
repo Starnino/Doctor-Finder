@@ -46,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleApiClient client;
     private ImageButton close;
     private TextView resetpsw;
-    TextView resetTv;
-    EditText resetEt;
+    private TextView accedendo;
 
 
 
@@ -255,6 +254,24 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        accedendo = (TextView)findViewById(R.id.accedendo_clicca);
+        accedendo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MaterialDialog.Builder(v.getContext())
+                        .title("Termini e condizioni")
+                        .content(R.string.Informativa1, R.string.informativa2)
+                        .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
+                        .positiveText("Ho letto")
+
+                        .show();
+
+            }
+        });
+
+
+
 
     }
 

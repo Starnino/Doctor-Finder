@@ -137,11 +137,25 @@
                 android:id="@+id/accedendo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contextClickable="true"
-                android:text="Accedendo acceti termini e condizioni"
-                android:visibility="invisible"
+                android:contextClickable="false"
+                android:text="Accedendo dichiari di aver preso visione e accettato i"
+                android:visibility="visible"
                 android:clickable="true"
+                android:textSize="10dp"
                 android:layout_below="@+id/progressBar1"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/accedendo_clicca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+                android:text="Termini e condizioni"
+                android:visibility="visible"
+                android:textColor="@color/com_facebook_blue"
+                android:textSize="10dp"
+                android:clickable="true"
+                android:layout_below="@+id/accedendo"
                 android:layout_centerHorizontal="true" />
 
             <com.pnikosis.materialishprogress.ProgressWheel
