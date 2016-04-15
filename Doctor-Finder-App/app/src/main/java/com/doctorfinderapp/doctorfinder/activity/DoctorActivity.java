@@ -36,6 +36,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private String email;
     public static FragmentManager fragmentActivity;
     CollapsingToolbarLayout collapsingToolbarLayout;
-
+    public static ProgressWheel progressWheel;
     public static CoordinatorLayout coordinator_layout;
 
 
@@ -102,6 +103,9 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
 
         doctors = GlobalVariable.DOCTORS;
 
+        progressWheel = (ProgressWheel) findViewById(R.id.progress_doctor);
+        progressWheel.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progressWheel.spin();
         //set ParseDoctor this
         if (extras != null) {
 

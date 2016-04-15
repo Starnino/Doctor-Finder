@@ -301,6 +301,7 @@ public class DoctorFragment extends Fragment {
             }
         });
 
+        DoctorActivity.progressWheel.stopSpinning();
         return rootView;
     }
 
