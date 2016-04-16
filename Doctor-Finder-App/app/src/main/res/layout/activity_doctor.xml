@@ -77,47 +77,6 @@
             android:id="@+id/progress_doctor"/>
     </FrameLayout>
 
-    <!--<com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fabtelephone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:visibility="invisible"
-        android:layout_marginBottom="160dp"
-        app:elevation="6dp"
-        android:src="@drawable/information_icon"
-        fab:fab_type="mini"
-        fab:fab_colorNormal="@color/docfinder"
-        fab:fab_colorPressed="@color/colorPrimaryDark"
-        fab:fab_colorRipple="@color/grey" />
-
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fabemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="90dp"
-        android:visibility="invisible"
-        app:elevation="6dp"
-        fab:fab_type="mini"
-        android:src="@drawable/information_icon"
-        fab:fab_colorNormal="@color/docfinder"
-        fab:fab_colorPressed="@color/colorPrimaryDark"
-        fab:fab_colorRipple="@color/grey"/>
-
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fabcontact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom|right"
-        android:layout_margin="@dimen/fab_margin"
-        app:elevation="6dp"
-        android:src="@drawable/information_icon"
-        fab:fab_colorNormal="@color/docfinder"
-        fab:fab_colorPressed="@color/colorPrimaryDark"
-        fab:fab_colorRipple="@color/grey"/> -->
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fabfeedback"
@@ -130,7 +89,9 @@
         android:src="@drawable/ic_add_white_24dp"
         fab:fab_colorNormal="@color/docfinder"
         fab:fab_colorPressed="@color/colorPrimaryDark"
-        fab:fab_colorRipple="@color/grey"/>
+        fab:fab_colorRipple="@color/grey"
+        app:borderWidth="0dp"/>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fab_menu"
@@ -173,18 +134,6 @@
         fab:menu_labels_position="left"
         fab:menu_openDirection="up"
         fab:menu_backgroundColor="@android:color/transparent">
-
-        <!--<com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_feedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity = "right|bottom"
-            android:src="@drawable/ic_star_white_24dp"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorPrimaryDark"
-            fab:fab_colorPressed="@color/darkdf"
-            fab:fab_colorRipple="@color/grey"
-            android:visibility="visible" />-->
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_message"

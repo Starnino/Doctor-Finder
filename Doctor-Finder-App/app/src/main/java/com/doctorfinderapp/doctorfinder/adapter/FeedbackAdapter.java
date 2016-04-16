@@ -38,6 +38,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +67,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     String CORDIALITA = "cordialita_rating";
     String DISPONIBILITA = "disponibilita_rating";
     String SODDISFAZIONE = "soddisfazione_rating";
-    String DATE_VISIT = "date_visit";
+    String DATE_VISIT = "visit_date";
     ParseObject annulla;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public FeedbackAdapter(List<ParseObject> feedbacks, String doctor_email, String user_email) {
@@ -222,6 +224,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                 holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
+
                 FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
             }
 
@@ -341,33 +344,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                             holder.delete_progress.setVisibility(View.VISIBLE);
                             holder.delete_progress.spin();
                             deleteFeedback(position, holder);
-                            final float fab_up = holder.itemView.getResources().getDimension(R.dimen.fab_up);
-                            final float fab_down = holder.itemView.getResources().getDimension(R.dimen.fab_down);
-
-                            Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
-                                    .setActionTextColor(v.getResources().getColor(R.color.docfinder))
-                                    .setAction("Annulla", new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            holder.clear.setClickable(false);
-                                            safeSave(annulla);
-                                            annulla = null;
-                                            holder.clear.setClickable(true);
-                                            holder.delete_progress.setVisibility(View.GONE);
-                                            FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
-                                            Util.calculateFeedback(EMAIL_DOCTOR_THIS);
-                                            DoctorFragment.plus1();
-                                        }})
-                                   .setCallback(new Snackbar.Callback() {
-                                       @Override
-                                       public void onDismissed(Snackbar snackbar, int event) {
-                                           super.onDismissed(snackbar, event);
-                                           ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
-                                       }
-                                   })
-                                   .show();
-                            ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                         }
                         return true;
                     }
@@ -395,7 +371,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.rating_sodd_custom.setRating(Float.parseFloat(feedbacklist.get(position).get(SODDISFAZIONE).toString()));
                 holder.place_custom.setText(feedbacklist.get(position).getString(PLACE));
                 holder.type_custom.setText(feedbacklist.get(position).getString(TYPE));
-                holder.date_custom.setText(feedbacklist.get(position).getString(DATE));
+                holder.date_custom.setText(simpleDateFormat.format(feedbacklist.get(position).getDate(DATE_VISIT)));
                 holder.feedback_text_custom.setText(holder.text);
                 holder.dialog
                         .getBuilder()
@@ -492,6 +468,35 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         holder.delete_progress.stopSpinning();
                         holder.delete_progress.setVisibility(View.GONE);
                         Util.calculateFeedback(EMAIL_DOCTOR_THIS);
+
+                        //recover feedback
+                        View v = holder.itemView;
+                        final float fab_up = v.getResources().getDimension(R.dimen.fab_up);
+                        final float fab_down = v.getResources().getDimension(R.dimen.fab_down);
+                        Snackbar.make(v, "Eliminato!", Snackbar.LENGTH_LONG)
+                                .setActionTextColor(v.getResources().getColor(R.color.docfinder))
+                                .setAction("Annulla", new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View v) {
+                                        holder.clear.setClickable(false);
+                                        safeSave(annulla);
+                                        annulla = null;
+                                        holder.clear.setClickable(true);
+                                        holder.delete_progress.setVisibility(View.GONE);
+                                        FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
+                                        Util.calculateFeedback(EMAIL_DOCTOR_THIS);
+                                        DoctorFragment.plus1();
+                                    }})
+                                .setCallback(new Snackbar.Callback() {
+                                    @Override
+                                    public void onDismissed(Snackbar snackbar, int event) {
+                                        super.onDismissed(snackbar, event);
+                                        ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+                                    }
+                                })
+                                .show();
+                        ViewCompat.animate(FeedbackFragment.fabfeedback).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
                     }
             }
         });
@@ -524,7 +529,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
         feedback.put(CORDIALITA, Float.parseFloat(object.get(CORDIALITA).toString()));
         feedback.put(DISPONIBILITA, Float.parseFloat(object.get(DISPONIBILITA).toString()));
         feedback.put(SODDISFAZIONE, Float.parseFloat(object.get(SODDISFAZIONE).toString()));
-        feedback.put(DATE_VISIT, object.getString(DATE_VISIT));
+        feedback.put(DATE_VISIT, object.getDate(DATE_VISIT));
         feedback.saveEventually(new SaveCallback() {
             @Override
             public void done(ParseException e) {

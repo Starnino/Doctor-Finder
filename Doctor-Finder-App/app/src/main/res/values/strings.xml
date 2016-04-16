@@ -111,6 +111,7 @@
         <item>Neuropsichiatria Infantile</item>
         <item>Oculistica</item>
         <item>Odontoiatria</item>
+        <item>Omeopatia</item>
         <item>Oncologia</item>
         <item>Ortopedia e Traumatologia</item>
         <item>Otorinolaringoiatria</item>
@@ -332,6 +333,18 @@
     <string name="crescente">Crescente</string>
     <string name="decrescente">Decrescente</string>
     <string name="tu">(Tu)</string>
+
+    <!-- Termini e condizioni -->
+    <string name="termini"><u>Termini e condizioni</u></string>
+    <string name="accedendo">Accedendo dichiari di aver preso visione e accettato i</string>
+
+    <string name="condizione1">
+    "Ai sensi dell'art. 13 del D. Lgs. 196/2003. Il presente documento, "Informativa Privacy", descrive le modalità del trattamento dei dati raccolti tramite Doctor Finder. La presente Informativa Privacy è resa solo ed esclusivamente per l'applicazione "Doctor Finder" e non anche per eventuali siti web attraverso i quali ad esempio se un Utente dovesse accedere a / o utilizzare l'applicazione.Installando questa applicazione, l’Utente acconsente alla raccolta e al trattamento dei dati di seguito indicati. Raccolta dei dati personali e trasmissione dei dati. I servizi forniti dall'App, nonché le caratteristiche e le funzioni della stessa non richiedono alcuna forma di registrazione, inserendo dati personali degli Utenti. Informiamo l'Utente che l'App prevede la possibilità di utilizzo dei servizi di localizzazione presenti sul dispositivo dell’Utente, e associabili all'App. Tali servizi verranno attivati soltanto a seguito di un autorizzazione fornita dall'Utente, attraverso la scelta dell’opzione "Ok" al momento della richiesta di attivazione. Se invece l’Utente sceglie l’opzione "Nega", l'App non avrà accesso ai predetti servizi di geolocalizzazione. Detti servizi si possono attivare/disattivare in qualsiasi momento attraverso le impostazioni fornite dal dispositivo dell'Utente. I dati sono trattati con strumenti automatizzati e non, per il solo tempo strettamente necessario a conseguire le finalità per cui sono stati raccolti. In qualsiasi momento l'Utente potrà disinstallare dal proprio dispositivo l'App scaricata, revocando così il consenso al trattamento dei dati. Si consiglia pertanto di leggere attentamente le relative politiche sulla privacy ed i termini d'uso, prima di fornire i propri dati personali. La presente informativa è stata aggiornata il 09/03/2016."
+    </string>
+
+    <string name="condizione2">
+    "Il Garante acconsente ad operazioni di trattamento di dati sensibili a determinate condizioni e per determinati fini; stabilisce prescrizioni uniformi per settori omogenei di attività (rapporto di lavoro, sanità, professionisti, assicurazioni, investigazioni ecc.), snellisce l'attività burocratica gravante sull ufficio del Garante ed alleggerisce gli adempimenti del titolare individuandone l'ambito e le modalità di trattamento. Pertanto è possibile la gestione dei dati sensibili entro i limiti prescritti senza richiedere specifica ed individuale autorizzazione al Garante.
+    </string>
 
 
 

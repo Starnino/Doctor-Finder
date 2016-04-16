@@ -70,6 +70,7 @@ public class ResultsActivity extends AppCompatActivity
     MaterialDialog dialog;
     RadioGroup radioGroup;
     RadioGroup group_mode;
+    public static boolean research;
 
 
     @Override
@@ -193,7 +194,9 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-        if (getIntent().getExtras().getBoolean("RESEARCH"))
+        research = getIntent().getExtras().getBoolean("RESEARCH");
+
+        if (research)
             showDatafromAdapter();
 
         else showDataM();
@@ -548,8 +551,6 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-
-                    GlobalVariable.DOCTORS = objects;
                     String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
@@ -644,7 +645,7 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public void showDatafromAdapter() {
+    public static void showDatafromAdapter() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -653,7 +654,6 @@ public class ResultsActivity extends AppCompatActivity
         if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
 
-        //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
@@ -669,6 +669,7 @@ public class ResultsActivity extends AppCompatActivity
             public void done(List<ParseObject> objects, ParseException e) {
 
                 if (e == null) {
+                    GlobalVariable.DOCTORS = objects;
 
                     String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)

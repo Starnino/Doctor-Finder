@@ -55,7 +55,7 @@ public class FeedbackFragment extends Fragment
     private String Email = "Email";
     private SwipeRefreshLayout refresh;
     public static FloatingActionButton fabfeedback;
-
+    public static View rootView;
     private static CardView cardNothing;
 
     private String nienteTesto="Questo dottore non ha ancora nessun feedback. \n " +
@@ -92,7 +92,7 @@ public class FeedbackFragment extends Fragment
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View rootView = inflater.inflate(R.layout.fragment_feedback,
+        rootView = inflater.inflate(R.layout.fragment_feedback,
                 container, false);
 
         progressWheel = (ProgressWheel) rootView.findViewById(R.id.progressBarFeedback);
@@ -188,16 +188,15 @@ public class FeedbackFragment extends Fragment
                         TimerTask timerTask = new TimerTask() {
                             @Override
                             public void run() {
-                                Snackbar.make(DoctorActivity.coordinator_layout,
+                                Snackbar.make(rootView,
                                         objects.size() != 0 ? ("Trovati " + objects.size() + " feedback") : "Nessun feedback", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null)
                                         .setCallback(new Snackbar.Callback() {
                                             @Override
                                             public void onDismissed(Snackbar snackbar, int event) {
-                                                ViewCompat.animate(fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
-                                                fabfeedback.attachToRecyclerView(mRecyclerView);
                                                 super.onDismissed(snackbar, event);
-
+                                                ViewCompat.animate(fabfeedback).translationYBy(fab_up).setInterpolator(new FastOutLinearInInterpolator());
+                                                fabfeedback.attachToRecyclerView(mRecyclerView);
                                             }
                                         })
                                         .show();
