@@ -70,6 +70,7 @@ public class ResultsActivity extends AppCompatActivity
     MaterialDialog dialog;
     RadioGroup radioGroup;
     RadioGroup group_mode;
+    public static boolean research;
 
 
     @Override
@@ -102,7 +103,7 @@ public class ResultsActivity extends AppCompatActivity
                         .title("Suggerisci uno specialitsta")
                         .content("Consigliaci uno specialista che vorresti fosse su questa applicazione!")
                         .inputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
-                        .input("Nome, Cognome, Email, Numero, \nSpecialistica", null, new MaterialDialog.InputCallback() {
+                        .input("Nome, Cognome, Email, Numero, \nSpecializzazione", null, new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
@@ -128,9 +129,9 @@ public class ResultsActivity extends AppCompatActivity
                         .maxIconSizeRes(R.dimen.null_card)
                         .positiveText("Invia")
                         .negativeText("Annulla")
-                        .widgetColor(getResources().getColor(R.color.docfinder))
-                        .positiveColor(getResources().getColor(R.color.docfinder))
-                        .negativeColor(getResources().getColor(R.color.docfinder))
+                        .widgetColor(getResources().getColor(R.color.colorPrimaryDark))
+                        .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                        .negativeColor(getResources().getColor(R.color.colorPrimaryDark))
                         .show();
             }
         });
@@ -193,7 +194,9 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-        if (getIntent().getExtras().getBoolean("RESEARCH"))
+        research = getIntent().getExtras().getBoolean("RESEARCH");
+
+        if (research)
             showDatafromAdapter();
 
         else showDataM();
@@ -548,8 +551,6 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-
-                    GlobalVariable.DOCTORS = objects;
                     String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
@@ -644,7 +645,7 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public void showDatafromAdapter() {
+    public static void showDatafromAdapter() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -653,7 +654,6 @@ public class ResultsActivity extends AppCompatActivity
         if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
             doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
 
-        //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
@@ -669,6 +669,7 @@ public class ResultsActivity extends AppCompatActivity
             public void done(List<ParseObject> objects, ParseException e) {
 
                 if (e == null) {
+                    GlobalVariable.DOCTORS = objects;
 
                     String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)

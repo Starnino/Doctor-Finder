@@ -106,6 +106,7 @@ public class FeedbackDialogFragment
         dove = (EditText) rootView.findViewById(R.id.editTextDove);
         tipo = (EditText) rootView.findViewById(R.id.editTextTipo);
 
+
         general_ratingbar.setIsIndicator(true);
         disponibilita.setOnRatingBarChangeListener(this);
         cordialita.setOnRatingBarChangeListener(this);
@@ -116,7 +117,7 @@ public class FeedbackDialogFragment
         today_string = today.format(Calendar.getInstance().getTime());
         date.setText(today_string);
 
-        Toast.makeText(this.getContext() , "Descrivi la visita!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getContext(), "Descrivi la visita!", Toast.LENGTH_SHORT).show();
 
         send = (TextView) rootView.findViewById(R.id.invia);
 
@@ -163,7 +164,7 @@ public class FeedbackDialogFragment
                     Util.SnackBarFiga(null, v, "Controlla la tua connessione a Internet!");
 
                 else {
-
+                    //todo show loading
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
                 }
@@ -198,7 +199,7 @@ public class FeedbackDialogFragment
                                 FeedbackDialogFragment.this.dismiss();
                             }
                         })
-                        .positiveText("Si")
+                        .positiveText("Ho capito")
                         .negativeText("Annulla")
                         .show();
                 break;
@@ -252,9 +253,9 @@ public class FeedbackDialogFragment
                                 Float d = Float.parseFloat(o.toString());
                                 soddisfazione.setRating(d);
                             }
-                            String date_visit = object.getString("date_visit");
-                            Log.d("DATE", "--> " + date_visit);
-                            date.setText(date_visit);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            date_visit = object.getDate("visit_date");
+                            date.setText(simpleDateFormat.format(date_visit));
 
                             tipo.setText(object.get("type").toString());
                             dove.setText(object.get("place").toString());
@@ -263,9 +264,9 @@ public class FeedbackDialogFragment
                 }
             });
 
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-        }catch( IllegalStateException i){
+        } catch (IllegalStateException i) {
             i.printStackTrace();
         }
 
@@ -296,27 +297,29 @@ public class FeedbackDialogFragment
                     object.put("Anonymus", anonymus);
                     object.put("feedback_description", feedback_description);
 
-                    object.put("type",tipo.getText().toString());
+                    object.put("type", tipo.getText().toString());
                     object.put("place", dove.getText().toString());
-                    object.put("cordialita_rating",cordialita_float);
-                    object.put("disponibilita_rating",disponibilita_float);
-                    object.put("soddisfazione_rating",soddisfazione_float);
+                    object.put("cordialita_rating", cordialita_float);
+                    object.put("disponibilita_rating", disponibilita_float);
+                    object.put("soddisfazione_rating", soddisfazione_float);
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    object.put("date_visit", simpleDateFormat.format(date_visit));
+                    object.put("visit_date", date_visit);
                     object.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
 
                     object.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            //Log.d("Push feedback", "feedback saved");
-                            //DoctorActivity.showToastFeedback();
-                            Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
-                                    "Feedback Inviato, Grazie!");
+                                //Log.d("Push feedback", "feedback saved");
+                                //DoctorActivity.showToastFeedback();
 
-                            FeedbackFragment.feedbackAdapter.changeMyFeedback();
-                            Util.calculateFeedback(email_doctor);
+                            else {
+                                FeedbackFragment.feedbackAdapter.changeMyFeedback();
+                                Util.calculateFeedback(email_doctor);
+                                Util.SnackBarFiga(FeedbackFragment.fabfeedback, FeedbackFragment.rootView,"Feedback inviato, Grazie!");
+                                //todo show complete
+                            }
                         }
                     });
 
@@ -335,25 +338,28 @@ public class FeedbackDialogFragment
                     feedback.put("date", simpleDateFormat.format(Calendar.getInstance().getTime()));
                     feedback.put("thumb_list", new ArrayList<String>());
                     feedback.put("num_thumb", 0);
-                    feedback.put("type",tipo.getText().toString());
+                    feedback.put("type", tipo.getText().toString());
                     feedback.put("place", dove.getText().toString());
-                    feedback.put("cordialita_rating",cordialita_float);
-                    feedback.put("disponibilita_rating",disponibilita_float);
-                    feedback.put("soddisfazione_rating",soddisfazione_float);
-                    feedback.put("date_visit", simpleDateFormat.format(date_visit));
+                    feedback.put("cordialita_rating", cordialita_float);
+                    feedback.put("disponibilita_rating", disponibilita_float);
+                    feedback.put("soddisfazione_rating", soddisfazione_float);
+                    feedback.put("visit_date", date_visit);
 
                     feedback.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e != null) Log.d("Push feedback", e.toString());
-                            Util.SnackBarFiga(DoctorActivity.fabfeedback, DoctorActivity.coordinator_layout,
-                                    "Feedback Inviato, Grazie!");
+                            /**/
 
-                            if (FeedbackFragment.feedbackAdapter.getItemCount() == 0)
-                                FeedbackFragment.CardNothingVisible(false);
-                            FeedbackFragment.feedbackAdapter.insertItem(feedback);
-                            Util.calculateFeedback(email_doctor);
-                            DoctorFragment.plus1();
+                            else {
+                                if (FeedbackFragment.feedbackAdapter.getItemCount() == 0)
+                                    FeedbackFragment.CardNothingVisible(false);
+                                FeedbackFragment.feedbackAdapter.insertItem(feedback);
+                                Util.calculateFeedback(email_doctor);
+                                DoctorFragment.plus1();
+                                Util.SnackBarFiga(FeedbackFragment.fabfeedback, FeedbackFragment.rootView,"Feedback inviato, Grazie!");
+                                //todo show complete
+                            }
                             //Log.d("Push feedback", "feedback saved");
                         }
                     });
@@ -386,6 +392,7 @@ public class FeedbackDialogFragment
 
     }
 
+
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
@@ -407,11 +414,10 @@ public class FeedbackDialogFragment
 
             Calendar c = Calendar.getInstance();
             c.set(year, month, day);
-            date_visit =  c.getTime() ;
+            date_visit = c.getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             date.setText(simpleDateFormat.format(date_visit));
         }
     }
-
-
 }
+

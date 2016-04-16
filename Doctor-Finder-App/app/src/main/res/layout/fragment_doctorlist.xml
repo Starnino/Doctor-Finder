@@ -14,10 +14,11 @@
     </include>
 
     <com.pnikosis.materialishprogress.ProgressWheel
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/progressBarList"
-        android:layout_gravity="center" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +28,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
+    <com.doctorfinderapp.doctorfinder.objects.slowRecyclerView
         android:scrollbars="vertical"
         android:id="@+id/result_recyclerview"
         android:layout_width="match_parent"
