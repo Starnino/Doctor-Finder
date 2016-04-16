@@ -261,7 +261,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new MaterialDialog.Builder(v.getContext())
                         .title("Termini e condizioni")
-                        .content(R.string.Informativa1, R.string.informativa2)
+                        .content(R.string.condizione1,"/n", R.string.condizione2)
                         .inputType(InputType.TYPE_MASK_CLASS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE)
                         .positiveText("Ho letto")
 
