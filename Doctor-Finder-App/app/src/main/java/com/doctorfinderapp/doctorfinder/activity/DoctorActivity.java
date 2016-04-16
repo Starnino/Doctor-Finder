@@ -42,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimerTask;
 
 public class DoctorActivity extends AppCompatActivity implements View.OnClickListener, FeedbackFragment.OnFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
 
@@ -51,7 +52,6 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private static int index;
     public static com.melnykov.fab.FloatingActionButton fabfeedback;
     private static FloatingActionMenu fabmenu;
-    private static Context c;
     public final String EMAIL = "Email";
     private com.github.clans.fab.FloatingActionButton fab_email, fab_message, fab_phone;
     private String DOCTOR_EMAIL = "";
@@ -69,6 +69,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     CollapsingToolbarLayout collapsingToolbarLayout;
     public static ProgressWheel progressWheel;
     public static CoordinatorLayout coordinator_layout;
+    static Context context;
+    static TimerTask task;
 
 
     //switch fab
@@ -106,6 +108,8 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
         progressWheel = (ProgressWheel) findViewById(R.id.progress_doctor);
         progressWheel.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
         progressWheel.spin();
+
+        context = getApplicationContext();
         //set ParseDoctor this
         if (extras != null) {
 

@@ -76,7 +76,7 @@ public class DoctorFragment extends Fragment {
     private static float rightRating = 0;
     private static TextView floatFeed;
     private  static TextView numFeed;
-    static int nf = 0;
+    static int nf;
 
     public DoctorFragment() {
     }
@@ -111,6 +111,7 @@ public class DoctorFragment extends Fragment {
 
         progress_tip = (ProgressWheel) rootView.findViewById(R.id.progress_tip);
         progress_tip.setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        progress_tip.setVisibility(View.VISIBLE);
         progress_tip.spin();
 
         if (ParseUser.getCurrentUser() == null || !ParseFacebookUtils.isLinked(ParseUser.getCurrentUser())) {
@@ -353,12 +354,12 @@ public class DoctorFragment extends Fragment {
     }
 
     public static void plus1(){
-        nf++;
+        nf += 1;
         numFeed.setText(String.valueOf(nf));
     }
 
     public static void minus1(){
-        nf--;
+        nf-=1;
         numFeed.setText(String.valueOf(nf));
     }
 
