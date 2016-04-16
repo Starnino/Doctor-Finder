@@ -138,10 +138,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contextClickable="false"
-                android:text="Accedendo dichiari di aver preso visione e accettato i"
+                android:text="@string/accedendo"
                 android:visibility="visible"
                 android:clickable="true"
-                android:textSize="10dp"
+                android:textSize="11dp"
                 android:layout_below="@+id/progressBar1"
                 android:layout_centerHorizontal="true" />
 
@@ -150,13 +150,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contextClickable="true"
-                android:text="Termini e condizioni"
+                android:text="@string/termini"
                 android:visibility="visible"
-                android:textColor="@color/com_facebook_blue"
-                android:textSize="10dp"
+                android:textColor="@color/com_facebook_messenger_blue"
+                android:textSize="11dp"
                 android:clickable="true"
                 android:layout_below="@+id/accedendo"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"/>
 
             <com.pnikosis.materialishprogress.ProgressWheel
                 android:id="@+id/progressBar1"
@@ -166,6 +166,7 @@
                 android:layout_gravity="left|bottom"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
     </LinearLayout>
