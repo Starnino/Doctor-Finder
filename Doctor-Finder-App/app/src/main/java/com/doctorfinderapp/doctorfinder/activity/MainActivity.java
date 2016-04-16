@@ -655,6 +655,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         else SPECIAL2 = new ArrayList<>(specialization);
 
+        Log.d("RESEARCH SPECIAL --> ", SPECIAL2.toString());
+        Log.d("RESEARCH SPECIAL --> ", CITY2.toString());
         Intent intent = new Intent(mContext, ResultsActivity.class);
         intent.putExtra("RESEARCH", true);
         mContext.startActivity(intent);
