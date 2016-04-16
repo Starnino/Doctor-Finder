@@ -145,7 +145,11 @@ public class DoctorListFragment extends Fragment
         Log.d("DoctorListFragment","OnRefresh called");
 
         refresh.setRefreshing(true);
-        ResultsActivity.showDataM();
+
+        if (ResultsActivity.research)
+            ResultsActivity.showDatafromAdapter();
+
+        else ResultsActivity.showDataM();
 
 
     }

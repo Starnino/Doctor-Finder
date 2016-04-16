@@ -70,6 +70,7 @@ public class ResultsActivity extends AppCompatActivity
     MaterialDialog dialog;
     RadioGroup radioGroup;
     RadioGroup group_mode;
+    public static boolean research;
 
 
     @Override
@@ -193,7 +194,9 @@ public class ResultsActivity extends AppCompatActivity
         setupViewPager(viewPager);
         //download from db
 
-        if (getIntent().getExtras().getBoolean("RESEARCH"))
+        research = getIntent().getExtras().getBoolean("RESEARCH");
+
+        if (research)
             showDatafromAdapter();
 
         else showDataM();
@@ -642,7 +645,7 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public void showDatafromAdapter() {
+    public static void showDatafromAdapter() {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
