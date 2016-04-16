@@ -152,7 +152,7 @@
                 android:contextClickable="true"
                 android:text="@string/termini"
                 android:visibility="visible"
-                android:textColor="@color/com_facebook_messenger_blue"
+                android:textColor="@color/white"
                 android:textSize="11dp"
                 android:clickable="true"
                 android:layout_below="@+id/accedendo"
