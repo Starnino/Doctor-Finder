@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -177,7 +178,20 @@ public class FeedbackDialogFragment
         });
 
         return builder.create();
+    }
 
+    @Override
+    public void onCancel(final DialogInterface thisDialog) {
+        getDialog().dismiss();
+        new MaterialDialog.Builder(getContext())
+                .positiveText("Ho capito")
+                .negativeText("Annulla")
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                }).show();
     }
 
     public void showCancelDialog(){
