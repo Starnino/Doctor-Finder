@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="Il dottore è facile da reperire? "
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp" />
 
@@ -70,7 +70,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="@string/cordialita_guide"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp" />
 
@@ -107,7 +107,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="@string/soddisfazione_guide"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAlignment="center"/>
@@ -146,7 +146,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="@string/complessivo_guide"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp" />
 
@@ -184,7 +184,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="Dove è stata fatta la visita? (Studio, ambulatorio, a domicilio)"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp" />
 
@@ -220,7 +220,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="Quando è stata fatta la visita?"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="5dp"/>
@@ -262,7 +262,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="Descrivi il tipo di visita"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"/>
 
@@ -287,7 +287,7 @@
             android:layout_gravity="center"
             android:textColor="@color/background_material_dark"
             android:text="@string/responsabilita"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAlignment="center"/>
@@ -322,7 +322,7 @@
             android:text="@string/anonymus"
             android:id="@+id/checkBox_anonymus"
             android:checked="false"
-            android:textSize="11dp"
+            android:textSize="12dp"
             android:layout_marginLeft="16dp"/>
         <CheckBox
             android:layout_width="wrap_content"
@@ -330,7 +330,7 @@
             android:text="@string/respons"
             android:id="@+id/checkBox_respons"
             android:checked="false"
-            android:textSize="11dp"
+            android:textSize="12dp"
             android:layout_marginLeft="16dp"
             android:lines="2"/>
 
