@@ -192,20 +192,6 @@ public class DoctorFragment extends Fragment {
                             if (e == null) {
                                 friends_tip = Util.getUserFacebookFriendsAndFeedback(DOCTOR_EMAIL, objects);
                                 setAdapter();
-
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
-                                //Log.d("Feedback","showing feedback of"+ EMAIL);
-                                query.whereEqualTo("email_doctor", DOCTOR_EMAIL);
-                                query.findInBackground(new FindCallback<ParseObject>() {
-                                    @Override
-                                    public void done(List<ParseObject> objects, ParseException e) {
-                                        if (e == null && objects != null) {
-                                            nf = objects.size();
-                                            numFeed.setText(String.valueOf(nf));
-
-                                        }
-                                    }
-                                });
                             }
                         }
                     });
@@ -217,6 +203,22 @@ public class DoctorFragment extends Fragment {
                 suggest_null.setVisibility(View.VISIBLE);
                 facebook_tip.setVisibility(View.VISIBLE);
             }
+        }
+
+        if (Util.isOnline(getActivity())){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Feedback");
+            //Log.d("Feedback","showing feedback of"+ EMAIL);
+            query.whereEqualTo("email_doctor", DOCTOR_EMAIL);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e == null && objects != null) {
+                        nf = objects.size();
+                        numFeed.setText(String.valueOf(nf));
+
+                    }
+                }
+            });
         }
 
 

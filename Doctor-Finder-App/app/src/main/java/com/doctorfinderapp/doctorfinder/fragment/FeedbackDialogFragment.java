@@ -3,8 +3,11 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -67,6 +70,7 @@ public class FeedbackDialogFragment
     static Date now;
     LayoutInflater inflater;
     AlertDialog.Builder builder;
+    View dialogView;
 
 
     public static FeedbackDialogFragment newInstance(String email_doctor) {
@@ -167,40 +171,44 @@ public class FeedbackDialogFragment
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
                 }
+                dialogView = v;
             }
         });
 
         return builder.create();
+
     }
 
+    public void showCancelDialog(){
+        getDialog().hide();
+        new MaterialDialog.Builder(c)
+                .title("Sei sicuro?")
+                .content(R.string.persi)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        getDialog().show();
+                    }
+                })
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        dismiss();
+                    }
+                })
+                .positiveText("Ho capito")
+                .negativeText("Annulla")
+                .show();
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.annulla:
-                FeedbackDialogFragment.this.getDialog().hide();
-                new MaterialDialog.Builder(c)
-                        .title("Sei sicuro?")
-                        .content(R.string.persi)
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                                FeedbackDialogFragment.this.getDialog().show();
-
-                            }
-                        })
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                                FeedbackDialogFragment.this.dismiss();
-                            }
-                        })
-                        .positiveText("Ho capito")
-                        .negativeText("Annulla")
-                        .show();
+                showCancelDialog();
                 break;
 
             case R.id.dateTextView:
@@ -212,7 +220,6 @@ public class FeedbackDialogFragment
         }
 
     }
-
 
     private void controlFeedback(View rootView, String email_user, String email_doctor) {
 
