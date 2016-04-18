@@ -182,14 +182,15 @@ public class FeedbackDialogFragment
 
     @Override
     public void onCancel(final DialogInterface thisDialog) {
-        getDialog().dismiss();
+        //example dialog
+        getDialog().hide();
         new MaterialDialog.Builder(getContext())
                 .positiveText("Ho capito")
                 .negativeText("Annulla")
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
+                        //todo crash --> getDialog().show();
                     }
                 }).show();
     }
