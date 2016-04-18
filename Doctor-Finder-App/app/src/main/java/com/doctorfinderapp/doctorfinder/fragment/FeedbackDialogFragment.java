@@ -44,7 +44,10 @@ import java.util.Date;
 
 public class FeedbackDialogFragment
         extends DialogFragment
-        implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
+        implements View.OnClickListener,
+        DialogInterface.OnKeyListener,
+
+        RatingBar.OnRatingBarChangeListener {
 
     public View rootView;
     float disponibilita_float;
@@ -176,14 +179,30 @@ public class FeedbackDialogFragment
                 dialogView = v;
             }
         });
+        Dialog d= builder.create();
 
-        return builder.create();
+       setCancelable(false);
+        d.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK &&
+                        event.getAction() == KeyEvent.ACTION_UP &&
+                        !event.isCanceled()) {
+                    //dialog.cancel();
+                    showCancelDialog();
+                    return true;
+                }
+                return false;
+            }
+        });
+        return d;
     }
 
-    @Override
+   /* @Override
     public void onCancel(final DialogInterface thisDialog) {
         //example dialog
-        getDialog().hide();
+        //getDialog().hide();
+        Log.d("Feedback dialog","On cancel call");
         new MaterialDialog.Builder(getContext())
                 .positiveText("Ho capito")
                 .negativeText("Annulla")
@@ -191,12 +210,13 @@ public class FeedbackDialogFragment
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         //todo crash --> getDialog().show();
+
                     }
                 }).show();
-    }
+    }*/
 
     public void showCancelDialog(){
-        getDialog().hide();
+        //getDialog().hide();
         new MaterialDialog.Builder(c)
                 .title("Sei sicuro?")
                 .content(R.string.persi)
@@ -204,7 +224,7 @@ public class FeedbackDialogFragment
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
-                        getDialog().show();
+                        //getDialog().show();
                     }
                 })
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -412,6 +432,11 @@ public class FeedbackDialogFragment
         general_float = calculatefeedback(disponibilita_float, cordialita_float, soddisfazione_float);
         general_ratingbar.setRating(general_float);
 
+    }
+
+    @Override
+    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+        return false;
     }
 
 
