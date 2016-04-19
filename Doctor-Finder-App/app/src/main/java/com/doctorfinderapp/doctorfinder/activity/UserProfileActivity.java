@@ -82,6 +82,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     .title("Connettiti con Facebook")
                     .content(getString(R.string.tip_dcf_user))
                     .positiveText("Ok")
+                    .negativeText("Annulla")
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -105,7 +106,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                         }
                     })
-
                     .show();
         }
 

@@ -70,8 +70,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.pnikosis.materialishprogress.ProgressWheel
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"
             android:id="@+id/progress_doctor"/>

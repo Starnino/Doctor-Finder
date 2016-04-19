@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.DialogFragment;
@@ -21,6 +22,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.FeedbackDialogFragment;
@@ -385,6 +388,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     private void openFeedbackDialog() {
 
         DialogFragment newFragment = new FeedbackDialogFragment().newInstance(DOCTOR_EMAIL);
+
         newFragment.show(getSupportFragmentManager(), "feedback");
 
     }
@@ -397,6 +401,7 @@ public class DoctorActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         Log.d("Doctor Activity", " On back pressed");
+
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             Log.d("Doctor Activity", "" + getSupportFragmentManager().getBackStackEntryCount());
             getSupportFragmentManager().popBackStack();

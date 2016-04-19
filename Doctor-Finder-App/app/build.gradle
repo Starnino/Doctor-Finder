@@ -9,18 +9,19 @@ android {
             storePassword 'mianonna'
         }
     }
+
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.doctorfinderapp.doctorfinder"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 6
-        versionName "0.9"
+        versionCode 8
+        versionName "1.0"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
@@ -30,41 +31,42 @@ android {
     }
 }
 
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        testCompile 'junit:junit:4.12'
+        compile 'com.android.support:appcompat-v7:23.3.0'
+        compile 'com.android.support:design:23.3.0'
+        compile 'com.android.support:cardview-v7:23.3.0'
+        compile 'com.facebook.android:facebook-android-sdk:4.10.1'
+        compile 'com.android.support:recyclerview-v7:23.3.0'
+        compile 'com.google.android.gms:play-services-maps:8.4.0'
+        compile 'com.parse.bolts:bolts-android:1.4.0'
+        compile 'com.parse:parse-android:1.13.0'
+        compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.android.support:cardview-v7:23.3.0'
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile 'com.parse.bolts:bolts-android:1.+'
-    compile 'com.parse:parse-android:1.+'
-    compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
+        //material progressbar
+        compile 'me.zhanghai.android.materialprogressbar:library:1.1.5'
+        //recycler animation
+        compile 'jp.wasabeef:recyclerview-animators:2.2.1'
+        //intro
+        compile 'com.github.paolorotolo:appintro:3.4.0'
+        //material alert Dialog
+        compile 'cn.pedant.sweetalert:library:1.3'
+        //easy dialog
+        compile 'com.orhanobut:dialogplus:1.11@aar'
+        //icon
+        compile 'com.mikepenz:iconics-core:2.5.8@aar'
+        compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+        //fab
+        compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+        compile 'com.melnykov:floatingactionbutton:1.3.0'
+        compile 'com.github.clans:fab:1.6.2'
+        //mail
+        compile 'com.github.yesidlazaro:GmailBackground:1.1'
+        //material dialog
+        compile 'com.github.afollestad.material-dialogs:core:0.8.5.7@aar'
 
-    //intro
-    compile 'com.github.paolorotolo:appintro:3.4.0'
-    //easy dialog
-    compile 'com.orhanobut:dialogplus:1.11@aar'
-    //icon
-    compile 'com.mikepenz:iconics-core:2.5.8@aar'
-    compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
-    //fab
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
-    compile 'com.melnykov:floatingactionbutton:1.3.0'
-    compile 'com.github.clans:fab:1.6.2'
-    //mail
-    compile 'com.github.yesidlazaro:GmailBackground:1.1'
-    //material dialog
-    compile 'com.github.afollestad.material-dialogs:core:0.8.5.7@aar'
-    //progress
-    compile 'com.pnikosis:materialish-progress:1.7'
-    //recycler animation
-    compile 'jp.wasabeef:recyclerview-animators:2.2.1'
-
-}
+    }
 
 
 
