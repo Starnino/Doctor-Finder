@@ -3,11 +3,15 @@ package com.doctorfinderapp.doctorfinder.fragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,7 +44,10 @@ import java.util.Date;
 
 public class FeedbackDialogFragment
         extends DialogFragment
-        implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
+        implements View.OnClickListener,
+        DialogInterface.OnKeyListener,
+
+        RatingBar.OnRatingBarChangeListener {
 
     public View rootView;
     float disponibilita_float;
@@ -67,6 +74,7 @@ public class FeedbackDialogFragment
     static Date now;
     LayoutInflater inflater;
     AlertDialog.Builder builder;
+    View dialogView;
 
 
     public static FeedbackDialogFragment newInstance(String email_doctor) {
@@ -168,40 +176,75 @@ public class FeedbackDialogFragment
                     pushFeedback(rootView, email_user, email_doctor, checkBoxAnonymus.isChecked());
                     dismiss();
                 }
+                dialogView = v;
             }
         });
+        Dialog d= builder.create();
 
-        return builder.create();
+       setCancelable(false);
+        d.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK &&
+                        event.getAction() == KeyEvent.ACTION_UP &&
+                        !event.isCanceled()) {
+                    //dialog.cancel();
+                    showCancelDialog();
+                    return true;
+                }
+                return false;
+            }
+        });
+        return d;
     }
 
+   /* @Override
+    public void onCancel(final DialogInterface thisDialog) {
+        //example dialog
+        //getDialog().hide();
+        Log.d("Feedback dialog","On cancel call");
+        new MaterialDialog.Builder(getContext())
+                .positiveText("Ho capito")
+                .negativeText("Annulla")
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        //todo crash --> getDialog().show();
+
+                    }
+                }).show();
+    }*/
+
+    public void showCancelDialog(){
+        //getDialog().hide();
+        new MaterialDialog.Builder(c)
+                .title("Sei sicuro?")
+                .content(R.string.persi)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        //getDialog().show();
+                    }
+                })
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        dismiss();
+                    }
+                })
+                .positiveText("Ho capito")
+                .negativeText("Annulla")
+                .show();
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.annulla:
-                FeedbackDialogFragment.this.getDialog().hide();
-                new MaterialDialog.Builder(c)
-                        .title("Sei sicuro?")
-                        .content(R.string.persi)
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                                FeedbackDialogFragment.this.getDialog().show();
-
-                            }
-                        })
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                                FeedbackDialogFragment.this.dismiss();
-                            }
-                        })
-                        .positiveText("Ho capito")
-                        .negativeText("Annulla")
-                        .show();
+                showCancelDialog();
                 break;
 
             case R.id.dateTextView:
@@ -213,7 +256,6 @@ public class FeedbackDialogFragment
         }
 
     }
-
 
     private void controlFeedback(View rootView, String email_user, String email_doctor) {
 
@@ -390,6 +432,11 @@ public class FeedbackDialogFragment
         general_float = calculatefeedback(disponibilita_float, cordialita_float, soddisfazione_float);
         general_ratingbar.setRating(general_float);
 
+    }
+
+    @Override
+    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+        return false;
     }
 
 
