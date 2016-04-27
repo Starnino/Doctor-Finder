@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -139,12 +140,15 @@ public class DoctorFragment extends Fragment {
         ArrayList<HashMap> position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
         final String[][]latLong = Util.setPosition(position);
         RelativeLayout workMaps = (RelativeLayout) rootView.findViewById(R.id.Work);
+
         workMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LAT = Double.parseDouble(latLong[0][0]);
-                LONG = Double.parseDouble(latLong[0][1]);
-                openMaps(LAT, LONG);
+                if (latLong[0][0].length() != 0 && latLong[0][1].length() != 0) {
+                    LAT = Double.parseDouble(latLong[0][0]);
+                    LONG = Double.parseDouble(latLong[0][1]);
+                    openMaps(LAT, LONG);
+                } else Snackbar.make(v, "Questo dottore non ha ancora indicato la sua posizione!",Snackbar.LENGTH_SHORT).show();
             }
         });
 

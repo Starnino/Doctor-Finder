@@ -186,10 +186,7 @@ public class ResultsActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting header
-
-        ParseUser user = ParseUser.getCurrentUser();
-        setProfileInformation(user);
+        //setProfileInformation(user);
 
         setupViewPager(viewPager);
         //download from db
@@ -201,7 +198,6 @@ public class ResultsActivity extends AppCompatActivity
 
         else showDataM();
 
-
     }
 
 
@@ -211,12 +207,13 @@ public class ResultsActivity extends AppCompatActivity
             View header = navigationView.getHeaderView(0);
             TextView nome = (TextView) header.findViewById(R.id.name_user);
 
-            Log.d("", user.getString("fName"));
-            String name = user.getString("fName");
-            nome.setText(name);
+            if (user.getString("fName") != null)
+                nome.setText(user.getString("fName"));
+
             TextView email = (TextView) header.findViewById(R.id.email_user);
 
-            email.setText(user.getEmail());
+            if (user.getEmail() != null)
+                email.setText(user.getEmail());
             //Re -set image
 
             if (GlobalVariable.UserPropic != null) {
@@ -276,7 +273,9 @@ public class ResultsActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        setProfileInformation(ParseUser.getCurrentUser());
+        if (ParseUser.getCurrentUser() != null)
+            setProfileInformation(ParseUser.getCurrentUser());
+
         super.onResume();
     }
 
