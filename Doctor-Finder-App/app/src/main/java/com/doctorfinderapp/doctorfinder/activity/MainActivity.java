@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        /*Log.d("Util CopyAll"," MAIN");
+        Util.copyAll();*/
 
         mContext = this;
 
@@ -299,8 +301,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     specialText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
-                                if (checked.size() != 0) FLAGSPEC = true;
-                                else FLAGSPEC = false;
+                                FLAGSPEC = checked.size() != 0;
 
                                 break;
 
@@ -316,8 +317,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                 else if (checked.size() > 0 && checked.size() != 2)
                                     cityText.setText(checked.get(0) + "\ne altre " + (checked.size() - 1));
 
-                                if (checked.size() != 0) FLAGCITY = true;
-                                else FLAGCITY = false;
+                                FLAGCITY = checked.size() != 0;
 
                                 break;
                         }
