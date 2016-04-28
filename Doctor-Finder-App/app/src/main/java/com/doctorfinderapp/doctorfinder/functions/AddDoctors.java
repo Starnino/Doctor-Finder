@@ -155,7 +155,14 @@ public class AddDoctors {
                         R.drawable.sarah_pederboni_gmail_com,
                         R.drawable.valeriagemmiti_gmail_com,
                         R.drawable.nicolina_capuano,
-                        R.drawable.silviapiro_alice_it};
+                        R.drawable.silviapiro_alice_it,
+                        R.drawable.alberto_galloppini_gmail_com,
+                        R.drawable.asisinni_virgilio_it,
+                        R.drawable.dott_paolini_gmail_com,
+                        R.drawable.edoardo_poscia_gmail_com,
+                        R.drawable.luciomucci_libero_it,
+                        R.drawable.russoalfonso87_gmail_com
+                };
         final String emaildoc[] = {
                 "antonio.renna11@gmail.com",
                 "antoniodecillis@virgilio.it",
@@ -174,8 +181,14 @@ public class AddDoctors {
                 "sarah.pederboni@gmail.com",
                 "valeriagemmiti@gmail.com",
                 "capuanonicolina@gmail.com",
-                "lucio.mucci@libero.it",
-                "silviapiro@alice.it"
+                "silviapiro@alice.it",
+                "alberto.galloppini@gmail.com",
+                "asisinni@virgilio.it",
+                "dott.paolini@gmail.com",
+                "edoardo.poscia@gmail.com",
+                "luciomucci@libero.it",
+                "russoalfonso87@gmail.com"
+
 
 
         };
@@ -216,7 +229,7 @@ public class AddDoctors {
 
                                                       Log.d("addPhoto", "file saved"+emaildoc[ii]);
                                                       final ParseObject drPhoto = new ParseObject("DoctorPhoto");
-                                                      drPhoto.put("idDoctor", docid[ii]);
+                                                      //drPhoto.put("idDoctor", docid[ii]);
                                                       drPhoto.put("Email", emaildoc[ii]);
                                                       drPhoto.put("profilePhoto", file1);
                                                       if(e!=null){

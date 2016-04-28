@@ -191,6 +191,10 @@ public class SignupActivity extends AppCompatActivity {
                             } else {
                                 // Something went wrong.
                                 Log.d("Signup", "Something went wrong");
+                                e.printStackTrace();
+                                Snackbar.make(v, "Qualcosa non va..", Snackbar.LENGTH_SHORT)
+                                        .setAction("Action", null).show();
+                                progressBar.stopSpinning();
                             }
                         }
                     });
