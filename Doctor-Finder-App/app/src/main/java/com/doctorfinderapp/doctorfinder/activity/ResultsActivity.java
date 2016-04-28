@@ -186,10 +186,7 @@ public class ResultsActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting header
-
-        ParseUser user = ParseUser.getCurrentUser();
-        setProfileInformation(user);
+        //setProfileInformation(user);
 
         setupViewPager(viewPager);
         //download from db

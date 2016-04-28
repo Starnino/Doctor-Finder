@@ -52,6 +52,8 @@ public class DoctorMapsFragment extends SupportMapFragment
     private final String TAG = "Doctor Maps";
     private String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
+    public final String NAME = "FirstName";
+    public final String SURNAME = "LastName";
 
 
     @Override
@@ -209,9 +211,16 @@ public class DoctorMapsFragment extends SupportMapFragment
 
             String id = Integer.toString(i);
 
+
             if (latLong.length == 1) {
-                lat = Double.parseDouble(latLong[0][0]);
-                lon = Double.parseDouble(latLong[0][1]);
+                if (latLong[0][0].length() != 0)
+                    lat = Double.parseDouble(latLong[0][0]);
+                else Log.d("DOTTORE NULL[lat] ==> ", DOCTORTHIS.getString(NAME) + " " + DOCTORTHIS.getString(SURNAME));
+
+                if (latLong[0][1].length() != 0)
+                    lon = Double.parseDouble(latLong[0][1]);
+                else Log.d("DOTTORE NULL[long] ==> ", DOCTORTHIS.getString(NAME) + " " + DOCTORTHIS.getString(SURNAME));
+
                 Marker currentMarker = gMap.addMarker(new MarkerOptions()
                         .position(new LatLng(lat, lon))
                                 //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
@@ -221,8 +230,14 @@ public class DoctorMapsFragment extends SupportMapFragment
                 markers.add(i, currentMarker);
             } else {
                 for (int index = 0; index < latLong.length; index++) {
-                    lat = Double.parseDouble(latLong[index][0]);
-                    lon = Double.parseDouble(latLong[index][1]);
+                    if (latLong[index][0].length() != 0)
+                        lat = Double.parseDouble(latLong[index][0]);
+                    else Log.d("DOTTORE NULL[lat] ==> ", DOCTORTHIS.getString(NAME) + " " + DOCTORTHIS.getString(SURNAME));
+
+                    if (latLong[index][0].length() != 0)
+                        lon = Double.parseDouble(latLong[index][1]);
+                    else Log.d("DOTTORE NULL[long] ==> ", DOCTORTHIS.getString(NAME) + " " + DOCTORTHIS.getString(SURNAME));
+
                     Marker currentMarker = gMap.addMarker(new MarkerOptions()
                             .position(new LatLng(lat, lon))
                             //.title(sex + " " + DOCTORTHIS.get("LastName") + " " + DOCTORTHIS.get("FirstName"))
