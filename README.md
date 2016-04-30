@@ -67,8 +67,8 @@ Social networks connects people all around the world and we thought to use those
 
 #Final Submission
 
-* Documentation - User Manual 
-* Download App from Play Store 
+* [Documentation - User Manual] (https://docs.google.com/document/d/1D9-4JPwl09wmdb-9IueyNMuHOLlBucPxajEotlW5eg8/edit?usp=sharing) 
+* [Download App from Play Store] (https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder&hl=it) 
 
 
 #Doctor Finder Team
