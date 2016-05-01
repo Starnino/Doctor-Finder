@@ -193,7 +193,7 @@ public class DoctorMapsFragment extends SupportMapFragment
 
         for (int i = 0; i < numMarker; i++) {
             ParseObject DOCTORTHIS = doctors.get(i);
-
+            Log.d(TAG,"mapping" +DOCTORTHIS.get("Email"));
             position = (ArrayList<HashMap>) DOCTORTHIS.get("Marker");
             latLong = Util.setPosition(position);
             //double lat = Double.parseDouble(curPosition.substring(6, 15));double lon = Double.parseDouble(curPosition.substring(22, 31));-->OLD<--
