@@ -26,7 +26,7 @@ With our feature **Social Advice** you can search a doctor that have visited one
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
-* [Keep in contact!](https://docs.google.com/forms/d/1qEf-MEshVbQAtGlmjehQi88D2bEklCuuETe7Gz9Xb80/edit?usp=sharing)
+
 
 <img src="http://i.imgur.com/u0FMmUV.png" height="480" width="285"/>
 <img src="http://i.imgur.com/3BzIMaB.png" height="480" width="285"/>
@@ -68,7 +68,8 @@ Social networks connects people all around the world and we thought to use those
 #Final Submission
 
 * [Documentation - User Manual] (https://docs.google.com/document/d/1D9-4JPwl09wmdb-9IueyNMuHOLlBucPxajEotlW5eg8/edit?usp=sharing) 
-* [Download App from Play Store] (https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder&hl=it) 
+* [Video Presentation] (https://www.youtube.com/watch?v=X6cD5TXvMw0)
+* [App on Play Store] (https://play.google.com/store/apps/details?id=com.doctorfinderapp.doctorfinder&hl=it) 
 
 
 #Doctor Finder Team
