@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -21,9 +23,12 @@ import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.activity.DoctorActivity;
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.MainActivity;
+import com.doctorfinderapp.doctorfinder.activity.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
 import com.doctorfinderapp.doctorfinder.functions.RoundedImageView;
 import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -59,11 +64,13 @@ public class DoctorMapsFragment extends SupportMapFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap gMap) {
                 googleMap = gMap;
                 gMap.getUiSettings().setMapToolbarEnabled(true);
+                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                 setUpMap(googleMap);
                 permissionRequest();
                 LatLng ROMA = new LatLng(41.9000, 12.5000);
@@ -73,36 +80,30 @@ public class DoctorMapsFragment extends SupportMapFragment
                         .bearing(0)                // Sets the orientation of the camera to east
                         .build();                   // Creates a CameraPosition from the builder
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            }
+        });
+
+        ResultsActivity.fab_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Location location = googleMap.getMyLocation();
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
+                googleMap.animateCamera(cameraUpdate);
             }
         });
 
     }
 
-    /*@Override
-    public void onMapReady(GoogleMap gMap) {
-        googleMap = gMap;
-
-
-
-        Boolean u = ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-
-        if (u && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            gMap.setMyLocationEnabled(true);
-        }
-
-
-        setUpMap(gMap);
-        gMap.getUiSettings().setMapToolbarEnabled(true);
-
-        //permissionRequest();
-    }*/
-
     private void permissionRequest() {
         //googleMap.setMyLocationEnabled(true);
         if (Build.VERSION.SDK_INT < 23) {
-            if(googleMap!=null)googleMap.setMyLocationEnabled(true);
-            Log.d(TAG, "sdk<23");
+            if(googleMap!=null){
+                googleMap.setMyLocationEnabled(true);
+            }
+            //Log.d(TAG, "sdk<23");
         } else {
             int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION);
@@ -123,9 +124,9 @@ public class DoctorMapsFragment extends SupportMapFragment
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        Log.d(TAG, "request code " + requestCode);
-        Log.d(TAG, " permissions" + PERMISSIONS.toString());
-        Log.d(TAG, "grant results" + grantResults.toString());
+        //Log.d(TAG, "request code " + requestCode);
+        //Log.d(TAG, " permissions" + PERMISSIONS.toString());
+        //Log.d(TAG, "grant results" + grantResults.toString());
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.

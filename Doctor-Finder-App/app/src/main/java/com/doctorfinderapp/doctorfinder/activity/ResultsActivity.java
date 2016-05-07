@@ -60,7 +60,7 @@ public class ResultsActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
-    private static com.melnykov.fab.FloatingActionButton fab, fab_location;
+    public static com.melnykov.fab.FloatingActionButton fab, fab_location;
     private MenuItem searchItem;
     private MenuItem filterItem;
     private SearchView searchView;
@@ -136,33 +136,6 @@ public class ResultsActivity extends AppCompatActivity
             }
         });
 
-        //onClick button
-        fab_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-
-               /* DoctorMapsFragment.googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                    @Override
-                    public boolean onMyLocationButtonClick() {
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Cercando la tua posizione", Snackbar.LENGTH_LONG);
-
-                        snackbar.show();s
-                        LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                        if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                           // Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
-
-                            Snackbar snackbar2 = Snackbar
-                                    .make(v, "GPS is disabled! ", Snackbar.LENGTH_LONG);
-                            snackbar2.show();
-
-
-                        }
-                        return false;
-                    }
-                });*/
-            }
-        });
 
         // Setting ViewPager for each Tabs
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -462,19 +435,18 @@ public class ResultsActivity extends AppCompatActivity
     public void switchFAB(int position){
         switch(position){
             case 0:
-                Log.d("fab", "open");
-                //fab_location.startAnimation(fab_close);
-                //fab_location.setClickable(false);
+                fab_location.hide();
+                fab_location.setClickable(false);
                 fab.show();
                 fab.setClickable(true);
                 break;
 
             case 1:
-                Log.d("fab_location", "open");
                 fab.hide();
                 fab.setClickable(false);
-                //fab_location.startAnimation(fab_open_normal);
-                //fab_location.setClickable(true);
+                if (fab_location.getVisibility() == View.INVISIBLE) fab_location.setVisibility(View.VISIBLE);
+                fab_location.show();
+                fab_location.setClickable(true);
                 break;
         }
     }
