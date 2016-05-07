@@ -124,21 +124,20 @@ public class Util {
     }
 
 
-
     public static List<ParseObject> getUserFacebookFriends(ParseUser user) {
         List<String> id = new ArrayList<>();
         List<ParseObject> friends = new ArrayList<>();
         if (user == null) return friends;
-        if (user.getString(FACEBOOK)!=null)
-            if(!user.getString(FACEBOOK).equals("true")) return friends;
+        if (user.getString(FACEBOOK) != null)
+            if (!user.getString(FACEBOOK).equals("true")) return friends;
 
-        if (user.getString(FRIENDS)==null) return friends;
+        if (user.getString(FRIENDS) == null) return friends;
         if (user.getString(FACEBOOK).equals("true"))
             id = Arrays.asList(user.get(FRIENDS).toString().split(","));
 
-         for (int i = 0; i < id.size(); i++) {
-          // Log.d("AMICO --> ", id.get(i));
-         }
+        for (int i = 0; i < id.size(); i++) {
+            // Log.d("AMICO --> ", id.get(i));
+        }
         //Log.d("getUserFacebookfriend", ""+id.size());
 
 
@@ -257,54 +256,104 @@ public class Util {
     }
 
 
-
-    public static void copyAll(){
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+    public static void copyAll() {
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("DoctorJSON");
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                for (int i = 0; i < objects.size(); i++) {
-                    ParseObject d = new ParseObject("Doctor2");
-                    ParseObject DOCTORTHIS = objects.get(i);
-                    String DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
-                    String DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
-                    String DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
-                    String DOCTOR_FEEDBACK = DOCTORTHIS.getString("Feedback");
-                    String DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
-                    String DOCTOR_SEX = DOCTORTHIS.getString("Sesso");
-                    String DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
-                    ArrayList<String> DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
-                    ArrayList<String> DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
-                    ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-                    String DOCTOR_CELLPHONE = DOCTORTHIS.getString("Cellphone");
-                    String DOCTOR_VISIT = DOCTORTHIS.getString("Visit");
-                    String DOCTOR_BORN = DOCTORTHIS.getString("Born");
-                    String DOCTOR_PRICE = DOCTORTHIS.getString("Price");
-                    ArrayList<String> DOCTOR_Marker = (ArrayList<String>) DOCTORTHIS.get("Marker");
+            public void done(List<ParseObject> doctorjson, ParseException e) {
+                if (e == null) {
 
-                    d.put("FirstName", DOCTOR_FIRST_NAME);
-                    d.put("LastName", DOCTOR_LAST_NAME);
-                    d.put("Exp", DOCTOR_EXPERIENCE);
-                    d.put("Feedback", DOCTOR_FEEDBACK);
-                    d.put("Email", DOCTOR_EMAIL);
-                    d.put("Sesso", DOCTOR_SEX);
-                    d.put("Description", DOCTOR_DESCRIPTION);
-                    d.put("Work", DOCTOR_WORK_ARRAY);
-                    d.put("Province", DOCTOR_CITY_ARRAY);
-                    d.put("Specialization", DOCTOR_SPECIALIZATION_ARRAY);
-                    d.put("Cellphone", DOCTOR_CELLPHONE);
-                    d.put("Visit", DOCTOR_VISIT);
-                    d.put("Born", DOCTOR_BORN);
-                    d.put("Price", DOCTOR_PRICE);
-                    d.put("Marker", DOCTOR_Marker);
+                    Log.d("Util CopyAll", doctorjson.size() + "");
+                    ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Doctor");
+                    ArrayList<String> assenti = new ArrayList<String>();
+                    ArrayList<ParseObject> assentiObject = new ArrayList<ParseObject>();
                     try {
-                        d.save();
+                        ArrayList<ParseObject> doctor =
+                                (ArrayList<ParseObject>) query2.find();
+                        Log.d("Util CopyAll", doctor.size() + "");
+
+                        for (int q = 0; q < doctorjson.size(); q++) {
+                            boolean trovato=false;
+                            String emailJSON=doctorjson.get(q).getString("Email");
+                            Log.d("Util CopyAll", "finding "+emailJSON.toString());
+                            for(int p=0;p<doctor.size();p++){
+
+                                String email=doctor.get(p).getString("Email");
+                                if(email.equals(emailJSON)){
+                                    trovato=true;
+                                    Log.d("Util CopyAll", "found "+emailJSON.toString()+" = " + email.toString());
+                                }
+                            }
+                            if(trovato==false){
+                                assenti.add(emailJSON);
+                                assentiObject.add(doctorjson.get(q));
+
+                            }
+                        }
+                        Log.d("Util CopyAll", "found "+assenti.size()+" dottori assenti");
+                        Log.d("Util CopyAll", "found "+assentiObject.size()+" dottori assenti");
+                        for(String assente:assenti){
+                            //Log.d("Util CopyAll", assente.toString());
+                        }
+                        for (int i = 0; i < assentiObject.size(); i++) {
+
+
+                            ParseObject d = new ParseObject("Doctor");
+                            ParseObject DOCTORTHIS = assentiObject.get(i);
+                            String DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
+                            String DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
+                            String DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
+                            String DOCTOR_FEEDBACK = (String) DOCTORTHIS.get("Feedback");
+                            String DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
+                            String DOCTOR_SEX = DOCTORTHIS.getString("Sesso");
+                            String DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
+                            ArrayList<String> DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
+                            ArrayList<String> DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
+                            ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
+                            String DOCTOR_CELLPHONE = DOCTORTHIS.getString("Cellphone");
+                            String DOCTOR_VISIT = DOCTORTHIS.getString("Visit");
+                            String DOCTOR_BORN = DOCTORTHIS.getString("Born");
+                            String DOCTOR_PRICE = DOCTORTHIS.getString("Price");
+                            ArrayList<String> DOCTOR_Marker = (ArrayList<String>) DOCTORTHIS.get("Marker");
+
+                            Log.d("Util CopyAll", DOCTOR_EMAIL.toString()+"EMAIL DOC ADD");
+
+                            d.put("FirstName", DOCTOR_FIRST_NAME);
+                            d.put("LastName", DOCTOR_LAST_NAME);
+                            d.put("Exp", DOCTOR_EXPERIENCE);
+                            d.put("Feedback", DOCTOR_FEEDBACK);
+                            d.put("Email", DOCTOR_EMAIL);
+                            d.put("Sesso", DOCTOR_SEX);
+                            d.put("Description", DOCTOR_DESCRIPTION);
+                            d.put("Work", DOCTOR_WORK_ARRAY);
+                            d.put("Province", DOCTOR_CITY_ARRAY);
+                            d.put("Specialization", DOCTOR_SPECIALIZATION_ARRAY);
+                            d.put("Cellphone", DOCTOR_CELLPHONE);
+                            d.put("Visit", DOCTOR_VISIT);
+                            d.put("Born", DOCTOR_BORN);
+                            d.put("Price", DOCTOR_PRICE);
+                            d.put("Marker", DOCTOR_Marker);
+                            try {
+                                d.save();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+
+
+                        }
+
+
+
+
+
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
 
 
+                }else{
+                    Log.d("Util CopyAll", e.toString());
                 }
 
 
@@ -315,15 +364,15 @@ public class Util {
     }
 
 
-    public static void dowloadDoctorPhoto(List<ParseObject> doctors){
-        GlobalVariable.DOCTORPHOTO=new ArrayList<>(doctors.size());
+    public static void dowloadDoctorPhoto(List<ParseObject> doctors) {
+        GlobalVariable.DOCTORPHOTO = new ArrayList<>(doctors.size());
 
         //Log.d("Download Doctor Photo", "doctors.size()" + doctors.size());
 
-        for(int i =0;i<doctors.size();i++){
-            final ParseObject CURRENTDOCTOR=doctors.get(i);
-            GlobalVariable.DOCTORPHOTO.add(i,new byte[]{});
-            if(CURRENTDOCTOR!=null) {
+        for (int i = 0; i < doctors.size(); i++) {
+            final ParseObject CURRENTDOCTOR = doctors.get(i);
+            GlobalVariable.DOCTORPHOTO.add(i, new byte[]{});
+            if (CURRENTDOCTOR != null) {
                 final ParseQuery<ParseObject> doctorph = ParseQuery.getQuery("DoctorPhoto");
                 doctorph.whereEqualTo("Email", CURRENTDOCTOR.get("Email").toString());
 
@@ -346,7 +395,7 @@ public class Util {
                                     public void done(byte[] data, ParseException e) {
                                         if (e == null) {
                                             //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " downloaded");
-                                            GlobalVariable.DOCTORPHOTO.add(finalI,data);
+                                            GlobalVariable.DOCTORPHOTO.add(finalI, data);
                                         } else {
                                             //Log.d("doctorphoto", CURRENTDOCTOR.get("Email").toString() + " exception" + e.toString());
                                         }
@@ -367,7 +416,7 @@ public class Util {
     }
 
 
-    public static void sendFeedbackMail(Activity a){
+    public static void sendFeedbackMail(Activity a) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "info@doctorfinderapp.com", null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback app");
@@ -388,7 +437,7 @@ public class Util {
         }
     }
 
-    public static List<Doctor> transformList(List<ParseObject> objects){
+    public static List<Doctor> transformList(List<ParseObject> objects) {
         ArrayList<Doctor> ret = new ArrayList<>();
         int num = objects.size();
         for (int i = 0; i < num; i++) {
@@ -405,22 +454,22 @@ public class Util {
         return ret;
     }
 
-    public static List<String[]> transformSearch(List<ParseObject> objects){
+    public static List<String[]> transformSearch(List<ParseObject> objects) {
         ArrayList<String[]> ret = new ArrayList<>();
         int num = objects.size();
         for (int i = 0; i < num; i++) {
 
             String SPEC = objects.get(i).getString("SPEC");
             String CITY = objects.get(i).getString("CITY");
-            String[] linear =  new String[]{SPEC, CITY};
+            String[] linear = new String[]{SPEC, CITY};
             ret.add(0, linear);
         }
         return ret;
     }
 
-    public static void SnackBarFiga(final com.melnykov.fab.FloatingActionButton fab, View v, String text){
+    public static void SnackBarFiga(final com.melnykov.fab.FloatingActionButton fab, View v, String text) {
 
-        if (fab == null){
+        if (fab == null) {
             Snackbar.make(v, text, Snackbar.LENGTH_LONG)
                     .setAction("Action", null)
                     .show();
