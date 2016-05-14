@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.doctorfinderapp.doctorfinder.AnalyticsTrackers;
 import com.doctorfinderapp.doctorfinder.activity.intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
+import com.google.android.gms.analytics.Tracker;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
 

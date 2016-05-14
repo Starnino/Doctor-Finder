@@ -16,11 +16,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.doctorfinderapp.doctorfinder.R;
+import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.activity.ResultsActivity;
 import com.doctorfinderapp.doctorfinder.adapter.ParseAdapter;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.Util;
+import com.doctorfinderapp.doctorfinder.objects.EndlessRecyclerOnScrollListener;
 import com.melnykov.fab.FloatingActionButton;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
@@ -37,7 +43,7 @@ public class DoctorListFragment extends Fragment
 {
 
     private static RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private static ParseAdapter parseAdapter;
     private List<ParseObject> DOCTORS;
     private FloatingActionButton fab;
@@ -107,7 +113,13 @@ public class DoctorListFragment extends Fragment
         SlideInBottomAnimationAdapter slide_adapter=new SlideInBottomAnimationAdapter(parseAdapter);
         orderList("feedback", false);
         mRecyclerView.setAdapter(slide_adapter);
-        //mRecyclerView.setAdapter(parseAdapter);
+
+        mRecyclerView.setOnScrollListener(new EndlessRecyclerOnScrollListener(mLayoutManager) {
+            @Override
+            public void onLoadMore(int current_page) {
+                loadMoreData(100, 100);
+            }
+        });
 
 
         //fab
@@ -147,9 +159,9 @@ public class DoctorListFragment extends Fragment
         refresh.setRefreshing(true);
 
         if (ResultsActivity.research)
-            ResultsActivity.showDatafromAdapter();
+            ResultsActivity.showDatafromAdapter(100);
 
-        else ResultsActivity.showDataM();
+        else ResultsActivity.showDataM(100);
 
 
     }
@@ -157,12 +169,7 @@ public class DoctorListFragment extends Fragment
     public static void CardNothingVisible(){
 
         cardNothing.setVisibility(View.VISIBLE);
-        //mRecyclerView.setVisibility(View.GONE);
-        //refresh.setVisibility(View.GONE);
 
-        Log.d("card nothing visibility", cardNothing.getVisibility()+"");
-        //Log.d("refresh visibility", refresh.getVisibility()+"");
-        //Log.d("recycler visibility", mRecyclerView.getVisibility()+"");
     }
 
     public static void orderList(String mode, boolean grow){
@@ -179,4 +186,67 @@ public class DoctorListFragment extends Fragment
     public static boolean ifNullAdapter(){
         return parseAdapter == null;
     }
+
+    public void loadMoreData(int limit, int skip) {
+
+        //get query: All doctor
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+
+        if (ResultsActivity.research) {
+            //retrieve object with multiple city
+            if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
+                doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
+
+
+            //retrieve object with multiple city
+            if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
+                doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL2);
+
+            //order by LastName
+            if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
+                doctorsQuery.orderByAscending("LastName");
+            }
+
+        } else {
+
+            if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
+                doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
+
+            //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
+
+            //retrieve object with multiple city
+            if (MainActivity.SPECIAL.size() != 0 && MainActivity.SPECIAL.size() != MainActivity.special.length)
+                doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL);
+
+            //order by LastName
+            if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
+                doctorsQuery.orderByAscending("LastName");
+            }
+        }
+
+        doctorsQuery.setLimit(limit);
+        doctorsQuery.setSkip(skip);
+        doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    for (ParseObject doctor : objects)
+                        GlobalVariable.DOCTORS.add(doctor);
+
+                    Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
+                    DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
+                    DoctorListFragment.setProgressBar(View.GONE);
+
+                    if (objects.size()==0){
+                        DoctorListFragment.CardNothingVisible();
+                    }
+
+                }
+            }
+        });
+
+    }
+
 }

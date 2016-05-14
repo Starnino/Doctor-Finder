@@ -167,9 +167,9 @@ public class ResultsActivity extends AppCompatActivity
         research = getIntent().getExtras().getBoolean("RESEARCH");
 
         if (research)
-            showDatafromAdapter();
+            showDatafromAdapter(100);
 
-        else showDataM();
+        else showDataM(100);
 
     }
 
@@ -489,7 +489,7 @@ public class ResultsActivity extends AppCompatActivity
     //download doctors from DB
 
 
-    public static void showDataM() {
+    public static void showDataM(int limit) {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -509,8 +509,8 @@ public class ResultsActivity extends AppCompatActivity
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
             doctorsQuery.orderByAscending("LastName");
         }
-        //refresh.setRefreshing(true);
 
+        doctorsQuery.setLimit(limit);
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -522,12 +522,12 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    String found = GlobalVariable.DOCTORS.size() + "";
+                    /*String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
                     else found += " specialisti trovati";
 
-                    Util.SnackBarFiga(fab, coordinator, found);
+                    Util.SnackBarFiga(fab, coordinator, found);*/
 
 
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
@@ -616,7 +616,7 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public static void showDatafromAdapter() {
+    public static void showDatafromAdapter(int limit) {
 
         //get query: All doctor
         ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
@@ -635,6 +635,7 @@ public class ResultsActivity extends AppCompatActivity
             doctorsQuery.orderByAscending("LastName");
         }
 
+        doctorsQuery.setLimit(limit);
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -642,12 +643,12 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
                     GlobalVariable.DOCTORS = objects;
 
-                    String found = GlobalVariable.DOCTORS.size() + "";
+                    /*String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
                     else found += " specialisti trovati";
 
-                    Util.SnackBarFiga(fab, coordinator, found);
+                    Util.SnackBarFiga(fab, coordinator, found);*/
 
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
