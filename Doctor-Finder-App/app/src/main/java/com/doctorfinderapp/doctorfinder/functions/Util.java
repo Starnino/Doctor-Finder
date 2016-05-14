@@ -3,6 +3,7 @@ package com.doctorfinderapp.doctorfinder.functions;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -34,6 +35,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -487,6 +489,99 @@ public class Util {
                     })
                     .show();
             ViewCompat.animate(fab).translationYBy(fab_down).setInterpolator(new FastOutLinearInInterpolator()).withLayer();
+        }
+    }
+
+    public static String FIRSTNAME = "FirstName";
+    public static String LASTNAME = "LastName";
+    public static String EXPERIENCE = "Exp";
+    public static String EMAIL_DOCTOR = "Email";
+    public static String SESSO = "Sesso";
+    public static String PHONE = "Cellphone";
+    public static String DESCRIPTION = "Description";
+    public static String WORK = "Work";
+    public static String PROVINCE = "Province";
+    public static String SPECIALIZATION = "Specialization";
+    public static String VISIT = "Visit";
+    public static String BORN = "Born";
+    public static String PRICE = "Price";
+    public static String MARKER = "Marker";
+    public static String DOCTOR = "Doctor";
+    public static String PROFILE_PHOTO = "profilePhoto";
+    public static String DOCTOR_PHOTO = "DoctorPhoto";
+
+
+
+    public static void addDoctor(final String email, final String firstName, final String lastName, final String visit, final String description, final String price,
+                                 final String[] work, final String[] province, final String experience, final String born, final String[] specialization, final String sesso, final String phone,
+                                 final ArrayList<HashMap> marker, final Resources res, final int doctorDrawable){
+
+        ParseQuery<ParseObject> doctorExists = ParseQuery.getQuery("provaDoctor");
+        doctorExists.whereEqualTo(EMAIL_DOCTOR, email);
+        doctorExists.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null && object != null){
+                    Log.d("UTIL.ADD DOCTOR ==> ", object.getString(EMAIL_DOCTOR) + " EXISTS!");
+                }
+
+                else if (e == null && object == null){
+                    ParseObject doctor = new ParseObject("provaDoctor");
+                    doctor.put(FIRSTNAME, firstName);
+                    doctor.put(LASTNAME, lastName);
+                    doctor.put(EXPERIENCE, experience);
+                    doctor.put(EMAIL_DOCTOR, email);
+                    doctor.put(FEEDBACK, 0f);
+                    doctor.put(SESSO, sesso);
+                    doctor.put(DESCRIPTION, description);
+                    doctor.put(BORN, born);
+                    doctor.put(PHONE, phone);
+                    doctor.put(VISIT, visit);
+                    doctor.put(PRICE, price);
+                    doctor.put(WORK, Arrays.asList(work));
+                    doctor.put(SPECIALIZATION, Arrays.asList(specialization));
+                    doctor.put(PROVINCE, Arrays.asList(province));
+                    doctor.put(MARKER, marker);
+                    addPhoto(res, doctorDrawable, email);
+                }
+
+                else{
+                    Log.d("UTIL.EXCEPTION ==> ", ""); e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    public static void addPhoto(final Resources res, int drawable, String doctorEmail){
+
+        Bitmap bm = BitmapFactory.decodeResource(res, drawable);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        ParseFile file = new ParseFile(doctorEmail+"_doctor_profile.jpg", byteArrayImage);
+
+        try {
+            file.save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        // Creazione di un ParseObject da inviare
+        ParseObject doctorPhoto = new ParseObject("provaDoctorPhoto");
+
+        doctorPhoto.put(PROFILE_PHOTO, file);
+        doctorPhoto.put(EMAIL_DOCTOR, doctorEmail);
+        try {
+            doctorPhoto.save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.d("addfile","file saved");
+        ParseFile get = (ParseFile)doctorPhoto.get(PROFILE_PHOTO);
+        try {
+            get.getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 }
