@@ -44,19 +44,19 @@ public class SplashActivity extends AppCompatActivity {
         final String email = null;
         final String firstName = null;
         final String lastName = null;
-        final String visit = null;
-        final String description = null;
+        final String visit = null;                              //like --> lun-ven 10-19
+        final String description = null;                        //don't link linkedin profile but text
         final String price = null;
         final String[] work = new String[0];
         final String[] province = new String[0];
-        final String[] specialization = new String[0];
-        final String experience = null;
-        final String born = null;
-        final String sesso = null;
+        final String[] specialization = new String[0];          //like array of--> Odontoiatria (big letter)
+        final String experience = null;                         //anni
+        final String born = null;                               //giorno/mese/anno
+        final String sesso = null;                              // "M" or "F"
         final String phone = null;
-        final String[] marker = new String[0];
+        final String[] marker = new String[0];                  //like array of--> via esempio 10, cap, provincia
         final Resources res = getResources();
-        final int doctorDrawable = R.drawable.doctor_avatar;
+        final int doctorDrawable = R.drawable.doctor_avatar;    //image png 250 x 250 from drawable
 
         Util.addDoctor(email,firstName, lastName, visit,description,
                 price,work, province, experience, born, specialization,
