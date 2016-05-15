@@ -7,6 +7,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -23,6 +26,7 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -41,10 +45,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -514,19 +520,21 @@ public class Util {
 
     public static void addDoctor(final String email, final String firstName, final String lastName, final String visit, final String description, final String price,
                                  final String[] work, final String[] province, final String experience, final String born, final String[] specialization, final String sesso, final String phone,
-                                 final ArrayList<HashMap> marker, final Resources res, final int doctorDrawable){
+                                 final ArrayList<HashMap<String,String>> marker, final Resources res, final int doctorDrawable){
 
         ParseQuery<ParseObject> doctorExists = ParseQuery.getQuery("provaDoctor");
         doctorExists.whereEqualTo(EMAIL_DOCTOR, email);
-        doctorExists.getFirstInBackground(new GetCallback<ParseObject>() {
+        doctorExists.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e == null && object != null){
-                    Log.d("UTIL.ADD DOCTOR ==> ", object.getString(EMAIL_DOCTOR) + " EXISTS!");
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null && objects.size() != 0){
+                    Log.d("UTIL.ADD DOCTOR ==> ", objects.get(0).getString(EMAIL_DOCTOR) + " EXISTS!");
                 }
 
-                else if (e == null && object == null){
-                    ParseObject doctor = new ParseObject("provaDoctor");
+                else if (e == null && objects.size() == 0){
+                    Log.d("UTIL.ADD DOCTOR ==> ", "ADDING DOCTOR " +  email);
+                    ParseObject doctor = new ParseObject("Doctor");
                     doctor.put(FIRSTNAME, firstName);
                     doctor.put(LASTNAME, lastName);
                     doctor.put(EXPERIENCE, experience);
@@ -543,6 +551,12 @@ public class Util {
                     doctor.put(PROVINCE, Arrays.asList(province));
                     doctor.put(MARKER, marker);
                     addPhoto(res, doctorDrawable, email);
+
+                    try {
+                        doctor.save();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
                 }
 
                 else{
@@ -553,35 +567,95 @@ public class Util {
     }
 
 
-    public static void addPhoto(final Resources res, int drawable, String doctorEmail){
+    public static void addPhoto(final Resources res, final int drawable, final String doctorEmail){
 
-        Bitmap bm = BitmapFactory.decodeResource(res, drawable);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-        byte[] byteArrayImage = baos.toByteArray();
-        ParseFile file = new ParseFile(doctorEmail+"_doctor_profile.jpg", byteArrayImage);
-
-        try {
-            file.save();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         // Creazione di un ParseObject da inviare
-        ParseObject doctorPhoto = new ParseObject("provaDoctorPhoto");
+        final ParseObject doctorPhoto = new ParseObject(DOCTOR_PHOTO);
+        ParseQuery<ParseObject> photo = ParseQuery.getQuery(DOCTOR_PHOTO);
+        photo.whereEqualTo(EMAIL_DOCTOR, doctorEmail);
+        photo.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null){
+                    if (object == null){
 
-        doctorPhoto.put(PROFILE_PHOTO, file);
-        doctorPhoto.put(EMAIL_DOCTOR, doctorEmail);
+                        Log.d("DOCTOR ADD PHOTO ==> ", doctorEmail + " SAVING FILE");
+                        Bitmap bm = BitmapFactory.decodeResource(res, drawable);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+                        byte[] byteArrayImage = baos.toByteArray();
+                        ParseFile file = new ParseFile(doctorEmail+"_doctor_profile.jpg", byteArrayImage);
+
+                        try {
+                            file.save();
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        doctorPhoto.put(PROFILE_PHOTO, file);
+                        doctorPhoto.put(EMAIL_DOCTOR, doctorEmail);
+
+                        try {
+                            doctorPhoto.save();
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                        }
+
+                    } else {
+
+                        Log.d("DOCTOR ADD PHOTO ==> ", doctorEmail + " ALREADY EXISTS");
+                    }
+                } else e.printStackTrace();
+            }
+        });
+
+    }
+
+    public static Address getLocationFromAddress(Context context,String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        Address location = null;
+
         try {
-            doctorPhoto.save();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            location = address.get(0);
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
         }
-        Log.d("addfile","file saved");
-        ParseFile get = (ParseFile)doctorPhoto.get(PROFILE_PHOTO);
-        try {
-            get.getData();
-        } catch (ParseException e) {
-            e.printStackTrace();
+
+        return location;
+    }
+
+    public static ArrayList<HashMap<String,String>> getMarkerForDoctor(Context context, String... addresses){
+        ArrayList<HashMap<String, String>> ret = new ArrayList<>();
+
+        for (String add : addresses) {
+            Address address = getLocationFromAddress(context, add);
+            String city = address.getLocality().toString();
+            String latitude = String.valueOf(address.getLatitude());
+            String longitude = String.valueOf(address.getLongitude());
+            HashMap<String, String> map = new HashMap<>();
+            map.put("Lat", latitude);
+            map.put("Long", longitude);
+            map.put("Name", city);
+            ret.add(map);
         }
+
+        /*for (int j = 0; j < ret.size(); j++) {
+
+            for (Map.Entry<String, String> entry : ret.get(j).entrySet()) {
+                String key = entry.toString();
+                String value = entry.getValue();
+                System.out.println("key, " + key + " value " + value);
+            }
+        }*/
+
+        return ret;
     }
 }

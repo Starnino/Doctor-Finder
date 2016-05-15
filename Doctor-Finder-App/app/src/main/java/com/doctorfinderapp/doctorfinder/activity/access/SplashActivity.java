@@ -2,8 +2,10 @@ package com.doctorfinderapp.doctorfinder.activity.access;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -12,10 +14,13 @@ import com.doctorfinderapp.doctorfinder.activity.intro.DefaultIntro;
 import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.analytics.Tracker;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,6 +38,30 @@ public class SplashActivity extends AppCompatActivity {
         progressWheel.setBarColor(getResources().getColor(R.color.lightdf));
 
         progressWheel.spin();
+
+        /**ATTENTION PLEASE! THIS IS THE FUNCTION FOR LOAD COMPLETELY A DOCTOR! DON'T PLAY WITH IT*/
+        /*
+        final String email = null;
+        final String firstName = null;
+        final String lastName = null;
+        final String visit = null;
+        final String description = null;
+        final String price = null;
+        final String[] work = new String[0];
+        final String[] province = new String[0];
+        final String[] specialization = new String[0];
+        final String experience = null;
+        final String born = null;
+        final String sesso = null;
+        final String phone = null;
+        final String[] marker = new String[0];
+        final Resources res = getResources();
+        final int doctorDrawable = R.drawable.doctor_avatar;
+
+        Util.addDoctor(email,firstName, lastName, visit,description,
+                price,work, province, experience, born, specialization,
+                sesso, phone, Util.getMarkerForDoctor(this, marker),
+                res, doctorDrawable);*/
 
         //add immersive mode
         getWindow().getDecorView().setSystemUiVisibility(
