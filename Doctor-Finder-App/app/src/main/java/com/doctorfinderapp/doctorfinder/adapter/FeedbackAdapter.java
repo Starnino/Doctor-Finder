@@ -536,45 +536,4 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             }
         });
     }
-
-    public void rebuildFeedbackAverage(){
-        ParseQuery<ParseObject> doctor = ParseQuery.getQuery(DOCTOR);
-        doctor.whereEqualTo(EMAIL, EMAIL_DOCTOR_THIS);
-        doctor.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e == null) {
-                    if (feedbacklist.size() == 0) {
-                        object.put(FEEDBACK, 0);
-
-                    } else {
-                        List<ParseObject> feedbacks = new ArrayList<>();
-                        ParseQuery<ParseObject> numFeed = ParseQuery.getQuery(FEEDBACK);
-                        numFeed.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
-                        try {
-                            feedbacks = numFeed.find();
-
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
-                        float somma = 0;
-                        int numfeed = feedbacks.size();
-                        for (int i = 0; i < numfeed; i++) {
-                            somma += Float.parseFloat(feedbacks.get(i).get(RATING).toString());
-                        }
-
-                        float avg = somma / numfeed;
-                        DoctorFragment.changeRating(avg);
-                        object.put(FEEDBACK, avg);
-                    }
-
-                    try {
-                        object.save();
-                    } catch (ParseException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
 }
