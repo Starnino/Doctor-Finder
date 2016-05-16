@@ -22,6 +22,7 @@ import com.doctorfinderapp.doctorfinder.activity.MainActivity;
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.GlobalVariable;
+import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.facebook.CallbackManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
@@ -109,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 BackgroundMail.newBuilder(resetpsw.getContext())
                                         .withUsername("doctor.finder.dcf@gmail.com")
-                                        .withPassword("quantomacina")
+                                        .withPassword(Util.PASSWORD)
                                         .withMailto("info@doctorfinderapp.com")
                                         .withSubject("RESET PASSWORD")
                                         .withBody(body)
@@ -206,12 +207,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseUser user, ParseException err) {
                         if (user == null) {
-                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            //Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            Snackbar.make(v, R.string.access_no , Snackbar.LENGTH_SHORT)
+                                    .setAction("Action", null).show();
                             progressBar.stopSpinning();
 
                         } else if (user.isNew()) {
-                            Log.d("MyApp", "User signed up and logged in through Facebook!");
-                            Log.d("login with facebook", user.toString());
+                            //Log.d("MyApp", "User signed up and logged in through Facebook!");
+                            //Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
 
 
@@ -225,11 +228,11 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
 
                         } else {
-                            Log.d("MyApp", "User logged in through Facebook!");
+                            //Log.d("MyApp", "User logged in through Facebook!");
                             progressBar.stopSpinning();
 
                             //facebook things
-                            Log.d("login with facebook", user.toString());
+                            //Log.d("login with facebook", user.toString());
                             FacebookProfile.getGraphRequest(user);
                             //FacebookProfile.getGraphRequestFriends(user);
                             Snackbar.make(v, R.string.access_ok, Snackbar.LENGTH_SHORT)

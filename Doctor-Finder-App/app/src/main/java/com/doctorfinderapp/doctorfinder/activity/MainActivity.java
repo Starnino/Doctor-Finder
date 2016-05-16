@@ -25,13 +25,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.doctorfinderapp.doctorfinder.R;
-import com.doctorfinderapp.doctorfinder.functions.AddDoctors;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
 import com.doctorfinderapp.doctorfinder.activity.access.SplashActivity;
 import com.doctorfinderapp.doctorfinder.adapter.DoctorAdapter;
@@ -81,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public static String[] citta, special;
     public static ArrayList<String> CITY, SPECIAL, CITY2, SPECIAL2;
     private TextView cityText, specialText;
-    private Animation fab_open;
     private CardView card_recent_doctor, card_recent_doctor_null,
             card_recent_search, card_recent_search_null;
     private NavigationView navigationView;
@@ -92,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        /*Log.d("Util CopyAll"," MAIN");
-        Util.copyAll();*/
-        //AddDoctors.addPhoto(this.getResources());
 
         mContext = this;
 
@@ -121,8 +115,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     .title("Avviso importante")
                     .content("Non usare questa applicazione in caso di emergenza!")
                     .positiveText("Ho capito")
-
-
                     .show();
 
         }else{
@@ -130,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Snackbar.make(parentLayout, R.string.good_login, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
         }
+
 
         //set view for doctors visited
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_doctors);
@@ -488,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     //userphoto exists
 
                     if (userPhoto == null) {
-                        Log.d("userphoto", "isnull");
+                        //Log.d("userphoto", "isnull");
 
                     } else {
                         ParseFile file = (ParseFile) userPhoto.get("profilePhoto");
@@ -499,7 +492,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                                     //data is the image in array byte
                                     //must change image on profile
                                     GlobalVariable.UserPropic = BitmapFactory.decodeByteArray(data, 0, data.length);
-                                    Log.d("Userphoto", "downloaded");
+                                    //Log.d("Userphoto", "downloaded");
 
                                     RoundedImageView mImg = (RoundedImageView) findViewById(R.id.user_propic);
                                     mImg.setImageBitmap(GlobalVariable.UserPropic);
@@ -508,7 +501,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
                                 } else {
                                     // something went wrong
-                                    Log.d("UserPhoto ", "problem download image");
+                                    //Log.d("UserPhoto ", "problem download image");
                                 }
                             }
                         });
@@ -657,8 +650,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         else SPECIAL2 = new ArrayList<>(specialization);
 
-        Log.d("RESEARCH SPECIAL --> ", SPECIAL2.toString());
-        Log.d("RESEARCH SPECIAL --> ", CITY2.toString());
+        //Log.d("RESEARCH SPECIAL --> ", SPECIAL2.toString());
+        //Log.d("RESEARCH SPECIAL --> ", CITY2.toString());
         Intent intent = new Intent(mContext, ResultsActivity.class);
         intent.putExtra("RESEARCH", true);
         mContext.startActivity(intent);

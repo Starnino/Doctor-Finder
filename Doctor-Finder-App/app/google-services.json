@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "549179520280",
+    "project_id": "doctor-finder-2d329"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549179520280:android:5fe6e9c1ff4c2710",
+        "android_client_info": {
+          "package_name": "com.doctorfinderapp.doctorfinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaGgyv80HpIUioyYF-mnOxDQxA5elMCe4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-77759326-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

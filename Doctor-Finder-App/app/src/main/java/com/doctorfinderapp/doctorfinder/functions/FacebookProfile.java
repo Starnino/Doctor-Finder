@@ -60,8 +60,8 @@ public class FacebookProfile {
                            GraphResponse response) {
 
                        try {
-                           Log.d("Graph Response", "user = " + response.toString());
-                           Log.d("Graph Response", "Informazioni prelevate da Facebook");
+                           //Log.d("Graph Response", "user = " + response.toString());
+                           //Log.d("Graph Response", "Informazioni prelevate da Facebook");
                            if(object!=null) {
 
                                String email = response.getJSONObject().getString("email");
@@ -110,7 +110,7 @@ public class FacebookProfile {
                                //friends tha uses app
 
                                userP.put("friends", friendlist);
-                               Log.d("Facebook utils", userP.get("friends").toString());
+                               //Log.d("Facebook utils", userP.get("friends").toString());
                                //Log.d("Facebook utils",  userP.get("friends").get(0).toString());
                                // URL=response.getJSONObject().getString("profile");
 

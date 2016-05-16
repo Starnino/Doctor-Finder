@@ -244,9 +244,10 @@
     <!--FACEBOOK-->
     <string name="facebook_app_id">235657870105831</string>
 
-    <!--GOOGLE SERVICES-->
+    <!--GOOGLE SERVICES
     <string name="google_app_id">309143604100</string>
 
+    <string name="ga_trackingId" translatable="false">UA-77759326-1</string>-->
 
     <!-- Frag various-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -345,8 +346,7 @@
     <string name="condizione2">
     "Il Garante acconsente ad operazioni di trattamento di dati sensibili a determinate condizioni e per determinati fini; stabilisce prescrizioni uniformi per settori omogenei di attività (rapporto di lavoro, sanità, professionisti, assicurazioni, investigazioni ecc.), snellisce l'attività burocratica gravante sull ufficio del Garante ed alleggerisce gli adempimenti del titolare individuandone l'ambito e le modalità di trattamento. Pertanto è possibile la gestione dei dati sensibili entro i limiti prescritti senza richiedere specifica ed individuale autorizzazione al Garante.
     </string>
-
-
+    <string name="access_no">Accesso Fallito!</string>
 
 
 </resources>

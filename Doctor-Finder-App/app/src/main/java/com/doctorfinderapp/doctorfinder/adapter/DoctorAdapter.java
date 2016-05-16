@@ -69,7 +69,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     static List<Doctor> visits;
 
     public DoctorAdapter(List<Doctor> doctors) {
-        this.visits = new ArrayList<>(doctors);
+        visits = new ArrayList<>(doctors);
     }
 
     @Override
@@ -92,8 +92,9 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
                 @Override
                 public void done(ParseObject doctorPhoto, ParseException e) {
 
-                    if (doctorPhoto == null)
-                        Log.d("doctorphoto", "isNull");
+                    if (doctorPhoto == null) {
+                        //Log.d("doctorphoto", "isNull");
+                    }
 
                     else {
 

@@ -60,7 +60,7 @@ public class ResultsActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private static ViewPager viewPager;
     private static TabLayout tabs;
-    private static com.melnykov.fab.FloatingActionButton fab, fab_location;
+    public static com.melnykov.fab.FloatingActionButton fab, fab_location;
     private MenuItem searchItem;
     private MenuItem filterItem;
     private SearchView searchView;
@@ -116,7 +116,7 @@ public class ResultsActivity extends AppCompatActivity
 
                                 BackgroundMail.newBuilder(fab.getContext())
                                         .withUsername("doctor.finder.dcf@gmail.com")
-                                        .withPassword("quantomacina")
+                                        .withPassword(Util.PASSWORD)
                                         .withMailto("info@doctorfinderapp.com")
                                         .withSubject("SUGGERIMENTO DOTTORE")
                                         .withBody(body)
@@ -136,33 +136,6 @@ public class ResultsActivity extends AppCompatActivity
             }
         });
 
-        //onClick button
-        fab_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-
-               /* DoctorMapsFragment.googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                    @Override
-                    public boolean onMyLocationButtonClick() {
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Cercando la tua posizione", Snackbar.LENGTH_LONG);
-
-                        snackbar.show();s
-                        LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                        if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                           // Toast.makeText(getApplicationContext(), "GPS is disabled!", Toast.LENGTH_SHORT).show();
-
-                            Snackbar snackbar2 = Snackbar
-                                    .make(v, "GPS is disabled! ", Snackbar.LENGTH_LONG);
-                            snackbar2.show();
-
-
-                        }
-                        return false;
-                    }
-                });*/
-            }
-        });
 
         // Setting ViewPager for each Tabs
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -194,9 +167,9 @@ public class ResultsActivity extends AppCompatActivity
         research = getIntent().getExtras().getBoolean("RESEARCH");
 
         if (research)
-            showDatafromAdapter();
+            showDatafromAdapter(100);
 
-        else showDataM();
+        else showDataM(100);
 
     }
 
@@ -462,19 +435,18 @@ public class ResultsActivity extends AppCompatActivity
     public void switchFAB(int position){
         switch(position){
             case 0:
-                Log.d("fab", "open");
-                //fab_location.startAnimation(fab_close);
-                //fab_location.setClickable(false);
+                fab_location.hide();
+                fab_location.setClickable(false);
                 fab.show();
                 fab.setClickable(true);
                 break;
 
             case 1:
-                Log.d("fab_location", "open");
                 fab.hide();
                 fab.setClickable(false);
-                //fab_location.startAnimation(fab_open_normal);
-                //fab_location.setClickable(true);
+                if (fab_location.getVisibility() == View.INVISIBLE) fab_location.setVisibility(View.VISIBLE);
+                fab_location.show();
+                fab_location.setClickable(true);
                 break;
         }
     }
@@ -517,28 +489,28 @@ public class ResultsActivity extends AppCompatActivity
     //download doctors from DB
 
 
-    public static void showDataM() {
+    public static void showDataM(int limit) {
 
         //get query: All doctor
-        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery(Util.DOCTOR);
 
         //retrieve object with multiple city
 
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
-            doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
+            doctorsQuery.whereContainedIn(Util.PROVINCE, MainActivity.CITY);
 
         //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL.size() != 0 && MainActivity.SPECIAL.size() != MainActivity.special.length)
-            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL);
+            doctorsQuery.whereContainedIn(Util.SPECIALIZATION, MainActivity.SPECIAL);
 
         //order by LastName
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
-            doctorsQuery.orderByAscending("LastName");
+            doctorsQuery.orderByAscending(Util.LASTNAME);
         }
-        //refresh.setRefreshing(true);
 
+        doctorsQuery.setLimit(limit);
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -550,12 +522,12 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
 
                     GlobalVariable.DOCTORS = objects;
-                    String found = GlobalVariable.DOCTORS.size() + "";
+                    /*String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
                     else found += " specialisti trovati";
 
-                    Util.SnackBarFiga(fab, coordinator, found);
+                    Util.SnackBarFiga(fab, coordinator, found);*/
 
 
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
@@ -644,25 +616,26 @@ public class ResultsActivity extends AppCompatActivity
 
     }
 
-    public static void showDatafromAdapter() {
+    public static void showDatafromAdapter(int limit) {
 
         //get query: All doctor
-        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery(Util.DOCTOR);
 
         //retrieve object with multiple city
         if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
-            doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
+            doctorsQuery.whereContainedIn(Util.PROVINCE, MainActivity.CITY2);
 
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
-            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL2);
+            doctorsQuery.whereContainedIn(Util.SPECIALIZATION, MainActivity.SPECIAL2);
 
         //order by LastName
         if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
-            doctorsQuery.orderByAscending("LastName");
+            doctorsQuery.orderByAscending(Util.LASTNAME);
         }
 
+        doctorsQuery.setLimit(limit);
         doctorsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -670,12 +643,12 @@ public class ResultsActivity extends AppCompatActivity
                 if (e == null) {
                     GlobalVariable.DOCTORS = objects;
 
-                    String found = GlobalVariable.DOCTORS.size() + "";
+                    /*String found = GlobalVariable.DOCTORS.size() + "";
                     if (objects.size() == 1)
                         found += " specialista trovato";
                     else found += " specialisti trovati";
 
-                    Util.SnackBarFiga(fab, coordinator, found);
+                    Util.SnackBarFiga(fab, coordinator, found);*/
 
                     Util.dowloadDoctorPhoto(GlobalVariable.DOCTORS);
                     DoctorListFragment.refreshDoctors(GlobalVariable.DOCTORS);
