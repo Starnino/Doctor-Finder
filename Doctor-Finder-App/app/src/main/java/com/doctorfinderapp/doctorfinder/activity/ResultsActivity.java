@@ -116,7 +116,7 @@ public class ResultsActivity extends AppCompatActivity
 
                                 BackgroundMail.newBuilder(fab.getContext())
                                         .withUsername("doctor.finder.dcf@gmail.com")
-                                        .withPassword("quantomacina")
+                                        .withPassword(Util.PASSWORD)
                                         .withMailto("info@doctorfinderapp.com")
                                         .withSubject("SUGGERIMENTO DOTTORE")
                                         .withBody(body)

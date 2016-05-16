@@ -51,6 +51,7 @@ public class Util {
     public static final String EMAIl = "email";
     public static final String DOCTOR_EMAIL = "email_doctor";
     public static final String ANONYMOUS = "Anonymus";
+    public static final String PASSWORD = "quantotrapana";
 
     public static String setSpecialization(ArrayList<String> specialization) {
 

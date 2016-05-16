@@ -221,10 +221,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.spam.setClickable(false);
                 holder.clear.setVisibility(View.VISIBLE);
                 holder.clear.setClickable(true);
-
                 holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
-
                 FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
             }
 
@@ -311,7 +309,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                                             BackgroundMail.newBuilder(v.getContext())
                                                     .withUsername("doctor.finder.dcf@gmail.com")
-                                                    .withPassword("quantomacina")
+                                                    .withPassword(Util.PASSWORD)
                                                     .withMailto("doctor.finder.dcf@gmail.com")
                                                     .withSubject("REPORT SPAM")
                                                     .withBody(body)
