@@ -463,7 +463,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         feedbacklist.remove(position);
                         notifyItemRemoved(position);
                         FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_add_white_24dp);
-                        rebuildFeedbackAverage();
                         DoctorFragment.minus1();
                         holder.delete_progress.stopSpinning();
                         holder.delete_progress.setVisibility(View.GONE);

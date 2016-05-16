@@ -492,22 +492,22 @@ public class ResultsActivity extends AppCompatActivity
     public static void showDataM(int limit) {
 
         //get query: All doctor
-        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery(Util.DOCTOR);
 
         //retrieve object with multiple city
 
         if (MainActivity.CITY.size() != 0 && MainActivity.CITY.size() != MainActivity.citta.length)
-            doctorsQuery.whereContainedIn("Province", MainActivity.CITY);
+            doctorsQuery.whereContainedIn(Util.PROVINCE, MainActivity.CITY);
 
         //Log.d("RESULTS SEARCH FOR --> ", MainActivity.CITY + "");
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL.size() != 0 && MainActivity.SPECIAL.size() != MainActivity.special.length)
-            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL);
+            doctorsQuery.whereContainedIn(Util.SPECIALIZATION, MainActivity.SPECIAL);
 
         //order by LastName
         if (MainActivity.CITY.size() != 0 || MainActivity.SPECIAL.size() != 0) {
-            doctorsQuery.orderByAscending("LastName");
+            doctorsQuery.orderByAscending(Util.LASTNAME);
         }
 
         doctorsQuery.setLimit(limit);
@@ -619,20 +619,20 @@ public class ResultsActivity extends AppCompatActivity
     public static void showDatafromAdapter(int limit) {
 
         //get query: All doctor
-        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> doctorsQuery = ParseQuery.getQuery(Util.DOCTOR);
 
         //retrieve object with multiple city
         if (MainActivity.CITY2.size() != 0 && MainActivity.CITY2.size() != MainActivity.citta.length)
-            doctorsQuery.whereContainedIn("Province", MainActivity.CITY2);
+            doctorsQuery.whereContainedIn(Util.PROVINCE, MainActivity.CITY2);
 
 
         //retrieve object with multiple city
         if (MainActivity.SPECIAL2.size() != 0 && MainActivity.SPECIAL2.size() != MainActivity.special.length)
-            doctorsQuery.whereContainedIn("Specialization", MainActivity.SPECIAL2);
+            doctorsQuery.whereContainedIn(Util.SPECIALIZATION, MainActivity.SPECIAL2);
 
         //order by LastName
         if (MainActivity.CITY2.size() != 0 || MainActivity.SPECIAL2.size() != 0) {
-            doctorsQuery.orderByAscending("LastName");
+            doctorsQuery.orderByAscending(Util.LASTNAME);
         }
 
         doctorsQuery.setLimit(limit);

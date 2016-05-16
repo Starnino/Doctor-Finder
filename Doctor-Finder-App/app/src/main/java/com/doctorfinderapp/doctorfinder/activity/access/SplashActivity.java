@@ -16,11 +16,20 @@ import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.functions.FacebookProfile;
 import com.doctorfinderapp.doctorfinder.functions.Util;
 import com.google.android.gms.analytics.Tracker;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,35 +48,36 @@ public class SplashActivity extends AppCompatActivity {
 
         progressWheel.spin();
 
+        //TODO riaggiungere sicoli @giampo
+
         /**ATTENTION PLEASE! THIS IS THE FUNCTION FOR LOAD COMPLETELY A DOCTOR! DON'T PLAY WITH IT*/
         /*
-        final String email = null;
-        final String firstName = null;
-        final String lastName = null;
-        final String visit = null;                              //like --> lun-ven 10-19
-        final String description = null;                        //don't link linkedin profile but text
-        final String price = null;
-        final String[] work = new String[0];
-        final String[] province = new String[0];
-        final String[] specialization = new String[0];          //like array of--> Odontoiatria (big letter)
-        final String experience = null;                         //anni
-        final String born = null;                               //giorno/mese/anno
-        final String sesso = null;                              // "M" or "F"
-        final String phone = null;
-        final String[] marker = new String[0];                  //like array of--> via esempio 10, cap, provincia
+        final String email = "prova@gmail.com";
+        final String firstName = "prova";
+        final String lastName = "prova";
+        final String visit = "su prenotazione";                              //like --> lun-ven 10-19
+        final String description = "prova applicazione...";                        //don't link linkedin profile but text
+        final String price = "meno di 50";
+        final String[] work = new String[]{"Roma"};
+        final String[] province = new String[]{"Roma"};
+        final String[] specialization = new String[]{"Odontoiatria"};          //like array of--> Odontoiatria (big letter)
+        final String experience = "meno di 5 anni";                         //anni
+        final String born = "08/11/1994";                               //giorno/mese/anno
+        final String sesso = "M";                              // "M" or "F"
+        final String phone = "33390934376";
+        final String[] marker = new String[]{"Via di Boccea, 437, 00166, Roma"};                  //like array of--> via esempio, 10, cap, provincia
         final Resources res = getResources();
         final int doctorDrawable = R.drawable.doctor_avatar;    //image png 250 x 250 from drawable
 
-        Util.addDoctor(email,firstName, lastName, visit,description,
+        Util.addDoctorWithoutPhoto(email,firstName, lastName, visit,description,
                 price,work, province, experience, born, specialization,
-                sesso, phone, Util.getMarkerForDoctor(this, marker),
-                res, doctorDrawable);*/
+                sesso, phone, Util.getMarkerForDoctor(this, marker), res);*/
 
-        //add immersive mode
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+                //add immersive mode
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE);
         //finish immersive mode
 
         TimerTask task = new TimerTask() {

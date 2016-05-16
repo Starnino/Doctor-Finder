@@ -198,22 +198,6 @@ public class FeedbackDialogFragment
         return d;
     }
 
-   /* @Override
-    public void onCancel(final DialogInterface thisDialog) {
-        //example dialog
-        //getDialog().hide();
-        Log.d("Feedback dialog","On cancel call");
-        new MaterialDialog.Builder(getContext())
-                .positiveText("Ho capito")
-                .negativeText("Annulla")
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        //todo crash --> getDialog().show();
-
-                    }
-                }).show();
-    }*/
 
     public void showCancelDialog(){
         //getDialog().hide();

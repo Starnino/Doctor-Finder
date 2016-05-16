@@ -6,52 +6,33 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.Log;
 import android.view.View;
-
 import com.doctorfinderapp.doctorfinder.R;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorFragment;
 import com.doctorfinderapp.doctorfinder.fragment.DoctorListFragment;
 import com.doctorfinderapp.doctorfinder.objects.Doctor;
-import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
-import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by francesco on 02/03/16.
@@ -63,8 +44,8 @@ public class Util {
     public static final String USER = "_User";
     public static final String ID = "facebookId";
     public static final String FEEDBACK = "Feedback";
-    public static final String NAME = "fName";
-    public static final String SURNAME = "lName";
+    public static final String NAME = "FirstName";
+    public static final String SURNAME = "LastName";
     public static final String USER_EMAIl = "email_user";
     public static final String EMAIl = "email";
     public static final String DOCTOR_EMAIL = "email_doctor";
@@ -218,7 +199,7 @@ public class Util {
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject doctor, ParseException e) {
 
-                if (doctor == null) {
+                if (doctor == null || e != null) {
                     //Log.d("calculate feedback", "Error doctor not exists ");
                 } else {
 
@@ -227,22 +208,24 @@ public class Util {
                     //Log.d("Feedback", doctor.toString());
                     try {
                         List<ParseObject> objects = (List<ParseObject>) query2.find();
-                        Float somma = 0f;
+                        Double somma = 0.0;
+                        int size = 0;
                         for (int i = 0; i < objects.size(); i++) {
                             String f = objects.get(i).get("Rating").toString();
                             //Log.d("Feedback", f);
-                            somma = somma + Float.parseFloat(f);
+                            somma = somma + Double.parseDouble(f);
+                            size++;
                         }
 
-                        float media = 0;
-                        if (objects.size() != 0) {
-                            media = somma / objects.size();
-                            doctor.put("Feedback", media);
+                        double media = 0.0;
+                        if (size != 0) {
+                            media = somma / size;
+                            doctor.put("Feedback", String.valueOf(media));
 
                         } else
-                            doctor.put("Feedback", 0.0f);
+                            doctor.put("Feedback", "0.0");
 
-                        Log.d("PUTTO --> ", media + "");
+                        Log.d("PUTTO --> ", String.valueOf(media) + "");
                         DoctorFragment.changeRating(media);
                         DoctorListFragment.refreshList();
                         doctor.save();
@@ -264,111 +247,72 @@ public class Util {
     }
 
 
-    public static void copyAll() {
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("DoctorJSON");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
+    public static void copyAll(final String from, final String to) {
+        ParseQuery<ParseObject> queryfeed = ParseQuery.getQuery(from);
+        queryfeed.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> doctorjson, ParseException e) {
-                if (e == null) {
-
-                    Log.d("Util CopyAll", doctorjson.size() + "");
-                    ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Doctor");
-                    ArrayList<String> assenti = new ArrayList<String>();
-                    ArrayList<ParseObject> assentiObject = new ArrayList<ParseObject>();
-                    try {
-                        ArrayList<ParseObject> doctor =
-                                (ArrayList<ParseObject>) query2.find();
-                        Log.d("Util CopyAll", doctor.size() + "");
-
-                        for (int q = 0; q < doctorjson.size(); q++) {
-                            boolean trovato=false;
-                            String emailJSON=doctorjson.get(q).getString("Email");
-                            Log.d("Util CopyAll", "finding "+emailJSON.toString());
-                            for(int p=0;p<doctor.size();p++){
-
-                                String email=doctor.get(p).getString("Email");
-                                if(email.equals(emailJSON)){
-                                    trovato=true;
-                                    Log.d("Util CopyAll", "found "+emailJSON.toString()+" = " + email.toString());
-                                }
-                            }
-                            if(trovato==false){
-                                assenti.add(emailJSON);
-                                assentiObject.add(doctorjson.get(q));
-
-                            }
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null)
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseObject doctor = new ParseObject(to);
+                        doctor.put(Util.FIRSTNAME, objects.get(i).getString(Util.FIRSTNAME));
+                        doctor.put(Util.LASTNAME, objects.get(i).getString(Util.LASTNAME));
+                        doctor.put(Util.EXPERIENCE, objects.get(i).getString(Util.EXPERIENCE));
+                        doctor.put(Util.EMAIL_DOCTOR, objects.get(i).getString(Util.EMAIL_DOCTOR));
+                        doctor.put(Util.FEEDBACK, objects.get(i).getDouble(FEEDBACK));
+                        doctor.put(Util.SESSO, objects.get(i).getString(Util.SESSO));
+                        doctor.put(Util.DESCRIPTION, objects.get(i).getString(Util.DESCRIPTION));
+                        doctor.put(Util.BORN, objects.get(i).getString(Util.BORN));
+                        doctor.put(Util.PHONE, objects.get(i).getString(Util.PHONE));
+                        doctor.put(Util.VISIT, objects.get(i).getString(Util.VISIT));
+                        doctor.put(Util.PRICE, objects.get(i).getString(Util.PRICE));
+                        doctor.put(Util.WORK, objects.get(i).getList(Util.WORK));
+                        doctor.put(Util.SPECIALIZATION, objects.get(i).getList(Util.SPECIALIZATION));
+                        doctor.put(Util.PROVINCE, objects.get(i).getList(Util.PROVINCE));
+                        doctor.put(Util.MARKER, objects.get(i).getList(Util.MARKER));
+                        try {
+                            doctor.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
                         }
-                        Log.d("Util CopyAll", "found "+assenti.size()+" dottori assenti");
-                        Log.d("Util CopyAll", "found "+assentiObject.size()+" dottori assenti");
-                        for(String assente:assenti){
-                            //Log.d("Util CopyAll", assente.toString());
-                        }
-                        for (int i = 0; i < assentiObject.size(); i++) {
-
-
-                            ParseObject d = new ParseObject("Doctor");
-                            ParseObject DOCTORTHIS = assentiObject.get(i);
-                            String DOCTOR_FIRST_NAME = DOCTORTHIS.getString("FirstName");
-                            String DOCTOR_LAST_NAME = DOCTORTHIS.getString("LastName");
-                            String DOCTOR_EXPERIENCE = DOCTORTHIS.getString("Exp");
-                            String DOCTOR_FEEDBACK = (String) DOCTORTHIS.get("Feedback");
-                            String DOCTOR_EMAIL = DOCTORTHIS.getString("Email");
-                            String DOCTOR_SEX = DOCTORTHIS.getString("Sesso");
-                            String DOCTOR_DESCRIPTION = DOCTORTHIS.getString("Description");
-                            ArrayList<String> DOCTOR_WORK_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Work");
-                            ArrayList<String> DOCTOR_CITY_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Province");
-                            ArrayList<String> DOCTOR_SPECIALIZATION_ARRAY = (ArrayList<String>) DOCTORTHIS.get("Specialization");
-                            String DOCTOR_CELLPHONE = DOCTORTHIS.getString("Cellphone");
-                            String DOCTOR_VISIT = DOCTORTHIS.getString("Visit");
-                            String DOCTOR_BORN = DOCTORTHIS.getString("Born");
-                            String DOCTOR_PRICE = DOCTORTHIS.getString("Price");
-                            ArrayList<String> DOCTOR_Marker = (ArrayList<String>) DOCTORTHIS.get("Marker");
-
-                            Log.d("Util CopyAll", DOCTOR_EMAIL.toString()+"EMAIL DOC ADD");
-
-                            d.put("FirstName", DOCTOR_FIRST_NAME);
-                            d.put("LastName", DOCTOR_LAST_NAME);
-                            d.put("Exp", DOCTOR_EXPERIENCE);
-                            d.put("Feedback", DOCTOR_FEEDBACK);
-                            d.put("Email", DOCTOR_EMAIL);
-                            d.put("Sesso", DOCTOR_SEX);
-                            d.put("Description", DOCTOR_DESCRIPTION);
-                            d.put("Work", DOCTOR_WORK_ARRAY);
-                            d.put("Province", DOCTOR_CITY_ARRAY);
-                            d.put("Specialization", DOCTOR_SPECIALIZATION_ARRAY);
-                            d.put("Cellphone", DOCTOR_CELLPHONE);
-                            d.put("Visit", DOCTOR_VISIT);
-                            d.put("Born", DOCTOR_BORN);
-                            d.put("Price", DOCTOR_PRICE);
-                            d.put("Marker", DOCTOR_Marker);
-                            try {
-                                d.save();
-                            } catch (ParseException e1) {
-                                e1.printStackTrace();
-                            }
-
-
-                        }
-
-
-
-
-
-                    } catch (ParseException e1) {
-                        e1.printStackTrace();
                     }
-
-
-                }else{
-                    Log.d("Util CopyAll", e.toString());
-                }
-
-
             }
         });
 
+    }
 
+    public static void reinitializeParseDoctor(final String table, String column, final String identity) {
+        ParseQuery<ParseObject> queryfeed = ParseQuery.getQuery(table);
+        queryfeed.whereStartsWith(column, identity);
+        queryfeed.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null)
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseObject doctor = new ParseObject(table);
+                        doctor.put(Util.FIRSTNAME, objects.get(i).getString(Util.FIRSTNAME));
+                        doctor.put(Util.LASTNAME, objects.get(i).getString(Util.LASTNAME));
+                        doctor.put(Util.EXPERIENCE, objects.get(i).getString(Util.EXPERIENCE));
+                        doctor.put(Util.EMAIL_DOCTOR, objects.get(i).getString(Util.EMAIL_DOCTOR));
+                        doctor.put(Util.FEEDBACK, "0.0");
+                        doctor.put(Util.SESSO, objects.get(i).getString(Util.SESSO));
+                        doctor.put(Util.DESCRIPTION, objects.get(i).getString(Util.DESCRIPTION));
+                        doctor.put(Util.BORN, objects.get(i).getString(Util.BORN));
+                        doctor.put(Util.PHONE, objects.get(i).getString(Util.PHONE));
+                        doctor.put(Util.VISIT, objects.get(i).getString(Util.VISIT));
+                        doctor.put(Util.PRICE, objects.get(i).getString(Util.PRICE));
+                        doctor.put(Util.WORK, objects.get(i).getList(Util.WORK));
+                        doctor.put(Util.SPECIALIZATION, objects.get(i).getList(Util.SPECIALIZATION));
+                        doctor.put(Util.PROVINCE, objects.get(i).getList(Util.PROVINCE));
+                        doctor.put(Util.MARKER, objects.get(i).getList(Util.MARKER));
+                        try {
+                            doctor.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+            }
+        });
     }
 
 
@@ -518,7 +462,7 @@ public class Util {
 
 
 
-    public static void addDoctor(final String email, final String firstName, final String lastName, final String visit, final String description, final String price,
+    public static void addDoctorWithPhoto(final String email, final String firstName, final String lastName, final String visit, final String description, final String price,
                                  final String[] work, final String[] province, final String experience, final String born, final String[] specialization, final String sesso, final String phone,
                                  final ArrayList<HashMap<String,String>> marker, final Resources res, final int doctorDrawable){
 
@@ -539,7 +483,7 @@ public class Util {
                     doctor.put(LASTNAME, lastName);
                     doctor.put(EXPERIENCE, experience);
                     doctor.put(EMAIL_DOCTOR, email);
-                    doctor.put(FEEDBACK, 0f);
+                    doctor.put(FEEDBACK, "0.0");
                     doctor.put(SESSO, sesso);
                     doctor.put(DESCRIPTION, description);
                     doctor.put(BORN, born);
@@ -551,6 +495,53 @@ public class Util {
                     doctor.put(PROVINCE, Arrays.asList(province));
                     doctor.put(MARKER, marker);
                     addPhoto(res, doctorDrawable, email);
+
+                    try {
+                        doctor.save();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+
+                else{
+                    Log.d("UTIL.EXCEPTION ==> ", ""); e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public static void addDoctorWithoutPhoto(final String email, final String firstName, final String lastName, final String visit, final String description, final String price,
+                                 final String[] work, final String[] province, final String experience, final String born, final String[] specialization, final String sesso, final String phone,
+                                 final ArrayList<HashMap<String,String>> marker){
+
+        ParseQuery<ParseObject> doctorExists = ParseQuery.getQuery("provaDoctor");
+        doctorExists.whereEqualTo(EMAIL_DOCTOR, email);
+        doctorExists.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null && objects.size() != 0){
+                    Log.d("UTIL.ADD DOCTOR ==> ", objects.get(0).getString(EMAIL_DOCTOR) + " EXISTS!");
+                }
+
+                else if (e == null && objects.size() == 0){
+                    Log.d("UTIL.ADD DOCTOR ==> ", "ADDING DOCTOR " +  email);
+                    ParseObject doctor = new ParseObject("Doctor");
+                    doctor.put(FIRSTNAME, firstName);
+                    doctor.put(LASTNAME, lastName);
+                    doctor.put(EXPERIENCE, experience);
+                    doctor.put(EMAIL_DOCTOR, email);
+                    doctor.put(FEEDBACK, "0.0");
+                    doctor.put(SESSO, sesso);
+                    doctor.put(DESCRIPTION, description);
+                    doctor.put(BORN, born);
+                    doctor.put(PHONE, phone);
+                    doctor.put(VISIT, visit);
+                    doctor.put(PRICE, price);
+                    doctor.put(WORK, Arrays.asList(work));
+                    doctor.put(SPECIALIZATION, Arrays.asList(specialization));
+                    doctor.put(PROVINCE, Arrays.asList(province));
+                    doctor.put(MARKER, marker);
 
                     try {
                         doctor.save();
