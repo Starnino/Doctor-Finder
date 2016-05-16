@@ -162,7 +162,7 @@ public class FeedbackDialogFragment
                     Util.SnackBarFiga(null, v, "Descrivi la visita!");
 
                 else if (text.getText().toString().split(" ").length < 10)
-                    Util.SnackBarFiga(null, v, "I1 Feedback deve contenere almeno 10 parole!");
+                    Util.SnackBarFiga(null, v, "La descrizione deve contenere almeno 10 parole!");
 
                 else if (!checkBox.isChecked())
                     Util.SnackBarFiga(null, v, "Dichiara che la visita è stata veramente effettuata. " +

@@ -51,6 +51,9 @@ public class SplashActivity extends AppCompatActivity {
         //TODO riaggiungere sicoli @giampo
 
         /**ATTENTION PLEASE! THIS IS THE FUNCTION FOR LOAD COMPLETELY A DOCTOR! DON'T PLAY WITH IT*/
+        /**LEGGI SOTTO!
+         *
+         */
         /*
         final String email = "prova@gmail.com";
         final String firstName = "prova";
@@ -65,13 +68,37 @@ public class SplashActivity extends AppCompatActivity {
         final String born = "08/11/1994";                               //giorno/mese/anno
         final String sesso = "M";                              // "M" or "F"
         final String phone = "33390934376";
-        final String[] marker = new String[]{"Via di Boccea, 437, 00166, Roma"};                  //like array of--> via esempio, 10, cap, provincia
+        final String[] marker = new String[]{"Via di Boccea, 437, 00166, Roma"};                  //like array of--> via esempio, civico, cap, provincia
         final Resources res = getResources();
         final int doctorDrawable = R.drawable.doctor_avatar;    //image png 250 x 250 from drawable
 
         Util.addDoctorWithoutPhoto(email,firstName, lastName, visit,description,
                 price,work, province, experience, born, specialization,
                 sesso, phone, Util.getMarkerForDoctor(this, marker), res);*/
+
+
+        //TODO per aggiungere dottore modifica il codice sottostante
+
+        /*final String email = "marcofiniguerra@yahoo.it";
+        final String firstName = "Marco";
+        final String lastName = "Finiguerra";
+        final String visit = "Previo appuntamento";                              //like --> lun-ven 10-19
+        final String description = "Medicina Estetica, Nutrizione Clinica e Dietoterapia";                        //don't link linkedin profile but text
+        final String price = "Tra 50 e 100 euro";
+        final String[] work = new String[]{"Torino"};
+        final String[] province = new String[]{"Torino"};
+        final String[] specialization = new String[]{"Medicina Estetica"};          //like array of--> Odontoiatria (big letter)
+        final String experience = "Meno di 5 anni";                         //anni
+        final String born = "25/06/1979";                               //giorno/mese/anno
+        final String sesso = "M";                              // "M" or "F"
+        final String phone = "3473046161";
+        final String[] marker = new String[]{"Via Giacinto Collegno, 48, 10138, Torino"};                  //like array of--> via esempio, civico, cap, provincia
+        final Resources res = getResources();
+        final int doctorDrawable = R.drawable.finiguerra_marco;    //image png 250 x 250 from drawable
+
+        Util.addDoctorWithPhoto(email,firstName, lastName, visit,description,
+                price,work, province, experience, born, specialization,
+                sesso, phone, Util.getMarkerForDoctor(this, marker), res,doctorDrawable);*/
 
                 //add immersive mode
                 getWindow().getDecorView().setSystemUiVisibility(
