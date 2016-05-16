@@ -162,7 +162,7 @@ public class FeedbackDialogFragment
                     Util.SnackBarFiga(null, v, "Descrivi la visita!");
 
                 else if (text.getText().toString().split(" ").length < 10)
-                    Util.SnackBarFiga(null, v, "I1 Feedback deve contenere almeno 10 parole!");
+                    Util.SnackBarFiga(null, v, "La descrizione deve contenere almeno 10 parole!");
 
                 else if (!checkBox.isChecked())
                     Util.SnackBarFiga(null, v, "Dichiara che la visita è stata veramente effettuata. " +
@@ -198,22 +198,6 @@ public class FeedbackDialogFragment
         return d;
     }
 
-   /* @Override
-    public void onCancel(final DialogInterface thisDialog) {
-        //example dialog
-        //getDialog().hide();
-        Log.d("Feedback dialog","On cancel call");
-        new MaterialDialog.Builder(getContext())
-                .positiveText("Ho capito")
-                .negativeText("Annulla")
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        //todo crash --> getDialog().show();
-
-                    }
-                }).show();
-    }*/
 
     public void showCancelDialog(){
         //getDialog().hide();

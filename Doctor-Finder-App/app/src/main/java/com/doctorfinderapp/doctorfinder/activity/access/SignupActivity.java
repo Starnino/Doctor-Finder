@@ -218,6 +218,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //loginWithFacebook.
         Button FLogin = (Button) findViewById(R.id.flogin2);
+        assert FLogin != null;
         FLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View v) {
@@ -282,22 +283,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-    }
-
-
 }
 
 

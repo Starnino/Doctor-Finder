@@ -354,8 +354,8 @@ public class DoctorFragment extends Fragment {
     }
 
 
-    public static void changeRating(float avg){
-        rightRating = avg;
+    public static void changeRating(double avg){
+        rightRating =  (float) avg;
         DoctorListFragment.refreshList();
     }
 

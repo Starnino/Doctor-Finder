@@ -221,10 +221,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                 holder.spam.setClickable(false);
                 holder.clear.setVisibility(View.VISIBLE);
                 holder.clear.setClickable(true);
-
                 holder.propic.getLayoutParams().height = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
                 holder.propic.getLayoutParams().width = (int) holder.itemView.getResources().getDimension(R.dimen.feed_image);
-
                 FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_create_white_24dp);
             }
 
@@ -311,7 +309,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
 
                                             BackgroundMail.newBuilder(v.getContext())
                                                     .withUsername("doctor.finder.dcf@gmail.com")
-                                                    .withPassword("quantomacina")
+                                                    .withPassword(Util.PASSWORD)
                                                     .withMailto("doctor.finder.dcf@gmail.com")
                                                     .withSubject("REPORT SPAM")
                                                     .withBody(body)
@@ -463,7 +461,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
                         feedbacklist.remove(position);
                         notifyItemRemoved(position);
                         FeedbackFragment.fabfeedback.setImageResource(R.drawable.ic_add_white_24dp);
-                        rebuildFeedbackAverage();
                         DoctorFragment.minus1();
                         holder.delete_progress.stopSpinning();
                         holder.delete_progress.setVisibility(View.GONE);
@@ -534,47 +531,6 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
             @Override
             public void done(ParseException e) {
                 insertItem(object);
-            }
-        });
-    }
-
-    public void rebuildFeedbackAverage(){
-        ParseQuery<ParseObject> doctor = ParseQuery.getQuery(DOCTOR);
-        doctor.whereEqualTo(EMAIL, EMAIL_DOCTOR_THIS);
-        doctor.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e == null) {
-                    if (feedbacklist.size() == 0) {
-                        object.put(FEEDBACK, 0);
-
-                    } else {
-                        List<ParseObject> feedbacks = new ArrayList<>();
-                        ParseQuery<ParseObject> numFeed = ParseQuery.getQuery(FEEDBACK);
-                        numFeed.whereEqualTo(DOCTOR_EMAIL, EMAIL_DOCTOR_THIS);
-                        try {
-                            feedbacks = numFeed.find();
-
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
-                        float somma = 0;
-                        int numfeed = feedbacks.size();
-                        for (int i = 0; i < numfeed; i++) {
-                            somma += Float.parseFloat(feedbacks.get(i).get(RATING).toString());
-                        }
-
-                        float avg = somma / numfeed;
-                        DoctorFragment.changeRating(avg);
-                        object.put(FEEDBACK, avg);
-                    }
-
-                    try {
-                        object.save();
-                    } catch (ParseException e1) {
-                        e1.printStackTrace();
-                    }
-                }
             }
         });
     }
