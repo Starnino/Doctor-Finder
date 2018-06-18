@@ -4,7 +4,6 @@
  <b> <h2 align="center"> "The easiest way to find a doctor" </h2></b>
 </p>
 
-Contacts us by email on **info@doctorfinderapp.com**
 
 - **[Facebook] (https://www.facebook.com/dcfind/)**
 - **[Trello! ](https://trello.com/b/0uSh0ofs)**
@@ -76,5 +75,4 @@ Social networks connects people all around the world and we thought to use those
 
 * [Giovanni Giampaolo] (https://www.linkedin.com/in/giampaologiovanni) 
 * [Francesco Starna] (https://it.linkedin.com/in/francesco-starna-754914b5/it)
-* [Vincenzo D'Elia] (https://it.linkedin.com/in/vincenzodelia)
 * [Federico Bacci] (https://it.linkedin.com/in/federico-bacci-a18462a8/it)
