@@ -7,7 +7,6 @@
 
 - **[Facebook](https://www.facebook.com/dcfind/)**
 - **[Trello! ](https://trello.com/b/0uSh0ofs)**
-- **[Website](http://www.doctorfinderapp.com/)**
 - **[Idea](https://drive.google.com/file/d/0BzzTdF5hw0YRbmhoUkJfalRNRnM/view?usp=sharing)**
 - **[Feedback](http://goo.gl/forms/Tbt5klLhCW=)**
 
