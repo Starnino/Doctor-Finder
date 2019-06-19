@@ -25,16 +25,7 @@ With our feature **Social Advice** you can search a doctor that have visited one
 
 Social networks connects people all around the world and we thought to use those connection for **helping you!**
 
-
-
 <img src="http://i.imgur.com/u0FMmUV.png" height="480" width="285"/>
-<img src="http://i.imgur.com/3BzIMaB.png" height="480" width="285"/>
-<img src="http://i.imgur.com/x7OxrEa.png" height="480" width="285"/>
-<br>
-
-<img src="http://i.imgur.com/jOzwzPW.png" height="480" width="285"/> 
-<img src="http://i.imgur.com/lnmRDiv.png" height="480" width="285"/> 
-<img src="http://i.imgur.com/pmoaI5p.png" height="480" width="285"/>
 
 #Milestone 1 - Proof of Concept
 
